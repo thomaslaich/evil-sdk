@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Cloudwatchlogs.Schemas;
 
 public static partial class UpdateDeliveryConfigurationInputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? Id { get; set; }
         public IReadOnlyList<string>? RecordFields { get; set; }
@@ -33,7 +33,6 @@ public static partial class UpdateDeliveryConfigurationInputSchema
                 new(
                     "id",
                     Target0,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
@@ -49,10 +48,6 @@ public static partial class UpdateDeliveryConfigurationInputSchema
                         new Trait(
                             ShapeId.Parse("smithy.api#pattern"),
                             Document.From("^[0-9A-Za-z]+$")
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
                         ),
                     ]
                 ),
@@ -111,8 +106,8 @@ public static partial class UpdateDeliveryConfigurationInputSchema
             Builder builder
         ) =>
             new global::Com.Amazonaws.Cloudwatchlogs.UpdateDeliveryConfigurationInput(
-                builder.Id ?? throw new MissingRequiredMemberException("id"),
                 builder.FieldDelimiter,
+                builder.Id,
                 builder.RecordFields,
                 builder.S3DeliveryConfiguration
             );
@@ -156,7 +151,7 @@ public static partial class UpdateDeliveryConfigurationInputSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

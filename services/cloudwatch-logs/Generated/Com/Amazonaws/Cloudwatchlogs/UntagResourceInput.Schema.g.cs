@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Cloudwatchlogs.Schemas;
 
 public static partial class UntagResourceInputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? ResourceArn { get; set; }
         public IReadOnlyList<string>? TagKeys { get; set; }
@@ -28,7 +28,6 @@ public static partial class UntagResourceInputSchema
                 new(
                     "resourceArn",
                     Target0,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
@@ -45,24 +44,9 @@ public static partial class UntagResourceInputSchema
                             ShapeId.Parse("smithy.api#pattern"),
                             Document.From("^[\\w+=/:,.@-]*$")
                         ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
                     ]
                 ),
-                new(
-                    "tagKeys",
-                    Target1,
-                    isRequired: true,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
-                    ]
-                ),
+                new("tagKeys", Target1),
             ],
             [
                 new Trait(
@@ -91,8 +75,8 @@ public static partial class UntagResourceInputSchema
             Builder builder
         ) =>
             new global::Com.Amazonaws.Cloudwatchlogs.UntagResourceInput(
-                builder.ResourceArn ?? throw new MissingRequiredMemberException("resourceArn"),
-                builder.TagKeys ?? throw new MissingRequiredMemberException("tagKeys")
+                builder.ResourceArn,
+                builder.TagKeys
             );
 
         public override void SerializeMembers<TSerializer>(
@@ -118,7 +102,7 @@ public static partial class UntagResourceInputSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

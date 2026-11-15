@@ -17,4 +17,7 @@ namespace Com.Amazonaws.Lambda;
 /// doesn't match, the operation fails with a <c>PreconditionFailedException</c> error. To retrieve the
 /// current revision ID, use the GetResourcePolicy operation.
 /// </param>
-public sealed record class DeleteResourcePolicyInput(string ResourceArn, string? RevisionId = null);
+public sealed record class DeleteResourcePolicyInput(
+    string? ResourceArn = null,
+    string? RevisionId = null
+);

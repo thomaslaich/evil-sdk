@@ -10,7 +10,7 @@ namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class GetBucketLifecycleConfigurationOutputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public IReadOnlyList<global::Com.Amazonaws.S3.LifecycleRule>? Rules { get; set; }
         public global::Com.Amazonaws.S3.TransitionDefaultMinimumObjectSize? TransitionDefaultMinimumObjectSize { get; set; }
@@ -103,7 +103,7 @@ public static partial class GetBucketLifecycleConfigurationOutputSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

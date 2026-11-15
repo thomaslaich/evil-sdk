@@ -7,11 +7,14 @@ namespace Com.Amazonaws.Dynamodb;
 /// <summary>
 /// Represents the Smithy structure com.amazonaws.dynamodb#ListTagsOfResourceInput.
 /// </summary>
-/// <param name="ResourceArn">
-/// The Amazon DynamoDB resource with tags to be listed. This value is an Amazon Resource Name (ARN).
-/// </param>
 /// <param name="NextToken">
 /// An optional string that, if supplied, must be copied from the output of a previous call to
 /// ListTagOfResource. When provided in this manner, this API fetches the next page of results.
 /// </param>
-public sealed record class ListTagsOfResourceInput(string ResourceArn, string? NextToken = null);
+/// <param name="ResourceArn">
+/// The Amazon DynamoDB resource with tags to be listed. This value is an Amazon Resource Name (ARN).
+/// </param>
+public sealed record class ListTagsOfResourceInput(
+    string? NextToken = null,
+    string? ResourceArn = null
+);

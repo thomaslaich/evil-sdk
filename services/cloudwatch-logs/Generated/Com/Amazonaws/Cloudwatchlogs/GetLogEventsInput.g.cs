@@ -7,9 +7,6 @@ namespace Com.Amazonaws.Cloudwatchlogs;
 /// <summary>
 /// Represents the Smithy structure com.amazonaws.cloudwatchlogs#GetLogEventsInput.
 /// </summary>
-/// <param name="LogStreamName">
-/// The name of the log stream.
-/// </param>
 /// <param name="EndTime">
 /// The end of the time range, expressed as the number of milliseconds after <c>Jan 1, 1970 00:00:00
 /// UTC</c>. Events with a timestamp equal to or later than this time are not included.
@@ -34,6 +31,9 @@ namespace Com.Amazonaws.Cloudwatchlogs;
 /// <para>
 /// <b>Note:</b> You must include either <c>logGroupIdentifier</c> or <c>logGroupName</c>, but not both.
 /// </para>
+/// </param>
+/// <param name="LogStreamName">
+/// The name of the log stream.
 /// </param>
 /// <param name="NextToken">
 /// The token for the next set of items to return. (You received this token from a previous call.)
@@ -69,11 +69,11 @@ namespace Com.Amazonaws.Cloudwatchlogs;
 /// </para>
 /// </param>
 public sealed record class GetLogEventsInput(
-    string LogStreamName,
     long? EndTime = null,
     int? Limit = null,
     string? LogGroupIdentifier = null,
     string? LogGroupName = null,
+    string? LogStreamName = null,
     string? NextToken = null,
     bool? StartFromHead = null,
     long? StartTime = null,

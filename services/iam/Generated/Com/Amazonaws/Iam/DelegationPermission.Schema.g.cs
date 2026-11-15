@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Iam.Schemas;
 
 public static partial class DelegationPermissionSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? PolicyTemplateArn { get; set; }
         public IReadOnlyList<global::Com.Amazonaws.Iam.PolicyParameter>? Parameters { get; set; }
@@ -87,7 +87,7 @@ public static partial class DelegationPermissionSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

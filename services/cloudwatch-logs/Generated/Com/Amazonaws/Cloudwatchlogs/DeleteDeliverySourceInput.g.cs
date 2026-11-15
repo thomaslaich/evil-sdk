@@ -10,4 +10,4 @@ namespace Com.Amazonaws.Cloudwatchlogs;
 /// <param name="Name">
 /// The name of the delivery source that you want to delete.
 /// </param>
-public sealed record class DeleteDeliverySourceInput(string Name);
+public sealed record class DeleteDeliverySourceInput(string? Name = null);

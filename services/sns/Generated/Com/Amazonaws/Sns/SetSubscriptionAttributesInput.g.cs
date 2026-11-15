@@ -96,14 +96,14 @@ namespace Com.Amazonaws.Sns;
 /// </item>
 /// </list>
 /// </param>
-/// <param name="SubscriptionArn">
-/// The ARN of the subscription to modify.
-/// </param>
 /// <param name="AttributeValue">
 /// The new value for the attribute in JSON format.
 /// </param>
+/// <param name="SubscriptionArn">
+/// The ARN of the subscription to modify.
+/// </param>
 public sealed record class SetSubscriptionAttributesInput(
-    string AttributeName,
-    string SubscriptionArn,
-    string? AttributeValue = null
+    string? AttributeName = null,
+    string? AttributeValue = null,
+    string? SubscriptionArn = null
 );

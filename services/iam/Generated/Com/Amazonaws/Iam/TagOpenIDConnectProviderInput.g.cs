@@ -24,6 +24,6 @@ namespace Com.Amazonaws.Iam;
 /// a key name and an associated value.
 /// </param>
 public sealed record class TagOpenIDConnectProviderInput(
-    string OpenIDConnectProviderArn,
-    IReadOnlyList<global::Com.Amazonaws.Iam.Tag> Tags
+    string? OpenIDConnectProviderArn = null,
+    IReadOnlyList<global::Com.Amazonaws.Iam.Tag>? Tags = null
 );

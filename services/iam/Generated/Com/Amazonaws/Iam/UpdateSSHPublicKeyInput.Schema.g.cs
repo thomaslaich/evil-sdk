@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Iam.Schemas;
 
 public static partial class UpdateSSHPublicKeyInputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? UserName { get; set; }
         public string? SSHPublicKeyId { get; set; }
@@ -29,7 +29,6 @@ public static partial class UpdateSSHPublicKeyInputSchema
                 new(
                     "UserName",
                     Target0,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
@@ -46,16 +45,11 @@ public static partial class UpdateSSHPublicKeyInputSchema
                             ShapeId.Parse("smithy.api#pattern"),
                             Document.From("^[\\w+=,.@-]+$")
                         ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
                     ]
                 ),
                 new(
                     "SSHPublicKeyId",
                     Target1,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
@@ -69,24 +63,9 @@ public static partial class UpdateSSHPublicKeyInputSchema
                             )
                         ),
                         new Trait(ShapeId.Parse("smithy.api#pattern"), Document.From("^[\\w]+$")),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
                     ]
                 ),
-                new(
-                    "Status",
-                    Target2,
-                    isRequired: true,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
-                    ]
-                ),
+                new("Status", Target2),
             ],
             [
                 new Trait(
@@ -115,10 +94,9 @@ public static partial class UpdateSSHPublicKeyInputSchema
 
         public override global::Com.Amazonaws.Iam.UpdateSSHPublicKeyInput Build(Builder builder) =>
             new global::Com.Amazonaws.Iam.UpdateSSHPublicKeyInput(
-                builder.SSHPublicKeyId
-                    ?? throw new MissingRequiredMemberException("SSHPublicKeyId"),
-                builder.Status ?? throw new MissingRequiredMemberException("Status"),
-                builder.UserName ?? throw new MissingRequiredMemberException("UserName")
+                builder.SSHPublicKeyId,
+                builder.Status,
+                builder.UserName
             );
 
         public override void SerializeMembers<TSerializer>(
@@ -142,10 +120,17 @@ public static partial class UpdateSSHPublicKeyInputSchema
             {
                 serializer.WriteNull(1);
             }
-            serializer.WriteStringEnum(2, value.Status.Value);
+            if (value.Status is { } value2)
+            {
+                serializer.WriteStringEnum(2, value2.Value);
+            }
+            else
+            {
+                serializer.WriteNull(2);
+            }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

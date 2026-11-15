@@ -9,10 +9,6 @@ namespace Com.Amazonaws.Eventbridge;
 /// <summary>
 /// Represents the Smithy structure com.amazonaws.eventbridge#PutEventsInput.
 /// </summary>
-/// <param name="Entries">
-/// The entry that defines an event in your system. You can specify several parameters for the entry
-/// such as the source and type of the event, resources associated with the event, and so on.
-/// </param>
 /// <param name="EndpointId">
 /// <para>
 /// The URL subdomain of the endpoint. For example, if the URL for Endpoint is
@@ -22,7 +18,11 @@ namespace Com.Amazonaws.Eventbridge;
 /// <b>Important:</b> When using Java, you must include <c>auth-crt</c> on the class path.
 /// </para>
 /// </param>
+/// <param name="Entries">
+/// The entry that defines an event in your system. You can specify several parameters for the entry
+/// such as the source and type of the event, resources associated with the event, and so on.
+/// </param>
 public sealed record class PutEventsInput(
-    IReadOnlyList<PutEventsRequestEntry> Entries,
-    string? EndpointId = null
+    string? EndpointId = null,
+    IReadOnlyList<PutEventsRequestEntry>? Entries = null
 );

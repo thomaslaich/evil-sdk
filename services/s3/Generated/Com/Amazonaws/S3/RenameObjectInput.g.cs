@@ -23,12 +23,6 @@ namespace Com.Amazonaws.S3;
 /// bucket naming rules</see> in the <i>Amazon S3 User Guide</i>.
 /// </para>
 /// </param>
-/// <param name="Key">
-/// Key name of the object to rename.
-/// </param>
-/// <param name="RenameSource">
-/// Specifies the source for the rename operation. The value must be URL encoded.
-/// </param>
 /// <param name="ClientToken">
 /// <para>
 /// A unique string with a max of 64 ASCII characters in the ASCII range of 33 - 126.
@@ -72,6 +66,12 @@ namespace Com.Amazonaws.S3;
 /// <param name="DestinationIfUnmodifiedSince">
 /// Renames the object if it hasn't been modified since the specified time.
 /// </param>
+/// <param name="Key">
+/// Key name of the object to rename.
+/// </param>
+/// <param name="RenameSource">
+/// Specifies the source for the rename operation. The value must be URL encoded.
+/// </param>
 /// <param name="SourceIfMatch">
 /// Renames the object if the source exists and if its entity tag (ETag) matches the specified ETag.
 /// </param>
@@ -87,14 +87,14 @@ namespace Com.Amazonaws.S3;
 /// Renames the object if the source exists and hasn't been modified since the specified time.
 /// </param>
 public sealed record class RenameObjectInput(
-    string Bucket,
-    string Key,
-    string RenameSource,
+    string? Bucket = null,
     string? ClientToken = null,
     string? DestinationIfMatch = null,
     DateTimeOffset? DestinationIfModifiedSince = null,
     string? DestinationIfNoneMatch = null,
     DateTimeOffset? DestinationIfUnmodifiedSince = null,
+    string? Key = null,
+    string? RenameSource = null,
     string? SourceIfMatch = null,
     DateTimeOffset? SourceIfModifiedSince = null,
     string? SourceIfNoneMatch = null,

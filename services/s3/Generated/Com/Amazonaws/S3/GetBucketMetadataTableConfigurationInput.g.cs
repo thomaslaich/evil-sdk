@@ -16,6 +16,6 @@ namespace Com.Amazonaws.S3;
 /// configuration for.
 /// </param>
 public sealed record class GetBucketMetadataTableConfigurationInput(
-    string Bucket,
+    string? Bucket = null,
     string? ExpectedBucketOwner = null
 );

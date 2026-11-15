@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Route53.Schemas;
 
 public static partial class GetHealthCheckCountOutputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public long? HealthCheckCount { get; set; }
     }
@@ -73,7 +73,7 @@ public static partial class GetHealthCheckCountOutputSchema
             serializer.WriteLong(0, value.HealthCheckCount);
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

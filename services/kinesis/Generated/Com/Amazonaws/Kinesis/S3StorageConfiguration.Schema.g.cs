@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Kinesis.Schemas;
 
 public static partial class S3StorageConfigurationSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? BucketARN { get; set; }
         public string? ExpectedBucketOwner { get; set; }
@@ -187,7 +187,7 @@ public static partial class S3StorageConfigurationSchema
             serializer.WriteStringEnum(4, value.CompressionType.Value);
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

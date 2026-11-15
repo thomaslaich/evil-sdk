@@ -11,7 +11,7 @@ namespace Com.Amazonaws.Iam.Schemas;
 
 public static partial class EntityDetailsSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public global::Com.Amazonaws.Iam.EntityInfo? EntityInfo { get; set; }
         public DateTimeOffset? LastAuthenticated { get; set; }
@@ -81,7 +81,7 @@ public static partial class EntityDetailsSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

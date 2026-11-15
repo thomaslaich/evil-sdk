@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Sts.Schemas;
 
 public static partial class AssumeRoleOutputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public global::Com.Amazonaws.Sts.Credentials? Credentials { get; set; }
         public global::Com.Amazonaws.Sts.AssumedRoleUser? AssumedRoleUser { get; set; }
@@ -202,7 +202,7 @@ public static partial class AssumeRoleOutputSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

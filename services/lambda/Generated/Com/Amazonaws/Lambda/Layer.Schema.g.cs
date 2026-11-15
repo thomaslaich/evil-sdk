@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Lambda.Schemas;
 
 public static partial class LayerSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? Arn { get; set; }
         public long? CodeSize { get; set; }
@@ -171,7 +171,7 @@ public static partial class LayerSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

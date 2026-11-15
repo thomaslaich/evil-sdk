@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Sqs.Schemas;
 
 public static partial class CancelMessageMoveTaskInputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? TaskHandle { get; set; }
     }
@@ -23,20 +23,7 @@ public static partial class CancelMessageMoveTaskInputSchema
     private sealed class GeneratedSchema()
         : StructSchema<global::Com.Amazonaws.Sqs.CancelMessageMoveTaskInput, Builder>(
             ShapeId.Parse("com.amazonaws.sqs#CancelMessageMoveTaskInput"),
-            [
-                new(
-                    "TaskHandle",
-                    Target0,
-                    isRequired: true,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
-                    ]
-                ),
-            ],
+            [new("TaskHandle", Target0)],
             [
                 new Trait(
                     ShapeId.Parse("smithy.api#input"),
@@ -58,10 +45,7 @@ public static partial class CancelMessageMoveTaskInputSchema
 
         public override global::Com.Amazonaws.Sqs.CancelMessageMoveTaskInput Build(
             Builder builder
-        ) =>
-            new global::Com.Amazonaws.Sqs.CancelMessageMoveTaskInput(
-                builder.TaskHandle ?? throw new MissingRequiredMemberException("TaskHandle")
-            );
+        ) => new global::Com.Amazonaws.Sqs.CancelMessageMoveTaskInput(builder.TaskHandle);
 
         public override void SerializeMembers<TSerializer>(
             global::Com.Amazonaws.Sqs.CancelMessageMoveTaskInput value,
@@ -78,7 +62,7 @@ public static partial class CancelMessageMoveTaskInputSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

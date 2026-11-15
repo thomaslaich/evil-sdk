@@ -11,4 +11,4 @@ namespace Com.Amazonaws.Cloudwatchlogs;
 /// The log group to delete the index policy for. You can specify either the name or the ARN of the log
 /// group.
 /// </param>
-public sealed record class DeleteIndexPolicyInput(string LogGroupIdentifier);
+public sealed record class DeleteIndexPolicyInput(string? LogGroupIdentifier = null);

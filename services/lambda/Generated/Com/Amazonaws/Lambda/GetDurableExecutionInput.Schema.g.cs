@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Lambda.Schemas;
 
 public static partial class GetDurableExecutionInputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? DurableExecutionArn { get; set; }
         public bool? IncludeExecutionData { get; set; }
@@ -28,7 +28,6 @@ public static partial class GetDurableExecutionInputSchema
                 new(
                     "DurableExecutionArn",
                     Target0,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
@@ -50,10 +49,6 @@ public static partial class GetDurableExecutionInputSchema
                             Document.From(
                                 "^arn:([a-zA-Z0-9-]+):lambda:([a-zA-Z0-9-]+):(\\d{12}):function:([a-zA-Z0-9_-]+):(\\$LATEST(?:\\.PUBLISHED)?|[0-9]+)/durable-execution/([a-zA-Z0-9_-]+)/([a-zA-Z0-9_-]+)$"
                             )
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
                         ),
                     ]
                 ),
@@ -99,8 +94,7 @@ public static partial class GetDurableExecutionInputSchema
             Builder builder
         ) =>
             new global::Com.Amazonaws.Lambda.GetDurableExecutionInput(
-                builder.DurableExecutionArn
-                    ?? throw new MissingRequiredMemberException("DurableExecutionArn"),
+                builder.DurableExecutionArn,
                 builder.IncludeExecutionData
             );
 
@@ -131,7 +125,7 @@ public static partial class GetDurableExecutionInputSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

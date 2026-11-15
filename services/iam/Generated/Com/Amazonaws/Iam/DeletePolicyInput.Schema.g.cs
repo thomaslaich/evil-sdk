@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Iam.Schemas;
 
 public static partial class DeletePolicyInputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? PolicyArn { get; set; }
     }
@@ -27,7 +27,6 @@ public static partial class DeletePolicyInputSchema
                 new(
                     "PolicyArn",
                     Target0,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
@@ -39,10 +38,6 @@ public static partial class DeletePolicyInputSchema
                                     { "max", Document.From(2048m) },
                                 }
                             )
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
                         ),
                     ]
                 ),
@@ -67,9 +62,7 @@ public static partial class DeletePolicyInputSchema
         public override Builder CreateTypedBuilder() => new();
 
         public override global::Com.Amazonaws.Iam.DeletePolicyInput Build(Builder builder) =>
-            new global::Com.Amazonaws.Iam.DeletePolicyInput(
-                builder.PolicyArn ?? throw new MissingRequiredMemberException("PolicyArn")
-            );
+            new global::Com.Amazonaws.Iam.DeletePolicyInput(builder.PolicyArn);
 
         public override void SerializeMembers<TSerializer>(
             global::Com.Amazonaws.Iam.DeletePolicyInput value,
@@ -86,7 +79,7 @@ public static partial class DeletePolicyInputSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

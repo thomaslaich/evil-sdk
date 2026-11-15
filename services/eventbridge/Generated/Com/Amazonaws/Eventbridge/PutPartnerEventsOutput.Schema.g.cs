@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Eventbridge.Schemas;
 
 public static partial class PutPartnerEventsOutputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public int? FailedEntryCount { get; set; }
         public IReadOnlyList<global::Com.Amazonaws.Eventbridge.PutPartnerEventsResultEntry>? Entries { get; set; }
@@ -90,7 +90,7 @@ public static partial class PutPartnerEventsOutputSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

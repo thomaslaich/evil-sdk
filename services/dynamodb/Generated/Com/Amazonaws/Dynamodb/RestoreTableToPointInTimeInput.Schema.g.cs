@@ -11,7 +11,7 @@ namespace Com.Amazonaws.Dynamodb.Schemas;
 
 public static partial class RestoreTableToPointInTimeInputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? SourceTableArn { get; set; }
         public string? SourceTableName { get; set; }
@@ -77,7 +77,6 @@ public static partial class RestoreTableToPointInTimeInputSchema
                 new(
                     "TargetTableName",
                     Target2,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
@@ -93,10 +92,6 @@ public static partial class RestoreTableToPointInTimeInputSchema
                         new Trait(
                             ShapeId.Parse("smithy.api#pattern"),
                             Document.From("^[a-zA-Z0-9_.-]+$")
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
                         ),
                         new Trait(
                             ShapeId.Parse("smithy.rules#contextParam"),
@@ -190,8 +185,6 @@ public static partial class RestoreTableToPointInTimeInputSchema
             Builder builder
         ) =>
             new global::Com.Amazonaws.Dynamodb.RestoreTableToPointInTimeInput(
-                builder.TargetTableName
-                    ?? throw new MissingRequiredMemberException("TargetTableName"),
                 builder.BillingModeOverride,
                 builder.GlobalSecondaryIndexOverride,
                 builder.LocalSecondaryIndexOverride,
@@ -201,6 +194,7 @@ public static partial class RestoreTableToPointInTimeInputSchema
                 builder.SSESpecificationOverride,
                 builder.SourceTableArn,
                 builder.SourceTableName,
+                builder.TargetTableName,
                 builder.UseLatestRestorableTime,
                 builder.VectorIndexOverride
             );
@@ -308,7 +302,7 @@ public static partial class RestoreTableToPointInTimeInputSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

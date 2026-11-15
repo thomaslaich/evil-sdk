@@ -10,9 +10,6 @@ namespace Com.Amazonaws.S3;
 /// <param name="Bucket">
 /// The bucket name.
 /// </param>
-/// <param name="Tagging">
-/// Container for the <c>TagSet</c> and <c>Tag</c> elements.
-/// </param>
 /// <param name="ChecksumAlgorithm">
 /// <para>
 /// Indicates the algorithm used to create the checksum for the request when you use the SDK. This
@@ -44,10 +41,13 @@ namespace Com.Amazonaws.S3;
 /// actual owner of the bucket, the request fails with the HTTP status code <c>403 Forbidden</c> (access
 /// denied).
 /// </param>
+/// <param name="Tagging">
+/// Container for the <c>TagSet</c> and <c>Tag</c> elements.
+/// </param>
 public sealed record class PutBucketTaggingInput(
-    string Bucket,
-    global::Com.Amazonaws.S3.Tagging Tagging,
+    string? Bucket = null,
     global::Com.Amazonaws.S3.ChecksumAlgorithm? ChecksumAlgorithm = null,
     string? ContentMD5 = null,
-    string? ExpectedBucketOwner = null
+    string? ExpectedBucketOwner = null,
+    global::Com.Amazonaws.S3.Tagging? Tagging = null
 );

@@ -27,7 +27,7 @@ namespace Com.Amazonaws.Eventbridge;
 /// </para>
 /// </param>
 public sealed record class ListPartnerEventSourceAccountsInput(
-    string EventSourceName,
+    string? EventSourceName = null,
     int? Limit = null,
     string? NextToken = null
 );

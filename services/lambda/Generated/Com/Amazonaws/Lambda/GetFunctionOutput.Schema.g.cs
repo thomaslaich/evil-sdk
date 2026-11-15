@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Lambda.Schemas;
 
 public static partial class GetFunctionOutputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public global::Com.Amazonaws.Lambda.FunctionConfiguration? Configuration { get; set; }
         public global::Com.Amazonaws.Lambda.FunctionCodeLocation? Code { get; set; }
@@ -127,7 +127,7 @@ public static partial class GetFunctionOutputSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

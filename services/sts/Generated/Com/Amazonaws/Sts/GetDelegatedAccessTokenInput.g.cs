@@ -11,4 +11,4 @@ namespace Com.Amazonaws.Sts;
 /// The token to exchange for temporary Amazon Web Services credentials. This token must be valid and
 /// unexpired at the time of the request.
 /// </param>
-public sealed record class GetDelegatedAccessTokenInput(string TradeInToken);
+public sealed record class GetDelegatedAccessTokenInput(string? TradeInToken = null);

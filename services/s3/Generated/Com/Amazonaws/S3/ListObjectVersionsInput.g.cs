@@ -54,7 +54,7 @@ namespace Com.Amazonaws.S3;
 /// Specifies the object version you want to start listing from.
 /// </param>
 public sealed record class ListObjectVersionsInput(
-    string Bucket,
+    string? Bucket = null,
     string? Delimiter = null,
     global::Com.Amazonaws.S3.EncodingType? EncodingType = null,
     string? ExpectedBucketOwner = null,

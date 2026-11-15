@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Iam.Schemas;
 
 public static partial class GetServiceLinkedRoleDeletionStatusOutputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public global::Com.Amazonaws.Iam.DeletionTaskStatusType? Status { get; set; }
         public global::Com.Amazonaws.Iam.DeletionTaskFailureReasonType? Reason { get; set; }
@@ -86,7 +86,7 @@ public static partial class GetServiceLinkedRoleDeletionStatusOutputSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

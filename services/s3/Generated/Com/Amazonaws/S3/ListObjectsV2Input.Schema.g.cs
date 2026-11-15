@@ -10,7 +10,7 @@ namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class ListObjectsV2InputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? Bucket { get; set; }
         public string? Delimiter { get; set; }
@@ -37,15 +37,10 @@ public static partial class ListObjectsV2InputSchema
                 new(
                     "Bucket",
                     Target0,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
                             ShapeId.Parse("smithy.api#httpLabel"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
                             Document.From(new Dictionary<string, Document> { })
                         ),
                         new Trait(
@@ -236,7 +231,7 @@ public static partial class ListObjectsV2InputSchema
 
         public override global::Com.Amazonaws.S3.ListObjectsV2Input Build(Builder builder) =>
             new global::Com.Amazonaws.S3.ListObjectsV2Input(
-                builder.Bucket ?? throw new MissingRequiredMemberException("Bucket"),
+                builder.Bucket,
                 builder.ContinuationToken,
                 builder.Delimiter,
                 builder.EncodingType,
@@ -344,7 +339,7 @@ public static partial class ListObjectsV2InputSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

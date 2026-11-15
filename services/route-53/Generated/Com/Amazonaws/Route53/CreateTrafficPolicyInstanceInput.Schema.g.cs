@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Route53.Schemas;
 
 public static partial class CreateTrafficPolicyInstanceInputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? HostedZoneId { get; set; }
         public string? Name { get; set; }
@@ -31,7 +31,6 @@ public static partial class CreateTrafficPolicyInstanceInputSchema
                 new(
                     "HostedZoneId",
                     Target0,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
@@ -44,16 +43,11 @@ public static partial class CreateTrafficPolicyInstanceInputSchema
                                 }
                             )
                         ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
                     ]
                 ),
                 new(
                     "Name",
                     Target1,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
@@ -66,16 +60,11 @@ public static partial class CreateTrafficPolicyInstanceInputSchema
                                 }
                             )
                         ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
                     ]
                 ),
                 new(
                     "TTL",
                     Target2,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
@@ -92,16 +81,11 @@ public static partial class CreateTrafficPolicyInstanceInputSchema
                                 }
                             )
                         ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
                     ]
                 ),
                 new(
                     "TrafficPolicyId",
                     Target3,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
@@ -114,16 +98,11 @@ public static partial class CreateTrafficPolicyInstanceInputSchema
                                 }
                             )
                         ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
                     ]
                 ),
                 new(
                     "TrafficPolicyVersion",
                     Target4,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
@@ -139,10 +118,6 @@ public static partial class CreateTrafficPolicyInstanceInputSchema
                                     { "max", Document.From(1000m) },
                                 }
                             )
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
                         ),
                     ]
                 ),
@@ -182,12 +157,11 @@ public static partial class CreateTrafficPolicyInstanceInputSchema
             Builder builder
         ) =>
             new global::Com.Amazonaws.Route53.CreateTrafficPolicyInstanceInput(
-                builder.HostedZoneId ?? throw new MissingRequiredMemberException("HostedZoneId"),
-                builder.Name ?? throw new MissingRequiredMemberException("Name"),
-                builder.TTL.GetValueOrDefault(),
-                builder.TrafficPolicyId
-                    ?? throw new MissingRequiredMemberException("TrafficPolicyId"),
-                builder.TrafficPolicyVersion.GetValueOrDefault()
+                builder.HostedZoneId,
+                builder.Name,
+                builder.TTL,
+                builder.TrafficPolicyId,
+                builder.TrafficPolicyVersion
             );
 
         public override void SerializeMembers<TSerializer>(
@@ -211,7 +185,14 @@ public static partial class CreateTrafficPolicyInstanceInputSchema
             {
                 serializer.WriteNull(1);
             }
-            serializer.WriteLong(2, value.TTL);
+            if (value.TTL is { } value2)
+            {
+                serializer.WriteLong(2, value2);
+            }
+            else
+            {
+                serializer.WriteNull(2);
+            }
             if (value.TrafficPolicyId is { } value3)
             {
                 serializer.WriteString(3, value3);
@@ -220,10 +201,17 @@ public static partial class CreateTrafficPolicyInstanceInputSchema
             {
                 serializer.WriteNull(3);
             }
-            serializer.WriteInteger(4, value.TrafficPolicyVersion);
+            if (value.TrafficPolicyVersion is { } value4)
+            {
+                serializer.WriteInteger(4, value4);
+            }
+            else
+            {
+                serializer.WriteNull(4);
+            }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

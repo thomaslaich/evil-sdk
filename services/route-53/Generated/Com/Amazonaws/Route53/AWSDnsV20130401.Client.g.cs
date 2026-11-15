@@ -130,7 +130,7 @@ public interface IAWSDnsV20130401Client : IDisposable
     /// The following example associates the VPC with ID vpc-1a2b3c4d with the hosted zone with ID Z3M3LMPEXAMPLE.
     /// </para>
     /// <code>
-    /// var input = new AssociateVPCWithHostedZoneInput(HostedZoneId: &quot;Z3M3LMPEXAMPLE&quot;, VPC: new VPC(VPCId: &quot;vpc-1a2b3c4d&quot;, VPCRegion: new VPCRegion(&quot;us-east-2&quot;)), Comment: &quot;&quot;);
+    /// var input = new AssociateVPCWithHostedZoneInput(Comment: &quot;&quot;, HostedZoneId: &quot;Z3M3LMPEXAMPLE&quot;, VPC: new VPC(VPCId: &quot;vpc-1a2b3c4d&quot;, VPCRegion: new VPCRegion(&quot;us-east-2&quot;)));
     /// var output = await client.AssociateVPCWithHostedZoneAsync(input);
     ///
     /// // Expected output:
@@ -471,7 +471,7 @@ public interface IAWSDnsV20130401Client : IDisposable
     /// The following example adds two tags and removes one tag from the hosted zone with ID Z3M3LMPEXAMPLE.
     /// </para>
     /// <code>
-    /// var input = new ChangeTagsForResourceInput(ResourceId: &quot;Z3M3LMPEXAMPLE&quot;, ResourceType: new TagResourceType(&quot;hostedzone&quot;), AddTags: new global::Com.Amazonaws.Route53.Tag[] { new global::Com.Amazonaws.Route53.Tag(Key: &quot;apex&quot;, Value: &quot;3874&quot;), new global::Com.Amazonaws.Route53.Tag(Key: &quot;acme&quot;, Value: &quot;4938&quot;) }, RemoveTagKeys: new string[] { &quot;Nadir&quot; });
+    /// var input = new ChangeTagsForResourceInput(AddTags: new global::Com.Amazonaws.Route53.Tag[] { new global::Com.Amazonaws.Route53.Tag(Key: &quot;apex&quot;, Value: &quot;3874&quot;), new global::Com.Amazonaws.Route53.Tag(Key: &quot;acme&quot;, Value: &quot;4938&quot;) }, RemoveTagKeys: new string[] { &quot;Nadir&quot; }, ResourceId: &quot;Z3M3LMPEXAMPLE&quot;, ResourceType: new TagResourceType(&quot;hostedzone&quot;));
     /// var output = await client.ChangeTagsForResourceAsync(input);
     ///
     /// // Expected output:
@@ -2575,6 +2575,1306 @@ public interface IAWSDnsV20130401Client : IDisposable
 public static class AWSDnsV20130401ClientExtensions
 {
     /// <summary>
+    /// Activates a key-signing key (KSK) so that it can be used for signing by DNSSEC. This operation
+    /// changes the KSK status to <c>ACTIVE</c>.
+    /// </summary>
+    public static Task<ActivateKeySigningKeyOutput> ActivateKeySigningKeyAsync(
+        this IAWSDnsV20130401Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.ActivateKeySigningKeyAsync(
+            new ActivateKeySigningKeyInput(),
+            cancellationToken
+        );
+    }
+
+    /// <summary>
+    /// <para>
+    /// Associates an Amazon VPC with a private hosted zone.
+    /// </para>
+    /// <para>
+    /// <b>Important:</b> To perform the association, the VPC and the private hosted zone must already
+    /// exist. You can't convert a public hosted zone into a private hosted zone.
+    /// </para>
+    /// <para>
+    /// <b>Note:</b> If you want to associate a VPC that was created by using one Amazon Web Services
+    /// account with a private hosted zone that was created by using a different account, the Amazon Web
+    /// Services account that created the private hosted zone must first submit a
+    /// <c>CreateVPCAssociationAuthorization</c> request. Then the account that created the VPC must submit
+    /// an <c>AssociateVPCWithHostedZone</c> request.
+    /// </para>
+    /// <para>
+    /// <b>Note:</b> When granting access, the hosted zone and the Amazon VPC must belong to the same
+    /// partition. A partition is a group of Amazon Web Services Regions. Each Amazon Web Services account
+    /// is scoped to one partition.
+    /// </para>
+    /// <para>
+    /// The following are the supported partitions:
+    /// </para>
+    /// <list type="bullet">
+    /// <item>
+    /// <description>
+    /// <c>aws</c> - Amazon Web Services Regions
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <description>
+    /// <c>aws-cn</c> - China Regions
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <description>
+    /// <c>aws-us-gov</c> - Amazon Web Services GovCloud (US) Region
+    /// </description>
+    /// </item>
+    /// </list>
+    /// <para>
+    /// For more information, see
+    /// <see href="https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html">Access
+    /// Management</see> in the <i>Amazon Web Services General Reference</i>.
+    /// </para>
+    /// </summary>
+    public static Task<AssociateVPCWithHostedZoneOutput> AssociateVPCWithHostedZoneAsync(
+        this IAWSDnsV20130401Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.AssociateVPCWithHostedZoneAsync(
+            new AssociateVPCWithHostedZoneInput(),
+            cancellationToken
+        );
+    }
+
+    /// <summary>
+    /// <para>
+    /// Creates, changes, or deletes CIDR blocks within a collection. Contains authoritative IP information
+    /// mapping blocks to one or multiple locations.
+    /// </para>
+    /// <para>
+    /// A change request can update multiple locations in a collection at a time, which is helpful if you
+    /// want to move one or more CIDR blocks from one location to another in one transaction, without
+    /// downtime.
+    /// </para>
+    /// <para>
+    /// <b>Limits</b>
+    /// </para>
+    /// <para>
+    /// The max number of CIDR blocks included in the request is 1000. As a result, big updates require
+    /// multiple API calls.
+    /// </para>
+    /// <para>
+    /// <b> PUT and DELETE_IF_EXISTS</b>
+    /// </para>
+    /// <para>
+    /// Use <c>ChangeCidrCollection</c> to perform the following actions:
+    /// </para>
+    /// <list type="bullet">
+    /// <item>
+    /// <description>
+    /// <c>PUT</c>: Create a CIDR block within the specified collection.
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <description>
+    /// <c> DELETE_IF_EXISTS</c>: Delete an existing CIDR block from the collection.
+    /// </description>
+    /// </item>
+    /// </list>
+    /// </summary>
+    public static Task<ChangeCidrCollectionOutput> ChangeCidrCollectionAsync(
+        this IAWSDnsV20130401Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.ChangeCidrCollectionAsync(new ChangeCidrCollectionInput(), cancellationToken);
+    }
+
+    /// <summary>
+    /// <para>
+    /// Creates, changes, or deletes a resource record set, which contains authoritative DNS information for
+    /// a specified domain name or subdomain name. For example, you can use <c>ChangeResourceRecordSets</c>
+    /// to create a resource record set that routes traffic for test.example.com to a web server that has an
+    /// IP address of 192.0.2.44.
+    /// </para>
+    /// <para>
+    /// <b>Deleting Resource Record Sets</b>
+    /// </para>
+    /// <para>
+    /// To delete a resource record set, you must specify all the same values that you specified when you
+    /// created it.
+    /// </para>
+    /// <para>
+    /// <b>Change Batches and Transactional Changes</b>
+    /// </para>
+    /// <para>
+    /// The request body must include a document with a <c>ChangeResourceRecordSetsRequest</c> element. The
+    /// request body contains a list of change items, known as a change batch. Change batches are considered
+    /// transactional changes. Route 53 validates the changes in the request and then either makes all or
+    /// none of the changes in the change batch request. This ensures that DNS routing isn't adversely
+    /// affected by partial changes to the resource record sets in a hosted zone.
+    /// </para>
+    /// <para>
+    /// For example, suppose a change batch request contains two changes: it deletes the <c>CNAME</c>
+    /// resource record set for www.example.com and creates an alias resource record set for
+    /// www.example.com. If validation for both records succeeds, Route 53 deletes the first resource record
+    /// set and creates the second resource record set in a single operation. If validation for either the
+    /// <c>DELETE</c> or the <c>CREATE</c> action fails, then the request is canceled, and the original
+    /// <c>CNAME</c> record continues to exist.
+    /// </para>
+    /// <para>
+    /// <b>Note:</b> If you try to delete the same resource record set more than once in a single change
+    /// batch, Route 53 returns an <c>InvalidChangeBatch</c> error.
+    /// </para>
+    /// <para>
+    /// <b>Traffic Flow</b>
+    /// </para>
+    /// <para>
+    /// To create resource record sets for complex routing configurations, use either the traffic flow
+    /// visual editor in the Route 53 console or the API actions for traffic policies and traffic policy
+    /// instances. Save the configuration as a traffic policy, then associate the traffic policy with one or
+    /// more domain names (such as example.com) or subdomain names (such as www.example.com), in the same
+    /// hosted zone or in multiple hosted zones. You can roll back the updates if the new configuration
+    /// isn't performing as expected. For more information, see
+    /// <see href="https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/traffic-flow.html">Using
+    /// Traffic Flow to Route DNS Traffic</see> in the <i>Amazon Route 53 Developer Guide</i>.
+    /// </para>
+    /// <para>
+    /// <b>Create, Delete, and Upsert</b>
+    /// </para>
+    /// <para>
+    /// Use <c>ChangeResourceRecordsSetsRequest</c> to perform the following actions:
+    /// </para>
+    /// <list type="bullet">
+    /// <item>
+    /// <description>
+    /// <c>CREATE</c>: Creates a resource record set that has the specified values.
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <description>
+    /// <c>DELETE</c>: Deletes an existing resource record set that has the specified values.
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <description>
+    /// <c>UPSERT</c>: If a resource set doesn't exist, Route 53 creates it. If a resource set exists Route
+    /// 53 updates it with the values in the request.
+    /// </description>
+    /// </item>
+    /// </list>
+    /// <para>
+    /// <b>Syntaxes for Creating, Updating, and Deleting Resource Record Sets</b>
+    /// </para>
+    /// <para>
+    /// The syntax for a request depends on the type of resource record set that you want to create, delete,
+    /// or update, such as weighted, alias, or failover. The XML elements in your request must appear in the
+    /// order listed in the syntax.
+    /// </para>
+    /// <para>
+    /// For an example for each type of resource record set, see "Examples."
+    /// </para>
+    /// <para>
+    /// Don't refer to the syntax in the "Parameter Syntax" section, which includes all of the elements for
+    /// every kind of resource record set that you can create, delete, or update by using
+    /// <c>ChangeResourceRecordSets</c>.
+    /// </para>
+    /// <para>
+    /// <b>Change Propagation to Route 53 DNS Servers</b>
+    /// </para>
+    /// <para>
+    /// When you submit a <c>ChangeResourceRecordSets</c> request, Route 53 propagates your changes to all
+    /// of the Route 53 authoritative DNS servers managing the hosted zone. While your changes are
+    /// propagating, <c>GetChange</c> returns a status of <c>PENDING</c>. When propagation is complete,
+    /// <c>GetChange</c> returns a status of <c>INSYNC</c>. Changes generally propagate to all Route 53 name
+    /// servers managing the hosted zone within 60 seconds. For more information, see
+    /// <see href="https://docs.aws.amazon.com/Route53/latest/APIReference/API_GetChange.html">GetChange</see>.
+    /// </para>
+    /// <para>
+    /// <b>Limits on ChangeResourceRecordSets Requests</b>
+    /// </para>
+    /// <para>
+    /// For information about the limits on a <c>ChangeResourceRecordSets</c> request, see
+    /// <see href="https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/DNSLimitations.html">Limits</see>
+    /// in the <i>Amazon Route 53 Developer Guide</i>.
+    /// </para>
+    /// </summary>
+    public static Task<ChangeResourceRecordSetsOutput> ChangeResourceRecordSetsAsync(
+        this IAWSDnsV20130401Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.ChangeResourceRecordSetsAsync(
+            new ChangeResourceRecordSetsInput(),
+            cancellationToken
+        );
+    }
+
+    /// <summary>
+    /// <para>
+    /// Adds, edits, or deletes tags for a health check or a hosted zone.
+    /// </para>
+    /// <para>
+    /// For information about using tags for cost allocation, see
+    /// <see href="https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/cost-alloc-tags.html">Using
+    /// Cost Allocation Tags</see> in the <i>Billing and Cost Management User Guide</i>.
+    /// </para>
+    /// </summary>
+    public static Task<ChangeTagsForResourceOutput> ChangeTagsForResourceAsync(
+        this IAWSDnsV20130401Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.ChangeTagsForResourceAsync(
+            new ChangeTagsForResourceInput(),
+            cancellationToken
+        );
+    }
+
+    /// <summary>
+    /// Creates a CIDR collection in the current Amazon Web Services account.
+    /// </summary>
+    public static Task<CreateCidrCollectionOutput> CreateCidrCollectionAsync(
+        this IAWSDnsV20130401Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.CreateCidrCollectionAsync(new CreateCidrCollectionInput(), cancellationToken);
+    }
+
+    /// <summary>
+    /// <para>
+    /// Creates a new health check.
+    /// </para>
+    /// <para>
+    /// For information about adding health checks to resource record sets, see
+    /// <see href="https://docs.aws.amazon.com/Route53/latest/APIReference/API_ResourceRecordSet.html#Route53-Type-ResourceRecordSet-HealthCheckId">HealthCheckId</see>
+    /// in
+    /// <see href="https://docs.aws.amazon.com/Route53/latest/APIReference/API_ChangeResourceRecordSets.html">ChangeResourceRecordSets</see>.
+    /// </para>
+    /// <para>
+    /// <b>ELB Load Balancers</b>
+    /// </para>
+    /// <para>
+    /// If you're registering EC2 instances with an Elastic Load Balancing (ELB) load balancer, do not
+    /// create Amazon Route 53 health checks for the EC2 instances. When you register an EC2 instance with a
+    /// load balancer, you configure settings for an ELB health check, which performs a similar function to
+    /// a Route 53 health check.
+    /// </para>
+    /// <para>
+    /// <b>Private Hosted Zones</b>
+    /// </para>
+    /// <para>
+    /// You can associate health checks with failover resource record sets in a private hosted zone. Note
+    /// the following:
+    /// </para>
+    /// <list type="bullet">
+    /// <item>
+    /// <description>
+    /// Route 53 health checkers are outside the VPC. To check the health of an endpoint within a VPC by IP
+    /// address, you must assign a public IP address to the instance in the VPC.
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <description>
+    /// You can configure a health checker to check the health of an external resource that the instance
+    /// relies on, such as a database server.
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <description>
+    /// You can create a CloudWatch metric, associate an alarm with the metric, and then create a health
+    /// check that is based on the state of the alarm. For example, you might create a CloudWatch metric
+    /// that checks the status of the Amazon EC2 <c>StatusCheckFailed</c> metric, add an alarm to the
+    /// metric, and then create a health check that is based on the state of the alarm. For information
+    /// about creating CloudWatch metrics and alarms by using the CloudWatch console, see the
+    /// <see href="https://docs.aws.amazon.com/AmazonCloudWatch/latest/DeveloperGuide/WhatIsCloudWatch.html">Amazon
+    /// CloudWatch User Guide</see>.
+    /// </description>
+    /// </item>
+    /// </list>
+    /// </summary>
+    public static Task<CreateHealthCheckOutput> CreateHealthCheckAsync(
+        this IAWSDnsV20130401Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.CreateHealthCheckAsync(new CreateHealthCheckInput(), cancellationToken);
+    }
+
+    /// <summary>
+    /// <para>
+    /// Creates a new public or private hosted zone. You create records in a public hosted zone to define
+    /// how you want to route traffic on the internet for a domain, such as example.com, and its subdomains
+    /// (apex.example.com, acme.example.com). You create records in a private hosted zone to define how you
+    /// want to route traffic for a domain and its subdomains within one or more Amazon Virtual Private
+    /// Clouds (Amazon VPCs).
+    /// </para>
+    /// <para>
+    /// <b>Important:</b> You can't convert a public hosted zone to a private hosted zone or vice versa.
+    /// Instead, you must create a new hosted zone with the same name and create new resource record sets.
+    /// </para>
+    /// <para>
+    /// For more information about charges for hosted zones, see
+    /// <see href="http://aws.amazon.com/route53/pricing/">Amazon Route 53 Pricing</see>.
+    /// </para>
+    /// <para>
+    /// Note the following:
+    /// </para>
+    /// <list type="bullet">
+    /// <item>
+    /// <description>
+    /// You can't create a hosted zone for a top-level domain (TLD) such as .com.
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <description>
+    /// <para>
+    /// For public hosted zones, Route 53 automatically creates a default SOA record and four NS records for
+    /// the zone. For more information about SOA and NS records, see
+    /// <see href="https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/SOA-NSrecords.html">NS and SOA
+    /// Records that Route 53 Creates for a Hosted Zone</see> in the <i>Amazon Route 53 Developer Guide</i>.
+    /// </para>
+    /// <para>
+    /// If you want to use the same name servers for multiple public hosted zones, you can optionally
+    /// associate a reusable delegation set with the hosted zone. See the <c>DelegationSetId</c> element.
+    /// </para>
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <description>
+    /// If your domain is registered with a registrar other than Route 53, you must update the name servers
+    /// with your registrar to make Route 53 the DNS service for the domain. For more information, see
+    /// <see href="https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/MigratingDNS.html">Migrating
+    /// DNS Service for an Existing Domain to Amazon Route 53</see> in the <i>Amazon Route 53 Developer
+    /// Guide</i>.
+    /// </description>
+    /// </item>
+    /// </list>
+    /// <para>
+    /// When you submit a <c>CreateHostedZone</c> request, the initial status of the hosted zone is
+    /// <c>PENDING</c>. For public hosted zones, this means that the NS and SOA records are not yet
+    /// available on all Route 53 DNS servers. When the NS and SOA records are available, the status of the
+    /// zone changes to <c>INSYNC</c>.
+    /// </para>
+    /// <para>
+    /// The <c>CreateHostedZone</c> request requires the caller to have an <c>ec2:DescribeVpcs</c>
+    /// permission.
+    /// </para>
+    /// <para>
+    /// <b>Note:</b> When creating private hosted zones, the Amazon VPC must belong to the same partition
+    /// where the hosted zone is created. A partition is a group of Amazon Web Services Regions. Each Amazon
+    /// Web Services account is scoped to one partition.
+    /// </para>
+    /// <para>
+    /// The following are the supported partitions:
+    /// </para>
+    /// <list type="bullet">
+    /// <item>
+    /// <description>
+    /// <c>aws</c> - Amazon Web Services Regions
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <description>
+    /// <c>aws-cn</c> - China Regions
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <description>
+    /// <c>aws-us-gov</c> - Amazon Web Services GovCloud (US) Region
+    /// </description>
+    /// </item>
+    /// </list>
+    /// <para>
+    /// For more information, see
+    /// <see href="https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html">Access
+    /// Management</see> in the <i>Amazon Web Services General Reference</i>.
+    /// </para>
+    /// </summary>
+    public static Task<CreateHostedZoneOutput> CreateHostedZoneAsync(
+        this IAWSDnsV20130401Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.CreateHostedZoneAsync(new CreateHostedZoneInput(), cancellationToken);
+    }
+
+    /// <summary>
+    /// Creates a new key-signing key (KSK) associated with a hosted zone. You can only have two KSKs per
+    /// hosted zone.
+    /// </summary>
+    public static Task<CreateKeySigningKeyOutput> CreateKeySigningKeyAsync(
+        this IAWSDnsV20130401Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.CreateKeySigningKeyAsync(new CreateKeySigningKeyInput(), cancellationToken);
+    }
+
+    /// <summary>
+    /// <para>
+    /// Creates a configuration for DNS query logging. After you create a query logging configuration,
+    /// Amazon Route 53 begins to publish log data to an Amazon CloudWatch Logs log group.
+    /// </para>
+    /// <para>
+    /// DNS query logs contain information about the queries that Route 53 receives for a specified public
+    /// hosted zone, such as the following:
+    /// </para>
+    /// <list type="bullet">
+    /// <item>
+    /// <description>
+    /// Route 53 edge location that responded to the DNS query
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <description>
+    /// Domain or subdomain that was requested
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <description>
+    /// DNS record type, such as A or AAAA
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <description>
+    /// DNS response code, such as <c>NoError</c> or <c>ServFail</c>
+    /// </description>
+    /// </item>
+    /// </list>
+    /// <list type="bullet">
+    /// <item>
+    /// <term>Log Group and Resource Policy</term>
+    /// <description>
+    /// <para>
+    /// Before you create a query logging configuration, perform the following operations.
+    /// </para>
+    /// <para>
+    /// <b>Note:</b> If you create a query logging configuration using the Route 53 console, Route 53
+    /// performs these operations automatically.
+    /// </para>
+    /// <list type="number">
+    /// <item>
+    /// <description>
+    /// <para>
+    /// Create a CloudWatch Logs log group, and make note of the ARN, which you specify when you create a
+    /// query logging configuration. Note the following:
+    /// </para>
+    /// <list type="bullet">
+    /// <item>
+    /// <description>
+    /// You must create the log group in the us-east-1 region.
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <description>
+    /// You must use the same Amazon Web Services account to create the log group and the hosted zone that
+    /// you want to configure query logging for.
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <description>
+    /// <para>
+    /// When you create log groups for query logging, we recommend that you use a consistent prefix, for
+    /// example:
+    /// </para>
+    /// <para>
+    /// <c>/aws/route53/<i>hosted zone name</i> </c>
+    /// </para>
+    /// <para>
+    /// In the next step, you'll create a resource policy, which controls access to one or more log groups
+    /// and the associated Amazon Web Services resources, such as Route 53 hosted zones. There's a limit on
+    /// the number of resource policies that you can create, so we recommend that you use a consistent
+    /// prefix so you can use the same resource policy for all the log groups that you create for query
+    /// logging.
+    /// </para>
+    /// </description>
+    /// </item>
+    /// </list>
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <description>
+    /// <para>
+    /// Create a CloudWatch Logs resource policy, and give it the permissions that Route 53 needs to create
+    /// log streams and to send query logs to log streams. You must create the CloudWatch Logs resource
+    /// policy in the us-east-1 region. For the value of <c>Resource</c>, specify the ARN for the log group
+    /// that you created in the previous step. To use the same resource policy for all the CloudWatch Logs
+    /// log groups that you created for query logging configurations, replace the hosted zone name with
+    /// <c>*</c>, for example:
+    /// </para>
+    /// <para>
+    /// <c>arn:aws:logs:us-east-1:123412341234:log-group:/aws/route53/*</c>
+    /// </para>
+    /// <para>
+    /// To avoid the confused deputy problem, a security issue where an entity without a permission for an
+    /// action can coerce a more-privileged entity to perform it, you can optionally limit the permissions
+    /// that a service has to a resource in a resource-based policy by supplying the following values:
+    /// </para>
+    /// <list type="bullet">
+    /// <item>
+    /// <description>
+    /// For <c>aws:SourceArn</c>, supply the hosted zone ARN used in creating the query logging
+    /// configuration. For example, <c>aws:SourceArn: arn:aws:route53:::hostedzone/hosted zone ID</c>.
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <description>
+    /// For <c>aws:SourceAccount</c>, supply the account ID for the account that creates the query logging
+    /// configuration. For example, <c>aws:SourceAccount:111111111111</c>.
+    /// </description>
+    /// </item>
+    /// </list>
+    /// <para>
+    /// For more information, see
+    /// <see href="https://docs.aws.amazon.com/IAM/latest/UserGuide/confused-deputy.html">The confused
+    /// deputy problem</see> in the <i>Amazon Web Services IAM User Guide</i>.
+    /// </para>
+    /// <para>
+    /// <b>Note:</b> You can't use the CloudWatch console to create or edit a resource policy. You must use
+    /// the CloudWatch API, one of the Amazon Web Services SDKs, or the CLI.
+    /// </para>
+    /// </description>
+    /// </item>
+    /// </list>
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <term>Log Streams and Edge Locations</term>
+    /// <description>
+    /// <para>
+    /// When Route 53 finishes creating the configuration for DNS query logging, it does the following:
+    /// </para>
+    /// <list type="bullet">
+    /// <item>
+    /// <description>
+    /// Creates a log stream for an edge location the first time that the edge location responds to DNS
+    /// queries for the specified hosted zone. That log stream is used to log all queries that Route 53
+    /// responds to for that edge location.
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <description>
+    /// Begins to send query logs to the applicable log stream.
+    /// </description>
+    /// </item>
+    /// </list>
+    /// <para>
+    /// The name of each log stream is in the following format:
+    /// </para>
+    /// <para>
+    /// <c> <i>hosted zone ID</i>/<i>edge location code</i> </c>
+    /// </para>
+    /// <para>
+    /// The edge location code is a three-letter code and an arbitrarily assigned number, for example, DFW3.
+    /// The three-letter code typically corresponds with the International Air Transport Association airport
+    /// code for an airport near the edge location. (These abbreviations might change in the future.) For a
+    /// list of edge locations, see "The Route 53 Global Network" on the
+    /// <see href="http://aws.amazon.com/route53/details/">Route 53 Product Details</see> page.
+    /// </para>
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <term>Queries That Are Logged</term>
+    /// <description>
+    /// Query logs contain only the queries that DNS resolvers forward to Route 53. If a DNS resolver has
+    /// already cached the response to a query (such as the IP address for a load balancer for example.com),
+    /// the resolver will continue to return the cached response. It doesn't forward another query to Route
+    /// 53 until the TTL for the corresponding resource record set expires. Depending on how many DNS
+    /// queries are submitted for a resource record set, and depending on the TTL for that resource record
+    /// set, query logs might contain information about only one query out of every several thousand queries
+    /// that are submitted to DNS. For more information about how DNS works, see
+    /// <see href="https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/welcome-dns-service.html">Routing
+    /// Internet Traffic to Your Website or Web Application</see> in the <i>Amazon Route 53 Developer
+    /// Guide</i>.
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <term>Log File Format</term>
+    /// <description>
+    /// For a list of the values in each query log and the format of each value, see
+    /// <see href="https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/query-logs.html">Logging DNS
+    /// Queries</see> in the <i>Amazon Route 53 Developer Guide</i>.
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <term>Pricing</term>
+    /// <description>
+    /// For information about charges for query logs, see
+    /// <see href="http://aws.amazon.com/cloudwatch/pricing/">Amazon CloudWatch Pricing</see>.
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <term>How to Stop Logging</term>
+    /// <description>
+    /// If you want Route 53 to stop sending query logs to CloudWatch Logs, delete the query logging
+    /// configuration. For more information, see
+    /// <see href="https://docs.aws.amazon.com/Route53/latest/APIReference/API_DeleteQueryLoggingConfig.html">DeleteQueryLoggingConfig</see>.
+    /// </description>
+    /// </item>
+    /// </list>
+    /// </summary>
+    public static Task<CreateQueryLoggingConfigOutput> CreateQueryLoggingConfigAsync(
+        this IAWSDnsV20130401Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.CreateQueryLoggingConfigAsync(
+            new CreateQueryLoggingConfigInput(),
+            cancellationToken
+        );
+    }
+
+    /// <summary>
+    /// <para>
+    /// Creates a delegation set (a group of four name servers) that can be reused by multiple hosted zones
+    /// that were created by the same Amazon Web Services account.
+    /// </para>
+    /// <para>
+    /// You can also create a reusable delegation set that uses the four name servers that are associated
+    /// with an existing hosted zone. Specify the hosted zone ID in the <c>CreateReusableDelegationSet</c>
+    /// request.
+    /// </para>
+    /// <para>
+    /// <b>Note:</b> You can't associate a reusable delegation set with a private hosted zone.
+    /// </para>
+    /// <para>
+    /// For information about using a reusable delegation set to configure white label name servers, see
+    /// <see href="https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/white-label-name-servers.html">Configuring
+    /// White Label Name Servers</see>.
+    /// </para>
+    /// <para>
+    /// The process for migrating existing hosted zones to use a reusable delegation set is comparable to
+    /// the process for configuring white label name servers. You need to perform the following steps:
+    /// </para>
+    /// <list type="number">
+    /// <item>
+    /// <description>
+    /// Create a reusable delegation set.
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <description>
+    /// Recreate hosted zones, and reduce the TTL to 60 seconds or less.
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <description>
+    /// Recreate resource record sets in the new hosted zones.
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <description>
+    /// Change the registrar's name servers to use the name servers for the new hosted zones.
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <description>
+    /// Monitor traffic for the website or application.
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <description>
+    /// Change TTLs back to their original values.
+    /// </description>
+    /// </item>
+    /// </list>
+    /// <para>
+    /// If you want to migrate existing hosted zones to use a reusable delegation set, the existing hosted
+    /// zones can't use any of the name servers that are assigned to the reusable delegation set. If one or
+    /// more hosted zones do use one or more name servers that are assigned to the reusable delegation set,
+    /// you can do one of the following:
+    /// </para>
+    /// <list type="bullet">
+    /// <item>
+    /// <description>
+    /// For small numbers of hosted zones—up to a few hundred—it's relatively easy to create reusable
+    /// delegation sets until you get one that has four name servers that don't overlap with any of the name
+    /// servers in your hosted zones.
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <description>
+    /// For larger numbers of hosted zones, the easiest solution is to use more than one reusable delegation
+    /// set.
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <description>
+    /// For larger numbers of hosted zones, you can also migrate hosted zones that have overlapping name
+    /// servers to hosted zones that don't have overlapping name servers, then migrate the hosted zones
+    /// again to use the reusable delegation set.
+    /// </description>
+    /// </item>
+    /// </list>
+    /// </summary>
+    public static Task<CreateReusableDelegationSetOutput> CreateReusableDelegationSetAsync(
+        this IAWSDnsV20130401Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.CreateReusableDelegationSetAsync(
+            new CreateReusableDelegationSetInput(),
+            cancellationToken
+        );
+    }
+
+    /// <summary>
+    /// Creates a traffic policy, which you use to create multiple DNS resource record sets for one domain
+    /// name (such as example.com) or one subdomain name (such as www.example.com).
+    /// </summary>
+    public static Task<CreateTrafficPolicyOutput> CreateTrafficPolicyAsync(
+        this IAWSDnsV20130401Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.CreateTrafficPolicyAsync(new CreateTrafficPolicyInput(), cancellationToken);
+    }
+
+    /// <summary>
+    /// <para>
+    /// Creates resource record sets in a specified hosted zone based on the settings in a specified traffic
+    /// policy version. In addition, <c>CreateTrafficPolicyInstance</c> associates the resource record sets
+    /// with a specified domain name (such as example.com) or subdomain name (such as www.example.com).
+    /// Amazon Route 53 responds to DNS queries for the domain or subdomain name by using the resource
+    /// record sets that <c>CreateTrafficPolicyInstance</c> created.
+    /// </para>
+    /// <para>
+    /// <b>Note:</b> After you submit an <c>CreateTrafficPolicyInstance</c> request, there's a brief delay
+    /// while Amazon Route 53 creates the resource record sets that are specified in the traffic policy
+    /// definition. Use <c>GetTrafficPolicyInstance</c> with the <c>id</c> of new traffic policy instance to
+    /// confirm that the <c>CreateTrafficPolicyInstance</c> request completed successfully. For more
+    /// information, see the <c>State</c> response element.
+    /// </para>
+    /// </summary>
+    public static Task<CreateTrafficPolicyInstanceOutput> CreateTrafficPolicyInstanceAsync(
+        this IAWSDnsV20130401Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.CreateTrafficPolicyInstanceAsync(
+            new CreateTrafficPolicyInstanceInput(),
+            cancellationToken
+        );
+    }
+
+    /// <summary>
+    /// Creates a new version of an existing traffic policy. When you create a new version of a traffic
+    /// policy, you specify the ID of the traffic policy that you want to update and a JSON-formatted
+    /// document that describes the new version. You use traffic policies to create multiple DNS resource
+    /// record sets for one domain name (such as example.com) or one subdomain name (such as
+    /// www.example.com). You can create a maximum of 1000 versions of a traffic policy. If you reach the
+    /// limit and need to create another version, you'll need to start a new traffic policy.
+    /// </summary>
+    public static Task<CreateTrafficPolicyVersionOutput> CreateTrafficPolicyVersionAsync(
+        this IAWSDnsV20130401Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.CreateTrafficPolicyVersionAsync(
+            new CreateTrafficPolicyVersionInput(),
+            cancellationToken
+        );
+    }
+
+    /// <summary>
+    /// <para>
+    /// Authorizes the Amazon Web Services account that created a specified VPC to submit an
+    /// <c>AssociateVPCWithHostedZone</c> request to associate the VPC with a specified hosted zone that was
+    /// created by a different account. To submit a <c>CreateVPCAssociationAuthorization</c> request, you
+    /// must use the account that created the hosted zone. After you authorize the association, use the
+    /// account that created the VPC to submit an <c>AssociateVPCWithHostedZone</c> request.
+    /// </para>
+    /// <para>
+    /// <b>Note:</b> If you want to associate multiple VPCs that you created by using one account with a
+    /// hosted zone that you created by using a different account, you must submit one authorization request
+    /// for each VPC.
+    /// </para>
+    /// </summary>
+    public static Task<CreateVPCAssociationAuthorizationOutput> CreateVPCAssociationAuthorizationAsync(
+        this IAWSDnsV20130401Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.CreateVPCAssociationAuthorizationAsync(
+            new CreateVPCAssociationAuthorizationInput(),
+            cancellationToken
+        );
+    }
+
+    /// <summary>
+    /// Deactivates a key-signing key (KSK) so that it will not be used for signing by DNSSEC. This
+    /// operation changes the KSK status to <c>INACTIVE</c>.
+    /// </summary>
+    public static Task<DeactivateKeySigningKeyOutput> DeactivateKeySigningKeyAsync(
+        this IAWSDnsV20130401Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.DeactivateKeySigningKeyAsync(
+            new DeactivateKeySigningKeyInput(),
+            cancellationToken
+        );
+    }
+
+    /// <summary>
+    /// Deletes a CIDR collection in the current Amazon Web Services account. The collection must be empty
+    /// before it can be deleted.
+    /// </summary>
+    public static Task<DeleteCidrCollectionOutput> DeleteCidrCollectionAsync(
+        this IAWSDnsV20130401Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.DeleteCidrCollectionAsync(new DeleteCidrCollectionInput(), cancellationToken);
+    }
+
+    /// <summary>
+    /// <para>
+    /// Deletes a health check.
+    /// </para>
+    /// <para>
+    /// <b>Important:</b> Amazon Route 53 does not prevent you from deleting a health check even if the
+    /// health check is associated with one or more resource record sets. If you delete a health check and
+    /// you don't update the associated resource record sets, the future status of the health check can't be
+    /// predicted and may change. This will affect the routing of DNS queries for your DNS failover
+    /// configuration. For more information, see
+    /// <see href="https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/health-checks-creating-deleting.html#health-checks-deleting.html">Replacing
+    /// and Deleting Health Checks</see> in the <i>Amazon Route 53 Developer Guide</i>.
+    /// </para>
+    /// <para>
+    /// If you're using Cloud Map and you configured Cloud Map to create a Route 53 health check when you
+    /// register an instance, you can't use the Route 53 <c>DeleteHealthCheck</c> command to delete the
+    /// health check. The health check is deleted automatically when you deregister the instance; there can
+    /// be a delay of several hours before the health check is deleted from Route 53.
+    /// </para>
+    /// </summary>
+    public static Task<DeleteHealthCheckOutput> DeleteHealthCheckAsync(
+        this IAWSDnsV20130401Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.DeleteHealthCheckAsync(new DeleteHealthCheckInput(), cancellationToken);
+    }
+
+    /// <summary>
+    /// <para>
+    /// Deletes a hosted zone.
+    /// </para>
+    /// <para>
+    /// If the hosted zone was created by another service, such as Cloud Map, see
+    /// <see href="https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/DeleteHostedZone.html#delete-public-hosted-zone-created-by-another-service">Deleting
+    /// Public Hosted Zones That Were Created by Another Service</see> in the <i>Amazon Route 53 Developer
+    /// Guide</i> for information about how to delete it. (The process is the same for public and private
+    /// hosted zones that were created by another service.)
+    /// </para>
+    /// <para>
+    /// If you want to keep your domain registration but you want to stop routing internet traffic to your
+    /// website or web application, we recommend that you delete resource record sets in the hosted zone
+    /// instead of deleting the hosted zone.
+    /// </para>
+    /// <para>
+    /// <b>Important:</b> If you delete a hosted zone, you can't undelete it. You must create a new hosted
+    /// zone and update the name servers for your domain registration, which can require up to 48 hours to
+    /// take effect. (If you delegated responsibility for a subdomain to a hosted zone and you delete the
+    /// child hosted zone, you must update the name servers in the parent hosted zone.) In addition, if you
+    /// delete a hosted zone, someone could hijack the domain and route traffic to their own resources using
+    /// your domain name.
+    /// </para>
+    /// <para>
+    /// If you want to avoid the monthly charge for the hosted zone, you can transfer DNS service for the
+    /// domain to a free DNS service. When you transfer DNS service, you have to update the name servers for
+    /// the domain registration. If the domain is registered with Route 53, see
+    /// <see href="https://docs.aws.amazon.com/Route53/latest/APIReference/API_domains_UpdateDomainNameservers.html">UpdateDomainNameservers</see>
+    /// for information about how to replace Route 53 name servers with name servers for the new DNS
+    /// service. If the domain is registered with another registrar, use the method provided by the
+    /// registrar to update name servers for the domain registration. For more information, perform an
+    /// internet search on "free DNS service."
+    /// </para>
+    /// <para>
+    /// You can delete a hosted zone only if it contains only the default SOA and NS records and has DNSSEC
+    /// signing disabled. If the hosted zone contains other records or has DNSSEC enabled, you must delete
+    /// the records and disable DNSSEC before deletion. Attempting to delete a hosted zone with additional
+    /// records or DNSSEC enabled returns a <c>HostedZoneNotEmpty</c> error. For information about deleting
+    /// records, see
+    /// <see href="https://docs.aws.amazon.com/Route53/latest/APIReference/API_ChangeResourceRecordSets.html">ChangeResourceRecordSets</see>.
+    /// </para>
+    /// <para>
+    /// To verify that the hosted zone has been deleted, do one of the following:
+    /// </para>
+    /// <list type="bullet">
+    /// <item>
+    /// <description>
+    /// Use the <c>GetHostedZone</c> action to request information about the hosted zone.
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <description>
+    /// Use the <c>ListHostedZones</c> action to get a list of the hosted zones associated with the current
+    /// Amazon Web Services account.
+    /// </description>
+    /// </item>
+    /// </list>
+    /// </summary>
+    public static Task<DeleteHostedZoneOutput> DeleteHostedZoneAsync(
+        this IAWSDnsV20130401Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.DeleteHostedZoneAsync(new DeleteHostedZoneInput(), cancellationToken);
+    }
+
+    /// <summary>
+    /// <para>
+    /// Deletes a key-signing key (KSK). Before you can delete a KSK, you must deactivate it. The KSK must
+    /// be deactivated before you can delete it regardless of whether the hosted zone is enabled for DNSSEC
+    /// signing.
+    /// </para>
+    /// <para>
+    /// You can use
+    /// <see href="https://docs.aws.amazon.com/Route53/latest/APIReference/API_DeactivateKeySigningKey.html">DeactivateKeySigningKey</see>
+    /// to deactivate the key before you delete it.
+    /// </para>
+    /// <para>
+    /// Use
+    /// <see href="https://docs.aws.amazon.com/Route53/latest/APIReference/API_GetDNSSEC.html">GetDNSSEC</see>
+    /// to verify that the KSK is in an <c>INACTIVE</c> status.
+    /// </para>
+    /// </summary>
+    public static Task<DeleteKeySigningKeyOutput> DeleteKeySigningKeyAsync(
+        this IAWSDnsV20130401Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.DeleteKeySigningKeyAsync(new DeleteKeySigningKeyInput(), cancellationToken);
+    }
+
+    /// <summary>
+    /// <para>
+    /// Deletes a configuration for DNS query logging. If you delete a configuration, Amazon Route 53 stops
+    /// sending query logs to CloudWatch Logs. Route 53 doesn't delete any logs that are already in
+    /// CloudWatch Logs.
+    /// </para>
+    /// <para>
+    /// For more information about DNS query logs, see
+    /// <see href="https://docs.aws.amazon.com/Route53/latest/APIReference/API_CreateQueryLoggingConfig.html">CreateQueryLoggingConfig</see>.
+    /// </para>
+    /// </summary>
+    public static Task<DeleteQueryLoggingConfigOutput> DeleteQueryLoggingConfigAsync(
+        this IAWSDnsV20130401Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.DeleteQueryLoggingConfigAsync(
+            new DeleteQueryLoggingConfigInput(),
+            cancellationToken
+        );
+    }
+
+    /// <summary>
+    /// <para>
+    /// Deletes a reusable delegation set.
+    /// </para>
+    /// <para>
+    /// <b>Important:</b> You can delete a reusable delegation set only if it isn't associated with any
+    /// hosted zones.
+    /// </para>
+    /// <para>
+    /// To verify that the reusable delegation set is not associated with any hosted zones, submit a
+    /// <see href="https://docs.aws.amazon.com/Route53/latest/APIReference/API_GetReusableDelegationSet.html">GetReusableDelegationSet</see>
+    /// request and specify the ID of the reusable delegation set that you want to delete.
+    /// </para>
+    /// </summary>
+    public static Task<DeleteReusableDelegationSetOutput> DeleteReusableDelegationSetAsync(
+        this IAWSDnsV20130401Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.DeleteReusableDelegationSetAsync(
+            new DeleteReusableDelegationSetInput(),
+            cancellationToken
+        );
+    }
+
+    /// <summary>
+    /// <para>
+    /// Deletes a traffic policy.
+    /// </para>
+    /// <para>
+    /// When you delete a traffic policy, Route 53 sets a flag on the policy to indicate that it has been
+    /// deleted. However, Route 53 never fully deletes the traffic policy. Note the following:
+    /// </para>
+    /// <list type="bullet">
+    /// <item>
+    /// <description>
+    /// Deleted traffic policies aren't listed if you run
+    /// <see href="https://docs.aws.amazon.com/Route53/latest/APIReference/API_ListTrafficPolicies.html">ListTrafficPolicies</see>.
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <description>
+    /// There's no way to get a list of deleted policies.
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <description>
+    /// If you retain the ID of the policy, you can get information about the policy, including the traffic
+    /// policy document, by running
+    /// <see href="https://docs.aws.amazon.com/Route53/latest/APIReference/API_GetTrafficPolicy.html">GetTrafficPolicy</see>.
+    /// </description>
+    /// </item>
+    /// </list>
+    /// </summary>
+    public static Task<DeleteTrafficPolicyOutput> DeleteTrafficPolicyAsync(
+        this IAWSDnsV20130401Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.DeleteTrafficPolicyAsync(new DeleteTrafficPolicyInput(), cancellationToken);
+    }
+
+    /// <summary>
+    /// <para>
+    /// Deletes a traffic policy instance and all of the resource record sets that Amazon Route 53 created
+    /// when you created the instance.
+    /// </para>
+    /// <para>
+    /// <b>Note:</b> In the Route 53 console, traffic policy instances are known as policy records.
+    /// </para>
+    /// </summary>
+    public static Task<DeleteTrafficPolicyInstanceOutput> DeleteTrafficPolicyInstanceAsync(
+        this IAWSDnsV20130401Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.DeleteTrafficPolicyInstanceAsync(
+            new DeleteTrafficPolicyInstanceInput(),
+            cancellationToken
+        );
+    }
+
+    /// <summary>
+    /// <para>
+    /// Removes authorization to submit an <c>AssociateVPCWithHostedZone</c> request to associate a
+    /// specified VPC with a hosted zone that was created by a different account. You must use the account
+    /// that created the hosted zone to submit a <c>DeleteVPCAssociationAuthorization</c> request.
+    /// </para>
+    /// <para>
+    /// <b>Important:</b> Sending this request only prevents the Amazon Web Services account that created
+    /// the VPC from associating the VPC with the Amazon Route 53 hosted zone in the future. If the VPC is
+    /// already associated with the hosted zone, <c>DeleteVPCAssociationAuthorization</c> won't disassociate
+    /// the VPC from the hosted zone. If you want to delete an existing association, use
+    /// <c>DisassociateVPCFromHostedZone</c>.
+    /// </para>
+    /// </summary>
+    public static Task<DeleteVPCAssociationAuthorizationOutput> DeleteVPCAssociationAuthorizationAsync(
+        this IAWSDnsV20130401Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.DeleteVPCAssociationAuthorizationAsync(
+            new DeleteVPCAssociationAuthorizationInput(),
+            cancellationToken
+        );
+    }
+
+    /// <summary>
+    /// Disables DNSSEC signing in a specific hosted zone. This action does not deactivate any key-signing
+    /// keys (KSKs) that are active in the hosted zone.
+    /// </summary>
+    public static Task<DisableHostedZoneDNSSECOutput> DisableHostedZoneDNSSECAsync(
+        this IAWSDnsV20130401Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.DisableHostedZoneDNSSECAsync(
+            new DisableHostedZoneDNSSECInput(),
+            cancellationToken
+        );
+    }
+
+    /// <summary>
+    /// <para>
+    /// Disassociates an Amazon Virtual Private Cloud (Amazon VPC) from an Amazon Route 53 private hosted
+    /// zone. Note the following:
+    /// </para>
+    /// <list type="bullet">
+    /// <item>
+    /// <description>
+    /// You can't disassociate the last Amazon VPC from a private hosted zone.
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <description>
+    /// You can't convert a private hosted zone into a public hosted zone.
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <description>
+    /// You can submit a <c>DisassociateVPCFromHostedZone</c> request using either the account that created
+    /// the hosted zone or the account that created the Amazon VPC.
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <description>
+    /// <para>
+    /// Some services, such as Cloud Map and Amazon Elastic File System (Amazon EFS) automatically create
+    /// hosted zones and associate VPCs with the hosted zones. A service can create a hosted zone using your
+    /// account or using its own account. You can disassociate a VPC from a hosted zone only if the service
+    /// created the hosted zone using your account.
+    /// </para>
+    /// <para>
+    /// When you run
+    /// <see href="https://docs.aws.amazon.com/Route53/latest/APIReference/API_ListHostedZonesByVPC.html">DisassociateVPCFromHostedZone</see>,
+    /// if the hosted zone has a value for <c>OwningAccount</c>, you can use
+    /// <c>DisassociateVPCFromHostedZone</c>. If the hosted zone has a value for <c>OwningService</c>, you
+    /// can't use <c>DisassociateVPCFromHostedZone</c>.
+    /// </para>
+    /// </description>
+    /// </item>
+    /// </list>
+    /// <para>
+    /// <b>Note:</b> When revoking access, the hosted zone and the Amazon VPC must belong to the same
+    /// partition. A partition is a group of Amazon Web Services Regions. Each Amazon Web Services account
+    /// is scoped to one partition.
+    /// </para>
+    /// <para>
+    /// The following are the supported partitions:
+    /// </para>
+    /// <list type="bullet">
+    /// <item>
+    /// <description>
+    /// <c>aws</c> - Amazon Web Services Regions
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <description>
+    /// <c>aws-cn</c> - China Regions
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <description>
+    /// <c>aws-us-gov</c> - Amazon Web Services GovCloud (US) Region
+    /// </description>
+    /// </item>
+    /// </list>
+    /// <para>
+    /// For more information, see
+    /// <see href="https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html">Access
+    /// Management</see> in the <i>Amazon Web Services General Reference</i>.
+    /// </para>
+    /// </summary>
+    public static Task<DisassociateVPCFromHostedZoneOutput> DisassociateVPCFromHostedZoneAsync(
+        this IAWSDnsV20130401Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.DisassociateVPCFromHostedZoneAsync(
+            new DisassociateVPCFromHostedZoneInput(),
+            cancellationToken
+        );
+    }
+
+    /// <summary>
+    /// Enables DNSSEC signing in a specific hosted zone.
+    /// </summary>
+    public static Task<EnableHostedZoneDNSSECOutput> EnableHostedZoneDNSSECAsync(
+        this IAWSDnsV20130401Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.EnableHostedZoneDNSSECAsync(
+            new EnableHostedZoneDNSSECInput(),
+            cancellationToken
+        );
+    }
+
+    /// <summary>
+    /// <para>
+    /// Gets the specified limit for the current account, for example, the maximum number of health checks
+    /// that you can create using the account.
+    /// </para>
+    /// <para>
+    /// For the default limit, see
+    /// <see href="https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/DNSLimitations.html">Limits</see>
+    /// in the <i>Amazon Route 53 Developer Guide</i>. To request a higher limit,
+    /// <see href="https://console.aws.amazon.com/support/home#/case/create?issueType=service-limit-increase&amp;limitType=service-code-route53">open
+    /// a case</see>.
+    /// </para>
+    /// <para>
+    /// <b>Note:</b> You can also view account limits in Amazon Web Services Trusted Advisor. Sign in to the
+    /// Amazon Web Services Management Console and open the Trusted Advisor console at
+    /// <see href="https://console.aws.amazon.com/trustedadvisor">https://console.aws.amazon.com/trustedadvisor/</see>.
+    /// Then choose <b>Service limits</b> in the navigation pane.
+    /// </para>
+    /// </summary>
+    public static Task<GetAccountLimitOutput> GetAccountLimitAsync(
+        this IAWSDnsV20130401Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.GetAccountLimitAsync(new GetAccountLimitInput(), cancellationToken);
+    }
+
+    /// <summary>
+    /// <para>
+    /// Returns the current status of a change batch request. The status is one of the following values:
+    /// </para>
+    /// <list type="bullet">
+    /// <item>
+    /// <description>
+    /// <c>PENDING</c> indicates that the changes in this request have not propagated to all Amazon Route 53
+    /// DNS servers managing the hosted zone. This is the initial status of all change batch requests.
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <description>
+    /// <c>INSYNC</c> indicates that the changes have propagated to all Route 53 DNS servers managing the
+    /// hosted zone.
+    /// </description>
+    /// </item>
+    /// </list>
+    /// </summary>
+    public static Task<GetChangeOutput> GetChangeAsync(
+        this IAWSDnsV20130401Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.GetChangeAsync(new GetChangeInput(), cancellationToken);
+    }
+
+    /// <summary>
     /// <para>
     /// Route 53 does not perform authorization for this API because it retrieves information that is
     /// already available to the public.
@@ -2594,6 +3894,19 @@ public static class AWSDnsV20130401ClientExtensions
     {
         ArgumentNullException.ThrowIfNull(client);
         return client.GetCheckerIpRangesAsync(new GetCheckerIpRangesInput(), cancellationToken);
+    }
+
+    /// <summary>
+    /// Returns information about DNSSEC for a specific hosted zone, including the key-signing keys (KSKs)
+    /// in the hosted zone.
+    /// </summary>
+    public static Task<GetDNSSECOutput> GetDNSSECAsync(
+        this IAWSDnsV20130401Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.GetDNSSECAsync(new GetDNSSECInput(), cancellationToken);
     }
 
     /// <summary>
@@ -2636,6 +3949,18 @@ public static class AWSDnsV20130401ClientExtensions
     }
 
     /// <summary>
+    /// Gets information about a specified health check.
+    /// </summary>
+    public static Task<GetHealthCheckOutput> GetHealthCheckAsync(
+        this IAWSDnsV20130401Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.GetHealthCheckAsync(new GetHealthCheckInput(), cancellationToken);
+    }
+
+    /// <summary>
     /// Retrieves the number of health checks that are associated with the current Amazon Web Services
     /// account.
     /// </summary>
@@ -2646,6 +3971,60 @@ public static class AWSDnsV20130401ClientExtensions
     {
         ArgumentNullException.ThrowIfNull(client);
         return client.GetHealthCheckCountAsync(new GetHealthCheckCountInput(), cancellationToken);
+    }
+
+    /// <summary>
+    /// Gets the reason that a specified health check failed most recently.
+    /// </summary>
+    public static Task<GetHealthCheckLastFailureReasonOutput> GetHealthCheckLastFailureReasonAsync(
+        this IAWSDnsV20130401Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.GetHealthCheckLastFailureReasonAsync(
+            new GetHealthCheckLastFailureReasonInput(),
+            cancellationToken
+        );
+    }
+
+    /// <summary>
+    /// <para>
+    /// Gets status of a specified health check.
+    /// </para>
+    /// <para>
+    /// <b>Important:</b> This API is intended for use during development to diagnose behavior. It doesn’t
+    /// support production use-cases with high query rates that require immediate and actionable responses.
+    /// </para>
+    /// </summary>
+    public static Task<GetHealthCheckStatusOutput> GetHealthCheckStatusAsync(
+        this IAWSDnsV20130401Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.GetHealthCheckStatusAsync(new GetHealthCheckStatusInput(), cancellationToken);
+    }
+
+    /// <summary>
+    /// <para>
+    /// Gets information about a specified hosted zone including the four name servers assigned to the
+    /// hosted zone.
+    /// </para>
+    /// <para>
+    /// returns the VPCs associated with the specified hosted zone and does not reflect the VPC associations
+    /// by Route 53 Profiles. To get the associations to a Profile, call the
+    /// <see href="https://docs.aws.amazon.com/Route53/latest/APIReference/API_route53profiles_ListProfileAssociations.html">ListProfileAssociations</see>
+    /// API.
+    /// </para>
+    /// </summary>
+    public static Task<GetHostedZoneOutput> GetHostedZoneAsync(
+        this IAWSDnsV20130401Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.GetHostedZoneAsync(new GetHostedZoneInput(), cancellationToken);
     }
 
     /// <summary>
@@ -2662,6 +4041,136 @@ public static class AWSDnsV20130401ClientExtensions
     }
 
     /// <summary>
+    /// <para>
+    /// Gets the specified limit for a specified hosted zone, for example, the maximum number of records
+    /// that you can create in the hosted zone.
+    /// </para>
+    /// <para>
+    /// For the default limit, see
+    /// <see href="https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/DNSLimitations.html">Limits</see>
+    /// in the <i>Amazon Route 53 Developer Guide</i>. To request a higher limit,
+    /// <see href="https://console.aws.amazon.com/support/home#/case/create?issueType=service-limit-increase&amp;limitType=service-code-route53">open
+    /// a case</see>.
+    /// </para>
+    /// </summary>
+    public static Task<GetHostedZoneLimitOutput> GetHostedZoneLimitAsync(
+        this IAWSDnsV20130401Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.GetHostedZoneLimitAsync(new GetHostedZoneLimitInput(), cancellationToken);
+    }
+
+    /// <summary>
+    /// <para>
+    /// Gets information about a specified configuration for DNS query logging.
+    /// </para>
+    /// <para>
+    /// For more information about DNS query logs, see
+    /// <see href="https://docs.aws.amazon.com/Route53/latest/APIReference/API_CreateQueryLoggingConfig.html">CreateQueryLoggingConfig</see>
+    /// and <see href="https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/query-logs.html">Logging
+    /// DNS Queries</see>.
+    /// </para>
+    /// </summary>
+    public static Task<GetQueryLoggingConfigOutput> GetQueryLoggingConfigAsync(
+        this IAWSDnsV20130401Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.GetQueryLoggingConfigAsync(
+            new GetQueryLoggingConfigInput(),
+            cancellationToken
+        );
+    }
+
+    /// <summary>
+    /// Retrieves information about a specified reusable delegation set, including the four name servers
+    /// that are assigned to the delegation set.
+    /// </summary>
+    public static Task<GetReusableDelegationSetOutput> GetReusableDelegationSetAsync(
+        this IAWSDnsV20130401Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.GetReusableDelegationSetAsync(
+            new GetReusableDelegationSetInput(),
+            cancellationToken
+        );
+    }
+
+    /// <summary>
+    /// <para>
+    /// Gets the maximum number of hosted zones that you can associate with the specified reusable
+    /// delegation set.
+    /// </para>
+    /// <para>
+    /// For the default limit, see
+    /// <see href="https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/DNSLimitations.html">Limits</see>
+    /// in the <i>Amazon Route 53 Developer Guide</i>. To request a higher limit,
+    /// <see href="https://console.aws.amazon.com/support/home#/case/create?issueType=service-limit-increase&amp;limitType=service-code-route53">open
+    /// a case</see>.
+    /// </para>
+    /// </summary>
+    public static Task<GetReusableDelegationSetLimitOutput> GetReusableDelegationSetLimitAsync(
+        this IAWSDnsV20130401Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.GetReusableDelegationSetLimitAsync(
+            new GetReusableDelegationSetLimitInput(),
+            cancellationToken
+        );
+    }
+
+    /// <summary>
+    /// <para>
+    /// Gets information about a specific traffic policy version.
+    /// </para>
+    /// <para>
+    /// For information about how of deleting a traffic policy affects the response from
+    /// <c>GetTrafficPolicy</c>, see
+    /// <see href="https://docs.aws.amazon.com/Route53/latest/APIReference/API_DeleteTrafficPolicy.html">DeleteTrafficPolicy</see>.
+    /// </para>
+    /// </summary>
+    public static Task<GetTrafficPolicyOutput> GetTrafficPolicyAsync(
+        this IAWSDnsV20130401Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.GetTrafficPolicyAsync(new GetTrafficPolicyInput(), cancellationToken);
+    }
+
+    /// <summary>
+    /// <para>
+    /// Gets information about a specified traffic policy instance.
+    /// </para>
+    /// <para>
+    /// <b>Note:</b> Use <c>GetTrafficPolicyInstance</c> with the <c>id</c> of new traffic policy instance
+    /// to confirm that the <c>CreateTrafficPolicyInstance</c> or an <c>UpdateTrafficPolicyInstance</c>
+    /// request completed successfully. For more information, see the <c>State</c> response element.
+    /// </para>
+    /// <para>
+    /// <b>Note:</b> In the Route 53 console, traffic policy instances are known as policy records.
+    /// </para>
+    /// </summary>
+    public static Task<GetTrafficPolicyInstanceOutput> GetTrafficPolicyInstanceAsync(
+        this IAWSDnsV20130401Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.GetTrafficPolicyInstanceAsync(
+            new GetTrafficPolicyInstanceInput(),
+            cancellationToken
+        );
+    }
+
+    /// <summary>
     /// Gets the number of traffic policy instances that are associated with the current Amazon Web Services
     /// account.
     /// </summary>
@@ -2675,6 +4184,42 @@ public static class AWSDnsV20130401ClientExtensions
             new GetTrafficPolicyInstanceCountInput(),
             cancellationToken
         );
+    }
+
+    /// <summary>
+    /// Returns a paginated list of location objects and their CIDR blocks.
+    /// </summary>
+    public static Task<ListCidrBlocksOutput> ListCidrBlocksAsync(
+        this IAWSDnsV20130401Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.ListCidrBlocksAsync(new ListCidrBlocksInput(), cancellationToken);
+    }
+
+    /// <summary>
+    /// Returns a paginated list of location objects and their CIDR blocks.
+    /// </summary>
+    public static IAsyncEnumerable<ListCidrBlocksOutput> ListCidrBlocksPagesAsync(
+        this IAWSDnsV20130401Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.ListCidrBlocksPagesAsync(new ListCidrBlocksInput(), cancellationToken);
+    }
+
+    /// <summary>
+    /// Returns a paginated list of location objects and their CIDR blocks.
+    /// </summary>
+    public static IAsyncEnumerable<CidrBlockSummary> ListCidrBlocksItemsAsync(
+        this IAWSDnsV20130401Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.ListCidrBlocksItemsAsync(new ListCidrBlocksInput(), cancellationToken);
     }
 
     /// <summary>
@@ -2717,6 +4262,45 @@ public static class AWSDnsV20130401ClientExtensions
             new ListCidrCollectionsInput(),
             cancellationToken
         );
+    }
+
+    /// <summary>
+    /// Returns a paginated list of CIDR locations for the given collection (metadata only, does not include
+    /// CIDR blocks).
+    /// </summary>
+    public static Task<ListCidrLocationsOutput> ListCidrLocationsAsync(
+        this IAWSDnsV20130401Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.ListCidrLocationsAsync(new ListCidrLocationsInput(), cancellationToken);
+    }
+
+    /// <summary>
+    /// Returns a paginated list of CIDR locations for the given collection (metadata only, does not include
+    /// CIDR blocks).
+    /// </summary>
+    public static IAsyncEnumerable<ListCidrLocationsOutput> ListCidrLocationsPagesAsync(
+        this IAWSDnsV20130401Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.ListCidrLocationsPagesAsync(new ListCidrLocationsInput(), cancellationToken);
+    }
+
+    /// <summary>
+    /// Returns a paginated list of CIDR locations for the given collection (metadata only, does not include
+    /// CIDR blocks).
+    /// </summary>
+    public static IAsyncEnumerable<LocationSummary> ListCidrLocationsItemsAsync(
+        this IAWSDnsV20130401Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.ListCidrLocationsItemsAsync(new ListCidrLocationsInput(), cancellationToken);
     }
 
     /// <summary>
@@ -2930,6 +4514,75 @@ public static class AWSDnsV20130401ClientExtensions
 
     /// <summary>
     /// <para>
+    /// Lists all the private hosted zones that a specified VPC is associated with, regardless of which
+    /// Amazon Web Services account or Amazon Web Services service owns the hosted zones. The
+    /// <c>HostedZoneOwner</c> structure in the response contains one of the following values:
+    /// </para>
+    /// <list type="bullet">
+    /// <item>
+    /// <description>
+    /// An <c>OwningAccount</c> element, which contains the account number of either the current Amazon Web
+    /// Services account or another Amazon Web Services account. Some services, such as Cloud Map, create
+    /// hosted zones using the current account.
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <description>
+    /// An <c>OwningService</c> element, which identifies the Amazon Web Services service that created and
+    /// owns the hosted zone. For example, if a hosted zone was created by Amazon Elastic File System
+    /// (Amazon EFS), the value of <c>Owner</c> is <c>efs.amazonaws.com</c>.
+    /// </description>
+    /// </item>
+    /// </list>
+    /// <para>
+    /// <c>ListHostedZonesByVPC</c> returns the hosted zones associated with the specified VPC and does not
+    /// reflect the hosted zone associations to VPCs via Route 53 Profiles. To get the associations to a
+    /// Profile, call the
+    /// <see href="https://docs.aws.amazon.com/Route53/latest/APIReference/API_route53profiles_ListProfileResourceAssociations.html">ListProfileResourceAssociations</see>
+    /// API.
+    /// </para>
+    /// <para>
+    /// <b>Note:</b> When listing private hosted zones, the hosted zone and the Amazon VPC must belong to
+    /// the same partition where the hosted zones were created. A partition is a group of Amazon Web
+    /// Services Regions. Each Amazon Web Services account is scoped to one partition.
+    /// </para>
+    /// <para>
+    /// The following are the supported partitions:
+    /// </para>
+    /// <list type="bullet">
+    /// <item>
+    /// <description>
+    /// <c>aws</c> - Amazon Web Services Regions
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <description>
+    /// <c>aws-cn</c> - China Regions
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <description>
+    /// <c>aws-us-gov</c> - Amazon Web Services GovCloud (US) Region
+    /// </description>
+    /// </item>
+    /// </list>
+    /// <para>
+    /// For more information, see
+    /// <see href="https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html">Access
+    /// Management</see> in the <i>Amazon Web Services General Reference</i>.
+    /// </para>
+    /// </summary>
+    public static Task<ListHostedZonesByVPCOutput> ListHostedZonesByVPCAsync(
+        this IAWSDnsV20130401Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.ListHostedZonesByVPCAsync(new ListHostedZonesByVPCInput(), cancellationToken);
+    }
+
+    /// <summary>
+    /// <para>
     /// Lists the configurations for DNS query logging that are associated with the current Amazon Web
     /// Services account or the configuration that is associated with a specified hosted zone.
     /// </para>
@@ -3004,6 +4657,110 @@ public static class AWSDnsV20130401ClientExtensions
     }
 
     /// <summary>
+    /// <para>
+    /// Lists the resource record sets in a specified hosted zone.
+    /// </para>
+    /// <para>
+    /// <c>ListResourceRecordSets</c> returns up to 300 resource record sets at a time in ASCII order,
+    /// beginning at a position specified by the <c>name</c> and <c>type</c> elements.
+    /// </para>
+    /// <para>
+    /// <b>Sort order</b>
+    /// </para>
+    /// <para>
+    /// <c>ListResourceRecordSets</c> sorts results first by DNS name with the labels reversed, for example:
+    /// </para>
+    /// <para>
+    /// <c>com.example.www.</c>
+    /// </para>
+    /// <para>
+    /// Note the trailing dot, which can change the sort order when the record name contains characters that
+    /// appear before <c>.</c> (decimal 46) in the ASCII table. These characters include the following: <c>!
+    /// " # $ % &amp; ' ( ) * + , -</c>
+    /// </para>
+    /// <para>
+    /// When multiple records have the same DNS name, <c>ListResourceRecordSets</c> sorts results by the
+    /// record type.
+    /// </para>
+    /// <para>
+    /// <b>Specifying where to start listing records</b>
+    /// </para>
+    /// <para>
+    /// You can use the name and type elements to specify the resource record set that the list begins with:
+    /// </para>
+    /// <list type="bullet">
+    /// <item>
+    /// <term>If you do not specify Name or Type</term>
+    /// <description>
+    /// The results begin with the first resource record set that the hosted zone contains.
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <term>If you specify Name but not Type</term>
+    /// <description>
+    /// The results begin with the first resource record set in the list whose name is greater than or equal
+    /// to <c>Name</c>.
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <term>If you specify Type but not Name</term>
+    /// <description>
+    /// Amazon Route 53 returns the <c>InvalidInput</c> error.
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <term>If you specify both Name and Type</term>
+    /// <description>
+    /// <para>
+    /// The results begin with the first resource record set in the list whose name is greater than or equal
+    /// to <c>Name</c>, and whose type is greater than or equal to <c>Type</c>.
+    /// </para>
+    /// <para>
+    /// <b>Note:</b> Type is only used to sort between records with the same record Name.
+    /// </para>
+    /// </description>
+    /// </item>
+    /// </list>
+    /// <para>
+    /// <b>Resource record sets that are PENDING</b>
+    /// </para>
+    /// <para>
+    /// This action returns the most current version of the records. This includes records that are
+    /// <c>PENDING</c>, and that are not yet available on all Route 53 DNS servers.
+    /// </para>
+    /// <para>
+    /// <b>Changing resource record sets</b>
+    /// </para>
+    /// <para>
+    /// To ensure that you get an accurate listing of the resource record sets for a hosted zone at a point
+    /// in time, do not submit a <c>ChangeResourceRecordSets</c> request while you're paging through the
+    /// results of a <c>ListResourceRecordSets</c> request. If you do, some pages may display results
+    /// without the latest changes while other pages display results with the latest changes.
+    /// </para>
+    /// <para>
+    /// <b>Displaying the next page of results</b>
+    /// </para>
+    /// <para>
+    /// If a <c>ListResourceRecordSets</c> command returns more than one page of results, the value of
+    /// <c>IsTruncated</c> is <c>true</c>. To display the next page of results, get the values of
+    /// <c>NextRecordName</c>, <c>NextRecordType</c>, and <c>NextRecordIdentifier</c> (if any) from the
+    /// response. Then submit another <c>ListResourceRecordSets</c> request, and specify those values for
+    /// <c>StartRecordName</c>, <c>StartRecordType</c>, and <c>StartRecordIdentifier</c>.
+    /// </para>
+    /// </summary>
+    public static Task<ListResourceRecordSetsOutput> ListResourceRecordSetsAsync(
+        this IAWSDnsV20130401Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.ListResourceRecordSetsAsync(
+            new ListResourceRecordSetsInput(),
+            cancellationToken
+        );
+    }
+
+    /// <summary>
     /// Retrieves a list of the reusable delegation sets that are associated with the current Amazon Web
     /// Services account.
     /// </summary>
@@ -3017,6 +4774,44 @@ public static class AWSDnsV20130401ClientExtensions
             new ListReusableDelegationSetsInput(),
             cancellationToken
         );
+    }
+
+    /// <summary>
+    /// <para>
+    /// Lists tags for one health check or hosted zone.
+    /// </para>
+    /// <para>
+    /// For information about using tags for cost allocation, see
+    /// <see href="https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/cost-alloc-tags.html">Using
+    /// Cost Allocation Tags</see> in the <i>Billing and Cost Management User Guide</i>.
+    /// </para>
+    /// </summary>
+    public static Task<ListTagsForResourceOutput> ListTagsForResourceAsync(
+        this IAWSDnsV20130401Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.ListTagsForResourceAsync(new ListTagsForResourceInput(), cancellationToken);
+    }
+
+    /// <summary>
+    /// <para>
+    /// Lists tags for up to 10 health checks or hosted zones.
+    /// </para>
+    /// <para>
+    /// For information about using tags for cost allocation, see
+    /// <see href="https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/cost-alloc-tags.html">Using
+    /// Cost Allocation Tags</see> in the <i>Billing and Cost Management User Guide</i>.
+    /// </para>
+    /// </summary>
+    public static Task<ListTagsForResourcesOutput> ListTagsForResourcesAsync(
+        this IAWSDnsV20130401Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.ListTagsForResourcesAsync(new ListTagsForResourcesInput(), cancellationToken);
     }
 
     /// <summary>
@@ -3062,6 +4857,251 @@ public static class AWSDnsV20130401ClientExtensions
         ArgumentNullException.ThrowIfNull(client);
         return client.ListTrafficPolicyInstancesAsync(
             new ListTrafficPolicyInstancesInput(),
+            cancellationToken
+        );
+    }
+
+    /// <summary>
+    /// <para>
+    /// Gets information about the traffic policy instances that you created in a specified hosted zone.
+    /// </para>
+    /// <para>
+    /// <b>Note:</b> After you submit a <c>CreateTrafficPolicyInstance</c> or an
+    /// <c>UpdateTrafficPolicyInstance</c> request, there's a brief delay while Amazon Route 53 creates the
+    /// resource record sets that are specified in the traffic policy definition. For more information, see
+    /// the <c>State</c> response element.
+    /// </para>
+    /// <para>
+    /// Route 53 returns a maximum of 100 items in each response. If you have a lot of traffic policy
+    /// instances, you can use the <c>MaxItems</c> parameter to list them in groups of up to 100.
+    /// </para>
+    /// </summary>
+    public static Task<ListTrafficPolicyInstancesByHostedZoneOutput> ListTrafficPolicyInstancesByHostedZoneAsync(
+        this IAWSDnsV20130401Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.ListTrafficPolicyInstancesByHostedZoneAsync(
+            new ListTrafficPolicyInstancesByHostedZoneInput(),
+            cancellationToken
+        );
+    }
+
+    /// <summary>
+    /// <para>
+    /// Gets information about the traffic policy instances that you created by using a specify traffic
+    /// policy version.
+    /// </para>
+    /// <para>
+    /// <b>Note:</b> After you submit a <c>CreateTrafficPolicyInstance</c> or an
+    /// <c>UpdateTrafficPolicyInstance</c> request, there's a brief delay while Amazon Route 53 creates the
+    /// resource record sets that are specified in the traffic policy definition. For more information, see
+    /// the <c>State</c> response element.
+    /// </para>
+    /// <para>
+    /// Route 53 returns a maximum of 100 items in each response. If you have a lot of traffic policy
+    /// instances, you can use the <c>MaxItems</c> parameter to list them in groups of up to 100.
+    /// </para>
+    /// </summary>
+    public static Task<ListTrafficPolicyInstancesByPolicyOutput> ListTrafficPolicyInstancesByPolicyAsync(
+        this IAWSDnsV20130401Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.ListTrafficPolicyInstancesByPolicyAsync(
+            new ListTrafficPolicyInstancesByPolicyInput(),
+            cancellationToken
+        );
+    }
+
+    /// <summary>
+    /// <para>
+    /// Gets information about all of the versions for a specified traffic policy.
+    /// </para>
+    /// <para>
+    /// Traffic policy versions are listed in numerical order by <c>VersionNumber</c>.
+    /// </para>
+    /// </summary>
+    public static Task<ListTrafficPolicyVersionsOutput> ListTrafficPolicyVersionsAsync(
+        this IAWSDnsV20130401Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.ListTrafficPolicyVersionsAsync(
+            new ListTrafficPolicyVersionsInput(),
+            cancellationToken
+        );
+    }
+
+    /// <summary>
+    /// <para>
+    /// Gets a list of the VPCs that were created by other accounts and that can be associated with a
+    /// specified hosted zone because you've submitted one or more <c>CreateVPCAssociationAuthorization</c>
+    /// requests.
+    /// </para>
+    /// <para>
+    /// The response includes a <c>VPCs</c> element with a <c>VPC</c> child element for each VPC that can be
+    /// associated with the hosted zone.
+    /// </para>
+    /// </summary>
+    public static Task<ListVPCAssociationAuthorizationsOutput> ListVPCAssociationAuthorizationsAsync(
+        this IAWSDnsV20130401Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.ListVPCAssociationAuthorizationsAsync(
+            new ListVPCAssociationAuthorizationsInput(),
+            cancellationToken
+        );
+    }
+
+    /// <summary>
+    /// <para>
+    /// Gets the value that Amazon Route 53 returns in response to a DNS request for a specified record name
+    /// and type. You can optionally specify the IP address of a DNS resolver, an EDNS0 client subnet IP
+    /// address, and a subnet mask.
+    /// </para>
+    /// <para>
+    /// This call only supports querying public hosted zones.
+    /// </para>
+    /// <para>
+    /// <b>Note:</b> The <c>TestDnsAnswer </c> returns information similar to what you would expect from the
+    /// answer section of the <c>dig</c> command. Therefore, if you query for the name servers of a
+    /// subdomain that point to the parent name servers, those will not be returned.
+    /// </para>
+    /// </summary>
+    public static Task<TestDNSAnswerOutput> TestDNSAnswerAsync(
+        this IAWSDnsV20130401Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.TestDNSAnswerAsync(new TestDNSAnswerInput(), cancellationToken);
+    }
+
+    /// <summary>
+    /// <para>
+    /// Updates an existing health check. Note that some values can't be updated.
+    /// </para>
+    /// <para>
+    /// For more information about updating health checks, see
+    /// <see href="https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/health-checks-creating-deleting.html">Creating,
+    /// Updating, and Deleting Health Checks</see> in the <i>Amazon Route 53 Developer Guide</i>.
+    /// </para>
+    /// </summary>
+    public static Task<UpdateHealthCheckOutput> UpdateHealthCheckAsync(
+        this IAWSDnsV20130401Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.UpdateHealthCheckAsync(new UpdateHealthCheckInput(), cancellationToken);
+    }
+
+    /// <summary>
+    /// Updates the comment for a specified hosted zone.
+    /// </summary>
+    public static Task<UpdateHostedZoneCommentOutput> UpdateHostedZoneCommentAsync(
+        this IAWSDnsV20130401Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.UpdateHostedZoneCommentAsync(
+            new UpdateHostedZoneCommentInput(),
+            cancellationToken
+        );
+    }
+
+    /// <summary>
+    /// <para>
+    /// Updates the features configuration for a hosted zone. This operation allows you to enable or disable
+    /// specific features for your hosted zone, such as accelerated recovery.
+    /// </para>
+    /// <para>
+    /// Accelerated recovery enables you to update DNS records in your public hosted zone even when the
+    /// us-east-1 region is unavailable.
+    /// </para>
+    /// </summary>
+    public static Task<UpdateHostedZoneFeaturesOutput> UpdateHostedZoneFeaturesAsync(
+        this IAWSDnsV20130401Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.UpdateHostedZoneFeaturesAsync(
+            new UpdateHostedZoneFeaturesInput(),
+            cancellationToken
+        );
+    }
+
+    /// <summary>
+    /// Updates the comment for a specified traffic policy version.
+    /// </summary>
+    public static Task<UpdateTrafficPolicyCommentOutput> UpdateTrafficPolicyCommentAsync(
+        this IAWSDnsV20130401Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.UpdateTrafficPolicyCommentAsync(
+            new UpdateTrafficPolicyCommentInput(),
+            cancellationToken
+        );
+    }
+
+    /// <summary>
+    /// <para>
+    /// <b>Note:</b> After you submit a <c>UpdateTrafficPolicyInstance</c> request, there's a brief delay
+    /// while Route 53 creates the resource record sets that are specified in the traffic policy definition.
+    /// Use <c>GetTrafficPolicyInstance</c> with the <c>id</c> of updated traffic policy instance confirm
+    /// that the <c>UpdateTrafficPolicyInstance</c> request completed successfully. For more information,
+    /// see the <c>State</c> response element.
+    /// </para>
+    /// <para>
+    /// Updates the resource record sets in a specified hosted zone that were created based on the settings
+    /// in a specified traffic policy version.
+    /// </para>
+    /// <para>
+    /// When you update a traffic policy instance, Amazon Route 53 continues to respond to DNS queries for
+    /// the root resource record set name (such as example.com) while it replaces one group of resource
+    /// record sets with another. Route 53 performs the following operations:
+    /// </para>
+    /// <list type="number">
+    /// <item>
+    /// <description>
+    /// Route 53 creates a new group of resource record sets based on the specified traffic policy. This is
+    /// true regardless of how significant the differences are between the existing resource record sets and
+    /// the new resource record sets.
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <description>
+    /// When all of the new resource record sets have been created, Route 53 starts to respond to DNS
+    /// queries for the root resource record set name (such as example.com) by using the new resource record
+    /// sets.
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <description>
+    /// Route 53 deletes the old group of resource record sets that are associated with the root resource
+    /// record set name.
+    /// </description>
+    /// </item>
+    /// </list>
+    /// </summary>
+    public static Task<UpdateTrafficPolicyInstanceOutput> UpdateTrafficPolicyInstanceAsync(
+        this IAWSDnsV20130401Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.UpdateTrafficPolicyInstanceAsync(
+            new UpdateTrafficPolicyInstanceInput(),
             cancellationToken
         );
     }
@@ -6548,7 +8588,7 @@ public sealed class AWSDnsV20130401Client : IAWSDnsV20130401Client
     /// The following example associates the VPC with ID vpc-1a2b3c4d with the hosted zone with ID Z3M3LMPEXAMPLE.
     /// </para>
     /// <code>
-    /// var input = new AssociateVPCWithHostedZoneInput(HostedZoneId: &quot;Z3M3LMPEXAMPLE&quot;, VPC: new VPC(VPCId: &quot;vpc-1a2b3c4d&quot;, VPCRegion: new VPCRegion(&quot;us-east-2&quot;)), Comment: &quot;&quot;);
+    /// var input = new AssociateVPCWithHostedZoneInput(Comment: &quot;&quot;, HostedZoneId: &quot;Z3M3LMPEXAMPLE&quot;, VPC: new VPC(VPCId: &quot;vpc-1a2b3c4d&quot;, VPCRegion: new VPCRegion(&quot;us-east-2&quot;)));
     /// var output = await client.AssociateVPCWithHostedZoneAsync(input);
     ///
     /// // Expected output:
@@ -6901,7 +8941,7 @@ public sealed class AWSDnsV20130401Client : IAWSDnsV20130401Client
     /// The following example adds two tags and removes one tag from the hosted zone with ID Z3M3LMPEXAMPLE.
     /// </para>
     /// <code>
-    /// var input = new ChangeTagsForResourceInput(ResourceId: &quot;Z3M3LMPEXAMPLE&quot;, ResourceType: new TagResourceType(&quot;hostedzone&quot;), AddTags: new global::Com.Amazonaws.Route53.Tag[] { new global::Com.Amazonaws.Route53.Tag(Key: &quot;apex&quot;, Value: &quot;3874&quot;), new global::Com.Amazonaws.Route53.Tag(Key: &quot;acme&quot;, Value: &quot;4938&quot;) }, RemoveTagKeys: new string[] { &quot;Nadir&quot; });
+    /// var input = new ChangeTagsForResourceInput(AddTags: new global::Com.Amazonaws.Route53.Tag[] { new global::Com.Amazonaws.Route53.Tag(Key: &quot;apex&quot;, Value: &quot;3874&quot;), new global::Com.Amazonaws.Route53.Tag(Key: &quot;acme&quot;, Value: &quot;4938&quot;) }, RemoveTagKeys: new string[] { &quot;Nadir&quot; }, ResourceId: &quot;Z3M3LMPEXAMPLE&quot;, ResourceType: new TagResourceType(&quot;hostedzone&quot;));
     /// var output = await client.ChangeTagsForResourceAsync(input);
     ///
     /// // Expected output:

@@ -94,9 +94,9 @@ namespace Com.Amazonaws.Route53;
 /// <c>ACTIVE</c> or <c>INACTIVE</c>.
 /// </param>
 public sealed record class CreateKeySigningKeyInput(
-    string CallerReference,
-    string HostedZoneId,
-    string KeyManagementServiceArn,
-    string Name,
-    string Status
+    string? CallerReference = null,
+    string? HostedZoneId = null,
+    string? KeyManagementServiceArn = null,
+    string? Name = null,
+    string? Status = null
 );

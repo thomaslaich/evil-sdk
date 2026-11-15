@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Iam.Schemas;
 
 public static partial class PutUserPermissionsBoundaryInputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? UserName { get; set; }
         public string? PermissionsBoundary { get; set; }
@@ -28,7 +28,6 @@ public static partial class PutUserPermissionsBoundaryInputSchema
                 new(
                     "UserName",
                     Target0,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
@@ -45,16 +44,11 @@ public static partial class PutUserPermissionsBoundaryInputSchema
                             ShapeId.Parse("smithy.api#pattern"),
                             Document.From("^[\\w+=,.@-]+$")
                         ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
                     ]
                 ),
                 new(
                     "PermissionsBoundary",
                     Target1,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
@@ -66,10 +60,6 @@ public static partial class PutUserPermissionsBoundaryInputSchema
                                     { "max", Document.From(2048m) },
                                 }
                             )
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
                         ),
                     ]
                 ),
@@ -101,9 +91,8 @@ public static partial class PutUserPermissionsBoundaryInputSchema
             Builder builder
         ) =>
             new global::Com.Amazonaws.Iam.PutUserPermissionsBoundaryInput(
-                builder.PermissionsBoundary
-                    ?? throw new MissingRequiredMemberException("PermissionsBoundary"),
-                builder.UserName ?? throw new MissingRequiredMemberException("UserName")
+                builder.PermissionsBoundary,
+                builder.UserName
             );
 
         public override void SerializeMembers<TSerializer>(
@@ -129,7 +118,7 @@ public static partial class PutUserPermissionsBoundaryInputSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

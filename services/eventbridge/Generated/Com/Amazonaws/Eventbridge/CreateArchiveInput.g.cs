@@ -10,14 +10,14 @@ namespace Com.Amazonaws.Eventbridge;
 /// <param name="ArchiveName">
 /// The name for the archive to create.
 /// </param>
-/// <param name="EventSourceArn">
-/// The ARN of the event bus that sends events to the archive.
-/// </param>
 /// <param name="Description">
 /// A description for the archive.
 /// </param>
 /// <param name="EventPattern">
 /// An event pattern to use to filter events sent to the archive.
+/// </param>
+/// <param name="EventSourceArn">
+/// The ARN of the event bus that sends events to the archive.
 /// </param>
 /// <param name="KmsKeyIdentifier">
 /// <para>
@@ -50,10 +50,10 @@ namespace Com.Amazonaws.Eventbridge;
 /// indefinitely
 /// </param>
 public sealed record class CreateArchiveInput(
-    string ArchiveName,
-    string EventSourceArn,
+    string? ArchiveName = null,
     string? Description = null,
     string? EventPattern = null,
+    string? EventSourceArn = null,
     string? KmsKeyIdentifier = null,
     int? RetentionDays = null
 );

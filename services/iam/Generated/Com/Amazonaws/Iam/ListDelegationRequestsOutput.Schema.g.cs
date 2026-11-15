@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Iam.Schemas;
 
 public static partial class ListDelegationRequestsOutputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public IReadOnlyList<global::Com.Amazonaws.Iam.DelegationRequest>? DelegationRequests { get; set; }
         public string? Marker { get; set; }
@@ -125,7 +125,7 @@ public static partial class ListDelegationRequestsOutputSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

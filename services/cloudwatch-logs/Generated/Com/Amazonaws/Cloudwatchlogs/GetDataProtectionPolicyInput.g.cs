@@ -10,4 +10,4 @@ namespace Com.Amazonaws.Cloudwatchlogs;
 /// <param name="LogGroupIdentifier">
 /// The name or ARN of the log group that contains the data protection policy that you want to see.
 /// </param>
-public sealed record class GetDataProtectionPolicyInput(string LogGroupIdentifier);
+public sealed record class GetDataProtectionPolicyInput(string? LogGroupIdentifier = null);

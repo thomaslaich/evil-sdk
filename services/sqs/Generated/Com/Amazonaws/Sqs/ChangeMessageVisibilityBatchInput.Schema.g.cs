@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Sqs.Schemas;
 
 public static partial class ChangeMessageVisibilityBatchInputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? QueueUrl { get; set; }
         public IReadOnlyList<global::Com.Amazonaws.Sqs.ChangeMessageVisibilityBatchRequestEntry>? Entries { get; set; }
@@ -25,28 +25,12 @@ public static partial class ChangeMessageVisibilityBatchInputSchema
         : StructSchema<global::Com.Amazonaws.Sqs.ChangeMessageVisibilityBatchInput, Builder>(
             ShapeId.Parse("com.amazonaws.sqs#ChangeMessageVisibilityBatchInput"),
             [
-                new(
-                    "QueueUrl",
-                    Target0,
-                    isRequired: true,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
-                    ]
-                ),
+                new("QueueUrl", Target0),
                 new(
                     "Entries",
                     Target1,
-                    isRequired: true,
                     traits:
                     [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
                         new Trait(
                             ShapeId.Parse("smithy.api#xmlFlattened"),
                             Document.From(new Dictionary<string, Document> { })
@@ -87,8 +71,8 @@ public static partial class ChangeMessageVisibilityBatchInputSchema
             Builder builder
         ) =>
             new global::Com.Amazonaws.Sqs.ChangeMessageVisibilityBatchInput(
-                builder.Entries ?? throw new MissingRequiredMemberException("Entries"),
-                builder.QueueUrl ?? throw new MissingRequiredMemberException("QueueUrl")
+                builder.Entries,
+                builder.QueueUrl
             );
 
         public override void SerializeMembers<TSerializer>(
@@ -118,7 +102,7 @@ public static partial class ChangeMessageVisibilityBatchInputSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

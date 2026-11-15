@@ -51,4 +51,7 @@ namespace Com.Amazonaws.S3;
 /// specify this header, the request fails with the HTTP status code <c>501 Not Implemented</c>.
 /// </para>
 /// </param>
-public sealed record class GetBucketPolicyInput(string Bucket, string? ExpectedBucketOwner = null);
+public sealed record class GetBucketPolicyInput(
+    string? Bucket = null,
+    string? ExpectedBucketOwner = null
+);

@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Sns.Schemas;
 
 public static partial class DeleteSMSSandboxPhoneNumberInputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? PhoneNumber { get; set; }
     }
@@ -27,7 +27,6 @@ public static partial class DeleteSMSSandboxPhoneNumberInputSchema
                 new(
                     "PhoneNumber",
                     Target0,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
@@ -43,10 +42,6 @@ public static partial class DeleteSMSSandboxPhoneNumberInputSchema
                         new Trait(
                             ShapeId.Parse("smithy.api#pattern"),
                             Document.From("^(\\+[0-9]{8,}|[0-9]{0,9})$")
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
                         ),
                         new Trait(
                             ShapeId.Parse("smithy.api#sensitive"),
@@ -72,10 +67,7 @@ public static partial class DeleteSMSSandboxPhoneNumberInputSchema
 
         public override global::Com.Amazonaws.Sns.DeleteSMSSandboxPhoneNumberInput Build(
             Builder builder
-        ) =>
-            new global::Com.Amazonaws.Sns.DeleteSMSSandboxPhoneNumberInput(
-                builder.PhoneNumber ?? throw new MissingRequiredMemberException("PhoneNumber")
-            );
+        ) => new global::Com.Amazonaws.Sns.DeleteSMSSandboxPhoneNumberInput(builder.PhoneNumber);
 
         public override void SerializeMembers<TSerializer>(
             global::Com.Amazonaws.Sns.DeleteSMSSandboxPhoneNumberInput value,
@@ -92,7 +84,7 @@ public static partial class DeleteSMSSandboxPhoneNumberInputSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

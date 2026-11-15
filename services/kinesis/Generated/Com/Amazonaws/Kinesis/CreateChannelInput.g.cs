@@ -13,13 +13,6 @@ namespace Com.Amazonaws.Kinesis;
 /// The name of the channel. The name is unique within your Amazon Web Services account and Amazon Web
 /// Services Region.
 /// </param>
-/// <param name="ServiceExecutionRoleARN">
-/// The Amazon Resource Name (ARN) of the IAM role that Amazon Kinesis Data Streams assumes to write
-/// records to the destination.
-/// </param>
-/// <param name="StreamConfigurationList">
-/// The source stream configuration for the channel. Currently, one stream is supported per channel.
-/// </param>
 /// <param name="EncryptionConfiguration">
 /// The server-side encryption configuration that uses an Amazon Web Services KMS key to encrypt data
 /// delivered to the destination.
@@ -35,18 +28,25 @@ namespace Com.Amazonaws.Kinesis;
 /// The configuration for delivery to streaming tables on Apache Iceberg in Amazon S3 Tables. Specify
 /// this parameter when <c>S3DestinationConfiguration</c> is not specified.
 /// </param>
+/// <param name="ServiceExecutionRoleARN">
+/// The Amazon Resource Name (ARN) of the IAM role that Amazon Kinesis Data Streams assumes to write
+/// records to the destination.
+/// </param>
+/// <param name="StreamConfigurationList">
+/// The source stream configuration for the channel. Currently, one stream is supported per channel.
+/// </param>
 /// <param name="Tags">
 /// A set of key-value pairs to assign to the channel. A tag consists of a required key and an optional
 /// value.
 /// </param>
 public sealed record class CreateChannelInput(
-    string ChannelName,
-    string ServiceExecutionRoleARN,
-    IReadOnlyList<ChannelStreamConfiguration> StreamConfigurationList,
+    string? ChannelName = null,
     ChannelEncryptionConfiguration? EncryptionConfiguration = null,
     ChannelLoggingConfiguration? LoggingConfiguration = null,
     global::Com.Amazonaws.Kinesis.S3DestinationConfiguration? S3DestinationConfiguration = null,
     global::Com.Amazonaws.Kinesis.S3TablesDestinationConfiguration? S3TablesDestinationConfiguration =
         null,
+    string? ServiceExecutionRoleARN = null,
+    IReadOnlyList<ChannelStreamConfiguration>? StreamConfigurationList = null,
     IReadOnlyDictionary<string, string>? Tags = null
 );

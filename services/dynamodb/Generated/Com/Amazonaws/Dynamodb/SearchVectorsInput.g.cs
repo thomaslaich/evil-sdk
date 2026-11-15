@@ -9,24 +9,6 @@ namespace Com.Amazonaws.Dynamodb;
 /// <summary>
 /// Represents the Smithy structure com.amazonaws.dynamodb#SearchVectorsInput.
 /// </summary>
-/// <param name="IndexName">
-/// The name of the vector index to search. The index must be in the <c>ACTIVE</c> state.
-/// </param>
-/// <param name="SearchVector">
-/// <para>
-/// The search vector to compare against the indexed vectors. Each element is a 32-bit IEEE-754 floating
-/// point number, provided in DynamoDB list format.
-/// </para>
-/// <para>
-/// The number of dimensions must match the number of dimensions configured for the vector index.
-/// </para>
-/// </param>
-/// <param name="TableName">
-/// The name or Amazon Resource Name (ARN) of the table containing the vector index.
-/// </param>
-/// <param name="TopK">
-/// The number of most similar results to return.
-/// </param>
 /// <param name="ExpressionAttributeNames">
 /// One or more substitution tokens for attribute names in an expression. Use the <c>#</c> character in
 /// an expression to dereference an attribute name.
@@ -34,6 +16,9 @@ namespace Com.Amazonaws.Dynamodb;
 /// <param name="ExpressionAttributeValues">
 /// One or more values that can be substituted in an expression. Use the <c>:</c> character in an
 /// expression to dereference an attribute value.
+/// </param>
+/// <param name="IndexName">
+/// The name of the vector index to search. The index must be in the <c>ACTIVE</c> state.
 /// </param>
 /// <param name="ProjectionExpression">
 /// <para>
@@ -56,14 +41,29 @@ namespace Com.Amazonaws.Dynamodb;
 /// search schema can be referenced.
 /// </para>
 /// </param>
+/// <param name="SearchVector">
+/// <para>
+/// The search vector to compare against the indexed vectors. Each element is a 32-bit IEEE-754 floating
+/// point number, provided in DynamoDB list format.
+/// </para>
+/// <para>
+/// The number of dimensions must match the number of dimensions configured for the vector index.
+/// </para>
+/// </param>
+/// <param name="TableName">
+/// The name or Amazon Resource Name (ARN) of the table containing the vector index.
+/// </param>
+/// <param name="TopK">
+/// The number of most similar results to return.
+/// </param>
 public sealed record class SearchVectorsInput(
-    string IndexName,
-    IReadOnlyList<AttributeValue> SearchVector,
-    string TableName,
-    int TopK,
     IReadOnlyDictionary<string, string>? ExpressionAttributeNames = null,
     IReadOnlyDictionary<string, AttributeValue>? ExpressionAttributeValues = null,
+    string? IndexName = null,
     string? ProjectionExpression = null,
     global::Com.Amazonaws.Dynamodb.ReturnConsumedCapacity? ReturnConsumedCapacity = null,
-    string? SearchConditionExpression = null
+    string? SearchConditionExpression = null,
+    IReadOnlyList<AttributeValue>? SearchVector = null,
+    string? TableName = null,
+    int? TopK = null
 );

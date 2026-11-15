@@ -18,6 +18,6 @@ namespace Com.Amazonaws.Secretsmanager;
 /// The ARN or name of the secret with the resource-based policy you want to validate.
 /// </param>
 public sealed record class ValidateResourcePolicyInput(
-    string ResourcePolicy,
+    string? ResourcePolicy = null,
     string? SecretId = null
 );

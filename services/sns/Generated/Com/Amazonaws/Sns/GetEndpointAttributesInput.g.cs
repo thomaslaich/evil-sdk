@@ -10,4 +10,4 @@ namespace Com.Amazonaws.Sns;
 /// <param name="EndpointArn">
 /// <c>EndpointArn</c> for <c>GetEndpointAttributes</c> input.
 /// </param>
-public sealed record class GetEndpointAttributesInput(string EndpointArn);
+public sealed record class GetEndpointAttributesInput(string? EndpointArn = null);

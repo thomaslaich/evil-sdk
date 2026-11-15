@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Lambda.Schemas;
 
 public static partial class SendDurableExecutionCallbackFailureInputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? CallbackId { get; set; }
         public global::Com.Amazonaws.Lambda.ErrorObject? Error { get; set; }
@@ -31,7 +31,6 @@ public static partial class SendDurableExecutionCallbackFailureInputSchema
                 new(
                     "CallbackId",
                     Target0,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
@@ -51,10 +50,6 @@ public static partial class SendDurableExecutionCallbackFailureInputSchema
                         new Trait(
                             ShapeId.Parse("smithy.api#pattern"),
                             Document.From("^[A-Za-z0-9+/]+={0,2}$")
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
                         ),
                     ]
                 ),
@@ -97,7 +92,7 @@ public static partial class SendDurableExecutionCallbackFailureInputSchema
             Builder builder
         ) =>
             new global::Com.Amazonaws.Lambda.SendDurableExecutionCallbackFailureInput(
-                builder.CallbackId ?? throw new MissingRequiredMemberException("CallbackId"),
+                builder.CallbackId,
                 builder.Error
             );
 
@@ -124,7 +119,7 @@ public static partial class SendDurableExecutionCallbackFailureInputSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

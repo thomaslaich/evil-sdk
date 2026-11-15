@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Iam.Schemas;
 
 public static partial class CreateSAMLProviderInputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? SAMLMetadataDocument { get; set; }
         public string? Name { get; set; }
@@ -31,7 +31,6 @@ public static partial class CreateSAMLProviderInputSchema
                 new(
                     "SAMLMetadataDocument",
                     Target0,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
@@ -44,16 +43,11 @@ public static partial class CreateSAMLProviderInputSchema
                                 }
                             )
                         ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
                     ]
                 ),
                 new(
                     "Name",
                     Target1,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
@@ -69,10 +63,6 @@ public static partial class CreateSAMLProviderInputSchema
                         new Trait(
                             ShapeId.Parse("smithy.api#pattern"),
                             Document.From("^[\\w._-]+$")
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
                         ),
                     ]
                 ),
@@ -139,11 +129,10 @@ public static partial class CreateSAMLProviderInputSchema
 
         public override global::Com.Amazonaws.Iam.CreateSAMLProviderInput Build(Builder builder) =>
             new global::Com.Amazonaws.Iam.CreateSAMLProviderInput(
-                builder.Name ?? throw new MissingRequiredMemberException("Name"),
-                builder.SAMLMetadataDocument
-                    ?? throw new MissingRequiredMemberException("SAMLMetadataDocument"),
                 builder.AddPrivateKey,
                 builder.AssertionEncryptionMode,
+                builder.Name,
+                builder.SAMLMetadataDocument,
                 builder.Tags
             );
 
@@ -194,7 +183,7 @@ public static partial class CreateSAMLProviderInputSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

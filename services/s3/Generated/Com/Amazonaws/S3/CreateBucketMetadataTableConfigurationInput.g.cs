@@ -10,9 +10,6 @@ namespace Com.Amazonaws.S3;
 /// <param name="Bucket">
 /// The general purpose bucket that you want to create the metadata table configuration for.
 /// </param>
-/// <param name="MetadataTableConfiguration">
-/// The contents of your metadata table configuration.
-/// </param>
 /// <param name="ChecksumAlgorithm">
 /// The checksum algorithm to use with your metadata table configuration.
 /// </param>
@@ -23,10 +20,13 @@ namespace Com.Amazonaws.S3;
 /// The expected owner of the general purpose bucket that corresponds to your metadata table
 /// configuration.
 /// </param>
+/// <param name="MetadataTableConfiguration">
+/// The contents of your metadata table configuration.
+/// </param>
 public sealed record class CreateBucketMetadataTableConfigurationInput(
-    string Bucket,
-    global::Com.Amazonaws.S3.MetadataTableConfiguration MetadataTableConfiguration,
+    string? Bucket = null,
     global::Com.Amazonaws.S3.ChecksumAlgorithm? ChecksumAlgorithm = null,
     string? ContentMD5 = null,
-    string? ExpectedBucketOwner = null
+    string? ExpectedBucketOwner = null,
+    global::Com.Amazonaws.S3.MetadataTableConfiguration? MetadataTableConfiguration = null
 );

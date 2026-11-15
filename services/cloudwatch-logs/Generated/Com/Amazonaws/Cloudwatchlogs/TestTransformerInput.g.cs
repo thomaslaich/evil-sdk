@@ -18,6 +18,6 @@ namespace Com.Amazonaws.Cloudwatchlogs;
 /// the log events that are ingested.
 /// </param>
 public sealed record class TestTransformerInput(
-    IReadOnlyList<string> LogEventMessages,
-    IReadOnlyList<Processor> TransformerConfig
+    IReadOnlyList<string>? LogEventMessages = null,
+    IReadOnlyList<Processor>? TransformerConfig = null
 );

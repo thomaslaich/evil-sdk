@@ -9,6 +9,9 @@ namespace Com.Amazonaws.Kinesis;
 /// <summary>
 /// Represents the input for <c>GetShardIterator</c>.
 /// </summary>
+/// <param name="DryRun">
+/// Checks if your request will succeed. <c>DryRun</c> is an optional parameter.
+/// </param>
 /// <param name="ShardId">
 /// The shard ID of the Kinesis Data Streams shard to get the iterator for.
 /// </param>
@@ -52,9 +55,6 @@ namespace Com.Amazonaws.Kinesis;
 /// </item>
 /// </list>
 /// </param>
-/// <param name="DryRun">
-/// Checks if your request will succeed. <c>DryRun</c> is an optional parameter.
-/// </param>
 /// <param name="StartingSequenceNumber">
 /// The sequence number of the data record in the shard from which to start reading. Used with shard
 /// iterator type AT_SEQUENCE_NUMBER and AFTER_SEQUENCE_NUMBER.
@@ -77,9 +77,9 @@ namespace Com.Amazonaws.Kinesis;
 /// (TRIM_HORIZON).
 /// </param>
 public sealed record class GetShardIteratorInput(
-    string ShardId,
-    global::Com.Amazonaws.Kinesis.ShardIteratorType ShardIteratorType,
     bool? DryRun = null,
+    string? ShardId = null,
+    global::Com.Amazonaws.Kinesis.ShardIteratorType? ShardIteratorType = null,
     string? StartingSequenceNumber = null,
     string? StreamARN = null,
     string? StreamId = null,

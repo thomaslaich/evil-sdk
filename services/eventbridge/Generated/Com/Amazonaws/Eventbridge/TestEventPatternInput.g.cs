@@ -57,4 +57,4 @@ namespace Com.Amazonaws.Eventbridge;
 /// <see href="https://docs.aws.amazon.com/eventbridge/latest/userguide/eventbridge-and-event-patterns.html">Events
 /// and Event Patterns</see> in the <i> <i>Amazon EventBridge User Guide</i> </i>.
 /// </param>
-public sealed record class TestEventPatternInput(string Event, string EventPattern);
+public sealed record class TestEventPatternInput(string? Event = null, string? EventPattern = null);

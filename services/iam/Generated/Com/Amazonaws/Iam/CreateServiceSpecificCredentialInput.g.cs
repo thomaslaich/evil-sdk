@@ -7,6 +7,18 @@ namespace Com.Amazonaws.Iam;
 /// <summary>
 /// Represents the Smithy structure com.amazonaws.iam#CreateServiceSpecificCredentialInput.
 /// </summary>
+/// <param name="CredentialAgeDays">
+/// <para>
+/// The number of days until the service specific credential expires. This field is only valid for
+/// services that support long-term API keys and must be a positive integer. When not specified, the
+/// credential will not expire.
+/// </para>
+/// <para>
+/// To see which services support long-term API keys, refer to
+/// <see href="https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_api_keys_for_aws_services.html">API
+/// keys for Amazon Web Services services</see> in the <i>IAM User Guide</i>.
+/// </para>
+/// </param>
 /// <param name="ServiceName">
 /// The name of the Amazon Web Services service that is to be associated with the credentials. The
 /// service you specify here is the only service that can be accessed using these credentials.
@@ -23,20 +35,8 @@ namespace Com.Amazonaws.Iam;
 /// can also include any of the following characters: _+=,.@-
 /// </para>
 /// </param>
-/// <param name="CredentialAgeDays">
-/// <para>
-/// The number of days until the service specific credential expires. This field is only valid for
-/// services that support long-term API keys and must be a positive integer. When not specified, the
-/// credential will not expire.
-/// </para>
-/// <para>
-/// To see which services support long-term API keys, refer to
-/// <see href="https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_api_keys_for_aws_services.html">API
-/// keys for Amazon Web Services services</see> in the <i>IAM User Guide</i>.
-/// </para>
-/// </param>
 public sealed record class CreateServiceSpecificCredentialInput(
-    string ServiceName,
-    string UserName,
-    int? CredentialAgeDays = null
+    int? CredentialAgeDays = null,
+    string? ServiceName = null,
+    string? UserName = null
 );

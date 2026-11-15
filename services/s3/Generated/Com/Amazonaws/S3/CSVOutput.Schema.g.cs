@@ -9,7 +9,7 @@ namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class CSVOutputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public global::Com.Amazonaws.S3.QuoteFields? QuoteFields { get; set; }
         public string? QuoteEscapeCharacter { get; set; }
@@ -111,7 +111,7 @@ public static partial class CSVOutputSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

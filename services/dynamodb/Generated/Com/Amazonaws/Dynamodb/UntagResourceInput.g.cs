@@ -17,4 +17,7 @@ namespace Com.Amazonaws.Dynamodb;
 /// A list of tag keys. Existing tags of the resource whose keys are members of this list will be
 /// removed from the DynamoDB resource.
 /// </param>
-public sealed record class UntagResourceInput(string ResourceArn, IReadOnlyList<string> TagKeys);
+public sealed record class UntagResourceInput(
+    string? ResourceArn = null,
+    IReadOnlyList<string>? TagKeys = null
+);

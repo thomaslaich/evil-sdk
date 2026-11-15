@@ -50,12 +50,6 @@ namespace Com.Amazonaws.S3;
 /// Outposts?</see> in the <i>Amazon S3 User Guide</i>.
 /// </para>
 /// </param>
-/// <param name="Key">
-/// Key of the object for which the multipart upload was initiated.
-/// </param>
-/// <param name="UploadId">
-/// Upload ID that identifies the multipart upload.
-/// </param>
 /// <param name="ExpectedBucketOwner">
 /// The account ID of the expected bucket owner. If the account ID that you provide does not match the
 /// actual owner of the bucket, the request fails with the HTTP status code <c>403 Forbidden</c> (access
@@ -73,11 +67,17 @@ namespace Com.Amazonaws.S3;
 /// <b>Note:</b> This functionality is only supported for directory buckets.
 /// </para>
 /// </param>
+/// <param name="Key">
+/// Key of the object for which the multipart upload was initiated.
+/// </param>
+/// <param name="UploadId">
+/// Upload ID that identifies the multipart upload.
+/// </param>
 public sealed record class AbortMultipartUploadInput(
-    string Bucket,
-    string Key,
-    string UploadId,
+    string? Bucket = null,
     string? ExpectedBucketOwner = null,
     DateTimeOffset? IfMatchInitiatedTime = null,
-    global::Com.Amazonaws.S3.RequestPayer? RequestPayer = null
+    string? Key = null,
+    global::Com.Amazonaws.S3.RequestPayer? RequestPayer = null,
+    string? UploadId = null
 );

@@ -10,7 +10,7 @@ namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class GetBucketLoggingOutputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public global::Com.Amazonaws.S3.LoggingEnabled? LoggingEnabled { get; set; }
     }
@@ -61,7 +61,7 @@ public static partial class GetBucketLoggingOutputSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

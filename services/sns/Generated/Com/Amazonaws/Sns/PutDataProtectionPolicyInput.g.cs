@@ -29,6 +29,6 @@ namespace Com.Amazonaws.Sns;
 /// </para>
 /// </param>
 public sealed record class PutDataProtectionPolicyInput(
-    string DataProtectionPolicy,
-    string ResourceArn
+    string? DataProtectionPolicy = null,
+    string? ResourceArn = null
 );

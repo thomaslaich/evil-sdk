@@ -7,9 +7,6 @@ namespace Com.Amazonaws.Cloudwatchlogs;
 /// <summary>
 /// Represents the Smithy structure com.amazonaws.cloudwatchlogs#GetQueryResultsInput.
 /// </summary>
-/// <param name="QueryId">
-/// The ID number of the query.
-/// </param>
 /// <param name="MaxItems">
 /// The maximum number of log events to return in the response. The maximum is 10,000 log events per
 /// request. You can retrieve up to 100,000 log event results from a query by paginating with the
@@ -18,8 +15,11 @@ namespace Com.Amazonaws.Cloudwatchlogs;
 /// <param name="NextToken">
 /// The token for the next set of items to return. The token expires after 1 hour.
 /// </param>
+/// <param name="QueryId">
+/// The ID number of the query.
+/// </param>
 public sealed record class GetQueryResultsInput(
-    string QueryId,
     int? MaxItems = null,
-    string? NextToken = null
+    string? NextToken = null,
+    string? QueryId = null
 );

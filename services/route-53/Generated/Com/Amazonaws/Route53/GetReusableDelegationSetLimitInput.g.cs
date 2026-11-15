@@ -15,6 +15,6 @@ namespace Com.Amazonaws.Route53;
 /// you can associate with the specified reusable delegation set.
 /// </param>
 public sealed record class GetReusableDelegationSetLimitInput(
-    string DelegationSetId,
-    ReusableDelegationSetLimitType Type
+    string? DelegationSetId = null,
+    ReusableDelegationSetLimitType? Type = null
 );

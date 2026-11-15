@@ -34,4 +34,7 @@ namespace Com.Amazonaws.Cloudwatchlogs;
 /// index syntax and quotas</see>.
 /// </para>
 /// </param>
-public sealed record class PutIndexPolicyInput(string LogGroupIdentifier, string PolicyDocument);
+public sealed record class PutIndexPolicyInput(
+    string? LogGroupIdentifier = null,
+    string? PolicyDocument = null
+);

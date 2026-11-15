@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Dynamodb.Schemas;
 
 public static partial class UpdateTimeToLiveInputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? TableName { get; set; }
         public global::Com.Amazonaws.Dynamodb.TimeToLiveSpecification? TimeToLiveSpecification { get; set; }
@@ -28,7 +28,6 @@ public static partial class UpdateTimeToLiveInputSchema
                 new(
                     "TableName",
                     Target0,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
@@ -42,10 +41,6 @@ public static partial class UpdateTimeToLiveInputSchema
                             )
                         ),
                         new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.rules#contextParam"),
                             Document.From(
                                 new Dictionary<string, Document>
@@ -56,18 +51,7 @@ public static partial class UpdateTimeToLiveInputSchema
                         ),
                     ]
                 ),
-                new(
-                    "TimeToLiveSpecification",
-                    Target1,
-                    isRequired: true,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
-                    ]
-                ),
+                new("TimeToLiveSpecification", Target1),
             ],
             [
                 new Trait(
@@ -92,9 +76,8 @@ public static partial class UpdateTimeToLiveInputSchema
             Builder builder
         ) =>
             new global::Com.Amazonaws.Dynamodb.UpdateTimeToLiveInput(
-                builder.TableName ?? throw new MissingRequiredMemberException("TableName"),
+                builder.TableName,
                 builder.TimeToLiveSpecification
-                    ?? throw new MissingRequiredMemberException("TimeToLiveSpecification")
             );
 
         public override void SerializeMembers<TSerializer>(
@@ -120,7 +103,7 @@ public static partial class UpdateTimeToLiveInputSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

@@ -9,6 +9,9 @@ namespace Com.Amazonaws.Eventbridge;
 /// <summary>
 /// Represents the Smithy structure com.amazonaws.eventbridge#CreateEndpointInput.
 /// </summary>
+/// <param name="Description">
+/// A description of the global endpoint.
+/// </param>
 /// <param name="EventBuses">
 /// <para>
 /// Define the event buses used.
@@ -20,12 +23,6 @@ namespace Com.Amazonaws.Eventbridge;
 /// <param name="Name">
 /// The name of the global endpoint. For example, <c>"Name":"us-east-2-custom_bus_A-endpoint"</c>.
 /// </param>
-/// <param name="RoutingConfig">
-/// Configure the routing policy, including the health check and secondary Region..
-/// </param>
-/// <param name="Description">
-/// A description of the global endpoint.
-/// </param>
 /// <param name="ReplicationConfig">
 /// Enable or disable event replication. The default state is <c>ENABLED</c> which means you must supply
 /// a <c>RoleArn</c>. If you don't have a <c>RoleArn</c> or you don't want event replication enabled,
@@ -34,11 +31,14 @@ namespace Com.Amazonaws.Eventbridge;
 /// <param name="RoleArn">
 /// The ARN of the role used for replication.
 /// </param>
+/// <param name="RoutingConfig">
+/// Configure the routing policy, including the health check and secondary Region..
+/// </param>
 public sealed record class CreateEndpointInput(
-    IReadOnlyList<EndpointEventBus> EventBuses,
-    string Name,
-    global::Com.Amazonaws.Eventbridge.RoutingConfig RoutingConfig,
     string? Description = null,
+    IReadOnlyList<EndpointEventBus>? EventBuses = null,
+    string? Name = null,
     global::Com.Amazonaws.Eventbridge.ReplicationConfig? ReplicationConfig = null,
-    string? RoleArn = null
+    string? RoleArn = null,
+    global::Com.Amazonaws.Eventbridge.RoutingConfig? RoutingConfig = null
 );

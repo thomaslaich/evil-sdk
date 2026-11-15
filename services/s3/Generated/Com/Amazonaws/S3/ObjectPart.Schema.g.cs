@@ -10,7 +10,7 @@ namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class ObjectPartSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public int? PartNumber { get; set; }
         public long? Size { get; set; }
@@ -235,7 +235,7 @@ public static partial class ObjectPartSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

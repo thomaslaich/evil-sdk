@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Kinesis.Schemas;
 
 public static partial class RemoveTagsFromStreamInputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? StreamName { get; set; }
         public IReadOnlyList<string>? TagKeys { get; set; }
@@ -48,18 +48,7 @@ public static partial class RemoveTagsFromStreamInputSchema
                         ),
                     ]
                 ),
-                new(
-                    "TagKeys",
-                    Target1,
-                    isRequired: true,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
-                    ]
-                ),
+                new("TagKeys", Target1),
                 new(
                     "StreamARN",
                     Target2,
@@ -152,10 +141,10 @@ public static partial class RemoveTagsFromStreamInputSchema
             Builder builder
         ) =>
             new global::Com.Amazonaws.Kinesis.RemoveTagsFromStreamInput(
-                builder.TagKeys ?? throw new MissingRequiredMemberException("TagKeys"),
                 builder.StreamARN,
                 builder.StreamId,
-                builder.StreamName
+                builder.StreamName,
+                builder.TagKeys
             );
 
         public override void SerializeMembers<TSerializer>(
@@ -197,7 +186,7 @@ public static partial class RemoveTagsFromStreamInputSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

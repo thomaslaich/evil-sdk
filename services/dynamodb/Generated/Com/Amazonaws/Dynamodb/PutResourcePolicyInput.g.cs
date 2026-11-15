@@ -7,6 +7,25 @@ namespace Com.Amazonaws.Dynamodb;
 /// <summary>
 /// Represents the Smithy structure com.amazonaws.dynamodb#PutResourcePolicyInput.
 /// </summary>
+/// <param name="ConfirmRemoveSelfResourceAccess">
+/// Set this parameter to <c>true</c> to confirm that you want to remove your permissions to change the
+/// policy of this resource in the future.
+/// </param>
+/// <param name="ExpectedRevisionId">
+/// <para>
+/// A string value that you can use to conditionally update your policy. You can provide the revision ID
+/// of your existing policy to make mutating requests against that policy.
+/// </para>
+/// <para>
+/// <b>Note:</b> When you provide an expected revision ID, if the revision ID of the existing policy on
+/// the resource doesn't match or if there's no policy attached to the resource, your request will be
+/// rejected with a <c>PolicyNotFoundException</c>.
+/// </para>
+/// <para>
+/// To conditionally attach a policy when no policy exists for the resource, specify <c>NO_POLICY</c>
+/// for the revision ID.
+/// </para>
+/// </param>
 /// <param name="Policy">
 /// <para>
 /// An Amazon Web Services resource-based policy document in JSON format.
@@ -44,28 +63,9 @@ namespace Com.Amazonaws.Dynamodb;
 /// multiple <c>Statement</c> fields in your policy document.
 /// </para>
 /// </param>
-/// <param name="ConfirmRemoveSelfResourceAccess">
-/// Set this parameter to <c>true</c> to confirm that you want to remove your permissions to change the
-/// policy of this resource in the future.
-/// </param>
-/// <param name="ExpectedRevisionId">
-/// <para>
-/// A string value that you can use to conditionally update your policy. You can provide the revision ID
-/// of your existing policy to make mutating requests against that policy.
-/// </para>
-/// <para>
-/// <b>Note:</b> When you provide an expected revision ID, if the revision ID of the existing policy on
-/// the resource doesn't match or if there's no policy attached to the resource, your request will be
-/// rejected with a <c>PolicyNotFoundException</c>.
-/// </para>
-/// <para>
-/// To conditionally attach a policy when no policy exists for the resource, specify <c>NO_POLICY</c>
-/// for the revision ID.
-/// </para>
-/// </param>
 public sealed record class PutResourcePolicyInput(
-    string Policy,
-    string ResourceArn,
     bool? ConfirmRemoveSelfResourceAccess = null,
-    string? ExpectedRevisionId = null
+    string? ExpectedRevisionId = null,
+    string? Policy = null,
+    string? ResourceArn = null
 );

@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Iam.Schemas;
 
 public static partial class DisableOrganizationsRootCredentialsManagementOutputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? OrganizationId { get; set; }
         public IReadOnlyList<global::Com.Amazonaws.Iam.FeatureType>? EnabledFeatures { get; set; }
@@ -107,7 +107,7 @@ public static partial class DisableOrganizationsRootCredentialsManagementOutputS
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

@@ -32,7 +32,7 @@ namespace Com.Amazonaws.Iam;
 /// </para>
 /// </param>
 public sealed record class UpdateAccessKeyInput(
-    string AccessKeyId,
-    StatusType Status,
+    string? AccessKeyId = null,
+    StatusType? Status = null,
     string? UserName = null
 );

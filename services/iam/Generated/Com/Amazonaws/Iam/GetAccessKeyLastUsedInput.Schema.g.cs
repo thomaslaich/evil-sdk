@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Iam.Schemas;
 
 public static partial class GetAccessKeyLastUsedInputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? AccessKeyId { get; set; }
     }
@@ -27,7 +27,6 @@ public static partial class GetAccessKeyLastUsedInputSchema
                 new(
                     "AccessKeyId",
                     Target0,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
@@ -41,10 +40,6 @@ public static partial class GetAccessKeyLastUsedInputSchema
                             )
                         ),
                         new Trait(ShapeId.Parse("smithy.api#pattern"), Document.From("^[\\w]+$")),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
                     ]
                 ),
             ],
@@ -69,10 +64,7 @@ public static partial class GetAccessKeyLastUsedInputSchema
 
         public override global::Com.Amazonaws.Iam.GetAccessKeyLastUsedInput Build(
             Builder builder
-        ) =>
-            new global::Com.Amazonaws.Iam.GetAccessKeyLastUsedInput(
-                builder.AccessKeyId ?? throw new MissingRequiredMemberException("AccessKeyId")
-            );
+        ) => new global::Com.Amazonaws.Iam.GetAccessKeyLastUsedInput(builder.AccessKeyId);
 
         public override void SerializeMembers<TSerializer>(
             global::Com.Amazonaws.Iam.GetAccessKeyLastUsedInput value,
@@ -89,7 +81,7 @@ public static partial class GetAccessKeyLastUsedInputSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

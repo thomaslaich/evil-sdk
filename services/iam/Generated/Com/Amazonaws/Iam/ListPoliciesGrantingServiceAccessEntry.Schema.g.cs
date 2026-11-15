@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Iam.Schemas;
 
 public static partial class ListPoliciesGrantingServiceAccessEntrySchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? ServiceNamespace { get; set; }
         public IReadOnlyList<global::Com.Amazonaws.Iam.PolicyGrantingServiceAccess>? Policies { get; set; }
@@ -92,7 +92,7 @@ public static partial class ListPoliciesGrantingServiceAccessEntrySchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

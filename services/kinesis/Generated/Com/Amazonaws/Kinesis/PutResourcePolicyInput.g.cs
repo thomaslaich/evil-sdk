@@ -18,7 +18,7 @@ namespace Com.Amazonaws.Kinesis;
 /// Not Implemented. Reserved for future use.
 /// </param>
 public sealed record class PutResourcePolicyInput(
-    string Policy,
-    string ResourceARN,
+    string? Policy = null,
+    string? ResourceARN = null,
     string? StreamId = null
 );

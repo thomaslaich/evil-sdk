@@ -34,4 +34,4 @@ namespace Com.Amazonaws.Iam;
 /// digits, and upper and lowercased letters.
 /// </para>
 /// </param>
-public sealed record class CreateGroupInput(string GroupName, string? Path = null);
+public sealed record class CreateGroupInput(string? GroupName = null, string? Path = null);

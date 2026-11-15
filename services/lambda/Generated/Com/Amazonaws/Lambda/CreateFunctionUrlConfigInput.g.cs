@@ -14,6 +14,10 @@ namespace Com.Amazonaws.Lambda;
 /// <see href="https://docs.aws.amazon.com/lambda/latest/dg/urls-auth.html">Control access to Lambda
 /// function URLs</see>.
 /// </param>
+/// <param name="Cors">
+/// The <see href="https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS">cross-origin resource sharing
+/// (CORS)</see> settings for your function URL.
+/// </param>
 /// <param name="FunctionName">
 /// <para>
 /// The name or ARN of the Lambda function.
@@ -43,10 +47,6 @@ namespace Com.Amazonaws.Lambda;
 /// limited to 64 characters in length.
 /// </para>
 /// </param>
-/// <param name="Cors">
-/// The <see href="https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS">cross-origin resource sharing
-/// (CORS)</see> settings for your function URL.
-/// </param>
 /// <param name="InvokeMode">
 /// <para>
 /// Use one of the following options:
@@ -72,9 +72,9 @@ namespace Com.Amazonaws.Lambda;
 /// The alias name.
 /// </param>
 public sealed record class CreateFunctionUrlConfigInput(
-    FunctionUrlAuthType AuthType,
-    string FunctionName,
+    FunctionUrlAuthType? AuthType = null,
     global::Com.Amazonaws.Lambda.Cors? Cors = null,
+    string? FunctionName = null,
     global::Com.Amazonaws.Lambda.InvokeMode? InvokeMode = null,
     string? Qualifier = null
 );

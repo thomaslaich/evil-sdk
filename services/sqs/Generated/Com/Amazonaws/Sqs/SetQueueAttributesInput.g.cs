@@ -305,6 +305,6 @@ namespace Com.Amazonaws.Sqs;
 /// </para>
 /// </param>
 public sealed record class SetQueueAttributesInput(
-    IReadOnlyDictionary<string, string> Attributes,
-    string QueueUrl
+    IReadOnlyDictionary<string, string>? Attributes = null,
+    string? QueueUrl = null
 );

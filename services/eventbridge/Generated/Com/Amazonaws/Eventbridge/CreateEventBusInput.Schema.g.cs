@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Eventbridge.Schemas;
 
 public static partial class CreateEventBusInputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? Name { get; set; }
         public string? EventSourceName { get; set; }
@@ -33,7 +33,6 @@ public static partial class CreateEventBusInputSchema
                 new(
                     "Name",
                     Target0,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
@@ -49,10 +48,6 @@ public static partial class CreateEventBusInputSchema
                         new Trait(
                             ShapeId.Parse("smithy.api#pattern"),
                             Document.From("^[/\\.\\-_A-Za-z0-9]+$")
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
                         ),
                     ]
                 ),
@@ -166,12 +161,12 @@ public static partial class CreateEventBusInputSchema
             Builder builder
         ) =>
             new global::Com.Amazonaws.Eventbridge.CreateEventBusInput(
-                builder.Name ?? throw new MissingRequiredMemberException("Name"),
                 builder.DeadLetterConfig,
                 builder.Description,
                 builder.EventSourceName,
                 builder.KmsKeyIdentifier,
                 builder.LogConfig,
+                builder.Name,
                 builder.Tags
             );
 
@@ -238,7 +233,7 @@ public static partial class CreateEventBusInputSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

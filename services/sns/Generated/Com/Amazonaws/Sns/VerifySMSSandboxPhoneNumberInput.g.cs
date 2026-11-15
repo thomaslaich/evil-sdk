@@ -14,6 +14,6 @@ namespace Com.Amazonaws.Sns;
 /// The destination phone number to verify.
 /// </param>
 public sealed record class VerifySMSSandboxPhoneNumberInput(
-    string OneTimePassword,
-    string PhoneNumber
+    string? OneTimePassword = null,
+    string? PhoneNumber = null
 );

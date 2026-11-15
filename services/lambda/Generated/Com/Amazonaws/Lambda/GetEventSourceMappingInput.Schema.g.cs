@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Lambda.Schemas;
 
 public static partial class GetEventSourceMappingInputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? UUID { get; set; }
     }
@@ -27,7 +27,6 @@ public static partial class GetEventSourceMappingInputSchema
                 new(
                     "UUID",
                     Target0,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
@@ -43,10 +42,6 @@ public static partial class GetEventSourceMappingInputSchema
                                     { "max", Document.From(36m) },
                                 }
                             )
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
                         ),
                     ]
                 ),
@@ -72,10 +67,7 @@ public static partial class GetEventSourceMappingInputSchema
 
         public override global::Com.Amazonaws.Lambda.GetEventSourceMappingInput Build(
             Builder builder
-        ) =>
-            new global::Com.Amazonaws.Lambda.GetEventSourceMappingInput(
-                builder.UUID ?? throw new MissingRequiredMemberException("UUID")
-            );
+        ) => new global::Com.Amazonaws.Lambda.GetEventSourceMappingInput(builder.UUID);
 
         public override void SerializeMembers<TSerializer>(
             global::Com.Amazonaws.Lambda.GetEventSourceMappingInput value,
@@ -92,7 +84,7 @@ public static partial class GetEventSourceMappingInputSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

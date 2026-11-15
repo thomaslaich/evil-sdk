@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Dynamodb.Schemas;
 
 public static partial class ListTagsOfResourceInputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? ResourceArn { get; set; }
         public string? NextToken { get; set; }
@@ -28,7 +28,6 @@ public static partial class ListTagsOfResourceInputSchema
                 new(
                     "ResourceArn",
                     Target0,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
@@ -40,10 +39,6 @@ public static partial class ListTagsOfResourceInputSchema
                                     { "max", Document.From(1283m) },
                                 }
                             )
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
                         ),
                         new Trait(
                             ShapeId.Parse("smithy.rules#contextParam"),
@@ -81,8 +76,8 @@ public static partial class ListTagsOfResourceInputSchema
             Builder builder
         ) =>
             new global::Com.Amazonaws.Dynamodb.ListTagsOfResourceInput(
-                builder.ResourceArn ?? throw new MissingRequiredMemberException("ResourceArn"),
-                builder.NextToken
+                builder.NextToken,
+                builder.ResourceArn
             );
 
         public override void SerializeMembers<TSerializer>(
@@ -108,7 +103,7 @@ public static partial class ListTagsOfResourceInputSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

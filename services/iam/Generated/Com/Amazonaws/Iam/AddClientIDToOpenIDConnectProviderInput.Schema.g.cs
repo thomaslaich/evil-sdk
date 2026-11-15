@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Iam.Schemas;
 
 public static partial class AddClientIDToOpenIDConnectProviderInputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? OpenIDConnectProviderArn { get; set; }
         public string? ClientID { get; set; }
@@ -28,7 +28,6 @@ public static partial class AddClientIDToOpenIDConnectProviderInputSchema
                 new(
                     "OpenIDConnectProviderArn",
                     Target0,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
@@ -41,16 +40,11 @@ public static partial class AddClientIDToOpenIDConnectProviderInputSchema
                                 }
                             )
                         ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
                     ]
                 ),
                 new(
                     "ClientID",
                     Target1,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
@@ -62,10 +56,6 @@ public static partial class AddClientIDToOpenIDConnectProviderInputSchema
                                     { "max", Document.From(255m) },
                                 }
                             )
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
                         ),
                     ]
                 ),
@@ -97,9 +87,8 @@ public static partial class AddClientIDToOpenIDConnectProviderInputSchema
             Builder builder
         ) =>
             new global::Com.Amazonaws.Iam.AddClientIDToOpenIDConnectProviderInput(
-                builder.ClientID ?? throw new MissingRequiredMemberException("ClientID"),
+                builder.ClientID,
                 builder.OpenIDConnectProviderArn
-                    ?? throw new MissingRequiredMemberException("OpenIDConnectProviderArn")
             );
 
         public override void SerializeMembers<TSerializer>(
@@ -125,7 +114,7 @@ public static partial class AddClientIDToOpenIDConnectProviderInputSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

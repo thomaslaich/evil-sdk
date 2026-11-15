@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Route53.Schemas;
 
 public static partial class ListReusableDelegationSetsOutputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public IReadOnlyList<global::Com.Amazonaws.Route53.DelegationSet>? DelegationSets { get; set; }
         public string? Marker { get; set; }
@@ -192,7 +192,7 @@ public static partial class ListReusableDelegationSetsOutputSchema
             serializer.WriteInteger(4, value.MaxItems);
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

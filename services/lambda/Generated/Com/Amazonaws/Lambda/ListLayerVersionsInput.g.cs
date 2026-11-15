@@ -7,9 +7,6 @@ namespace Com.Amazonaws.Lambda;
 /// <summary>
 /// Represents the Smithy structure com.amazonaws.lambda#ListLayerVersionsInput.
 /// </summary>
-/// <param name="LayerName">
-/// The name or Amazon Resource Name (ARN) of the layer.
-/// </param>
 /// <param name="CompatibleArchitecture">
 /// The compatible
 /// <see href="https://docs.aws.amazon.com/lambda/latest/dg/foundation-arch.html">instruction set
@@ -30,6 +27,9 @@ namespace Com.Amazonaws.Lambda;
 /// runtimes</see>.
 /// </para>
 /// </param>
+/// <param name="LayerName">
+/// The name or Amazon Resource Name (ARN) of the layer.
+/// </param>
 /// <param name="Marker">
 /// A pagination token returned by a previous call.
 /// </param>
@@ -37,9 +37,9 @@ namespace Com.Amazonaws.Lambda;
 /// The maximum number of versions to return.
 /// </param>
 public sealed record class ListLayerVersionsInput(
-    string LayerName,
     Architecture? CompatibleArchitecture = null,
     Runtime? CompatibleRuntime = null,
+    string? LayerName = null,
     string? Marker = null,
     int? MaxItems = null
 );

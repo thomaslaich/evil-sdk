@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Iam.Schemas;
 
 public static partial class PutAccountPropertiesInputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public IReadOnlyDictionary<string, string>? Properties { get; set; }
     }
@@ -23,20 +23,7 @@ public static partial class PutAccountPropertiesInputSchema
     private sealed class GeneratedSchema()
         : StructSchema<global::Com.Amazonaws.Iam.PutAccountPropertiesInput, Builder>(
             ShapeId.Parse("com.amazonaws.iam#PutAccountPropertiesInput"),
-            [
-                new(
-                    "Properties",
-                    Target0,
-                    isRequired: true,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
-                    ]
-                ),
-            ],
+            [new("Properties", Target0)],
             [
                 new Trait(
                     ShapeId.Parse("smithy.api#input"),
@@ -60,10 +47,7 @@ public static partial class PutAccountPropertiesInputSchema
 
         public override global::Com.Amazonaws.Iam.PutAccountPropertiesInput Build(
             Builder builder
-        ) =>
-            new global::Com.Amazonaws.Iam.PutAccountPropertiesInput(
-                builder.Properties ?? throw new MissingRequiredMemberException("Properties")
-            );
+        ) => new global::Com.Amazonaws.Iam.PutAccountPropertiesInput(builder.Properties);
 
         public override void SerializeMembers<TSerializer>(
             global::Com.Amazonaws.Iam.PutAccountPropertiesInput value,
@@ -80,7 +64,7 @@ public static partial class PutAccountPropertiesInputSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

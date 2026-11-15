@@ -10,4 +10,4 @@ namespace Com.Amazonaws.Cloudwatchlogs;
 /// <param name="LookupTableArn">
 /// The ARN of the lookup table to retrieve.
 /// </param>
-public sealed record class GetLookupTableInput(string LookupTableArn);
+public sealed record class GetLookupTableInput(string? LookupTableArn = null);

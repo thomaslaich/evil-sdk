@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Iam.Schemas;
 
 public static partial class UploadServerCertificateInputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? Path { get; set; }
         public string? ServerCertificateName { get; set; }
@@ -53,7 +53,6 @@ public static partial class UploadServerCertificateInputSchema
                 new(
                     "ServerCertificateName",
                     Target1,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
@@ -70,16 +69,11 @@ public static partial class UploadServerCertificateInputSchema
                             ShapeId.Parse("smithy.api#pattern"),
                             Document.From("^[\\w+=,.@-]+$")
                         ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
                     ]
                 ),
                 new(
                     "CertificateBody",
                     Target2,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
@@ -95,17 +89,12 @@ public static partial class UploadServerCertificateInputSchema
                         new Trait(
                             ShapeId.Parse("smithy.api#pattern"),
                             Document.From("^[\\u0009\\u000A\\u000D\\u0020-\\u00FF]+$")
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
                         ),
                     ]
                 ),
                 new(
                     "PrivateKey",
                     Target3,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
@@ -121,10 +110,6 @@ public static partial class UploadServerCertificateInputSchema
                         new Trait(
                             ShapeId.Parse("smithy.api#pattern"),
                             Document.From("^[\\u0009\\u000A\\u000D\\u0020-\\u00FF]+$")
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
                         ),
                         new Trait(
                             ShapeId.Parse("smithy.api#sensitive"),
@@ -198,13 +183,11 @@ public static partial class UploadServerCertificateInputSchema
             Builder builder
         ) =>
             new global::Com.Amazonaws.Iam.UploadServerCertificateInput(
-                builder.CertificateBody
-                    ?? throw new MissingRequiredMemberException("CertificateBody"),
-                builder.PrivateKey ?? throw new MissingRequiredMemberException("PrivateKey"),
-                builder.ServerCertificateName
-                    ?? throw new MissingRequiredMemberException("ServerCertificateName"),
+                builder.CertificateBody,
                 builder.CertificateChain,
                 builder.Path,
+                builder.PrivateKey,
+                builder.ServerCertificateName,
                 builder.Tags
             );
 
@@ -263,7 +246,7 @@ public static partial class UploadServerCertificateInputSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

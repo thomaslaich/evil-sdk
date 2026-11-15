@@ -9,12 +9,6 @@ namespace Com.Amazonaws.Lambda;
 /// <summary>
 /// Represents the Smithy structure com.amazonaws.lambda#PublishLayerVersionInput.
 /// </summary>
-/// <param name="Content">
-/// The function layer archive.
-/// </param>
-/// <param name="LayerName">
-/// The name or Amazon Resource Name (ARN) of the layer.
-/// </param>
 /// <param name="CompatibleArchitectures">
 /// A list of compatible
 /// <see href="https://docs.aws.amazon.com/lambda/latest/dg/foundation-arch.html">instruction set
@@ -32,8 +26,14 @@ namespace Com.Amazonaws.Lambda;
 /// deprecation policy</see>.
 /// </para>
 /// </param>
+/// <param name="Content">
+/// The function layer archive.
+/// </param>
 /// <param name="Description">
 /// The description of the version.
+/// </param>
+/// <param name="LayerName">
+/// The name or Amazon Resource Name (ARN) of the layer.
 /// </param>
 /// <param name="LicenseInfo">
 /// <para>
@@ -59,10 +59,10 @@ namespace Com.Amazonaws.Lambda;
 /// </list>
 /// </param>
 public sealed record class PublishLayerVersionInput(
-    LayerVersionContentInput Content,
-    string LayerName,
     IReadOnlyList<Architecture>? CompatibleArchitectures = null,
     IReadOnlyList<Runtime>? CompatibleRuntimes = null,
+    LayerVersionContentInput? Content = null,
     string? Description = null,
+    string? LayerName = null,
     string? LicenseInfo = null
 );

@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Lambda.Schemas;
 
 public static partial class PutProvisionedConcurrencyConfigOutputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public int? RequestedProvisionedConcurrentExecutions { get; set; }
         public int? AllocatedProvisionedConcurrentExecutions { get; set; }
@@ -201,7 +201,7 @@ public static partial class PutProvisionedConcurrencyConfigOutputSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

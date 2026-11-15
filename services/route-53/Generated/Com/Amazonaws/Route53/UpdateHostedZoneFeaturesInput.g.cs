@@ -7,15 +7,15 @@ namespace Com.Amazonaws.Route53;
 /// <summary>
 /// Represents the Smithy structure com.amazonaws.route53#UpdateHostedZoneFeaturesInput.
 /// </summary>
-/// <param name="HostedZoneId">
-/// The ID of the hosted zone for which you want to update features. This is the unique identifier for
-/// your hosted zone.
-/// </param>
 /// <param name="EnableAcceleratedRecovery">
 /// Specifies whether to enable accelerated recovery for the hosted zone. Set to <c>true</c> to enable
 /// accelerated recovery, or <c>false</c> to disable it.
 /// </param>
+/// <param name="HostedZoneId">
+/// The ID of the hosted zone for which you want to update features. This is the unique identifier for
+/// your hosted zone.
+/// </param>
 public sealed record class UpdateHostedZoneFeaturesInput(
-    string HostedZoneId,
-    bool? EnableAcceleratedRecovery = null
+    bool? EnableAcceleratedRecovery = null,
+    string? HostedZoneId = null
 );

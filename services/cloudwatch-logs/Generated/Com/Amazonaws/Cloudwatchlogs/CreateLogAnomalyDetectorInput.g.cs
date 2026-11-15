@@ -9,10 +9,6 @@ namespace Com.Amazonaws.Cloudwatchlogs;
 /// <summary>
 /// Represents the Smithy structure com.amazonaws.cloudwatchlogs#CreateLogAnomalyDetectorInput.
 /// </summary>
-/// <param name="LogGroupArnList">
-/// An array containing the ARN of the log group that this anomaly detector will watch. You can specify
-/// only one log group ARN.
-/// </param>
 /// <param name="AnomalyVisibilityTime">
 /// The number of days to have visibility on an anomaly. After this time period has elapsed for an
 /// anomaly, it will be automatically baselined and the anomaly detector will treat new occurrences of a
@@ -49,6 +45,10 @@ namespace Com.Amazonaws.Cloudwatchlogs;
 /// a KMS key with an anomaly detector</see>.
 /// </para>
 /// </param>
+/// <param name="LogGroupArnList">
+/// An array containing the ARN of the log group that this anomaly detector will watch. You can specify
+/// only one log group ARN.
+/// </param>
 /// <param name="Tags">
 /// <para>
 /// An optional list of key-value pairs to associate with the resource.
@@ -60,11 +60,11 @@ namespace Com.Amazonaws.Cloudwatchlogs;
 /// </para>
 /// </param>
 public sealed record class CreateLogAnomalyDetectorInput(
-    IReadOnlyList<string> LogGroupArnList,
     long? AnomalyVisibilityTime = null,
     string? DetectorName = null,
     global::Com.Amazonaws.Cloudwatchlogs.EvaluationFrequency? EvaluationFrequency = null,
     string? FilterPattern = null,
     string? KmsKeyId = null,
+    IReadOnlyList<string>? LogGroupArnList = null,
     IReadOnlyDictionary<string, string>? Tags = null
 );

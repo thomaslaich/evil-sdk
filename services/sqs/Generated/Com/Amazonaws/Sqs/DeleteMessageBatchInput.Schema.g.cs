@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Sqs.Schemas;
 
 public static partial class DeleteMessageBatchInputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? QueueUrl { get; set; }
         public IReadOnlyList<global::Com.Amazonaws.Sqs.DeleteMessageBatchRequestEntry>? Entries { get; set; }
@@ -25,28 +25,12 @@ public static partial class DeleteMessageBatchInputSchema
         : StructSchema<global::Com.Amazonaws.Sqs.DeleteMessageBatchInput, Builder>(
             ShapeId.Parse("com.amazonaws.sqs#DeleteMessageBatchInput"),
             [
-                new(
-                    "QueueUrl",
-                    Target0,
-                    isRequired: true,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
-                    ]
-                ),
+                new("QueueUrl", Target0),
                 new(
                     "Entries",
                     Target1,
-                    isRequired: true,
                     traits:
                     [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
                         new Trait(
                             ShapeId.Parse("smithy.api#xmlFlattened"),
                             Document.From(new Dictionary<string, Document> { })
@@ -85,8 +69,8 @@ public static partial class DeleteMessageBatchInputSchema
 
         public override global::Com.Amazonaws.Sqs.DeleteMessageBatchInput Build(Builder builder) =>
             new global::Com.Amazonaws.Sqs.DeleteMessageBatchInput(
-                builder.Entries ?? throw new MissingRequiredMemberException("Entries"),
-                builder.QueueUrl ?? throw new MissingRequiredMemberException("QueueUrl")
+                builder.Entries,
+                builder.QueueUrl
             );
 
         public override void SerializeMembers<TSerializer>(
@@ -112,7 +96,7 @@ public static partial class DeleteMessageBatchInputSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

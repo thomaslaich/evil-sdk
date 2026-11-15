@@ -13,6 +13,6 @@ namespace Com.Amazonaws.Cloudwatchlogs;
 /// The log event messages to test.
 /// </param>
 public sealed record class TestMetricFilterInput(
-    string FilterPattern,
-    IReadOnlyList<string> LogEventMessages
+    string? FilterPattern = null,
+    IReadOnlyList<string>? LogEventMessages = null
 );

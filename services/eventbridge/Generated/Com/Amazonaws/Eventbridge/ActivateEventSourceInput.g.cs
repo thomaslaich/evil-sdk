@@ -10,4 +10,4 @@ namespace Com.Amazonaws.Eventbridge;
 /// <param name="Name">
 /// The name of the partner event source to activate.
 /// </param>
-public sealed record class ActivateEventSourceInput(string Name);
+public sealed record class ActivateEventSourceInput(string? Name = null);

@@ -9,27 +9,6 @@ namespace Com.Amazonaws.Cloudwatchlogs;
 /// <summary>
 /// Represents the Smithy structure com.amazonaws.cloudwatchlogs#CreateScheduledQueryInput.
 /// </summary>
-/// <param name="ExecutionRoleArn">
-/// The ARN of the IAM role that grants permissions to execute the query and deliver results to the
-/// specified destination. The role must have permissions to read from the specified log groups and
-/// write to the destination.
-/// </param>
-/// <param name="Name">
-/// The name of the scheduled query. The name must be unique within your account and region. Length must
-/// be between 1 and 300 characters.
-/// </param>
-/// <param name="QueryLanguage">
-/// The query language to use for the scheduled query. Valid values are <c>CWLI</c>, <c>PPL</c>, and
-/// <c>SQL</c>.
-/// </param>
-/// <param name="QueryString">
-/// The query string to execute. This is the same query syntax used in CloudWatch Logs Insights. Maximum
-/// length is 10,000 characters.
-/// </param>
-/// <param name="ScheduleExpression">
-/// A cron expression that defines when the scheduled query runs. The expression uses standard cron
-/// syntax and supports minute-level precision. Maximum length is 256 characters.
-/// </param>
 /// <param name="Description">
 /// An optional description for the scheduled query to help identify its purpose and functionality.
 /// </param>
@@ -43,13 +22,34 @@ namespace Com.Amazonaws.Cloudwatchlogs;
 /// <c>startTimeOffset</c>, this determines the time window relative to the execution time over which
 /// the query runs.
 /// </param>
+/// <param name="ExecutionRoleArn">
+/// The ARN of the IAM role that grants permissions to execute the query and deliver results to the
+/// specified destination. The role must have permissions to read from the specified log groups and
+/// write to the destination.
+/// </param>
 /// <param name="LogGroupIdentifiers">
 /// An array of log group names or ARNs to query. You can specify between 1 and 50 log groups. Log
 /// groups can be identified by name or full ARN.
 /// </param>
+/// <param name="Name">
+/// The name of the scheduled query. The name must be unique within your account and region. Length must
+/// be between 1 and 300 characters.
+/// </param>
+/// <param name="QueryLanguage">
+/// The query language to use for the scheduled query. Valid values are <c>CWLI</c>, <c>PPL</c>, and
+/// <c>SQL</c>.
+/// </param>
+/// <param name="QueryString">
+/// The query string to execute. This is the same query syntax used in CloudWatch Logs Insights. Maximum
+/// length is 10,000 characters.
+/// </param>
 /// <param name="ScheduleEndTime">
 /// The end time for the scheduled query in Unix epoch format. The query will stop executing after this
 /// time.
+/// </param>
+/// <param name="ScheduleExpression">
+/// A cron expression that defines when the scheduled query runs. The expression uses standard cron
+/// syntax and supports minute-level precision. Maximum length is 256 characters.
 /// </param>
 /// <param name="ScheduleStartTime">
 /// The start time for the scheduled query in Unix epoch format. The query will not execute before this
@@ -71,16 +71,16 @@ namespace Com.Amazonaws.Cloudwatchlogs;
 /// executes relative to the specified timezone.
 /// </param>
 public sealed record class CreateScheduledQueryInput(
-    string ExecutionRoleArn,
-    string Name,
-    global::Com.Amazonaws.Cloudwatchlogs.QueryLanguage QueryLanguage,
-    string QueryString,
-    string ScheduleExpression,
     string? Description = null,
     global::Com.Amazonaws.Cloudwatchlogs.DestinationConfiguration? DestinationConfiguration = null,
     long? EndTimeOffset = null,
+    string? ExecutionRoleArn = null,
     IReadOnlyList<string>? LogGroupIdentifiers = null,
+    string? Name = null,
+    global::Com.Amazonaws.Cloudwatchlogs.QueryLanguage? QueryLanguage = null,
+    string? QueryString = null,
     long? ScheduleEndTime = null,
+    string? ScheduleExpression = null,
     long? ScheduleStartTime = null,
     long? StartTimeOffset = null,
     ScheduledQueryState? State = null,

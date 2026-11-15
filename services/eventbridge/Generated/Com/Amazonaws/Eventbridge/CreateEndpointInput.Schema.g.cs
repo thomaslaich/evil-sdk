@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Eventbridge.Schemas;
 
 public static partial class CreateEndpointInputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? Name { get; set; }
         public string? Description { get; set; }
@@ -32,7 +32,6 @@ public static partial class CreateEndpointInputSchema
                 new(
                     "Name",
                     Target0,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
@@ -48,10 +47,6 @@ public static partial class CreateEndpointInputSchema
                         new Trait(
                             ShapeId.Parse("smithy.api#pattern"),
                             Document.From("^[\\.\\-_A-Za-z0-9]+$")
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
                         ),
                     ]
                 ),
@@ -73,31 +68,9 @@ public static partial class CreateEndpointInputSchema
                         new Trait(ShapeId.Parse("smithy.api#pattern"), Document.From(".*")),
                     ]
                 ),
-                new(
-                    "RoutingConfig",
-                    Target2,
-                    isRequired: true,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
-                    ]
-                ),
+                new("RoutingConfig", Target2),
                 new("ReplicationConfig", Target3),
-                new(
-                    "EventBuses",
-                    Target4,
-                    isRequired: true,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
-                    ]
-                ),
+                new("EventBuses", Target4),
                 new(
                     "RoleArn",
                     Target5,
@@ -163,12 +136,12 @@ public static partial class CreateEndpointInputSchema
             Builder builder
         ) =>
             new global::Com.Amazonaws.Eventbridge.CreateEndpointInput(
-                builder.EventBuses ?? throw new MissingRequiredMemberException("EventBuses"),
-                builder.Name ?? throw new MissingRequiredMemberException("Name"),
-                builder.RoutingConfig ?? throw new MissingRequiredMemberException("RoutingConfig"),
                 builder.Description,
+                builder.EventBuses,
+                builder.Name,
                 builder.ReplicationConfig,
-                builder.RoleArn
+                builder.RoleArn,
+                builder.RoutingConfig
             );
 
         public override void SerializeMembers<TSerializer>(
@@ -226,7 +199,7 @@ public static partial class CreateEndpointInputSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

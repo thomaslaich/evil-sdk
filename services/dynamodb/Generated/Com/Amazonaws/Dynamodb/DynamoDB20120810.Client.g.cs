@@ -1448,7 +1448,7 @@ public interface IDynamoDB20120810Client : IDisposable
     /// This example adds a new item to the Music table.
     /// </para>
     /// <code>
-    /// var input = new PutItemInput(Item: new Dictionary&lt;string, AttributeValue&gt; { { &quot;AlbumTitle&quot;, AttributeValue.FromS(&quot;Somewhat Famous&quot;) }, { &quot;Artist&quot;, AttributeValue.FromS(&quot;No One You Know&quot;) }, { &quot;SongTitle&quot;, AttributeValue.FromS(&quot;Call Me Today&quot;) } }, TableName: &quot;Music&quot;, ReturnConsumedCapacity: new ReturnConsumedCapacity(&quot;TOTAL&quot;));
+    /// var input = new PutItemInput(Item: new Dictionary&lt;string, AttributeValue&gt; { { &quot;AlbumTitle&quot;, AttributeValue.FromS(&quot;Somewhat Famous&quot;) }, { &quot;Artist&quot;, AttributeValue.FromS(&quot;No One You Know&quot;) }, { &quot;SongTitle&quot;, AttributeValue.FromS(&quot;Call Me Today&quot;) } }, ReturnConsumedCapacity: new ReturnConsumedCapacity(&quot;TOTAL&quot;), TableName: &quot;Music&quot;);
     /// var output = await client.PutItemAsync(input);
     ///
     /// // Expected output:
@@ -1555,7 +1555,7 @@ public interface IDynamoDB20120810Client : IDisposable
     /// This example queries items in the Music table. The table has a partition key and sort key (Artist and SongTitle), but this query only specifies the partition key value. It returns song titles by the artist named "No One You Know".
     /// </para>
     /// <code>
-    /// var input = new QueryInput(TableName: &quot;Music&quot;, ExpressionAttributeValues: new Dictionary&lt;string, AttributeValue&gt; { { &quot;:v1&quot;, AttributeValue.FromS(&quot;No One You Know&quot;) } }, KeyConditionExpression: &quot;Artist = :v1&quot;, ProjectionExpression: &quot;SongTitle&quot;);
+    /// var input = new QueryInput(ExpressionAttributeValues: new Dictionary&lt;string, AttributeValue&gt; { { &quot;:v1&quot;, AttributeValue.FromS(&quot;No One You Know&quot;) } }, KeyConditionExpression: &quot;Artist = :v1&quot;, ProjectionExpression: &quot;SongTitle&quot;, TableName: &quot;Music&quot;);
     /// var output = await client.QueryAsync(input);
     ///
     /// // Expected output:
@@ -1893,7 +1893,7 @@ public interface IDynamoDB20120810Client : IDisposable
     /// This example scans the entire Music table, and then narrows the results to songs by the artist "No One You Know". For each item, only the album title and song title are returned.
     /// </para>
     /// <code>
-    /// var input = new ScanInput(TableName: &quot;Music&quot;, ExpressionAttributeNames: new Dictionary&lt;string, string&gt; { { &quot;#AT&quot;, &quot;AlbumTitle&quot; }, { &quot;#ST&quot;, &quot;SongTitle&quot; } }, ExpressionAttributeValues: new Dictionary&lt;string, AttributeValue&gt; { { &quot;:a&quot;, AttributeValue.FromS(&quot;No One You Know&quot;) } }, FilterExpression: &quot;Artist = :a&quot;, ProjectionExpression: &quot;#ST, #AT&quot;);
+    /// var input = new ScanInput(ExpressionAttributeNames: new Dictionary&lt;string, string&gt; { { &quot;#AT&quot;, &quot;AlbumTitle&quot; }, { &quot;#ST&quot;, &quot;SongTitle&quot; } }, ExpressionAttributeValues: new Dictionary&lt;string, AttributeValue&gt; { { &quot;:a&quot;, AttributeValue.FromS(&quot;No One You Know&quot;) } }, FilterExpression: &quot;Artist = :a&quot;, ProjectionExpression: &quot;#ST, #AT&quot;, TableName: &quot;Music&quot;);
     /// var output = await client.ScanAsync(input);
     ///
     /// // Expected output:
@@ -2056,7 +2056,7 @@ public interface IDynamoDB20120810Client : IDisposable
     /// This example searches the Products table for the top 3 items most similar to a provided vector, using the 'cosine-product-idx' vector index. The SearchConditionExpression filters results to the 'Electronics' category. The operation returns only the ProductName and Price attributes.
     /// </para>
     /// <code>
-    /// var input = new SearchVectorsInput(IndexName: &quot;cosine-product-idx&quot;, SearchVector: new AttributeValue[] { AttributeValue.FromN(&quot;0.12&quot;), AttributeValue.FromN(&quot;0.85&quot;), AttributeValue.FromN(&quot;0.44&quot;), AttributeValue.FromN(&quot;0.67&quot;) }, TableName: &quot;Products&quot;, TopK: 3, ExpressionAttributeValues: new Dictionary&lt;string, AttributeValue&gt; { { &quot;:cat&quot;, AttributeValue.FromS(&quot;Electronics&quot;) } }, ProjectionExpression: &quot;ProductName, Price&quot;, ReturnConsumedCapacity: new ReturnConsumedCapacity(&quot;INDEXES&quot;), SearchConditionExpression: &quot;Category = :cat&quot;);
+    /// var input = new SearchVectorsInput(ExpressionAttributeValues: new Dictionary&lt;string, AttributeValue&gt; { { &quot;:cat&quot;, AttributeValue.FromS(&quot;Electronics&quot;) } }, IndexName: &quot;cosine-product-idx&quot;, ProjectionExpression: &quot;ProductName, Price&quot;, ReturnConsumedCapacity: new ReturnConsumedCapacity(&quot;INDEXES&quot;), SearchConditionExpression: &quot;Category = :cat&quot;, SearchVector: new AttributeValue[] { AttributeValue.FromN(&quot;0.12&quot;), AttributeValue.FromN(&quot;0.85&quot;), AttributeValue.FromN(&quot;0.44&quot;), AttributeValue.FromN(&quot;0.67&quot;) }, TableName: &quot;Products&quot;, TopK: 3);
     /// var output = await client.SearchVectorsAsync(input);
     ///
     /// // Expected output:
@@ -2412,7 +2412,7 @@ public interface IDynamoDB20120810Client : IDisposable
     /// This example updates an item in the Music table. It adds a new attribute (Year) and modifies the AlbumTitle attribute.  All of the attributes in the item, as they appear after the update, are returned in the response.
     /// </para>
     /// <code>
-    /// var input = new UpdateItemInput(Key: new Dictionary&lt;string, AttributeValue&gt; { { &quot;Artist&quot;, AttributeValue.FromS(&quot;Acme Band&quot;) }, { &quot;SongTitle&quot;, AttributeValue.FromS(&quot;Happy Day&quot;) } }, TableName: &quot;Music&quot;, ExpressionAttributeNames: new Dictionary&lt;string, string&gt; { { &quot;#AT&quot;, &quot;AlbumTitle&quot; }, { &quot;#Y&quot;, &quot;Year&quot; } }, ExpressionAttributeValues: new Dictionary&lt;string, AttributeValue&gt; { { &quot;:t&quot;, AttributeValue.FromS(&quot;Louder Than Ever&quot;) }, { &quot;:y&quot;, AttributeValue.FromN(&quot;2015&quot;) } }, ReturnValues: new ReturnValue(&quot;ALL_NEW&quot;), UpdateExpression: &quot;SET #Y = :y, #AT = :t&quot;);
+    /// var input = new UpdateItemInput(ExpressionAttributeNames: new Dictionary&lt;string, string&gt; { { &quot;#AT&quot;, &quot;AlbumTitle&quot; }, { &quot;#Y&quot;, &quot;Year&quot; } }, ExpressionAttributeValues: new Dictionary&lt;string, AttributeValue&gt; { { &quot;:t&quot;, AttributeValue.FromS(&quot;Louder Than Ever&quot;) }, { &quot;:y&quot;, AttributeValue.FromN(&quot;2015&quot;) } }, Key: new Dictionary&lt;string, AttributeValue&gt; { { &quot;Artist&quot;, AttributeValue.FromS(&quot;Acme Band&quot;) }, { &quot;SongTitle&quot;, AttributeValue.FromS(&quot;Happy Day&quot;) } }, ReturnValues: new ReturnValue(&quot;ALL_NEW&quot;), TableName: &quot;Music&quot;, UpdateExpression: &quot;SET #Y = :y, #AT = :t&quot;);
     /// var output = await client.UpdateItemAsync(input);
     ///
     /// // Expected output:
@@ -2532,6 +2532,598 @@ public interface IDynamoDB20120810Client : IDisposable
 public static class DynamoDB20120810ClientExtensions
 {
     /// <summary>
+    /// <para>
+    /// This operation allows you to perform batch reads or writes on data stored in DynamoDB, using
+    /// PartiQL. Each read statement in a <c>BatchExecuteStatement</c> must specify an equality condition on
+    /// all key attributes. This enforces that each <c>SELECT</c> statement in a batch returns at most a
+    /// single item. For more information, see
+    /// <see href="https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/ql-reference.multiplestatements.batching.html">Running
+    /// batch operations with PartiQL for DynamoDB</see>.
+    /// </para>
+    /// <para>
+    /// <b>Note:</b> The entire batch must consist of either read statements or write statements, you cannot
+    /// mix both in one batch.
+    /// </para>
+    /// <para>
+    /// <b>Important:</b> A HTTP 200 response does not mean that all statements in the BatchExecuteStatement
+    /// succeeded. Error details for individual statements can be found under the
+    /// <see href="https://docs.aws.amazon.com/amazondynamodb/latest/APIReference/API_BatchStatementResponse.html#DDB-Type-BatchStatementResponse-Error">Error</see>
+    /// field of the <c>BatchStatementResponse</c> for each statement.
+    /// </para>
+    /// </summary>
+    public static Task<BatchExecuteStatementOutput> BatchExecuteStatementAsync(
+        this IDynamoDB20120810Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.BatchExecuteStatementAsync(
+            new BatchExecuteStatementInput(),
+            cancellationToken
+        );
+    }
+
+    /// <summary>
+    /// <para>
+    /// The <c>BatchGetItem</c> operation returns the attributes of one or more items from one or more
+    /// tables. You identify requested items by primary key.
+    /// </para>
+    /// <para>
+    /// A single operation can retrieve up to 16 MB of data, which can contain as many as 100 items.
+    /// <c>BatchGetItem</c> returns a partial result if the response size limit is exceeded, the table's
+    /// provisioned throughput is exceeded, more than 1MB per partition is requested, or an internal
+    /// processing failure occurs. If a partial result is returned, the operation returns a value for
+    /// <c>UnprocessedKeys</c>. You can use this value to retry the operation starting with the next item to
+    /// get.
+    /// </para>
+    /// <para>
+    /// <b>Important:</b> If you request more than 100 items, <c>BatchGetItem</c> returns a
+    /// <c>ValidationException</c> with the message "Too many items requested for the BatchGetItem call."
+    /// </para>
+    /// <para>
+    /// For example, if you ask to retrieve 100 items, but each individual item is 300 KB in size, the
+    /// system returns 52 items (so as not to exceed the 16 MB limit). It also returns an appropriate
+    /// <c>UnprocessedKeys</c> value so you can get the next page of results. If desired, your application
+    /// can include its own logic to assemble the pages of results into one dataset.
+    /// </para>
+    /// <para>
+    /// If <i>none</i> of the items can be processed due to insufficient provisioned throughput on all of
+    /// the tables in the request, then <c>BatchGetItem</c> returns a
+    /// <c>ProvisionedThroughputExceededException</c>. If <i>at least one</i> of the items is successfully
+    /// processed, then <c>BatchGetItem</c> completes successfully, while returning the keys of the unread
+    /// items in <c>UnprocessedKeys</c>.
+    /// </para>
+    /// <para>
+    /// <b>Important:</b> If DynamoDB returns any unprocessed items, you should retry the batch operation on
+    /// those items. However, <i>we strongly recommend that you use an exponential backoff algorithm</i>. If
+    /// you retry the batch operation immediately, the underlying read or write requests can still fail due
+    /// to throttling on the individual tables. If you delay the batch operation using exponential backoff,
+    /// the individual requests in the batch are much more likely to succeed.
+    /// </para>
+    /// <para>
+    /// For more information, see
+    /// <see href="https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/ErrorHandling.html#BatchOperations">Batch
+    /// Operations and Error Handling</see> in the <i>Amazon DynamoDB Developer Guide</i>.
+    /// </para>
+    /// <para>
+    /// By default, <c>BatchGetItem</c> performs eventually consistent reads on every table in the request.
+    /// If you want strongly consistent reads instead, you can set <c>ConsistentRead</c> to <c>true</c> for
+    /// any or all tables.
+    /// </para>
+    /// <para>
+    /// In order to minimize response latency, <c>BatchGetItem</c> may retrieve items in parallel.
+    /// </para>
+    /// <para>
+    /// When designing your application, keep in mind that DynamoDB does not return items in any particular
+    /// order. To help parse the response by item, include the primary key values for the items in your
+    /// request in the <c>ProjectionExpression</c> parameter.
+    /// </para>
+    /// <para>
+    /// If a requested item does not exist, it is not returned in the result. Requests for nonexistent items
+    /// consume the minimum read capacity units according to the type of read. For more information, see
+    /// <see href="https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/WorkingWithTables.html#CapacityUnitCalculations">Working
+    /// with Tables</see> in the <i>Amazon DynamoDB Developer Guide</i>.
+    /// </para>
+    /// <para>
+    /// <b>Note:</b> <c>BatchGetItem</c> will result in a <c>ValidationException</c> if the same key is
+    /// specified multiple times.
+    /// </para>
+    /// </summary>
+    public static Task<BatchGetItemOutput> BatchGetItemAsync(
+        this IDynamoDB20120810Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.BatchGetItemAsync(new BatchGetItemInput(), cancellationToken);
+    }
+
+    /// <summary>
+    /// <para>
+    /// The <c>BatchWriteItem</c> operation puts or deletes multiple items in one or more tables. A single
+    /// call to <c>BatchWriteItem</c> can transmit up to 16MB of data over the network, consisting of up to
+    /// 25 item put or delete operations. While individual items can be up to 400 KB once stored, it's
+    /// important to note that an item's representation might be greater than 400KB while being sent in
+    /// DynamoDB's JSON format for the API call. For more details on this distinction, see
+    /// <see href="https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/HowItWorks.NamingRulesDataTypes.html">Naming
+    /// Rules and Data Types</see>.
+    /// </para>
+    /// <para>
+    /// <b>Note:</b> <c>BatchWriteItem</c> cannot update items. If you perform a <c>BatchWriteItem</c>
+    /// operation on an existing item, that item's values will be overwritten by the operation and it will
+    /// appear like it was updated. To update items, we recommend you use the <c>UpdateItem</c> action.
+    /// </para>
+    /// <para>
+    /// The individual <c>PutItem</c> and <c>DeleteItem</c> operations specified in <c>BatchWriteItem</c>
+    /// are atomic; however <c>BatchWriteItem</c> as a whole is not. If any requested operations fail
+    /// because the table's provisioned throughput is exceeded or an internal processing failure occurs, the
+    /// failed operations are returned in the <c>UnprocessedItems</c> response parameter. You can
+    /// investigate and optionally resend the requests. Typically, you would call <c>BatchWriteItem</c> in a
+    /// loop. Each iteration would check for unprocessed items and submit a new <c>BatchWriteItem</c>
+    /// request with those unprocessed items until all items have been processed.
+    /// </para>
+    /// <para>
+    /// If <c>BatchWriteItem</c> cannot process any items due to throttling (for example, insufficient
+    /// provisioned throughput on the tables in the request, or partition-level or account-level limits), it
+    /// returns a <c>ProvisionedThroughputExceededException</c> or a <c>ThrottlingException</c>. Both
+    /// indicate that the request was throttled; check the <c>ThrottlingReason</c> field in the returned
+    /// exception for details.
+    /// </para>
+    /// <para>
+    /// <b>Important:</b> If DynamoDB returns any unprocessed items, you should retry the batch operation on
+    /// those items. However, <i>we strongly recommend that you use an exponential backoff algorithm</i>. If
+    /// you retry the batch operation immediately, the underlying read or write requests can still fail due
+    /// to throttling on the individual tables. If you delay the batch operation using exponential backoff,
+    /// the individual requests in the batch are much more likely to succeed.
+    /// </para>
+    /// <para>
+    /// For more information, see
+    /// <see href="https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/ErrorHandling.html#Programming.Errors.BatchOperations">Batch
+    /// Operations and Error Handling</see> in the <i>Amazon DynamoDB Developer Guide</i>.
+    /// </para>
+    /// <para>
+    /// With <c>BatchWriteItem</c>, you can efficiently write or delete large amounts of data, such as from
+    /// Amazon EMR, or copy data from another database into DynamoDB. In order to improve performance with
+    /// these large-scale operations, <c>BatchWriteItem</c> does not behave in the same way as individual
+    /// <c>PutItem</c> and <c>DeleteItem</c> calls would. For example, you cannot specify conditions on
+    /// individual put and delete requests, and <c>BatchWriteItem</c> does not return deleted items in the
+    /// response.
+    /// </para>
+    /// <para>
+    /// If you use a programming language that supports concurrency, you can use threads to write items in
+    /// parallel. Your application must include the necessary logic to manage the threads. With languages
+    /// that don't support threading, you must update or delete the specified items one at a time. In both
+    /// situations, <c>BatchWriteItem</c> performs the specified put and delete operations in parallel,
+    /// giving you the power of the thread pool approach without having to introduce complexity into your
+    /// application.
+    /// </para>
+    /// <para>
+    /// Parallel processing reduces latency, but each specified put and delete request consumes the same
+    /// number of write capacity units whether it is processed in parallel or not. Delete operations on
+    /// nonexistent items consume one write capacity unit.
+    /// </para>
+    /// <para>
+    /// If one or more of the following is true, DynamoDB rejects the entire batch write operation:
+    /// </para>
+    /// <list type="bullet">
+    /// <item>
+    /// <description>
+    /// One or more tables specified in the <c>BatchWriteItem</c> request does not exist.
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <description>
+    /// Primary key attributes specified on an item in the request do not match those in the corresponding
+    /// table's primary key schema.
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <description>
+    /// You try to perform multiple operations on the same item in the same <c>BatchWriteItem</c> request.
+    /// For example, you cannot put and delete the same item in the same <c>BatchWriteItem</c> request.
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <description>
+    /// Your request contains at least two items with identical hash and range keys (which essentially is
+    /// two put operations).
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <description>
+    /// There are more than 25 requests in the batch.
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <description>
+    /// Any individual item in a batch exceeds 400 KB.
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <description>
+    /// The total request size exceeds 16 MB.
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <description>
+    /// Any individual items with keys exceeding the key length limits. For a partition key, the limit is
+    /// 2048 bytes and for a sort key, the limit is 1024 bytes.
+    /// </description>
+    /// </item>
+    /// </list>
+    /// </summary>
+    public static Task<BatchWriteItemOutput> BatchWriteItemAsync(
+        this IDynamoDB20120810Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.BatchWriteItemAsync(new BatchWriteItemInput(), cancellationToken);
+    }
+
+    /// <summary>
+    /// <para>
+    /// Creates a backup for an existing table.
+    /// </para>
+    /// <para>
+    /// Each time you create an on-demand backup, the entire table data is backed up. There is no limit to
+    /// the number of on-demand backups that can be taken.
+    /// </para>
+    /// <para>
+    /// When you create an on-demand backup, a time marker of the request is cataloged, and the backup is
+    /// created asynchronously, by applying all changes until the time of the request to the last full table
+    /// snapshot. Backup requests are processed instantaneously and become available for restore within
+    /// minutes.
+    /// </para>
+    /// <para>
+    /// You can call <c>CreateBackup</c> at a maximum rate of 50 times per second.
+    /// </para>
+    /// <para>
+    /// All backups in DynamoDB work without consuming any provisioned throughput on the table.
+    /// </para>
+    /// <para>
+    /// If you submit a backup request on 2018-12-14 at 14:25:00, the backup is guaranteed to contain all
+    /// data committed to the table up to 14:24:00, and data committed after 14:26:00 will not be. The
+    /// backup might contain data modifications made between 14:24:00 and 14:26:00. On-demand backup does
+    /// not support causal consistency.
+    /// </para>
+    /// <para>
+    /// Along with data, the following are also included on the backups:
+    /// </para>
+    /// <list type="bullet">
+    /// <item>
+    /// <description>
+    /// Global secondary indexes (GSIs)
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <description>
+    /// Local secondary indexes (LSIs)
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <description>
+    /// Streams
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <description>
+    /// Provisioned read and write capacity
+    /// </description>
+    /// </item>
+    /// </list>
+    /// </summary>
+    public static Task<CreateBackupOutput> CreateBackupAsync(
+        this IDynamoDB20120810Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.CreateBackupAsync(new CreateBackupInput(), cancellationToken);
+    }
+
+    /// <summary>
+    /// <para>
+    /// Creates a global table from an existing table. A global table creates a replication relationship
+    /// between two or more DynamoDB tables with the same table name in the provided Regions.
+    /// </para>
+    /// <para>
+    /// <b>Important:</b> This documentation is for version 2017.11.29 (Legacy) of global tables, which
+    /// should be avoided for new global tables. Customers should use
+    /// <see href="https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/GlobalTables.html">Global
+    /// Tables version 2019.11.21 (Current)</see> when possible, because it provides greater flexibility,
+    /// higher efficiency, and consumes less write capacity than 2017.11.29 (Legacy).
+    /// </para>
+    /// <para>
+    /// To determine which version you're using, see
+    /// <see href="https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/globaltables.DetermineVersion.html">Determining
+    /// the global table version you are using</see>. To update existing global tables from version
+    /// 2017.11.29 (Legacy) to version 2019.11.21 (Current), see
+    /// <see href="https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/V2globaltables_upgrade.html">Upgrading
+    /// global tables</see>.
+    /// </para>
+    /// <para>
+    /// If you want to add a new replica table to a global table, each of the following conditions must be
+    /// true:
+    /// </para>
+    /// <list type="bullet">
+    /// <item>
+    /// <description>
+    /// The table must have the same primary key as all of the other replicas.
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <description>
+    /// The table must have the same name as all of the other replicas.
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <description>
+    /// The table must have DynamoDB Streams enabled, with the stream containing both the new and the old
+    /// images of the item.
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <description>
+    /// None of the replica tables in the global table can contain any data.
+    /// </description>
+    /// </item>
+    /// </list>
+    /// <para>
+    /// If global secondary indexes are specified, then the following conditions must also be met:
+    /// </para>
+    /// <list type="bullet">
+    /// <item>
+    /// <description>
+    /// The global secondary indexes must have the same name.
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <description>
+    /// The global secondary indexes must have the same hash key and sort key (if present).
+    /// </description>
+    /// </item>
+    /// </list>
+    /// <para>
+    /// If local secondary indexes are specified, then the following conditions must also be met:
+    /// </para>
+    /// <list type="bullet">
+    /// <item>
+    /// <description>
+    /// The local secondary indexes must have the same name.
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <description>
+    /// The local secondary indexes must have the same hash key and sort key (if present).
+    /// </description>
+    /// </item>
+    /// </list>
+    /// <para>
+    /// <b>Important:</b> Write capacity settings should be set consistently across your replica tables and
+    /// secondary indexes. DynamoDB strongly recommends enabling auto scaling to manage the write capacity
+    /// settings for all of your global tables replicas and indexes.
+    /// </para>
+    /// <para>
+    /// If you prefer to manage write capacity settings manually, you should provision equal replicated
+    /// write capacity units to your replica tables. You should also provision equal replicated write
+    /// capacity units to matching secondary indexes across your global table.
+    /// </para>
+    /// </summary>
+    public static Task<CreateGlobalTableOutput> CreateGlobalTableAsync(
+        this IDynamoDB20120810Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.CreateGlobalTableAsync(new CreateGlobalTableInput(), cancellationToken);
+    }
+
+    /// <summary>
+    /// <para>
+    /// The <c>CreateTable</c> operation adds a new table to your account. In an Amazon Web Services
+    /// account, table names must be unique within each Region. That is, you can have two tables with same
+    /// name if you create the tables in different Regions.
+    /// </para>
+    /// <para>
+    /// <c>CreateTable</c> is an asynchronous operation. Upon receiving a <c>CreateTable</c> request,
+    /// DynamoDB immediately returns a response with a <c>TableStatus</c> of <c>CREATING</c>. After the
+    /// table is created, DynamoDB sets the <c>TableStatus</c> to <c>ACTIVE</c>. You can perform read and
+    /// write operations only on an <c>ACTIVE</c> table.
+    /// </para>
+    /// <para>
+    /// You can optionally define secondary indexes on the new table, as part of the <c>CreateTable</c>
+    /// operation. If you want to create multiple tables with secondary indexes on them, you must create the
+    /// tables sequentially. Only one table with secondary indexes can be in the <c>CREATING</c> state at
+    /// any given time.
+    /// </para>
+    /// <para>
+    /// You can use the <c>DescribeTable</c> action to check the table status.
+    /// </para>
+    /// </summary>
+    public static Task<CreateTableOutput> CreateTableAsync(
+        this IDynamoDB20120810Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.CreateTableAsync(new CreateTableInput(), cancellationToken);
+    }
+
+    /// <summary>
+    /// <para>
+    /// Deletes an existing backup of a table.
+    /// </para>
+    /// <para>
+    /// You can call <c>DeleteBackup</c> at a maximum rate of 10 times per second.
+    /// </para>
+    /// </summary>
+    public static Task<DeleteBackupOutput> DeleteBackupAsync(
+        this IDynamoDB20120810Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.DeleteBackupAsync(new DeleteBackupInput(), cancellationToken);
+    }
+
+    /// <summary>
+    /// <para>
+    /// Deletes a single item in a table by primary key. You can perform a conditional delete operation that
+    /// deletes the item if it exists, or if it has an expected attribute value.
+    /// </para>
+    /// <para>
+    /// In addition to deleting an item, you can also return the item's attribute values in the same
+    /// operation, using the <c>ReturnValues</c> parameter.
+    /// </para>
+    /// <para>
+    /// Unless you specify conditions, the <c>DeleteItem</c> is an idempotent operation; running it multiple
+    /// times on the same item or attribute does <i>not</i> result in an error response.
+    /// </para>
+    /// <para>
+    /// Conditional deletes are useful for deleting items only if specific conditions are met. If those
+    /// conditions are met, DynamoDB performs the delete. Otherwise, the item is not deleted.
+    /// </para>
+    /// </summary>
+    public static Task<DeleteItemOutput> DeleteItemAsync(
+        this IDynamoDB20120810Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.DeleteItemAsync(new DeleteItemInput(), cancellationToken);
+    }
+
+    /// <summary>
+    /// <para>
+    /// Deletes the resource-based policy attached to the resource, which can be a table or stream.
+    /// </para>
+    /// <para>
+    /// <c>DeleteResourcePolicy</c> is an idempotent operation; running it multiple times on the same
+    /// resource <i>doesn't</i> result in an error response, unless you specify an
+    /// <c>ExpectedRevisionId</c>, which will then return a <c>PolicyNotFoundException</c>.
+    /// </para>
+    /// <para>
+    /// <b>Important:</b> To make sure that you don't inadvertently lock yourself out of your own resources,
+    /// the root principal in your Amazon Web Services account can perform <c>DeleteResourcePolicy</c>
+    /// requests, even if your resource-based policy explicitly denies the root principal's access.
+    /// </para>
+    /// <para>
+    /// <b>Note:</b> <c>DeleteResourcePolicy</c> is an asynchronous operation. If you issue a
+    /// <c>GetResourcePolicy</c> request immediately after running the <c>DeleteResourcePolicy</c> request,
+    /// DynamoDB might still return the deleted policy. This is because the policy for your resource might
+    /// not have been deleted yet. Wait for a few seconds, and then try the <c>GetResourcePolicy</c> request
+    /// again.
+    /// </para>
+    /// </summary>
+    public static Task<DeleteResourcePolicyOutput> DeleteResourcePolicyAsync(
+        this IDynamoDB20120810Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.DeleteResourcePolicyAsync(new DeleteResourcePolicyInput(), cancellationToken);
+    }
+
+    /// <summary>
+    /// <para>
+    /// The <c>DeleteTable</c> operation deletes a table and all of its items. After a <c>DeleteTable</c>
+    /// request, the specified table is in the <c>DELETING</c> state until DynamoDB completes the deletion.
+    /// If the table is in the <c>ACTIVE</c> state, you can delete it. If a table is in <c>CREATING</c> or
+    /// <c>UPDATING</c> states, then DynamoDB returns a <c>ResourceInUseException</c>. If the specified
+    /// table does not exist, DynamoDB returns a <c>ResourceNotFoundException</c>. If table is already in
+    /// the <c>DELETING</c> state, no error is returned.
+    /// </para>
+    /// <para>
+    /// <b>Note:</b> DynamoDB might continue to accept data read and write operations, such as
+    /// <c>GetItem</c> and <c>PutItem</c>, on a table in the <c>DELETING</c> state until the table deletion
+    /// is complete. For the full list of table states, see
+    /// <see href="https://docs.aws.amazon.com/amazondynamodb/latest/APIReference/API_TableDescription.html#DDB-Type-TableDescription-TableStatus">TableStatus</see>.
+    /// </para>
+    /// <para>
+    /// When you delete a table, any indexes on that table are also deleted.
+    /// </para>
+    /// <para>
+    /// If you have DynamoDB Streams enabled on the table, then the corresponding stream on that table goes
+    /// into the <c>DISABLED</c> state, and the stream is automatically deleted after 24 hours.
+    /// </para>
+    /// <para>
+    /// Use the <c>DescribeTable</c> action to check the status of the table.
+    /// </para>
+    /// </summary>
+    public static Task<DeleteTableOutput> DeleteTableAsync(
+        this IDynamoDB20120810Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.DeleteTableAsync(new DeleteTableInput(), cancellationToken);
+    }
+
+    /// <summary>
+    /// <para>
+    /// Describes an existing backup of a table.
+    /// </para>
+    /// <para>
+    /// You can call <c>DescribeBackup</c> at a maximum rate of 10 times per second.
+    /// </para>
+    /// </summary>
+    public static Task<DescribeBackupOutput> DescribeBackupAsync(
+        this IDynamoDB20120810Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.DescribeBackupAsync(new DescribeBackupInput(), cancellationToken);
+    }
+
+    /// <summary>
+    /// <para>
+    /// Checks the status of continuous backups and point in time recovery on the specified table.
+    /// Continuous backups are <c>ENABLED</c> on all tables at table creation. If point in time recovery is
+    /// enabled, <c>PointInTimeRecoveryStatus</c> will be set to ENABLED.
+    /// </para>
+    /// <para>
+    /// After continuous backups and point in time recovery are enabled, you can restore to any point in
+    /// time within <c>EarliestRestorableDateTime</c> and <c>LatestRestorableDateTime</c>.
+    /// </para>
+    /// <para>
+    /// <c>LatestRestorableDateTime</c> is typically 5 minutes before the current time. You can restore your
+    /// table to any point in time in the last 35 days. You can set the recovery period to any value between
+    /// 1 and 35 days.
+    /// </para>
+    /// <para>
+    /// You can call <c>DescribeContinuousBackups</c> at a maximum rate of 10 times per second.
+    /// </para>
+    /// </summary>
+    public static Task<DescribeContinuousBackupsOutput> DescribeContinuousBackupsAsync(
+        this IDynamoDB20120810Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.DescribeContinuousBackupsAsync(
+            new DescribeContinuousBackupsInput(),
+            cancellationToken
+        );
+    }
+
+    /// <summary>
+    /// Returns information about contributor insights for a given table or global secondary index.
+    /// </summary>
+    public static Task<DescribeContributorInsightsOutput> DescribeContributorInsightsAsync(
+        this IDynamoDB20120810Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.DescribeContributorInsightsAsync(
+            new DescribeContributorInsightsInput(),
+            cancellationToken
+        );
+    }
+
+    /// <summary>
     /// Returns the regional endpoint information. For more information on policy permissions, please see
     /// <see href="https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/inter-network-traffic-privacy.html#inter-network-traffic-DescribeEndpoints">Internetwork
     /// traffic privacy</see>.
@@ -2543,6 +3135,106 @@ public static class DynamoDB20120810ClientExtensions
     {
         ArgumentNullException.ThrowIfNull(client);
         return client.DescribeEndpointsAsync(new DescribeEndpointsInput(), cancellationToken);
+    }
+
+    /// <summary>
+    /// Describes an existing table export.
+    /// </summary>
+    public static Task<DescribeExportOutput> DescribeExportAsync(
+        this IDynamoDB20120810Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.DescribeExportAsync(new DescribeExportInput(), cancellationToken);
+    }
+
+    /// <summary>
+    /// <para>
+    /// Returns information about the specified global table.
+    /// </para>
+    /// <para>
+    /// <b>Important:</b> This documentation is for version 2017.11.29 (Legacy) of global tables, which
+    /// should be avoided for new global tables. Customers should use
+    /// <see href="https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/GlobalTables.html">Global
+    /// Tables version 2019.11.21 (Current)</see> when possible, because it provides greater flexibility,
+    /// higher efficiency, and consumes less write capacity than 2017.11.29 (Legacy).
+    /// </para>
+    /// <para>
+    /// To determine which version you're using, see
+    /// <see href="https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/globaltables.DetermineVersion.html">Determining
+    /// the global table version you are using</see>. To update existing global tables from version
+    /// 2017.11.29 (Legacy) to version 2019.11.21 (Current), see
+    /// <see href="https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/V2globaltables_upgrade.html">Upgrading
+    /// global tables</see>.
+    /// </para>
+    /// </summary>
+    public static Task<DescribeGlobalTableOutput> DescribeGlobalTableAsync(
+        this IDynamoDB20120810Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.DescribeGlobalTableAsync(new DescribeGlobalTableInput(), cancellationToken);
+    }
+
+    /// <summary>
+    /// <para>
+    /// Describes Region-specific settings for a global table.
+    /// </para>
+    /// <para>
+    /// <b>Important:</b> This documentation is for version 2017.11.29 (Legacy) of global tables, which
+    /// should be avoided for new global tables. Customers should use
+    /// <see href="https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/GlobalTables.html">Global
+    /// Tables version 2019.11.21 (Current)</see> when possible, because it provides greater flexibility,
+    /// higher efficiency, and consumes less write capacity than 2017.11.29 (Legacy).
+    /// </para>
+    /// <para>
+    /// To determine which version you're using, see
+    /// <see href="https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/globaltables.DetermineVersion.html">Determining
+    /// the global table version you are using</see>. To update existing global tables from version
+    /// 2017.11.29 (Legacy) to version 2019.11.21 (Current), see
+    /// <see href="https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/V2globaltables_upgrade.html">Upgrading
+    /// global tables</see>.
+    /// </para>
+    /// </summary>
+    public static Task<DescribeGlobalTableSettingsOutput> DescribeGlobalTableSettingsAsync(
+        this IDynamoDB20120810Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.DescribeGlobalTableSettingsAsync(
+            new DescribeGlobalTableSettingsInput(),
+            cancellationToken
+        );
+    }
+
+    /// <summary>
+    /// Represents the properties of the import.
+    /// </summary>
+    public static Task<DescribeImportOutput> DescribeImportAsync(
+        this IDynamoDB20120810Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.DescribeImportAsync(new DescribeImportInput(), cancellationToken);
+    }
+
+    /// <summary>
+    /// Returns information about the status of Kinesis streaming.
+    /// </summary>
+    public static Task<DescribeKinesisStreamingDestinationOutput> DescribeKinesisStreamingDestinationAsync(
+        this IDynamoDB20120810Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.DescribeKinesisStreamingDestinationAsync(
+            new DescribeKinesisStreamingDestinationInput(),
+            cancellationToken
+        );
     }
 
     /// <summary>
@@ -2646,6 +3338,242 @@ public static class DynamoDB20120810ClientExtensions
     {
         ArgumentNullException.ThrowIfNull(client);
         return client.DescribeLimitsAsync(new DescribeLimitsInput(), cancellationToken);
+    }
+
+    /// <summary>
+    /// <para>
+    /// Returns information about the table, including the current status of the table, when it was created,
+    /// the primary key schema, and any indexes on the table.
+    /// </para>
+    /// <para>
+    /// <b>Note:</b> If you issue a <c>DescribeTable</c> request immediately after a <c>CreateTable</c>
+    /// request, DynamoDB might return a <c>ResourceNotFoundException</c>. This is because
+    /// <c>DescribeTable</c> uses an eventually consistent query, and the metadata for your table might not
+    /// be available at that moment. Wait for a few seconds, and then try the <c>DescribeTable</c> request
+    /// again.
+    /// </para>
+    /// </summary>
+    public static Task<DescribeTableOutput> DescribeTableAsync(
+        this IDynamoDB20120810Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.DescribeTableAsync(new DescribeTableInput(), cancellationToken);
+    }
+
+    /// <summary>
+    /// Describes auto scaling settings across replicas of the global table at once.
+    /// </summary>
+    public static Task<DescribeTableReplicaAutoScalingOutput> DescribeTableReplicaAutoScalingAsync(
+        this IDynamoDB20120810Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.DescribeTableReplicaAutoScalingAsync(
+            new DescribeTableReplicaAutoScalingInput(),
+            cancellationToken
+        );
+    }
+
+    /// <summary>
+    /// Gives a description of the Time to Live (TTL) status on the specified table.
+    /// </summary>
+    public static Task<DescribeTimeToLiveOutput> DescribeTimeToLiveAsync(
+        this IDynamoDB20120810Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.DescribeTimeToLiveAsync(new DescribeTimeToLiveInput(), cancellationToken);
+    }
+
+    /// <summary>
+    /// Stops replication from the DynamoDB table to the Kinesis data stream. This is done without deleting
+    /// either of the resources.
+    /// </summary>
+    public static Task<DisableKinesisStreamingDestinationOutput> DisableKinesisStreamingDestinationAsync(
+        this IDynamoDB20120810Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.DisableKinesisStreamingDestinationAsync(
+            new DisableKinesisStreamingDestinationInput(),
+            cancellationToken
+        );
+    }
+
+    /// <summary>
+    /// Starts table data replication to the specified Kinesis data stream at a timestamp chosen during the
+    /// enable workflow. If this operation doesn't return results immediately, use
+    /// DescribeKinesisStreamingDestination to check if streaming to the Kinesis data stream is ACTIVE.
+    /// </summary>
+    public static Task<EnableKinesisStreamingDestinationOutput> EnableKinesisStreamingDestinationAsync(
+        this IDynamoDB20120810Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.EnableKinesisStreamingDestinationAsync(
+            new EnableKinesisStreamingDestinationInput(),
+            cancellationToken
+        );
+    }
+
+    /// <summary>
+    /// <para>
+    /// This operation allows you to perform reads and singleton writes on data stored in DynamoDB, using
+    /// PartiQL.
+    /// </para>
+    /// <para>
+    /// For PartiQL reads (<c>SELECT</c> statement), if the total number of processed items exceeds the
+    /// maximum dataset size limit of 1 MB, the read stops and results are returned to the user as a
+    /// <c>LastEvaluatedKey</c> value to continue the read in a subsequent operation. If the filter criteria
+    /// in <c>WHERE</c> clause does not match any data, the read will return an empty result set.
+    /// </para>
+    /// <para>
+    /// A single <c>SELECT</c> statement response can return up to the maximum number of items (if using the
+    /// Limit parameter) or a maximum of 1 MB of data (and then apply any filtering to the results using
+    /// <c>WHERE</c> clause). If <c>LastEvaluatedKey</c> is present in the response, you need to paginate
+    /// the result set. If <c>NextToken</c> is present, you need to paginate the result set and include
+    /// <c>NextToken</c>.
+    /// </para>
+    /// </summary>
+    public static Task<ExecuteStatementOutput> ExecuteStatementAsync(
+        this IDynamoDB20120810Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.ExecuteStatementAsync(new ExecuteStatementInput(), cancellationToken);
+    }
+
+    /// <summary>
+    /// <para>
+    /// This operation allows you to perform transactional reads or writes on data stored in DynamoDB, using
+    /// PartiQL.
+    /// </para>
+    /// <para>
+    /// <b>Note:</b> The entire transaction must consist of either read statements or write statements, you
+    /// cannot mix both in one transaction. The EXISTS function is an exception and can be used to check the
+    /// condition of specific attributes of the item in a similar manner to <c>ConditionCheck</c> in the
+    /// <see href="https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/transaction-apis.html#transaction-apis-txwriteitems">TransactWriteItems</see>
+    /// API.
+    /// </para>
+    /// </summary>
+    public static Task<ExecuteTransactionOutput> ExecuteTransactionAsync(
+        this IDynamoDB20120810Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.ExecuteTransactionAsync(new ExecuteTransactionInput(), cancellationToken);
+    }
+
+    /// <summary>
+    /// Exports table data to an S3 bucket. The table must have point in time recovery enabled, and you can
+    /// export data from any time within the point in time recovery window.
+    /// </summary>
+    public static Task<ExportTableToPointInTimeOutput> ExportTableToPointInTimeAsync(
+        this IDynamoDB20120810Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.ExportTableToPointInTimeAsync(
+            new ExportTableToPointInTimeInput(),
+            cancellationToken
+        );
+    }
+
+    /// <summary>
+    /// <para>
+    /// The <c>GetItem</c> operation returns a set of attributes for the item with the given primary key. If
+    /// there is no matching item, <c>GetItem</c> does not return any data and there will be no <c>Item</c>
+    /// element in the response.
+    /// </para>
+    /// <para>
+    /// <c>GetItem</c> provides an eventually consistent read by default. If your application requires a
+    /// strongly consistent read, set <c>ConsistentRead</c> to <c>true</c>. Although a strongly consistent
+    /// read might take more time than an eventually consistent read, it always returns the last updated
+    /// value.
+    /// </para>
+    /// </summary>
+    public static Task<GetItemOutput> GetItemAsync(
+        this IDynamoDB20120810Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.GetItemAsync(new GetItemInput(), cancellationToken);
+    }
+
+    /// <summary>
+    /// <para>
+    /// Returns the resource-based policy document attached to the resource, which can be a table or stream,
+    /// in JSON format.
+    /// </para>
+    /// <para>
+    /// <c>GetResourcePolicy</c> follows an
+    /// <see href="https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/HowItWorks.ReadConsistency.html"><i>eventually
+    /// consistent</i></see> model. The following list describes the outcomes when you issue the
+    /// <c>GetResourcePolicy</c> request immediately after issuing another request:
+    /// </para>
+    /// <list type="bullet">
+    /// <item>
+    /// <description>
+    /// If you issue a <c>GetResourcePolicy</c> request immediately after a <c>PutResourcePolicy</c>
+    /// request, DynamoDB might return a <c>PolicyNotFoundException</c>.
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <description>
+    /// If you issue a <c>GetResourcePolicy</c>request immediately after a <c>DeleteResourcePolicy</c>
+    /// request, DynamoDB might return the policy that was present before the deletion request.
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <description>
+    /// If you issue a <c>GetResourcePolicy</c> request immediately after a <c>CreateTable</c> request,
+    /// which includes a resource-based policy, DynamoDB might return a <c>ResourceNotFoundException</c> or
+    /// a <c>PolicyNotFoundException</c>.
+    /// </description>
+    /// </item>
+    /// </list>
+    /// <para>
+    /// Because <c>GetResourcePolicy</c> uses an <i>eventually consistent</i> query, the metadata for your
+    /// policy or table might not be available at that moment. Wait for a few seconds, and then retry the
+    /// <c>GetResourcePolicy</c> request.
+    /// </para>
+    /// <para>
+    /// After a <c>GetResourcePolicy</c> request returns a policy created using the <c>PutResourcePolicy</c>
+    /// request, the policy will be applied in the authorization of requests to the resource. Because this
+    /// process is eventually consistent, it will take some time to apply the policy to all requests to a
+    /// resource. Policies that you attach while creating a table using the <c>CreateTable</c> request will
+    /// always be applied to all requests for that table.
+    /// </para>
+    /// </summary>
+    public static Task<GetResourcePolicyOutput> GetResourcePolicyAsync(
+        this IDynamoDB20120810Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.GetResourcePolicyAsync(new GetResourcePolicyInput(), cancellationToken);
+    }
+
+    /// <summary>
+    /// Imports table data from an S3 bucket.
+    /// </summary>
+    public static Task<ImportTableOutput> ImportTableAsync(
+        this IDynamoDB20120810Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.ImportTableAsync(new ImportTableInput(), cancellationToken);
     }
 
     /// <summary>
@@ -2821,6 +3749,1168 @@ public static class DynamoDB20120810ClientExtensions
     {
         ArgumentNullException.ThrowIfNull(client);
         return client.ListTablesItemsAsync(new ListTablesInput(), cancellationToken);
+    }
+
+    /// <summary>
+    /// <para>
+    /// List all tags on an Amazon DynamoDB resource. You can call ListTagsOfResource up to 10 times per
+    /// second, per account.
+    /// </para>
+    /// <para>
+    /// For an overview on tagging DynamoDB resources, see
+    /// <see href="https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Tagging.html">Tagging
+    /// for DynamoDB</see> in the <i>Amazon DynamoDB Developer Guide</i>.
+    /// </para>
+    /// </summary>
+    public static Task<ListTagsOfResourceOutput> ListTagsOfResourceAsync(
+        this IDynamoDB20120810Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.ListTagsOfResourceAsync(new ListTagsOfResourceInput(), cancellationToken);
+    }
+
+    /// <summary>
+    /// <para>
+    /// Creates a new item, or replaces an old item with a new item. If an item that has the same primary
+    /// key as the new item already exists in the specified table, the new item completely replaces the
+    /// existing item. You can perform a conditional put operation (add a new item if one with the specified
+    /// primary key doesn't exist), or replace an existing item if it has certain attribute values. You can
+    /// return the item's attribute values in the same operation, using the <c>ReturnValues</c> parameter.
+    /// </para>
+    /// <para>
+    /// When you add an item, the primary key attributes are the only required attributes.
+    /// </para>
+    /// <para>
+    /// Empty String and Binary attribute values are allowed. Attribute values of type String and Binary
+    /// must have a length greater than zero if the attribute is used as a key attribute for a table or
+    /// index. Set type attributes cannot be empty.
+    /// </para>
+    /// <para>
+    /// Invalid Requests with empty values will be rejected with a <c>ValidationException</c> exception.
+    /// </para>
+    /// <para>
+    /// <b>Note:</b> To prevent a new item from replacing an existing item, use a conditional expression
+    /// that contains the <c>attribute_not_exists</c> function with the name of the attribute being used as
+    /// the partition key for the table. Since every record must contain that attribute, the
+    /// <c>attribute_not_exists</c> function will only succeed if no matching item exists.
+    /// </para>
+    /// <para>
+    /// <b>Note:</b> To determine whether <c>PutItem</c> overwrote an existing item, use <c>ReturnValues</c>
+    /// set to <c>ALL_OLD</c>. If the response includes the <c>Attributes</c> element, an existing item was
+    /// overwritten.
+    /// </para>
+    /// <para>
+    /// For more information about <c>PutItem</c>, see
+    /// <see href="https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/WorkingWithItems.html">Working
+    /// with Items</see> in the <i>Amazon DynamoDB Developer Guide</i>.
+    /// </para>
+    /// </summary>
+    public static Task<PutItemOutput> PutItemAsync(
+        this IDynamoDB20120810Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.PutItemAsync(new PutItemInput(), cancellationToken);
+    }
+
+    /// <summary>
+    /// <para>
+    /// Attaches a resource-based policy document to the resource, which can be a table or stream. When you
+    /// attach a resource-based policy using this API, the policy application is
+    /// <see href="https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/HowItWorks.ReadConsistency.html"><i>eventually
+    /// consistent</i></see>.
+    /// </para>
+    /// <para>
+    /// <c>PutResourcePolicy</c> is an idempotent operation; running it multiple times on the same resource
+    /// using the same policy document will return the same revision ID. If you specify an
+    /// <c>ExpectedRevisionId</c> that doesn't match the current policy's <c>RevisionId</c>, the
+    /// <c>PolicyNotFoundException</c> will be returned.
+    /// </para>
+    /// <para>
+    /// <b>Note:</b> <c>PutResourcePolicy</c> is an asynchronous operation. If you issue a
+    /// <c>GetResourcePolicy</c> request immediately after a <c>PutResourcePolicy</c> request, DynamoDB
+    /// might return your previous policy, if there was one, or return the <c>PolicyNotFoundException</c>.
+    /// This is because <c>GetResourcePolicy</c> uses an eventually consistent query, and the metadata for
+    /// your policy or table might not be available at that moment. Wait for a few seconds, and then try the
+    /// <c>GetResourcePolicy</c> request again.
+    /// </para>
+    /// </summary>
+    public static Task<PutResourcePolicyOutput> PutResourcePolicyAsync(
+        this IDynamoDB20120810Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.PutResourcePolicyAsync(new PutResourcePolicyInput(), cancellationToken);
+    }
+
+    /// <summary>
+    /// <para>
+    /// You must provide the name of the partition key attribute and a single value for that attribute.
+    /// <c>Query</c> returns all items with that partition key value. Optionally, you can provide a sort key
+    /// attribute and use a comparison operator to refine the search results.
+    /// </para>
+    /// <para>
+    /// Use the <c>KeyConditionExpression</c> parameter to provide a specific value for the partition key.
+    /// The <c>Query</c> operation will return all of the items from the table or index with that partition
+    /// key value. You can optionally narrow the scope of the <c>Query</c> operation by specifying a sort
+    /// key value and a comparison operator in <c>KeyConditionExpression</c>. To further refine the
+    /// <c>Query</c> results, you can optionally provide a <c>FilterExpression</c>. A
+    /// <c>FilterExpression</c> determines which items within the results should be returned to you. All of
+    /// the other results are discarded.
+    /// </para>
+    /// <para>
+    /// A <c>Query</c> operation always returns a result set. If no matching items are found, the result set
+    /// will be empty. Queries that do not return results consume the minimum number of read capacity units
+    /// for that type of read operation.
+    /// </para>
+    /// <para>
+    /// <b>Note:</b> DynamoDB calculates the number of read capacity units consumed based on item size, not
+    /// on the amount of data that is returned to an application. The number of capacity units consumed will
+    /// be the same whether you request all of the attributes (the default behavior) or just some of them
+    /// (using a projection expression). The number will also be the same whether or not you use a
+    /// <c>FilterExpression</c>.
+    /// </para>
+    /// <para>
+    /// <c>Query</c> results are always sorted by the sort key value. If the data type of the sort key is
+    /// Number, the results are returned in numeric order; otherwise, the results are returned in order of
+    /// UTF-8 bytes. By default, the sort order is ascending. To reverse the order, set the
+    /// <c>ScanIndexForward</c> parameter to false.
+    /// </para>
+    /// <para>
+    /// A single <c>Query</c> operation will read up to the maximum number of items set (if using the
+    /// <c>Limit</c> parameter) or a maximum of 1 MB of data and then apply any filtering to the results
+    /// using <c>FilterExpression</c>. If <c>LastEvaluatedKey</c> is present in the response, you will need
+    /// to paginate the result set. For more information, see
+    /// <see href="https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Query.html#Query.Pagination">Paginating
+    /// the Results</see> in the <i>Amazon DynamoDB Developer Guide</i>.
+    /// </para>
+    /// <para>
+    /// <c>FilterExpression</c> is applied after a <c>Query</c> finishes, but before the results are
+    /// returned. A <c>FilterExpression</c> cannot contain partition key or sort key attributes. You need to
+    /// specify those attributes in the <c>KeyConditionExpression</c>.
+    /// </para>
+    /// <para>
+    /// <b>Note:</b> A <c>Query</c> operation can return an empty result set and a <c>LastEvaluatedKey</c>
+    /// if all the items read for the page of results are filtered out.
+    /// </para>
+    /// <para>
+    /// You can query a table, a local secondary index, or a global secondary index. For a query on a table
+    /// or on a local secondary index, you can set the <c>ConsistentRead</c> parameter to <c>true</c> and
+    /// obtain a strongly consistent result. Global secondary indexes support eventually consistent reads
+    /// only, so do not specify <c>ConsistentRead</c> when querying a global secondary index.
+    /// </para>
+    /// </summary>
+    public static Task<QueryOutput> QueryAsync(
+        this IDynamoDB20120810Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.QueryAsync(new QueryInput(), cancellationToken);
+    }
+
+    /// <summary>
+    /// <para>
+    /// You must provide the name of the partition key attribute and a single value for that attribute.
+    /// <c>Query</c> returns all items with that partition key value. Optionally, you can provide a sort key
+    /// attribute and use a comparison operator to refine the search results.
+    /// </para>
+    /// <para>
+    /// Use the <c>KeyConditionExpression</c> parameter to provide a specific value for the partition key.
+    /// The <c>Query</c> operation will return all of the items from the table or index with that partition
+    /// key value. You can optionally narrow the scope of the <c>Query</c> operation by specifying a sort
+    /// key value and a comparison operator in <c>KeyConditionExpression</c>. To further refine the
+    /// <c>Query</c> results, you can optionally provide a <c>FilterExpression</c>. A
+    /// <c>FilterExpression</c> determines which items within the results should be returned to you. All of
+    /// the other results are discarded.
+    /// </para>
+    /// <para>
+    /// A <c>Query</c> operation always returns a result set. If no matching items are found, the result set
+    /// will be empty. Queries that do not return results consume the minimum number of read capacity units
+    /// for that type of read operation.
+    /// </para>
+    /// <para>
+    /// <b>Note:</b> DynamoDB calculates the number of read capacity units consumed based on item size, not
+    /// on the amount of data that is returned to an application. The number of capacity units consumed will
+    /// be the same whether you request all of the attributes (the default behavior) or just some of them
+    /// (using a projection expression). The number will also be the same whether or not you use a
+    /// <c>FilterExpression</c>.
+    /// </para>
+    /// <para>
+    /// <c>Query</c> results are always sorted by the sort key value. If the data type of the sort key is
+    /// Number, the results are returned in numeric order; otherwise, the results are returned in order of
+    /// UTF-8 bytes. By default, the sort order is ascending. To reverse the order, set the
+    /// <c>ScanIndexForward</c> parameter to false.
+    /// </para>
+    /// <para>
+    /// A single <c>Query</c> operation will read up to the maximum number of items set (if using the
+    /// <c>Limit</c> parameter) or a maximum of 1 MB of data and then apply any filtering to the results
+    /// using <c>FilterExpression</c>. If <c>LastEvaluatedKey</c> is present in the response, you will need
+    /// to paginate the result set. For more information, see
+    /// <see href="https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Query.html#Query.Pagination">Paginating
+    /// the Results</see> in the <i>Amazon DynamoDB Developer Guide</i>.
+    /// </para>
+    /// <para>
+    /// <c>FilterExpression</c> is applied after a <c>Query</c> finishes, but before the results are
+    /// returned. A <c>FilterExpression</c> cannot contain partition key or sort key attributes. You need to
+    /// specify those attributes in the <c>KeyConditionExpression</c>.
+    /// </para>
+    /// <para>
+    /// <b>Note:</b> A <c>Query</c> operation can return an empty result set and a <c>LastEvaluatedKey</c>
+    /// if all the items read for the page of results are filtered out.
+    /// </para>
+    /// <para>
+    /// You can query a table, a local secondary index, or a global secondary index. For a query on a table
+    /// or on a local secondary index, you can set the <c>ConsistentRead</c> parameter to <c>true</c> and
+    /// obtain a strongly consistent result. Global secondary indexes support eventually consistent reads
+    /// only, so do not specify <c>ConsistentRead</c> when querying a global secondary index.
+    /// </para>
+    /// </summary>
+    public static IAsyncEnumerable<QueryOutput> QueryPagesAsync(
+        this IDynamoDB20120810Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.QueryPagesAsync(new QueryInput(), cancellationToken);
+    }
+
+    /// <summary>
+    /// <para>
+    /// You must provide the name of the partition key attribute and a single value for that attribute.
+    /// <c>Query</c> returns all items with that partition key value. Optionally, you can provide a sort key
+    /// attribute and use a comparison operator to refine the search results.
+    /// </para>
+    /// <para>
+    /// Use the <c>KeyConditionExpression</c> parameter to provide a specific value for the partition key.
+    /// The <c>Query</c> operation will return all of the items from the table or index with that partition
+    /// key value. You can optionally narrow the scope of the <c>Query</c> operation by specifying a sort
+    /// key value and a comparison operator in <c>KeyConditionExpression</c>. To further refine the
+    /// <c>Query</c> results, you can optionally provide a <c>FilterExpression</c>. A
+    /// <c>FilterExpression</c> determines which items within the results should be returned to you. All of
+    /// the other results are discarded.
+    /// </para>
+    /// <para>
+    /// A <c>Query</c> operation always returns a result set. If no matching items are found, the result set
+    /// will be empty. Queries that do not return results consume the minimum number of read capacity units
+    /// for that type of read operation.
+    /// </para>
+    /// <para>
+    /// <b>Note:</b> DynamoDB calculates the number of read capacity units consumed based on item size, not
+    /// on the amount of data that is returned to an application. The number of capacity units consumed will
+    /// be the same whether you request all of the attributes (the default behavior) or just some of them
+    /// (using a projection expression). The number will also be the same whether or not you use a
+    /// <c>FilterExpression</c>.
+    /// </para>
+    /// <para>
+    /// <c>Query</c> results are always sorted by the sort key value. If the data type of the sort key is
+    /// Number, the results are returned in numeric order; otherwise, the results are returned in order of
+    /// UTF-8 bytes. By default, the sort order is ascending. To reverse the order, set the
+    /// <c>ScanIndexForward</c> parameter to false.
+    /// </para>
+    /// <para>
+    /// A single <c>Query</c> operation will read up to the maximum number of items set (if using the
+    /// <c>Limit</c> parameter) or a maximum of 1 MB of data and then apply any filtering to the results
+    /// using <c>FilterExpression</c>. If <c>LastEvaluatedKey</c> is present in the response, you will need
+    /// to paginate the result set. For more information, see
+    /// <see href="https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Query.html#Query.Pagination">Paginating
+    /// the Results</see> in the <i>Amazon DynamoDB Developer Guide</i>.
+    /// </para>
+    /// <para>
+    /// <c>FilterExpression</c> is applied after a <c>Query</c> finishes, but before the results are
+    /// returned. A <c>FilterExpression</c> cannot contain partition key or sort key attributes. You need to
+    /// specify those attributes in the <c>KeyConditionExpression</c>.
+    /// </para>
+    /// <para>
+    /// <b>Note:</b> A <c>Query</c> operation can return an empty result set and a <c>LastEvaluatedKey</c>
+    /// if all the items read for the page of results are filtered out.
+    /// </para>
+    /// <para>
+    /// You can query a table, a local secondary index, or a global secondary index. For a query on a table
+    /// or on a local secondary index, you can set the <c>ConsistentRead</c> parameter to <c>true</c> and
+    /// obtain a strongly consistent result. Global secondary indexes support eventually consistent reads
+    /// only, so do not specify <c>ConsistentRead</c> when querying a global secondary index.
+    /// </para>
+    /// </summary>
+    public static IAsyncEnumerable<IReadOnlyDictionary<string, AttributeValue>> QueryItemsAsync(
+        this IDynamoDB20120810Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.QueryItemsAsync(new QueryInput(), cancellationToken);
+    }
+
+    /// <summary>
+    /// <para>
+    /// Creates a new table from an existing backup. Any number of users can execute up to 50 concurrent
+    /// restores (any type of restore) in a given account.
+    /// </para>
+    /// <para>
+    /// You can call <c>RestoreTableFromBackup</c> at a maximum rate of 10 times per second.
+    /// </para>
+    /// <para>
+    /// You must manually set up the following on the restored table:
+    /// </para>
+    /// <list type="bullet">
+    /// <item>
+    /// <description>
+    /// Auto scaling policies
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <description>
+    /// IAM policies
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <description>
+    /// Amazon CloudWatch metrics and alarms
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <description>
+    /// Tags
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <description>
+    /// Stream settings
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <description>
+    /// Time to Live (TTL) settings
+    /// </description>
+    /// </item>
+    /// </list>
+    /// </summary>
+    public static Task<RestoreTableFromBackupOutput> RestoreTableFromBackupAsync(
+        this IDynamoDB20120810Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.RestoreTableFromBackupAsync(
+            new RestoreTableFromBackupInput(),
+            cancellationToken
+        );
+    }
+
+    /// <summary>
+    /// <para>
+    /// Restores the specified table to the specified point in time within <c>EarliestRestorableDateTime</c>
+    /// and <c>LatestRestorableDateTime</c>. You can restore your table to any point in time in the last 35
+    /// days. You can set the recovery period to any value between 1 and 35 days. Any number of users can
+    /// execute up to 50 concurrent restores (any type of restore) in a given account.
+    /// </para>
+    /// <para>
+    /// When you restore using point in time recovery, DynamoDB restores your table data to the state based
+    /// on the selected date and time (day:hour:minute:second) to a new table.
+    /// </para>
+    /// <para>
+    /// Along with data, the following are also included on the new restored table using point in time
+    /// recovery:
+    /// </para>
+    /// <list type="bullet">
+    /// <item>
+    /// <description>
+    /// Global secondary indexes (GSIs)
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <description>
+    /// Local secondary indexes (LSIs)
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <description>
+    /// Provisioned read and write capacity
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <description>
+    /// <para>
+    /// Encryption settings
+    /// </para>
+    /// <para>
+    /// <b>Important:</b> All these settings come from the current settings of the source table at the time
+    /// of restore.
+    /// </para>
+    /// </description>
+    /// </item>
+    /// </list>
+    /// <para>
+    /// You must manually set up the following on the restored table:
+    /// </para>
+    /// <list type="bullet">
+    /// <item>
+    /// <description>
+    /// Auto scaling policies
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <description>
+    /// IAM policies
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <description>
+    /// Amazon CloudWatch metrics and alarms
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <description>
+    /// Tags
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <description>
+    /// Stream settings
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <description>
+    /// Time to Live (TTL) settings
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <description>
+    /// Point in time recovery settings
+    /// </description>
+    /// </item>
+    /// </list>
+    /// </summary>
+    public static Task<RestoreTableToPointInTimeOutput> RestoreTableToPointInTimeAsync(
+        this IDynamoDB20120810Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.RestoreTableToPointInTimeAsync(
+            new RestoreTableToPointInTimeInput(),
+            cancellationToken
+        );
+    }
+
+    /// <summary>
+    /// <para>
+    /// The <c>Scan</c> operation returns one or more items and item attributes by accessing every item in a
+    /// table or a secondary index. To have DynamoDB return fewer items, you can provide a
+    /// <c>FilterExpression</c> operation.
+    /// </para>
+    /// <para>
+    /// If the total size of scanned items exceeds the maximum dataset size limit of 1 MB, the scan
+    /// completes and results are returned to the user. The <c>LastEvaluatedKey</c> value is also returned
+    /// and the requestor can use the <c>LastEvaluatedKey</c> to continue the scan in a subsequent
+    /// operation. Each scan response also includes number of items that were scanned (ScannedCount) as part
+    /// of the request. If using a <c>FilterExpression</c>, a scan result can result in no items meeting the
+    /// criteria and the <c>Count</c> will result in zero. If you did not use a <c>FilterExpression</c> in
+    /// the scan request, then <c>Count</c> is the same as <c>ScannedCount</c>.
+    /// </para>
+    /// <para>
+    /// <b>Note:</b> <c>Count</c> and <c>ScannedCount</c> only return the count of items specific to a
+    /// single scan request and, unless the table is less than 1MB, do not represent the total number of
+    /// items in the table.
+    /// </para>
+    /// <para>
+    /// A single <c>Scan</c> operation first reads up to the maximum number of items set (if using the
+    /// <c>Limit</c> parameter) or a maximum of 1 MB of data and then applies any filtering to the results
+    /// if a <c>FilterExpression</c> is provided. If <c>LastEvaluatedKey</c> is present in the response,
+    /// pagination is required to complete the full table scan. For more information, see
+    /// <see href="https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Scan.html#Scan.Pagination">Paginating
+    /// the Results</see> in the <i>Amazon DynamoDB Developer Guide</i>.
+    /// </para>
+    /// <para>
+    /// <c>Scan</c> operations proceed sequentially; however, for faster performance on a large table or
+    /// secondary index, applications can request a parallel <c>Scan</c> operation by providing the
+    /// <c>Segment</c> and <c>TotalSegments</c> parameters. For more information, see
+    /// <see href="https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Scan.html#Scan.ParallelScan">Parallel
+    /// Scan</see> in the <i>Amazon DynamoDB Developer Guide</i>.
+    /// </para>
+    /// <para>
+    /// By default, a <c>Scan</c> uses eventually consistent reads when accessing the items in a table.
+    /// Therefore, the results from an eventually consistent <c>Scan</c> may not include the latest item
+    /// changes at the time the scan iterates through each item in the table. If you require a strongly
+    /// consistent read of each item as the scan iterates through the items in the table, you can set the
+    /// <c>ConsistentRead</c> parameter to true. Strong consistency only relates to the consistency of the
+    /// read at the item level.
+    /// </para>
+    /// <para>
+    /// <b>Note:</b> DynamoDB does not provide snapshot isolation for a scan operation when the
+    /// <c>ConsistentRead</c> parameter is set to true. Thus, a DynamoDB scan operation does not guarantee
+    /// that all reads in a scan see a consistent snapshot of the table when the scan operation was
+    /// requested.
+    /// </para>
+    /// </summary>
+    public static Task<ScanOutput> ScanAsync(
+        this IDynamoDB20120810Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.ScanAsync(new ScanInput(), cancellationToken);
+    }
+
+    /// <summary>
+    /// <para>
+    /// The <c>Scan</c> operation returns one or more items and item attributes by accessing every item in a
+    /// table or a secondary index. To have DynamoDB return fewer items, you can provide a
+    /// <c>FilterExpression</c> operation.
+    /// </para>
+    /// <para>
+    /// If the total size of scanned items exceeds the maximum dataset size limit of 1 MB, the scan
+    /// completes and results are returned to the user. The <c>LastEvaluatedKey</c> value is also returned
+    /// and the requestor can use the <c>LastEvaluatedKey</c> to continue the scan in a subsequent
+    /// operation. Each scan response also includes number of items that were scanned (ScannedCount) as part
+    /// of the request. If using a <c>FilterExpression</c>, a scan result can result in no items meeting the
+    /// criteria and the <c>Count</c> will result in zero. If you did not use a <c>FilterExpression</c> in
+    /// the scan request, then <c>Count</c> is the same as <c>ScannedCount</c>.
+    /// </para>
+    /// <para>
+    /// <b>Note:</b> <c>Count</c> and <c>ScannedCount</c> only return the count of items specific to a
+    /// single scan request and, unless the table is less than 1MB, do not represent the total number of
+    /// items in the table.
+    /// </para>
+    /// <para>
+    /// A single <c>Scan</c> operation first reads up to the maximum number of items set (if using the
+    /// <c>Limit</c> parameter) or a maximum of 1 MB of data and then applies any filtering to the results
+    /// if a <c>FilterExpression</c> is provided. If <c>LastEvaluatedKey</c> is present in the response,
+    /// pagination is required to complete the full table scan. For more information, see
+    /// <see href="https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Scan.html#Scan.Pagination">Paginating
+    /// the Results</see> in the <i>Amazon DynamoDB Developer Guide</i>.
+    /// </para>
+    /// <para>
+    /// <c>Scan</c> operations proceed sequentially; however, for faster performance on a large table or
+    /// secondary index, applications can request a parallel <c>Scan</c> operation by providing the
+    /// <c>Segment</c> and <c>TotalSegments</c> parameters. For more information, see
+    /// <see href="https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Scan.html#Scan.ParallelScan">Parallel
+    /// Scan</see> in the <i>Amazon DynamoDB Developer Guide</i>.
+    /// </para>
+    /// <para>
+    /// By default, a <c>Scan</c> uses eventually consistent reads when accessing the items in a table.
+    /// Therefore, the results from an eventually consistent <c>Scan</c> may not include the latest item
+    /// changes at the time the scan iterates through each item in the table. If you require a strongly
+    /// consistent read of each item as the scan iterates through the items in the table, you can set the
+    /// <c>ConsistentRead</c> parameter to true. Strong consistency only relates to the consistency of the
+    /// read at the item level.
+    /// </para>
+    /// <para>
+    /// <b>Note:</b> DynamoDB does not provide snapshot isolation for a scan operation when the
+    /// <c>ConsistentRead</c> parameter is set to true. Thus, a DynamoDB scan operation does not guarantee
+    /// that all reads in a scan see a consistent snapshot of the table when the scan operation was
+    /// requested.
+    /// </para>
+    /// </summary>
+    public static IAsyncEnumerable<ScanOutput> ScanPagesAsync(
+        this IDynamoDB20120810Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.ScanPagesAsync(new ScanInput(), cancellationToken);
+    }
+
+    /// <summary>
+    /// <para>
+    /// The <c>Scan</c> operation returns one or more items and item attributes by accessing every item in a
+    /// table or a secondary index. To have DynamoDB return fewer items, you can provide a
+    /// <c>FilterExpression</c> operation.
+    /// </para>
+    /// <para>
+    /// If the total size of scanned items exceeds the maximum dataset size limit of 1 MB, the scan
+    /// completes and results are returned to the user. The <c>LastEvaluatedKey</c> value is also returned
+    /// and the requestor can use the <c>LastEvaluatedKey</c> to continue the scan in a subsequent
+    /// operation. Each scan response also includes number of items that were scanned (ScannedCount) as part
+    /// of the request. If using a <c>FilterExpression</c>, a scan result can result in no items meeting the
+    /// criteria and the <c>Count</c> will result in zero. If you did not use a <c>FilterExpression</c> in
+    /// the scan request, then <c>Count</c> is the same as <c>ScannedCount</c>.
+    /// </para>
+    /// <para>
+    /// <b>Note:</b> <c>Count</c> and <c>ScannedCount</c> only return the count of items specific to a
+    /// single scan request and, unless the table is less than 1MB, do not represent the total number of
+    /// items in the table.
+    /// </para>
+    /// <para>
+    /// A single <c>Scan</c> operation first reads up to the maximum number of items set (if using the
+    /// <c>Limit</c> parameter) or a maximum of 1 MB of data and then applies any filtering to the results
+    /// if a <c>FilterExpression</c> is provided. If <c>LastEvaluatedKey</c> is present in the response,
+    /// pagination is required to complete the full table scan. For more information, see
+    /// <see href="https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Scan.html#Scan.Pagination">Paginating
+    /// the Results</see> in the <i>Amazon DynamoDB Developer Guide</i>.
+    /// </para>
+    /// <para>
+    /// <c>Scan</c> operations proceed sequentially; however, for faster performance on a large table or
+    /// secondary index, applications can request a parallel <c>Scan</c> operation by providing the
+    /// <c>Segment</c> and <c>TotalSegments</c> parameters. For more information, see
+    /// <see href="https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Scan.html#Scan.ParallelScan">Parallel
+    /// Scan</see> in the <i>Amazon DynamoDB Developer Guide</i>.
+    /// </para>
+    /// <para>
+    /// By default, a <c>Scan</c> uses eventually consistent reads when accessing the items in a table.
+    /// Therefore, the results from an eventually consistent <c>Scan</c> may not include the latest item
+    /// changes at the time the scan iterates through each item in the table. If you require a strongly
+    /// consistent read of each item as the scan iterates through the items in the table, you can set the
+    /// <c>ConsistentRead</c> parameter to true. Strong consistency only relates to the consistency of the
+    /// read at the item level.
+    /// </para>
+    /// <para>
+    /// <b>Note:</b> DynamoDB does not provide snapshot isolation for a scan operation when the
+    /// <c>ConsistentRead</c> parameter is set to true. Thus, a DynamoDB scan operation does not guarantee
+    /// that all reads in a scan see a consistent snapshot of the table when the scan operation was
+    /// requested.
+    /// </para>
+    /// </summary>
+    public static IAsyncEnumerable<IReadOnlyDictionary<string, AttributeValue>> ScanItemsAsync(
+        this IDynamoDB20120810Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.ScanItemsAsync(new ScanInput(), cancellationToken);
+    }
+
+    /// <summary>
+    /// <para>
+    /// Performs a vector similarity search on a vector index associated with an Amazon DynamoDB table, and
+    /// returns the most similar items sorted by similarity score based on the distance function configured
+    /// for the index.
+    /// </para>
+    /// <para>
+    /// Score interpretation depends on the distance function:
+    /// </para>
+    /// <list type="bullet">
+    /// <item>
+    /// <description>
+    /// <c>COSINE</c> - Returns the items with the <i>k smallest</i> scores. Scores range from 0 (identical)
+    /// to 2 (opposite). Lower scores indicate higher similarity.
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <description>
+    /// <c>EUCLIDEAN</c> - Returns the items with the <i>k smallest</i> scores. Scores represent the
+    /// Euclidean distance between vectors. Lower scores indicate higher similarity.
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <description>
+    /// <c>DOT_PRODUCT</c> - Returns the items with the <i>k highest</i> scores. Higher scores indicate
+    /// higher similarity.
+    /// </description>
+    /// </item>
+    /// </list>
+    /// </summary>
+    public static Task<SearchVectorsOutput> SearchVectorsAsync(
+        this IDynamoDB20120810Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.SearchVectorsAsync(new SearchVectorsInput(), cancellationToken);
+    }
+
+    /// <summary>
+    /// <para>
+    /// Associate a set of tags with an Amazon DynamoDB resource. You can then activate these user-defined
+    /// tags so that they appear on the Billing and Cost Management console for cost allocation tracking.
+    /// You can call TagResource up to five times per second, per account.
+    /// </para>
+    /// <list type="bullet">
+    /// <item>
+    /// <description>
+    /// <c>TagResource</c> is an asynchronous operation. If you issue a ListTagsOfResource request
+    /// immediately after a <c>TagResource</c> request, DynamoDB might return your previous tag set, if
+    /// there was one, or an empty tag set. This is because <c>ListTagsOfResource</c> uses an eventually
+    /// consistent query, and the metadata for your tags or table might not be available at that moment.
+    /// Wait for a few seconds, and then try the <c>ListTagsOfResource</c> request again.
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <description>
+    /// The application or removal of tags using <c>TagResource</c> and <c>UntagResource</c> APIs is
+    /// eventually consistent. <c>ListTagsOfResource</c> API will only reflect the changes after a few
+    /// seconds.
+    /// </description>
+    /// </item>
+    /// </list>
+    /// <para>
+    /// For an overview on tagging DynamoDB resources, see
+    /// <see href="https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Tagging.html">Tagging
+    /// for DynamoDB</see> in the <i>Amazon DynamoDB Developer Guide</i>.
+    /// </para>
+    /// </summary>
+    public static Task<TagResourceOutput> TagResourceAsync(
+        this IDynamoDB20120810Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.TagResourceAsync(new TagResourceInput(), cancellationToken);
+    }
+
+    /// <summary>
+    /// <para>
+    /// <c>TransactGetItems</c> is a synchronous operation that atomically retrieves multiple items from one
+    /// or more tables (but not from indexes) in a single account and Region. A <c>TransactGetItems</c> call
+    /// can contain up to 100 <c>TransactGetItem</c> objects, each of which contains a <c>Get</c> structure
+    /// that specifies an item to retrieve from a table in the account and Region. A call to
+    /// <c>TransactGetItems</c> cannot retrieve items from tables in more than one Amazon Web Services
+    /// account or Region. The aggregate size of the items in the transaction cannot exceed 4 MB.
+    /// </para>
+    /// <para>
+    /// DynamoDB rejects the entire <c>TransactGetItems</c> request if any of the following is true:
+    /// </para>
+    /// <list type="bullet">
+    /// <item>
+    /// <description>
+    /// A conflicting operation is in the process of updating an item to be read.
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <description>
+    /// There is insufficient provisioned capacity for the transaction to be completed.
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <description>
+    /// There is a user error, such as an invalid data format.
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <description>
+    /// The aggregate size of the items in the transaction exceeded 4 MB.
+    /// </description>
+    /// </item>
+    /// </list>
+    /// </summary>
+    public static Task<TransactGetItemsOutput> TransactGetItemsAsync(
+        this IDynamoDB20120810Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.TransactGetItemsAsync(new TransactGetItemsInput(), cancellationToken);
+    }
+
+    /// <summary>
+    /// <para>
+    /// <c>TransactWriteItems</c> is a synchronous write operation that groups up to 100 action requests.
+    /// These actions can target items in different tables, but not in different Amazon Web Services
+    /// accounts or Regions, and no two actions can target the same item. For example, you cannot both
+    /// <c>ConditionCheck</c> and <c>Update</c> the same item. The aggregate size of the items in the
+    /// transaction cannot exceed 4 MB.
+    /// </para>
+    /// <para>
+    /// The actions are completed atomically so that either all of them succeed, or all of them fail. They
+    /// are defined by the following objects:
+    /// </para>
+    /// <list type="bullet">
+    /// <item>
+    /// <description>
+    /// <c>Put</c>  —   Initiates a <c>PutItem</c> operation to write a new item. This structure specifies
+    /// the primary key of the item to be written, the name of the table to write it in, an optional
+    /// condition expression that must be satisfied for the write to succeed, a list of the item's
+    /// attributes, and a field indicating whether to retrieve the item's attributes if the condition is not
+    /// met.
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <description>
+    /// <c>Update</c>  —   Initiates an <c>UpdateItem</c> operation to update an existing item. This
+    /// structure specifies the primary key of the item to be updated, the name of the table where it
+    /// resides, an optional condition expression that must be satisfied for the update to succeed, an
+    /// expression that defines one or more attributes to be updated, and a field indicating whether to
+    /// retrieve the item's attributes if the condition is not met.
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <description>
+    /// <c>Delete</c>  —   Initiates a <c>DeleteItem</c> operation to delete an existing item. This
+    /// structure specifies the primary key of the item to be deleted, the name of the table where it
+    /// resides, an optional condition expression that must be satisfied for the deletion to succeed, and a
+    /// field indicating whether to retrieve the item's attributes if the condition is not met.
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <description>
+    /// <c>ConditionCheck</c>  —   Applies a condition to an item that is not being modified by the
+    /// transaction. This structure specifies the primary key of the item to be checked, the name of the
+    /// table where it resides, a condition expression that must be satisfied for the transaction to
+    /// succeed, and a field indicating whether to retrieve the item's attributes if the condition is not
+    /// met.
+    /// </description>
+    /// </item>
+    /// </list>
+    /// <para>
+    /// DynamoDB rejects the entire <c>TransactWriteItems</c> request if any of the following is true:
+    /// </para>
+    /// <list type="bullet">
+    /// <item>
+    /// <description>
+    /// A condition in one of the condition expressions is not met.
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <description>
+    /// An ongoing operation is in the process of updating the same item.
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <description>
+    /// There is insufficient provisioned capacity for the transaction to be completed.
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <description>
+    /// An item size becomes too large (bigger than 400 KB), a local secondary index (LSI) becomes too
+    /// large, or a similar validation error occurs because of changes made by the transaction.
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <description>
+    /// The aggregate size of the items in the transaction exceeds 4 MB.
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <description>
+    /// There is a user error, such as an invalid data format.
+    /// </description>
+    /// </item>
+    /// </list>
+    /// </summary>
+    public static Task<TransactWriteItemsOutput> TransactWriteItemsAsync(
+        this IDynamoDB20120810Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.TransactWriteItemsAsync(new TransactWriteItemsInput(), cancellationToken);
+    }
+
+    /// <summary>
+    /// <para>
+    /// Removes the association of tags from an Amazon DynamoDB resource. You can call <c>UntagResource</c>
+    /// up to five times per second, per account.
+    /// </para>
+    /// <list type="bullet">
+    /// <item>
+    /// <description>
+    /// <c>UntagResource</c> is an asynchronous operation. If you issue a ListTagsOfResource request
+    /// immediately after an <c>UntagResource</c> request, DynamoDB might return your previous tag set, if
+    /// there was one, or an empty tag set. This is because <c>ListTagsOfResource</c> uses an eventually
+    /// consistent query, and the metadata for your tags or table might not be available at that moment.
+    /// Wait for a few seconds, and then try the <c>ListTagsOfResource</c> request again.
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <description>
+    /// The application or removal of tags using <c>TagResource</c> and <c>UntagResource</c> APIs is
+    /// eventually consistent. <c>ListTagsOfResource</c> API will only reflect the changes after a few
+    /// seconds.
+    /// </description>
+    /// </item>
+    /// </list>
+    /// <para>
+    /// For an overview on tagging DynamoDB resources, see
+    /// <see href="https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Tagging.html">Tagging
+    /// for DynamoDB</see> in the <i>Amazon DynamoDB Developer Guide</i>.
+    /// </para>
+    /// </summary>
+    public static Task<UntagResourceOutput> UntagResourceAsync(
+        this IDynamoDB20120810Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.UntagResourceAsync(new UntagResourceInput(), cancellationToken);
+    }
+
+    /// <summary>
+    /// <para>
+    /// <c>UpdateContinuousBackups</c> enables or disables point in time recovery for the specified table. A
+    /// successful <c>UpdateContinuousBackups</c> call returns the current
+    /// <c>ContinuousBackupsDescription</c>. Continuous backups are <c>ENABLED</c> on all tables at table
+    /// creation. If point in time recovery is enabled, <c>PointInTimeRecoveryStatus</c> will be set to
+    /// ENABLED.
+    /// </para>
+    /// <para>
+    /// Once continuous backups and point in time recovery are enabled, you can restore to any point in time
+    /// within <c>EarliestRestorableDateTime</c> and <c>LatestRestorableDateTime</c>.
+    /// </para>
+    /// <para>
+    /// <c>LatestRestorableDateTime</c> is typically 5 minutes before the current time. You can restore your
+    /// table to any point in time in the last 35 days. You can set the <c>RecoveryPeriodInDays</c> to any
+    /// value between 1 and 35 days.
+    /// </para>
+    /// </summary>
+    public static Task<UpdateContinuousBackupsOutput> UpdateContinuousBackupsAsync(
+        this IDynamoDB20120810Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.UpdateContinuousBackupsAsync(
+            new UpdateContinuousBackupsInput(),
+            cancellationToken
+        );
+    }
+
+    /// <summary>
+    /// Updates the status for contributor insights for a specific table or index. CloudWatch Contributor
+    /// Insights for DynamoDB graphs display the partition key and (if applicable) sort key of frequently
+    /// accessed items and frequently throttled items in plaintext. If you require the use of Amazon Web
+    /// Services Key Management Service (KMS) to encrypt this table’s partition key and sort key data with
+    /// an Amazon Web Services managed key or customer managed key, you should not enable CloudWatch
+    /// Contributor Insights for DynamoDB for this table.
+    /// </summary>
+    public static Task<UpdateContributorInsightsOutput> UpdateContributorInsightsAsync(
+        this IDynamoDB20120810Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.UpdateContributorInsightsAsync(
+            new UpdateContributorInsightsInput(),
+            cancellationToken
+        );
+    }
+
+    /// <summary>
+    /// <para>
+    /// Adds or removes replicas in the specified global table. The global table must already exist to be
+    /// able to use this operation. Any replica to be added must be empty, have the same name as the global
+    /// table, have the same key schema, have DynamoDB Streams enabled, and have the same provisioned and
+    /// maximum write capacity units.
+    /// </para>
+    /// <para>
+    /// <b>Important:</b> This documentation is for version 2017.11.29 (Legacy) of global tables, which
+    /// should be avoided for new global tables. Customers should use
+    /// <see href="https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/GlobalTables.html">Global
+    /// Tables version 2019.11.21 (Current)</see> when possible, because it provides greater flexibility,
+    /// higher efficiency, and consumes less write capacity than 2017.11.29 (Legacy).
+    /// </para>
+    /// <para>
+    /// To determine which version you're using, see
+    /// <see href="https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/globaltables.DetermineVersion.html">Determining
+    /// the global table version you are using</see>. To update existing global tables from version
+    /// 2017.11.29 (Legacy) to version 2019.11.21 (Current), see
+    /// <see href="https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/V2globaltables_upgrade.html">Upgrading
+    /// global tables</see>.
+    /// </para>
+    /// <para>
+    /// <b>Note:</b> If you are using global tables
+    /// <see href="https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/GlobalTables.html">Version
+    /// 2019.11.21</see> (Current) you can use
+    /// <see href="https://docs.aws.amazon.com/amazondynamodb/latest/APIReference/API_UpdateTable.html">UpdateTable</see>
+    /// instead.
+    /// </para>
+    /// <para>
+    /// Although you can use <c>UpdateGlobalTable</c> to add replicas and remove replicas in a single
+    /// request, for simplicity we recommend that you issue separate requests for adding or removing
+    /// replicas.
+    /// </para>
+    /// <para>
+    /// If global secondary indexes are specified, then the following conditions must also be met:
+    /// </para>
+    /// <list type="bullet">
+    /// <item>
+    /// <description>
+    /// The global secondary indexes must have the same name.
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <description>
+    /// The global secondary indexes must have the same hash key and sort key (if present).
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <description>
+    /// The global secondary indexes must have the same provisioned and maximum write capacity units.
+    /// </description>
+    /// </item>
+    /// </list>
+    /// </summary>
+    public static Task<UpdateGlobalTableOutput> UpdateGlobalTableAsync(
+        this IDynamoDB20120810Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.UpdateGlobalTableAsync(new UpdateGlobalTableInput(), cancellationToken);
+    }
+
+    /// <summary>
+    /// <para>
+    /// Updates settings for a global table.
+    /// </para>
+    /// <para>
+    /// <b>Important:</b> This documentation is for version 2017.11.29 (Legacy) of global tables, which
+    /// should be avoided for new global tables. Customers should use
+    /// <see href="https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/GlobalTables.html">Global
+    /// Tables version 2019.11.21 (Current)</see> when possible, because it provides greater flexibility,
+    /// higher efficiency, and consumes less write capacity than 2017.11.29 (Legacy).
+    /// </para>
+    /// <para>
+    /// To determine which version you're using, see
+    /// <see href="https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/globaltables.DetermineVersion.html">Determining
+    /// the global table version you are using</see>. To update existing global tables from version
+    /// 2017.11.29 (Legacy) to version 2019.11.21 (Current), see
+    /// <see href="https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/V2globaltables_upgrade.html">Upgrading
+    /// global tables</see>.
+    /// </para>
+    /// </summary>
+    public static Task<UpdateGlobalTableSettingsOutput> UpdateGlobalTableSettingsAsync(
+        this IDynamoDB20120810Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.UpdateGlobalTableSettingsAsync(
+            new UpdateGlobalTableSettingsInput(),
+            cancellationToken
+        );
+    }
+
+    /// <summary>
+    /// <para>
+    /// Edits an existing item's attributes, or adds a new item to the table if it does not already exist.
+    /// You can put, delete, or add attribute values. You can also perform a conditional update on an
+    /// existing item (insert a new attribute name-value pair if it doesn't exist, or replace an existing
+    /// name-value pair if it has certain expected attribute values).
+    /// </para>
+    /// <para>
+    /// You can also return the item's attribute values in the same <c>UpdateItem</c> operation using the
+    /// <c>ReturnValues</c> parameter.
+    /// </para>
+    /// </summary>
+    public static Task<UpdateItemOutput> UpdateItemAsync(
+        this IDynamoDB20120810Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.UpdateItemAsync(new UpdateItemInput(), cancellationToken);
+    }
+
+    /// <summary>
+    /// The command to update the Kinesis stream destination.
+    /// </summary>
+    public static Task<UpdateKinesisStreamingDestinationOutput> UpdateKinesisStreamingDestinationAsync(
+        this IDynamoDB20120810Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.UpdateKinesisStreamingDestinationAsync(
+            new UpdateKinesisStreamingDestinationInput(),
+            cancellationToken
+        );
+    }
+
+    /// <summary>
+    /// <para>
+    /// Modifies the provisioned throughput settings, global secondary indexes, or DynamoDB Streams settings
+    /// for a given table.
+    /// </para>
+    /// <para>
+    /// You can only perform one of the following operations at once:
+    /// </para>
+    /// <list type="bullet">
+    /// <item>
+    /// <description>
+    /// Modify the provisioned throughput settings of the table.
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <description>
+    /// Remove a global secondary index from the table.
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <description>
+    /// Create a new global secondary index on the table. After the index begins backfilling, you can use
+    /// <c>UpdateTable</c> to perform other operations.
+    /// </description>
+    /// </item>
+    /// </list>
+    /// <para>
+    /// <c>UpdateTable</c> is an asynchronous operation; while it's executing, the table status changes from
+    /// <c>ACTIVE</c> to <c>UPDATING</c>. While it's <c>UPDATING</c>, you can't issue another
+    /// <c>UpdateTable</c> request. When the table returns to the <c>ACTIVE</c> state, the
+    /// <c>UpdateTable</c> operation is complete.
+    /// </para>
+    /// </summary>
+    public static Task<UpdateTableOutput> UpdateTableAsync(
+        this IDynamoDB20120810Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.UpdateTableAsync(new UpdateTableInput(), cancellationToken);
+    }
+
+    /// <summary>
+    /// Updates auto scaling settings on your global tables at once.
+    /// </summary>
+    public static Task<UpdateTableReplicaAutoScalingOutput> UpdateTableReplicaAutoScalingAsync(
+        this IDynamoDB20120810Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.UpdateTableReplicaAutoScalingAsync(
+            new UpdateTableReplicaAutoScalingInput(),
+            cancellationToken
+        );
+    }
+
+    /// <summary>
+    /// <para>
+    /// The <c>UpdateTimeToLive</c> method enables or disables Time to Live (TTL) for the specified table. A
+    /// successful <c>UpdateTimeToLive</c> call returns the current <c>TimeToLiveSpecification</c>. It can
+    /// take up to one hour for the change to fully process. Any additional <c>UpdateTimeToLive</c> calls
+    /// for the same table during this one hour duration result in a <c>ValidationException</c>.
+    /// </para>
+    /// <para>
+    /// TTL compares the current time in epoch time format to the time stored in the TTL attribute of an
+    /// item. If the epoch time value stored in the attribute is less than the current time, the item is
+    /// marked as expired and subsequently deleted.
+    /// </para>
+    /// <para>
+    /// <b>Note:</b> The epoch time format is the number of seconds elapsed since 12:00:00 AM January 1,
+    /// 1970 UTC.
+    /// </para>
+    /// <para>
+    /// DynamoDB deletes expired items on a best-effort basis to ensure availability of throughput for other
+    /// data operations.
+    /// </para>
+    /// <para>
+    /// <b>Important:</b> DynamoDB typically deletes expired items within two days of expiration. The exact
+    /// duration within which an item gets deleted after expiration is specific to the nature of the
+    /// workload. Items that have expired and not been deleted will still show up in reads, queries, and
+    /// scans.
+    /// </para>
+    /// <para>
+    /// As items are deleted, they are removed from any local secondary index and global secondary index
+    /// immediately in the same eventually consistent way as a standard delete operation.
+    /// </para>
+    /// <para>
+    /// For more information, see
+    /// <see href="https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/TTL.html">Time To
+    /// Live</see> in the Amazon DynamoDB Developer Guide.
+    /// </para>
+    /// </summary>
+    public static Task<UpdateTimeToLiveOutput> UpdateTimeToLiveAsync(
+        this IDynamoDB20120810Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.UpdateTimeToLiveAsync(new UpdateTimeToLiveInput(), cancellationToken);
     }
 }
 
@@ -7345,7 +9435,7 @@ public sealed class DynamoDB20120810Client : IDynamoDB20120810Client
     /// This example adds a new item to the Music table.
     /// </para>
     /// <code>
-    /// var input = new PutItemInput(Item: new Dictionary&lt;string, AttributeValue&gt; { { &quot;AlbumTitle&quot;, AttributeValue.FromS(&quot;Somewhat Famous&quot;) }, { &quot;Artist&quot;, AttributeValue.FromS(&quot;No One You Know&quot;) }, { &quot;SongTitle&quot;, AttributeValue.FromS(&quot;Call Me Today&quot;) } }, TableName: &quot;Music&quot;, ReturnConsumedCapacity: new ReturnConsumedCapacity(&quot;TOTAL&quot;));
+    /// var input = new PutItemInput(Item: new Dictionary&lt;string, AttributeValue&gt; { { &quot;AlbumTitle&quot;, AttributeValue.FromS(&quot;Somewhat Famous&quot;) }, { &quot;Artist&quot;, AttributeValue.FromS(&quot;No One You Know&quot;) }, { &quot;SongTitle&quot;, AttributeValue.FromS(&quot;Call Me Today&quot;) } }, ReturnConsumedCapacity: new ReturnConsumedCapacity(&quot;TOTAL&quot;), TableName: &quot;Music&quot;);
     /// var output = await client.PutItemAsync(input);
     ///
     /// // Expected output:
@@ -7460,7 +9550,7 @@ public sealed class DynamoDB20120810Client : IDynamoDB20120810Client
     /// This example queries items in the Music table. The table has a partition key and sort key (Artist and SongTitle), but this query only specifies the partition key value. It returns song titles by the artist named "No One You Know".
     /// </para>
     /// <code>
-    /// var input = new QueryInput(TableName: &quot;Music&quot;, ExpressionAttributeValues: new Dictionary&lt;string, AttributeValue&gt; { { &quot;:v1&quot;, AttributeValue.FromS(&quot;No One You Know&quot;) } }, KeyConditionExpression: &quot;Artist = :v1&quot;, ProjectionExpression: &quot;SongTitle&quot;);
+    /// var input = new QueryInput(ExpressionAttributeValues: new Dictionary&lt;string, AttributeValue&gt; { { &quot;:v1&quot;, AttributeValue.FromS(&quot;No One You Know&quot;) } }, KeyConditionExpression: &quot;Artist = :v1&quot;, ProjectionExpression: &quot;SongTitle&quot;, TableName: &quot;Music&quot;);
     /// var output = await client.QueryAsync(input);
     ///
     /// // Expected output:
@@ -7840,7 +9930,7 @@ public sealed class DynamoDB20120810Client : IDynamoDB20120810Client
     /// This example scans the entire Music table, and then narrows the results to songs by the artist "No One You Know". For each item, only the album title and song title are returned.
     /// </para>
     /// <code>
-    /// var input = new ScanInput(TableName: &quot;Music&quot;, ExpressionAttributeNames: new Dictionary&lt;string, string&gt; { { &quot;#AT&quot;, &quot;AlbumTitle&quot; }, { &quot;#ST&quot;, &quot;SongTitle&quot; } }, ExpressionAttributeValues: new Dictionary&lt;string, AttributeValue&gt; { { &quot;:a&quot;, AttributeValue.FromS(&quot;No One You Know&quot;) } }, FilterExpression: &quot;Artist = :a&quot;, ProjectionExpression: &quot;#ST, #AT&quot;);
+    /// var input = new ScanInput(ExpressionAttributeNames: new Dictionary&lt;string, string&gt; { { &quot;#AT&quot;, &quot;AlbumTitle&quot; }, { &quot;#ST&quot;, &quot;SongTitle&quot; } }, ExpressionAttributeValues: new Dictionary&lt;string, AttributeValue&gt; { { &quot;:a&quot;, AttributeValue.FromS(&quot;No One You Know&quot;) } }, FilterExpression: &quot;Artist = :a&quot;, ProjectionExpression: &quot;#ST, #AT&quot;, TableName: &quot;Music&quot;);
     /// var output = await client.ScanAsync(input);
     ///
     /// // Expected output:
@@ -8037,7 +10127,7 @@ public sealed class DynamoDB20120810Client : IDynamoDB20120810Client
     /// This example searches the Products table for the top 3 items most similar to a provided vector, using the 'cosine-product-idx' vector index. The SearchConditionExpression filters results to the 'Electronics' category. The operation returns only the ProductName and Price attributes.
     /// </para>
     /// <code>
-    /// var input = new SearchVectorsInput(IndexName: &quot;cosine-product-idx&quot;, SearchVector: new AttributeValue[] { AttributeValue.FromN(&quot;0.12&quot;), AttributeValue.FromN(&quot;0.85&quot;), AttributeValue.FromN(&quot;0.44&quot;), AttributeValue.FromN(&quot;0.67&quot;) }, TableName: &quot;Products&quot;, TopK: 3, ExpressionAttributeValues: new Dictionary&lt;string, AttributeValue&gt; { { &quot;:cat&quot;, AttributeValue.FromS(&quot;Electronics&quot;) } }, ProjectionExpression: &quot;ProductName, Price&quot;, ReturnConsumedCapacity: new ReturnConsumedCapacity(&quot;INDEXES&quot;), SearchConditionExpression: &quot;Category = :cat&quot;);
+    /// var input = new SearchVectorsInput(ExpressionAttributeValues: new Dictionary&lt;string, AttributeValue&gt; { { &quot;:cat&quot;, AttributeValue.FromS(&quot;Electronics&quot;) } }, IndexName: &quot;cosine-product-idx&quot;, ProjectionExpression: &quot;ProductName, Price&quot;, ReturnConsumedCapacity: new ReturnConsumedCapacity(&quot;INDEXES&quot;), SearchConditionExpression: &quot;Category = :cat&quot;, SearchVector: new AttributeValue[] { AttributeValue.FromN(&quot;0.12&quot;), AttributeValue.FromN(&quot;0.85&quot;), AttributeValue.FromN(&quot;0.44&quot;), AttributeValue.FromN(&quot;0.67&quot;) }, TableName: &quot;Products&quot;, TopK: 3);
     /// var output = await client.SearchVectorsAsync(input);
     ///
     /// // Expected output:
@@ -8433,7 +10523,7 @@ public sealed class DynamoDB20120810Client : IDynamoDB20120810Client
     /// This example updates an item in the Music table. It adds a new attribute (Year) and modifies the AlbumTitle attribute.  All of the attributes in the item, as they appear after the update, are returned in the response.
     /// </para>
     /// <code>
-    /// var input = new UpdateItemInput(Key: new Dictionary&lt;string, AttributeValue&gt; { { &quot;Artist&quot;, AttributeValue.FromS(&quot;Acme Band&quot;) }, { &quot;SongTitle&quot;, AttributeValue.FromS(&quot;Happy Day&quot;) } }, TableName: &quot;Music&quot;, ExpressionAttributeNames: new Dictionary&lt;string, string&gt; { { &quot;#AT&quot;, &quot;AlbumTitle&quot; }, { &quot;#Y&quot;, &quot;Year&quot; } }, ExpressionAttributeValues: new Dictionary&lt;string, AttributeValue&gt; { { &quot;:t&quot;, AttributeValue.FromS(&quot;Louder Than Ever&quot;) }, { &quot;:y&quot;, AttributeValue.FromN(&quot;2015&quot;) } }, ReturnValues: new ReturnValue(&quot;ALL_NEW&quot;), UpdateExpression: &quot;SET #Y = :y, #AT = :t&quot;);
+    /// var input = new UpdateItemInput(ExpressionAttributeNames: new Dictionary&lt;string, string&gt; { { &quot;#AT&quot;, &quot;AlbumTitle&quot; }, { &quot;#Y&quot;, &quot;Year&quot; } }, ExpressionAttributeValues: new Dictionary&lt;string, AttributeValue&gt; { { &quot;:t&quot;, AttributeValue.FromS(&quot;Louder Than Ever&quot;) }, { &quot;:y&quot;, AttributeValue.FromN(&quot;2015&quot;) } }, Key: new Dictionary&lt;string, AttributeValue&gt; { { &quot;Artist&quot;, AttributeValue.FromS(&quot;Acme Band&quot;) }, { &quot;SongTitle&quot;, AttributeValue.FromS(&quot;Happy Day&quot;) } }, ReturnValues: new ReturnValue(&quot;ALL_NEW&quot;), TableName: &quot;Music&quot;, UpdateExpression: &quot;SET #Y = :y, #AT = :t&quot;);
     /// var output = await client.UpdateItemAsync(input);
     ///
     /// // Expected output:

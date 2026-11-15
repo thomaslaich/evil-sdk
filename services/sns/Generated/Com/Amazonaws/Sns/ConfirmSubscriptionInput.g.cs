@@ -7,20 +7,20 @@ namespace Com.Amazonaws.Sns;
 /// <summary>
 /// Input for ConfirmSubscription action.
 /// </summary>
-/// <param name="Token">
-/// Short-lived token sent to an endpoint during the <c>Subscribe</c> action.
-/// </param>
-/// <param name="TopicArn">
-/// The ARN of the topic for which you wish to confirm a subscription.
-/// </param>
 /// <param name="AuthenticateOnUnsubscribe">
 /// Disallows unauthenticated unsubscribes of the subscription. If the value of this parameter is
 /// <c>true</c> and the request has an Amazon Web Services signature, then only the topic owner and the
 /// subscription owner can unsubscribe the endpoint. The unsubscribe action requires Amazon Web Services
 /// authentication.
 /// </param>
+/// <param name="Token">
+/// Short-lived token sent to an endpoint during the <c>Subscribe</c> action.
+/// </param>
+/// <param name="TopicArn">
+/// The ARN of the topic for which you wish to confirm a subscription.
+/// </param>
 public sealed record class ConfirmSubscriptionInput(
-    string Token,
-    string TopicArn,
-    string? AuthenticateOnUnsubscribe = null
+    string? AuthenticateOnUnsubscribe = null,
+    string? Token = null,
+    string? TopicArn = null
 );

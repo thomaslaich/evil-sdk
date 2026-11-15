@@ -25,4 +25,7 @@ namespace Com.Amazonaws.Iam;
 /// <param name="OldPassword">
 /// The IAM user's current password.
 /// </param>
-public sealed record class ChangePasswordInput(string NewPassword, string OldPassword);
+public sealed record class ChangePasswordInput(
+    string? NewPassword = null,
+    string? OldPassword = null
+);

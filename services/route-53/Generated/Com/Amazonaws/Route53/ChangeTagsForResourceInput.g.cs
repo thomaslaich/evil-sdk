@@ -9,6 +9,19 @@ namespace Com.Amazonaws.Route53;
 /// <summary>
 /// A complex type that contains information about the tags that you want to add, edit, or delete.
 /// </summary>
+/// <param name="AddTags">
+/// <para>
+/// A complex type that contains a list of the tags that you want to add to the specified health check
+/// or hosted zone and/or the tags that you want to edit <c>Value</c> for.
+/// </para>
+/// <para>
+/// You can add a maximum of 10 tags to a health check or a hosted zone.
+/// </para>
+/// </param>
+/// <param name="RemoveTagKeys">
+/// A complex type that contains a list of the tags that you want to delete from the specified health
+/// check or hosted zone. You can specify up to 10 keys.
+/// </param>
 /// <param name="ResourceId">
 /// The ID of the resource for which you want to add, change, or delete tags.
 /// </param>
@@ -29,22 +42,9 @@ namespace Com.Amazonaws.Route53;
 /// </item>
 /// </list>
 /// </param>
-/// <param name="AddTags">
-/// <para>
-/// A complex type that contains a list of the tags that you want to add to the specified health check
-/// or hosted zone and/or the tags that you want to edit <c>Value</c> for.
-/// </para>
-/// <para>
-/// You can add a maximum of 10 tags to a health check or a hosted zone.
-/// </para>
-/// </param>
-/// <param name="RemoveTagKeys">
-/// A complex type that contains a list of the tags that you want to delete from the specified health
-/// check or hosted zone. You can specify up to 10 keys.
-/// </param>
 public sealed record class ChangeTagsForResourceInput(
-    string ResourceId,
-    TagResourceType ResourceType,
     IReadOnlyList<global::Com.Amazonaws.Route53.Tag>? AddTags = null,
-    IReadOnlyList<string>? RemoveTagKeys = null
+    IReadOnlyList<string>? RemoveTagKeys = null,
+    string? ResourceId = null,
+    TagResourceType? ResourceType = null
 );

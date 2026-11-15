@@ -10,4 +10,4 @@ namespace Com.Amazonaws.Kinesis;
 /// <param name="ChannelARN">
 /// The Amazon Resource Name (ARN) of the channel to describe.
 /// </param>
-public sealed record class DescribeChannelInput(string ChannelARN);
+public sealed record class DescribeChannelInput(string? ChannelARN = null);

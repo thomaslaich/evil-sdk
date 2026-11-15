@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Route53.Schemas;
 
 public static partial class CoordinatesSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? Latitude { get; set; }
         public string? Longitude { get; set; }
@@ -119,7 +119,7 @@ public static partial class CoordinatesSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

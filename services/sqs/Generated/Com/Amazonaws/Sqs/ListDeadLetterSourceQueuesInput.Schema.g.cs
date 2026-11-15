@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Sqs.Schemas;
 
 public static partial class ListDeadLetterSourceQueuesInputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? QueueUrl { get; set; }
         public string? NextToken { get; set; }
@@ -26,18 +26,7 @@ public static partial class ListDeadLetterSourceQueuesInputSchema
         : StructSchema<global::Com.Amazonaws.Sqs.ListDeadLetterSourceQueuesInput, Builder>(
             ShapeId.Parse("com.amazonaws.sqs#ListDeadLetterSourceQueuesInput"),
             [
-                new(
-                    "QueueUrl",
-                    Target0,
-                    isRequired: true,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
-                    ]
-                ),
+                new("QueueUrl", Target0),
                 new("NextToken", Target1),
                 new(
                     "MaxResults",
@@ -80,9 +69,9 @@ public static partial class ListDeadLetterSourceQueuesInputSchema
             Builder builder
         ) =>
             new global::Com.Amazonaws.Sqs.ListDeadLetterSourceQueuesInput(
-                builder.QueueUrl ?? throw new MissingRequiredMemberException("QueueUrl"),
                 builder.MaxResults,
-                builder.NextToken
+                builder.NextToken,
+                builder.QueueUrl
             );
 
         public override void SerializeMembers<TSerializer>(
@@ -116,7 +105,7 @@ public static partial class ListDeadLetterSourceQueuesInputSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

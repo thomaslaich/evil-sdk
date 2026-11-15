@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Kinesis.Schemas;
 
 public static partial class UpdateShardCountInputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? StreamName { get; set; }
         public int? TargetShardCount { get; set; }
@@ -52,7 +52,6 @@ public static partial class UpdateShardCountInputSchema
                 new(
                     "TargetShardCount",
                     Target1,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
@@ -65,24 +64,9 @@ public static partial class UpdateShardCountInputSchema
                                 new Dictionary<string, Document> { { "min", Document.From(1m) } }
                             )
                         ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
                     ]
                 ),
-                new(
-                    "ScalingType",
-                    Target2,
-                    isRequired: true,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
-                    ]
-                ),
+                new("ScalingType", Target2),
                 new(
                     "StreamARN",
                     Target3,
@@ -175,11 +159,11 @@ public static partial class UpdateShardCountInputSchema
             Builder builder
         ) =>
             new global::Com.Amazonaws.Kinesis.UpdateShardCountInput(
-                builder.ScalingType ?? throw new MissingRequiredMemberException("ScalingType"),
-                builder.TargetShardCount.GetValueOrDefault(),
+                builder.ScalingType,
                 builder.StreamARN,
                 builder.StreamId,
-                builder.StreamName
+                builder.StreamName,
+                builder.TargetShardCount
             );
 
         public override void SerializeMembers<TSerializer>(
@@ -195,8 +179,22 @@ public static partial class UpdateShardCountInputSchema
             {
                 serializer.WriteNull(0);
             }
-            serializer.WriteInteger(1, value.TargetShardCount);
-            serializer.WriteStringEnum(2, value.ScalingType.Value);
+            if (value.TargetShardCount is { } value1)
+            {
+                serializer.WriteInteger(1, value1);
+            }
+            else
+            {
+                serializer.WriteNull(1);
+            }
+            if (value.ScalingType is { } value2)
+            {
+                serializer.WriteStringEnum(2, value2.Value);
+            }
+            else
+            {
+                serializer.WriteNull(2);
+            }
             if (value.StreamARN is { } value3)
             {
                 serializer.WriteString(3, value3);
@@ -215,7 +213,7 @@ public static partial class UpdateShardCountInputSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

@@ -23,7 +23,7 @@ namespace Com.Amazonaws.Route53;
 /// another <c>ListVPCAssociationAuthorizations</c> request.
 /// </param>
 public sealed record class ListVPCAssociationAuthorizationsInput(
-    string HostedZoneId,
+    string? HostedZoneId = null,
     int? MaxResults = null,
     string? NextToken = null
 );

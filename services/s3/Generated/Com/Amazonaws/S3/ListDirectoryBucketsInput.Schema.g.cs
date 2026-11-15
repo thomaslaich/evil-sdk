@@ -10,7 +10,7 @@ namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class ListDirectoryBucketsInputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? ContinuationToken { get; set; }
         public int? MaxDirectoryBuckets { get; set; }
@@ -122,7 +122,7 @@ public static partial class ListDirectoryBucketsInputSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

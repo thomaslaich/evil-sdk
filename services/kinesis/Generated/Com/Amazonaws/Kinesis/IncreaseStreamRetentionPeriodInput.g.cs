@@ -20,7 +20,7 @@ namespace Com.Amazonaws.Kinesis;
 /// The name of the stream to modify.
 /// </param>
 public sealed record class IncreaseStreamRetentionPeriodInput(
-    int RetentionPeriodHours,
+    int? RetentionPeriodHours = null,
     string? StreamARN = null,
     string? StreamId = null,
     string? StreamName = null

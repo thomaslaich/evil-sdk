@@ -56,9 +56,6 @@ namespace Com.Amazonaws.S3;
 /// Outposts?</see> in the <i>Amazon S3 User Guide</i>.
 /// </para>
 /// </param>
-/// <param name="Key">
-/// Key of the object to get.
-/// </param>
 /// <param name="ChecksumMode">
 /// To retrieve the checksum, this mode must be enabled.
 /// </param>
@@ -126,6 +123,9 @@ namespace Com.Amazonaws.S3;
 /// For more information about conditional requests, see
 /// <see href="https://tools.ietf.org/html/rfc7232">RFC 7232</see>.
 /// </para>
+/// </param>
+/// <param name="Key">
+/// Key of the object to get.
 /// </param>
 /// <param name="PartNumber">
 /// Part number of the object being read. This is a positive integer between 1 and 10,000. Effectively
@@ -308,14 +308,14 @@ namespace Com.Amazonaws.S3;
 /// </para>
 /// </param>
 public sealed record class GetObjectInput(
-    string Bucket,
-    string Key,
+    string? Bucket = null,
     global::Com.Amazonaws.S3.ChecksumMode? ChecksumMode = null,
     string? ExpectedBucketOwner = null,
     string? IfMatch = null,
     DateTimeOffset? IfModifiedSince = null,
     string? IfNoneMatch = null,
     DateTimeOffset? IfUnmodifiedSince = null,
+    string? Key = null,
     int? PartNumber = null,
     string? Range = null,
     global::Com.Amazonaws.S3.RequestPayer? RequestPayer = null,

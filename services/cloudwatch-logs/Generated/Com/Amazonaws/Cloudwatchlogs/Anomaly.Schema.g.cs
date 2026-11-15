@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Cloudwatchlogs.Schemas;
 
 public static partial class AnomalySchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? AnomalyId { get; set; }
         public string? PatternId { get; set; }
@@ -596,7 +596,7 @@ public static partial class AnomalySchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

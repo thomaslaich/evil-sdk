@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Cloudwatchlogs.Schemas;
 
 public static partial class ListScheduledQueriesOutputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? NextToken { get; set; }
         public IReadOnlyList<global::Com.Amazonaws.Cloudwatchlogs.ScheduledQuerySummary>? ScheduledQueries { get; set; }
@@ -96,7 +96,7 @@ public static partial class ListScheduledQueriesOutputSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

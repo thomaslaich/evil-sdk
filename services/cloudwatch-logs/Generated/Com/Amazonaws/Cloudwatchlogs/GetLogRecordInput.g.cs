@@ -23,4 +23,4 @@ namespace Com.Amazonaws.Cloudwatchlogs;
 /// <c>logs:Unmask</c> permission.
 /// </para>
 /// </param>
-public sealed record class GetLogRecordInput(string LogRecordPointer, bool? Unmask = null);
+public sealed record class GetLogRecordInput(string? LogRecordPointer = null, bool? Unmask = null);

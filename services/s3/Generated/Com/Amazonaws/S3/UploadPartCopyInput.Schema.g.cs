@@ -11,7 +11,7 @@ namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class UploadPartCopyInputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? Bucket { get; set; }
         public string? CopySource { get; set; }
@@ -46,15 +46,10 @@ public static partial class UploadPartCopyInputSchema
                 new(
                     "Bucket",
                     Target0,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
                             ShapeId.Parse("smithy.api#httpLabel"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
                             Document.From(new Dictionary<string, Document> { })
                         ),
                         new Trait(
@@ -71,7 +66,6 @@ public static partial class UploadPartCopyInputSchema
                 new(
                     "CopySource",
                     Target1,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
@@ -81,10 +75,6 @@ public static partial class UploadPartCopyInputSchema
                         new Trait(
                             ShapeId.Parse("smithy.api#pattern"),
                             Document.From("^\\/?.+\\/.+$")
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
                         ),
                     ]
                 ),
@@ -146,7 +136,6 @@ public static partial class UploadPartCopyInputSchema
                 new(
                     "Key",
                     Target7,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
@@ -159,16 +148,11 @@ public static partial class UploadPartCopyInputSchema
                                 new Dictionary<string, Document> { { "min", Document.From(1m) } }
                             )
                         ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
                     ]
                 ),
                 new(
                     "PartNumber",
                     Target8,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
@@ -179,23 +163,14 @@ public static partial class UploadPartCopyInputSchema
                             ShapeId.Parse("smithy.api#httpQuery"),
                             Document.From("partNumber")
                         ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
                     ]
                 ),
                 new(
                     "UploadId",
                     Target9,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(ShapeId.Parse("smithy.api#httpQuery"), Document.From("uploadId")),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
                     ]
                 ),
                 new(
@@ -399,11 +374,8 @@ public static partial class UploadPartCopyInputSchema
 
         public override global::Com.Amazonaws.S3.UploadPartCopyInput Build(Builder builder) =>
             new global::Com.Amazonaws.S3.UploadPartCopyInput(
-                builder.Bucket ?? throw new MissingRequiredMemberException("Bucket"),
-                builder.CopySource ?? throw new MissingRequiredMemberException("CopySource"),
-                builder.Key ?? throw new MissingRequiredMemberException("Key"),
-                builder.PartNumber.GetValueOrDefault(),
-                builder.UploadId ?? throw new MissingRequiredMemberException("UploadId"),
+                builder.Bucket,
+                builder.CopySource,
                 builder.CopySourceIfMatch,
                 builder.CopySourceIfModifiedSince,
                 builder.CopySourceIfNoneMatch,
@@ -414,10 +386,13 @@ public static partial class UploadPartCopyInputSchema
                 builder.CopySourceSSECustomerKeyMD5,
                 builder.ExpectedBucketOwner,
                 builder.ExpectedSourceBucketOwner,
+                builder.Key,
+                builder.PartNumber,
                 builder.RequestPayer,
                 builder.SSECustomerAlgorithm,
                 builder.SSECustomerKey,
-                builder.SSECustomerKeyMD5
+                builder.SSECustomerKeyMD5,
+                builder.UploadId
             );
 
         public override void SerializeMembers<TSerializer>(
@@ -489,7 +464,14 @@ public static partial class UploadPartCopyInputSchema
             {
                 serializer.WriteNull(7);
             }
-            serializer.WriteInteger(8, value.PartNumber);
+            if (value.PartNumber is { } value8)
+            {
+                serializer.WriteInteger(8, value8);
+            }
+            else
+            {
+                serializer.WriteNull(8);
+            }
             if (value.UploadId is { } value9)
             {
                 serializer.WriteString(9, value9);
@@ -572,7 +554,7 @@ public static partial class UploadPartCopyInputSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

@@ -41,7 +41,7 @@ namespace Com.Amazonaws.Iam;
 /// </para>
 /// </param>
 public sealed record class UpdateGroupInput(
-    string GroupName,
+    string? GroupName = null,
     string? NewGroupName = null,
     string? NewPath = null
 );

@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Iam.Schemas;
 
 public static partial class TagOpenIDConnectProviderInputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? OpenIDConnectProviderArn { get; set; }
         public IReadOnlyList<global::Com.Amazonaws.Iam.Tag>? Tags { get; set; }
@@ -28,7 +28,6 @@ public static partial class TagOpenIDConnectProviderInputSchema
                 new(
                     "OpenIDConnectProviderArn",
                     Target0,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
@@ -41,24 +40,9 @@ public static partial class TagOpenIDConnectProviderInputSchema
                                 }
                             )
                         ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
                     ]
                 ),
-                new(
-                    "Tags",
-                    Target1,
-                    isRequired: true,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
-                    ]
-                ),
+                new("Tags", Target1),
             ],
             [
                 new Trait(
@@ -87,9 +71,8 @@ public static partial class TagOpenIDConnectProviderInputSchema
             Builder builder
         ) =>
             new global::Com.Amazonaws.Iam.TagOpenIDConnectProviderInput(
-                builder.OpenIDConnectProviderArn
-                    ?? throw new MissingRequiredMemberException("OpenIDConnectProviderArn"),
-                builder.Tags ?? throw new MissingRequiredMemberException("Tags")
+                builder.OpenIDConnectProviderArn,
+                builder.Tags
             );
 
         public override void SerializeMembers<TSerializer>(
@@ -115,7 +98,7 @@ public static partial class TagOpenIDConnectProviderInputSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

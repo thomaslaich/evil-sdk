@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Iam.Schemas;
 
 public static partial class AttachRolePolicyOutputSchema
 {
-    public sealed class Builder { }
+    public sealed class Builder : StructBuilder { }
 
     public static StructSchema<
         global::Com.Amazonaws.Iam.AttachRolePolicyOutput,
@@ -43,7 +43,7 @@ public static partial class AttachRolePolicyOutputSchema
             ref TSerializer serializer
         ) { }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

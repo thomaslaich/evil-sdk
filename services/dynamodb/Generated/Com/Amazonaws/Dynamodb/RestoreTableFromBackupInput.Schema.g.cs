@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Dynamodb.Schemas;
 
 public static partial class RestoreTableFromBackupInputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? TargetTableName { get; set; }
         public string? BackupArn { get; set; }
@@ -35,7 +35,6 @@ public static partial class RestoreTableFromBackupInputSchema
                 new(
                     "TargetTableName",
                     Target0,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
@@ -53,10 +52,6 @@ public static partial class RestoreTableFromBackupInputSchema
                             Document.From("^[a-zA-Z0-9_.-]+$")
                         ),
                         new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.rules#contextParam"),
                             Document.From(
                                 new Dictionary<string, Document>
@@ -70,7 +65,6 @@ public static partial class RestoreTableFromBackupInputSchema
                 new(
                     "BackupArn",
                     Target1,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
@@ -82,10 +76,6 @@ public static partial class RestoreTableFromBackupInputSchema
                                     { "max", Document.From(1024m) },
                                 }
                             )
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
                         ),
                     ]
                 ),
@@ -148,15 +138,14 @@ public static partial class RestoreTableFromBackupInputSchema
             Builder builder
         ) =>
             new global::Com.Amazonaws.Dynamodb.RestoreTableFromBackupInput(
-                builder.BackupArn ?? throw new MissingRequiredMemberException("BackupArn"),
-                builder.TargetTableName
-                    ?? throw new MissingRequiredMemberException("TargetTableName"),
+                builder.BackupArn,
                 builder.BillingModeOverride,
                 builder.GlobalSecondaryIndexOverride,
                 builder.LocalSecondaryIndexOverride,
                 builder.OnDemandThroughputOverride,
                 builder.ProvisionedThroughputOverride,
                 builder.SSESpecificationOverride,
+                builder.TargetTableName,
                 builder.VectorIndexOverride
             );
 
@@ -239,7 +228,7 @@ public static partial class RestoreTableFromBackupInputSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

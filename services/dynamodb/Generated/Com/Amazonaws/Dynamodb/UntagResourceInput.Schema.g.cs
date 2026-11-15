@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Dynamodb.Schemas;
 
 public static partial class UntagResourceInputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? ResourceArn { get; set; }
         public IReadOnlyList<string>? TagKeys { get; set; }
@@ -28,7 +28,6 @@ public static partial class UntagResourceInputSchema
                 new(
                     "ResourceArn",
                     Target0,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
@@ -42,10 +41,6 @@ public static partial class UntagResourceInputSchema
                             )
                         ),
                         new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.rules#contextParam"),
                             Document.From(
                                 new Dictionary<string, Document>
@@ -56,18 +51,7 @@ public static partial class UntagResourceInputSchema
                         ),
                     ]
                 ),
-                new(
-                    "TagKeys",
-                    Target1,
-                    isRequired: true,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
-                    ]
-                ),
+                new("TagKeys", Target1),
             ],
             [
                 new Trait(
@@ -90,8 +74,8 @@ public static partial class UntagResourceInputSchema
 
         public override global::Com.Amazonaws.Dynamodb.UntagResourceInput Build(Builder builder) =>
             new global::Com.Amazonaws.Dynamodb.UntagResourceInput(
-                builder.ResourceArn ?? throw new MissingRequiredMemberException("ResourceArn"),
-                builder.TagKeys ?? throw new MissingRequiredMemberException("TagKeys")
+                builder.ResourceArn,
+                builder.TagKeys
             );
 
         public override void SerializeMembers<TSerializer>(
@@ -117,7 +101,7 @@ public static partial class UntagResourceInputSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

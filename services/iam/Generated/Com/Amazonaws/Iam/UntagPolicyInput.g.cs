@@ -23,4 +23,7 @@ namespace Com.Amazonaws.Iam;
 /// A list of key names as a simple array of strings. The tags with matching keys are removed from the
 /// specified policy.
 /// </param>
-public sealed record class UntagPolicyInput(string PolicyArn, IReadOnlyList<string> TagKeys);
+public sealed record class UntagPolicyInput(
+    string? PolicyArn = null,
+    IReadOnlyList<string>? TagKeys = null
+);

@@ -88,7 +88,7 @@ namespace Com.Amazonaws.Route53;
 /// </para>
 /// </param>
 public sealed record class ListResourceRecordSetsInput(
-    string HostedZoneId,
+    string? HostedZoneId = null,
     int? MaxItems = null,
     string? StartRecordIdentifier = null,
     string? StartRecordName = null,

@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Lambda.Schemas;
 
 public static partial class ListFunctionsByCodeSigningConfigInputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? CodeSigningConfigArn { get; set; }
         public string? Marker { get; set; }
@@ -29,7 +29,6 @@ public static partial class ListFunctionsByCodeSigningConfigInputSchema
                 new(
                     "CodeSigningConfigArn",
                     Target0,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
@@ -51,10 +50,6 @@ public static partial class ListFunctionsByCodeSigningConfigInputSchema
                             Document.From(
                                 "^arn:(aws[a-zA-Z-]*)?:lambda:(eusc-)?[a-z]{2}((-gov)|(-iso([a-z]?)))?-[a-z]+-\\d{1}:\\d{12}:code-signing-config:csc-[a-z0-9]{17}$"
                             )
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
                         ),
                     ]
                 ),
@@ -118,8 +113,7 @@ public static partial class ListFunctionsByCodeSigningConfigInputSchema
             Builder builder
         ) =>
             new global::Com.Amazonaws.Lambda.ListFunctionsByCodeSigningConfigInput(
-                builder.CodeSigningConfigArn
-                    ?? throw new MissingRequiredMemberException("CodeSigningConfigArn"),
+                builder.CodeSigningConfigArn,
                 builder.Marker,
                 builder.MaxItems
             );
@@ -155,7 +149,7 @@ public static partial class ListFunctionsByCodeSigningConfigInputSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

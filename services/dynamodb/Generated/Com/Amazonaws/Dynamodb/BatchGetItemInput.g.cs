@@ -132,6 +132,6 @@ namespace Com.Amazonaws.Dynamodb;
 /// </list>
 /// </param>
 public sealed record class BatchGetItemInput(
-    IReadOnlyDictionary<string, KeysAndAttributes> RequestItems,
+    IReadOnlyDictionary<string, KeysAndAttributes>? RequestItems = null,
     global::Com.Amazonaws.Dynamodb.ReturnConsumedCapacity? ReturnConsumedCapacity = null
 );

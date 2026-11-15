@@ -20,7 +20,7 @@ namespace Com.Amazonaws.Route53;
 /// An opaque pagination token to indicate where the service is to begin enumerating results.
 /// </param>
 public sealed record class ListCidrBlocksInput(
-    string CollectionId,
+    string? CollectionId = null,
     string? LocationName = null,
     int? MaxResults = null,
     string? NextToken = null

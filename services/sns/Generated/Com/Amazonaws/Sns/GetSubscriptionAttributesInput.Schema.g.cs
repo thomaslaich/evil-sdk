@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Sns.Schemas;
 
 public static partial class GetSubscriptionAttributesInputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? SubscriptionArn { get; set; }
     }
@@ -23,20 +23,7 @@ public static partial class GetSubscriptionAttributesInputSchema
     private sealed class GeneratedSchema()
         : StructSchema<global::Com.Amazonaws.Sns.GetSubscriptionAttributesInput, Builder>(
             ShapeId.Parse("com.amazonaws.sns#GetSubscriptionAttributesInput"),
-            [
-                new(
-                    "SubscriptionArn",
-                    Target0,
-                    isRequired: true,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
-                    ]
-                ),
-            ],
+            [new("SubscriptionArn", Target0)],
             [
                 new Trait(
                     ShapeId.Parse("smithy.api#input"),
@@ -54,11 +41,7 @@ public static partial class GetSubscriptionAttributesInputSchema
 
         public override global::Com.Amazonaws.Sns.GetSubscriptionAttributesInput Build(
             Builder builder
-        ) =>
-            new global::Com.Amazonaws.Sns.GetSubscriptionAttributesInput(
-                builder.SubscriptionArn
-                    ?? throw new MissingRequiredMemberException("SubscriptionArn")
-            );
+        ) => new global::Com.Amazonaws.Sns.GetSubscriptionAttributesInput(builder.SubscriptionArn);
 
         public override void SerializeMembers<TSerializer>(
             global::Com.Amazonaws.Sns.GetSubscriptionAttributesInput value,
@@ -75,7 +58,7 @@ public static partial class GetSubscriptionAttributesInputSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

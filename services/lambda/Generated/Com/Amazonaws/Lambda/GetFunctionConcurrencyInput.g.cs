@@ -36,4 +36,4 @@ namespace Com.Amazonaws.Lambda;
 /// limited to 64 characters in length.
 /// </para>
 /// </param>
-public sealed record class GetFunctionConcurrencyInput(string FunctionName);
+public sealed record class GetFunctionConcurrencyInput(string? FunctionName = null);

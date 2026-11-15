@@ -17,6 +17,6 @@ namespace Com.Amazonaws.Iam;
 /// operation.
 /// </param>
 public sealed record class AddClientIDToOpenIDConnectProviderInput(
-    string ClientID,
-    string OpenIDConnectProviderArn
+    string? ClientID = null,
+    string? OpenIDConnectProviderArn = null
 );

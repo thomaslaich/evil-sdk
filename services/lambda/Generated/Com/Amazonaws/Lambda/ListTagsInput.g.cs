@@ -11,4 +11,4 @@ namespace Com.Amazonaws.Lambda;
 /// The resource's Amazon Resource Name (ARN). Note: Lambda does not support adding tags to function
 /// aliases or versions.
 /// </param>
-public sealed record class ListTagsInput(string Resource);
+public sealed record class ListTagsInput(string? Resource = null);

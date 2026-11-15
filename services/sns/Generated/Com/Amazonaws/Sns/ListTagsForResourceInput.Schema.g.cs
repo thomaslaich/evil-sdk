@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Sns.Schemas;
 
 public static partial class ListTagsForResourceInputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? ResourceArn { get; set; }
     }
@@ -27,7 +27,6 @@ public static partial class ListTagsForResourceInputSchema
                 new(
                     "ResourceArn",
                     Target0,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
@@ -39,10 +38,6 @@ public static partial class ListTagsForResourceInputSchema
                                     { "max", Document.From(1011m) },
                                 }
                             )
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
                         ),
                     ]
                 ),
@@ -67,9 +62,7 @@ public static partial class ListTagsForResourceInputSchema
         public override Builder CreateTypedBuilder() => new();
 
         public override global::Com.Amazonaws.Sns.ListTagsForResourceInput Build(Builder builder) =>
-            new global::Com.Amazonaws.Sns.ListTagsForResourceInput(
-                builder.ResourceArn ?? throw new MissingRequiredMemberException("ResourceArn")
-            );
+            new global::Com.Amazonaws.Sns.ListTagsForResourceInput(builder.ResourceArn);
 
         public override void SerializeMembers<TSerializer>(
             global::Com.Amazonaws.Sns.ListTagsForResourceInput value,
@@ -86,7 +79,7 @@ public static partial class ListTagsForResourceInputSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

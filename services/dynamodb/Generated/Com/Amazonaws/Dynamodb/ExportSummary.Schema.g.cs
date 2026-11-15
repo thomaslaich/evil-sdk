@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Dynamodb.Schemas;
 
 public static partial class ExportSummarySchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? ExportArn { get; set; }
         public global::Com.Amazonaws.Dynamodb.ExportStatus? ExportStatus { get; set; }
@@ -98,7 +98,7 @@ public static partial class ExportSummarySchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

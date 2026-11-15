@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Cloudwatchlogs.Schemas;
 
 public static partial class TypeConverterEntrySchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? Key { get; set; }
         public global::Com.Amazonaws.Cloudwatchlogs.Type? Type { get; set; }
@@ -96,7 +96,7 @@ public static partial class TypeConverterEntrySchema
             serializer.WriteStringEnum(1, value.Type.Value);
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

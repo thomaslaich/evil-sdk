@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Kinesis.Schemas;
 
 public static partial class UpdateMaxRecordSizeInputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? StreamARN { get; set; }
         public string? StreamId { get; set; }
@@ -89,7 +89,6 @@ public static partial class UpdateMaxRecordSizeInputSchema
                 new(
                     "MaxRecordSizeInKiB",
                     Target2,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
@@ -105,10 +104,6 @@ public static partial class UpdateMaxRecordSizeInputSchema
                                     { "max", Document.From(10240m) },
                                 }
                             )
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
                         ),
                     ]
                 ),
@@ -138,7 +133,7 @@ public static partial class UpdateMaxRecordSizeInputSchema
             Builder builder
         ) =>
             new global::Com.Amazonaws.Kinesis.UpdateMaxRecordSizeInput(
-                builder.MaxRecordSizeInKiB.GetValueOrDefault(),
+                builder.MaxRecordSizeInKiB,
                 builder.StreamARN,
                 builder.StreamId
             );
@@ -164,10 +159,17 @@ public static partial class UpdateMaxRecordSizeInputSchema
             {
                 serializer.WriteNull(1);
             }
-            serializer.WriteInteger(2, value.MaxRecordSizeInKiB);
+            if (value.MaxRecordSizeInKiB is { } value2)
+            {
+                serializer.WriteInteger(2, value2);
+            }
+            else
+            {
+                serializer.WriteNull(2);
+            }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

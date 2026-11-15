@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Dynamodb.Schemas;
 
 public static partial class ExecuteTransactionInputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public IReadOnlyList<global::Com.Amazonaws.Dynamodb.ParameterizedStatement>? TransactStatements { get; set; }
         public string? ClientRequestToken { get; set; }
@@ -26,18 +26,7 @@ public static partial class ExecuteTransactionInputSchema
         : StructSchema<global::Com.Amazonaws.Dynamodb.ExecuteTransactionInput, Builder>(
             ShapeId.Parse("com.amazonaws.dynamodb#ExecuteTransactionInput"),
             [
-                new(
-                    "TransactStatements",
-                    Target0,
-                    isRequired: true,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
-                    ]
-                ),
+                new("TransactStatements", Target0),
                 new(
                     "ClientRequestToken",
                     Target1,
@@ -86,10 +75,9 @@ public static partial class ExecuteTransactionInputSchema
             Builder builder
         ) =>
             new global::Com.Amazonaws.Dynamodb.ExecuteTransactionInput(
-                builder.TransactStatements
-                    ?? throw new MissingRequiredMemberException("TransactStatements"),
                 builder.ClientRequestToken,
-                builder.ReturnConsumedCapacity
+                builder.ReturnConsumedCapacity,
+                builder.TransactStatements
             );
 
         public override void SerializeMembers<TSerializer>(
@@ -123,7 +111,7 @@ public static partial class ExecuteTransactionInputSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

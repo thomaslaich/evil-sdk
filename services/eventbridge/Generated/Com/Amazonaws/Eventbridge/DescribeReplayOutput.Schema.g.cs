@@ -11,7 +11,7 @@ namespace Com.Amazonaws.Eventbridge.Schemas;
 
 public static partial class DescribeReplayOutputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? ReplayName { get; set; }
         public string? ReplayArn { get; set; }
@@ -329,7 +329,7 @@ public static partial class DescribeReplayOutputSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

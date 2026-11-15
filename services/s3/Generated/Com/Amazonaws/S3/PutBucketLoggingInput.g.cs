@@ -43,8 +43,8 @@ namespace Com.Amazonaws.S3;
 /// denied).
 /// </param>
 public sealed record class PutBucketLoggingInput(
-    string Bucket,
-    global::Com.Amazonaws.S3.BucketLoggingStatus BucketLoggingStatus,
+    string? Bucket = null,
+    global::Com.Amazonaws.S3.BucketLoggingStatus? BucketLoggingStatus = null,
     global::Com.Amazonaws.S3.ChecksumAlgorithm? ChecksumAlgorithm = null,
     string? ContentMD5 = null,
     string? ExpectedBucketOwner = null

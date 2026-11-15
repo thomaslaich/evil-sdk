@@ -10,4 +10,4 @@ namespace Com.Amazonaws.Route53;
 /// <param name="Id">
 /// The ID of the configuration for DNS query logging that you want to get information about.
 /// </param>
-public sealed record class GetQueryLoggingConfigInput(string Id);
+public sealed record class GetQueryLoggingConfigInput(string? Id = null);

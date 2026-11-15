@@ -9,21 +9,6 @@ namespace Com.Amazonaws.Iam;
 /// <summary>
 /// Represents the Smithy structure com.amazonaws.iam#GetContextKeysForPrincipalPolicyInput.
 /// </summary>
-/// <param name="PolicySourceArn">
-/// <para>
-/// The ARN of a user, group, or role whose policies contain the context keys that you want listed. If
-/// you specify a user, the list includes context keys that are found in all policies that are attached
-/// to the user. The list also includes all groups that the user is a member of. If you pick a group or
-/// a role, then it includes only those context keys that are found in policies attached to that entity.
-/// Note that all parameters are shown in unencoded form here for clarity, but must be URL encoded to be
-/// included as a part of a real HTML request.
-/// </para>
-/// <para>
-/// For more information about ARNs, see
-/// <see href="https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html">Amazon
-/// Resource Names (ARNs)</see> in the <i>Amazon Web Services General Reference</i>.
-/// </para>
-/// </param>
 /// <param name="PolicyInputList">
 /// <para>
 /// An optional list of additional policies for which you want the list of context keys that are
@@ -54,7 +39,22 @@ namespace Com.Amazonaws.Iam;
 /// </item>
 /// </list>
 /// </param>
+/// <param name="PolicySourceArn">
+/// <para>
+/// The ARN of a user, group, or role whose policies contain the context keys that you want listed. If
+/// you specify a user, the list includes context keys that are found in all policies that are attached
+/// to the user. The list also includes all groups that the user is a member of. If you pick a group or
+/// a role, then it includes only those context keys that are found in policies attached to that entity.
+/// Note that all parameters are shown in unencoded form here for clarity, but must be URL encoded to be
+/// included as a part of a real HTML request.
+/// </para>
+/// <para>
+/// For more information about ARNs, see
+/// <see href="https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html">Amazon
+/// Resource Names (ARNs)</see> in the <i>Amazon Web Services General Reference</i>.
+/// </para>
+/// </param>
 public sealed record class GetContextKeysForPrincipalPolicyInput(
-    string PolicySourceArn,
-    IReadOnlyList<string>? PolicyInputList = null
+    IReadOnlyList<string>? PolicyInputList = null,
+    string? PolicySourceArn = null
 );

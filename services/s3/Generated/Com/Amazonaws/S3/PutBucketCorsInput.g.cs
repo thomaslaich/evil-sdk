@@ -47,8 +47,8 @@ namespace Com.Amazonaws.S3;
 /// denied).
 /// </param>
 public sealed record class PutBucketCorsInput(
-    string Bucket,
-    global::Com.Amazonaws.S3.CORSConfiguration CORSConfiguration,
+    string? Bucket = null,
+    global::Com.Amazonaws.S3.CORSConfiguration? CORSConfiguration = null,
     global::Com.Amazonaws.S3.ChecksumAlgorithm? ChecksumAlgorithm = null,
     string? ContentMD5 = null,
     string? ExpectedBucketOwner = null

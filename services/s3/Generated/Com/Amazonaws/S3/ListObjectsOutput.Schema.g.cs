@@ -10,7 +10,7 @@ namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class ListObjectsOutputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public bool? IsTruncated { get; set; }
         public string? Marker { get; set; }
@@ -254,7 +254,7 @@ public static partial class ListObjectsOutputSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

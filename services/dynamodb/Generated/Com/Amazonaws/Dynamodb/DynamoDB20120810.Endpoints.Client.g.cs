@@ -219,133 +219,138 @@ public sealed class DynamoDB20120810EndpointResolver : IEndpointResolver
         {
             "BatchGetItem" when parameters.Input is BatchGetItemInput input => clientParameters with
             {
-                ResourceArnList = input.RequestItems.Keys.ToArray(),
+                ResourceArnList = (
+                    input.RequestItems?.Keys ?? Enumerable.Empty<string>()
+                ).ToArray(),
             },
             "BatchWriteItem" when parameters.Input is BatchWriteItemInput input =>
                 clientParameters with
                 {
-                    ResourceArnList = input.RequestItems.Keys.ToArray(),
+                    ResourceArnList = (
+                        input.RequestItems?.Keys ?? Enumerable.Empty<string>()
+                    ).ToArray(),
                 },
             "CreateBackup" when parameters.Input is CreateBackupInput input => clientParameters with
             {
-                ResourceArn = input.TableName,
+                ResourceArn = input.TableName ?? clientParameters.ResourceArn,
             },
             "CreateGlobalTable" when parameters.Input is CreateGlobalTableInput input =>
                 clientParameters with
                 {
-                    ResourceArn = input.GlobalTableName,
+                    ResourceArn = input.GlobalTableName ?? clientParameters.ResourceArn,
                 },
             "CreateTable" when parameters.Input is CreateTableInput input => clientParameters with
             {
-                ResourceArn = input.TableName,
+                ResourceArn = input.TableName ?? clientParameters.ResourceArn,
             },
             "DeleteBackup" when parameters.Input is DeleteBackupInput input => clientParameters with
             {
-                ResourceArn = input.BackupArn,
+                ResourceArn = input.BackupArn ?? clientParameters.ResourceArn,
             },
             "DeleteItem" when parameters.Input is DeleteItemInput input => clientParameters with
             {
-                ResourceArn = input.TableName,
+                ResourceArn = input.TableName ?? clientParameters.ResourceArn,
             },
             "DeleteResourcePolicy" when parameters.Input is DeleteResourcePolicyInput input =>
                 clientParameters with
                 {
-                    ResourceArn = input.ResourceArn,
+                    ResourceArn = input.ResourceArn ?? clientParameters.ResourceArn,
                 },
             "DeleteTable" when parameters.Input is DeleteTableInput input => clientParameters with
             {
-                ResourceArn = input.TableName,
+                ResourceArn = input.TableName ?? clientParameters.ResourceArn,
             },
             "DescribeBackup" when parameters.Input is DescribeBackupInput input =>
                 clientParameters with
                 {
-                    ResourceArn = input.BackupArn,
+                    ResourceArn = input.BackupArn ?? clientParameters.ResourceArn,
                 },
             "DescribeContinuousBackups"
                 when parameters.Input is DescribeContinuousBackupsInput input =>
                 clientParameters with
                 {
-                    ResourceArn = input.TableName,
+                    ResourceArn = input.TableName ?? clientParameters.ResourceArn,
                 },
             "DescribeContributorInsights"
                 when parameters.Input is DescribeContributorInsightsInput input =>
                 clientParameters with
                 {
-                    ResourceArn = input.TableName,
+                    ResourceArn = input.TableName ?? clientParameters.ResourceArn,
                 },
             "DescribeExport" when parameters.Input is DescribeExportInput input =>
                 clientParameters with
                 {
-                    ResourceArn = input.ExportArn,
+                    ResourceArn = input.ExportArn ?? clientParameters.ResourceArn,
                 },
             "DescribeGlobalTable" when parameters.Input is DescribeGlobalTableInput input =>
                 clientParameters with
                 {
-                    ResourceArn = input.GlobalTableName,
+                    ResourceArn = input.GlobalTableName ?? clientParameters.ResourceArn,
                 },
             "DescribeGlobalTableSettings"
                 when parameters.Input is DescribeGlobalTableSettingsInput input =>
                 clientParameters with
                 {
-                    ResourceArn = input.GlobalTableName,
+                    ResourceArn = input.GlobalTableName ?? clientParameters.ResourceArn,
                 },
             "DescribeImport" when parameters.Input is DescribeImportInput input =>
                 clientParameters with
                 {
-                    ResourceArn = input.ImportArn,
+                    ResourceArn = input.ImportArn ?? clientParameters.ResourceArn,
                 },
             "DescribeKinesisStreamingDestination"
                 when parameters.Input is DescribeKinesisStreamingDestinationInput input =>
                 clientParameters with
                 {
-                    ResourceArn = input.TableName,
+                    ResourceArn = input.TableName ?? clientParameters.ResourceArn,
                 },
             "DescribeTable" when parameters.Input is DescribeTableInput input =>
                 clientParameters with
                 {
-                    ResourceArn = input.TableName,
+                    ResourceArn = input.TableName ?? clientParameters.ResourceArn,
                 },
             "DescribeTableReplicaAutoScaling"
                 when parameters.Input is DescribeTableReplicaAutoScalingInput input =>
                 clientParameters with
                 {
-                    ResourceArn = input.TableName,
+                    ResourceArn = input.TableName ?? clientParameters.ResourceArn,
                 },
             "DescribeTimeToLive" when parameters.Input is DescribeTimeToLiveInput input =>
                 clientParameters with
                 {
-                    ResourceArn = input.TableName,
+                    ResourceArn = input.TableName ?? clientParameters.ResourceArn,
                 },
             "DisableKinesisStreamingDestination"
                 when parameters.Input is DisableKinesisStreamingDestinationInput input =>
                 clientParameters with
                 {
-                    ResourceArn = input.TableName,
+                    ResourceArn = input.TableName ?? clientParameters.ResourceArn,
                 },
             "EnableKinesisStreamingDestination"
                 when parameters.Input is EnableKinesisStreamingDestinationInput input =>
                 clientParameters with
                 {
-                    ResourceArn = input.TableName,
+                    ResourceArn = input.TableName ?? clientParameters.ResourceArn,
                 },
             "ExportTableToPointInTime"
                 when parameters.Input is ExportTableToPointInTimeInput input =>
                 clientParameters with
                 {
-                    ResourceArn = input.TableArn,
+                    ResourceArn = input.TableArn ?? clientParameters.ResourceArn,
                 },
             "GetItem" when parameters.Input is GetItemInput input => clientParameters with
             {
-                ResourceArn = input.TableName,
+                ResourceArn = input.TableName ?? clientParameters.ResourceArn,
             },
             "GetResourcePolicy" when parameters.Input is GetResourcePolicyInput input =>
                 clientParameters with
                 {
-                    ResourceArn = input.ResourceArn,
+                    ResourceArn = input.ResourceArn ?? clientParameters.ResourceArn,
                 },
             "ImportTable" when parameters.Input is ImportTableInput input => clientParameters with
             {
-                ResourceArn = input.TableCreationParameters.TableName,
+                ResourceArn =
+                    (input.TableCreationParameters?.TableName) ?? clientParameters.ResourceArn,
             },
             "ListBackups" when parameters.Input is ListBackupsInput input => clientParameters with
             {
@@ -367,59 +372,59 @@ public sealed class DynamoDB20120810EndpointResolver : IEndpointResolver
             "ListTagsOfResource" when parameters.Input is ListTagsOfResourceInput input =>
                 clientParameters with
                 {
-                    ResourceArn = input.ResourceArn,
+                    ResourceArn = input.ResourceArn ?? clientParameters.ResourceArn,
                 },
             "PutItem" when parameters.Input is PutItemInput input => clientParameters with
             {
-                ResourceArn = input.TableName,
+                ResourceArn = input.TableName ?? clientParameters.ResourceArn,
             },
             "PutResourcePolicy" when parameters.Input is PutResourcePolicyInput input =>
                 clientParameters with
                 {
-                    ResourceArn = input.ResourceArn,
+                    ResourceArn = input.ResourceArn ?? clientParameters.ResourceArn,
                 },
             "Query" when parameters.Input is QueryInput input => clientParameters with
             {
-                ResourceArn = input.TableName,
+                ResourceArn = input.TableName ?? clientParameters.ResourceArn,
             },
             "RestoreTableFromBackup" when parameters.Input is RestoreTableFromBackupInput input =>
                 clientParameters with
                 {
-                    ResourceArn = input.TargetTableName,
+                    ResourceArn = input.TargetTableName ?? clientParameters.ResourceArn,
                 },
             "RestoreTableToPointInTime"
                 when parameters.Input is RestoreTableToPointInTimeInput input =>
                 clientParameters with
                 {
-                    ResourceArn = input.TargetTableName,
+                    ResourceArn = input.TargetTableName ?? clientParameters.ResourceArn,
                 },
             "Scan" when parameters.Input is ScanInput input => clientParameters with
             {
-                ResourceArn = input.TableName,
+                ResourceArn = input.TableName ?? clientParameters.ResourceArn,
             },
             "SearchVectors" when parameters.Input is SearchVectorsInput input =>
                 clientParameters with
                 {
-                    ResourceArn = input.TableName,
+                    ResourceArn = input.TableName ?? clientParameters.ResourceArn,
                     IsSearchOperation = true,
                 },
             "TagResource" when parameters.Input is TagResourceInput input => clientParameters with
             {
-                ResourceArn = input.ResourceArn,
+                ResourceArn = input.ResourceArn ?? clientParameters.ResourceArn,
             },
             "TransactGetItems" when parameters.Input is TransactGetItemsInput input =>
                 clientParameters with
                 {
-                    ResourceArnList = input
-                        .TransactItems.Select(item1 => item1.Get.TableName)
+                    ResourceArnList = (input.TransactItems ?? Enumerable.Empty<TransactGetItem>())
+                        .Select(item1 => item1.Get.TableName)
                         .OfType<string>()
                         .ToArray(),
                 },
             "TransactWriteItems" when parameters.Input is TransactWriteItemsInput input =>
                 clientParameters with
                 {
-                    ResourceArnList = input
-                        .TransactItems.Select(item2 =>
+                    ResourceArnList = (input.TransactItems ?? Enumerable.Empty<TransactWriteItem>())
+                        .Select(item2 =>
                             new string?[]
                             {
                                 item2.ConditionCheck?.TableName,
@@ -435,54 +440,54 @@ public sealed class DynamoDB20120810EndpointResolver : IEndpointResolver
             "UntagResource" when parameters.Input is UntagResourceInput input =>
                 clientParameters with
                 {
-                    ResourceArn = input.ResourceArn,
+                    ResourceArn = input.ResourceArn ?? clientParameters.ResourceArn,
                 },
             "UpdateContinuousBackups" when parameters.Input is UpdateContinuousBackupsInput input =>
                 clientParameters with
                 {
-                    ResourceArn = input.TableName,
+                    ResourceArn = input.TableName ?? clientParameters.ResourceArn,
                 },
             "UpdateContributorInsights"
                 when parameters.Input is UpdateContributorInsightsInput input =>
                 clientParameters with
                 {
-                    ResourceArn = input.TableName,
+                    ResourceArn = input.TableName ?? clientParameters.ResourceArn,
                 },
             "UpdateGlobalTable" when parameters.Input is UpdateGlobalTableInput input =>
                 clientParameters with
                 {
-                    ResourceArn = input.GlobalTableName,
+                    ResourceArn = input.GlobalTableName ?? clientParameters.ResourceArn,
                 },
             "UpdateGlobalTableSettings"
                 when parameters.Input is UpdateGlobalTableSettingsInput input =>
                 clientParameters with
                 {
-                    ResourceArn = input.GlobalTableName,
+                    ResourceArn = input.GlobalTableName ?? clientParameters.ResourceArn,
                 },
             "UpdateItem" when parameters.Input is UpdateItemInput input => clientParameters with
             {
-                ResourceArn = input.TableName,
+                ResourceArn = input.TableName ?? clientParameters.ResourceArn,
             },
             "UpdateKinesisStreamingDestination"
                 when parameters.Input is UpdateKinesisStreamingDestinationInput input =>
                 clientParameters with
                 {
-                    ResourceArn = input.TableName,
+                    ResourceArn = input.TableName ?? clientParameters.ResourceArn,
                 },
             "UpdateTable" when parameters.Input is UpdateTableInput input => clientParameters with
             {
-                ResourceArn = input.TableName,
+                ResourceArn = input.TableName ?? clientParameters.ResourceArn,
             },
             "UpdateTableReplicaAutoScaling"
                 when parameters.Input is UpdateTableReplicaAutoScalingInput input =>
                 clientParameters with
                 {
-                    ResourceArn = input.TableName,
+                    ResourceArn = input.TableName ?? clientParameters.ResourceArn,
                 },
             "UpdateTimeToLive" when parameters.Input is UpdateTimeToLiveInput input =>
                 clientParameters with
                 {
-                    ResourceArn = input.TableName,
+                    ResourceArn = input.TableName ?? clientParameters.ResourceArn,
                 },
             _ => null,
         };

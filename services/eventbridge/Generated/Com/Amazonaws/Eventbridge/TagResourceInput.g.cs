@@ -16,6 +16,6 @@ namespace Com.Amazonaws.Eventbridge;
 /// The list of key-value pairs to associate with the resource.
 /// </param>
 public sealed record class TagResourceInput(
-    string ResourceARN,
-    IReadOnlyList<global::Com.Amazonaws.Eventbridge.Tag> Tags
+    string? ResourceARN = null,
+    IReadOnlyList<global::Com.Amazonaws.Eventbridge.Tag>? Tags = null
 );

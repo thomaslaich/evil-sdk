@@ -16,4 +16,4 @@ namespace Com.Amazonaws.Dynamodb;
 /// You can also provide the Amazon Resource Name (ARN) of the table in this parameter.
 /// </para>
 /// </param>
-public sealed record class DescribeContinuousBackupsInput(string TableName);
+public sealed record class DescribeContinuousBackupsInput(string? TableName = null);

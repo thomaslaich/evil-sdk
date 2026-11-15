@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Cloudwatchlogs.Schemas;
 
 public static partial class PutDeliveryDestinationInputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? Name { get; set; }
         public global::Com.Amazonaws.Cloudwatchlogs.OutputFormat? OutputFormat { get; set; }
@@ -32,7 +32,6 @@ public static partial class PutDeliveryDestinationInputSchema
                 new(
                     "name",
                     Target0,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
@@ -46,10 +45,6 @@ public static partial class PutDeliveryDestinationInputSchema
                             )
                         ),
                         new Trait(ShapeId.Parse("smithy.api#pattern"), Document.From("^[\\w-]*$")),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
                     ]
                 ),
                 new("outputFormat", Target1),
@@ -101,9 +96,9 @@ public static partial class PutDeliveryDestinationInputSchema
             Builder builder
         ) =>
             new global::Com.Amazonaws.Cloudwatchlogs.PutDeliveryDestinationInput(
-                builder.Name ?? throw new MissingRequiredMemberException("name"),
                 builder.DeliveryDestinationConfiguration,
                 builder.DeliveryDestinationType,
+                builder.Name,
                 builder.OutputFormat,
                 builder.RoleArn,
                 builder.Tags
@@ -164,7 +159,7 @@ public static partial class PutDeliveryDestinationInputSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

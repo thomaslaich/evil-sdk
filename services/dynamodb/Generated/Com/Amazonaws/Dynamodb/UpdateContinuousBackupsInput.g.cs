@@ -15,6 +15,7 @@ namespace Com.Amazonaws.Dynamodb;
 /// parameter.
 /// </param>
 public sealed record class UpdateContinuousBackupsInput(
-    global::Com.Amazonaws.Dynamodb.PointInTimeRecoverySpecification PointInTimeRecoverySpecification,
-    string TableName
+    global::Com.Amazonaws.Dynamodb.PointInTimeRecoverySpecification? PointInTimeRecoverySpecification =
+        null,
+    string? TableName = null
 );

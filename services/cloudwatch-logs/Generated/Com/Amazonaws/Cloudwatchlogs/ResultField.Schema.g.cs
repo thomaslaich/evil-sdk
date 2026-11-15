@@ -9,7 +9,7 @@ namespace Com.Amazonaws.Cloudwatchlogs.Schemas;
 
 public static partial class ResultFieldSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? Field { get; set; }
         public string? Value { get; set; }
@@ -64,7 +64,7 @@ public static partial class ResultFieldSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

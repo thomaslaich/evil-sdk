@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Kinesis.Schemas;
 
 public static partial class S3TablesDestinationUpdateInputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public int? DataFreshnessInSeconds { get; set; }
     }
@@ -64,7 +64,7 @@ public static partial class S3TablesDestinationUpdateInputSchema
             serializer.WriteInteger(0, value.DataFreshnessInSeconds);
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

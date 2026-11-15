@@ -8,13 +8,6 @@ namespace Com.Amazonaws.Route53;
 /// A complex type that contains the information about the request to list your traffic policy
 /// instances.
 /// </summary>
-/// <param name="TrafficPolicyId">
-/// The ID of the traffic policy for which you want to list traffic policy instances.
-/// </param>
-/// <param name="TrafficPolicyVersion">
-/// The version of the traffic policy for which you want to list traffic policy instances. The version
-/// must be associated with the traffic policy that is specified by <c>TrafficPolicyId</c>.
-/// </param>
 /// <param name="HostedZoneIdMarker">
 /// <para>
 /// If the value of <c>IsTruncated</c> in the previous response was <c>true</c>, you have more traffic
@@ -37,6 +30,9 @@ namespace Com.Amazonaws.Route53;
 /// element in the response is <c>true</c>, and the values of <c>HostedZoneIdMarker</c>,
 /// <c>TrafficPolicyInstanceNameMarker</c>, and <c>TrafficPolicyInstanceTypeMarker</c> represent the
 /// first traffic policy instance that Amazon Route 53 will return if you submit another request.
+/// </param>
+/// <param name="TrafficPolicyId">
+/// The ID of the traffic policy for which you want to list traffic policy instances.
 /// </param>
 /// <param name="TrafficPolicyInstanceNameMarker">
 /// <para>
@@ -70,11 +66,15 @@ namespace Com.Amazonaws.Route53;
 /// traffic policy instances to get.
 /// </para>
 /// </param>
+/// <param name="TrafficPolicyVersion">
+/// The version of the traffic policy for which you want to list traffic policy instances. The version
+/// must be associated with the traffic policy that is specified by <c>TrafficPolicyId</c>.
+/// </param>
 public sealed record class ListTrafficPolicyInstancesByPolicyInput(
-    string TrafficPolicyId,
-    int TrafficPolicyVersion,
     string? HostedZoneIdMarker = null,
     int? MaxItems = null,
+    string? TrafficPolicyId = null,
     string? TrafficPolicyInstanceNameMarker = null,
-    RRType? TrafficPolicyInstanceTypeMarker = null
+    RRType? TrafficPolicyInstanceTypeMarker = null,
+    int? TrafficPolicyVersion = null
 );

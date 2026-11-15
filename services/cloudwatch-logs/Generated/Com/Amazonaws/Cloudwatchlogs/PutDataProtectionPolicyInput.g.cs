@@ -67,6 +67,6 @@ namespace Com.Amazonaws.Cloudwatchlogs;
 /// </para>
 /// </param>
 public sealed record class PutDataProtectionPolicyInput(
-    string LogGroupIdentifier,
-    string PolicyDocument
+    string? LogGroupIdentifier = null,
+    string? PolicyDocument = null
 );

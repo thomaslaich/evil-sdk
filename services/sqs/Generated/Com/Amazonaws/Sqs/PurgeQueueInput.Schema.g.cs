@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Sqs.Schemas;
 
 public static partial class PurgeQueueInputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? QueueUrl { get; set; }
     }
@@ -21,20 +21,7 @@ public static partial class PurgeQueueInputSchema
     private sealed class GeneratedSchema()
         : StructSchema<global::Com.Amazonaws.Sqs.PurgeQueueInput, Builder>(
             ShapeId.Parse("com.amazonaws.sqs#PurgeQueueInput"),
-            [
-                new(
-                    "QueueUrl",
-                    Target0,
-                    isRequired: true,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
-                    ]
-                ),
-            ],
+            [new("QueueUrl", Target0)],
             [
                 new Trait(
                     ShapeId.Parse("smithy.api#input"),
@@ -55,9 +42,7 @@ public static partial class PurgeQueueInputSchema
         public override Builder CreateTypedBuilder() => new();
 
         public override global::Com.Amazonaws.Sqs.PurgeQueueInput Build(Builder builder) =>
-            new global::Com.Amazonaws.Sqs.PurgeQueueInput(
-                builder.QueueUrl ?? throw new MissingRequiredMemberException("QueueUrl")
-            );
+            new global::Com.Amazonaws.Sqs.PurgeQueueInput(builder.QueueUrl);
 
         public override void SerializeMembers<TSerializer>(
             global::Com.Amazonaws.Sqs.PurgeQueueInput value,
@@ -74,7 +59,7 @@ public static partial class PurgeQueueInputSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

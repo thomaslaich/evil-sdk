@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Cloudwatchlogs.Schemas;
 
 public static partial class ListAggregateLogGroupSummariesInputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public IReadOnlyList<string>? AccountIdentifiers { get; set; }
         public bool? IncludeLinkedAccounts { get; set; }
@@ -71,18 +71,7 @@ public static partial class ListAggregateLogGroupSummariesInputSchema
                     ]
                 ),
                 new("dataSources", Target4),
-                new(
-                    "groupBy",
-                    Target5,
-                    isRequired: true,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
-                    ]
-                ),
+                new("groupBy", Target5),
                 new(
                     "nextToken",
                     Target6,
@@ -165,9 +154,9 @@ public static partial class ListAggregateLogGroupSummariesInputSchema
             Builder builder
         ) =>
             new global::Com.Amazonaws.Cloudwatchlogs.ListAggregateLogGroupSummariesInput(
-                builder.GroupBy ?? throw new MissingRequiredMemberException("groupBy"),
                 builder.AccountIdentifiers,
                 builder.DataSources,
+                builder.GroupBy,
                 builder.IncludeLinkedAccounts,
                 builder.Limit,
                 builder.LogGroupClass,
@@ -220,7 +209,14 @@ public static partial class ListAggregateLogGroupSummariesInputSchema
             {
                 serializer.WriteNull(4);
             }
-            serializer.WriteStringEnum(5, value.GroupBy.Value);
+            if (value.GroupBy is { } value5)
+            {
+                serializer.WriteStringEnum(5, value5.Value);
+            }
+            else
+            {
+                serializer.WriteNull(5);
+            }
             if (value.NextToken is { } value6)
             {
                 serializer.WriteString(6, value6);
@@ -239,7 +235,7 @@ public static partial class ListAggregateLogGroupSummariesInputSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

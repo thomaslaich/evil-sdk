@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Secretsmanager.Schemas;
 
 public static partial class ReplicateSecretToRegionsInputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? SecretId { get; set; }
         public IReadOnlyList<global::Com.Amazonaws.Secretsmanager.ReplicaRegionType>? AddReplicaRegions { get; set; }
@@ -29,7 +29,6 @@ public static partial class ReplicateSecretToRegionsInputSchema
                 new(
                     "SecretId",
                     Target0,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
@@ -42,24 +41,9 @@ public static partial class ReplicateSecretToRegionsInputSchema
                                 }
                             )
                         ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
                     ]
                 ),
-                new(
-                    "AddReplicaRegions",
-                    Target1,
-                    isRequired: true,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
-                    ]
-                ),
+                new("AddReplicaRegions", Target1),
                 new(
                     "ForceOverwriteReplicaSecret",
                     Target2,
@@ -98,10 +82,9 @@ public static partial class ReplicateSecretToRegionsInputSchema
             Builder builder
         ) =>
             new global::Com.Amazonaws.Secretsmanager.ReplicateSecretToRegionsInput(
-                builder.AddReplicaRegions
-                    ?? throw new MissingRequiredMemberException("AddReplicaRegions"),
-                builder.SecretId ?? throw new MissingRequiredMemberException("SecretId"),
-                builder.ForceOverwriteReplicaSecret
+                builder.AddReplicaRegions,
+                builder.ForceOverwriteReplicaSecret,
+                builder.SecretId
             );
 
         public override void SerializeMembers<TSerializer>(
@@ -139,7 +122,7 @@ public static partial class ReplicateSecretToRegionsInputSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

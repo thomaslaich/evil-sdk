@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Eventbridge.Schemas;
 
 public static partial class ConnectionQueryStringParameterSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? Key { get; set; }
         public string? Value { get; set; }
@@ -138,7 +138,7 @@ public static partial class ConnectionQueryStringParameterSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Iam.Schemas;
 
 public static partial class DeleteSSHPublicKeyInputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? UserName { get; set; }
         public string? SSHPublicKeyId { get; set; }
@@ -28,7 +28,6 @@ public static partial class DeleteSSHPublicKeyInputSchema
                 new(
                     "UserName",
                     Target0,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
@@ -45,16 +44,11 @@ public static partial class DeleteSSHPublicKeyInputSchema
                             ShapeId.Parse("smithy.api#pattern"),
                             Document.From("^[\\w+=,.@-]+$")
                         ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
                     ]
                 ),
                 new(
                     "SSHPublicKeyId",
                     Target1,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
@@ -68,10 +62,6 @@ public static partial class DeleteSSHPublicKeyInputSchema
                             )
                         ),
                         new Trait(ShapeId.Parse("smithy.api#pattern"), Document.From("^[\\w]+$")),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
                     ]
                 ),
             ],
@@ -100,9 +90,8 @@ public static partial class DeleteSSHPublicKeyInputSchema
 
         public override global::Com.Amazonaws.Iam.DeleteSSHPublicKeyInput Build(Builder builder) =>
             new global::Com.Amazonaws.Iam.DeleteSSHPublicKeyInput(
-                builder.SSHPublicKeyId
-                    ?? throw new MissingRequiredMemberException("SSHPublicKeyId"),
-                builder.UserName ?? throw new MissingRequiredMemberException("UserName")
+                builder.SSHPublicKeyId,
+                builder.UserName
             );
 
         public override void SerializeMembers<TSerializer>(
@@ -128,7 +117,7 @@ public static partial class DeleteSSHPublicKeyInputSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

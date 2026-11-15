@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Dynamodb.Schemas;
 
 public static partial class ExecuteStatementInputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? Statement { get; set; }
         public IReadOnlyList<global::Com.Amazonaws.Dynamodb.AttributeValue>? Parameters { get; set; }
@@ -33,7 +33,6 @@ public static partial class ExecuteStatementInputSchema
                 new(
                     "Statement",
                     Target0,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
@@ -45,10 +44,6 @@ public static partial class ExecuteStatementInputSchema
                                     { "max", Document.From(8192m) },
                                 }
                             )
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
                         ),
                     ]
                 ),
@@ -140,13 +135,13 @@ public static partial class ExecuteStatementInputSchema
             Builder builder
         ) =>
             new global::Com.Amazonaws.Dynamodb.ExecuteStatementInput(
-                builder.Statement ?? throw new MissingRequiredMemberException("Statement"),
                 builder.ConsistentRead,
                 builder.Limit,
                 builder.NextToken,
                 builder.Parameters,
                 builder.ReturnConsumedCapacity,
-                builder.ReturnValuesOnConditionCheckFailure
+                builder.ReturnValuesOnConditionCheckFailure,
+                builder.Statement
             );
 
         public override void SerializeMembers<TSerializer>(
@@ -212,7 +207,7 @@ public static partial class ExecuteStatementInputSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

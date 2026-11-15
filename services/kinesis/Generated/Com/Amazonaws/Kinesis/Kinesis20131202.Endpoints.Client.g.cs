@@ -321,13 +321,13 @@ public sealed class Kinesis20131202EndpointResolver : IEndpointResolver
             "DeleteChannel" when parameters.Input is DeleteChannelInput input =>
                 clientParameters with
                 {
-                    ChannelARN = input.ChannelARN,
+                    ChannelARN = input.ChannelARN ?? clientParameters.ChannelARN,
                     OperationType = "control",
                 },
             "DeleteResourcePolicy" when parameters.Input is DeleteResourcePolicyInput input =>
                 clientParameters with
                 {
-                    ResourceARN = input.ResourceARN,
+                    ResourceARN = input.ResourceARN ?? clientParameters.ResourceARN,
                     StreamId = input.StreamId ?? clientParameters.StreamId,
                     OperationType = "control",
                 },
@@ -350,7 +350,7 @@ public sealed class Kinesis20131202EndpointResolver : IEndpointResolver
             "DescribeChannel" when parameters.Input is DescribeChannelInput input =>
                 clientParameters with
                 {
-                    ChannelARN = input.ChannelARN,
+                    ChannelARN = input.ChannelARN ?? clientParameters.ChannelARN,
                     OperationType = "control",
                 },
             "DescribeLimits" => clientParameters with { OperationType = "control" },
@@ -401,7 +401,7 @@ public sealed class Kinesis20131202EndpointResolver : IEndpointResolver
             "GetResourcePolicy" when parameters.Input is GetResourcePolicyInput input =>
                 clientParameters with
                 {
-                    ResourceARN = input.ResourceARN,
+                    ResourceARN = input.ResourceARN ?? clientParameters.ResourceARN,
                     StreamId = input.StreamId ?? clientParameters.StreamId,
                     OperationType = "control",
                 },
@@ -430,7 +430,7 @@ public sealed class Kinesis20131202EndpointResolver : IEndpointResolver
             "ListStreamConsumers" when parameters.Input is ListStreamConsumersInput input =>
                 clientParameters with
                 {
-                    StreamARN = input.StreamARN,
+                    StreamARN = input.StreamARN ?? clientParameters.StreamARN,
                     StreamId = input.StreamId ?? clientParameters.StreamId,
                     OperationType = "control",
                 },
@@ -438,7 +438,7 @@ public sealed class Kinesis20131202EndpointResolver : IEndpointResolver
             "ListTagsForResource" when parameters.Input is ListTagsForResourceInput input =>
                 clientParameters with
                 {
-                    ResourceARN = input.ResourceARN,
+                    ResourceARN = input.ResourceARN ?? clientParameters.ResourceARN,
                     StreamId = input.StreamId ?? clientParameters.StreamId,
                     OperationType = "control",
                 },
@@ -470,14 +470,14 @@ public sealed class Kinesis20131202EndpointResolver : IEndpointResolver
             "PutResourcePolicy" when parameters.Input is PutResourcePolicyInput input =>
                 clientParameters with
                 {
-                    ResourceARN = input.ResourceARN,
+                    ResourceARN = input.ResourceARN ?? clientParameters.ResourceARN,
                     StreamId = input.StreamId ?? clientParameters.StreamId,
                     OperationType = "control",
                 },
             "RegisterStreamConsumer" when parameters.Input is RegisterStreamConsumerInput input =>
                 clientParameters with
                 {
-                    StreamARN = input.StreamARN,
+                    StreamARN = input.StreamARN ?? clientParameters.StreamARN,
                     StreamId = input.StreamId ?? clientParameters.StreamId,
                     OperationType = "control",
                 },
@@ -511,20 +511,20 @@ public sealed class Kinesis20131202EndpointResolver : IEndpointResolver
             "SubscribeToShard" when parameters.Input is SubscribeToShardInput input =>
                 clientParameters with
                 {
-                    ConsumerARN = input.ConsumerARN,
+                    ConsumerARN = input.ConsumerARN ?? clientParameters.ConsumerARN,
                     StreamId = input.StreamId ?? clientParameters.StreamId,
                     OperationType = "data",
                 },
             "TagResource" when parameters.Input is TagResourceInput input => clientParameters with
             {
-                ResourceARN = input.ResourceARN,
+                ResourceARN = input.ResourceARN ?? clientParameters.ResourceARN,
                 StreamId = input.StreamId ?? clientParameters.StreamId,
                 OperationType = "control",
             },
             "UntagResource" when parameters.Input is UntagResourceInput input =>
                 clientParameters with
                 {
-                    ResourceARN = input.ResourceARN,
+                    ResourceARN = input.ResourceARN ?? clientParameters.ResourceARN,
                     StreamId = input.StreamId ?? clientParameters.StreamId,
                     OperationType = "control",
                 },
@@ -532,7 +532,7 @@ public sealed class Kinesis20131202EndpointResolver : IEndpointResolver
             "UpdateChannel" when parameters.Input is UpdateChannelInput input =>
                 clientParameters with
                 {
-                    ChannelARN = input.ChannelARN,
+                    ChannelARN = input.ChannelARN ?? clientParameters.ChannelARN,
                     OperationType = "control",
                 },
             "UpdateMaxRecordSize" when parameters.Input is UpdateMaxRecordSizeInput input =>
@@ -552,7 +552,7 @@ public sealed class Kinesis20131202EndpointResolver : IEndpointResolver
             "UpdateStreamMode" when parameters.Input is UpdateStreamModeInput input =>
                 clientParameters with
                 {
-                    StreamARN = input.StreamARN,
+                    StreamARN = input.StreamARN ?? clientParameters.StreamARN,
                     StreamId = input.StreamId ?? clientParameters.StreamId,
                     OperationType = "control",
                 },
@@ -560,7 +560,7 @@ public sealed class Kinesis20131202EndpointResolver : IEndpointResolver
                 when parameters.Input is UpdateStreamRecordDistributionStrategyInput input =>
                 clientParameters with
                 {
-                    StreamARN = input.StreamARN,
+                    StreamARN = input.StreamARN ?? clientParameters.StreamARN,
                     StreamId = input.StreamId ?? clientParameters.StreamId,
                     OperationType = "control",
                 },

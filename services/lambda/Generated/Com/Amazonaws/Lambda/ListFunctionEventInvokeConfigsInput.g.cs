@@ -44,7 +44,7 @@ namespace Com.Amazonaws.Lambda;
 /// The maximum number of configurations to return.
 /// </param>
 public sealed record class ListFunctionEventInvokeConfigsInput(
-    string FunctionName,
+    string? FunctionName = null,
     string? Marker = null,
     int? MaxItems = null
 );

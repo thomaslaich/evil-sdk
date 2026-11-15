@@ -36,6 +36,6 @@ namespace Com.Amazonaws.Cloudwatchlogs;
 /// </para>
 /// </param>
 public sealed record class PutLogGroupDeletionProtectionInput(
-    bool DeletionProtectionEnabled,
-    string LogGroupIdentifier
+    bool? DeletionProtectionEnabled = null,
+    string? LogGroupIdentifier = null
 );

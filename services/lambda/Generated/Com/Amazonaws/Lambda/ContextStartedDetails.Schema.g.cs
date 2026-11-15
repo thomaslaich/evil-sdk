@@ -9,7 +9,7 @@ namespace Com.Amazonaws.Lambda.Schemas;
 
 public static partial class ContextStartedDetailsSchema
 {
-    public sealed class Builder { }
+    public sealed class Builder : StructBuilder { }
 
     public static StructSchema<
         global::Com.Amazonaws.Lambda.ContextStartedDetails,
@@ -33,7 +33,7 @@ public static partial class ContextStartedDetailsSchema
             ref TSerializer serializer
         ) { }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

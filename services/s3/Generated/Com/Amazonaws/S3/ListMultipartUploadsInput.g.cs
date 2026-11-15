@@ -140,7 +140,7 @@ namespace Com.Amazonaws.S3;
 /// </para>
 /// </param>
 public sealed record class ListMultipartUploadsInput(
-    string Bucket,
+    string? Bucket = null,
     string? Delimiter = null,
     global::Com.Amazonaws.S3.EncodingType? EncodingType = null,
     string? ExpectedBucketOwner = null,

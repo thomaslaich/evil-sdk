@@ -148,6 +148,6 @@ namespace Com.Amazonaws.Sns;
 /// <c>PlatformApplicationArn</c> for <c>SetPlatformApplicationAttributes</c> action.
 /// </param>
 public sealed record class SetPlatformApplicationAttributesInput(
-    IReadOnlyDictionary<string, string> Attributes,
-    string PlatformApplicationArn
+    IReadOnlyDictionary<string, string>? Attributes = null,
+    string? PlatformApplicationArn = null
 );

@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Sns.Schemas;
 
 public static partial class SetPlatformApplicationAttributesInputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? PlatformApplicationArn { get; set; }
         public IReadOnlyDictionary<string, string>? Attributes { get; set; }
@@ -24,32 +24,7 @@ public static partial class SetPlatformApplicationAttributesInputSchema
     private sealed class GeneratedSchema()
         : StructSchema<global::Com.Amazonaws.Sns.SetPlatformApplicationAttributesInput, Builder>(
             ShapeId.Parse("com.amazonaws.sns#SetPlatformApplicationAttributesInput"),
-            [
-                new(
-                    "PlatformApplicationArn",
-                    Target0,
-                    isRequired: true,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
-                    ]
-                ),
-                new(
-                    "Attributes",
-                    Target1,
-                    isRequired: true,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
-                    ]
-                ),
-            ],
+            [new("PlatformApplicationArn", Target0), new("Attributes", Target1)],
             [
                 new Trait(
                     ShapeId.Parse("smithy.api#input"),
@@ -75,9 +50,8 @@ public static partial class SetPlatformApplicationAttributesInputSchema
             Builder builder
         ) =>
             new global::Com.Amazonaws.Sns.SetPlatformApplicationAttributesInput(
-                builder.Attributes ?? throw new MissingRequiredMemberException("Attributes"),
+                builder.Attributes,
                 builder.PlatformApplicationArn
-                    ?? throw new MissingRequiredMemberException("PlatformApplicationArn")
             );
 
         public override void SerializeMembers<TSerializer>(
@@ -103,7 +77,7 @@ public static partial class SetPlatformApplicationAttributesInputSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

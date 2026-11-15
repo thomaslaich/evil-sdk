@@ -8,6 +8,9 @@ namespace Com.Amazonaws.Route53;
 /// A complex type that contains information about the request to associate a VPC with a private hosted
 /// zone.
 /// </summary>
+/// <param name="Comment">
+/// <i>Optional:</i> A comment about the association request.
+/// </param>
 /// <param name="HostedZoneId">
 /// <para>
 /// The ID of the private hosted zone that you want to associate an Amazon VPC with.
@@ -21,11 +24,8 @@ namespace Com.Amazonaws.Route53;
 /// A complex type that contains information about the VPC that you want to associate with a private
 /// hosted zone.
 /// </param>
-/// <param name="Comment">
-/// <i>Optional:</i> A comment about the association request.
-/// </param>
 public sealed record class AssociateVPCWithHostedZoneInput(
-    string HostedZoneId,
-    global::Com.Amazonaws.Route53.VPC VPC,
-    string? Comment = null
+    string? Comment = null,
+    string? HostedZoneId = null,
+    global::Com.Amazonaws.Route53.VPC? VPC = null
 );

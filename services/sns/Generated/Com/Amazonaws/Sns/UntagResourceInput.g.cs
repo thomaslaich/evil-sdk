@@ -15,4 +15,7 @@ namespace Com.Amazonaws.Sns;
 /// <param name="TagKeys">
 /// The list of tag keys to remove from the specified topic.
 /// </param>
-public sealed record class UntagResourceInput(string ResourceArn, IReadOnlyList<string> TagKeys);
+public sealed record class UntagResourceInput(
+    string? ResourceArn = null,
+    IReadOnlyList<string>? TagKeys = null
+);

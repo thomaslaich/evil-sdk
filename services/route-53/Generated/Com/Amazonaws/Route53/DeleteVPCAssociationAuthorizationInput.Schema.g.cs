@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Route53.Schemas;
 
 public static partial class DeleteVPCAssociationAuthorizationInputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? HostedZoneId { get; set; }
         public global::Com.Amazonaws.Route53.VPC? VPC { get; set; }
@@ -31,7 +31,6 @@ public static partial class DeleteVPCAssociationAuthorizationInputSchema
                 new(
                     "HostedZoneId",
                     Target0,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
@@ -48,24 +47,9 @@ public static partial class DeleteVPCAssociationAuthorizationInputSchema
                                 }
                             )
                         ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
                     ]
                 ),
-                new(
-                    "VPC",
-                    Target1,
-                    isRequired: true,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
-                    ]
-                ),
+                new("VPC", Target1),
             ],
             [
                 new Trait(
@@ -94,8 +78,8 @@ public static partial class DeleteVPCAssociationAuthorizationInputSchema
             Builder builder
         ) =>
             new global::Com.Amazonaws.Route53.DeleteVPCAssociationAuthorizationInput(
-                builder.HostedZoneId ?? throw new MissingRequiredMemberException("HostedZoneId"),
-                builder.VPC ?? throw new MissingRequiredMemberException("VPC")
+                builder.HostedZoneId,
+                builder.VPC
             );
 
         public override void SerializeMembers<TSerializer>(
@@ -121,7 +105,7 @@ public static partial class DeleteVPCAssociationAuthorizationInputSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

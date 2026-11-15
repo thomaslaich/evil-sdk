@@ -28,6 +28,6 @@ namespace Com.Amazonaws.Iam;
 /// </para>
 /// </param>
 public sealed record class AddRoleToInstanceProfileInput(
-    string InstanceProfileName,
-    string RoleName
+    string? InstanceProfileName = null,
+    string? RoleName = null
 );

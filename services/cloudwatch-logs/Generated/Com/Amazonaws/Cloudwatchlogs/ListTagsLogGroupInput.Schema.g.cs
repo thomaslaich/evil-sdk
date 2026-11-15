@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Cloudwatchlogs.Schemas;
 
 public static partial class ListTagsLogGroupInputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? LogGroupName { get; set; }
     }
@@ -27,7 +27,6 @@ public static partial class ListTagsLogGroupInputSchema
                 new(
                     "logGroupName",
                     Target0,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
@@ -43,10 +42,6 @@ public static partial class ListTagsLogGroupInputSchema
                         new Trait(
                             ShapeId.Parse("smithy.api#pattern"),
                             Document.From("^[\\.\\-_/#A-Za-z0-9]+$")
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
                         ),
                     ]
                 ),
@@ -72,10 +67,7 @@ public static partial class ListTagsLogGroupInputSchema
 
         public override global::Com.Amazonaws.Cloudwatchlogs.ListTagsLogGroupInput Build(
             Builder builder
-        ) =>
-            new global::Com.Amazonaws.Cloudwatchlogs.ListTagsLogGroupInput(
-                builder.LogGroupName ?? throw new MissingRequiredMemberException("logGroupName")
-            );
+        ) => new global::Com.Amazonaws.Cloudwatchlogs.ListTagsLogGroupInput(builder.LogGroupName);
 
         public override void SerializeMembers<TSerializer>(
             global::Com.Amazonaws.Cloudwatchlogs.ListTagsLogGroupInput value,
@@ -92,7 +84,7 @@ public static partial class ListTagsLogGroupInputSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

@@ -9,14 +9,6 @@ namespace Com.Amazonaws.Sqs;
 /// <summary>
 /// Retrieves one or more messages from a specified queue.
 /// </summary>
-/// <param name="QueueUrl">
-/// <para>
-/// The URL of the Amazon SQS queue from which messages are received.
-/// </para>
-/// <para>
-/// Queue URLs and names are case-sensitive.
-/// </para>
-/// </param>
 /// <param name="AttributeNames">
 /// <para>
 /// <b>Important:</b> This parameter has been discontinued but will be supported for backward
@@ -226,6 +218,14 @@ namespace Com.Amazonaws.Sqs;
 /// </item>
 /// </list>
 /// </param>
+/// <param name="QueueUrl">
+/// <para>
+/// The URL of the Amazon SQS queue from which messages are received.
+/// </para>
+/// <para>
+/// Queue URLs and names are case-sensitive.
+/// </para>
+/// </param>
 /// <param name="ReceiveRequestAttemptId">
 /// <para>
 /// This parameter applies only to FIFO (first-in-first-out) queues.
@@ -368,11 +368,11 @@ namespace Com.Amazonaws.Sqs;
 /// </para>
 /// </param>
 public sealed record class ReceiveMessageInput(
-    string QueueUrl,
     IReadOnlyList<QueueAttributeName>? AttributeNames = null,
     int? MaxNumberOfMessages = null,
     IReadOnlyList<string>? MessageAttributeNames = null,
     IReadOnlyList<MessageSystemAttributeName>? MessageSystemAttributeNames = null,
+    string? QueueUrl = null,
     string? ReceiveRequestAttemptId = null,
     int? VisibilityTimeout = null,
     int? WaitTimeSeconds = null

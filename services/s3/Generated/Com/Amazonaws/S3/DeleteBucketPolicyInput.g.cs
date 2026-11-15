@@ -36,6 +36,6 @@ namespace Com.Amazonaws.S3;
 /// </para>
 /// </param>
 public sealed record class DeleteBucketPolicyInput(
-    string Bucket,
+    string? Bucket = null,
     string? ExpectedBucketOwner = null
 );

@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Sqs.Schemas;
 
 public static partial class MessageAttributeValueSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? StringValue { get; set; }
         public byte[]? BinaryValue { get; set; }
@@ -155,7 +155,7 @@ public static partial class MessageAttributeValueSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

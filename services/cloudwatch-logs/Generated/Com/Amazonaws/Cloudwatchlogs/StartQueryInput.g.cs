@@ -14,16 +14,6 @@ namespace Com.Amazonaws.Cloudwatchlogs;
 /// the query. Specified as epoch time, the number of seconds since <c>January 1, 1970, 00:00:00
 /// UTC</c>.
 /// </param>
-/// <param name="QueryString">
-/// The query string to use. For more information, see
-/// <see href="https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/CWL_QuerySyntax.html">CloudWatch
-/// Logs Insights Query Syntax</see>.
-/// </param>
-/// <param name="StartTime">
-/// The beginning of the time range to query. The range is inclusive, so the specified start time is
-/// included in the query. Specified as epoch time, the number of seconds since <c>January 1, 1970,
-/// 00:00:00 UTC</c>.
-/// </param>
 /// <param name="Limit">
 /// The maximum number of log events to return from the query. The maximum limit is 100,000. The maximum
 /// events returned in a single GetQueryResults API call is 10,000 log events per request. You can
@@ -81,13 +71,23 @@ namespace Com.Amazonaws.Cloudwatchlogs;
 /// <see href="https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/CWL_AnalyzeLogData_Languages.html">Supported
 /// query languages</see>.
 /// </param>
+/// <param name="QueryString">
+/// The query string to use. For more information, see
+/// <see href="https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/CWL_QuerySyntax.html">CloudWatch
+/// Logs Insights Query Syntax</see>.
+/// </param>
+/// <param name="StartTime">
+/// The beginning of the time range to query. The range is inclusive, so the specified start time is
+/// included in the query. Specified as epoch time, the number of seconds since <c>January 1, 1970,
+/// 00:00:00 UTC</c>.
+/// </param>
 public sealed record class StartQueryInput(
-    long EndTime,
-    string QueryString,
-    long StartTime,
+    long? EndTime = null,
     int? Limit = null,
     IReadOnlyList<string>? LogGroupIdentifiers = null,
     string? LogGroupName = null,
     IReadOnlyList<string>? LogGroupNames = null,
-    global::Com.Amazonaws.Cloudwatchlogs.QueryLanguage? QueryLanguage = null
+    global::Com.Amazonaws.Cloudwatchlogs.QueryLanguage? QueryLanguage = null,
+    string? QueryString = null,
+    long? StartTime = null
 );

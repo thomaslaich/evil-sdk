@@ -10,4 +10,4 @@ namespace Com.Amazonaws.Route53;
 /// <param name="Id">
 /// The ID of the hosted zone that you want to get information about.
 /// </param>
-public sealed record class GetHostedZoneInput(string Id);
+public sealed record class GetHostedZoneInput(string? Id = null);

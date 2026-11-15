@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Sts.Schemas;
 
 public static partial class FederatedUserSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? FederatedUserId { get; set; }
         public string? Arn { get; set; }
@@ -122,7 +122,7 @@ public static partial class FederatedUserSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

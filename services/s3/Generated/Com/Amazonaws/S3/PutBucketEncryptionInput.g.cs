@@ -67,9 +67,10 @@ namespace Com.Amazonaws.S3;
 /// </para>
 /// </param>
 public sealed record class PutBucketEncryptionInput(
-    string Bucket,
-    global::Com.Amazonaws.S3.ServerSideEncryptionConfiguration ServerSideEncryptionConfiguration,
+    string? Bucket = null,
     global::Com.Amazonaws.S3.ChecksumAlgorithm? ChecksumAlgorithm = null,
     string? ContentMD5 = null,
-    string? ExpectedBucketOwner = null
+    string? ExpectedBucketOwner = null,
+    global::Com.Amazonaws.S3.ServerSideEncryptionConfiguration? ServerSideEncryptionConfiguration =
+        null
 );

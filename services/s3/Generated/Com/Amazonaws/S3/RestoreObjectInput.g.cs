@@ -33,9 +33,6 @@ namespace Com.Amazonaws.S3;
 /// Outposts?</see> in the <i>Amazon S3 User Guide</i>.
 /// </para>
 /// </param>
-/// <param name="Key">
-/// Object key for which the action was initiated.
-/// </param>
 /// <param name="ChecksumAlgorithm">
 /// <para>
 /// Indicates the algorithm used to create the checksum for the object when you use the SDK. This header
@@ -56,14 +53,17 @@ namespace Com.Amazonaws.S3;
 /// actual owner of the bucket, the request fails with the HTTP status code <c>403 Forbidden</c> (access
 /// denied).
 /// </param>
+/// <param name="Key">
+/// Object key for which the action was initiated.
+/// </param>
 /// <param name="VersionId">
 /// VersionId used to reference a specific version of the object.
 /// </param>
 public sealed record class RestoreObjectInput(
-    string Bucket,
-    string Key,
+    string? Bucket = null,
     global::Com.Amazonaws.S3.ChecksumAlgorithm? ChecksumAlgorithm = null,
     string? ExpectedBucketOwner = null,
+    string? Key = null,
     global::Com.Amazonaws.S3.RequestPayer? RequestPayer = null,
     global::Com.Amazonaws.S3.RestoreRequest? RestoreRequest = null,
     string? VersionId = null

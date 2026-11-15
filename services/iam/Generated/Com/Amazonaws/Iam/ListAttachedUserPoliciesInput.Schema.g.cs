@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Iam.Schemas;
 
 public static partial class ListAttachedUserPoliciesInputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? UserName { get; set; }
         public string? PathPrefix { get; set; }
@@ -30,7 +30,6 @@ public static partial class ListAttachedUserPoliciesInputSchema
                 new(
                     "UserName",
                     Target0,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
@@ -46,10 +45,6 @@ public static partial class ListAttachedUserPoliciesInputSchema
                         new Trait(
                             ShapeId.Parse("smithy.api#pattern"),
                             Document.From("^[\\w+=,.@-]+$")
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
                         ),
                     ]
                 ),
@@ -150,10 +145,10 @@ public static partial class ListAttachedUserPoliciesInputSchema
             Builder builder
         ) =>
             new global::Com.Amazonaws.Iam.ListAttachedUserPoliciesInput(
-                builder.UserName ?? throw new MissingRequiredMemberException("UserName"),
                 builder.Marker,
                 builder.MaxItems,
-                builder.PathPrefix
+                builder.PathPrefix,
+                builder.UserName
             );
 
         public override void SerializeMembers<TSerializer>(
@@ -195,7 +190,7 @@ public static partial class ListAttachedUserPoliciesInputSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

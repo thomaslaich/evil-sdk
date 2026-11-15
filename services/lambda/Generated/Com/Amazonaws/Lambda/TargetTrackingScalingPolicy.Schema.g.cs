@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Lambda.Schemas;
 
 public static partial class TargetTrackingScalingPolicySchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public global::Com.Amazonaws.Lambda.CapacityProviderPredefinedMetricType? PredefinedMetricType { get; set; }
         public double? TargetValue { get; set; }
@@ -94,7 +94,7 @@ public static partial class TargetTrackingScalingPolicySchema
             serializer.WriteDouble(1, value.TargetValue);
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

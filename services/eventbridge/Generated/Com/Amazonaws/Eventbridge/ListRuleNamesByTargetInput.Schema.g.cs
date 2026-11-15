@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Eventbridge.Schemas;
 
 public static partial class ListRuleNamesByTargetInputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? TargetArn { get; set; }
         public string? EventBusName { get; set; }
@@ -30,7 +30,6 @@ public static partial class ListRuleNamesByTargetInputSchema
                 new(
                     "TargetArn",
                     Target0,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
@@ -42,10 +41,6 @@ public static partial class ListRuleNamesByTargetInputSchema
                                     { "max", Document.From(1600m) },
                                 }
                             )
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
                         ),
                     ]
                 ),
@@ -144,10 +139,10 @@ public static partial class ListRuleNamesByTargetInputSchema
             Builder builder
         ) =>
             new global::Com.Amazonaws.Eventbridge.ListRuleNamesByTargetInput(
-                builder.TargetArn ?? throw new MissingRequiredMemberException("TargetArn"),
                 builder.EventBusName,
                 builder.Limit,
-                builder.NextToken
+                builder.NextToken,
+                builder.TargetArn
             );
 
         public override void SerializeMembers<TSerializer>(
@@ -189,7 +184,7 @@ public static partial class ListRuleNamesByTargetInputSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

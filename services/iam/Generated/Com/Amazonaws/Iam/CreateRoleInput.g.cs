@@ -46,21 +46,6 @@ namespace Com.Amazonaws.Iam;
 /// Upon success, the response includes the same trust policy in JSON format.
 /// </para>
 /// </param>
-/// <param name="RoleName">
-/// <para>
-/// The name of the role to create.
-/// </para>
-/// <para>
-/// IAM user, group, role, and policy names must be unique within the account. Names are not
-/// distinguished by case. For example, you cannot create resources named both "MyResource" and
-/// "myresource".
-/// </para>
-/// <para>
-/// This parameter allows (through its <see href="http://wikipedia.org/wiki/regex">regex pattern</see>)
-/// a string of characters consisting of upper and lowercase alphanumeric characters with no spaces. You
-/// can also include any of the following characters: _+=,.@-
-/// </para>
-/// </param>
 /// <param name="Description">
 /// A description of the role.
 /// </param>
@@ -116,6 +101,21 @@ namespace Com.Amazonaws.Iam;
 /// types</see> in the <i>IAM User Guide</i>.
 /// </para>
 /// </param>
+/// <param name="RoleName">
+/// <para>
+/// The name of the role to create.
+/// </para>
+/// <para>
+/// IAM user, group, role, and policy names must be unique within the account. Names are not
+/// distinguished by case. For example, you cannot create resources named both "MyResource" and
+/// "myresource".
+/// </para>
+/// <para>
+/// This parameter allows (through its <see href="http://wikipedia.org/wiki/regex">regex pattern</see>)
+/// a string of characters consisting of upper and lowercase alphanumeric characters with no spaces. You
+/// can also include any of the following characters: _+=,.@-
+/// </para>
+/// </param>
 /// <param name="Tags">
 /// <para>
 /// A list of tags that you want to attach to the new role. Each tag consists of a key name and an
@@ -129,11 +129,11 @@ namespace Com.Amazonaws.Iam;
 /// </para>
 /// </param>
 public sealed record class CreateRoleInput(
-    string AssumeRolePolicyDocument,
-    string RoleName,
+    string? AssumeRolePolicyDocument = null,
     string? Description = null,
     int? MaxSessionDuration = null,
     string? Path = null,
     string? PermissionsBoundary = null,
+    string? RoleName = null,
     IReadOnlyList<global::Com.Amazonaws.Iam.Tag>? Tags = null
 );

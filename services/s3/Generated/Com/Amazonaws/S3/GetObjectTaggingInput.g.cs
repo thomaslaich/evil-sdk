@@ -33,21 +33,21 @@ namespace Com.Amazonaws.S3;
 /// Outposts?</see> in the <i>Amazon S3 User Guide</i>.
 /// </para>
 /// </param>
-/// <param name="Key">
-/// Object key for which to get the tagging information.
-/// </param>
 /// <param name="ExpectedBucketOwner">
 /// The account ID of the expected bucket owner. If the account ID that you provide does not match the
 /// actual owner of the bucket, the request fails with the HTTP status code <c>403 Forbidden</c> (access
 /// denied).
 /// </param>
+/// <param name="Key">
+/// Object key for which to get the tagging information.
+/// </param>
 /// <param name="VersionId">
 /// The versionId of the object for which to get the tagging information.
 /// </param>
 public sealed record class GetObjectTaggingInput(
-    string Bucket,
-    string Key,
+    string? Bucket = null,
     string? ExpectedBucketOwner = null,
+    string? Key = null,
     global::Com.Amazonaws.S3.RequestPayer? RequestPayer = null,
     string? VersionId = null
 );

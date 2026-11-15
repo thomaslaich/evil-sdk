@@ -10,19 +10,19 @@ namespace Com.Amazonaws.Lambda;
 /// <param name="LayerName">
 /// The name or Amazon Resource Name (ARN) of the layer.
 /// </param>
-/// <param name="StatementId">
-/// The identifier that was specified when the statement was added.
-/// </param>
 /// <param name="RevisionId">
 /// Only update the policy if the revision ID matches the ID specified. Use this option to avoid
 /// modifying a policy that has changed since you last read it.
+/// </param>
+/// <param name="StatementId">
+/// The identifier that was specified when the statement was added.
 /// </param>
 /// <param name="VersionNumber">
 /// The version number.
 /// </param>
 public sealed record class RemoveLayerVersionPermissionInput(
-    string LayerName,
-    string StatementId,
+    string? LayerName = null,
     string? RevisionId = null,
+    string? StatementId = null,
     long? VersionNumber = null
 );

@@ -32,7 +32,7 @@ namespace Com.Amazonaws.Iam;
 /// </para>
 /// </param>
 public sealed record class UpdateSigningCertificateInput(
-    string CertificateId,
-    StatusType Status,
+    string? CertificateId = null,
+    StatusType? Status = null,
     string? UserName = null
 );

@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Sqs.Schemas;
 
 public static partial class GetQueueUrlInputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? QueueName { get; set; }
         public string? QueueOwnerAWSAccountId { get; set; }
@@ -24,21 +24,7 @@ public static partial class GetQueueUrlInputSchema
     private sealed class GeneratedSchema()
         : StructSchema<global::Com.Amazonaws.Sqs.GetQueueUrlInput, Builder>(
             ShapeId.Parse("com.amazonaws.sqs#GetQueueUrlInput"),
-            [
-                new(
-                    "QueueName",
-                    Target0,
-                    isRequired: true,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
-                    ]
-                ),
-                new("QueueOwnerAWSAccountId", Target1),
-            ],
+            [new("QueueName", Target0), new("QueueOwnerAWSAccountId", Target1)],
             [
                 new Trait(
                     ShapeId.Parse("smithy.api#input"),
@@ -64,7 +50,7 @@ public static partial class GetQueueUrlInputSchema
 
         public override global::Com.Amazonaws.Sqs.GetQueueUrlInput Build(Builder builder) =>
             new global::Com.Amazonaws.Sqs.GetQueueUrlInput(
-                builder.QueueName ?? throw new MissingRequiredMemberException("QueueName"),
+                builder.QueueName,
                 builder.QueueOwnerAWSAccountId
             );
 
@@ -91,7 +77,7 @@ public static partial class GetQueueUrlInputSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

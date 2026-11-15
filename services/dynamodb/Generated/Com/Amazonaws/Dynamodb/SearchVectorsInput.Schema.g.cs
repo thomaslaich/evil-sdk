@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Dynamodb.Schemas;
 
 public static partial class SearchVectorsInputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? TableName { get; set; }
         public string? IndexName { get; set; }
@@ -38,7 +38,6 @@ public static partial class SearchVectorsInputSchema
                 new(
                     "TableName",
                     Target0,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
@@ -50,10 +49,6 @@ public static partial class SearchVectorsInputSchema
                                     { "max", Document.From(1024m) },
                                 }
                             )
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
                         ),
                         new Trait(
                             ShapeId.Parse("smithy.rules#contextParam"),
@@ -69,7 +64,6 @@ public static partial class SearchVectorsInputSchema
                 new(
                     "IndexName",
                     Target1,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
@@ -86,33 +80,17 @@ public static partial class SearchVectorsInputSchema
                             ShapeId.Parse("smithy.api#pattern"),
                             Document.From("^[a-zA-Z0-9_.-]+$")
                         ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
                     ]
                 ),
                 new("ReturnConsumedCapacity", Target2),
                 new("ExpressionAttributeNames", Target3),
                 new("ExpressionAttributeValues", Target4),
                 new("ProjectionExpression", Target5),
-                new(
-                    "SearchVector",
-                    Target6,
-                    isRequired: true,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
-                    ]
-                ),
+                new("SearchVector", Target6),
                 new("SearchConditionExpression", Target7),
                 new(
                     "TopK",
                     Target8,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
@@ -124,10 +102,6 @@ public static partial class SearchVectorsInputSchema
                             Document.From(
                                 new Dictionary<string, Document> { { "min", Document.From(1m) } }
                             )
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
                         ),
                     ]
                 ),
@@ -181,15 +155,15 @@ public static partial class SearchVectorsInputSchema
 
         public override global::Com.Amazonaws.Dynamodb.SearchVectorsInput Build(Builder builder) =>
             new global::Com.Amazonaws.Dynamodb.SearchVectorsInput(
-                builder.IndexName ?? throw new MissingRequiredMemberException("IndexName"),
-                builder.SearchVector ?? throw new MissingRequiredMemberException("SearchVector"),
-                builder.TableName ?? throw new MissingRequiredMemberException("TableName"),
-                builder.TopK.GetValueOrDefault(),
                 builder.ExpressionAttributeNames,
                 builder.ExpressionAttributeValues,
+                builder.IndexName,
                 builder.ProjectionExpression,
                 builder.ReturnConsumedCapacity,
-                builder.SearchConditionExpression
+                builder.SearchConditionExpression,
+                builder.SearchVector,
+                builder.TableName,
+                builder.TopK
             );
 
         public override void SerializeMembers<TSerializer>(
@@ -261,10 +235,17 @@ public static partial class SearchVectorsInputSchema
             {
                 serializer.WriteNull(7);
             }
-            serializer.WriteInteger(8, value.TopK);
+            if (value.TopK is { } value8)
+            {
+                serializer.WriteInteger(8, value8);
+            }
+            else
+            {
+                serializer.WriteNull(8);
+            }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

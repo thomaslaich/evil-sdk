@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Kinesis.Schemas;
 
 public static partial class UpdateChannelInputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? ChannelARN { get; set; }
         public global::Com.Amazonaws.Kinesis.S3DestinationUpdateInput? S3DestinationConfiguration { get; set; }
@@ -30,7 +30,6 @@ public static partial class UpdateChannelInputSchema
                 new(
                     "ChannelARN",
                     Target0,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
@@ -46,10 +45,6 @@ public static partial class UpdateChannelInputSchema
                         new Trait(
                             ShapeId.Parse("smithy.api#pattern"),
                             Document.From("^arn:aws.*:kinesis:.*:\\d{12}:channel/\\S+$")
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
                         ),
                         new Trait(
                             ShapeId.Parse("smithy.rules#contextParam"),
@@ -101,7 +96,7 @@ public static partial class UpdateChannelInputSchema
 
         public override global::Com.Amazonaws.Kinesis.UpdateChannelInput Build(Builder builder) =>
             new global::Com.Amazonaws.Kinesis.UpdateChannelInput(
-                builder.ChannelARN ?? throw new MissingRequiredMemberException("ChannelARN"),
+                builder.ChannelARN,
                 builder.LoggingConfiguration,
                 builder.S3DestinationConfiguration,
                 builder.S3TablesDestinationConfiguration
@@ -146,7 +141,7 @@ public static partial class UpdateChannelInputSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

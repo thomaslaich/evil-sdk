@@ -9,10 +9,6 @@ namespace Com.Amazonaws.Cloudwatchlogs;
 /// <summary>
 /// Represents the Smithy structure com.amazonaws.cloudwatchlogs#DescribeAccountPoliciesInput.
 /// </summary>
-/// <param name="PolicyType">
-/// Use this parameter to limit the returned policies to only the policies that match the policy type
-/// that you specify.
-/// </param>
 /// <param name="AccountIdentifiers">
 /// <para>
 /// If you are using an account that is set up as a monitoring account for CloudWatch unified
@@ -30,9 +26,13 @@ namespace Com.Amazonaws.Cloudwatchlogs;
 /// <param name="PolicyName">
 /// Use this parameter to limit the returned policies to only the policy with the name that you specify.
 /// </param>
+/// <param name="PolicyType">
+/// Use this parameter to limit the returned policies to only the policies that match the policy type
+/// that you specify.
+/// </param>
 public sealed record class DescribeAccountPoliciesInput(
-    global::Com.Amazonaws.Cloudwatchlogs.PolicyType PolicyType,
     IReadOnlyList<string>? AccountIdentifiers = null,
     string? NextToken = null,
-    string? PolicyName = null
+    string? PolicyName = null,
+    global::Com.Amazonaws.Cloudwatchlogs.PolicyType? PolicyType = null
 );

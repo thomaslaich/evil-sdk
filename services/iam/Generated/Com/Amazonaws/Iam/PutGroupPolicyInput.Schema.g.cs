@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Iam.Schemas;
 
 public static partial class PutGroupPolicyInputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? GroupName { get; set; }
         public string? PolicyName { get; set; }
@@ -29,7 +29,6 @@ public static partial class PutGroupPolicyInputSchema
                 new(
                     "GroupName",
                     Target0,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
@@ -45,17 +44,12 @@ public static partial class PutGroupPolicyInputSchema
                         new Trait(
                             ShapeId.Parse("smithy.api#pattern"),
                             Document.From("^[\\w+=,.@-]+$")
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
                         ),
                     ]
                 ),
                 new(
                     "PolicyName",
                     Target1,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
@@ -72,16 +66,11 @@ public static partial class PutGroupPolicyInputSchema
                             ShapeId.Parse("smithy.api#pattern"),
                             Document.From("^[\\w+=,.@-]+$")
                         ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
                     ]
                 ),
                 new(
                     "PolicyDocument",
                     Target2,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
@@ -97,10 +86,6 @@ public static partial class PutGroupPolicyInputSchema
                         new Trait(
                             ShapeId.Parse("smithy.api#pattern"),
                             Document.From("^[\\u0009\\u000A\\u000D\\u0020-\\u00FF]+$")
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
                         ),
                     ]
                 ),
@@ -134,10 +119,9 @@ public static partial class PutGroupPolicyInputSchema
 
         public override global::Com.Amazonaws.Iam.PutGroupPolicyInput Build(Builder builder) =>
             new global::Com.Amazonaws.Iam.PutGroupPolicyInput(
-                builder.GroupName ?? throw new MissingRequiredMemberException("GroupName"),
-                builder.PolicyDocument
-                    ?? throw new MissingRequiredMemberException("PolicyDocument"),
-                builder.PolicyName ?? throw new MissingRequiredMemberException("PolicyName")
+                builder.GroupName,
+                builder.PolicyDocument,
+                builder.PolicyName
             );
 
         public override void SerializeMembers<TSerializer>(
@@ -171,7 +155,7 @@ public static partial class PutGroupPolicyInputSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

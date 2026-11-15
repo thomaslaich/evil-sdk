@@ -18,9 +18,6 @@ namespace Com.Amazonaws.S3;
 /// <param name="Bucket">
 /// The name of the bucket that contains the object.
 /// </param>
-/// <param name="Key">
-/// The object key.
-/// </param>
 /// <param name="ChecksumMode">
 /// Set to <c>ENABLED</c> to validate the checksum of the annotation payload on retrieval.
 /// </param>
@@ -28,15 +25,18 @@ namespace Com.Amazonaws.S3;
 /// The account ID of the expected bucket owner. If the bucket is owned by a different account, the
 /// request fails with an HTTP 403 (Access Denied) error.
 /// </param>
+/// <param name="Key">
+/// The object key.
+/// </param>
 /// <param name="VersionId">
 /// The version ID of the object.
 /// </param>
 public sealed record class GetObjectAnnotationInput(
-    string AnnotationName,
-    string Bucket,
-    string Key,
+    string? AnnotationName = null,
+    string? Bucket = null,
     global::Com.Amazonaws.S3.ChecksumMode? ChecksumMode = null,
     string? ExpectedBucketOwner = null,
+    string? Key = null,
     global::Com.Amazonaws.S3.RequestPayer? RequestPayer = null,
     string? VersionId = null
 );

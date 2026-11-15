@@ -10,13 +10,6 @@ namespace Com.Amazonaws.S3;
 /// <param name="Bucket">
 /// The name of the Amazon S3 bucket whose <c>PublicAccessBlock</c> configuration you want to set.
 /// </param>
-/// <param name="PublicAccessBlockConfiguration">
-/// The <c>PublicAccessBlock</c> configuration that you want to apply to this Amazon S3 bucket. You can
-/// enable the configuration options in any combination. For more information about when Amazon S3
-/// considers a bucket or object public, see
-/// <see href="https://docs.aws.amazon.com/AmazonS3/latest/dev/access-control-block-public-access.html#access-control-block-public-access-policy-status">The
-/// Meaning of "Public"</see> in the <i>Amazon S3 User Guide</i>.
-/// </param>
 /// <param name="ChecksumAlgorithm">
 /// <para>
 /// Indicates the algorithm used to create the checksum for the object when you use the SDK. This header
@@ -46,10 +39,17 @@ namespace Com.Amazonaws.S3;
 /// actual owner of the bucket, the request fails with the HTTP status code <c>403 Forbidden</c> (access
 /// denied).
 /// </param>
+/// <param name="PublicAccessBlockConfiguration">
+/// The <c>PublicAccessBlock</c> configuration that you want to apply to this Amazon S3 bucket. You can
+/// enable the configuration options in any combination. For more information about when Amazon S3
+/// considers a bucket or object public, see
+/// <see href="https://docs.aws.amazon.com/AmazonS3/latest/dev/access-control-block-public-access.html#access-control-block-public-access-policy-status">The
+/// Meaning of "Public"</see> in the <i>Amazon S3 User Guide</i>.
+/// </param>
 public sealed record class PutPublicAccessBlockInput(
-    string Bucket,
-    global::Com.Amazonaws.S3.PublicAccessBlockConfiguration PublicAccessBlockConfiguration,
+    string? Bucket = null,
     global::Com.Amazonaws.S3.ChecksumAlgorithm? ChecksumAlgorithm = null,
     string? ContentMD5 = null,
-    string? ExpectedBucketOwner = null
+    string? ExpectedBucketOwner = null,
+    global::Com.Amazonaws.S3.PublicAccessBlockConfiguration? PublicAccessBlockConfiguration = null
 );

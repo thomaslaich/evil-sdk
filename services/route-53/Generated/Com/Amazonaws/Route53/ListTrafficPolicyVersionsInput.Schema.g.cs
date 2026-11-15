@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Route53.Schemas;
 
 public static partial class ListTrafficPolicyVersionsInputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? Id { get; set; }
         public string? TrafficPolicyVersionMarker { get; set; }
@@ -29,7 +29,6 @@ public static partial class ListTrafficPolicyVersionsInputSchema
                 new(
                     "Id",
                     Target0,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
@@ -45,10 +44,6 @@ public static partial class ListTrafficPolicyVersionsInputSchema
                                     { "max", Document.From(36m) },
                                 }
                             )
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
                         ),
                     ]
                 ),
@@ -111,7 +106,7 @@ public static partial class ListTrafficPolicyVersionsInputSchema
             Builder builder
         ) =>
             new global::Com.Amazonaws.Route53.ListTrafficPolicyVersionsInput(
-                builder.Id ?? throw new MissingRequiredMemberException("Id"),
+                builder.Id,
                 builder.MaxItems,
                 builder.TrafficPolicyVersionMarker
             );
@@ -147,7 +142,7 @@ public static partial class ListTrafficPolicyVersionsInputSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

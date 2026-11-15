@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Cloudwatchlogs.Schemas;
 
 public static partial class PutDeliveryDestinationPolicyInputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? DeliveryDestinationName { get; set; }
         public string? DeliveryDestinationPolicy { get; set; }
@@ -31,7 +31,6 @@ public static partial class PutDeliveryDestinationPolicyInputSchema
                 new(
                     "deliveryDestinationName",
                     Target0,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
@@ -45,16 +44,11 @@ public static partial class PutDeliveryDestinationPolicyInputSchema
                             )
                         ),
                         new Trait(ShapeId.Parse("smithy.api#pattern"), Document.From("^[\\w-]*$")),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
                     ]
                 ),
                 new(
                     "deliveryDestinationPolicy",
                     Target1,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
@@ -66,10 +60,6 @@ public static partial class PutDeliveryDestinationPolicyInputSchema
                                     { "max", Document.From(51200m) },
                                 }
                             )
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
                         ),
                     ]
                 ),
@@ -103,10 +93,8 @@ public static partial class PutDeliveryDestinationPolicyInputSchema
             Builder builder
         ) =>
             new global::Com.Amazonaws.Cloudwatchlogs.PutDeliveryDestinationPolicyInput(
-                builder.DeliveryDestinationName
-                    ?? throw new MissingRequiredMemberException("deliveryDestinationName"),
+                builder.DeliveryDestinationName,
                 builder.DeliveryDestinationPolicy
-                    ?? throw new MissingRequiredMemberException("deliveryDestinationPolicy")
             );
 
         public override void SerializeMembers<TSerializer>(
@@ -132,7 +120,7 @@ public static partial class PutDeliveryDestinationPolicyInputSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

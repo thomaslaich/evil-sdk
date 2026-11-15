@@ -7,10 +7,6 @@ namespace Com.Amazonaws.Kinesis;
 /// <summary>
 /// Represents the input for GetRecords.
 /// </summary>
-/// <param name="ShardIterator">
-/// The position in the shard from which you want to start sequentially reading data records. A shard
-/// iterator specifies this position using the sequence number of a data record in the shard.
-/// </param>
 /// <param name="DryRun">
 /// Checks if your request will succeed. <c>DryRun</c> is an optional parameter.
 /// </param>
@@ -19,6 +15,10 @@ namespace Com.Amazonaws.Kinesis;
 /// that is greater than 10,000, GetRecords throws <c>InvalidArgumentException</c>. The default value is
 /// 10,000.
 /// </param>
+/// <param name="ShardIterator">
+/// The position in the shard from which you want to start sequentially reading data records. A shard
+/// iterator specifies this position using the sequence number of a data record in the shard.
+/// </param>
 /// <param name="StreamARN">
 /// The ARN of the stream.
 /// </param>
@@ -26,9 +26,9 @@ namespace Com.Amazonaws.Kinesis;
 /// Not Implemented. Reserved for future use.
 /// </param>
 public sealed record class GetRecordsInput(
-    string ShardIterator,
     bool? DryRun = null,
     int? Limit = null,
+    string? ShardIterator = null,
     string? StreamARN = null,
     string? StreamId = null
 );

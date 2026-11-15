@@ -19,6 +19,6 @@ namespace Com.Amazonaws.Route53;
 /// hosted zone.
 /// </param>
 public sealed record class CreateReusableDelegationSetInput(
-    string CallerReference,
+    string? CallerReference = null,
     string? HostedZoneId = null
 );

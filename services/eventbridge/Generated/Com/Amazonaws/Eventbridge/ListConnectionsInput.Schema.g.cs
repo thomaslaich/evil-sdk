@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Eventbridge.Schemas;
 
 public static partial class ListConnectionsInputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? NamePrefix { get; set; }
         public global::Com.Amazonaws.Eventbridge.ConnectionState? ConnectionState { get; set; }
@@ -164,7 +164,7 @@ public static partial class ListConnectionsInputSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Iam.Schemas;
 
 public static partial class GetOpenIDConnectProviderInputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? OpenIDConnectProviderArn { get; set; }
     }
@@ -27,7 +27,6 @@ public static partial class GetOpenIDConnectProviderInputSchema
                 new(
                     "OpenIDConnectProviderArn",
                     Target0,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
@@ -39,10 +38,6 @@ public static partial class GetOpenIDConnectProviderInputSchema
                                     { "max", Document.From(2048m) },
                                 }
                             )
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
                         ),
                     ]
                 ),
@@ -71,7 +66,6 @@ public static partial class GetOpenIDConnectProviderInputSchema
         ) =>
             new global::Com.Amazonaws.Iam.GetOpenIDConnectProviderInput(
                 builder.OpenIDConnectProviderArn
-                    ?? throw new MissingRequiredMemberException("OpenIDConnectProviderArn")
             );
 
         public override void SerializeMembers<TSerializer>(
@@ -89,7 +83,7 @@ public static partial class GetOpenIDConnectProviderInputSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

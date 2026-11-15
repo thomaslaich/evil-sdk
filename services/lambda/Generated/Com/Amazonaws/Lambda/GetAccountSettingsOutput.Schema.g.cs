@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Lambda.Schemas;
 
 public static partial class GetAccountSettingsOutputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public global::Com.Amazonaws.Lambda.AccountLimit? AccountLimit { get; set; }
         public global::Com.Amazonaws.Lambda.AccountUsage? AccountUsage { get; set; }
@@ -79,7 +79,7 @@ public static partial class GetAccountSettingsOutputSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

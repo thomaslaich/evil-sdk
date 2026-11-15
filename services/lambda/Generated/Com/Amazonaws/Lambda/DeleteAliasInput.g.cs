@@ -39,4 +39,4 @@ namespace Com.Amazonaws.Lambda;
 /// <param name="Name">
 /// The name of the alias.
 /// </param>
-public sealed record class DeleteAliasInput(string FunctionName, string Name);
+public sealed record class DeleteAliasInput(string? FunctionName = null, string? Name = null);

@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Cloudwatchlogs.Schemas;
 
 public static partial class UpdateLogAnomalyDetectorInputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? AnomalyDetectorArn { get; set; }
         public global::Com.Amazonaws.Cloudwatchlogs.EvaluationFrequency? EvaluationFrequency { get; set; }
@@ -31,7 +31,6 @@ public static partial class UpdateLogAnomalyDetectorInputSchema
                 new(
                     "anomalyDetectorArn",
                     Target0,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
@@ -43,10 +42,6 @@ public static partial class UpdateLogAnomalyDetectorInputSchema
                         new Trait(
                             ShapeId.Parse("smithy.api#pattern"),
                             Document.From("^[\\w#+=/:,.@-]*$")
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
                         ),
                     ]
                 ),
@@ -92,15 +87,10 @@ public static partial class UpdateLogAnomalyDetectorInputSchema
                 new(
                     "enabled",
                     Target4,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
                             ShapeId.Parse("smithy.api#box"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
                             Document.From(new Dictionary<string, Document> { })
                         ),
                     ]
@@ -139,10 +129,9 @@ public static partial class UpdateLogAnomalyDetectorInputSchema
             Builder builder
         ) =>
             new global::Com.Amazonaws.Cloudwatchlogs.UpdateLogAnomalyDetectorInput(
-                builder.AnomalyDetectorArn
-                    ?? throw new MissingRequiredMemberException("anomalyDetectorArn"),
-                builder.Enabled.GetValueOrDefault(),
+                builder.AnomalyDetectorArn,
                 builder.AnomalyVisibilityTime,
+                builder.Enabled,
                 builder.EvaluationFrequency,
                 builder.FilterPattern
             );
@@ -184,10 +173,17 @@ public static partial class UpdateLogAnomalyDetectorInputSchema
             {
                 serializer.WriteNull(3);
             }
-            serializer.WriteBoolean(4, value.Enabled);
+            if (value.Enabled is { } value4)
+            {
+                serializer.WriteBoolean(4, value4);
+            }
+            else
+            {
+                serializer.WriteNull(4);
+            }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

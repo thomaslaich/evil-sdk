@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Lambda.Schemas;
 
 public static partial class EnvironmentResponseSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public IReadOnlyDictionary<string, string>? Variables { get; set; }
         public global::Com.Amazonaws.Lambda.EnvironmentError? Error { get; set; }
@@ -67,7 +67,7 @@ public static partial class EnvironmentResponseSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

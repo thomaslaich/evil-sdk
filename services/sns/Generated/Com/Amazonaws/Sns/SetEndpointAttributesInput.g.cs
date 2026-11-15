@@ -40,6 +40,6 @@ namespace Com.Amazonaws.Sns;
 /// EndpointArn used for <c>SetEndpointAttributes</c> action.
 /// </param>
 public sealed record class SetEndpointAttributesInput(
-    IReadOnlyDictionary<string, string> Attributes,
-    string EndpointArn
+    IReadOnlyDictionary<string, string>? Attributes = null,
+    string? EndpointArn = null
 );

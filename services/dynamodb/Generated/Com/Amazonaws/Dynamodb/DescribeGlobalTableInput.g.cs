@@ -10,4 +10,4 @@ namespace Com.Amazonaws.Dynamodb;
 /// <param name="GlobalTableName">
 /// The name of the global table.
 /// </param>
-public sealed record class DescribeGlobalTableInput(string GlobalTableName);
+public sealed record class DescribeGlobalTableInput(string? GlobalTableName = null);

@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Cloudwatchlogs.Schemas;
 
 public static partial class SearchedLogStreamSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? LogStreamName { get; set; }
         public bool? SearchedCompletely { get; set; }
@@ -98,7 +98,7 @@ public static partial class SearchedLogStreamSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

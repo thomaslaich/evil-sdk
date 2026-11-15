@@ -11,7 +11,7 @@ namespace Com.Amazonaws.Lambda.Schemas;
 
 public static partial class ListDurableExecutionsByFunctionInputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? FunctionName { get; set; }
         public string? Qualifier { get; set; }
@@ -36,7 +36,6 @@ public static partial class ListDurableExecutionsByFunctionInputSchema
                 new(
                     "FunctionName",
                     Target0,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
@@ -58,10 +57,6 @@ public static partial class ListDurableExecutionsByFunctionInputSchema
                             Document.From(
                                 "^(arn:(aws[a-zA-Z-]*)?:lambda:)?((eusc-)?[a-z]{2}((-gov)|(-iso([a-z]?)))?-[a-z]+-\\d{1}:)?(\\d{12}:)?(function:)?([a-zA-Z0-9-_\\.]+)(:(\\$LATEST(\\.PUBLISHED)?|[a-zA-Z0-9-_]+))?$"
                             )
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
                         ),
                     ]
                 ),
@@ -239,8 +234,8 @@ public static partial class ListDurableExecutionsByFunctionInputSchema
             Builder builder
         ) =>
             new global::Com.Amazonaws.Lambda.ListDurableExecutionsByFunctionInput(
-                builder.FunctionName ?? throw new MissingRequiredMemberException("FunctionName"),
                 builder.DurableExecutionName,
+                builder.FunctionName,
                 builder.Marker,
                 builder.MaxItems,
                 builder.Qualifier,
@@ -333,7 +328,7 @@ public static partial class ListDurableExecutionsByFunctionInputSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

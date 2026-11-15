@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Route53.Schemas;
 
 public static partial class UpdateTrafficPolicyCommentInputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? Id { get; set; }
         public int? Version { get; set; }
@@ -29,7 +29,6 @@ public static partial class UpdateTrafficPolicyCommentInputSchema
                 new(
                     "Id",
                     Target0,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
@@ -46,16 +45,11 @@ public static partial class UpdateTrafficPolicyCommentInputSchema
                                 }
                             )
                         ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
                     ]
                 ),
                 new(
                     "Version",
                     Target1,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
@@ -76,16 +70,11 @@ public static partial class UpdateTrafficPolicyCommentInputSchema
                                 }
                             )
                         ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
                     ]
                 ),
                 new(
                     "Comment",
                     Target2,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
@@ -97,10 +86,6 @@ public static partial class UpdateTrafficPolicyCommentInputSchema
                                     { "max", Document.From(1024m) },
                                 }
                             )
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
                         ),
                     ]
                 ),
@@ -134,9 +119,9 @@ public static partial class UpdateTrafficPolicyCommentInputSchema
             Builder builder
         ) =>
             new global::Com.Amazonaws.Route53.UpdateTrafficPolicyCommentInput(
-                builder.Comment ?? throw new MissingRequiredMemberException("Comment"),
-                builder.Id ?? throw new MissingRequiredMemberException("Id"),
-                builder.Version.GetValueOrDefault()
+                builder.Comment,
+                builder.Id,
+                builder.Version
             );
 
         public override void SerializeMembers<TSerializer>(
@@ -152,7 +137,14 @@ public static partial class UpdateTrafficPolicyCommentInputSchema
             {
                 serializer.WriteNull(0);
             }
-            serializer.WriteInteger(1, value.Version);
+            if (value.Version is { } value1)
+            {
+                serializer.WriteInteger(1, value1);
+            }
+            else
+            {
+                serializer.WriteNull(1);
+            }
             if (value.Comment is { } value2)
             {
                 serializer.WriteString(2, value2);
@@ -163,7 +155,7 @@ public static partial class UpdateTrafficPolicyCommentInputSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

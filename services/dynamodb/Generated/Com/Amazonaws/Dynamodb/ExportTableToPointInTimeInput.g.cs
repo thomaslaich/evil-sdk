@@ -9,12 +9,6 @@ namespace Com.Amazonaws.Dynamodb;
 /// <summary>
 /// Represents the Smithy structure com.amazonaws.dynamodb#ExportTableToPointInTimeInput.
 /// </summary>
-/// <param name="S3Bucket">
-/// The name of the Amazon S3 bucket to export the snapshot to.
-/// </param>
-/// <param name="TableArn">
-/// The Amazon Resource Name (ARN) associated with the table to export.
-/// </param>
 /// <param name="ClientToken">
 /// <para>
 /// Providing a <c>ClientToken</c> makes the call to <c>ExportTableToPointInTimeInput</c> idempotent,
@@ -50,6 +44,9 @@ namespace Com.Amazonaws.Dynamodb;
 /// <param name="IncrementalExportSpecification">
 /// Optional object containing the parameters specific to an incremental export.
 /// </param>
+/// <param name="S3Bucket">
+/// The name of the Amazon S3 bucket to export the snapshot to.
+/// </param>
 /// <param name="S3BucketOwner">
 /// <para>
 /// The ID of the Amazon Web Services account that owns the bucket the export will be stored in.
@@ -83,9 +80,10 @@ namespace Com.Amazonaws.Dynamodb;
 /// The ID of the KMS managed key used to encrypt the S3 bucket where export data will be stored (if
 /// applicable).
 /// </param>
+/// <param name="TableArn">
+/// The Amazon Resource Name (ARN) associated with the table to export.
+/// </param>
 public sealed record class ExportTableToPointInTimeInput(
-    string S3Bucket,
-    string TableArn,
     string? ClientToken = null,
     global::Com.Amazonaws.Dynamodb.ExportFormat? ExportFormat = null,
     DateTimeOffset? ExportTime = null,
@@ -93,8 +91,10 @@ public sealed record class ExportTableToPointInTimeInput(
     global::Com.Amazonaws.Dynamodb.FilterSpecification? FilterSpecification = null,
     global::Com.Amazonaws.Dynamodb.IncrementalExportSpecification? IncrementalExportSpecification =
         null,
+    string? S3Bucket = null,
     string? S3BucketOwner = null,
     string? S3Prefix = null,
     global::Com.Amazonaws.Dynamodb.S3SseAlgorithm? S3SseAlgorithm = null,
-    string? S3SseKmsKeyId = null
+    string? S3SseKmsKeyId = null,
+    string? TableArn = null
 );

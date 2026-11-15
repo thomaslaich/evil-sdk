@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Route53.Schemas;
 
 public static partial class CreateCidrCollectionInputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? Name { get; set; }
         public string? CallerReference { get; set; }
@@ -28,7 +28,6 @@ public static partial class CreateCidrCollectionInputSchema
                 new(
                     "Name",
                     Target0,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
@@ -45,16 +44,11 @@ public static partial class CreateCidrCollectionInputSchema
                             ShapeId.Parse("smithy.api#pattern"),
                             Document.From("^[0-9A-Za-z_\\-]+$")
                         ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
                     ]
                 ),
                 new(
                     "CallerReference",
                     Target1,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
@@ -70,10 +64,6 @@ public static partial class CreateCidrCollectionInputSchema
                         new Trait(
                             ShapeId.Parse("smithy.api#pattern"),
                             Document.From("^\\p{ASCII}+$")
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
                         ),
                     ]
                 ),
@@ -105,9 +95,8 @@ public static partial class CreateCidrCollectionInputSchema
             Builder builder
         ) =>
             new global::Com.Amazonaws.Route53.CreateCidrCollectionInput(
-                builder.CallerReference
-                    ?? throw new MissingRequiredMemberException("CallerReference"),
-                builder.Name ?? throw new MissingRequiredMemberException("Name")
+                builder.CallerReference,
+                builder.Name
             );
 
         public override void SerializeMembers<TSerializer>(
@@ -133,7 +122,7 @@ public static partial class CreateCidrCollectionInputSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

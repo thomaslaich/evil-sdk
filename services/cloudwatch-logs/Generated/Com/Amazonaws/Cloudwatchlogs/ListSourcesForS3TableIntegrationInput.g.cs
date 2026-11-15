@@ -14,7 +14,7 @@ namespace Com.Amazonaws.Cloudwatchlogs;
 /// The maximum number of associations to return in a single call. Valid range is 1 to 100.
 /// </param>
 public sealed record class ListSourcesForS3TableIntegrationInput(
-    string IntegrationArn,
+    string? IntegrationArn = null,
     int? MaxResults = null,
     string? NextToken = null
 );

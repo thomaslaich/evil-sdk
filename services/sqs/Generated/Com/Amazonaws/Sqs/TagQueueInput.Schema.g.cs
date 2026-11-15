@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Sqs.Schemas;
 
 public static partial class TagQueueInputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? QueueUrl { get; set; }
         public IReadOnlyDictionary<string, string>? Tags { get; set; }
@@ -23,28 +23,12 @@ public static partial class TagQueueInputSchema
         : StructSchema<global::Com.Amazonaws.Sqs.TagQueueInput, Builder>(
             ShapeId.Parse("com.amazonaws.sqs#TagQueueInput"),
             [
-                new(
-                    "QueueUrl",
-                    Target0,
-                    isRequired: true,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
-                    ]
-                ),
+                new("QueueUrl", Target0),
                 new(
                     "Tags",
                     Target1,
-                    isRequired: true,
                     traits:
                     [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
                         new Trait(
                             ShapeId.Parse("smithy.api#xmlFlattened"),
                             Document.From(new Dictionary<string, Document> { })
@@ -79,10 +63,7 @@ public static partial class TagQueueInputSchema
         public override Builder CreateTypedBuilder() => new();
 
         public override global::Com.Amazonaws.Sqs.TagQueueInput Build(Builder builder) =>
-            new global::Com.Amazonaws.Sqs.TagQueueInput(
-                builder.QueueUrl ?? throw new MissingRequiredMemberException("QueueUrl"),
-                builder.Tags ?? throw new MissingRequiredMemberException("Tags")
-            );
+            new global::Com.Amazonaws.Sqs.TagQueueInput(builder.QueueUrl, builder.Tags);
 
         public override void SerializeMembers<TSerializer>(
             global::Com.Amazonaws.Sqs.TagQueueInput value,
@@ -107,7 +88,7 @@ public static partial class TagQueueInputSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

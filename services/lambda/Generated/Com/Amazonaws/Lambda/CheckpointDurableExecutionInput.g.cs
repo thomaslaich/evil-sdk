@@ -14,12 +14,12 @@ namespace Com.Amazonaws.Lambda;
 /// runtime and must be used to ensure checkpoints are applied in the correct order. Each checkpoint
 /// operation consumes this token and returns a new one.
 /// </param>
-/// <param name="DurableExecutionArn">
-/// The Amazon Resource Name (ARN) of the durable execution.
-/// </param>
 /// <param name="ClientToken">
 /// An optional idempotency token to ensure that duplicate checkpoint requests are handled correctly. If
 /// provided, Lambda uses this token to detect and handle duplicate requests within a 15-minute window.
+/// </param>
+/// <param name="DurableExecutionArn">
+/// The Amazon Resource Name (ARN) of the durable execution.
 /// </param>
 /// <param name="Updates">
 /// An array of state updates to apply during this checkpoint. Each update represents a change to the
@@ -27,8 +27,8 @@ namespace Com.Amazonaws.Lambda;
 /// applied atomically as part of the checkpoint operation.
 /// </param>
 public sealed record class CheckpointDurableExecutionInput(
-    string CheckpointToken,
-    string DurableExecutionArn,
+    string? CheckpointToken = null,
     string? ClientToken = null,
+    string? DurableExecutionArn = null,
     IReadOnlyList<OperationUpdate>? Updates = null
 );

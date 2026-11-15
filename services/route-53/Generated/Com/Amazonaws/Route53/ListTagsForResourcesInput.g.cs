@@ -32,6 +32,6 @@ namespace Com.Amazonaws.Route53;
 /// </list>
 /// </param>
 public sealed record class ListTagsForResourcesInput(
-    IReadOnlyList<string> ResourceIds,
-    TagResourceType ResourceType
+    IReadOnlyList<string>? ResourceIds = null,
+    TagResourceType? ResourceType = null
 );

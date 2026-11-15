@@ -667,7 +667,7 @@ public interface IAWSIdentityManagementV20100508Client : IDisposable
     /// The following example defines a new OIDC provider in IAM with a client ID of my-application-id and pointing at the server with a URL of https://server.example.com.
     /// </para>
     /// <code>
-    /// var input = new CreateOpenIDConnectProviderInput(Url: &quot;https://server.example.com&quot;, ClientIDList: new string[] { &quot;my-application-id&quot; }, ThumbprintList: new string[] { &quot;3768084dfb3d2b68b7897bf5f565da8efEXAMPLE&quot; });
+    /// var input = new CreateOpenIDConnectProviderInput(ClientIDList: new string[] { &quot;my-application-id&quot; }, ThumbprintList: new string[] { &quot;3768084dfb3d2b68b7897bf5f565da8efEXAMPLE&quot; }, Url: &quot;https://server.example.com&quot;);
     /// var output = await client.CreateOpenIDConnectProviderAsync(input);
     ///
     /// // Expected output:
@@ -749,7 +749,7 @@ public interface IAWSIdentityManagementV20100508Client : IDisposable
     /// The following command creates a role named Test-Role and attaches a trust policy that you must convert from JSON to a string. Upon success, the response includes the same policy as a URL-encoded JSON string.
     /// </para>
     /// <code>
-    /// var input = new CreateRoleInput(AssumeRolePolicyDocument: &quot;&lt;Stringified-JSON&gt;&quot;, RoleName: &quot;Test-Role&quot;, Path: &quot;/&quot;);
+    /// var input = new CreateRoleInput(AssumeRolePolicyDocument: &quot;&lt;Stringified-JSON&gt;&quot;, Path: &quot;/&quot;, RoleName: &quot;Test-Role&quot;);
     /// var output = await client.CreateRoleAsync(input);
     ///
     /// // Expected output:
@@ -6690,7 +6690,7 @@ public interface IAWSIdentityManagementV20100508Client : IDisposable
     /// The following command creates or changes the password for the IAM user named Bob.
     /// </para>
     /// <code>
-    /// var input = new UpdateLoginProfileInput(UserName: &quot;Bob&quot;, Password: &quot;SomeKindOfPassword123!@#&quot;);
+    /// var input = new UpdateLoginProfileInput(Password: &quot;SomeKindOfPassword123!@#&quot;, UserName: &quot;Bob&quot;);
     /// var output = await client.UpdateLoginProfileAsync(input);
     /// </code>
     /// </example>
@@ -6887,7 +6887,7 @@ public interface IAWSIdentityManagementV20100508Client : IDisposable
     /// The following command changes the name of the IAM user Bob to Robert. It does not change the user's path.
     /// </para>
     /// <code>
-    /// var input = new UpdateUserInput(UserName: &quot;Bob&quot;, NewUserName: &quot;Robert&quot;);
+    /// var input = new UpdateUserInput(NewUserName: &quot;Robert&quot;, UserName: &quot;Bob&quot;);
     /// var output = await client.UpdateUserAsync(input);
     /// </code>
     /// </example>
@@ -6956,7 +6956,7 @@ public interface IAWSIdentityManagementV20100508Client : IDisposable
     /// The following upload-server-certificate command uploads a server certificate to your AWS account:
     /// </para>
     /// <code>
-    /// var input = new UploadServerCertificateInput(CertificateBody: &quot;-----BEGIN CERTIFICATE-----&lt;a very long certificate text string&gt;-----END CERTIFICATE-----&quot;, PrivateKey: &quot;-----BEGIN DSA PRIVATE KEY-----&lt;a very long private key string&gt;-----END DSA PRIVATE KEY-----&quot;, ServerCertificateName: &quot;ProdServerCert&quot;, Path: &quot;/company/servercerts/&quot;);
+    /// var input = new UploadServerCertificateInput(CertificateBody: &quot;-----BEGIN CERTIFICATE-----&lt;a very long certificate text string&gt;-----END CERTIFICATE-----&quot;, Path: &quot;/company/servercerts/&quot;, PrivateKey: &quot;-----BEGIN DSA PRIVATE KEY-----&lt;a very long private key string&gt;-----END DSA PRIVATE KEY-----&quot;, ServerCertificateName: &quot;ProdServerCert&quot;);
     /// var output = await client.UploadServerCertificateAsync(input);
     ///
     /// // Expected output:
@@ -7025,6 +7025,292 @@ public static class AWSIdentityManagementV20100508ClientExtensions
 {
     /// <summary>
     /// <para>
+    /// Accepts a delegation request, granting the requested temporary access.
+    /// </para>
+    /// <para>
+    /// Once the delegation request is accepted, it is eligible to send the exchange token to the partner.
+    /// The
+    /// <see href="https://docs.aws.amazon.com/IAM/latest/APIReference/API_SendDelegationToken.html">SendDelegationToken</see>
+    /// API has to be explicitly called to send the delegation token.
+    /// </para>
+    /// <para>
+    /// At the time of acceptance, IAM records the details and the state of the identity that called this
+    /// API. This is the identity that gets mapped to the delegated credential.
+    /// </para>
+    /// <para>
+    /// An accepted request may be rejected before the exchange token is sent to the partner.
+    /// </para>
+    /// </summary>
+    public static Task<AcceptDelegationRequestOutput> AcceptDelegationRequestAsync(
+        this IAWSIdentityManagementV20100508Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.AcceptDelegationRequestAsync(
+            new AcceptDelegationRequestInput(),
+            cancellationToken
+        );
+    }
+
+    /// <summary>
+    /// <para>
+    /// Creates an IAM role from the specified role template. The new role takes its configuration—including
+    /// its name, path, trust policy, inline and managed policies, permissions boundary, tags, and maximum
+    /// session duration—from the role template version that you specify. For more information about roles,
+    /// see <see href="https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles.html">IAM roles</see> in
+    /// the <i>IAM User Guide</i>.
+    /// </para>
+    /// <para>
+    /// If the template version defines parameters, use the <c>ReplacementValues</c> parameter to supply the
+    /// values that the service substitutes into the role during creation.
+    /// </para>
+    /// </summary>
+    public static Task<AcquireRoleOutput> AcquireRoleAsync(
+        this IAWSIdentityManagementV20100508Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.AcquireRoleAsync(new AcquireRoleInput(), cancellationToken);
+    }
+
+    /// <summary>
+    /// <para>
+    /// Adds a new client ID (also known as audience) to the list of client IDs already registered for the
+    /// specified IAM OpenID Connect (OIDC) provider resource.
+    /// </para>
+    /// <para>
+    /// This operation is idempotent; it does not fail or return an error if you add an existing client ID
+    /// to the provider.
+    /// </para>
+    /// </summary>
+    public static Task<AddClientIDToOpenIDConnectProviderOutput> AddClientIDToOpenIDConnectProviderAsync(
+        this IAWSIdentityManagementV20100508Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.AddClientIDToOpenIDConnectProviderAsync(
+            new AddClientIDToOpenIDConnectProviderInput(),
+            cancellationToken
+        );
+    }
+
+    /// <summary>
+    /// <para>
+    /// Adds the specified IAM role to the specified instance profile. An instance profile can contain only
+    /// one role, and this quota cannot be increased. You can remove the existing role and then add a
+    /// different role to an instance profile. You must then wait for the change to appear across all of
+    /// Amazon Web Services because of
+    /// <see href="https://en.wikipedia.org/wiki/Eventual_consistency">eventual consistency</see>. To force
+    /// the change, you must
+    /// <see href="https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_DisassociateIamInstanceProfile.html">disassociate
+    /// the instance profile</see> and then
+    /// <see href="https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_AssociateIamInstanceProfile.html">associate
+    /// the instance profile</see>, or you can stop your instance and then restart it.
+    /// </para>
+    /// <para>
+    /// <b>Note:</b> The caller of this operation must be granted the <c>PassRole</c> permission on the IAM
+    /// role by a permissions policy.
+    /// </para>
+    /// <para>
+    /// <b>Important:</b> When using the
+    /// <see href="https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_iam-condition-keys.html#available-keys-for-iam">iam:AssociatedResourceArn</see>
+    /// condition in a policy to restrict the
+    /// <see href="https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_use_passrole.html">PassRole</see>
+    /// IAM action, special considerations apply if the policy is intended to define access for the
+    /// <c>AddRoleToInstanceProfile</c> action. In this case, you cannot specify a Region or instance ID in
+    /// the EC2 instance ARN. The ARN value must be <c>arn:aws:ec2:*:CallerAccountId:instance/*</c>. Using
+    /// any other ARN value may lead to unexpected evaluation results.
+    /// </para>
+    /// <para>
+    /// For more information about roles, see
+    /// <see href="https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles.html">IAM roles</see> in the
+    /// <i>IAM User Guide</i>. For more information about instance profiles, see
+    /// <see href="https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_use_switch-role-ec2_instance-profiles.html">Using
+    /// instance profiles</see> in the <i>IAM User Guide</i>.
+    /// </para>
+    /// </summary>
+    public static Task<AddRoleToInstanceProfileOutput> AddRoleToInstanceProfileAsync(
+        this IAWSIdentityManagementV20100508Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.AddRoleToInstanceProfileAsync(
+            new AddRoleToInstanceProfileInput(),
+            cancellationToken
+        );
+    }
+
+    /// <summary>
+    /// Adds the specified user to the specified group.
+    /// </summary>
+    public static Task<AddUserToGroupOutput> AddUserToGroupAsync(
+        this IAWSIdentityManagementV20100508Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.AddUserToGroupAsync(new AddUserToGroupInput(), cancellationToken);
+    }
+
+    /// <summary>
+    /// <para>
+    /// Associates a delegation request with the current identity.
+    /// </para>
+    /// <para>
+    /// If the partner that created the delegation request has specified the owner account during creation,
+    /// only an identity from that owner account can call the <c>AssociateDelegationRequest</c> API for the
+    /// specified delegation request. Once the <c>AssociateDelegationRequest</c> API call is successful, the
+    /// ARN of the current calling identity will be stored as the <c>ownerId</c> of the request.
+    /// </para>
+    /// <para>
+    /// If the partner that created the delegation request has not specified the owner account during
+    /// creation, any caller from any account can call the <c>AssociateDelegationRequest</c> API for the
+    /// delegation request. Once this API call is successful, the ARN of the current calling identity will
+    /// be stored as the <c>ownerId</c> and the Amazon Web Services account ID of the current calling
+    /// identity will be stored as the <c>ownerAccount</c> of the request.
+    /// </para>
+    /// <para>
+    /// For more details, see
+    /// <see href="https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies-temporary-delegation.html#temporary-delegation-managing-permissions">Managing
+    /// Permissions for Delegation Requests</see>.
+    /// </para>
+    /// </summary>
+    public static Task<AssociateDelegationRequestOutput> AssociateDelegationRequestAsync(
+        this IAWSIdentityManagementV20100508Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.AssociateDelegationRequestAsync(
+            new AssociateDelegationRequestInput(),
+            cancellationToken
+        );
+    }
+
+    /// <summary>
+    /// <para>
+    /// Attaches the specified managed policy to the specified IAM group.
+    /// </para>
+    /// <para>
+    /// You use this operation to attach a managed policy to a group. To embed an inline policy in a group,
+    /// use
+    /// <see href="https://docs.aws.amazon.com/IAM/latest/APIReference/API_PutGroupPolicy.html"><c>PutGroupPolicy</c></see>.
+    /// </para>
+    /// <para>
+    /// As a best practice, you can validate your IAM policies. To learn more, see
+    /// <see href="https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_policy-validator.html">Validating
+    /// IAM policies</see> in the <i>IAM User Guide</i>.
+    /// </para>
+    /// <para>
+    /// For more information about policies, see
+    /// <see href="https://docs.aws.amazon.com/IAM/latest/UserGuide/policies-managed-vs-inline.html">Managed
+    /// policies and inline policies</see> in the <i>IAM User Guide</i>.
+    /// </para>
+    /// </summary>
+    public static Task<AttachGroupPolicyOutput> AttachGroupPolicyAsync(
+        this IAWSIdentityManagementV20100508Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.AttachGroupPolicyAsync(new AttachGroupPolicyInput(), cancellationToken);
+    }
+
+    /// <summary>
+    /// <para>
+    /// Attaches the specified managed policy to the specified IAM role. When you attach a managed policy to
+    /// a role, the managed policy becomes part of the role's permission (access) policy.
+    /// </para>
+    /// <para>
+    /// <b>Note:</b> You cannot use a managed policy as the role's trust policy. The role's trust policy is
+    /// created at the same time as the role, using
+    /// <see href="https://docs.aws.amazon.com/IAM/latest/APIReference/API_CreateRole.html"><c>CreateRole</c></see>.
+    /// You can update a role's trust policy using
+    /// <see href="https://docs.aws.amazon.com/IAM/latest/APIReference/API_UpdateAssumeRolePolicy.html"><c>UpdateAssumerolePolicy</c></see>.
+    /// </para>
+    /// <para>
+    /// Use this operation to attach a <i>managed</i> policy to a role. To embed an inline policy in a role,
+    /// use
+    /// <see href="https://docs.aws.amazon.com/IAM/latest/APIReference/API_PutRolePolicy.html"><c>PutRolePolicy</c></see>.
+    /// For more information about policies, see
+    /// <see href="https://docs.aws.amazon.com/IAM/latest/UserGuide/policies-managed-vs-inline.html">Managed
+    /// policies and inline policies</see> in the <i>IAM User Guide</i>.
+    /// </para>
+    /// <para>
+    /// As a best practice, you can validate your IAM policies. To learn more, see
+    /// <see href="https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_policy-validator.html">Validating
+    /// IAM policies</see> in the <i>IAM User Guide</i>.
+    /// </para>
+    /// </summary>
+    public static Task<AttachRolePolicyOutput> AttachRolePolicyAsync(
+        this IAWSIdentityManagementV20100508Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.AttachRolePolicyAsync(new AttachRolePolicyInput(), cancellationToken);
+    }
+
+    /// <summary>
+    /// <para>
+    /// Attaches the specified managed policy to the specified user.
+    /// </para>
+    /// <para>
+    /// You use this operation to attach a <i>managed</i> policy to a user. To embed an inline policy in a
+    /// user, use
+    /// <see href="https://docs.aws.amazon.com/IAM/latest/APIReference/API_PutUserPolicy.html"><c>PutUserPolicy</c></see>.
+    /// </para>
+    /// <para>
+    /// As a best practice, you can validate your IAM policies. To learn more, see
+    /// <see href="https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_policy-validator.html">Validating
+    /// IAM policies</see> in the <i>IAM User Guide</i>.
+    /// </para>
+    /// <para>
+    /// For more information about policies, see
+    /// <see href="https://docs.aws.amazon.com/IAM/latest/UserGuide/policies-managed-vs-inline.html">Managed
+    /// policies and inline policies</see> in the <i>IAM User Guide</i>.
+    /// </para>
+    /// </summary>
+    public static Task<AttachUserPolicyOutput> AttachUserPolicyAsync(
+        this IAWSIdentityManagementV20100508Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.AttachUserPolicyAsync(new AttachUserPolicyInput(), cancellationToken);
+    }
+
+    /// <summary>
+    /// <para>
+    /// Changes the password of the IAM user who is calling this operation. This operation can be performed
+    /// using the CLI, the Amazon Web Services API, or the <b>My Security Credentials</b> page in the Amazon
+    /// Web Services Management Console. The Amazon Web Services account root user password is not affected
+    /// by this operation.
+    /// </para>
+    /// <para>
+    /// Use
+    /// <see href="https://docs.aws.amazon.com/IAM/latest/APIReference/API_UpdateLoginProfile.html">UpdateLoginProfile</see>
+    /// to use the CLI, the Amazon Web Services API, or the <b>Users</b> page in the IAM console to change
+    /// the password for any IAM user. For more information about modifying passwords, see
+    /// <see href="https://docs.aws.amazon.com/IAM/latest/UserGuide/Using_ManagingLogins.html">Managing
+    /// passwords</see> in the <i>IAM User Guide</i>.
+    /// </para>
+    /// </summary>
+    public static Task<ChangePasswordOutput> ChangePasswordAsync(
+        this IAWSIdentityManagementV20100508Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.ChangePasswordAsync(new ChangePasswordInput(), cancellationToken);
+    }
+
+    /// <summary>
+    /// <para>
     /// Creates a new Amazon Web Services secret access key and corresponding Amazon Web Services access key
     /// ID for the specified user. The default status for new keys is <c>Active</c>.
     /// </para>
@@ -7056,6 +7342,90 @@ public static class AWSIdentityManagementV20100508ClientExtensions
     }
 
     /// <summary>
+    /// Creates an alias for your Amazon Web Services account. For information about using an Amazon Web
+    /// Services account alias, see
+    /// <see href="https://docs.aws.amazon.com/signin/latest/userguide/CreateAccountAlias.html">Creating,
+    /// deleting, and listing an Amazon Web Services account alias</see> in the <i>Amazon Web Services
+    /// Sign-In User Guide</i>.
+    /// </summary>
+    public static Task<CreateAccountAliasOutput> CreateAccountAliasAsync(
+        this IAWSIdentityManagementV20100508Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.CreateAccountAliasAsync(new CreateAccountAliasInput(), cancellationToken);
+    }
+
+    /// <summary>
+    /// <para>
+    /// Creates an IAM delegation request for temporary access delegation.
+    /// </para>
+    /// <para>
+    /// This API is not available for general use. In order to use this API, a caller first need to go
+    /// through an onboarding process described in the
+    /// <see href="https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies-temporary-delegation-partner-guide.html">partner
+    /// onboarding documentation</see>.
+    /// </para>
+    /// </summary>
+    public static Task<CreateDelegationRequestOutput> CreateDelegationRequestAsync(
+        this IAWSIdentityManagementV20100508Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.CreateDelegationRequestAsync(
+            new CreateDelegationRequestInput(),
+            cancellationToken
+        );
+    }
+
+    /// <summary>
+    /// <para>
+    /// Creates a new group.
+    /// </para>
+    /// <para>
+    /// For information about the number of groups you can create, see
+    /// <see href="https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_iam-quotas.html">IAM and STS
+    /// quotas</see> in the <i>IAM User Guide</i>.
+    /// </para>
+    /// </summary>
+    public static Task<CreateGroupOutput> CreateGroupAsync(
+        this IAWSIdentityManagementV20100508Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.CreateGroupAsync(new CreateGroupInput(), cancellationToken);
+    }
+
+    /// <summary>
+    /// <para>
+    /// Creates a new instance profile. For information about instance profiles, see
+    /// <see href="https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_use_switch-role-ec2.html">Using
+    /// roles for applications on Amazon EC2</see> in the <i>IAM User Guide</i>, and
+    /// <see href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/iam-roles-for-amazon-ec2.html#ec2-instance-profile">Instance
+    /// profiles</see> in the <i>Amazon EC2 User Guide</i>.
+    /// </para>
+    /// <para>
+    /// For information about the number of instance profiles you can create, see
+    /// <see href="https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_iam-quotas.html">IAM object
+    /// quotas</see> in the <i>IAM User Guide</i>.
+    /// </para>
+    /// </summary>
+    public static Task<CreateInstanceProfileOutput> CreateInstanceProfileAsync(
+        this IAWSIdentityManagementV20100508Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.CreateInstanceProfileAsync(
+            new CreateInstanceProfileInput(),
+            cancellationToken
+        );
+    }
+
+    /// <summary>
     /// <para>
     /// Creates a password for the specified IAM user. A password allows an IAM user to access Amazon Web
     /// Services services through the Amazon Web Services Management Console.
@@ -7083,6 +7453,389 @@ public static class AWSIdentityManagementV20100508ClientExtensions
     }
 
     /// <summary>
+    /// <para>
+    /// Creates an IAM entity to describe an identity provider (IdP) that supports
+    /// <see href="http://openid.net/connect/">OpenID Connect (OIDC)</see>.
+    /// </para>
+    /// <para>
+    /// The OIDC provider that you create with this operation can be used as a principal in a role's trust
+    /// policy. Such a policy establishes a trust relationship between Amazon Web Services and the OIDC
+    /// provider.
+    /// </para>
+    /// <para>
+    /// If you are using an OIDC identity provider from Google, Facebook, or Amazon Cognito, you don't need
+    /// to create a separate IAM identity provider. These OIDC identity providers are already built-in to
+    /// Amazon Web Services and are available for your use. Instead, you can move directly to creating new
+    /// roles using your identity provider. To learn more, see
+    /// <see href="https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_create_for-idp_oidc.html">Creating
+    /// a role for web identity or OpenID connect federation</see> in the <i>IAM User Guide</i>.
+    /// </para>
+    /// <para>
+    /// When you create the IAM OIDC provider, you specify the following:
+    /// </para>
+    /// <list type="bullet">
+    /// <item>
+    /// <description>
+    /// The URL of the OIDC identity provider (IdP) to trust
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <description>
+    /// A list of client IDs (also known as audiences) that identify the application or applications allowed
+    /// to authenticate using the OIDC provider
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <description>
+    /// A list of tags that are attached to the specified IAM OIDC provider
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <description>
+    /// A list of thumbprints of one or more server certificates that the IdP uses
+    /// </description>
+    /// </item>
+    /// </list>
+    /// <para>
+    /// You get all of this information from the OIDC IdP you want to use to access Amazon Web Services.
+    /// </para>
+    /// <para>
+    /// <b>Note:</b> Amazon Web Services secures communication with OIDC identity providers (IdPs) using our
+    /// library of trusted root certificate authorities (CAs) to verify the JSON Web Key Set (JWKS)
+    /// endpoint's TLS certificate. If your OIDC IdP relies on a certificate that is not signed by one of
+    /// these trusted CAs, only then we secure communication using the thumbprints set in the IdP's
+    /// configuration.
+    /// </para>
+    /// <para>
+    /// <b>Note:</b> The trust for the OIDC provider is derived from the IAM provider that this operation
+    /// creates. Therefore, it is best to limit access to the
+    /// <see href="https://docs.aws.amazon.com/IAM/latest/APIReference/API_CreateOpenIDConnectProvider.html">CreateOpenIDConnectProvider</see>
+    /// operation to highly privileged users.
+    /// </para>
+    /// </summary>
+    public static Task<CreateOpenIDConnectProviderOutput> CreateOpenIDConnectProviderAsync(
+        this IAWSIdentityManagementV20100508Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.CreateOpenIDConnectProviderAsync(
+            new CreateOpenIDConnectProviderInput(),
+            cancellationToken
+        );
+    }
+
+    /// <summary>
+    /// <para>
+    /// Creates a new managed policy for your Amazon Web Services account.
+    /// </para>
+    /// <para>
+    /// This operation creates a policy version with a version identifier of <c>v1</c> and sets v1 as the
+    /// policy's default version. For more information about policy versions, see
+    /// <see href="https://docs.aws.amazon.com/IAM/latest/UserGuide/policies-managed-versions.html">Versioning
+    /// for managed policies</see> in the <i>IAM User Guide</i>.
+    /// </para>
+    /// <para>
+    /// As a best practice, you can validate your IAM policies. To learn more, see
+    /// <see href="https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_policy-validator.html">Validating
+    /// IAM policies</see> in the <i>IAM User Guide</i>.
+    /// </para>
+    /// <para>
+    /// For more information about managed policies in general, see
+    /// <see href="https://docs.aws.amazon.com/IAM/latest/UserGuide/policies-managed-vs-inline.html">Managed
+    /// policies and inline policies</see> in the <i>IAM User Guide</i>.
+    /// </para>
+    /// </summary>
+    public static Task<CreatePolicyOutput> CreatePolicyAsync(
+        this IAWSIdentityManagementV20100508Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.CreatePolicyAsync(new CreatePolicyInput(), cancellationToken);
+    }
+
+    /// <summary>
+    /// <para>
+    /// Creates a new version of the specified managed policy. To update a managed policy, you create a new
+    /// policy version. A managed policy can have up to five versions. If the policy has five versions, you
+    /// must delete an existing version using
+    /// <see href="https://docs.aws.amazon.com/IAM/latest/APIReference/API_DeletePolicyVersion.html">DeletePolicyVersion</see>
+    /// before you create a new version.
+    /// </para>
+    /// <para>
+    /// Optionally, you can set the new version as the policy's default version. The default version is the
+    /// version that is in effect for the IAM users, groups, and roles to which the policy is attached.
+    /// </para>
+    /// <para>
+    /// For more information about managed policy versions, see
+    /// <see href="https://docs.aws.amazon.com/IAM/latest/UserGuide/policies-managed-versions.html">Versioning
+    /// for managed policies</see> in the <i>IAM User Guide</i>.
+    /// </para>
+    /// </summary>
+    public static Task<CreatePolicyVersionOutput> CreatePolicyVersionAsync(
+        this IAWSIdentityManagementV20100508Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.CreatePolicyVersionAsync(new CreatePolicyVersionInput(), cancellationToken);
+    }
+
+    /// <summary>
+    /// <para>
+    /// Creates a new role for your Amazon Web Services account.
+    /// </para>
+    /// <para>
+    /// For more information about roles, see
+    /// <see href="https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles.html">IAM roles</see> in the
+    /// <i>IAM User Guide</i>. For information about quotas for role names and the number of roles you can
+    /// create, see
+    /// <see href="https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_iam-quotas.html">IAM and STS
+    /// quotas</see> in the <i>IAM User Guide</i>.
+    /// </para>
+    /// </summary>
+    public static Task<CreateRoleOutput> CreateRoleAsync(
+        this IAWSIdentityManagementV20100508Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.CreateRoleAsync(new CreateRoleInput(), cancellationToken);
+    }
+
+    /// <summary>
+    /// <para>
+    /// Creates an IAM resource that describes an identity provider (IdP) that supports SAML 2.0.
+    /// </para>
+    /// <para>
+    /// The SAML provider resource that you create with this operation can be used as a principal in an IAM
+    /// role's trust policy. Such a policy can enable federated users who sign in using the SAML IdP to
+    /// assume the role. You can create an IAM role that supports Web-based single sign-on (SSO) to the
+    /// Amazon Web Services Management Console or one that supports API access to Amazon Web Services.
+    /// </para>
+    /// <para>
+    /// When you create the SAML provider resource, you upload a SAML metadata document that you get from
+    /// your IdP. That document includes the issuer's name, expiration information, and keys that can be
+    /// used to validate the SAML authentication response (assertions) that the IdP sends. You must generate
+    /// the metadata document using the identity management software that is used as your organization's
+    /// IdP.
+    /// </para>
+    /// <para>
+    /// <b>Note:</b> This operation requires
+    /// <see href="https://docs.aws.amazon.com/general/latest/gr/signature-version-4.html">Signature Version
+    /// 4</see>.
+    /// </para>
+    /// <para>
+    /// For more information, see
+    /// <see href="https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_providers_enable-console-saml.html">Enabling
+    /// SAML 2.0 federated users to access the Amazon Web Services Management Console</see> and
+    /// <see href="https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_providers_saml.html">About SAML
+    /// 2.0-based federation</see> in the <i>IAM User Guide</i>.
+    /// </para>
+    /// </summary>
+    public static Task<CreateSAMLProviderOutput> CreateSAMLProviderAsync(
+        this IAWSIdentityManagementV20100508Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.CreateSAMLProviderAsync(new CreateSAMLProviderInput(), cancellationToken);
+    }
+
+    /// <summary>
+    /// <para>
+    /// Creates an IAM role that is linked to a specific Amazon Web Services service. The service controls
+    /// the attached policies and when the role can be deleted. This helps ensure that the service is not
+    /// broken by an unexpectedly changed or deleted role, which could put your Amazon Web Services
+    /// resources into an unknown state. Allowing the service to control the role helps improve service
+    /// stability and proper cleanup when a service and its role are no longer needed. For more information,
+    /// see
+    /// <see href="https://docs.aws.amazon.com/IAM/latest/UserGuide/using-service-linked-roles.html">Using
+    /// service-linked roles</see> in the <i>IAM User Guide</i>.
+    /// </para>
+    /// <para>
+    /// To attach a policy to this service-linked role, you must make the request using the Amazon Web
+    /// Services service that depends on this role.
+    /// </para>
+    /// </summary>
+    public static Task<CreateServiceLinkedRoleOutput> CreateServiceLinkedRoleAsync(
+        this IAWSIdentityManagementV20100508Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.CreateServiceLinkedRoleAsync(
+            new CreateServiceLinkedRoleInput(),
+            cancellationToken
+        );
+    }
+
+    /// <summary>
+    /// <para>
+    /// Generates a set of credentials consisting of a user name and password that can be used to access the
+    /// service specified in the request. These credentials are generated by IAM, and can be used only for
+    /// the specified service.
+    /// </para>
+    /// <para>
+    /// You can have a maximum of two sets of service-specific credentials for each supported service per
+    /// user.
+    /// </para>
+    /// <para>
+    /// You can reset the password to a new service-generated value by calling
+    /// <see href="https://docs.aws.amazon.com/IAM/latest/APIReference/API_ResetServiceSpecificCredential.html">ResetServiceSpecificCredential</see>.
+    /// </para>
+    /// <para>
+    /// For more information about using service-specific credentials to authenticate to an Amazon Web
+    /// Services service, refer to the following docs:
+    /// </para>
+    /// <list type="bullet">
+    /// <item>
+    /// <description>
+    /// For service-specific credentials with CodeCommit, refer to
+    /// <see href="https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_ssh-keys.html">IAM
+    /// credentials for CodeCommit: Git credentials, SSH keys, and Amazon Web Services access keys</see> in
+    /// the <i>IAM User Guide</i>.
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <description>
+    /// For service-specific credentials with Amazon Keyspaces (for Apache Cassandra), refer to
+    /// <see href="https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_keyspaces.html">Use IAM
+    /// with Amazon Keyspaces (for Apache Cassandra)</see> in the <i>IAM User Guide</i>.
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <description>
+    /// For services that support long-term API keys, refer to
+    /// <see href="https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_api_keys_for_aws_services.html">API
+    /// keys for Amazon Web Services services</see> in the <i>IAM User Guide</i>.
+    /// </description>
+    /// </item>
+    /// </list>
+    /// </summary>
+    public static Task<CreateServiceSpecificCredentialOutput> CreateServiceSpecificCredentialAsync(
+        this IAWSIdentityManagementV20100508Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.CreateServiceSpecificCredentialAsync(
+            new CreateServiceSpecificCredentialInput(),
+            cancellationToken
+        );
+    }
+
+    /// <summary>
+    /// <para>
+    /// Creates a new IAM user for your Amazon Web Services account.
+    /// </para>
+    /// <para>
+    /// For information about quotas for the number of IAM users you can create, see
+    /// <see href="https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_iam-quotas.html">IAM and STS
+    /// quotas</see> in the <i>IAM User Guide</i>.
+    /// </para>
+    /// </summary>
+    public static Task<CreateUserOutput> CreateUserAsync(
+        this IAWSIdentityManagementV20100508Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.CreateUserAsync(new CreateUserInput(), cancellationToken);
+    }
+
+    /// <summary>
+    /// <para>
+    /// Creates a new virtual MFA device for the Amazon Web Services account. After creating the virtual
+    /// MFA, use
+    /// <see href="https://docs.aws.amazon.com/IAM/latest/APIReference/API_EnableMFADevice.html">EnableMFADevice</see>
+    /// to attach the MFA device to an IAM user. For more information about creating and working with
+    /// virtual MFA devices, see
+    /// <see href="https://docs.aws.amazon.com/IAM/latest/UserGuide/Using_VirtualMFA.html">Using a virtual
+    /// MFA device</see> in the <i>IAM User Guide</i>.
+    /// </para>
+    /// <para>
+    /// For information about the maximum number of MFA devices you can create, see
+    /// <see href="https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_iam-quotas.html">IAM and STS
+    /// quotas</see> in the <i>IAM User Guide</i>.
+    /// </para>
+    /// <para>
+    /// <b>Important:</b> The seed information contained in the QR code and the Base32 string should be
+    /// treated like any other secret access information. In other words, protect the seed information as
+    /// you would your Amazon Web Services access keys or your passwords. After you provision your virtual
+    /// device, you should ensure that the information is destroyed following secure procedures.
+    /// </para>
+    /// </summary>
+    public static Task<CreateVirtualMFADeviceOutput> CreateVirtualMFADeviceAsync(
+        this IAWSIdentityManagementV20100508Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.CreateVirtualMFADeviceAsync(
+            new CreateVirtualMFADeviceInput(),
+            cancellationToken
+        );
+    }
+
+    /// <summary>
+    /// <para>
+    /// Deactivates the specified MFA device and removes it from association with the user name for which it
+    /// was originally enabled.
+    /// </para>
+    /// <para>
+    /// For more information about creating and working with virtual MFA devices, see
+    /// <see href="https://docs.aws.amazon.com/IAM/latest/UserGuide/Using_VirtualMFA.html">Enabling a
+    /// virtual multi-factor authentication (MFA) device</see> in the <i>IAM User Guide</i>.
+    /// </para>
+    /// </summary>
+    public static Task<DeactivateMFADeviceOutput> DeactivateMFADeviceAsync(
+        this IAWSIdentityManagementV20100508Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.DeactivateMFADeviceAsync(new DeactivateMFADeviceInput(), cancellationToken);
+    }
+
+    /// <summary>
+    /// <para>
+    /// Deletes the access key pair associated with the specified IAM user.
+    /// </para>
+    /// <para>
+    /// If you do not specify a user name, IAM determines the user name implicitly based on the Amazon Web
+    /// Services access key ID signing the request. This operation works for access keys under the Amazon
+    /// Web Services account. Consequently, you can use this operation to manage Amazon Web Services account
+    /// root user credentials even if the Amazon Web Services account has no associated users.
+    /// </para>
+    /// </summary>
+    public static Task<DeleteAccessKeyOutput> DeleteAccessKeyAsync(
+        this IAWSIdentityManagementV20100508Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.DeleteAccessKeyAsync(new DeleteAccessKeyInput(), cancellationToken);
+    }
+
+    /// <summary>
+    /// Deletes the specified Amazon Web Services account alias. For information about using an Amazon Web
+    /// Services account alias, see
+    /// <see href="https://docs.aws.amazon.com/signin/latest/userguide/CreateAccountAlias.html">Creating,
+    /// deleting, and listing an Amazon Web Services account alias</see> in the <i>Amazon Web Services
+    /// Sign-In User Guide</i>.
+    /// </summary>
+    public static Task<DeleteAccountAliasOutput> DeleteAccountAliasAsync(
+        this IAWSIdentityManagementV20100508Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.DeleteAccountAliasAsync(new DeleteAccountAliasInput(), cancellationToken);
+    }
+
+    /// <summary>
     /// Deletes the password policy for the Amazon Web Services account. There are no parameters.
     /// </summary>
     public static Task<DeleteAccountPasswordPolicyOutput> DeleteAccountPasswordPolicyAsync(
@@ -7093,6 +7846,66 @@ public static class AWSIdentityManagementV20100508ClientExtensions
         ArgumentNullException.ThrowIfNull(client);
         return client.DeleteAccountPasswordPolicyAsync(
             new DeleteAccountPasswordPolicyInput(),
+            cancellationToken
+        );
+    }
+
+    /// <summary>
+    /// Deletes the specified IAM group. The group must not contain any users or have any attached policies.
+    /// </summary>
+    public static Task<DeleteGroupOutput> DeleteGroupAsync(
+        this IAWSIdentityManagementV20100508Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.DeleteGroupAsync(new DeleteGroupInput(), cancellationToken);
+    }
+
+    /// <summary>
+    /// <para>
+    /// Deletes the specified inline policy that is embedded in the specified IAM group.
+    /// </para>
+    /// <para>
+    /// A group can also have managed policies attached to it. To detach a managed policy from a group, use
+    /// <see href="https://docs.aws.amazon.com/IAM/latest/APIReference/API_DetachGroupPolicy.html">DetachGroupPolicy</see>.
+    /// For more information about policies, refer to
+    /// <see href="https://docs.aws.amazon.com/IAM/latest/UserGuide/policies-managed-vs-inline.html">Managed
+    /// policies and inline policies</see> in the <i>IAM User Guide</i>.
+    /// </para>
+    /// </summary>
+    public static Task<DeleteGroupPolicyOutput> DeleteGroupPolicyAsync(
+        this IAWSIdentityManagementV20100508Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.DeleteGroupPolicyAsync(new DeleteGroupPolicyInput(), cancellationToken);
+    }
+
+    /// <summary>
+    /// <para>
+    /// Deletes the specified instance profile. The instance profile must not have an associated role.
+    /// </para>
+    /// <para>
+    /// <b>Important:</b> Make sure that you do not have any Amazon EC2 instances running with the instance
+    /// profile you are about to delete. Deleting a role or instance profile that is associated with a
+    /// running instance will break any applications running on the instance.
+    /// </para>
+    /// <para>
+    /// For more information about instance profiles, see
+    /// <see href="https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_use_switch-role-ec2_instance-profiles.html">Using
+    /// instance profiles</see> in the <i>IAM User Guide</i>.
+    /// </para>
+    /// </summary>
+    public static Task<DeleteInstanceProfileOutput> DeleteInstanceProfileAsync(
+        this IAWSIdentityManagementV20100508Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.DeleteInstanceProfileAsync(
+            new DeleteInstanceProfileInput(),
             cancellationToken
         );
     }
@@ -7127,6 +7940,561 @@ public static class AWSIdentityManagementV20100508ClientExtensions
     {
         ArgumentNullException.ThrowIfNull(client);
         return client.DeleteLoginProfileAsync(new DeleteLoginProfileInput(), cancellationToken);
+    }
+
+    /// <summary>
+    /// <para>
+    /// Deletes an OpenID Connect identity provider (IdP) resource object in IAM.
+    /// </para>
+    /// <para>
+    /// Deleting an IAM OIDC provider resource does not update any roles that reference the provider as a
+    /// principal in their trust policies. Any attempt to assume a role that references a deleted provider
+    /// fails.
+    /// </para>
+    /// <para>
+    /// This operation is idempotent; it does not fail or return an error if you call the operation for a
+    /// provider that does not exist.
+    /// </para>
+    /// </summary>
+    public static Task<DeleteOpenIDConnectProviderOutput> DeleteOpenIDConnectProviderAsync(
+        this IAWSIdentityManagementV20100508Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.DeleteOpenIDConnectProviderAsync(
+            new DeleteOpenIDConnectProviderInput(),
+            cancellationToken
+        );
+    }
+
+    /// <summary>
+    /// <para>
+    /// Deletes the specified managed policy.
+    /// </para>
+    /// <para>
+    /// Before you can delete a managed policy, you must first detach the policy from all users, groups, and
+    /// roles that it is attached to. In addition, you must delete all the policy's versions. The following
+    /// steps describe the process for deleting a managed policy:
+    /// </para>
+    /// <list type="bullet">
+    /// <item>
+    /// <description>
+    /// Detach the policy from all users, groups, and roles that the policy is attached to, using
+    /// <see href="https://docs.aws.amazon.com/IAM/latest/APIReference/API_DetachUserPolicy.html">DetachUserPolicy</see>,
+    /// <see href="https://docs.aws.amazon.com/IAM/latest/APIReference/API_DetachGroupPolicy.html">DetachGroupPolicy</see>,
+    /// or
+    /// <see href="https://docs.aws.amazon.com/IAM/latest/APIReference/API_DetachRolePolicy.html">DetachRolePolicy</see>.
+    /// To list all the users, groups, and roles that a policy is attached to, use
+    /// <see href="https://docs.aws.amazon.com/IAM/latest/APIReference/API_ListEntitiesForPolicy.html">ListEntitiesForPolicy</see>.
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <description>
+    /// Delete all versions of the policy using
+    /// <see href="https://docs.aws.amazon.com/IAM/latest/APIReference/API_DeletePolicyVersion.html">DeletePolicyVersion</see>.
+    /// To list the policy's versions, use
+    /// <see href="https://docs.aws.amazon.com/IAM/latest/APIReference/API_ListPolicyVersions.html">ListPolicyVersions</see>.
+    /// You cannot use
+    /// <see href="https://docs.aws.amazon.com/IAM/latest/APIReference/API_DeletePolicyVersion.html">DeletePolicyVersion</see>
+    /// to delete the version that is marked as the default version. You delete the policy's default version
+    /// in the next step of the process.
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <description>
+    /// Delete the policy (this automatically deletes the policy's default version) using this operation.
+    /// </description>
+    /// </item>
+    /// </list>
+    /// <para>
+    /// For information about managed policies, see
+    /// <see href="https://docs.aws.amazon.com/IAM/latest/UserGuide/policies-managed-vs-inline.html">Managed
+    /// policies and inline policies</see> in the <i>IAM User Guide</i>.
+    /// </para>
+    /// </summary>
+    public static Task<DeletePolicyOutput> DeletePolicyAsync(
+        this IAWSIdentityManagementV20100508Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.DeletePolicyAsync(new DeletePolicyInput(), cancellationToken);
+    }
+
+    /// <summary>
+    /// <para>
+    /// Deletes the specified version from the specified managed policy.
+    /// </para>
+    /// <para>
+    /// You cannot delete the default version from a policy using this operation. To delete the default
+    /// version from a policy, use
+    /// <see href="https://docs.aws.amazon.com/IAM/latest/APIReference/API_DeletePolicy.html">DeletePolicy</see>.
+    /// To find out which version of a policy is marked as the default version, use
+    /// <see href="https://docs.aws.amazon.com/IAM/latest/APIReference/API_ListPolicyVersions.html">ListPolicyVersions</see>.
+    /// </para>
+    /// <para>
+    /// For information about versions for managed policies, see
+    /// <see href="https://docs.aws.amazon.com/IAM/latest/UserGuide/policies-managed-versions.html">Versioning
+    /// for managed policies</see> in the <i>IAM User Guide</i>.
+    /// </para>
+    /// </summary>
+    public static Task<DeletePolicyVersionOutput> DeletePolicyVersionAsync(
+        this IAWSIdentityManagementV20100508Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.DeletePolicyVersionAsync(new DeletePolicyVersionInput(), cancellationToken);
+    }
+
+    /// <summary>
+    /// <para>
+    /// Deletes the specified role. Unlike the Amazon Web Services Management Console, when you delete a
+    /// role programmatically, you must delete the items attached to the role manually, or the deletion
+    /// fails. For more information, see
+    /// <see href="https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_manage_delete.html#roles-managingrole-deleting-cli">Deleting
+    /// an IAM role</see>. Before attempting to delete a role, remove the following attached items:
+    /// </para>
+    /// <list type="bullet">
+    /// <item>
+    /// <description>
+    /// Inline policies
+    /// (<see href="https://docs.aws.amazon.com/IAM/latest/APIReference/API_DeleteRolePolicy.html">DeleteRolePolicy</see>)
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <description>
+    /// Attached managed policies
+    /// (<see href="https://docs.aws.amazon.com/IAM/latest/APIReference/API_DetachRolePolicy.html">DetachRolePolicy</see>)
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <description>
+    /// Instance profile
+    /// (<see href="https://docs.aws.amazon.com/IAM/latest/APIReference/API_RemoveRoleFromInstanceProfile.html">RemoveRoleFromInstanceProfile</see>)
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <description>
+    /// Optional – Delete instance profile after detaching from role for resource clean up
+    /// (<see href="https://docs.aws.amazon.com/IAM/latest/APIReference/API_DeleteInstanceProfile.html">DeleteInstanceProfile</see>)
+    /// </description>
+    /// </item>
+    /// </list>
+    /// <para>
+    /// <b>Important:</b> Make sure that you do not have any Amazon EC2 instances running with the role you
+    /// are about to delete. Deleting a role or instance profile that is associated with a running instance
+    /// will break any applications running on the instance.
+    /// </para>
+    /// </summary>
+    public static Task<DeleteRoleOutput> DeleteRoleAsync(
+        this IAWSIdentityManagementV20100508Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.DeleteRoleAsync(new DeleteRoleInput(), cancellationToken);
+    }
+
+    /// <summary>
+    /// <para>
+    /// Deletes the permissions boundary for the specified IAM role.
+    /// </para>
+    /// <para>
+    /// You cannot set the boundary for a service-linked role.
+    /// </para>
+    /// <para>
+    /// <b>Important:</b> Deleting the permissions boundary for a role might increase its permissions. For
+    /// example, it might allow anyone who assumes the role to perform all the actions granted in its
+    /// permissions policies.
+    /// </para>
+    /// </summary>
+    public static Task<DeleteRolePermissionsBoundaryOutput> DeleteRolePermissionsBoundaryAsync(
+        this IAWSIdentityManagementV20100508Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.DeleteRolePermissionsBoundaryAsync(
+            new DeleteRolePermissionsBoundaryInput(),
+            cancellationToken
+        );
+    }
+
+    /// <summary>
+    /// <para>
+    /// Deletes the specified inline policy that is embedded in the specified IAM role.
+    /// </para>
+    /// <para>
+    /// A role can also have managed policies attached to it. To detach a managed policy from a role, use
+    /// <see href="https://docs.aws.amazon.com/IAM/latest/APIReference/API_DetachRolePolicy.html">DetachRolePolicy</see>.
+    /// For more information about policies, refer to
+    /// <see href="https://docs.aws.amazon.com/IAM/latest/UserGuide/policies-managed-vs-inline.html">Managed
+    /// policies and inline policies</see> in the <i>IAM User Guide</i>.
+    /// </para>
+    /// </summary>
+    public static Task<DeleteRolePolicyOutput> DeleteRolePolicyAsync(
+        this IAWSIdentityManagementV20100508Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.DeleteRolePolicyAsync(new DeleteRolePolicyInput(), cancellationToken);
+    }
+
+    /// <summary>
+    /// <para>
+    /// Deletes a SAML provider resource in IAM.
+    /// </para>
+    /// <para>
+    /// Deleting the provider resource from IAM does not update any roles that reference the SAML provider
+    /// resource's ARN as a principal in their trust policies. Any attempt to assume a role that references
+    /// a non-existent provider resource ARN fails.
+    /// </para>
+    /// <para>
+    /// <b>Note:</b> This operation requires
+    /// <see href="https://docs.aws.amazon.com/general/latest/gr/signature-version-4.html">Signature Version
+    /// 4</see>.
+    /// </para>
+    /// </summary>
+    public static Task<DeleteSAMLProviderOutput> DeleteSAMLProviderAsync(
+        this IAWSIdentityManagementV20100508Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.DeleteSAMLProviderAsync(new DeleteSAMLProviderInput(), cancellationToken);
+    }
+
+    /// <summary>
+    /// <para>
+    /// Deletes the specified SSH public key.
+    /// </para>
+    /// <para>
+    /// The SSH public key deleted by this operation is used only for authenticating the associated IAM user
+    /// to an CodeCommit repository. For more information about using SSH keys to authenticate to an
+    /// CodeCommit repository, see
+    /// <see href="https://docs.aws.amazon.com/codecommit/latest/userguide/setting-up-credentials-ssh.html">Set
+    /// up CodeCommit for SSH connections</see> in the <i>CodeCommit User Guide</i>.
+    /// </para>
+    /// </summary>
+    public static Task<DeleteSSHPublicKeyOutput> DeleteSSHPublicKeyAsync(
+        this IAWSIdentityManagementV20100508Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.DeleteSSHPublicKeyAsync(new DeleteSSHPublicKeyInput(), cancellationToken);
+    }
+
+    /// <summary>
+    /// <para>
+    /// Deletes the specified server certificate.
+    /// </para>
+    /// <para>
+    /// For more information about working with server certificates, see
+    /// <see href="https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_server-certs.html">Working
+    /// with server certificates</see> in the <i>IAM User Guide</i>. This topic also includes a list of
+    /// Amazon Web Services services that can use the server certificates that you manage with IAM.
+    /// </para>
+    /// <para>
+    /// <b>Important:</b> If you are using a server certificate with Elastic Load Balancing, deleting the
+    /// certificate could have implications for your application. If Elastic Load Balancing doesn't detect
+    /// the deletion of bound certificates, it may continue to use the certificates. This could cause
+    /// Elastic Load Balancing to stop accepting traffic. We recommend that you remove the reference to the
+    /// certificate from Elastic Load Balancing before using this command to delete the certificate. For
+    /// more information, see
+    /// <see href="https://docs.aws.amazon.com/ElasticLoadBalancing/latest/APIReference/API_DeleteLoadBalancerListeners.html">DeleteLoadBalancerListeners</see>
+    /// in the <i>Elastic Load Balancing API Reference</i>.
+    /// </para>
+    /// </summary>
+    public static Task<DeleteServerCertificateOutput> DeleteServerCertificateAsync(
+        this IAWSIdentityManagementV20100508Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.DeleteServerCertificateAsync(
+            new DeleteServerCertificateInput(),
+            cancellationToken
+        );
+    }
+
+    /// <summary>
+    /// <para>
+    /// Submits a service-linked role deletion request and returns a <c>DeletionTaskId</c>, which you can
+    /// use to check the status of the deletion. Before you call this operation, confirm that the role has
+    /// no active sessions and that any resources used by the role in the linked service are deleted. If you
+    /// call this operation more than once for the same service-linked role and an earlier deletion task is
+    /// not complete, then the <c>DeletionTaskId</c> of the earlier request is returned.
+    /// </para>
+    /// <para>
+    /// If you submit a deletion request for a service-linked role whose linked service is still accessing a
+    /// resource, then the deletion task fails. If it fails, the
+    /// <see href="https://docs.aws.amazon.com/IAM/latest/APIReference/API_GetServiceLinkedRoleDeletionStatus.html">GetServiceLinkedRoleDeletionStatus</see>
+    /// operation returns the reason for the failure, usually including the resources that must be deleted.
+    /// To delete the service-linked role, you must first remove those resources from the linked service and
+    /// then submit the deletion request again. Resources are specific to the service that is linked to the
+    /// role. For more information about removing resources from a service, see the
+    /// <see href="http://docs.aws.amazon.com/">Amazon Web Services documentation</see> for your service.
+    /// </para>
+    /// <para>
+    /// For more information about service-linked roles, see
+    /// <see href="https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_terms-and-concepts.html#iam-term-service-linked-role">Roles
+    /// terms and concepts: Amazon Web Services service-linked role</see> in the <i>IAM User Guide</i>.
+    /// </para>
+    /// </summary>
+    public static Task<DeleteServiceLinkedRoleOutput> DeleteServiceLinkedRoleAsync(
+        this IAWSIdentityManagementV20100508Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.DeleteServiceLinkedRoleAsync(
+            new DeleteServiceLinkedRoleInput(),
+            cancellationToken
+        );
+    }
+
+    /// <summary>
+    /// Deletes the specified service-specific credential.
+    /// </summary>
+    public static Task<DeleteServiceSpecificCredentialOutput> DeleteServiceSpecificCredentialAsync(
+        this IAWSIdentityManagementV20100508Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.DeleteServiceSpecificCredentialAsync(
+            new DeleteServiceSpecificCredentialInput(),
+            cancellationToken
+        );
+    }
+
+    /// <summary>
+    /// <para>
+    /// Deletes a signing certificate associated with the specified IAM user.
+    /// </para>
+    /// <para>
+    /// If you do not specify a user name, IAM determines the user name implicitly based on the Amazon Web
+    /// Services access key ID signing the request. This operation works for access keys under the Amazon
+    /// Web Services account. Consequently, you can use this operation to manage Amazon Web Services account
+    /// root user credentials even if the Amazon Web Services account has no associated IAM users.
+    /// </para>
+    /// </summary>
+    public static Task<DeleteSigningCertificateOutput> DeleteSigningCertificateAsync(
+        this IAWSIdentityManagementV20100508Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.DeleteSigningCertificateAsync(
+            new DeleteSigningCertificateInput(),
+            cancellationToken
+        );
+    }
+
+    /// <summary>
+    /// <para>
+    /// Deletes the specified IAM user. Unlike the Amazon Web Services Management Console, when you delete a
+    /// user programmatically, you must delete the items attached to the user manually, or the deletion
+    /// fails. For more information, see
+    /// <see href="https://docs.aws.amazon.com/IAM/latest/UserGuide/id_users_manage.html#id_users_deleting_cli">Deleting
+    /// an IAM user</see>. Before attempting to delete a user, remove the following items:
+    /// </para>
+    /// <list type="bullet">
+    /// <item>
+    /// <description>
+    /// Password
+    /// (<see href="https://docs.aws.amazon.com/IAM/latest/APIReference/API_DeleteLoginProfile.html">DeleteLoginProfile</see>)
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <description>
+    /// Access keys
+    /// (<see href="https://docs.aws.amazon.com/IAM/latest/APIReference/API_DeleteAccessKey.html">DeleteAccessKey</see>)
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <description>
+    /// Signing certificate
+    /// (<see href="https://docs.aws.amazon.com/IAM/latest/APIReference/API_DeleteSigningCertificate.html">DeleteSigningCertificate</see>)
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <description>
+    /// SSH public key
+    /// (<see href="https://docs.aws.amazon.com/IAM/latest/APIReference/API_DeleteSSHPublicKey.html">DeleteSSHPublicKey</see>)
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <description>
+    /// Git credentials
+    /// (<see href="https://docs.aws.amazon.com/IAM/latest/APIReference/API_DeleteServiceSpecificCredential.html">DeleteServiceSpecificCredential</see>)
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <description>
+    /// Multi-factor authentication (MFA) device
+    /// (<see href="https://docs.aws.amazon.com/IAM/latest/APIReference/API_DeactivateMFADevice.html">DeactivateMFADevice</see>,
+    /// <see href="https://docs.aws.amazon.com/IAM/latest/APIReference/API_DeleteVirtualMFADevice.html">DeleteVirtualMFADevice</see>)
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <description>
+    /// Inline policies
+    /// (<see href="https://docs.aws.amazon.com/IAM/latest/APIReference/API_DeleteUserPolicy.html">DeleteUserPolicy</see>)
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <description>
+    /// Attached managed policies
+    /// (<see href="https://docs.aws.amazon.com/IAM/latest/APIReference/API_DetachUserPolicy.html">DetachUserPolicy</see>)
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <description>
+    /// Group memberships
+    /// (<see href="https://docs.aws.amazon.com/IAM/latest/APIReference/API_RemoveUserFromGroup.html">RemoveUserFromGroup</see>)
+    /// </description>
+    /// </item>
+    /// </list>
+    /// </summary>
+    public static Task<DeleteUserOutput> DeleteUserAsync(
+        this IAWSIdentityManagementV20100508Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.DeleteUserAsync(new DeleteUserInput(), cancellationToken);
+    }
+
+    /// <summary>
+    /// <para>
+    /// Deletes the permissions boundary for the specified IAM user.
+    /// </para>
+    /// <para>
+    /// <b>Important:</b> Deleting the permissions boundary for a user might increase its permissions by
+    /// allowing the user to perform all the actions granted in its permissions policies.
+    /// </para>
+    /// </summary>
+    public static Task<DeleteUserPermissionsBoundaryOutput> DeleteUserPermissionsBoundaryAsync(
+        this IAWSIdentityManagementV20100508Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.DeleteUserPermissionsBoundaryAsync(
+            new DeleteUserPermissionsBoundaryInput(),
+            cancellationToken
+        );
+    }
+
+    /// <summary>
+    /// <para>
+    /// Deletes the specified inline policy that is embedded in the specified IAM user.
+    /// </para>
+    /// <para>
+    /// A user can also have managed policies attached to it. To detach a managed policy from a user, use
+    /// <see href="https://docs.aws.amazon.com/IAM/latest/APIReference/API_DetachUserPolicy.html">DetachUserPolicy</see>.
+    /// For more information about policies, refer to
+    /// <see href="https://docs.aws.amazon.com/IAM/latest/UserGuide/policies-managed-vs-inline.html">Managed
+    /// policies and inline policies</see> in the <i>IAM User Guide</i>.
+    /// </para>
+    /// </summary>
+    public static Task<DeleteUserPolicyOutput> DeleteUserPolicyAsync(
+        this IAWSIdentityManagementV20100508Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.DeleteUserPolicyAsync(new DeleteUserPolicyInput(), cancellationToken);
+    }
+
+    /// <summary>
+    /// <para>
+    /// Deletes a virtual MFA device.
+    /// </para>
+    /// <para>
+    /// <b>Note:</b> You must deactivate a user's virtual MFA device before you can delete it. For
+    /// information about deactivating MFA devices, see
+    /// <see href="https://docs.aws.amazon.com/IAM/latest/APIReference/API_DeactivateMFADevice.html">DeactivateMFADevice</see>.
+    /// </para>
+    /// </summary>
+    public static Task<DeleteVirtualMFADeviceOutput> DeleteVirtualMFADeviceAsync(
+        this IAWSIdentityManagementV20100508Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.DeleteVirtualMFADeviceAsync(
+            new DeleteVirtualMFADeviceInput(),
+            cancellationToken
+        );
+    }
+
+    /// <summary>
+    /// <para>
+    /// Removes the specified managed policy from the specified IAM group.
+    /// </para>
+    /// <para>
+    /// A group can also have inline policies embedded with it. To delete an inline policy, use
+    /// <see href="https://docs.aws.amazon.com/IAM/latest/APIReference/API_DeleteGroupPolicy.html">DeleteGroupPolicy</see>.
+    /// For information about policies, see
+    /// <see href="https://docs.aws.amazon.com/IAM/latest/UserGuide/policies-managed-vs-inline.html">Managed
+    /// policies and inline policies</see> in the <i>IAM User Guide</i>.
+    /// </para>
+    /// </summary>
+    public static Task<DetachGroupPolicyOutput> DetachGroupPolicyAsync(
+        this IAWSIdentityManagementV20100508Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.DetachGroupPolicyAsync(new DetachGroupPolicyInput(), cancellationToken);
+    }
+
+    /// <summary>
+    /// <para>
+    /// Removes the specified managed policy from the specified role.
+    /// </para>
+    /// <para>
+    /// A role can also have inline policies embedded with it. To delete an inline policy, use
+    /// <see href="https://docs.aws.amazon.com/IAM/latest/APIReference/API_DeleteRolePolicy.html">DeleteRolePolicy</see>.
+    /// For information about policies, see
+    /// <see href="https://docs.aws.amazon.com/IAM/latest/UserGuide/policies-managed-vs-inline.html">Managed
+    /// policies and inline policies</see> in the <i>IAM User Guide</i>.
+    /// </para>
+    /// </summary>
+    public static Task<DetachRolePolicyOutput> DetachRolePolicyAsync(
+        this IAWSIdentityManagementV20100508Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.DetachRolePolicyAsync(new DetachRolePolicyInput(), cancellationToken);
+    }
+
+    /// <summary>
+    /// <para>
+    /// Removes the specified managed policy from the specified user.
+    /// </para>
+    /// <para>
+    /// A user can also have inline policies embedded with it. To delete an inline policy, use
+    /// <see href="https://docs.aws.amazon.com/IAM/latest/APIReference/API_DeleteUserPolicy.html">DeleteUserPolicy</see>.
+    /// For information about policies, see
+    /// <see href="https://docs.aws.amazon.com/IAM/latest/UserGuide/policies-managed-vs-inline.html">Managed
+    /// policies and inline policies</see> in the <i>IAM User Guide</i>.
+    /// </para>
+    /// </summary>
+    public static Task<DetachUserPolicyOutput> DetachUserPolicyAsync(
+        this IAWSIdentityManagementV20100508Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.DetachUserPolicyAsync(new DetachUserPolicyInput(), cancellationToken);
     }
 
     /// <summary>
@@ -7179,6 +8547,19 @@ public static class AWSIdentityManagementV20100508ClientExtensions
             new DisableOutboundWebIdentityFederationInput(),
             cancellationToken
         );
+    }
+
+    /// <summary>
+    /// Enables the specified MFA device and associates it with the specified IAM user. When enabled, the
+    /// MFA device is required for every subsequent login by the IAM user associated with the device.
+    /// </summary>
+    public static Task<EnableMFADeviceOutput> EnableMFADeviceAsync(
+        this IAWSIdentityManagementV20100508Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.EnableMFADeviceAsync(new EnableMFADeviceInput(), cancellationToken);
     }
 
     /// <summary>
@@ -7294,6 +8675,263 @@ public static class AWSIdentityManagementV20100508ClientExtensions
             new GenerateCredentialReportInput(),
             cancellationToken
         );
+    }
+
+    /// <summary>
+    /// <para>
+    /// Generates a report for service last accessed data for Organizations. You can generate a report for
+    /// any entities (organization root, organizational unit, or account) or policies in your organization.
+    /// </para>
+    /// <para>
+    /// To call this operation, you must be signed in using your Organizations management account
+    /// credentials. You can use your long-term IAM user or root user credentials, or temporary credentials
+    /// from assuming an IAM role. SCPs must be enabled for your organization root. You must have the
+    /// required IAM and Organizations permissions. For more information, see
+    /// <see href="https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_access-advisor.html">Refining
+    /// permissions using service last accessed data</see> in the <i>IAM User Guide</i>.
+    /// </para>
+    /// <para>
+    /// You can generate a service last accessed data report for entities by specifying only the entity's
+    /// path. This data includes a list of services that are allowed by any service control policies (SCPs)
+    /// that apply to the entity.
+    /// </para>
+    /// <para>
+    /// You can generate a service last accessed data report for a policy by specifying an entity's path and
+    /// an optional Organizations policy ID. This data includes a list of services that are allowed by the
+    /// specified SCP.
+    /// </para>
+    /// <para>
+    /// For each service in both report types, the data includes the most recent account activity that the
+    /// policy allows to account principals in the entity or the entity's children. For important
+    /// information about the data, reporting period, permissions required, troubleshooting, and supported
+    /// Regions see
+    /// <see href="https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_access-advisor.html">Reducing
+    /// permissions using service last accessed data</see> in the <i>IAM User Guide</i>.
+    /// </para>
+    /// <para>
+    /// <b>Important:</b> The data includes all attempts to access Amazon Web Services, not just the
+    /// successful ones. This includes all attempts that were made using the Amazon Web Services Management
+    /// Console, the Amazon Web Services API through any of the SDKs, or any of the command line tools. An
+    /// unexpected entry in the service last accessed data does not mean that an account has been
+    /// compromised, because the request might have been denied. Refer to your CloudTrail logs as the
+    /// authoritative source for information about all API calls and whether they were successful or denied
+    /// access. For more information, see
+    /// <see href="https://docs.aws.amazon.com/IAM/latest/UserGuide/cloudtrail-integration.html">Logging IAM
+    /// events with CloudTrail</see> in the <i>IAM User Guide</i>.
+    /// </para>
+    /// <para>
+    /// This operation returns a <c>JobId</c>. Use this parameter in the <c>
+    /// <see href="https://docs.aws.amazon.com/IAM/latest/APIReference/API_GetOrganizationsAccessReport.html">GetOrganizationsAccessReport</see>
+    /// </c> operation to check the status of the report generation. To check the status of this request,
+    /// use the <c>JobId</c> parameter in the <c>
+    /// <see href="https://docs.aws.amazon.com/IAM/latest/APIReference/API_GetOrganizationsAccessReport.html">GetOrganizationsAccessReport</see>
+    /// </c> operation and test the <c>JobStatus</c> response parameter. When the job is complete, you can
+    /// retrieve the report.
+    /// </para>
+    /// <para>
+    /// To generate a service last accessed data report for entities, specify an entity path without
+    /// specifying the optional Organizations policy ID. The type of entity that you specify determines the
+    /// data returned in the report.
+    /// </para>
+    /// <list type="bullet">
+    /// <item>
+    /// <description>
+    /// <b>Root</b> – When you specify the organizations root as the entity, the resulting report lists all
+    /// of the services allowed by SCPs that are attached to your root. For each service, the report
+    /// includes data for all accounts in your organization except the management account, because the
+    /// management account is not limited by SCPs.
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <description>
+    /// <b>OU</b> – When you specify an organizational unit (OU) as the entity, the resulting report lists
+    /// all of the services allowed by SCPs that are attached to the OU and its parents. For each service,
+    /// the report includes data for all accounts in the OU or its children. This data excludes the
+    /// management account, because the management account is not limited by SCPs.
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <description>
+    /// <b>management account</b> – When you specify the management account, the resulting report lists all
+    /// Amazon Web Services services, because the management account is not limited by SCPs. For each
+    /// service, the report includes data for only the management account.
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <description>
+    /// <b>Account</b> – When you specify another account as the entity, the resulting report lists all of
+    /// the services allowed by SCPs that are attached to the account and its parents. For each service, the
+    /// report includes data for only the specified account.
+    /// </description>
+    /// </item>
+    /// </list>
+    /// <para>
+    /// To generate a service last accessed data report for policies, specify an entity path and the
+    /// optional Organizations policy ID. The type of entity that you specify determines the data returned
+    /// for each service.
+    /// </para>
+    /// <list type="bullet">
+    /// <item>
+    /// <description>
+    /// <b>Root</b> – When you specify the root entity and a policy ID, the resulting report lists all of
+    /// the services that are allowed by the specified SCP. For each service, the report includes data for
+    /// all accounts in your organization to which the SCP applies. This data excludes the management
+    /// account, because the management account is not limited by SCPs. If the SCP is not attached to any
+    /// entities in the organization, then the report will return a list of services with no data.
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <description>
+    /// <b>OU</b> – When you specify an OU entity and a policy ID, the resulting report lists all of the
+    /// services that are allowed by the specified SCP. For each service, the report includes data for all
+    /// accounts in the OU or its children to which the SCP applies. This means that other accounts outside
+    /// the OU that are affected by the SCP might not be included in the data. This data excludes the
+    /// management account, because the management account is not limited by SCPs. If the SCP is not
+    /// attached to the OU or one of its children, the report will return a list of services with no data.
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <description>
+    /// <b>management account</b> – When you specify the management account, the resulting report lists all
+    /// Amazon Web Services services, because the management account is not limited by SCPs. If you specify
+    /// a policy ID in the CLI or API, the policy is ignored. For each service, the report includes data for
+    /// only the management account.
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <description>
+    /// <b>Account</b> – When you specify another account entity and a policy ID, the resulting report lists
+    /// all of the services that are allowed by the specified SCP. For each service, the report includes
+    /// data for only the specified account. This means that other accounts in the organization that are
+    /// affected by the SCP might not be included in the data. If the SCP is not attached to the account,
+    /// the report will return a list of services with no data.
+    /// </description>
+    /// </item>
+    /// </list>
+    /// <para>
+    /// <b>Note:</b> Service last accessed data does not use other policy types when determining whether a
+    /// principal could access a service. These other policy types include identity-based policies,
+    /// resource-based policies, access control lists, IAM permissions boundaries, and STS assume role
+    /// policies. It only applies SCP logic. For more about the evaluation of policy types, see
+    /// <see href="https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_evaluation-logic.html#policy-eval-basics">Evaluating
+    /// policies</see> in the <i>IAM User Guide</i>.
+    /// </para>
+    /// <para>
+    /// For more information about service last accessed data, see
+    /// <see href="https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_access-advisor.html">Reducing
+    /// policy scope by viewing user activity</see> in the <i>IAM User Guide</i>.
+    /// </para>
+    /// </summary>
+    public static Task<GenerateOrganizationsAccessReportOutput> GenerateOrganizationsAccessReportAsync(
+        this IAWSIdentityManagementV20100508Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.GenerateOrganizationsAccessReportAsync(
+            new GenerateOrganizationsAccessReportInput(),
+            cancellationToken
+        );
+    }
+
+    /// <summary>
+    /// <para>
+    /// Generates a report that includes details about when an IAM resource (user, group, role, or policy)
+    /// was last used in an attempt to access Amazon Web Services services. Recent activity usually appears
+    /// within four hours. IAM reports activity for at least the last 400 days, or less if your Region began
+    /// supporting this feature within the last year. For more information, see
+    /// <see href="https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_access-advisor.html#access-advisor_tracking-period">Regions
+    /// where data is tracked</see>. For more information about services and actions for which action last
+    /// accessed information is displayed, see
+    /// <see href="https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_access-advisor-action-last-accessed.html">IAM
+    /// action last accessed information services and actions</see>.
+    /// </para>
+    /// <para>
+    /// <b>Important:</b> The service last accessed data includes all attempts to access an Amazon Web
+    /// Services API, not just the successful ones. This includes all attempts that were made using the
+    /// Amazon Web Services Management Console, the Amazon Web Services API through any of the SDKs, or any
+    /// of the command line tools. An unexpected entry in the service last accessed data does not mean that
+    /// your account has been compromised, because the request might have been denied. Refer to your
+    /// CloudTrail logs as the authoritative source for information about all API calls and whether they
+    /// were successful or denied access. For more information, see
+    /// <see href="https://docs.aws.amazon.com/IAM/latest/UserGuide/cloudtrail-integration.html">Logging IAM
+    /// events with CloudTrail</see> in the <i>IAM User Guide</i>.
+    /// </para>
+    /// <para>
+    /// The <c>GenerateServiceLastAccessedDetails</c> operation returns a <c>JobId</c>. Use this parameter
+    /// in the following operations to retrieve the following details from your report:
+    /// </para>
+    /// <list type="bullet">
+    /// <item>
+    /// <description>
+    /// <para>
+    /// <see href="https://docs.aws.amazon.com/IAM/latest/APIReference/API_GetServiceLastAccessedDetails.html">GetServiceLastAccessedDetails</see>
+    /// – Use this operation for users, groups, roles, or policies to list every Amazon Web Services service
+    /// that the resource could access using permissions policies. For each service, the response includes
+    /// information about the most recent access attempt.
+    /// </para>
+    /// <para>
+    /// The <c>JobId</c> returned by <c>GenerateServiceLastAccessedDetail</c> must be used by the same role
+    /// within a session, or by the same user when used to call <c>GetServiceLastAccessedDetail</c>.
+    /// </para>
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <description>
+    /// <see href="https://docs.aws.amazon.com/IAM/latest/APIReference/API_GetServiceLastAccessedDetailsWithEntities.html">GetServiceLastAccessedDetailsWithEntities</see>
+    /// – Use this operation for groups and policies to list information about the associated entities
+    /// (users or roles) that attempted to access a specific Amazon Web Services service.
+    /// </description>
+    /// </item>
+    /// </list>
+    /// <para>
+    /// To check the status of the <c>GenerateServiceLastAccessedDetails</c> request, use the <c>JobId</c>
+    /// parameter in the same operations and test the <c>JobStatus</c> response parameter.
+    /// </para>
+    /// <para>
+    /// For additional information about the permissions policies that allow an identity (user, group, or
+    /// role) to access specific services, use the
+    /// <see href="https://docs.aws.amazon.com/IAM/latest/APIReference/API_ListPoliciesGrantingServiceAccess.html">ListPoliciesGrantingServiceAccess</see>
+    /// operation.
+    /// </para>
+    /// <para>
+    /// <b>Note:</b> Service last accessed data does not use other policy types when determining whether a
+    /// resource could access a service. These other policy types include resource-based policies, access
+    /// control lists, Organizations policies, IAM permissions boundaries, and STS assume role policies. It
+    /// only applies permissions policy logic. For more about the evaluation of policy types, see
+    /// <see href="https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_evaluation-logic.html#policy-eval-basics">Evaluating
+    /// policies</see> in the <i>IAM User Guide</i>.
+    /// </para>
+    /// <para>
+    /// For more information about service and action last accessed data, see
+    /// <see href="https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_access-advisor.html">Reducing
+    /// permissions using service last accessed data</see> in the <i>IAM User Guide</i>.
+    /// </para>
+    /// </summary>
+    public static Task<GenerateServiceLastAccessedDetailsOutput> GenerateServiceLastAccessedDetailsAsync(
+        this IAWSIdentityManagementV20100508Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.GenerateServiceLastAccessedDetailsAsync(
+            new GenerateServiceLastAccessedDetailsInput(),
+            cancellationToken
+        );
+    }
+
+    /// <summary>
+    /// Retrieves information about when the specified access key was last used. The information includes
+    /// the date and time of last use, along with the Amazon Web Services service and Region that were
+    /// specified in the last request made with that key.
+    /// </summary>
+    public static Task<GetAccessKeyLastUsedOutput> GetAccessKeyLastUsedAsync(
+        this IAWSIdentityManagementV20100508Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.GetAccessKeyLastUsedAsync(new GetAccessKeyLastUsedInput(), cancellationToken);
     }
 
     /// <summary>
@@ -7416,6 +9054,77 @@ public static class AWSIdentityManagementV20100508ClientExtensions
     }
 
     /// <summary>
+    /// <para>
+    /// Gets a list of all of the context keys referenced in the input policies. The policies are supplied
+    /// as a list of one or more strings. To get the context keys from policies associated with an IAM user,
+    /// group, or role, use
+    /// <see href="https://docs.aws.amazon.com/IAM/latest/APIReference/API_GetContextKeysForPrincipalPolicy.html">GetContextKeysForPrincipalPolicy</see>.
+    /// </para>
+    /// <para>
+    /// Context keys are variables maintained by Amazon Web Services and its services that provide details
+    /// about the context of an API query request. Context keys can be evaluated by testing against a value
+    /// specified in an IAM policy. Use <c>GetContextKeysForCustomPolicy</c> to understand what key names
+    /// and values you must supply when you call
+    /// <see href="https://docs.aws.amazon.com/IAM/latest/APIReference/API_SimulateCustomPolicy.html">SimulateCustomPolicy</see>.
+    /// Note that all parameters are shown in unencoded form here for clarity but must be URL encoded to be
+    /// included as a part of a real HTML request.
+    /// </para>
+    /// </summary>
+    public static Task<GetContextKeysForCustomPolicyOutput> GetContextKeysForCustomPolicyAsync(
+        this IAWSIdentityManagementV20100508Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.GetContextKeysForCustomPolicyAsync(
+            new GetContextKeysForCustomPolicyInput(),
+            cancellationToken
+        );
+    }
+
+    /// <summary>
+    /// <para>
+    /// Gets a list of all of the context keys referenced in all the IAM policies that are attached to the
+    /// specified IAM entity. The entity can be an IAM user, group, or role. If you specify a user, then the
+    /// request also includes all of the policies attached to groups that the user is a member of.
+    /// </para>
+    /// <para>
+    /// You can optionally include a list of one or more additional policies, specified as strings. If you
+    /// want to include <i>only</i> a list of policies by string, use
+    /// <see href="https://docs.aws.amazon.com/IAM/latest/APIReference/API_GetContextKeysForCustomPolicy.html">GetContextKeysForCustomPolicy</see>
+    /// instead.
+    /// </para>
+    /// <para>
+    /// <b>Note:</b> This operation discloses information about the permissions granted to other users. If
+    /// you do not want users to see other user's permissions, then consider allowing them to use
+    /// <see href="https://docs.aws.amazon.com/IAM/latest/APIReference/API_GetContextKeysForCustomPolicy.html">GetContextKeysForCustomPolicy</see>
+    /// instead.
+    /// </para>
+    /// <para>
+    /// Context keys are variables maintained by Amazon Web Services and its services that provide details
+    /// about the context of an API query request. Context keys can be evaluated by testing against a value
+    /// in an IAM policy. Use
+    /// <see href="https://docs.aws.amazon.com/IAM/latest/APIReference/API_GetContextKeysForPrincipalPolicy.html">GetContextKeysForPrincipalPolicy</see>
+    /// to understand what key names and values you must supply when you call
+    /// <see href="https://docs.aws.amazon.com/IAM/latest/APIReference/API_SimulatePrincipalPolicy.html">SimulatePrincipalPolicy</see>.
+    /// This operation doesn't return context keys referenced by service control policies (SCPs). Only
+    /// context keys referenced by the identity-based policies attached to the specified entity, and any
+    /// additional policies that you provide, are included.
+    /// </para>
+    /// </summary>
+    public static Task<GetContextKeysForPrincipalPolicyOutput> GetContextKeysForPrincipalPolicyAsync(
+        this IAWSIdentityManagementV20100508Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.GetContextKeysForPrincipalPolicyAsync(
+            new GetContextKeysForPrincipalPolicyInput(),
+            cancellationToken
+        );
+    }
+
+    /// <summary>
     /// Retrieves a credential report for the Amazon Web Services account. For more information about the
     /// credential report, see
     /// <see href="https://docs.aws.amazon.com/IAM/latest/UserGuide/credential-reports.html">Getting
@@ -7428,6 +9137,152 @@ public static class AWSIdentityManagementV20100508ClientExtensions
     {
         ArgumentNullException.ThrowIfNull(client);
         return client.GetCredentialReportAsync(new GetCredentialReportInput(), cancellationToken);
+    }
+
+    /// <summary>
+    /// <para>
+    /// Retrieves information about a specific delegation request.
+    /// </para>
+    /// <para>
+    /// If a delegation request has no owner or owner account, <c>GetDelegationRequest</c> for that
+    /// delegation request can be called by any account. If the owner account is assigned but there is no
+    /// owner id, only identities within that owner account can call <c>GetDelegationRequest</c> for the
+    /// delegation request. Once the delegation request is fully owned, the owner of the request gets a
+    /// default permission to get that delegation request. For more details, see
+    /// <see href="https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies-temporary-delegation.html#temporary-delegation-managing-permissions">Managing
+    /// Permissions for Delegation Requests</see>.
+    /// </para>
+    /// </summary>
+    public static Task<GetDelegationRequestOutput> GetDelegationRequestAsync(
+        this IAWSIdentityManagementV20100508Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.GetDelegationRequestAsync(new GetDelegationRequestInput(), cancellationToken);
+    }
+
+    /// <summary>
+    /// Returns a list of IAM users that are in the specified IAM group. You can paginate the results using
+    /// the <c>MaxItems</c> and <c>Marker</c> parameters.
+    /// </summary>
+    public static Task<GetGroupOutput> GetGroupAsync(
+        this IAWSIdentityManagementV20100508Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.GetGroupAsync(new GetGroupInput(), cancellationToken);
+    }
+
+    /// <summary>
+    /// Returns a list of IAM users that are in the specified IAM group. You can paginate the results using
+    /// the <c>MaxItems</c> and <c>Marker</c> parameters.
+    /// </summary>
+    public static IAsyncEnumerable<GetGroupOutput> GetGroupPagesAsync(
+        this IAWSIdentityManagementV20100508Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.GetGroupPagesAsync(new GetGroupInput(), cancellationToken);
+    }
+
+    /// <summary>
+    /// Returns a list of IAM users that are in the specified IAM group. You can paginate the results using
+    /// the <c>MaxItems</c> and <c>Marker</c> parameters.
+    /// </summary>
+    public static IAsyncEnumerable<User> GetGroupItemsAsync(
+        this IAWSIdentityManagementV20100508Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.GetGroupItemsAsync(new GetGroupInput(), cancellationToken);
+    }
+
+    /// <summary>
+    /// <para>
+    /// Retrieves the specified inline policy document that is embedded in the specified IAM group.
+    /// </para>
+    /// <para>
+    /// <b>Note:</b> Policies returned by this operation are URL-encoded compliant with
+    /// <see href="https://tools.ietf.org/html/rfc3986">RFC 3986</see>. You can use a URL decoding method to
+    /// convert the policy back to plain JSON text. For example, if you use Java, you can use the
+    /// <c>decode</c> method of the <c>java.net.URLDecoder</c> utility class in the Java SDK. Other
+    /// languages and SDKs provide similar functionality, and some SDKs do this decoding automatically.
+    /// </para>
+    /// <para>
+    /// An IAM group can also have managed policies attached to it. To retrieve a managed policy document
+    /// that is attached to a group, use
+    /// <see href="https://docs.aws.amazon.com/IAM/latest/APIReference/API_GetPolicy.html">GetPolicy</see>
+    /// to determine the policy's default version, then use
+    /// <see href="https://docs.aws.amazon.com/IAM/latest/APIReference/API_GetPolicyVersion.html">GetPolicyVersion</see>
+    /// to retrieve the policy document.
+    /// </para>
+    /// <para>
+    /// For more information about policies, see
+    /// <see href="https://docs.aws.amazon.com/IAM/latest/UserGuide/policies-managed-vs-inline.html">Managed
+    /// policies and inline policies</see> in the <i>IAM User Guide</i>.
+    /// </para>
+    /// </summary>
+    public static Task<GetGroupPolicyOutput> GetGroupPolicyAsync(
+        this IAWSIdentityManagementV20100508Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.GetGroupPolicyAsync(new GetGroupPolicyInput(), cancellationToken);
+    }
+
+    /// <summary>
+    /// <para>
+    /// Retrieves a human readable summary for a given entity. At this time, the only supported entity type
+    /// is <c>delegation-request</c>
+    /// </para>
+    /// <para>
+    /// This method uses a Large Language Model (LLM) to generate the summary.
+    /// </para>
+    /// <para>
+    /// If a delegation request has no owner or owner account, <c>GetHumanReadableSummary</c> for that
+    /// delegation request can be called by any account. If the owner account is assigned but there is no
+    /// owner id, only identities within that owner account can call <c>GetHumanReadableSummary</c> for the
+    /// delegation request to retrieve a summary of that request. Once the delegation request is fully
+    /// owned, the owner of the request gets a default permission to get that delegation request. For more
+    /// details, read <see href="">default permissions granted to delegation requests</see>. These rules are
+    /// identical to
+    /// <see href="https://docs.aws.amazon.com/IAM/latest/APIReference/API_GetDelegationRequest.html">GetDelegationRequest</see>
+    /// API behavior, such that a party who has permissions to call
+    /// <see href="https://docs.aws.amazon.com/IAM/latest/APIReference/API_GetDelegationRequest.html">GetDelegationRequest</see>
+    /// for a given delegation request will always be able to retrieve the human readable summary for that
+    /// request.
+    /// </para>
+    /// </summary>
+    public static Task<GetHumanReadableSummaryOutput> GetHumanReadableSummaryAsync(
+        this IAWSIdentityManagementV20100508Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.GetHumanReadableSummaryAsync(
+            new GetHumanReadableSummaryInput(),
+            cancellationToken
+        );
+    }
+
+    /// <summary>
+    /// Retrieves information about the specified instance profile, including the instance profile's path,
+    /// GUID, ARN, and role. For more information about instance profiles, see
+    /// <see href="https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_use_switch-role-ec2_instance-profiles.html">Using
+    /// instance profiles</see> in the <i>IAM User Guide</i>.
+    /// </summary>
+    public static Task<GetInstanceProfileOutput> GetInstanceProfileAsync(
+        this IAWSIdentityManagementV20100508Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.GetInstanceProfileAsync(new GetInstanceProfileInput(), cancellationToken);
     }
 
     /// <summary>
@@ -7457,6 +9312,74 @@ public static class AWSIdentityManagementV20100508ClientExtensions
     }
 
     /// <summary>
+    /// Retrieves information about an MFA device for a specified user.
+    /// </summary>
+    public static Task<GetMFADeviceOutput> GetMFADeviceAsync(
+        this IAWSIdentityManagementV20100508Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.GetMFADeviceAsync(new GetMFADeviceInput(), cancellationToken);
+    }
+
+    /// <summary>
+    /// Returns information about the specified OpenID Connect (OIDC) provider resource object in IAM.
+    /// </summary>
+    public static Task<GetOpenIDConnectProviderOutput> GetOpenIDConnectProviderAsync(
+        this IAWSIdentityManagementV20100508Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.GetOpenIDConnectProviderAsync(
+            new GetOpenIDConnectProviderInput(),
+            cancellationToken
+        );
+    }
+
+    /// <summary>
+    /// <para>
+    /// Retrieves the service last accessed data report for Organizations that was previously generated
+    /// using the <c>
+    /// <see href="https://docs.aws.amazon.com/IAM/latest/APIReference/API_GenerateOrganizationsAccessReport.html">GenerateOrganizationsAccessReport</see>
+    /// </c> operation. This operation retrieves the status of your report job and the report contents.
+    /// </para>
+    /// <para>
+    /// Depending on the parameters that you passed when you generated the report, the data returned could
+    /// include different information. For details, see
+    /// <see href="https://docs.aws.amazon.com/IAM/latest/APIReference/API_GenerateOrganizationsAccessReport.html">GenerateOrganizationsAccessReport</see>.
+    /// </para>
+    /// <para>
+    /// To call this operation, you must be signed in to the management account in your organization. SCPs
+    /// must be enabled for your organization root. You must have permissions to perform this operation. For
+    /// more information, see
+    /// <see href="https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_access-advisor.html">Refining
+    /// permissions using service last accessed data</see> in the <i>IAM User Guide</i>.
+    /// </para>
+    /// <para>
+    /// For each service that principals in an account (root user, IAM users, or IAM roles) could access
+    /// using SCPs, the operation returns details about the most recent access attempt. If there was no
+    /// attempt, the service is listed without details about the most recent attempt to access the service.
+    /// If the operation fails, it returns the reason that it failed.
+    /// </para>
+    /// <para>
+    /// By default, the list is sorted by service namespace.
+    /// </para>
+    /// </summary>
+    public static Task<GetOrganizationsAccessReportOutput> GetOrganizationsAccessReportAsync(
+        this IAWSIdentityManagementV20100508Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.GetOrganizationsAccessReportAsync(
+            new GetOrganizationsAccessReportInput(),
+            cancellationToken
+        );
+    }
+
+    /// <summary>
     /// Retrieves the configuration information for the outbound identity federation feature in your Amazon
     /// Web Services account. The response includes the unique issuer URL for your Amazon Web Services
     /// account and the current enabled/disabled status of the feature. Use this operation to obtain the
@@ -7470,6 +9393,374 @@ public static class AWSIdentityManagementV20100508ClientExtensions
         ArgumentNullException.ThrowIfNull(client);
         return client.GetOutboundWebIdentityFederationInfoAsync(
             new GetOutboundWebIdentityFederationInfoInput(),
+            cancellationToken
+        );
+    }
+
+    /// <summary>
+    /// <para>
+    /// Retrieves information about the specified managed policy, including the policy's default version and
+    /// the total number of IAM users, groups, and roles to which the policy is attached. To retrieve the
+    /// list of the specific users, groups, and roles that the policy is attached to, use
+    /// <see href="https://docs.aws.amazon.com/IAM/latest/APIReference/API_ListEntitiesForPolicy.html">ListEntitiesForPolicy</see>.
+    /// This operation returns metadata about the policy. To retrieve the actual policy document for a
+    /// specific version of the policy, use
+    /// <see href="https://docs.aws.amazon.com/IAM/latest/APIReference/API_GetPolicyVersion.html">GetPolicyVersion</see>.
+    /// </para>
+    /// <para>
+    /// This operation retrieves information about managed policies. To retrieve information about an inline
+    /// policy that is embedded with an IAM user, group, or role, use
+    /// <see href="https://docs.aws.amazon.com/IAM/latest/APIReference/API_GetUserPolicy.html">GetUserPolicy</see>,
+    /// <see href="https://docs.aws.amazon.com/IAM/latest/APIReference/API_GetGroupPolicy.html">GetGroupPolicy</see>,
+    /// or
+    /// <see href="https://docs.aws.amazon.com/IAM/latest/APIReference/API_GetRolePolicy.html">GetRolePolicy</see>.
+    /// </para>
+    /// <para>
+    /// For more information about policies, see
+    /// <see href="https://docs.aws.amazon.com/IAM/latest/UserGuide/policies-managed-vs-inline.html">Managed
+    /// policies and inline policies</see> in the <i>IAM User Guide</i>.
+    /// </para>
+    /// </summary>
+    public static Task<GetPolicyOutput> GetPolicyAsync(
+        this IAWSIdentityManagementV20100508Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.GetPolicyAsync(new GetPolicyInput(), cancellationToken);
+    }
+
+    /// <summary>
+    /// <para>
+    /// Retrieves information about the specified version of the specified managed policy, including the
+    /// policy document.
+    /// </para>
+    /// <para>
+    /// <b>Note:</b> Policies returned by this operation are URL-encoded compliant with
+    /// <see href="https://tools.ietf.org/html/rfc3986">RFC 3986</see>. You can use a URL decoding method to
+    /// convert the policy back to plain JSON text. For example, if you use Java, you can use the
+    /// <c>decode</c> method of the <c>java.net.URLDecoder</c> utility class in the Java SDK. Other
+    /// languages and SDKs provide similar functionality, and some SDKs do this decoding automatically.
+    /// </para>
+    /// <para>
+    /// To list the available versions for a policy, use
+    /// <see href="https://docs.aws.amazon.com/IAM/latest/APIReference/API_ListPolicyVersions.html">ListPolicyVersions</see>.
+    /// </para>
+    /// <para>
+    /// This operation retrieves information about managed policies. To retrieve information about an inline
+    /// policy that is embedded in a user, group, or role, use
+    /// <see href="https://docs.aws.amazon.com/IAM/latest/APIReference/API_GetUserPolicy.html">GetUserPolicy</see>,
+    /// <see href="https://docs.aws.amazon.com/IAM/latest/APIReference/API_GetGroupPolicy.html">GetGroupPolicy</see>,
+    /// or
+    /// <see href="https://docs.aws.amazon.com/IAM/latest/APIReference/API_GetRolePolicy.html">GetRolePolicy</see>.
+    /// </para>
+    /// <para>
+    /// For more information about the types of policies, see
+    /// <see href="https://docs.aws.amazon.com/IAM/latest/UserGuide/policies-managed-vs-inline.html">Managed
+    /// policies and inline policies</see> in the <i>IAM User Guide</i>.
+    /// </para>
+    /// <para>
+    /// For more information about managed policy versions, see
+    /// <see href="https://docs.aws.amazon.com/IAM/latest/UserGuide/policies-managed-versions.html">Versioning
+    /// for managed policies</see> in the <i>IAM User Guide</i>.
+    /// </para>
+    /// </summary>
+    public static Task<GetPolicyVersionOutput> GetPolicyVersionAsync(
+        this IAWSIdentityManagementV20100508Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.GetPolicyVersionAsync(new GetPolicyVersionInput(), cancellationToken);
+    }
+
+    /// <summary>
+    /// <para>
+    /// Retrieves information about the specified role, including the role's path, GUID, ARN, and the role's
+    /// trust policy that grants permission to assume the role. For more information about roles, see
+    /// <see href="https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles.html">IAM roles</see> in the
+    /// <i>IAM User Guide</i>.
+    /// </para>
+    /// <para>
+    /// <b>Note:</b> Policies returned by this operation are URL-encoded compliant with
+    /// <see href="https://tools.ietf.org/html/rfc3986">RFC 3986</see>. You can use a URL decoding method to
+    /// convert the policy back to plain JSON text. For example, if you use Java, you can use the
+    /// <c>decode</c> method of the <c>java.net.URLDecoder</c> utility class in the Java SDK. Other
+    /// languages and SDKs provide similar functionality, and some SDKs do this decoding automatically.
+    /// </para>
+    /// </summary>
+    public static Task<GetRoleOutput> GetRoleAsync(
+        this IAWSIdentityManagementV20100508Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.GetRoleAsync(new GetRoleInput(), cancellationToken);
+    }
+
+    /// <summary>
+    /// <para>
+    /// Retrieves the specified inline policy document that is embedded with the specified IAM role.
+    /// </para>
+    /// <para>
+    /// <b>Note:</b> Policies returned by this operation are URL-encoded compliant with
+    /// <see href="https://tools.ietf.org/html/rfc3986">RFC 3986</see>. You can use a URL decoding method to
+    /// convert the policy back to plain JSON text. For example, if you use Java, you can use the
+    /// <c>decode</c> method of the <c>java.net.URLDecoder</c> utility class in the Java SDK. Other
+    /// languages and SDKs provide similar functionality, and some SDKs do this decoding automatically.
+    /// </para>
+    /// <para>
+    /// An IAM role can also have managed policies attached to it. To retrieve a managed policy document
+    /// that is attached to a role, use
+    /// <see href="https://docs.aws.amazon.com/IAM/latest/APIReference/API_GetPolicy.html">GetPolicy</see>
+    /// to determine the policy's default version, then use
+    /// <see href="https://docs.aws.amazon.com/IAM/latest/APIReference/API_GetPolicyVersion.html">GetPolicyVersion</see>
+    /// to retrieve the policy document.
+    /// </para>
+    /// <para>
+    /// For more information about policies, see
+    /// <see href="https://docs.aws.amazon.com/IAM/latest/UserGuide/policies-managed-vs-inline.html">Managed
+    /// policies and inline policies</see> in the <i>IAM User Guide</i>.
+    /// </para>
+    /// <para>
+    /// For more information about roles, see
+    /// <see href="https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles.html">IAM roles</see> in the
+    /// <i>IAM User Guide</i>.
+    /// </para>
+    /// </summary>
+    public static Task<GetRolePolicyOutput> GetRolePolicyAsync(
+        this IAWSIdentityManagementV20100508Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.GetRolePolicyAsync(new GetRolePolicyInput(), cancellationToken);
+    }
+
+    /// <summary>
+    /// <para>
+    /// Retrieves information about a version of the specified role template. Role templates define a
+    /// reusable configuration—including role name and path patterns, trust policy, inline and managed
+    /// policies, permissions boundary, tags, and maximum session duration—that you use to create IAM roles
+    /// with
+    /// <see href="https://docs.aws.amazon.com/IAM/latest/APIReference/API_AcquireRole.html">AcquireRole</see>.
+    /// </para>
+    /// <para>
+    /// If you do not specify a minor version, the service returns the template's default minor version.
+    /// </para>
+    /// </summary>
+    public static Task<GetRoleTemplateVersionOutput> GetRoleTemplateVersionAsync(
+        this IAWSIdentityManagementV20100508Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.GetRoleTemplateVersionAsync(
+            new GetRoleTemplateVersionInput(),
+            cancellationToken
+        );
+    }
+
+    /// <summary>
+    /// <para>
+    /// Returns the SAML provider metadocument that was uploaded when the IAM SAML provider resource object
+    /// was created or updated.
+    /// </para>
+    /// <para>
+    /// <b>Note:</b> This operation requires
+    /// <see href="https://docs.aws.amazon.com/general/latest/gr/signature-version-4.html">Signature Version
+    /// 4</see>.
+    /// </para>
+    /// </summary>
+    public static Task<GetSAMLProviderOutput> GetSAMLProviderAsync(
+        this IAWSIdentityManagementV20100508Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.GetSAMLProviderAsync(new GetSAMLProviderInput(), cancellationToken);
+    }
+
+    /// <summary>
+    /// <para>
+    /// Retrieves the specified SSH public key, including metadata about the key.
+    /// </para>
+    /// <para>
+    /// The SSH public key retrieved by this operation is used only for authenticating the associated IAM
+    /// user to an CodeCommit repository. For more information about using SSH keys to authenticate to an
+    /// CodeCommit repository, see
+    /// <see href="https://docs.aws.amazon.com/codecommit/latest/userguide/setting-up-credentials-ssh.html">Set
+    /// up CodeCommit for SSH connections</see> in the <i>CodeCommit User Guide</i>.
+    /// </para>
+    /// </summary>
+    public static Task<GetSSHPublicKeyOutput> GetSSHPublicKeyAsync(
+        this IAWSIdentityManagementV20100508Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.GetSSHPublicKeyAsync(new GetSSHPublicKeyInput(), cancellationToken);
+    }
+
+    /// <summary>
+    /// <para>
+    /// Retrieves information about the specified server certificate stored in IAM.
+    /// </para>
+    /// <para>
+    /// For more information about working with server certificates, see
+    /// <see href="https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_server-certs.html">Working
+    /// with server certificates</see> in the <i>IAM User Guide</i>. This topic includes a list of Amazon
+    /// Web Services services that can use the server certificates that you manage with IAM.
+    /// </para>
+    /// </summary>
+    public static Task<GetServerCertificateOutput> GetServerCertificateAsync(
+        this IAWSIdentityManagementV20100508Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.GetServerCertificateAsync(new GetServerCertificateInput(), cancellationToken);
+    }
+
+    /// <summary>
+    /// <para>
+    /// Retrieves a service last accessed report that was created using the
+    /// <c>GenerateServiceLastAccessedDetails</c> operation. You can use the <c>JobId</c> parameter in
+    /// <c>GetServiceLastAccessedDetails</c> to retrieve the status of your report job. When the report is
+    /// complete, you can retrieve the generated report. The report includes a list of Amazon Web Services
+    /// services that the resource (user, group, role, or managed policy) can access.
+    /// </para>
+    /// <para>
+    /// <b>Note:</b> Service last accessed data does not use other policy types when determining whether a
+    /// resource could access a service. These other policy types include resource-based policies, access
+    /// control lists, Organizations policies, IAM permissions boundaries, and STS assume role policies. It
+    /// only applies permissions policy logic. For more about the evaluation of policy types, see
+    /// <see href="https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_evaluation-logic.html#policy-eval-basics">Evaluating
+    /// policies</see> in the <i>IAM User Guide</i>.
+    /// </para>
+    /// <para>
+    /// For each service that the resource could access using permissions policies, the operation returns
+    /// details about the most recent access attempt. If there was no attempt, the service is listed without
+    /// details about the most recent attempt to access the service. If the operation fails, the
+    /// <c>GetServiceLastAccessedDetails</c> operation returns the reason that it failed.
+    /// </para>
+    /// <para>
+    /// The <c>GetServiceLastAccessedDetails</c> operation returns a list of services. This list includes
+    /// the number of entities that have attempted to access the service and the date and time of the last
+    /// attempt. It also returns the ARN of the following entity, depending on the resource ARN that you
+    /// used to generate the report:
+    /// </para>
+    /// <list type="bullet">
+    /// <item>
+    /// <description>
+    /// <b>User</b> – Returns the user ARN that you used to generate the report
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <description>
+    /// <b>Group</b> – Returns the ARN of the group member (user) that last attempted to access the service
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <description>
+    /// <b>Role</b> – Returns the role ARN that you used to generate the report
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <description>
+    /// <b>Policy</b> – Returns the ARN of the user or role that last used the policy to attempt to access
+    /// the service
+    /// </description>
+    /// </item>
+    /// </list>
+    /// <para>
+    /// By default, the list is sorted by service namespace.
+    /// </para>
+    /// <para>
+    /// If you specified <c>ACTION_LEVEL</c> granularity when you generated the report, this operation
+    /// returns service and action last accessed data. This includes the most recent access attempt for each
+    /// tracked action within a service. Otherwise, this operation returns only service data.
+    /// </para>
+    /// <para>
+    /// For more information about service and action last accessed data, see
+    /// <see href="https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_access-advisor.html">Reducing
+    /// permissions using service last accessed data</see> in the <i>IAM User Guide</i>.
+    /// </para>
+    /// </summary>
+    public static Task<GetServiceLastAccessedDetailsOutput> GetServiceLastAccessedDetailsAsync(
+        this IAWSIdentityManagementV20100508Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.GetServiceLastAccessedDetailsAsync(
+            new GetServiceLastAccessedDetailsInput(),
+            cancellationToken
+        );
+    }
+
+    /// <summary>
+    /// <para>
+    /// After you generate a group or policy report using the <c>GenerateServiceLastAccessedDetails</c>
+    /// operation, you can use the <c>JobId</c> parameter in
+    /// <c>GetServiceLastAccessedDetailsWithEntities</c>. This operation retrieves the status of your report
+    /// job and a list of entities that could have used group or policy permissions to access the specified
+    /// service.
+    /// </para>
+    /// <list type="bullet">
+    /// <item>
+    /// <description>
+    /// <b>Group</b> – For a group report, this operation returns a list of users in the group that could
+    /// have used the group’s policies in an attempt to access the service.
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <description>
+    /// <b>Policy</b> – For a policy report, this operation returns a list of entities (users or roles) that
+    /// could have used the policy in an attempt to access the service.
+    /// </description>
+    /// </item>
+    /// </list>
+    /// <para>
+    /// You can also use this operation for user or role reports to retrieve details about those entities.
+    /// </para>
+    /// <para>
+    /// If the operation fails, the <c>GetServiceLastAccessedDetailsWithEntities</c> operation returns the
+    /// reason that it failed.
+    /// </para>
+    /// <para>
+    /// By default, the list of associated entities is sorted by date, with the most recent access listed
+    /// first.
+    /// </para>
+    /// </summary>
+    public static Task<GetServiceLastAccessedDetailsWithEntitiesOutput> GetServiceLastAccessedDetailsWithEntitiesAsync(
+        this IAWSIdentityManagementV20100508Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.GetServiceLastAccessedDetailsWithEntitiesAsync(
+            new GetServiceLastAccessedDetailsWithEntitiesInput(),
+            cancellationToken
+        );
+    }
+
+    /// <summary>
+    /// Retrieves the status of your service-linked role deletion. After you use
+    /// <see href="https://docs.aws.amazon.com/IAM/latest/APIReference/API_DeleteServiceLinkedRole.html">DeleteServiceLinkedRole</see>
+    /// to submit a service-linked role for deletion, you can use the <c>DeletionTaskId</c> parameter in
+    /// <c>GetServiceLinkedRoleDeletionStatus</c> to check the status of the deletion. If the deletion
+    /// fails, this operation returns the reason that it failed, if that information is returned by the
+    /// service.
+    /// </summary>
+    public static Task<GetServiceLinkedRoleDeletionStatusOutput> GetServiceLinkedRoleDeletionStatusAsync(
+        this IAWSIdentityManagementV20100508Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.GetServiceLinkedRoleDeletionStatusAsync(
+            new GetServiceLinkedRoleDeletionStatusInput(),
             cancellationToken
         );
     }
@@ -7491,6 +9782,40 @@ public static class AWSIdentityManagementV20100508ClientExtensions
     {
         ArgumentNullException.ThrowIfNull(client);
         return client.GetUserAsync(new GetUserInput(), cancellationToken);
+    }
+
+    /// <summary>
+    /// <para>
+    /// Retrieves the specified inline policy document that is embedded in the specified IAM user.
+    /// </para>
+    /// <para>
+    /// <b>Note:</b> Policies returned by this operation are URL-encoded compliant with
+    /// <see href="https://tools.ietf.org/html/rfc3986">RFC 3986</see>. You can use a URL decoding method to
+    /// convert the policy back to plain JSON text. For example, if you use Java, you can use the
+    /// <c>decode</c> method of the <c>java.net.URLDecoder</c> utility class in the Java SDK. Other
+    /// languages and SDKs provide similar functionality, and some SDKs do this decoding automatically.
+    /// </para>
+    /// <para>
+    /// An IAM user can also have managed policies attached to it. To retrieve a managed policy document
+    /// that is attached to a user, use
+    /// <see href="https://docs.aws.amazon.com/IAM/latest/APIReference/API_GetPolicy.html">GetPolicy</see>
+    /// to determine the policy's default version. Then use
+    /// <see href="https://docs.aws.amazon.com/IAM/latest/APIReference/API_GetPolicyVersion.html">GetPolicyVersion</see>
+    /// to retrieve the policy document.
+    /// </para>
+    /// <para>
+    /// For more information about policies, see
+    /// <see href="https://docs.aws.amazon.com/IAM/latest/UserGuide/policies-managed-vs-inline.html">Managed
+    /// policies and inline policies</see> in the <i>IAM User Guide</i>.
+    /// </para>
+    /// </summary>
+    public static Task<GetUserPolicyOutput> GetUserPolicyAsync(
+        this IAWSIdentityManagementV20100508Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.GetUserPolicyAsync(new GetUserPolicyInput(), cancellationToken);
     }
 
     /// <summary>
@@ -7648,6 +9973,285 @@ public static class AWSIdentityManagementV20100508ClientExtensions
 
     /// <summary>
     /// <para>
+    /// Lists all managed policies that are attached to the specified IAM group.
+    /// </para>
+    /// <para>
+    /// An IAM group can also have inline policies embedded with it. To list the inline policies for a
+    /// group, use
+    /// <see href="https://docs.aws.amazon.com/IAM/latest/APIReference/API_ListGroupPolicies.html">ListGroupPolicies</see>.
+    /// For information about policies, see
+    /// <see href="https://docs.aws.amazon.com/IAM/latest/UserGuide/policies-managed-vs-inline.html">Managed
+    /// policies and inline policies</see> in the <i>IAM User Guide</i>.
+    /// </para>
+    /// <para>
+    /// You can paginate the results using the <c>MaxItems</c> and <c>Marker</c> parameters. You can use the
+    /// <c>PathPrefix</c> parameter to limit the list of policies to only those matching the specified path
+    /// prefix. If there are no policies attached to the specified group (or none that match the specified
+    /// path prefix), the operation returns an empty list.
+    /// </para>
+    /// </summary>
+    public static Task<ListAttachedGroupPoliciesOutput> ListAttachedGroupPoliciesAsync(
+        this IAWSIdentityManagementV20100508Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.ListAttachedGroupPoliciesAsync(
+            new ListAttachedGroupPoliciesInput(),
+            cancellationToken
+        );
+    }
+
+    /// <summary>
+    /// <para>
+    /// Lists all managed policies that are attached to the specified IAM group.
+    /// </para>
+    /// <para>
+    /// An IAM group can also have inline policies embedded with it. To list the inline policies for a
+    /// group, use
+    /// <see href="https://docs.aws.amazon.com/IAM/latest/APIReference/API_ListGroupPolicies.html">ListGroupPolicies</see>.
+    /// For information about policies, see
+    /// <see href="https://docs.aws.amazon.com/IAM/latest/UserGuide/policies-managed-vs-inline.html">Managed
+    /// policies and inline policies</see> in the <i>IAM User Guide</i>.
+    /// </para>
+    /// <para>
+    /// You can paginate the results using the <c>MaxItems</c> and <c>Marker</c> parameters. You can use the
+    /// <c>PathPrefix</c> parameter to limit the list of policies to only those matching the specified path
+    /// prefix. If there are no policies attached to the specified group (or none that match the specified
+    /// path prefix), the operation returns an empty list.
+    /// </para>
+    /// </summary>
+    public static IAsyncEnumerable<ListAttachedGroupPoliciesOutput> ListAttachedGroupPoliciesPagesAsync(
+        this IAWSIdentityManagementV20100508Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.ListAttachedGroupPoliciesPagesAsync(
+            new ListAttachedGroupPoliciesInput(),
+            cancellationToken
+        );
+    }
+
+    /// <summary>
+    /// <para>
+    /// Lists all managed policies that are attached to the specified IAM group.
+    /// </para>
+    /// <para>
+    /// An IAM group can also have inline policies embedded with it. To list the inline policies for a
+    /// group, use
+    /// <see href="https://docs.aws.amazon.com/IAM/latest/APIReference/API_ListGroupPolicies.html">ListGroupPolicies</see>.
+    /// For information about policies, see
+    /// <see href="https://docs.aws.amazon.com/IAM/latest/UserGuide/policies-managed-vs-inline.html">Managed
+    /// policies and inline policies</see> in the <i>IAM User Guide</i>.
+    /// </para>
+    /// <para>
+    /// You can paginate the results using the <c>MaxItems</c> and <c>Marker</c> parameters. You can use the
+    /// <c>PathPrefix</c> parameter to limit the list of policies to only those matching the specified path
+    /// prefix. If there are no policies attached to the specified group (or none that match the specified
+    /// path prefix), the operation returns an empty list.
+    /// </para>
+    /// </summary>
+    public static IAsyncEnumerable<AttachedPolicy> ListAttachedGroupPoliciesItemsAsync(
+        this IAWSIdentityManagementV20100508Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.ListAttachedGroupPoliciesItemsAsync(
+            new ListAttachedGroupPoliciesInput(),
+            cancellationToken
+        );
+    }
+
+    /// <summary>
+    /// <para>
+    /// Lists all managed policies that are attached to the specified IAM role.
+    /// </para>
+    /// <para>
+    /// An IAM role can also have inline policies embedded with it. To list the inline policies for a role,
+    /// use
+    /// <see href="https://docs.aws.amazon.com/IAM/latest/APIReference/API_ListRolePolicies.html">ListRolePolicies</see>.
+    /// For information about policies, see
+    /// <see href="https://docs.aws.amazon.com/IAM/latest/UserGuide/policies-managed-vs-inline.html">Managed
+    /// policies and inline policies</see> in the <i>IAM User Guide</i>.
+    /// </para>
+    /// <para>
+    /// You can paginate the results using the <c>MaxItems</c> and <c>Marker</c> parameters. You can use the
+    /// <c>PathPrefix</c> parameter to limit the list of policies to only those matching the specified path
+    /// prefix. If there are no policies attached to the specified role (or none that match the specified
+    /// path prefix), the operation returns an empty list.
+    /// </para>
+    /// </summary>
+    public static Task<ListAttachedRolePoliciesOutput> ListAttachedRolePoliciesAsync(
+        this IAWSIdentityManagementV20100508Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.ListAttachedRolePoliciesAsync(
+            new ListAttachedRolePoliciesInput(),
+            cancellationToken
+        );
+    }
+
+    /// <summary>
+    /// <para>
+    /// Lists all managed policies that are attached to the specified IAM role.
+    /// </para>
+    /// <para>
+    /// An IAM role can also have inline policies embedded with it. To list the inline policies for a role,
+    /// use
+    /// <see href="https://docs.aws.amazon.com/IAM/latest/APIReference/API_ListRolePolicies.html">ListRolePolicies</see>.
+    /// For information about policies, see
+    /// <see href="https://docs.aws.amazon.com/IAM/latest/UserGuide/policies-managed-vs-inline.html">Managed
+    /// policies and inline policies</see> in the <i>IAM User Guide</i>.
+    /// </para>
+    /// <para>
+    /// You can paginate the results using the <c>MaxItems</c> and <c>Marker</c> parameters. You can use the
+    /// <c>PathPrefix</c> parameter to limit the list of policies to only those matching the specified path
+    /// prefix. If there are no policies attached to the specified role (or none that match the specified
+    /// path prefix), the operation returns an empty list.
+    /// </para>
+    /// </summary>
+    public static IAsyncEnumerable<ListAttachedRolePoliciesOutput> ListAttachedRolePoliciesPagesAsync(
+        this IAWSIdentityManagementV20100508Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.ListAttachedRolePoliciesPagesAsync(
+            new ListAttachedRolePoliciesInput(),
+            cancellationToken
+        );
+    }
+
+    /// <summary>
+    /// <para>
+    /// Lists all managed policies that are attached to the specified IAM role.
+    /// </para>
+    /// <para>
+    /// An IAM role can also have inline policies embedded with it. To list the inline policies for a role,
+    /// use
+    /// <see href="https://docs.aws.amazon.com/IAM/latest/APIReference/API_ListRolePolicies.html">ListRolePolicies</see>.
+    /// For information about policies, see
+    /// <see href="https://docs.aws.amazon.com/IAM/latest/UserGuide/policies-managed-vs-inline.html">Managed
+    /// policies and inline policies</see> in the <i>IAM User Guide</i>.
+    /// </para>
+    /// <para>
+    /// You can paginate the results using the <c>MaxItems</c> and <c>Marker</c> parameters. You can use the
+    /// <c>PathPrefix</c> parameter to limit the list of policies to only those matching the specified path
+    /// prefix. If there are no policies attached to the specified role (or none that match the specified
+    /// path prefix), the operation returns an empty list.
+    /// </para>
+    /// </summary>
+    public static IAsyncEnumerable<AttachedPolicy> ListAttachedRolePoliciesItemsAsync(
+        this IAWSIdentityManagementV20100508Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.ListAttachedRolePoliciesItemsAsync(
+            new ListAttachedRolePoliciesInput(),
+            cancellationToken
+        );
+    }
+
+    /// <summary>
+    /// <para>
+    /// Lists all managed policies that are attached to the specified IAM user.
+    /// </para>
+    /// <para>
+    /// An IAM user can also have inline policies embedded with it. To list the inline policies for a user,
+    /// use
+    /// <see href="https://docs.aws.amazon.com/IAM/latest/APIReference/API_ListUserPolicies.html">ListUserPolicies</see>.
+    /// For information about policies, see
+    /// <see href="https://docs.aws.amazon.com/IAM/latest/UserGuide/policies-managed-vs-inline.html">Managed
+    /// policies and inline policies</see> in the <i>IAM User Guide</i>.
+    /// </para>
+    /// <para>
+    /// You can paginate the results using the <c>MaxItems</c> and <c>Marker</c> parameters. You can use the
+    /// <c>PathPrefix</c> parameter to limit the list of policies to only those matching the specified path
+    /// prefix. If there are no policies attached to the specified group (or none that match the specified
+    /// path prefix), the operation returns an empty list.
+    /// </para>
+    /// </summary>
+    public static Task<ListAttachedUserPoliciesOutput> ListAttachedUserPoliciesAsync(
+        this IAWSIdentityManagementV20100508Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.ListAttachedUserPoliciesAsync(
+            new ListAttachedUserPoliciesInput(),
+            cancellationToken
+        );
+    }
+
+    /// <summary>
+    /// <para>
+    /// Lists all managed policies that are attached to the specified IAM user.
+    /// </para>
+    /// <para>
+    /// An IAM user can also have inline policies embedded with it. To list the inline policies for a user,
+    /// use
+    /// <see href="https://docs.aws.amazon.com/IAM/latest/APIReference/API_ListUserPolicies.html">ListUserPolicies</see>.
+    /// For information about policies, see
+    /// <see href="https://docs.aws.amazon.com/IAM/latest/UserGuide/policies-managed-vs-inline.html">Managed
+    /// policies and inline policies</see> in the <i>IAM User Guide</i>.
+    /// </para>
+    /// <para>
+    /// You can paginate the results using the <c>MaxItems</c> and <c>Marker</c> parameters. You can use the
+    /// <c>PathPrefix</c> parameter to limit the list of policies to only those matching the specified path
+    /// prefix. If there are no policies attached to the specified group (or none that match the specified
+    /// path prefix), the operation returns an empty list.
+    /// </para>
+    /// </summary>
+    public static IAsyncEnumerable<ListAttachedUserPoliciesOutput> ListAttachedUserPoliciesPagesAsync(
+        this IAWSIdentityManagementV20100508Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.ListAttachedUserPoliciesPagesAsync(
+            new ListAttachedUserPoliciesInput(),
+            cancellationToken
+        );
+    }
+
+    /// <summary>
+    /// <para>
+    /// Lists all managed policies that are attached to the specified IAM user.
+    /// </para>
+    /// <para>
+    /// An IAM user can also have inline policies embedded with it. To list the inline policies for a user,
+    /// use
+    /// <see href="https://docs.aws.amazon.com/IAM/latest/APIReference/API_ListUserPolicies.html">ListUserPolicies</see>.
+    /// For information about policies, see
+    /// <see href="https://docs.aws.amazon.com/IAM/latest/UserGuide/policies-managed-vs-inline.html">Managed
+    /// policies and inline policies</see> in the <i>IAM User Guide</i>.
+    /// </para>
+    /// <para>
+    /// You can paginate the results using the <c>MaxItems</c> and <c>Marker</c> parameters. You can use the
+    /// <c>PathPrefix</c> parameter to limit the list of policies to only those matching the specified path
+    /// prefix. If there are no policies attached to the specified group (or none that match the specified
+    /// path prefix), the operation returns an empty list.
+    /// </para>
+    /// </summary>
+    public static IAsyncEnumerable<AttachedPolicy> ListAttachedUserPoliciesItemsAsync(
+        this IAWSIdentityManagementV20100508Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.ListAttachedUserPoliciesItemsAsync(
+            new ListAttachedUserPoliciesInput(),
+            cancellationToken
+        );
+    }
+
+    /// <summary>
+    /// <para>
     /// Lists delegation requests based on the specified criteria.
     /// </para>
     /// <para>
@@ -7670,6 +10274,134 @@ public static class AWSIdentityManagementV20100508ClientExtensions
             new ListDelegationRequestsInput(),
             cancellationToken
         );
+    }
+
+    /// <summary>
+    /// <para>
+    /// Lists all IAM users, groups, and roles that the specified managed policy is attached to.
+    /// </para>
+    /// <para>
+    /// You can use the optional <c>EntityFilter</c> parameter to limit the results to a particular type of
+    /// entity (users, groups, or roles). For example, to list only the roles that are attached to the
+    /// specified policy, set <c>EntityFilter</c> to <c>Role</c>.
+    /// </para>
+    /// <para>
+    /// You can paginate the results using the <c>MaxItems</c> and <c>Marker</c> parameters.
+    /// </para>
+    /// </summary>
+    public static Task<ListEntitiesForPolicyOutput> ListEntitiesForPolicyAsync(
+        this IAWSIdentityManagementV20100508Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.ListEntitiesForPolicyAsync(
+            new ListEntitiesForPolicyInput(),
+            cancellationToken
+        );
+    }
+
+    /// <summary>
+    /// <para>
+    /// Lists all IAM users, groups, and roles that the specified managed policy is attached to.
+    /// </para>
+    /// <para>
+    /// You can use the optional <c>EntityFilter</c> parameter to limit the results to a particular type of
+    /// entity (users, groups, or roles). For example, to list only the roles that are attached to the
+    /// specified policy, set <c>EntityFilter</c> to <c>Role</c>.
+    /// </para>
+    /// <para>
+    /// You can paginate the results using the <c>MaxItems</c> and <c>Marker</c> parameters.
+    /// </para>
+    /// </summary>
+    public static IAsyncEnumerable<ListEntitiesForPolicyOutput> ListEntitiesForPolicyPagesAsync(
+        this IAWSIdentityManagementV20100508Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.ListEntitiesForPolicyPagesAsync(
+            new ListEntitiesForPolicyInput(),
+            cancellationToken
+        );
+    }
+
+    /// <summary>
+    /// <para>
+    /// Lists the names of the inline policies that are embedded in the specified IAM group.
+    /// </para>
+    /// <para>
+    /// An IAM group can also have managed policies attached to it. To list the managed policies that are
+    /// attached to a group, use
+    /// <see href="https://docs.aws.amazon.com/IAM/latest/APIReference/API_ListAttachedGroupPolicies.html">ListAttachedGroupPolicies</see>.
+    /// For more information about policies, see
+    /// <see href="https://docs.aws.amazon.com/IAM/latest/UserGuide/policies-managed-vs-inline.html">Managed
+    /// policies and inline policies</see> in the <i>IAM User Guide</i>.
+    /// </para>
+    /// <para>
+    /// You can paginate the results using the <c>MaxItems</c> and <c>Marker</c> parameters. If there are no
+    /// inline policies embedded with the specified group, the operation returns an empty list.
+    /// </para>
+    /// </summary>
+    public static Task<ListGroupPoliciesOutput> ListGroupPoliciesAsync(
+        this IAWSIdentityManagementV20100508Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.ListGroupPoliciesAsync(new ListGroupPoliciesInput(), cancellationToken);
+    }
+
+    /// <summary>
+    /// <para>
+    /// Lists the names of the inline policies that are embedded in the specified IAM group.
+    /// </para>
+    /// <para>
+    /// An IAM group can also have managed policies attached to it. To list the managed policies that are
+    /// attached to a group, use
+    /// <see href="https://docs.aws.amazon.com/IAM/latest/APIReference/API_ListAttachedGroupPolicies.html">ListAttachedGroupPolicies</see>.
+    /// For more information about policies, see
+    /// <see href="https://docs.aws.amazon.com/IAM/latest/UserGuide/policies-managed-vs-inline.html">Managed
+    /// policies and inline policies</see> in the <i>IAM User Guide</i>.
+    /// </para>
+    /// <para>
+    /// You can paginate the results using the <c>MaxItems</c> and <c>Marker</c> parameters. If there are no
+    /// inline policies embedded with the specified group, the operation returns an empty list.
+    /// </para>
+    /// </summary>
+    public static IAsyncEnumerable<ListGroupPoliciesOutput> ListGroupPoliciesPagesAsync(
+        this IAWSIdentityManagementV20100508Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.ListGroupPoliciesPagesAsync(new ListGroupPoliciesInput(), cancellationToken);
+    }
+
+    /// <summary>
+    /// <para>
+    /// Lists the names of the inline policies that are embedded in the specified IAM group.
+    /// </para>
+    /// <para>
+    /// An IAM group can also have managed policies attached to it. To list the managed policies that are
+    /// attached to a group, use
+    /// <see href="https://docs.aws.amazon.com/IAM/latest/APIReference/API_ListAttachedGroupPolicies.html">ListAttachedGroupPolicies</see>.
+    /// For more information about policies, see
+    /// <see href="https://docs.aws.amazon.com/IAM/latest/UserGuide/policies-managed-vs-inline.html">Managed
+    /// policies and inline policies</see> in the <i>IAM User Guide</i>.
+    /// </para>
+    /// <para>
+    /// You can paginate the results using the <c>MaxItems</c> and <c>Marker</c> parameters. If there are no
+    /// inline policies embedded with the specified group, the operation returns an empty list.
+    /// </para>
+    /// </summary>
+    public static IAsyncEnumerable<string> ListGroupPoliciesItemsAsync(
+        this IAWSIdentityManagementV20100508Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.ListGroupPoliciesItemsAsync(new ListGroupPoliciesInput(), cancellationToken);
     }
 
     /// <summary>
@@ -7721,6 +10453,111 @@ public static class AWSIdentityManagementV20100508ClientExtensions
     {
         ArgumentNullException.ThrowIfNull(client);
         return client.ListGroupsItemsAsync(new ListGroupsInput(), cancellationToken);
+    }
+
+    /// <summary>
+    /// <para>
+    /// Lists the IAM groups that the specified IAM user belongs to.
+    /// </para>
+    /// <para>
+    /// You can paginate the results using the <c>MaxItems</c> and <c>Marker</c> parameters.
+    /// </para>
+    /// </summary>
+    public static Task<ListGroupsForUserOutput> ListGroupsForUserAsync(
+        this IAWSIdentityManagementV20100508Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.ListGroupsForUserAsync(new ListGroupsForUserInput(), cancellationToken);
+    }
+
+    /// <summary>
+    /// <para>
+    /// Lists the IAM groups that the specified IAM user belongs to.
+    /// </para>
+    /// <para>
+    /// You can paginate the results using the <c>MaxItems</c> and <c>Marker</c> parameters.
+    /// </para>
+    /// </summary>
+    public static IAsyncEnumerable<ListGroupsForUserOutput> ListGroupsForUserPagesAsync(
+        this IAWSIdentityManagementV20100508Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.ListGroupsForUserPagesAsync(new ListGroupsForUserInput(), cancellationToken);
+    }
+
+    /// <summary>
+    /// <para>
+    /// Lists the IAM groups that the specified IAM user belongs to.
+    /// </para>
+    /// <para>
+    /// You can paginate the results using the <c>MaxItems</c> and <c>Marker</c> parameters.
+    /// </para>
+    /// </summary>
+    public static IAsyncEnumerable<Group> ListGroupsForUserItemsAsync(
+        this IAWSIdentityManagementV20100508Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.ListGroupsForUserItemsAsync(new ListGroupsForUserInput(), cancellationToken);
+    }
+
+    /// <summary>
+    /// Lists the tags that are attached to the specified IAM instance profile. The returned list of tags is
+    /// sorted by tag key. For more information about tagging, see
+    /// <see href="https://docs.aws.amazon.com/IAM/latest/UserGuide/id_tags.html">Tagging IAM
+    /// resources</see> in the <i>IAM User Guide</i>.
+    /// </summary>
+    public static Task<ListInstanceProfileTagsOutput> ListInstanceProfileTagsAsync(
+        this IAWSIdentityManagementV20100508Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.ListInstanceProfileTagsAsync(
+            new ListInstanceProfileTagsInput(),
+            cancellationToken
+        );
+    }
+
+    /// <summary>
+    /// Lists the tags that are attached to the specified IAM instance profile. The returned list of tags is
+    /// sorted by tag key. For more information about tagging, see
+    /// <see href="https://docs.aws.amazon.com/IAM/latest/UserGuide/id_tags.html">Tagging IAM
+    /// resources</see> in the <i>IAM User Guide</i>.
+    /// </summary>
+    public static IAsyncEnumerable<ListInstanceProfileTagsOutput> ListInstanceProfileTagsPagesAsync(
+        this IAWSIdentityManagementV20100508Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.ListInstanceProfileTagsPagesAsync(
+            new ListInstanceProfileTagsInput(),
+            cancellationToken
+        );
+    }
+
+    /// <summary>
+    /// Lists the tags that are attached to the specified IAM instance profile. The returned list of tags is
+    /// sorted by tag key. For more information about tagging, see
+    /// <see href="https://docs.aws.amazon.com/IAM/latest/UserGuide/id_tags.html">Tagging IAM
+    /// resources</see> in the <i>IAM User Guide</i>.
+    /// </summary>
+    public static IAsyncEnumerable<global::Com.Amazonaws.Iam.Tag> ListInstanceProfileTagsItemsAsync(
+        this IAWSIdentityManagementV20100508Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.ListInstanceProfileTagsItemsAsync(
+            new ListInstanceProfileTagsInput(),
+            cancellationToken
+        );
     }
 
     /// <summary>
@@ -7809,6 +10646,120 @@ public static class AWSIdentityManagementV20100508ClientExtensions
 
     /// <summary>
     /// <para>
+    /// Lists the instance profiles that have the specified associated IAM role. If there are none, the
+    /// operation returns an empty list. For more information about instance profiles, go to
+    /// <see href="https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_use_switch-role-ec2_instance-profiles.html">Using
+    /// instance profiles</see> in the <i>IAM User Guide</i>.
+    /// </para>
+    /// <para>
+    /// You can paginate the results using the <c>MaxItems</c> and <c>Marker</c> parameters.
+    /// </para>
+    /// </summary>
+    public static Task<ListInstanceProfilesForRoleOutput> ListInstanceProfilesForRoleAsync(
+        this IAWSIdentityManagementV20100508Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.ListInstanceProfilesForRoleAsync(
+            new ListInstanceProfilesForRoleInput(),
+            cancellationToken
+        );
+    }
+
+    /// <summary>
+    /// <para>
+    /// Lists the instance profiles that have the specified associated IAM role. If there are none, the
+    /// operation returns an empty list. For more information about instance profiles, go to
+    /// <see href="https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_use_switch-role-ec2_instance-profiles.html">Using
+    /// instance profiles</see> in the <i>IAM User Guide</i>.
+    /// </para>
+    /// <para>
+    /// You can paginate the results using the <c>MaxItems</c> and <c>Marker</c> parameters.
+    /// </para>
+    /// </summary>
+    public static IAsyncEnumerable<ListInstanceProfilesForRoleOutput> ListInstanceProfilesForRolePagesAsync(
+        this IAWSIdentityManagementV20100508Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.ListInstanceProfilesForRolePagesAsync(
+            new ListInstanceProfilesForRoleInput(),
+            cancellationToken
+        );
+    }
+
+    /// <summary>
+    /// <para>
+    /// Lists the instance profiles that have the specified associated IAM role. If there are none, the
+    /// operation returns an empty list. For more information about instance profiles, go to
+    /// <see href="https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_use_switch-role-ec2_instance-profiles.html">Using
+    /// instance profiles</see> in the <i>IAM User Guide</i>.
+    /// </para>
+    /// <para>
+    /// You can paginate the results using the <c>MaxItems</c> and <c>Marker</c> parameters.
+    /// </para>
+    /// </summary>
+    public static IAsyncEnumerable<InstanceProfile> ListInstanceProfilesForRoleItemsAsync(
+        this IAWSIdentityManagementV20100508Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.ListInstanceProfilesForRoleItemsAsync(
+            new ListInstanceProfilesForRoleInput(),
+            cancellationToken
+        );
+    }
+
+    /// <summary>
+    /// Lists the tags that are attached to the specified IAM virtual multi-factor authentication (MFA)
+    /// device. The returned list of tags is sorted by tag key. For more information about tagging, see
+    /// <see href="https://docs.aws.amazon.com/IAM/latest/UserGuide/id_tags.html">Tagging IAM
+    /// resources</see> in the <i>IAM User Guide</i>.
+    /// </summary>
+    public static Task<ListMFADeviceTagsOutput> ListMFADeviceTagsAsync(
+        this IAWSIdentityManagementV20100508Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.ListMFADeviceTagsAsync(new ListMFADeviceTagsInput(), cancellationToken);
+    }
+
+    /// <summary>
+    /// Lists the tags that are attached to the specified IAM virtual multi-factor authentication (MFA)
+    /// device. The returned list of tags is sorted by tag key. For more information about tagging, see
+    /// <see href="https://docs.aws.amazon.com/IAM/latest/UserGuide/id_tags.html">Tagging IAM
+    /// resources</see> in the <i>IAM User Guide</i>.
+    /// </summary>
+    public static IAsyncEnumerable<ListMFADeviceTagsOutput> ListMFADeviceTagsPagesAsync(
+        this IAWSIdentityManagementV20100508Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.ListMFADeviceTagsPagesAsync(new ListMFADeviceTagsInput(), cancellationToken);
+    }
+
+    /// <summary>
+    /// Lists the tags that are attached to the specified IAM virtual multi-factor authentication (MFA)
+    /// device. The returned list of tags is sorted by tag key. For more information about tagging, see
+    /// <see href="https://docs.aws.amazon.com/IAM/latest/UserGuide/id_tags.html">Tagging IAM
+    /// resources</see> in the <i>IAM User Guide</i>.
+    /// </summary>
+    public static IAsyncEnumerable<global::Com.Amazonaws.Iam.Tag> ListMFADeviceTagsItemsAsync(
+        this IAWSIdentityManagementV20100508Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.ListMFADeviceTagsItemsAsync(new ListMFADeviceTagsInput(), cancellationToken);
+    }
+
+    /// <summary>
+    /// <para>
     /// Lists the MFA devices for an IAM user. If the request includes a IAM user name, then this operation
     /// lists all the MFA devices associated with the specified user. If you do not specify a user name, IAM
     /// determines the user name implicitly based on the Amazon Web Services access key ID signing the
@@ -7865,6 +10816,81 @@ public static class AWSIdentityManagementV20100508ClientExtensions
     {
         ArgumentNullException.ThrowIfNull(client);
         return client.ListMFADevicesItemsAsync(new ListMFADevicesInput(), cancellationToken);
+    }
+
+    /// <summary>
+    /// <para>
+    /// Lists the tags that are attached to the specified OpenID Connect (OIDC)-compatible identity
+    /// provider. The returned list of tags is sorted by tag key. For more information, see
+    /// <see href="https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_providers_oidc.html">About web
+    /// identity federation</see>.
+    /// </para>
+    /// <para>
+    /// For more information about tagging, see
+    /// <see href="https://docs.aws.amazon.com/IAM/latest/UserGuide/id_tags.html">Tagging IAM
+    /// resources</see> in the <i>IAM User Guide</i>.
+    /// </para>
+    /// </summary>
+    public static Task<ListOpenIDConnectProviderTagsOutput> ListOpenIDConnectProviderTagsAsync(
+        this IAWSIdentityManagementV20100508Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.ListOpenIDConnectProviderTagsAsync(
+            new ListOpenIDConnectProviderTagsInput(),
+            cancellationToken
+        );
+    }
+
+    /// <summary>
+    /// <para>
+    /// Lists the tags that are attached to the specified OpenID Connect (OIDC)-compatible identity
+    /// provider. The returned list of tags is sorted by tag key. For more information, see
+    /// <see href="https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_providers_oidc.html">About web
+    /// identity federation</see>.
+    /// </para>
+    /// <para>
+    /// For more information about tagging, see
+    /// <see href="https://docs.aws.amazon.com/IAM/latest/UserGuide/id_tags.html">Tagging IAM
+    /// resources</see> in the <i>IAM User Guide</i>.
+    /// </para>
+    /// </summary>
+    public static IAsyncEnumerable<ListOpenIDConnectProviderTagsOutput> ListOpenIDConnectProviderTagsPagesAsync(
+        this IAWSIdentityManagementV20100508Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.ListOpenIDConnectProviderTagsPagesAsync(
+            new ListOpenIDConnectProviderTagsInput(),
+            cancellationToken
+        );
+    }
+
+    /// <summary>
+    /// <para>
+    /// Lists the tags that are attached to the specified OpenID Connect (OIDC)-compatible identity
+    /// provider. The returned list of tags is sorted by tag key. For more information, see
+    /// <see href="https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_providers_oidc.html">About web
+    /// identity federation</see>.
+    /// </para>
+    /// <para>
+    /// For more information about tagging, see
+    /// <see href="https://docs.aws.amazon.com/IAM/latest/UserGuide/id_tags.html">Tagging IAM
+    /// resources</see> in the <i>IAM User Guide</i>.
+    /// </para>
+    /// </summary>
+    public static IAsyncEnumerable<global::Com.Amazonaws.Iam.Tag> ListOpenIDConnectProviderTagsItemsAsync(
+        this IAWSIdentityManagementV20100508Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.ListOpenIDConnectProviderTagsItemsAsync(
+            new ListOpenIDConnectProviderTagsInput(),
+            cancellationToken
+        );
     }
 
     /// <summary>
@@ -8015,6 +11041,304 @@ public static class AWSIdentityManagementV20100508ClientExtensions
 
     /// <summary>
     /// <para>
+    /// Retrieves a list of policies that the IAM identity (user, group, or role) can use to access each
+    /// specified service.
+    /// </para>
+    /// <para>
+    /// <b>Note:</b> This operation does not use other policy types when determining whether a resource
+    /// could access a service. These other policy types include resource-based policies, access control
+    /// lists, Organizations policies, IAM permissions boundaries, and STS assume role policies. It only
+    /// applies permissions policy logic. For more about the evaluation of policy types, see
+    /// <see href="https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_evaluation-logic.html#policy-eval-basics">Evaluating
+    /// policies</see> in the <i>IAM User Guide</i>.
+    /// </para>
+    /// <para>
+    /// The list of policies returned by the operation depends on the ARN of the identity that you provide.
+    /// </para>
+    /// <list type="bullet">
+    /// <item>
+    /// <description>
+    /// <b>User</b> – The list of policies includes the managed and inline policies that are attached to the
+    /// user directly. The list also includes any additional managed and inline policies that are attached
+    /// to the group to which the user belongs.
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <description>
+    /// <b>Group</b> – The list of policies includes only the managed and inline policies that are attached
+    /// to the group directly. Policies that are attached to the group’s user are not included.
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <description>
+    /// <b>Role</b> – The list of policies includes only the managed and inline policies that are attached
+    /// to the role.
+    /// </description>
+    /// </item>
+    /// </list>
+    /// <para>
+    /// For each managed policy, this operation returns the ARN and policy name. For each inline policy, it
+    /// returns the policy name and the entity to which it is attached. Inline policies do not have an ARN.
+    /// For more information about these policy types, see
+    /// <see href="https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_managed-vs-inline.html">Managed
+    /// policies and inline policies</see> in the <i>IAM User Guide</i>.
+    /// </para>
+    /// <para>
+    /// Policies that are attached to users and roles as permissions boundaries are not returned. To view
+    /// which managed policy is currently used to set the permissions boundary for a user or role, use the
+    /// <see href="https://docs.aws.amazon.com/IAM/latest/APIReference/API_GetUser.html">GetUser</see> or
+    /// <see href="https://docs.aws.amazon.com/IAM/latest/APIReference/API_GetRole.html">GetRole</see>
+    /// operations.
+    /// </para>
+    /// </summary>
+    public static Task<ListPoliciesGrantingServiceAccessOutput> ListPoliciesGrantingServiceAccessAsync(
+        this IAWSIdentityManagementV20100508Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.ListPoliciesGrantingServiceAccessAsync(
+            new ListPoliciesGrantingServiceAccessInput(),
+            cancellationToken
+        );
+    }
+
+    /// <summary>
+    /// Lists the tags that are attached to the specified IAM customer managed policy. The returned list of
+    /// tags is sorted by tag key. For more information about tagging, see
+    /// <see href="https://docs.aws.amazon.com/IAM/latest/UserGuide/id_tags.html">Tagging IAM
+    /// resources</see> in the <i>IAM User Guide</i>.
+    /// </summary>
+    public static Task<ListPolicyTagsOutput> ListPolicyTagsAsync(
+        this IAWSIdentityManagementV20100508Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.ListPolicyTagsAsync(new ListPolicyTagsInput(), cancellationToken);
+    }
+
+    /// <summary>
+    /// Lists the tags that are attached to the specified IAM customer managed policy. The returned list of
+    /// tags is sorted by tag key. For more information about tagging, see
+    /// <see href="https://docs.aws.amazon.com/IAM/latest/UserGuide/id_tags.html">Tagging IAM
+    /// resources</see> in the <i>IAM User Guide</i>.
+    /// </summary>
+    public static IAsyncEnumerable<ListPolicyTagsOutput> ListPolicyTagsPagesAsync(
+        this IAWSIdentityManagementV20100508Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.ListPolicyTagsPagesAsync(new ListPolicyTagsInput(), cancellationToken);
+    }
+
+    /// <summary>
+    /// Lists the tags that are attached to the specified IAM customer managed policy. The returned list of
+    /// tags is sorted by tag key. For more information about tagging, see
+    /// <see href="https://docs.aws.amazon.com/IAM/latest/UserGuide/id_tags.html">Tagging IAM
+    /// resources</see> in the <i>IAM User Guide</i>.
+    /// </summary>
+    public static IAsyncEnumerable<global::Com.Amazonaws.Iam.Tag> ListPolicyTagsItemsAsync(
+        this IAWSIdentityManagementV20100508Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.ListPolicyTagsItemsAsync(new ListPolicyTagsInput(), cancellationToken);
+    }
+
+    /// <summary>
+    /// <para>
+    /// Lists information about the versions of the specified managed policy, including the version that is
+    /// currently set as the policy's default version.
+    /// </para>
+    /// <para>
+    /// For more information about managed policies, see
+    /// <see href="https://docs.aws.amazon.com/IAM/latest/UserGuide/policies-managed-vs-inline.html">Managed
+    /// policies and inline policies</see> in the <i>IAM User Guide</i>.
+    /// </para>
+    /// </summary>
+    public static Task<ListPolicyVersionsOutput> ListPolicyVersionsAsync(
+        this IAWSIdentityManagementV20100508Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.ListPolicyVersionsAsync(new ListPolicyVersionsInput(), cancellationToken);
+    }
+
+    /// <summary>
+    /// <para>
+    /// Lists information about the versions of the specified managed policy, including the version that is
+    /// currently set as the policy's default version.
+    /// </para>
+    /// <para>
+    /// For more information about managed policies, see
+    /// <see href="https://docs.aws.amazon.com/IAM/latest/UserGuide/policies-managed-vs-inline.html">Managed
+    /// policies and inline policies</see> in the <i>IAM User Guide</i>.
+    /// </para>
+    /// </summary>
+    public static IAsyncEnumerable<ListPolicyVersionsOutput> ListPolicyVersionsPagesAsync(
+        this IAWSIdentityManagementV20100508Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.ListPolicyVersionsPagesAsync(
+            new ListPolicyVersionsInput(),
+            cancellationToken
+        );
+    }
+
+    /// <summary>
+    /// <para>
+    /// Lists information about the versions of the specified managed policy, including the version that is
+    /// currently set as the policy's default version.
+    /// </para>
+    /// <para>
+    /// For more information about managed policies, see
+    /// <see href="https://docs.aws.amazon.com/IAM/latest/UserGuide/policies-managed-vs-inline.html">Managed
+    /// policies and inline policies</see> in the <i>IAM User Guide</i>.
+    /// </para>
+    /// </summary>
+    public static IAsyncEnumerable<PolicyVersion> ListPolicyVersionsItemsAsync(
+        this IAWSIdentityManagementV20100508Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.ListPolicyVersionsItemsAsync(
+            new ListPolicyVersionsInput(),
+            cancellationToken
+        );
+    }
+
+    /// <summary>
+    /// <para>
+    /// Lists the names of the inline policies that are embedded in the specified IAM role.
+    /// </para>
+    /// <para>
+    /// An IAM role can also have managed policies attached to it. To list the managed policies that are
+    /// attached to a role, use
+    /// <see href="https://docs.aws.amazon.com/IAM/latest/APIReference/API_ListAttachedRolePolicies.html">ListAttachedRolePolicies</see>.
+    /// For more information about policies, see
+    /// <see href="https://docs.aws.amazon.com/IAM/latest/UserGuide/policies-managed-vs-inline.html">Managed
+    /// policies and inline policies</see> in the <i>IAM User Guide</i>.
+    /// </para>
+    /// <para>
+    /// You can paginate the results using the <c>MaxItems</c> and <c>Marker</c> parameters. If there are no
+    /// inline policies embedded with the specified role, the operation returns an empty list.
+    /// </para>
+    /// </summary>
+    public static Task<ListRolePoliciesOutput> ListRolePoliciesAsync(
+        this IAWSIdentityManagementV20100508Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.ListRolePoliciesAsync(new ListRolePoliciesInput(), cancellationToken);
+    }
+
+    /// <summary>
+    /// <para>
+    /// Lists the names of the inline policies that are embedded in the specified IAM role.
+    /// </para>
+    /// <para>
+    /// An IAM role can also have managed policies attached to it. To list the managed policies that are
+    /// attached to a role, use
+    /// <see href="https://docs.aws.amazon.com/IAM/latest/APIReference/API_ListAttachedRolePolicies.html">ListAttachedRolePolicies</see>.
+    /// For more information about policies, see
+    /// <see href="https://docs.aws.amazon.com/IAM/latest/UserGuide/policies-managed-vs-inline.html">Managed
+    /// policies and inline policies</see> in the <i>IAM User Guide</i>.
+    /// </para>
+    /// <para>
+    /// You can paginate the results using the <c>MaxItems</c> and <c>Marker</c> parameters. If there are no
+    /// inline policies embedded with the specified role, the operation returns an empty list.
+    /// </para>
+    /// </summary>
+    public static IAsyncEnumerable<ListRolePoliciesOutput> ListRolePoliciesPagesAsync(
+        this IAWSIdentityManagementV20100508Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.ListRolePoliciesPagesAsync(new ListRolePoliciesInput(), cancellationToken);
+    }
+
+    /// <summary>
+    /// <para>
+    /// Lists the names of the inline policies that are embedded in the specified IAM role.
+    /// </para>
+    /// <para>
+    /// An IAM role can also have managed policies attached to it. To list the managed policies that are
+    /// attached to a role, use
+    /// <see href="https://docs.aws.amazon.com/IAM/latest/APIReference/API_ListAttachedRolePolicies.html">ListAttachedRolePolicies</see>.
+    /// For more information about policies, see
+    /// <see href="https://docs.aws.amazon.com/IAM/latest/UserGuide/policies-managed-vs-inline.html">Managed
+    /// policies and inline policies</see> in the <i>IAM User Guide</i>.
+    /// </para>
+    /// <para>
+    /// You can paginate the results using the <c>MaxItems</c> and <c>Marker</c> parameters. If there are no
+    /// inline policies embedded with the specified role, the operation returns an empty list.
+    /// </para>
+    /// </summary>
+    public static IAsyncEnumerable<string> ListRolePoliciesItemsAsync(
+        this IAWSIdentityManagementV20100508Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.ListRolePoliciesItemsAsync(new ListRolePoliciesInput(), cancellationToken);
+    }
+
+    /// <summary>
+    /// Lists the tags that are attached to the specified role. The returned list of tags is sorted by tag
+    /// key. For more information about tagging, see
+    /// <see href="https://docs.aws.amazon.com/IAM/latest/UserGuide/id_tags.html">Tagging IAM
+    /// resources</see> in the <i>IAM User Guide</i>.
+    /// </summary>
+    public static Task<ListRoleTagsOutput> ListRoleTagsAsync(
+        this IAWSIdentityManagementV20100508Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.ListRoleTagsAsync(new ListRoleTagsInput(), cancellationToken);
+    }
+
+    /// <summary>
+    /// Lists the tags that are attached to the specified role. The returned list of tags is sorted by tag
+    /// key. For more information about tagging, see
+    /// <see href="https://docs.aws.amazon.com/IAM/latest/UserGuide/id_tags.html">Tagging IAM
+    /// resources</see> in the <i>IAM User Guide</i>.
+    /// </summary>
+    public static IAsyncEnumerable<ListRoleTagsOutput> ListRoleTagsPagesAsync(
+        this IAWSIdentityManagementV20100508Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.ListRoleTagsPagesAsync(new ListRoleTagsInput(), cancellationToken);
+    }
+
+    /// <summary>
+    /// Lists the tags that are attached to the specified role. The returned list of tags is sorted by tag
+    /// key. For more information about tagging, see
+    /// <see href="https://docs.aws.amazon.com/IAM/latest/UserGuide/id_tags.html">Tagging IAM
+    /// resources</see> in the <i>IAM User Guide</i>.
+    /// </summary>
+    public static IAsyncEnumerable<global::Com.Amazonaws.Iam.Tag> ListRoleTagsItemsAsync(
+        this IAWSIdentityManagementV20100508Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.ListRoleTagsItemsAsync(new ListRoleTagsInput(), cancellationToken);
+    }
+
+    /// <summary>
+    /// <para>
     /// Lists the IAM roles that have the specified path prefix. If there are none, the operation returns an
     /// empty list. For more information about roles, see
     /// <see href="https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles.html">IAM roles</see> in the
@@ -8153,6 +11477,78 @@ public static class AWSIdentityManagementV20100508ClientExtensions
 
     /// <summary>
     /// <para>
+    /// Lists the tags that are attached to the specified Security Assertion Markup Language (SAML) identity
+    /// provider. The returned list of tags is sorted by tag key. For more information, see
+    /// <see href="https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_providers_saml.html">About SAML
+    /// 2.0-based federation</see>.
+    /// </para>
+    /// <para>
+    /// For more information about tagging, see
+    /// <see href="https://docs.aws.amazon.com/IAM/latest/UserGuide/id_tags.html">Tagging IAM
+    /// resources</see> in the <i>IAM User Guide</i>.
+    /// </para>
+    /// </summary>
+    public static Task<ListSAMLProviderTagsOutput> ListSAMLProviderTagsAsync(
+        this IAWSIdentityManagementV20100508Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.ListSAMLProviderTagsAsync(new ListSAMLProviderTagsInput(), cancellationToken);
+    }
+
+    /// <summary>
+    /// <para>
+    /// Lists the tags that are attached to the specified Security Assertion Markup Language (SAML) identity
+    /// provider. The returned list of tags is sorted by tag key. For more information, see
+    /// <see href="https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_providers_saml.html">About SAML
+    /// 2.0-based federation</see>.
+    /// </para>
+    /// <para>
+    /// For more information about tagging, see
+    /// <see href="https://docs.aws.amazon.com/IAM/latest/UserGuide/id_tags.html">Tagging IAM
+    /// resources</see> in the <i>IAM User Guide</i>.
+    /// </para>
+    /// </summary>
+    public static IAsyncEnumerable<ListSAMLProviderTagsOutput> ListSAMLProviderTagsPagesAsync(
+        this IAWSIdentityManagementV20100508Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.ListSAMLProviderTagsPagesAsync(
+            new ListSAMLProviderTagsInput(),
+            cancellationToken
+        );
+    }
+
+    /// <summary>
+    /// <para>
+    /// Lists the tags that are attached to the specified Security Assertion Markup Language (SAML) identity
+    /// provider. The returned list of tags is sorted by tag key. For more information, see
+    /// <see href="https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_providers_saml.html">About SAML
+    /// 2.0-based federation</see>.
+    /// </para>
+    /// <para>
+    /// For more information about tagging, see
+    /// <see href="https://docs.aws.amazon.com/IAM/latest/UserGuide/id_tags.html">Tagging IAM
+    /// resources</see> in the <i>IAM User Guide</i>.
+    /// </para>
+    /// </summary>
+    public static IAsyncEnumerable<global::Com.Amazonaws.Iam.Tag> ListSAMLProviderTagsItemsAsync(
+        this IAWSIdentityManagementV20100508Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.ListSAMLProviderTagsItemsAsync(
+            new ListSAMLProviderTagsInput(),
+            cancellationToken
+        );
+    }
+
+    /// <summary>
+    /// <para>
     /// Lists the SAML provider resource objects defined in IAM in the account. IAM resource-listing
     /// operations return a subset of the available attributes for the resource. For example, this operation
     /// does not return tags, even though they are an attribute of the returned object. To view all of the
@@ -8250,6 +11646,87 @@ public static class AWSIdentityManagementV20100508ClientExtensions
     {
         ArgumentNullException.ThrowIfNull(client);
         return client.ListSSHPublicKeysItemsAsync(new ListSSHPublicKeysInput(), cancellationToken);
+    }
+
+    /// <summary>
+    /// <para>
+    /// Lists the tags that are attached to the specified IAM server certificate. The returned list of tags
+    /// is sorted by tag key. For more information about tagging, see
+    /// <see href="https://docs.aws.amazon.com/IAM/latest/UserGuide/id_tags.html">Tagging IAM
+    /// resources</see> in the <i>IAM User Guide</i>.
+    /// </para>
+    /// <para>
+    /// <b>Note:</b> For certificates in a Region supported by Certificate Manager (ACM), we recommend that
+    /// you don't use IAM server certificates. Instead, use ACM to provision, manage, and deploy your server
+    /// certificates. For more information about IAM server certificates,
+    /// <see href="https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_server-certs.html">Working
+    /// with server certificates</see> in the <i>IAM User Guide</i>.
+    /// </para>
+    /// </summary>
+    public static Task<ListServerCertificateTagsOutput> ListServerCertificateTagsAsync(
+        this IAWSIdentityManagementV20100508Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.ListServerCertificateTagsAsync(
+            new ListServerCertificateTagsInput(),
+            cancellationToken
+        );
+    }
+
+    /// <summary>
+    /// <para>
+    /// Lists the tags that are attached to the specified IAM server certificate. The returned list of tags
+    /// is sorted by tag key. For more information about tagging, see
+    /// <see href="https://docs.aws.amazon.com/IAM/latest/UserGuide/id_tags.html">Tagging IAM
+    /// resources</see> in the <i>IAM User Guide</i>.
+    /// </para>
+    /// <para>
+    /// <b>Note:</b> For certificates in a Region supported by Certificate Manager (ACM), we recommend that
+    /// you don't use IAM server certificates. Instead, use ACM to provision, manage, and deploy your server
+    /// certificates. For more information about IAM server certificates,
+    /// <see href="https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_server-certs.html">Working
+    /// with server certificates</see> in the <i>IAM User Guide</i>.
+    /// </para>
+    /// </summary>
+    public static IAsyncEnumerable<ListServerCertificateTagsOutput> ListServerCertificateTagsPagesAsync(
+        this IAWSIdentityManagementV20100508Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.ListServerCertificateTagsPagesAsync(
+            new ListServerCertificateTagsInput(),
+            cancellationToken
+        );
+    }
+
+    /// <summary>
+    /// <para>
+    /// Lists the tags that are attached to the specified IAM server certificate. The returned list of tags
+    /// is sorted by tag key. For more information about tagging, see
+    /// <see href="https://docs.aws.amazon.com/IAM/latest/UserGuide/id_tags.html">Tagging IAM
+    /// resources</see> in the <i>IAM User Guide</i>.
+    /// </para>
+    /// <para>
+    /// <b>Note:</b> For certificates in a Region supported by Certificate Manager (ACM), we recommend that
+    /// you don't use IAM server certificates. Instead, use ACM to provision, manage, and deploy your server
+    /// certificates. For more information about IAM server certificates,
+    /// <see href="https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_server-certs.html">Working
+    /// with server certificates</see> in the <i>IAM User Guide</i>.
+    /// </para>
+    /// </summary>
+    public static IAsyncEnumerable<global::Com.Amazonaws.Iam.Tag> ListServerCertificateTagsItemsAsync(
+        this IAWSIdentityManagementV20100508Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.ListServerCertificateTagsItemsAsync(
+            new ListServerCertificateTagsInput(),
+            cancellationToken
+        );
     }
 
     /// <summary>
@@ -8485,6 +11962,129 @@ public static class AWSIdentityManagementV20100508ClientExtensions
 
     /// <summary>
     /// <para>
+    /// Lists the names of the inline policies embedded in the specified IAM user.
+    /// </para>
+    /// <para>
+    /// An IAM user can also have managed policies attached to it. To list the managed policies that are
+    /// attached to a user, use
+    /// <see href="https://docs.aws.amazon.com/IAM/latest/APIReference/API_ListAttachedUserPolicies.html">ListAttachedUserPolicies</see>.
+    /// For more information about policies, see
+    /// <see href="https://docs.aws.amazon.com/IAM/latest/UserGuide/policies-managed-vs-inline.html">Managed
+    /// policies and inline policies</see> in the <i>IAM User Guide</i>.
+    /// </para>
+    /// <para>
+    /// You can paginate the results using the <c>MaxItems</c> and <c>Marker</c> parameters. If there are no
+    /// inline policies embedded with the specified user, the operation returns an empty list.
+    /// </para>
+    /// </summary>
+    public static Task<ListUserPoliciesOutput> ListUserPoliciesAsync(
+        this IAWSIdentityManagementV20100508Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.ListUserPoliciesAsync(new ListUserPoliciesInput(), cancellationToken);
+    }
+
+    /// <summary>
+    /// <para>
+    /// Lists the names of the inline policies embedded in the specified IAM user.
+    /// </para>
+    /// <para>
+    /// An IAM user can also have managed policies attached to it. To list the managed policies that are
+    /// attached to a user, use
+    /// <see href="https://docs.aws.amazon.com/IAM/latest/APIReference/API_ListAttachedUserPolicies.html">ListAttachedUserPolicies</see>.
+    /// For more information about policies, see
+    /// <see href="https://docs.aws.amazon.com/IAM/latest/UserGuide/policies-managed-vs-inline.html">Managed
+    /// policies and inline policies</see> in the <i>IAM User Guide</i>.
+    /// </para>
+    /// <para>
+    /// You can paginate the results using the <c>MaxItems</c> and <c>Marker</c> parameters. If there are no
+    /// inline policies embedded with the specified user, the operation returns an empty list.
+    /// </para>
+    /// </summary>
+    public static IAsyncEnumerable<ListUserPoliciesOutput> ListUserPoliciesPagesAsync(
+        this IAWSIdentityManagementV20100508Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.ListUserPoliciesPagesAsync(new ListUserPoliciesInput(), cancellationToken);
+    }
+
+    /// <summary>
+    /// <para>
+    /// Lists the names of the inline policies embedded in the specified IAM user.
+    /// </para>
+    /// <para>
+    /// An IAM user can also have managed policies attached to it. To list the managed policies that are
+    /// attached to a user, use
+    /// <see href="https://docs.aws.amazon.com/IAM/latest/APIReference/API_ListAttachedUserPolicies.html">ListAttachedUserPolicies</see>.
+    /// For more information about policies, see
+    /// <see href="https://docs.aws.amazon.com/IAM/latest/UserGuide/policies-managed-vs-inline.html">Managed
+    /// policies and inline policies</see> in the <i>IAM User Guide</i>.
+    /// </para>
+    /// <para>
+    /// You can paginate the results using the <c>MaxItems</c> and <c>Marker</c> parameters. If there are no
+    /// inline policies embedded with the specified user, the operation returns an empty list.
+    /// </para>
+    /// </summary>
+    public static IAsyncEnumerable<string> ListUserPoliciesItemsAsync(
+        this IAWSIdentityManagementV20100508Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.ListUserPoliciesItemsAsync(new ListUserPoliciesInput(), cancellationToken);
+    }
+
+    /// <summary>
+    /// Lists the tags that are attached to the specified IAM user. The returned list of tags is sorted by
+    /// tag key. For more information about tagging, see
+    /// <see href="https://docs.aws.amazon.com/IAM/latest/UserGuide/id_tags.html">Tagging IAM
+    /// resources</see> in the <i>IAM User Guide</i>.
+    /// </summary>
+    public static Task<ListUserTagsOutput> ListUserTagsAsync(
+        this IAWSIdentityManagementV20100508Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.ListUserTagsAsync(new ListUserTagsInput(), cancellationToken);
+    }
+
+    /// <summary>
+    /// Lists the tags that are attached to the specified IAM user. The returned list of tags is sorted by
+    /// tag key. For more information about tagging, see
+    /// <see href="https://docs.aws.amazon.com/IAM/latest/UserGuide/id_tags.html">Tagging IAM
+    /// resources</see> in the <i>IAM User Guide</i>.
+    /// </summary>
+    public static IAsyncEnumerable<ListUserTagsOutput> ListUserTagsPagesAsync(
+        this IAWSIdentityManagementV20100508Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.ListUserTagsPagesAsync(new ListUserTagsInput(), cancellationToken);
+    }
+
+    /// <summary>
+    /// Lists the tags that are attached to the specified IAM user. The returned list of tags is sorted by
+    /// tag key. For more information about tagging, see
+    /// <see href="https://docs.aws.amazon.com/IAM/latest/UserGuide/id_tags.html">Tagging IAM
+    /// resources</see> in the <i>IAM User Guide</i>.
+    /// </summary>
+    public static IAsyncEnumerable<global::Com.Amazonaws.Iam.Tag> ListUserTagsItemsAsync(
+        this IAWSIdentityManagementV20100508Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.ListUserTagsItemsAsync(new ListUserTagsInput(), cancellationToken);
+    }
+
+    /// <summary>
+    /// <para>
     /// Lists the IAM users that have the specified path prefix. If no path prefix is specified, the
     /// operation returns all users in the Amazon Web Services account. If there are none, the operation
     /// returns an empty list.
@@ -8689,6 +12289,1428 @@ public static class AWSIdentityManagementV20100508ClientExtensions
 
     /// <summary>
     /// <para>
+    /// Sets account-level properties for the caller's Amazon Web Services account. Account properties are
+    /// configuration settings that control account-wide IAM features such as Role Manager.
+    /// </para>
+    /// <para>
+    /// Specify properties as key-value pairs in <c>Namespace/PropertyName</c> format. All properties in a
+    /// single request must belong to the same namespace. Use
+    /// <see href="https://docs.aws.amazon.com/IAM/latest/APIReference/API_GetAccountProperties.html">GetAccountProperties</see>
+    /// to view the current properties.
+    /// </para>
+    /// </summary>
+    public static Task<PutAccountPropertiesOutput> PutAccountPropertiesAsync(
+        this IAWSIdentityManagementV20100508Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.PutAccountPropertiesAsync(new PutAccountPropertiesInput(), cancellationToken);
+    }
+
+    /// <summary>
+    /// <para>
+    /// Adds or updates an inline policy document that is embedded in the specified IAM group.
+    /// </para>
+    /// <para>
+    /// A user can also have managed policies attached to it. To attach a managed policy to a group, use
+    /// <see href="https://docs.aws.amazon.com/IAM/latest/APIReference/API_AttachGroupPolicy.html"><c>AttachGroupPolicy</c></see>.
+    /// To create a new managed policy, use
+    /// <see href="https://docs.aws.amazon.com/IAM/latest/APIReference/API_CreatePolicy.html"><c>CreatePolicy</c></see>.
+    /// For information about policies, see
+    /// <see href="https://docs.aws.amazon.com/IAM/latest/UserGuide/policies-managed-vs-inline.html">Managed
+    /// policies and inline policies</see> in the <i>IAM User Guide</i>.
+    /// </para>
+    /// <para>
+    /// For information about the maximum number of inline policies that you can embed in a group, see
+    /// <see href="https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_iam-quotas.html">IAM and STS
+    /// quotas</see> in the <i>IAM User Guide</i>.
+    /// </para>
+    /// <para>
+    /// <b>Note:</b> Because policy documents can be large, you should use POST rather than GET when calling
+    /// <c>PutGroupPolicy</c>. For general information about using the Query API with IAM, see
+    /// <see href="https://docs.aws.amazon.com/IAM/latest/UserGuide/IAM_UsingQueryAPI.html">Making query
+    /// requests</see> in the <i>IAM User Guide</i>.
+    /// </para>
+    /// </summary>
+    public static Task<PutGroupPolicyOutput> PutGroupPolicyAsync(
+        this IAWSIdentityManagementV20100508Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.PutGroupPolicyAsync(new PutGroupPolicyInput(), cancellationToken);
+    }
+
+    /// <summary>
+    /// <para>
+    /// Adds or updates the policy that is specified as the IAM role's permissions boundary. You can use an
+    /// Amazon Web Services managed policy or a customer managed policy to set the boundary for a role. Use
+    /// the boundary to control the maximum permissions that the role can have. Setting a permissions
+    /// boundary is an advanced feature that can affect the permissions for the role.
+    /// </para>
+    /// <para>
+    /// You cannot set the boundary for a service-linked role.
+    /// </para>
+    /// <para>
+    /// <b>Important:</b> Policies used as permissions boundaries do not provide permissions. You must also
+    /// attach a permissions policy to the role. To learn how the effective permissions for a role are
+    /// evaluated, see
+    /// <see href="https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_evaluation-logic.html">IAM
+    /// JSON policy evaluation logic</see> in the IAM User Guide.
+    /// </para>
+    /// </summary>
+    public static Task<PutRolePermissionsBoundaryOutput> PutRolePermissionsBoundaryAsync(
+        this IAWSIdentityManagementV20100508Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.PutRolePermissionsBoundaryAsync(
+            new PutRolePermissionsBoundaryInput(),
+            cancellationToken
+        );
+    }
+
+    /// <summary>
+    /// <para>
+    /// Adds or updates an inline policy document that is embedded in the specified IAM role.
+    /// </para>
+    /// <para>
+    /// When you embed an inline policy in a role, the inline policy is used as part of the role's access
+    /// (permissions) policy. The role's trust policy is created at the same time as the role, using
+    /// <see href="https://docs.aws.amazon.com/IAM/latest/APIReference/API_CreateRole.html"><c>CreateRole</c></see>.
+    /// You can update a role's trust policy using
+    /// <see href="https://docs.aws.amazon.com/IAM/latest/APIReference/API_UpdateAssumeRolePolicy.html"><c>UpdateAssumeRolePolicy</c></see>.
+    /// For more information about roles, see
+    /// <see href="https://docs.aws.amazon.com/IAM/latest/UserGuide/roles-toplevel.html">IAM roles</see> in
+    /// the <i>IAM User Guide</i>.
+    /// </para>
+    /// <para>
+    /// A role can also have a managed policy attached to it. To attach a managed policy to a role, use
+    /// <see href="https://docs.aws.amazon.com/IAM/latest/APIReference/API_AttachRolePolicy.html"><c>AttachRolePolicy</c></see>.
+    /// To create a new managed policy, use
+    /// <see href="https://docs.aws.amazon.com/IAM/latest/APIReference/API_CreatePolicy.html"><c>CreatePolicy</c></see>.
+    /// For information about policies, see
+    /// <see href="https://docs.aws.amazon.com/IAM/latest/UserGuide/policies-managed-vs-inline.html">Managed
+    /// policies and inline policies</see> in the <i>IAM User Guide</i>.
+    /// </para>
+    /// <para>
+    /// For information about the maximum number of inline policies that you can embed with a role, see
+    /// <see href="https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_iam-quotas.html">IAM and STS
+    /// quotas</see> in the <i>IAM User Guide</i>.
+    /// </para>
+    /// <para>
+    /// <b>Note:</b> Because policy documents can be large, you should use POST rather than GET when calling
+    /// <c>PutRolePolicy</c>. For general information about using the Query API with IAM, see
+    /// <see href="https://docs.aws.amazon.com/IAM/latest/UserGuide/IAM_UsingQueryAPI.html">Making query
+    /// requests</see> in the <i>IAM User Guide</i>.
+    /// </para>
+    /// </summary>
+    public static Task<PutRolePolicyOutput> PutRolePolicyAsync(
+        this IAWSIdentityManagementV20100508Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.PutRolePolicyAsync(new PutRolePolicyInput(), cancellationToken);
+    }
+
+    /// <summary>
+    /// <para>
+    /// Adds or updates the policy that is specified as the IAM user's permissions boundary. You can use an
+    /// Amazon Web Services managed policy or a customer managed policy to set the boundary for a user. Use
+    /// the boundary to control the maximum permissions that the user can have. Setting a permissions
+    /// boundary is an advanced feature that can affect the permissions for the user.
+    /// </para>
+    /// <para>
+    /// <b>Important:</b> Policies that are used as permissions boundaries do not provide permissions. You
+    /// must also attach a permissions policy to the user. To learn how the effective permissions for a user
+    /// are evaluated, see
+    /// <see href="https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_evaluation-logic.html">IAM
+    /// JSON policy evaluation logic</see> in the IAM User Guide.
+    /// </para>
+    /// </summary>
+    public static Task<PutUserPermissionsBoundaryOutput> PutUserPermissionsBoundaryAsync(
+        this IAWSIdentityManagementV20100508Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.PutUserPermissionsBoundaryAsync(
+            new PutUserPermissionsBoundaryInput(),
+            cancellationToken
+        );
+    }
+
+    /// <summary>
+    /// <para>
+    /// Adds or updates an inline policy document that is embedded in the specified IAM user.
+    /// </para>
+    /// <para>
+    /// An IAM user can also have a managed policy attached to it. To attach a managed policy to a user, use
+    /// <see href="https://docs.aws.amazon.com/IAM/latest/APIReference/API_AttachUserPolicy.html"><c>AttachUserPolicy</c></see>.
+    /// To create a new managed policy, use
+    /// <see href="https://docs.aws.amazon.com/IAM/latest/APIReference/API_CreatePolicy.html"><c>CreatePolicy</c></see>.
+    /// For information about policies, see
+    /// <see href="https://docs.aws.amazon.com/IAM/latest/UserGuide/policies-managed-vs-inline.html">Managed
+    /// policies and inline policies</see> in the <i>IAM User Guide</i>.
+    /// </para>
+    /// <para>
+    /// For information about the maximum number of inline policies that you can embed in a user, see
+    /// <see href="https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_iam-quotas.html">IAM and STS
+    /// quotas</see> in the <i>IAM User Guide</i>.
+    /// </para>
+    /// <para>
+    /// <b>Note:</b> Because policy documents can be large, you should use POST rather than GET when calling
+    /// <c>PutUserPolicy</c>. For general information about using the Query API with IAM, see
+    /// <see href="https://docs.aws.amazon.com/IAM/latest/UserGuide/IAM_UsingQueryAPI.html">Making query
+    /// requests</see> in the <i>IAM User Guide</i>.
+    /// </para>
+    /// </summary>
+    public static Task<PutUserPolicyOutput> PutUserPolicyAsync(
+        this IAWSIdentityManagementV20100508Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.PutUserPolicyAsync(new PutUserPolicyInput(), cancellationToken);
+    }
+
+    /// <summary>
+    /// <para>
+    /// Rejects a delegation request, denying the requested temporary access.
+    /// </para>
+    /// <para>
+    /// Once a request is rejected, it cannot be accepted or updated later. Rejected requests expire after 7
+    /// days.
+    /// </para>
+    /// <para>
+    /// When rejecting a request, an optional explanation can be added using the <c>Notes</c> request
+    /// parameter.
+    /// </para>
+    /// <para>
+    /// For more details, see
+    /// <see href="https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies-temporary-delegation.html#temporary-delegation-managing-permissions">Managing
+    /// Permissions for Delegation Requests</see>.
+    /// </para>
+    /// </summary>
+    public static Task<RejectDelegationRequestOutput> RejectDelegationRequestAsync(
+        this IAWSIdentityManagementV20100508Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.RejectDelegationRequestAsync(
+            new RejectDelegationRequestInput(),
+            cancellationToken
+        );
+    }
+
+    /// <summary>
+    /// <para>
+    /// Removes the specified client ID (also known as audience) from the list of client IDs registered for
+    /// the specified IAM OpenID Connect (OIDC) provider resource object.
+    /// </para>
+    /// <para>
+    /// This operation is idempotent; it does not fail or return an error if you try to remove a client ID
+    /// that does not exist.
+    /// </para>
+    /// </summary>
+    public static Task<RemoveClientIDFromOpenIDConnectProviderOutput> RemoveClientIDFromOpenIDConnectProviderAsync(
+        this IAWSIdentityManagementV20100508Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.RemoveClientIDFromOpenIDConnectProviderAsync(
+            new RemoveClientIDFromOpenIDConnectProviderInput(),
+            cancellationToken
+        );
+    }
+
+    /// <summary>
+    /// <para>
+    /// Removes the specified IAM role from the specified Amazon EC2 instance profile.
+    /// </para>
+    /// <para>
+    /// <b>Important:</b> Make sure that you do not have any Amazon EC2 instances running with the role you
+    /// are about to remove from the instance profile. Removing a role from an instance profile that is
+    /// associated with a running instance might break any applications running on the instance.
+    /// </para>
+    /// <para>
+    /// For more information about roles, see
+    /// <see href="https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles.html">IAM roles</see> in the
+    /// <i>IAM User Guide</i>. For more information about instance profiles, see
+    /// <see href="https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_use_switch-role-ec2_instance-profiles.html">Using
+    /// instance profiles</see> in the <i>IAM User Guide</i>.
+    /// </para>
+    /// </summary>
+    public static Task<RemoveRoleFromInstanceProfileOutput> RemoveRoleFromInstanceProfileAsync(
+        this IAWSIdentityManagementV20100508Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.RemoveRoleFromInstanceProfileAsync(
+            new RemoveRoleFromInstanceProfileInput(),
+            cancellationToken
+        );
+    }
+
+    /// <summary>
+    /// Removes the specified user from the specified group.
+    /// </summary>
+    public static Task<RemoveUserFromGroupOutput> RemoveUserFromGroupAsync(
+        this IAWSIdentityManagementV20100508Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.RemoveUserFromGroupAsync(new RemoveUserFromGroupInput(), cancellationToken);
+    }
+
+    /// <summary>
+    /// Resets the password for a service-specific credential. The new password is Amazon Web Services
+    /// generated and cryptographically strong. It cannot be configured by the user. Resetting the password
+    /// immediately invalidates the previous password associated with this user.
+    /// </summary>
+    public static Task<ResetServiceSpecificCredentialOutput> ResetServiceSpecificCredentialAsync(
+        this IAWSIdentityManagementV20100508Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.ResetServiceSpecificCredentialAsync(
+            new ResetServiceSpecificCredentialInput(),
+            cancellationToken
+        );
+    }
+
+    /// <summary>
+    /// <para>
+    /// Synchronizes the specified MFA device with its IAM resource object on the Amazon Web Services
+    /// servers.
+    /// </para>
+    /// <para>
+    /// For more information about creating and working with virtual MFA devices, see
+    /// <see href="https://docs.aws.amazon.com/IAM/latest/UserGuide/Using_VirtualMFA.html">Using a virtual
+    /// MFA device</see> in the <i>IAM User Guide</i>.
+    /// </para>
+    /// </summary>
+    public static Task<ResyncMFADeviceOutput> ResyncMFADeviceAsync(
+        this IAWSIdentityManagementV20100508Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.ResyncMFADeviceAsync(new ResyncMFADeviceInput(), cancellationToken);
+    }
+
+    /// <summary>
+    /// <para>
+    /// Sends the exchange token for an accepted delegation request.
+    /// </para>
+    /// <para>
+    /// The exchange token is sent to the partner via an asynchronous notification channel, established by
+    /// the partner.
+    /// </para>
+    /// <para>
+    /// The delegation request must be in the <c>ACCEPTED</c> state when calling this API. After the
+    /// <c>SendDelegationToken</c> API call is successful, the request transitions to a <c>FINALIZED</c>
+    /// state and cannot be rolled back. However, a user may reject an accepted request before the
+    /// <c>SendDelegationToken</c> API is called.
+    /// </para>
+    /// <para>
+    /// For more details, see
+    /// <see href="https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies-temporary-delegation.html#temporary-delegation-managing-permissions">Managing
+    /// Permissions for Delegation Requests</see>.
+    /// </para>
+    /// </summary>
+    public static Task<SendDelegationTokenOutput> SendDelegationTokenAsync(
+        this IAWSIdentityManagementV20100508Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.SendDelegationTokenAsync(new SendDelegationTokenInput(), cancellationToken);
+    }
+
+    /// <summary>
+    /// <para>
+    /// Sets the specified version of the specified policy as the policy's default (operative) version.
+    /// </para>
+    /// <para>
+    /// This operation affects all users, groups, and roles that the policy is attached to. To list the
+    /// users, groups, and roles that the policy is attached to, use
+    /// <see href="https://docs.aws.amazon.com/IAM/latest/APIReference/API_ListEntitiesForPolicy.html">ListEntitiesForPolicy</see>.
+    /// </para>
+    /// <para>
+    /// For information about managed policies, see
+    /// <see href="https://docs.aws.amazon.com/IAM/latest/UserGuide/policies-managed-vs-inline.html">Managed
+    /// policies and inline policies</see> in the <i>IAM User Guide</i>.
+    /// </para>
+    /// </summary>
+    public static Task<SetDefaultPolicyVersionOutput> SetDefaultPolicyVersionAsync(
+        this IAWSIdentityManagementV20100508Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.SetDefaultPolicyVersionAsync(
+            new SetDefaultPolicyVersionInput(),
+            cancellationToken
+        );
+    }
+
+    /// <summary>
+    /// <para>
+    /// Sets the specified version of the global endpoint token as the token version used for the Amazon Web
+    /// Services account.
+    /// </para>
+    /// <para>
+    /// By default, Security Token Service (STS) is available as a global service, and all STS requests go
+    /// to a single endpoint at <c>https://sts.amazonaws.com</c>. Amazon Web Services recommends using
+    /// Regional STS endpoints to reduce latency, build in redundancy, and increase session token
+    /// availability. For information about Regional endpoints for STS, see
+    /// <see href="https://docs.aws.amazon.com/general/latest/gr/sts.html">Security Token Service endpoints
+    /// and quotas</see> in the <i>Amazon Web Services General Reference</i>.
+    /// </para>
+    /// <para>
+    /// If you make an STS call to the global endpoint, the resulting session tokens might be valid in some
+    /// Regions but not others. It depends on the version that is set in this operation. Version 1 tokens
+    /// are valid only in Amazon Web Services Regions that are available by default. These tokens do not
+    /// work in manually enabled Regions, such as Asia Pacific (Hong Kong). Version 2 tokens are valid in
+    /// all Regions. However, version 2 tokens are longer and might affect systems where you temporarily
+    /// store tokens. For information, see
+    /// <see href="https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_temp_enable-regions.html">Activating
+    /// and deactivating STS in an Amazon Web Services Region</see> in the <i>IAM User Guide</i>.
+    /// </para>
+    /// <para>
+    /// To view the current session token version, see the <c>GlobalEndpointTokenVersion</c> entry in the
+    /// response of the
+    /// <see href="https://docs.aws.amazon.com/IAM/latest/APIReference/API_GetAccountSummary.html">GetAccountSummary</see>
+    /// operation.
+    /// </para>
+    /// </summary>
+    public static Task<SetSecurityTokenServicePreferencesOutput> SetSecurityTokenServicePreferencesAsync(
+        this IAWSIdentityManagementV20100508Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.SetSecurityTokenServicePreferencesAsync(
+            new SetSecurityTokenServicePreferencesInput(),
+            cancellationToken
+        );
+    }
+
+    /// <summary>
+    /// <para>
+    /// Simulate how a set of IAM policies and optionally a resource-based policy works with a list of API
+    /// operations and Amazon Web Services resources to determine the policies' effective permissions. The
+    /// policies are provided as strings.
+    /// </para>
+    /// <para>
+    /// The simulation does not perform the API operations; it only checks the authorization to determine if
+    /// the simulated policies allow or deny the operations. You can simulate resources that don't exist in
+    /// your account.
+    /// </para>
+    /// <para>
+    /// If you want to simulate existing policies that are attached to an IAM user, group, or role, use
+    /// <see href="https://docs.aws.amazon.com/IAM/latest/APIReference/API_SimulatePrincipalPolicy.html">SimulatePrincipalPolicy</see>
+    /// instead.
+    /// </para>
+    /// <para>
+    /// Context keys are variables that are maintained by Amazon Web Services and its services and which
+    /// provide details about the context of an API query request. You can use the <c>Condition</c> element
+    /// of an IAM policy to evaluate context keys. To get the list of context keys that the policies require
+    /// for correct simulation, use
+    /// <see href="https://docs.aws.amazon.com/IAM/latest/APIReference/API_GetContextKeysForCustomPolicy.html">GetContextKeysForCustomPolicy</see>.
+    /// </para>
+    /// <para>
+    /// If the output is long, you can use <c>MaxItems</c> and <c>Marker</c> parameters to paginate the
+    /// results.
+    /// </para>
+    /// <para>
+    /// <b>Note:</b> The IAM policy simulator evaluates statements in identity-based policies, service
+    /// control policies (SCPs) including their condition keys and resource scoping, and the inputs that you
+    /// provide during simulation. The policy simulator results can differ from your live Amazon Web
+    /// Services environment. We recommend that you check your policies against your live Amazon Web
+    /// Services environment after testing using the policy simulator to confirm that you have the desired
+    /// results. For more information about using the policy simulator, see
+    /// <see href="https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_testing-policies.html">Testing
+    /// IAM policies with the IAM policy simulator</see>in the <i>IAM User Guide</i>.
+    /// </para>
+    /// </summary>
+    public static Task<SimulateCustomPolicyOutput> SimulateCustomPolicyAsync(
+        this IAWSIdentityManagementV20100508Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.SimulateCustomPolicyAsync(new SimulateCustomPolicyInput(), cancellationToken);
+    }
+
+    /// <summary>
+    /// <para>
+    /// Simulate how a set of IAM policies and optionally a resource-based policy works with a list of API
+    /// operations and Amazon Web Services resources to determine the policies' effective permissions. The
+    /// policies are provided as strings.
+    /// </para>
+    /// <para>
+    /// The simulation does not perform the API operations; it only checks the authorization to determine if
+    /// the simulated policies allow or deny the operations. You can simulate resources that don't exist in
+    /// your account.
+    /// </para>
+    /// <para>
+    /// If you want to simulate existing policies that are attached to an IAM user, group, or role, use
+    /// <see href="https://docs.aws.amazon.com/IAM/latest/APIReference/API_SimulatePrincipalPolicy.html">SimulatePrincipalPolicy</see>
+    /// instead.
+    /// </para>
+    /// <para>
+    /// Context keys are variables that are maintained by Amazon Web Services and its services and which
+    /// provide details about the context of an API query request. You can use the <c>Condition</c> element
+    /// of an IAM policy to evaluate context keys. To get the list of context keys that the policies require
+    /// for correct simulation, use
+    /// <see href="https://docs.aws.amazon.com/IAM/latest/APIReference/API_GetContextKeysForCustomPolicy.html">GetContextKeysForCustomPolicy</see>.
+    /// </para>
+    /// <para>
+    /// If the output is long, you can use <c>MaxItems</c> and <c>Marker</c> parameters to paginate the
+    /// results.
+    /// </para>
+    /// <para>
+    /// <b>Note:</b> The IAM policy simulator evaluates statements in identity-based policies, service
+    /// control policies (SCPs) including their condition keys and resource scoping, and the inputs that you
+    /// provide during simulation. The policy simulator results can differ from your live Amazon Web
+    /// Services environment. We recommend that you check your policies against your live Amazon Web
+    /// Services environment after testing using the policy simulator to confirm that you have the desired
+    /// results. For more information about using the policy simulator, see
+    /// <see href="https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_testing-policies.html">Testing
+    /// IAM policies with the IAM policy simulator</see>in the <i>IAM User Guide</i>.
+    /// </para>
+    /// </summary>
+    public static IAsyncEnumerable<SimulateCustomPolicyOutput> SimulateCustomPolicyPagesAsync(
+        this IAWSIdentityManagementV20100508Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.SimulateCustomPolicyPagesAsync(
+            new SimulateCustomPolicyInput(),
+            cancellationToken
+        );
+    }
+
+    /// <summary>
+    /// <para>
+    /// Simulate how a set of IAM policies and optionally a resource-based policy works with a list of API
+    /// operations and Amazon Web Services resources to determine the policies' effective permissions. The
+    /// policies are provided as strings.
+    /// </para>
+    /// <para>
+    /// The simulation does not perform the API operations; it only checks the authorization to determine if
+    /// the simulated policies allow or deny the operations. You can simulate resources that don't exist in
+    /// your account.
+    /// </para>
+    /// <para>
+    /// If you want to simulate existing policies that are attached to an IAM user, group, or role, use
+    /// <see href="https://docs.aws.amazon.com/IAM/latest/APIReference/API_SimulatePrincipalPolicy.html">SimulatePrincipalPolicy</see>
+    /// instead.
+    /// </para>
+    /// <para>
+    /// Context keys are variables that are maintained by Amazon Web Services and its services and which
+    /// provide details about the context of an API query request. You can use the <c>Condition</c> element
+    /// of an IAM policy to evaluate context keys. To get the list of context keys that the policies require
+    /// for correct simulation, use
+    /// <see href="https://docs.aws.amazon.com/IAM/latest/APIReference/API_GetContextKeysForCustomPolicy.html">GetContextKeysForCustomPolicy</see>.
+    /// </para>
+    /// <para>
+    /// If the output is long, you can use <c>MaxItems</c> and <c>Marker</c> parameters to paginate the
+    /// results.
+    /// </para>
+    /// <para>
+    /// <b>Note:</b> The IAM policy simulator evaluates statements in identity-based policies, service
+    /// control policies (SCPs) including their condition keys and resource scoping, and the inputs that you
+    /// provide during simulation. The policy simulator results can differ from your live Amazon Web
+    /// Services environment. We recommend that you check your policies against your live Amazon Web
+    /// Services environment after testing using the policy simulator to confirm that you have the desired
+    /// results. For more information about using the policy simulator, see
+    /// <see href="https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_testing-policies.html">Testing
+    /// IAM policies with the IAM policy simulator</see>in the <i>IAM User Guide</i>.
+    /// </para>
+    /// </summary>
+    public static IAsyncEnumerable<EvaluationResult> SimulateCustomPolicyItemsAsync(
+        this IAWSIdentityManagementV20100508Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.SimulateCustomPolicyItemsAsync(
+            new SimulateCustomPolicyInput(),
+            cancellationToken
+        );
+    }
+
+    /// <summary>
+    /// <para>
+    /// Simulate how a set of IAM policies attached to an IAM entity works with a list of API operations and
+    /// Amazon Web Services resources to determine the policies' effective permissions. The entity can be an
+    /// IAM user, group, or role. If you specify a user, then the simulation also includes all of the
+    /// policies that are attached to groups that the user belongs to. You can simulate resources that don't
+    /// exist in your account.
+    /// </para>
+    /// <para>
+    /// You can optionally include a list of one or more additional policies specified as strings to include
+    /// in the simulation. If you want to simulate only policies specified as strings, use
+    /// <see href="https://docs.aws.amazon.com/IAM/latest/APIReference/API_SimulateCustomPolicy.html">SimulateCustomPolicy</see>
+    /// instead.
+    /// </para>
+    /// <para>
+    /// You can also optionally include one resource-based policy to be evaluated with each of the resources
+    /// included in the simulation for IAM users only.
+    /// </para>
+    /// <para>
+    /// The simulation does not perform the API operations; it only checks the authorization to determine if
+    /// the simulated policies allow or deny the operations.
+    /// </para>
+    /// <para>
+    /// For cross-account simulations, <c>EvalDecisionDetails</c> returns the decision for each policy type
+    /// (identity-based policy, resource-based policy, and permissions boundary). This helps you identify
+    /// which policy type is responsible for an allow or deny decision when policies span multiple accounts.
+    /// </para>
+    /// <para>
+    /// <b>Note:</b> This operation discloses information about the permissions granted to other users. If
+    /// you do not want users to see other user's permissions, then consider allowing them to use
+    /// <see href="https://docs.aws.amazon.com/IAM/latest/APIReference/API_SimulateCustomPolicy.html">SimulateCustomPolicy</see>
+    /// instead.
+    /// </para>
+    /// <para>
+    /// Context keys are variables maintained by Amazon Web Services and its services that provide details
+    /// about the context of an API query request. You can use the <c>Condition</c> element of an IAM policy
+    /// to evaluate context keys. To get the list of context keys that the policies require for correct
+    /// simulation, use
+    /// <see href="https://docs.aws.amazon.com/IAM/latest/APIReference/API_GetContextKeysForPrincipalPolicy.html">GetContextKeysForPrincipalPolicy</see>.
+    /// </para>
+    /// <para>
+    /// If the output is long, you can use the <c>MaxItems</c> and <c>Marker</c> parameters to paginate the
+    /// results.
+    /// </para>
+    /// <para>
+    /// <b>Note:</b> The IAM policy simulator evaluates statements in identity-based policies, service
+    /// control policies (SCPs) including their condition keys and resource scoping, and the inputs that you
+    /// provide during simulation. The policy simulator results can differ from your live Amazon Web
+    /// Services environment. We recommend that you check your policies against your live Amazon Web
+    /// Services environment after testing using the policy simulator to confirm that you have the desired
+    /// results. For more information about using the policy simulator, see
+    /// <see href="https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_testing-policies.html">Testing
+    /// IAM policies with the IAM policy simulator</see>in the <i>IAM User Guide</i>.
+    /// </para>
+    /// </summary>
+    public static Task<SimulatePrincipalPolicyOutput> SimulatePrincipalPolicyAsync(
+        this IAWSIdentityManagementV20100508Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.SimulatePrincipalPolicyAsync(
+            new SimulatePrincipalPolicyInput(),
+            cancellationToken
+        );
+    }
+
+    /// <summary>
+    /// <para>
+    /// Simulate how a set of IAM policies attached to an IAM entity works with a list of API operations and
+    /// Amazon Web Services resources to determine the policies' effective permissions. The entity can be an
+    /// IAM user, group, or role. If you specify a user, then the simulation also includes all of the
+    /// policies that are attached to groups that the user belongs to. You can simulate resources that don't
+    /// exist in your account.
+    /// </para>
+    /// <para>
+    /// You can optionally include a list of one or more additional policies specified as strings to include
+    /// in the simulation. If you want to simulate only policies specified as strings, use
+    /// <see href="https://docs.aws.amazon.com/IAM/latest/APIReference/API_SimulateCustomPolicy.html">SimulateCustomPolicy</see>
+    /// instead.
+    /// </para>
+    /// <para>
+    /// You can also optionally include one resource-based policy to be evaluated with each of the resources
+    /// included in the simulation for IAM users only.
+    /// </para>
+    /// <para>
+    /// The simulation does not perform the API operations; it only checks the authorization to determine if
+    /// the simulated policies allow or deny the operations.
+    /// </para>
+    /// <para>
+    /// For cross-account simulations, <c>EvalDecisionDetails</c> returns the decision for each policy type
+    /// (identity-based policy, resource-based policy, and permissions boundary). This helps you identify
+    /// which policy type is responsible for an allow or deny decision when policies span multiple accounts.
+    /// </para>
+    /// <para>
+    /// <b>Note:</b> This operation discloses information about the permissions granted to other users. If
+    /// you do not want users to see other user's permissions, then consider allowing them to use
+    /// <see href="https://docs.aws.amazon.com/IAM/latest/APIReference/API_SimulateCustomPolicy.html">SimulateCustomPolicy</see>
+    /// instead.
+    /// </para>
+    /// <para>
+    /// Context keys are variables maintained by Amazon Web Services and its services that provide details
+    /// about the context of an API query request. You can use the <c>Condition</c> element of an IAM policy
+    /// to evaluate context keys. To get the list of context keys that the policies require for correct
+    /// simulation, use
+    /// <see href="https://docs.aws.amazon.com/IAM/latest/APIReference/API_GetContextKeysForPrincipalPolicy.html">GetContextKeysForPrincipalPolicy</see>.
+    /// </para>
+    /// <para>
+    /// If the output is long, you can use the <c>MaxItems</c> and <c>Marker</c> parameters to paginate the
+    /// results.
+    /// </para>
+    /// <para>
+    /// <b>Note:</b> The IAM policy simulator evaluates statements in identity-based policies, service
+    /// control policies (SCPs) including their condition keys and resource scoping, and the inputs that you
+    /// provide during simulation. The policy simulator results can differ from your live Amazon Web
+    /// Services environment. We recommend that you check your policies against your live Amazon Web
+    /// Services environment after testing using the policy simulator to confirm that you have the desired
+    /// results. For more information about using the policy simulator, see
+    /// <see href="https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_testing-policies.html">Testing
+    /// IAM policies with the IAM policy simulator</see>in the <i>IAM User Guide</i>.
+    /// </para>
+    /// </summary>
+    public static IAsyncEnumerable<SimulatePrincipalPolicyOutput> SimulatePrincipalPolicyPagesAsync(
+        this IAWSIdentityManagementV20100508Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.SimulatePrincipalPolicyPagesAsync(
+            new SimulatePrincipalPolicyInput(),
+            cancellationToken
+        );
+    }
+
+    /// <summary>
+    /// <para>
+    /// Simulate how a set of IAM policies attached to an IAM entity works with a list of API operations and
+    /// Amazon Web Services resources to determine the policies' effective permissions. The entity can be an
+    /// IAM user, group, or role. If you specify a user, then the simulation also includes all of the
+    /// policies that are attached to groups that the user belongs to. You can simulate resources that don't
+    /// exist in your account.
+    /// </para>
+    /// <para>
+    /// You can optionally include a list of one or more additional policies specified as strings to include
+    /// in the simulation. If you want to simulate only policies specified as strings, use
+    /// <see href="https://docs.aws.amazon.com/IAM/latest/APIReference/API_SimulateCustomPolicy.html">SimulateCustomPolicy</see>
+    /// instead.
+    /// </para>
+    /// <para>
+    /// You can also optionally include one resource-based policy to be evaluated with each of the resources
+    /// included in the simulation for IAM users only.
+    /// </para>
+    /// <para>
+    /// The simulation does not perform the API operations; it only checks the authorization to determine if
+    /// the simulated policies allow or deny the operations.
+    /// </para>
+    /// <para>
+    /// For cross-account simulations, <c>EvalDecisionDetails</c> returns the decision for each policy type
+    /// (identity-based policy, resource-based policy, and permissions boundary). This helps you identify
+    /// which policy type is responsible for an allow or deny decision when policies span multiple accounts.
+    /// </para>
+    /// <para>
+    /// <b>Note:</b> This operation discloses information about the permissions granted to other users. If
+    /// you do not want users to see other user's permissions, then consider allowing them to use
+    /// <see href="https://docs.aws.amazon.com/IAM/latest/APIReference/API_SimulateCustomPolicy.html">SimulateCustomPolicy</see>
+    /// instead.
+    /// </para>
+    /// <para>
+    /// Context keys are variables maintained by Amazon Web Services and its services that provide details
+    /// about the context of an API query request. You can use the <c>Condition</c> element of an IAM policy
+    /// to evaluate context keys. To get the list of context keys that the policies require for correct
+    /// simulation, use
+    /// <see href="https://docs.aws.amazon.com/IAM/latest/APIReference/API_GetContextKeysForPrincipalPolicy.html">GetContextKeysForPrincipalPolicy</see>.
+    /// </para>
+    /// <para>
+    /// If the output is long, you can use the <c>MaxItems</c> and <c>Marker</c> parameters to paginate the
+    /// results.
+    /// </para>
+    /// <para>
+    /// <b>Note:</b> The IAM policy simulator evaluates statements in identity-based policies, service
+    /// control policies (SCPs) including their condition keys and resource scoping, and the inputs that you
+    /// provide during simulation. The policy simulator results can differ from your live Amazon Web
+    /// Services environment. We recommend that you check your policies against your live Amazon Web
+    /// Services environment after testing using the policy simulator to confirm that you have the desired
+    /// results. For more information about using the policy simulator, see
+    /// <see href="https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_testing-policies.html">Testing
+    /// IAM policies with the IAM policy simulator</see>in the <i>IAM User Guide</i>.
+    /// </para>
+    /// </summary>
+    public static IAsyncEnumerable<EvaluationResult> SimulatePrincipalPolicyItemsAsync(
+        this IAWSIdentityManagementV20100508Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.SimulatePrincipalPolicyItemsAsync(
+            new SimulatePrincipalPolicyInput(),
+            cancellationToken
+        );
+    }
+
+    /// <summary>
+    /// <para>
+    /// Adds one or more tags to an IAM instance profile. If a tag with the same key name already exists,
+    /// then that tag is overwritten with the new value.
+    /// </para>
+    /// <para>
+    /// Each tag consists of a key name and an associated value. By assigning tags to your resources, you
+    /// can do the following:
+    /// </para>
+    /// <list type="bullet">
+    /// <item>
+    /// <description>
+    /// <b>Administrative grouping and discovery</b> - Attach tags to resources to aid in organization and
+    /// search. For example, you could search for all resources with the key name <i>Project</i> and the
+    /// value <i>MyImportantProject</i>. Or search for all resources with the key name <i>Cost Center</i>
+    /// and the value <i>41200</i>.
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <description>
+    /// <b>Access control</b> - Include tags in IAM user-based and resource-based policies. You can use tags
+    /// to restrict access to only an IAM instance profile that has a specified tag attached. For examples
+    /// of policies that show how to use tags to control access, see
+    /// <see href="https://docs.aws.amazon.com/IAM/latest/UserGuide/access_tags.html">Control access using
+    /// IAM tags</see> in the <i>IAM User Guide</i>.
+    /// </description>
+    /// </item>
+    /// </list>
+    /// <para><b>Note:</b></para>
+    /// <list type="bullet">
+    /// <item>
+    /// <description>
+    /// If any one of the tags is invalid or if you exceed the allowed maximum number of tags, then the
+    /// entire request fails and the resource is not created. For more information about tagging, see
+    /// <see href="https://docs.aws.amazon.com/IAM/latest/UserGuide/id_tags.html">Tagging IAM
+    /// resources</see> in the <i>IAM User Guide</i>.
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <description>
+    /// Amazon Web Services always interprets the tag <c>Value</c> as a single string. If you need to store
+    /// an array, you can store comma-separated values in the string. However, you must interpret the value
+    /// in your code.
+    /// </description>
+    /// </item>
+    /// </list>
+    /// </summary>
+    public static Task<TagInstanceProfileOutput> TagInstanceProfileAsync(
+        this IAWSIdentityManagementV20100508Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.TagInstanceProfileAsync(new TagInstanceProfileInput(), cancellationToken);
+    }
+
+    /// <summary>
+    /// <para>
+    /// Adds one or more tags to an IAM virtual multi-factor authentication (MFA) device. If a tag with the
+    /// same key name already exists, then that tag is overwritten with the new value.
+    /// </para>
+    /// <para>
+    /// A tag consists of a key name and an associated value. By assigning tags to your resources, you can
+    /// do the following:
+    /// </para>
+    /// <list type="bullet">
+    /// <item>
+    /// <description>
+    /// <b>Administrative grouping and discovery</b> - Attach tags to resources to aid in organization and
+    /// search. For example, you could search for all resources with the key name <i>Project</i> and the
+    /// value <i>MyImportantProject</i>. Or search for all resources with the key name <i>Cost Center</i>
+    /// and the value <i>41200</i>.
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <description>
+    /// <b>Access control</b> - Include tags in IAM user-based and resource-based policies. You can use tags
+    /// to restrict access to only an IAM virtual MFA device that has a specified tag attached. For examples
+    /// of policies that show how to use tags to control access, see
+    /// <see href="https://docs.aws.amazon.com/IAM/latest/UserGuide/access_tags.html">Control access using
+    /// IAM tags</see> in the <i>IAM User Guide</i>.
+    /// </description>
+    /// </item>
+    /// </list>
+    /// <para><b>Note:</b></para>
+    /// <list type="bullet">
+    /// <item>
+    /// <description>
+    /// If any one of the tags is invalid or if you exceed the allowed maximum number of tags, then the
+    /// entire request fails and the resource is not created. For more information about tagging, see
+    /// <see href="https://docs.aws.amazon.com/IAM/latest/UserGuide/id_tags.html">Tagging IAM
+    /// resources</see> in the <i>IAM User Guide</i>.
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <description>
+    /// Amazon Web Services always interprets the tag <c>Value</c> as a single string. If you need to store
+    /// an array, you can store comma-separated values in the string. However, you must interpret the value
+    /// in your code.
+    /// </description>
+    /// </item>
+    /// </list>
+    /// </summary>
+    public static Task<TagMFADeviceOutput> TagMFADeviceAsync(
+        this IAWSIdentityManagementV20100508Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.TagMFADeviceAsync(new TagMFADeviceInput(), cancellationToken);
+    }
+
+    /// <summary>
+    /// <para>
+    /// Adds one or more tags to an OpenID Connect (OIDC)-compatible identity provider. For more information
+    /// about these providers, see
+    /// <see href="https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_providers_oidc.html">About web
+    /// identity federation</see>. If a tag with the same key name already exists, then that tag is
+    /// overwritten with the new value.
+    /// </para>
+    /// <para>
+    /// A tag consists of a key name and an associated value. By assigning tags to your resources, you can
+    /// do the following:
+    /// </para>
+    /// <list type="bullet">
+    /// <item>
+    /// <description>
+    /// <b>Administrative grouping and discovery</b> - Attach tags to resources to aid in organization and
+    /// search. For example, you could search for all resources with the key name <i>Project</i> and the
+    /// value <i>MyImportantProject</i>. Or search for all resources with the key name <i>Cost Center</i>
+    /// and the value <i>41200</i>.
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <description>
+    /// <b>Access control</b> - Include tags in IAM identity-based and resource-based policies. You can use
+    /// tags to restrict access to only an OIDC provider that has a specified tag attached. For examples of
+    /// policies that show how to use tags to control access, see
+    /// <see href="https://docs.aws.amazon.com/IAM/latest/UserGuide/access_tags.html">Control access using
+    /// IAM tags</see> in the <i>IAM User Guide</i>.
+    /// </description>
+    /// </item>
+    /// </list>
+    /// <para><b>Note:</b></para>
+    /// <list type="bullet">
+    /// <item>
+    /// <description>
+    /// If any one of the tags is invalid or if you exceed the allowed maximum number of tags, then the
+    /// entire request fails and the resource is not created. For more information about tagging, see
+    /// <see href="https://docs.aws.amazon.com/IAM/latest/UserGuide/id_tags.html">Tagging IAM
+    /// resources</see> in the <i>IAM User Guide</i>.
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <description>
+    /// Amazon Web Services always interprets the tag <c>Value</c> as a single string. If you need to store
+    /// an array, you can store comma-separated values in the string. However, you must interpret the value
+    /// in your code.
+    /// </description>
+    /// </item>
+    /// </list>
+    /// </summary>
+    public static Task<TagOpenIDConnectProviderOutput> TagOpenIDConnectProviderAsync(
+        this IAWSIdentityManagementV20100508Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.TagOpenIDConnectProviderAsync(
+            new TagOpenIDConnectProviderInput(),
+            cancellationToken
+        );
+    }
+
+    /// <summary>
+    /// <para>
+    /// Adds one or more tags to an IAM customer managed policy. If a tag with the same key name already
+    /// exists, then that tag is overwritten with the new value.
+    /// </para>
+    /// <para>
+    /// A tag consists of a key name and an associated value. By assigning tags to your resources, you can
+    /// do the following:
+    /// </para>
+    /// <list type="bullet">
+    /// <item>
+    /// <description>
+    /// <b>Administrative grouping and discovery</b> - Attach tags to resources to aid in organization and
+    /// search. For example, you could search for all resources with the key name <i>Project</i> and the
+    /// value <i>MyImportantProject</i>. Or search for all resources with the key name <i>Cost Center</i>
+    /// and the value <i>41200</i>.
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <description>
+    /// <b>Access control</b> - Include tags in IAM user-based and resource-based policies. You can use tags
+    /// to restrict access to only an IAM customer managed policy that has a specified tag attached. For
+    /// examples of policies that show how to use tags to control access, see
+    /// <see href="https://docs.aws.amazon.com/IAM/latest/UserGuide/access_tags.html">Control access using
+    /// IAM tags</see> in the <i>IAM User Guide</i>.
+    /// </description>
+    /// </item>
+    /// </list>
+    /// <para><b>Note:</b></para>
+    /// <list type="bullet">
+    /// <item>
+    /// <description>
+    /// If any one of the tags is invalid or if you exceed the allowed maximum number of tags, then the
+    /// entire request fails and the resource is not created. For more information about tagging, see
+    /// <see href="https://docs.aws.amazon.com/IAM/latest/UserGuide/id_tags.html">Tagging IAM
+    /// resources</see> in the <i>IAM User Guide</i>.
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <description>
+    /// Amazon Web Services always interprets the tag <c>Value</c> as a single string. If you need to store
+    /// an array, you can store comma-separated values in the string. However, you must interpret the value
+    /// in your code.
+    /// </description>
+    /// </item>
+    /// </list>
+    /// </summary>
+    public static Task<TagPolicyOutput> TagPolicyAsync(
+        this IAWSIdentityManagementV20100508Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.TagPolicyAsync(new TagPolicyInput(), cancellationToken);
+    }
+
+    /// <summary>
+    /// <para>
+    /// Adds one or more tags to an IAM role. The role can be a regular role or a service-linked role. If a
+    /// tag with the same key name already exists, then that tag is overwritten with the new value.
+    /// </para>
+    /// <para>
+    /// A tag consists of a key name and an associated value. By assigning tags to your resources, you can
+    /// do the following:
+    /// </para>
+    /// <list type="bullet">
+    /// <item>
+    /// <description>
+    /// <b>Administrative grouping and discovery</b> - Attach tags to resources to aid in organization and
+    /// search. For example, you could search for all resources with the key name <i>Project</i> and the
+    /// value <i>MyImportantProject</i>. Or search for all resources with the key name <i>Cost Center</i>
+    /// and the value <i>41200</i>.
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <description>
+    /// <b>Access control</b> - Include tags in IAM user-based and resource-based policies. You can use tags
+    /// to restrict access to only an IAM role that has a specified tag attached. You can also restrict
+    /// access to only those resources that have a certain tag attached. For examples of policies that show
+    /// how to use tags to control access, see
+    /// <see href="https://docs.aws.amazon.com/IAM/latest/UserGuide/access_tags.html">Control access using
+    /// IAM tags</see> in the <i>IAM User Guide</i>.
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <description>
+    /// <b>Cost allocation</b> - Use tags to help track which individuals and teams are using which Amazon
+    /// Web Services resources.
+    /// </description>
+    /// </item>
+    /// </list>
+    /// <para><b>Note:</b></para>
+    /// <list type="bullet">
+    /// <item>
+    /// <description>
+    /// If any one of the tags is invalid or if you exceed the allowed maximum number of tags, then the
+    /// entire request fails and the resource is not created. For more information about tagging, see
+    /// <see href="https://docs.aws.amazon.com/IAM/latest/UserGuide/id_tags.html">Tagging IAM
+    /// resources</see> in the <i>IAM User Guide</i>.
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <description>
+    /// Amazon Web Services always interprets the tag <c>Value</c> as a single string. If you need to store
+    /// an array, you can store comma-separated values in the string. However, you must interpret the value
+    /// in your code.
+    /// </description>
+    /// </item>
+    /// </list>
+    /// <para>
+    /// For more information about tagging, see
+    /// <see href="https://docs.aws.amazon.com/IAM/latest/UserGuide/id_tags.html">Tagging IAM
+    /// identities</see> in the <i>IAM User Guide</i>.
+    /// </para>
+    /// </summary>
+    public static Task<TagRoleOutput> TagRoleAsync(
+        this IAWSIdentityManagementV20100508Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.TagRoleAsync(new TagRoleInput(), cancellationToken);
+    }
+
+    /// <summary>
+    /// <para>
+    /// Adds one or more tags to a Security Assertion Markup Language (SAML) identity provider. For more
+    /// information about these providers, see
+    /// <see href="https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_providers_saml.html">About SAML
+    /// 2.0-based federation</see>. If a tag with the same key name already exists, then that tag is
+    /// overwritten with the new value.
+    /// </para>
+    /// <para>
+    /// A tag consists of a key name and an associated value. By assigning tags to your resources, you can
+    /// do the following:
+    /// </para>
+    /// <list type="bullet">
+    /// <item>
+    /// <description>
+    /// <b>Administrative grouping and discovery</b> - Attach tags to resources to aid in organization and
+    /// search. For example, you could search for all resources with the key name <i>Project</i> and the
+    /// value <i>MyImportantProject</i>. Or search for all resources with the key name <i>Cost Center</i>
+    /// and the value <i>41200</i>.
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <description>
+    /// <b>Access control</b> - Include tags in IAM user-based and resource-based policies. You can use tags
+    /// to restrict access to only a SAML identity provider that has a specified tag attached. For examples
+    /// of policies that show how to use tags to control access, see
+    /// <see href="https://docs.aws.amazon.com/IAM/latest/UserGuide/access_tags.html">Control access using
+    /// IAM tags</see> in the <i>IAM User Guide</i>.
+    /// </description>
+    /// </item>
+    /// </list>
+    /// <para><b>Note:</b></para>
+    /// <list type="bullet">
+    /// <item>
+    /// <description>
+    /// If any one of the tags is invalid or if you exceed the allowed maximum number of tags, then the
+    /// entire request fails and the resource is not created. For more information about tagging, see
+    /// <see href="https://docs.aws.amazon.com/IAM/latest/UserGuide/id_tags.html">Tagging IAM
+    /// resources</see> in the <i>IAM User Guide</i>.
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <description>
+    /// Amazon Web Services always interprets the tag <c>Value</c> as a single string. If you need to store
+    /// an array, you can store comma-separated values in the string. However, you must interpret the value
+    /// in your code.
+    /// </description>
+    /// </item>
+    /// </list>
+    /// </summary>
+    public static Task<TagSAMLProviderOutput> TagSAMLProviderAsync(
+        this IAWSIdentityManagementV20100508Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.TagSAMLProviderAsync(new TagSAMLProviderInput(), cancellationToken);
+    }
+
+    /// <summary>
+    /// <para>
+    /// Adds one or more tags to an IAM server certificate. If a tag with the same key name already exists,
+    /// then that tag is overwritten with the new value.
+    /// </para>
+    /// <para>
+    /// <b>Note:</b> For certificates in a Region supported by Certificate Manager (ACM), we recommend that
+    /// you don't use IAM server certificates. Instead, use ACM to provision, manage, and deploy your server
+    /// certificates. For more information about IAM server certificates,
+    /// <see href="https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_server-certs.html">Working
+    /// with server certificates</see> in the <i>IAM User Guide</i>.
+    /// </para>
+    /// <para>
+    /// A tag consists of a key name and an associated value. By assigning tags to your resources, you can
+    /// do the following:
+    /// </para>
+    /// <list type="bullet">
+    /// <item>
+    /// <description>
+    /// <b>Administrative grouping and discovery</b> - Attach tags to resources to aid in organization and
+    /// search. For example, you could search for all resources with the key name <i>Project</i> and the
+    /// value <i>MyImportantProject</i>. Or search for all resources with the key name <i>Cost Center</i>
+    /// and the value <i>41200</i>.
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <description>
+    /// <b>Access control</b> - Include tags in IAM user-based and resource-based policies. You can use tags
+    /// to restrict access to only a server certificate that has a specified tag attached. For examples of
+    /// policies that show how to use tags to control access, see
+    /// <see href="https://docs.aws.amazon.com/IAM/latest/UserGuide/access_tags.html">Control access using
+    /// IAM tags</see> in the <i>IAM User Guide</i>.
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <description>
+    /// <b>Cost allocation</b> - Use tags to help track which individuals and teams are using which Amazon
+    /// Web Services resources.
+    /// </description>
+    /// </item>
+    /// </list>
+    /// <para><b>Note:</b></para>
+    /// <list type="bullet">
+    /// <item>
+    /// <description>
+    /// If any one of the tags is invalid or if you exceed the allowed maximum number of tags, then the
+    /// entire request fails and the resource is not created. For more information about tagging, see
+    /// <see href="https://docs.aws.amazon.com/IAM/latest/UserGuide/id_tags.html">Tagging IAM
+    /// resources</see> in the <i>IAM User Guide</i>.
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <description>
+    /// Amazon Web Services always interprets the tag <c>Value</c> as a single string. If you need to store
+    /// an array, you can store comma-separated values in the string. However, you must interpret the value
+    /// in your code.
+    /// </description>
+    /// </item>
+    /// </list>
+    /// </summary>
+    public static Task<TagServerCertificateOutput> TagServerCertificateAsync(
+        this IAWSIdentityManagementV20100508Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.TagServerCertificateAsync(new TagServerCertificateInput(), cancellationToken);
+    }
+
+    /// <summary>
+    /// <para>
+    /// Adds one or more tags to an IAM user. If a tag with the same key name already exists, then that tag
+    /// is overwritten with the new value.
+    /// </para>
+    /// <para>
+    /// A tag consists of a key name and an associated value. By assigning tags to your resources, you can
+    /// do the following:
+    /// </para>
+    /// <list type="bullet">
+    /// <item>
+    /// <description>
+    /// <b>Administrative grouping and discovery</b> - Attach tags to resources to aid in organization and
+    /// search. For example, you could search for all resources with the key name <i>Project</i> and the
+    /// value <i>MyImportantProject</i>. Or search for all resources with the key name <i>Cost Center</i>
+    /// and the value <i>41200</i>.
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <description>
+    /// <b>Access control</b> - Include tags in IAM identity-based and resource-based policies. You can use
+    /// tags to restrict access to only an IAM requesting user that has a specified tag attached. You can
+    /// also restrict access to only those resources that have a certain tag attached. For examples of
+    /// policies that show how to use tags to control access, see
+    /// <see href="https://docs.aws.amazon.com/IAM/latest/UserGuide/access_tags.html">Control access using
+    /// IAM tags</see> in the <i>IAM User Guide</i>.
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <description>
+    /// <b>Cost allocation</b> - Use tags to help track which individuals and teams are using which Amazon
+    /// Web Services resources.
+    /// </description>
+    /// </item>
+    /// </list>
+    /// <para><b>Note:</b></para>
+    /// <list type="bullet">
+    /// <item>
+    /// <description>
+    /// If any one of the tags is invalid or if you exceed the allowed maximum number of tags, then the
+    /// entire request fails and the resource is not created. For more information about tagging, see
+    /// <see href="https://docs.aws.amazon.com/IAM/latest/UserGuide/id_tags.html">Tagging IAM
+    /// resources</see> in the <i>IAM User Guide</i>.
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <description>
+    /// Amazon Web Services always interprets the tag <c>Value</c> as a single string. If you need to store
+    /// an array, you can store comma-separated values in the string. However, you must interpret the value
+    /// in your code.
+    /// </description>
+    /// </item>
+    /// </list>
+    /// <para>
+    /// For more information about tagging, see
+    /// <see href="https://docs.aws.amazon.com/IAM/latest/UserGuide/id_tags.html">Tagging IAM
+    /// identities</see> in the <i>IAM User Guide</i>.
+    /// </para>
+    /// </summary>
+    public static Task<TagUserOutput> TagUserAsync(
+        this IAWSIdentityManagementV20100508Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.TagUserAsync(new TagUserInput(), cancellationToken);
+    }
+
+    /// <summary>
+    /// Removes the specified tags from the IAM instance profile. For more information about tagging, see
+    /// <see href="https://docs.aws.amazon.com/IAM/latest/UserGuide/id_tags.html">Tagging IAM
+    /// resources</see> in the <i>IAM User Guide</i>.
+    /// </summary>
+    public static Task<UntagInstanceProfileOutput> UntagInstanceProfileAsync(
+        this IAWSIdentityManagementV20100508Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.UntagInstanceProfileAsync(new UntagInstanceProfileInput(), cancellationToken);
+    }
+
+    /// <summary>
+    /// Removes the specified tags from the IAM virtual multi-factor authentication (MFA) device. For more
+    /// information about tagging, see
+    /// <see href="https://docs.aws.amazon.com/IAM/latest/UserGuide/id_tags.html">Tagging IAM
+    /// resources</see> in the <i>IAM User Guide</i>.
+    /// </summary>
+    public static Task<UntagMFADeviceOutput> UntagMFADeviceAsync(
+        this IAWSIdentityManagementV20100508Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.UntagMFADeviceAsync(new UntagMFADeviceInput(), cancellationToken);
+    }
+
+    /// <summary>
+    /// Removes the specified tags from the specified OpenID Connect (OIDC)-compatible identity provider in
+    /// IAM. For more information about OIDC providers, see
+    /// <see href="https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_providers_oidc.html">About web
+    /// identity federation</see>. For more information about tagging, see
+    /// <see href="https://docs.aws.amazon.com/IAM/latest/UserGuide/id_tags.html">Tagging IAM
+    /// resources</see> in the <i>IAM User Guide</i>.
+    /// </summary>
+    public static Task<UntagOpenIDConnectProviderOutput> UntagOpenIDConnectProviderAsync(
+        this IAWSIdentityManagementV20100508Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.UntagOpenIDConnectProviderAsync(
+            new UntagOpenIDConnectProviderInput(),
+            cancellationToken
+        );
+    }
+
+    /// <summary>
+    /// Removes the specified tags from the customer managed policy. For more information about tagging, see
+    /// <see href="https://docs.aws.amazon.com/IAM/latest/UserGuide/id_tags.html">Tagging IAM
+    /// resources</see> in the <i>IAM User Guide</i>.
+    /// </summary>
+    public static Task<UntagPolicyOutput> UntagPolicyAsync(
+        this IAWSIdentityManagementV20100508Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.UntagPolicyAsync(new UntagPolicyInput(), cancellationToken);
+    }
+
+    /// <summary>
+    /// Removes the specified tags from the role. For more information about tagging, see
+    /// <see href="https://docs.aws.amazon.com/IAM/latest/UserGuide/id_tags.html">Tagging IAM
+    /// resources</see> in the <i>IAM User Guide</i>.
+    /// </summary>
+    public static Task<UntagRoleOutput> UntagRoleAsync(
+        this IAWSIdentityManagementV20100508Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.UntagRoleAsync(new UntagRoleInput(), cancellationToken);
+    }
+
+    /// <summary>
+    /// Removes the specified tags from the specified Security Assertion Markup Language (SAML) identity
+    /// provider in IAM. For more information about these providers, see
+    /// <see href="https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_providers_oidc.html">About web
+    /// identity federation</see>. For more information about tagging, see
+    /// <see href="https://docs.aws.amazon.com/IAM/latest/UserGuide/id_tags.html">Tagging IAM
+    /// resources</see> in the <i>IAM User Guide</i>.
+    /// </summary>
+    public static Task<UntagSAMLProviderOutput> UntagSAMLProviderAsync(
+        this IAWSIdentityManagementV20100508Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.UntagSAMLProviderAsync(new UntagSAMLProviderInput(), cancellationToken);
+    }
+
+    /// <summary>
+    /// <para>
+    /// Removes the specified tags from the IAM server certificate. For more information about tagging, see
+    /// <see href="https://docs.aws.amazon.com/IAM/latest/UserGuide/id_tags.html">Tagging IAM
+    /// resources</see> in the <i>IAM User Guide</i>.
+    /// </para>
+    /// <para>
+    /// <b>Note:</b> For certificates in a Region supported by Certificate Manager (ACM), we recommend that
+    /// you don't use IAM server certificates. Instead, use ACM to provision, manage, and deploy your server
+    /// certificates. For more information about IAM server certificates,
+    /// <see href="https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_server-certs.html">Working
+    /// with server certificates</see> in the <i>IAM User Guide</i>.
+    /// </para>
+    /// </summary>
+    public static Task<UntagServerCertificateOutput> UntagServerCertificateAsync(
+        this IAWSIdentityManagementV20100508Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.UntagServerCertificateAsync(
+            new UntagServerCertificateInput(),
+            cancellationToken
+        );
+    }
+
+    /// <summary>
+    /// Removes the specified tags from the user. For more information about tagging, see
+    /// <see href="https://docs.aws.amazon.com/IAM/latest/UserGuide/id_tags.html">Tagging IAM
+    /// resources</see> in the <i>IAM User Guide</i>.
+    /// </summary>
+    public static Task<UntagUserOutput> UntagUserAsync(
+        this IAWSIdentityManagementV20100508Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.UntagUserAsync(new UntagUserInput(), cancellationToken);
+    }
+
+    /// <summary>
+    /// <para>
+    /// Changes the status of the specified access key from Active to Inactive, or vice versa. This
+    /// operation can be used to disable a user's key as part of a key rotation workflow.
+    /// </para>
+    /// <para>
+    /// If the <c>UserName</c> is not specified, the user name is determined implicitly based on the Amazon
+    /// Web Services access key ID used to sign the request. If a temporary access key is used, then
+    /// <c>UserName</c> is required. If a long-term key is assigned to the user, then <c>UserName</c> is not
+    /// required. This operation works for access keys under the Amazon Web Services account. Consequently,
+    /// you can use this operation to manage Amazon Web Services account root user credentials even if the
+    /// Amazon Web Services account has no associated users.
+    /// </para>
+    /// <para>
+    /// For information about rotating keys, see
+    /// <see href="https://docs.aws.amazon.com/IAM/latest/UserGuide/ManagingCredentials.html">Managing keys
+    /// and certificates</see> in the <i>IAM User Guide</i>.
+    /// </para>
+    /// </summary>
+    public static Task<UpdateAccessKeyOutput> UpdateAccessKeyAsync(
+        this IAWSIdentityManagementV20100508Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.UpdateAccessKeyAsync(new UpdateAccessKeyInput(), cancellationToken);
+    }
+
+    /// <summary>
+    /// <para>
     /// Updates the password policy settings for the Amazon Web Services account.
     /// </para>
     /// <para>
@@ -8712,6 +13734,432 @@ public static class AWSIdentityManagementV20100508ClientExtensions
         ArgumentNullException.ThrowIfNull(client);
         return client.UpdateAccountPasswordPolicyAsync(
             new UpdateAccountPasswordPolicyInput(),
+            cancellationToken
+        );
+    }
+
+    /// <summary>
+    /// Updates the policy that grants an IAM entity permission to assume a role. This is typically referred
+    /// to as the "role trust policy". For more information about roles, see
+    /// <see href="https://docs.aws.amazon.com/IAM/latest/UserGuide/roles-toplevel.html">Using roles to
+    /// delegate permissions and federate identities</see>.
+    /// </summary>
+    public static Task<UpdateAssumeRolePolicyOutput> UpdateAssumeRolePolicyAsync(
+        this IAWSIdentityManagementV20100508Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.UpdateAssumeRolePolicyAsync(
+            new UpdateAssumeRolePolicyInput(),
+            cancellationToken
+        );
+    }
+
+    /// <summary>
+    /// <para>
+    /// Updates an existing delegation request with additional information. When the delegation request is
+    /// updated, it reaches the <c>PENDING_APPROVAL</c> state.
+    /// </para>
+    /// <para>
+    /// Once a delegation request has an owner, that owner gets a default permission to update the
+    /// delegation request. For more details, see
+    /// <see href="https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies-temporary-delegation.html#temporary-delegation-managing-permissions">Managing
+    /// Permissions for Delegation Requests</see>.
+    /// </para>
+    /// </summary>
+    public static Task<UpdateDelegationRequestOutput> UpdateDelegationRequestAsync(
+        this IAWSIdentityManagementV20100508Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.UpdateDelegationRequestAsync(
+            new UpdateDelegationRequestInput(),
+            cancellationToken
+        );
+    }
+
+    /// <summary>
+    /// <para>
+    /// Updates the name and/or the path of the specified IAM group.
+    /// </para>
+    /// <para>
+    /// <b>Important:</b> You should understand the implications of changing a group's path or name. For
+    /// more information, see
+    /// <see href="https://docs.aws.amazon.com/IAM/latest/UserGuide/Using_WorkingWithGroupsAndUsers.html">Renaming
+    /// users and groups</see> in the <i>IAM User Guide</i>.
+    /// </para>
+    /// <para>
+    /// <b>Note:</b> The person making the request (the principal), must have permission to change the role
+    /// group with the old name and the new name. For example, to change the group named <c>Managers</c> to
+    /// <c>MGRs</c>, the principal must have a policy that allows them to update both groups. If the
+    /// principal has permission to update the <c>Managers</c> group, but not the <c>MGRs</c> group, then
+    /// the update fails. For more information about permissions, see
+    /// <see href="https://docs.aws.amazon.com/IAM/latest/UserGuide/access.html">Access management</see>.
+    /// </para>
+    /// </summary>
+    public static Task<UpdateGroupOutput> UpdateGroupAsync(
+        this IAWSIdentityManagementV20100508Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.UpdateGroupAsync(new UpdateGroupInput(), cancellationToken);
+    }
+
+    /// <summary>
+    /// <para>
+    /// Changes the password for the specified IAM user. You can use the CLI, the Amazon Web Services API,
+    /// or the <b>Users</b> page in the IAM console to change the password for any IAM user. Use
+    /// <see href="https://docs.aws.amazon.com/IAM/latest/APIReference/API_ChangePassword.html">ChangePassword</see>
+    /// to change your own password in the <b>My Security Credentials</b> page in the Amazon Web Services
+    /// Management Console.
+    /// </para>
+    /// <para>
+    /// For more information about modifying passwords, see
+    /// <see href="https://docs.aws.amazon.com/IAM/latest/UserGuide/Using_ManagingLogins.html">Managing
+    /// passwords</see> in the <i>IAM User Guide</i>.
+    /// </para>
+    /// </summary>
+    public static Task<UpdateLoginProfileOutput> UpdateLoginProfileAsync(
+        this IAWSIdentityManagementV20100508Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.UpdateLoginProfileAsync(new UpdateLoginProfileInput(), cancellationToken);
+    }
+
+    /// <summary>
+    /// <para>
+    /// Replaces the existing list of server certificate thumbprints associated with an OpenID Connect
+    /// (OIDC) provider resource object with a new list of thumbprints.
+    /// </para>
+    /// <para>
+    /// The list that you pass with this operation completely replaces the existing list of thumbprints.
+    /// (The lists are not merged.)
+    /// </para>
+    /// <para>
+    /// Typically, you need to update a thumbprint only when the identity provider certificate changes,
+    /// which occurs rarely. However, if the provider's certificate <i>does</i> change, any attempt to
+    /// assume an IAM role that specifies the OIDC provider as a principal fails until the certificate
+    /// thumbprint is updated.
+    /// </para>
+    /// <para>
+    /// <b>Note:</b> Amazon Web Services secures communication with OIDC identity providers (IdPs) using our
+    /// library of trusted root certificate authorities (CAs) to verify the JSON Web Key Set (JWKS)
+    /// endpoint's TLS certificate. If your OIDC IdP relies on a certificate that is not signed by one of
+    /// these trusted CAs, only then we secure communication using the thumbprints set in the IdP's
+    /// configuration.
+    /// </para>
+    /// <para>
+    /// <b>Note:</b> Trust for the OIDC provider is derived from the provider certificate and is validated
+    /// by the thumbprint. Therefore, it is best to limit access to the
+    /// <c>UpdateOpenIDConnectProviderThumbprint</c> operation to highly privileged users.
+    /// </para>
+    /// </summary>
+    public static Task<UpdateOpenIDConnectProviderThumbprintOutput> UpdateOpenIDConnectProviderThumbprintAsync(
+        this IAWSIdentityManagementV20100508Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.UpdateOpenIDConnectProviderThumbprintAsync(
+            new UpdateOpenIDConnectProviderThumbprintInput(),
+            cancellationToken
+        );
+    }
+
+    /// <summary>
+    /// Updates the description or maximum session duration setting of a role.
+    /// </summary>
+    public static Task<UpdateRoleOutput> UpdateRoleAsync(
+        this IAWSIdentityManagementV20100508Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.UpdateRoleAsync(new UpdateRoleInput(), cancellationToken);
+    }
+
+    /// <summary>
+    /// <para>
+    /// Use
+    /// <see href="https://docs.aws.amazon.com/IAM/latest/APIReference/API_UpdateRole.html">UpdateRole</see>
+    /// instead.
+    /// </para>
+    /// <para>
+    /// Modifies only the description of a role. This operation performs the same function as the
+    /// <c>Description</c> parameter in the <c>UpdateRole</c> operation.
+    /// </para>
+    /// </summary>
+    public static Task<UpdateRoleDescriptionOutput> UpdateRoleDescriptionAsync(
+        this IAWSIdentityManagementV20100508Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.UpdateRoleDescriptionAsync(
+            new UpdateRoleDescriptionInput(),
+            cancellationToken
+        );
+    }
+
+    /// <summary>
+    /// Updates the metadata document, SAML encryption settings, and private keys for an existing SAML
+    /// provider. To rotate private keys, add your new private key and then remove the old key in a separate
+    /// request.
+    /// </summary>
+    public static Task<UpdateSAMLProviderOutput> UpdateSAMLProviderAsync(
+        this IAWSIdentityManagementV20100508Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.UpdateSAMLProviderAsync(new UpdateSAMLProviderInput(), cancellationToken);
+    }
+
+    /// <summary>
+    /// <para>
+    /// Sets the status of an IAM user's SSH public key to active or inactive. SSH public keys that are
+    /// inactive cannot be used for authentication. This operation can be used to disable a user's SSH
+    /// public key as part of a key rotation work flow.
+    /// </para>
+    /// <para>
+    /// The SSH public key affected by this operation is used only for authenticating the associated IAM
+    /// user to an CodeCommit repository. For more information about using SSH keys to authenticate to an
+    /// CodeCommit repository, see
+    /// <see href="https://docs.aws.amazon.com/codecommit/latest/userguide/setting-up-credentials-ssh.html">Set
+    /// up CodeCommit for SSH connections</see> in the <i>CodeCommit User Guide</i>.
+    /// </para>
+    /// </summary>
+    public static Task<UpdateSSHPublicKeyOutput> UpdateSSHPublicKeyAsync(
+        this IAWSIdentityManagementV20100508Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.UpdateSSHPublicKeyAsync(new UpdateSSHPublicKeyInput(), cancellationToken);
+    }
+
+    /// <summary>
+    /// <para>
+    /// Updates the name and/or the path of the specified server certificate stored in IAM.
+    /// </para>
+    /// <para>
+    /// For more information about working with server certificates, see
+    /// <see href="https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_server-certs.html">Working
+    /// with server certificates</see> in the <i>IAM User Guide</i>. This topic also includes a list of
+    /// Amazon Web Services services that can use the server certificates that you manage with IAM.
+    /// </para>
+    /// <para>
+    /// <b>Important:</b> You should understand the implications of changing a server certificate's path or
+    /// name. For more information, see
+    /// <see href="https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_server-certs_manage.html#RenamingServerCerts">Renaming
+    /// a server certificate</see> in the <i>IAM User Guide</i>.
+    /// </para>
+    /// <para>
+    /// <b>Note:</b> The person making the request (the principal), must have permission to change the
+    /// server certificate with the old name and the new name. For example, to change the certificate named
+    /// <c>ProductionCert</c> to <c>ProdCert</c>, the principal must have a policy that allows them to
+    /// update both certificates. If the principal has permission to update the <c>ProductionCert</c> group,
+    /// but not the <c>ProdCert</c> certificate, then the update fails. For more information about
+    /// permissions, see <see href="https://docs.aws.amazon.com/IAM/latest/UserGuide/access.html">Access
+    /// management</see> in the <i>IAM User Guide</i>.
+    /// </para>
+    /// </summary>
+    public static Task<UpdateServerCertificateOutput> UpdateServerCertificateAsync(
+        this IAWSIdentityManagementV20100508Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.UpdateServerCertificateAsync(
+            new UpdateServerCertificateInput(),
+            cancellationToken
+        );
+    }
+
+    /// <summary>
+    /// Sets the status of a service-specific credential to <c>Active</c> or <c>Inactive</c>.
+    /// Service-specific credentials that are inactive cannot be used for authentication to the service.
+    /// This operation can be used to disable a user's service-specific credential as part of a credential
+    /// rotation work flow.
+    /// </summary>
+    public static Task<UpdateServiceSpecificCredentialOutput> UpdateServiceSpecificCredentialAsync(
+        this IAWSIdentityManagementV20100508Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.UpdateServiceSpecificCredentialAsync(
+            new UpdateServiceSpecificCredentialInput(),
+            cancellationToken
+        );
+    }
+
+    /// <summary>
+    /// <para>
+    /// Changes the status of the specified user signing certificate from active to disabled, or vice versa.
+    /// This operation can be used to disable an IAM user's signing certificate as part of a certificate
+    /// rotation work flow.
+    /// </para>
+    /// <para>
+    /// If the <c>UserName</c> field is not specified, the user name is determined implicitly based on the
+    /// Amazon Web Services access key ID used to sign the request. This operation works for access keys
+    /// under the Amazon Web Services account. Consequently, you can use this operation to manage Amazon Web
+    /// Services account root user credentials even if the Amazon Web Services account has no associated
+    /// users.
+    /// </para>
+    /// </summary>
+    public static Task<UpdateSigningCertificateOutput> UpdateSigningCertificateAsync(
+        this IAWSIdentityManagementV20100508Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.UpdateSigningCertificateAsync(
+            new UpdateSigningCertificateInput(),
+            cancellationToken
+        );
+    }
+
+    /// <summary>
+    /// <para>
+    /// Updates the name and/or the path of the specified IAM user.
+    /// </para>
+    /// <para>
+    /// <b>Important:</b> You should understand the implications of changing an IAM user's path or name. For
+    /// more information, see
+    /// <see href="https://docs.aws.amazon.com/IAM/latest/UserGuide/id_users_manage.html#id_users_renaming">Renaming
+    /// an IAM user</see> and
+    /// <see href="https://docs.aws.amazon.com/IAM/latest/UserGuide/id_groups_manage_rename.html">Renaming
+    /// an IAM group</see> in the <i>IAM User Guide</i>.
+    /// </para>
+    /// <para>
+    /// <b>Note:</b> To change a user name, the requester must have appropriate permissions on both the
+    /// source object and the target object. For example, to change Bob to Robert, the entity making the
+    /// request must have permission on Bob and Robert, or must have permission on all (*). For more
+    /// information about permissions, see
+    /// <see href="https://docs.aws.amazon.com/IAM/latest/UserGuide/PermissionsAndPolicies.html">Permissions
+    /// and policies</see>.
+    /// </para>
+    /// </summary>
+    public static Task<UpdateUserOutput> UpdateUserAsync(
+        this IAWSIdentityManagementV20100508Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.UpdateUserAsync(new UpdateUserInput(), cancellationToken);
+    }
+
+    /// <summary>
+    /// <para>
+    /// Uploads an SSH public key and associates it with the specified IAM user.
+    /// </para>
+    /// <para>
+    /// The SSH public key uploaded by this operation can be used only for authenticating the associated IAM
+    /// user to an CodeCommit repository. For more information about using SSH keys to authenticate to an
+    /// CodeCommit repository, see
+    /// <see href="https://docs.aws.amazon.com/codecommit/latest/userguide/setting-up-credentials-ssh.html">Set
+    /// up CodeCommit for SSH connections</see> in the <i>CodeCommit User Guide</i>.
+    /// </para>
+    /// </summary>
+    public static Task<UploadSSHPublicKeyOutput> UploadSSHPublicKeyAsync(
+        this IAWSIdentityManagementV20100508Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.UploadSSHPublicKeyAsync(new UploadSSHPublicKeyInput(), cancellationToken);
+    }
+
+    /// <summary>
+    /// <para>
+    /// Uploads a server certificate entity for the Amazon Web Services account. The server certificate
+    /// entity includes a public key certificate, a private key, and an optional certificate chain, which
+    /// should all be PEM-encoded.
+    /// </para>
+    /// <para>
+    /// We recommend that you use <see href="https://docs.aws.amazon.com/acm/">Certificate Manager</see> to
+    /// provision, manage, and deploy your server certificates. With ACM you can request a certificate,
+    /// deploy it to Amazon Web Services resources, and let ACM handle certificate renewals for you.
+    /// Certificates provided by ACM are free. For more information about using ACM, see the
+    /// <see href="https://docs.aws.amazon.com/acm/latest/userguide/">Certificate Manager User Guide</see>.
+    /// </para>
+    /// <para>
+    /// For more information about working with server certificates, see
+    /// <see href="https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_server-certs.html">Working
+    /// with server certificates</see> in the <i>IAM User Guide</i>. This topic includes a list of Amazon
+    /// Web Services services that can use the server certificates that you manage with IAM.
+    /// </para>
+    /// <para>
+    /// For information about the number of server certificates you can upload, see
+    /// <see href="https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_iam-quotas.html">IAM and STS
+    /// quotas</see> in the <i>IAM User Guide</i>.
+    /// </para>
+    /// <para>
+    /// <b>Note:</b> Because the body of the public key certificate, private key, and the certificate chain
+    /// can be large, you should use POST rather than GET when calling <c>UploadServerCertificate</c>. For
+    /// information about setting up signatures and authorization through the API, see
+    /// <see href="https://docs.aws.amazon.com/general/latest/gr/signing_aws_api_requests.html">Signing
+    /// Amazon Web Services API requests</see> in the <i>Amazon Web Services General Reference</i>. For
+    /// general information about using the Query API with IAM, see
+    /// <see href="https://docs.aws.amazon.com/IAM/latest/UserGuide/programming.html">Calling the API by
+    /// making HTTP query requests</see> in the <i>IAM User Guide</i>.
+    /// </para>
+    /// </summary>
+    public static Task<UploadServerCertificateOutput> UploadServerCertificateAsync(
+        this IAWSIdentityManagementV20100508Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.UploadServerCertificateAsync(
+            new UploadServerCertificateInput(),
+            cancellationToken
+        );
+    }
+
+    /// <summary>
+    /// <para>
+    /// Uploads an X.509 signing certificate and associates it with the specified IAM user. Some Amazon Web
+    /// Services services require you to use certificates to validate requests that are signed with a
+    /// corresponding private key. When you upload the certificate, its default status is <c>Active</c>.
+    /// </para>
+    /// <para>
+    /// For information about when you would use an X.509 signing certificate, see
+    /// <see href="https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_server-certs.html">Managing
+    /// server certificates in IAM</see> in the <i>IAM User Guide</i>.
+    /// </para>
+    /// <para>
+    /// If the <c>UserName</c> is not specified, the IAM user name is determined implicitly based on the
+    /// Amazon Web Services access key ID used to sign the request. This operation works for access keys
+    /// under the Amazon Web Services account. Consequently, you can use this operation to manage Amazon Web
+    /// Services account root user credentials even if the Amazon Web Services account has no associated
+    /// users.
+    /// </para>
+    /// <para>
+    /// <b>Note:</b> Because the body of an X.509 certificate can be large, you should use POST rather than
+    /// GET when calling <c>UploadSigningCertificate</c>. For information about setting up signatures and
+    /// authorization through the API, see
+    /// <see href="https://docs.aws.amazon.com/general/latest/gr/signing_aws_api_requests.html">Signing
+    /// Amazon Web Services API requests</see> in the <i>Amazon Web Services General Reference</i>. For
+    /// general information about using the Query API with IAM, see
+    /// <see href="https://docs.aws.amazon.com/IAM/latest/UserGuide/IAM_UsingQueryAPI.html">Making query
+    /// requests</see> in the <i>IAM User Guide</i>.
+    /// </para>
+    /// </summary>
+    public static Task<UploadSigningCertificateOutput> UploadSigningCertificateAsync(
+        this IAWSIdentityManagementV20100508Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.UploadSigningCertificateAsync(
+            new UploadSigningCertificateInput(),
             cancellationToken
         );
     }
@@ -17513,7 +22961,7 @@ public sealed class AWSIdentityManagementV20100508Client : IAWSIdentityManagemen
     /// The following example defines a new OIDC provider in IAM with a client ID of my-application-id and pointing at the server with a URL of https://server.example.com.
     /// </para>
     /// <code>
-    /// var input = new CreateOpenIDConnectProviderInput(Url: &quot;https://server.example.com&quot;, ClientIDList: new string[] { &quot;my-application-id&quot; }, ThumbprintList: new string[] { &quot;3768084dfb3d2b68b7897bf5f565da8efEXAMPLE&quot; });
+    /// var input = new CreateOpenIDConnectProviderInput(ClientIDList: new string[] { &quot;my-application-id&quot; }, ThumbprintList: new string[] { &quot;3768084dfb3d2b68b7897bf5f565da8efEXAMPLE&quot; }, Url: &quot;https://server.example.com&quot;);
     /// var output = await client.CreateOpenIDConnectProviderAsync(input);
     ///
     /// // Expected output:
@@ -17607,7 +23055,7 @@ public sealed class AWSIdentityManagementV20100508Client : IAWSIdentityManagemen
     /// The following command creates a role named Test-Role and attaches a trust policy that you must convert from JSON to a string. Upon success, the response includes the same policy as a URL-encoded JSON string.
     /// </para>
     /// <code>
-    /// var input = new CreateRoleInput(AssumeRolePolicyDocument: &quot;&lt;Stringified-JSON&gt;&quot;, RoleName: &quot;Test-Role&quot;, Path: &quot;/&quot;);
+    /// var input = new CreateRoleInput(AssumeRolePolicyDocument: &quot;&lt;Stringified-JSON&gt;&quot;, Path: &quot;/&quot;, RoleName: &quot;Test-Role&quot;);
     /// var output = await client.CreateRoleAsync(input);
     ///
     /// // Expected output:
@@ -25253,7 +30701,7 @@ public sealed class AWSIdentityManagementV20100508Client : IAWSIdentityManagemen
     /// The following command creates or changes the password for the IAM user named Bob.
     /// </para>
     /// <code>
-    /// var input = new UpdateLoginProfileInput(UserName: &quot;Bob&quot;, Password: &quot;SomeKindOfPassword123!@#&quot;);
+    /// var input = new UpdateLoginProfileInput(Password: &quot;SomeKindOfPassword123!@#&quot;, UserName: &quot;Bob&quot;);
     /// var output = await client.UpdateLoginProfileAsync(input);
     /// </code>
     /// </example>
@@ -25494,7 +30942,7 @@ public sealed class AWSIdentityManagementV20100508Client : IAWSIdentityManagemen
     /// The following command changes the name of the IAM user Bob to Robert. It does not change the user's path.
     /// </para>
     /// <code>
-    /// var input = new UpdateUserInput(UserName: &quot;Bob&quot;, NewUserName: &quot;Robert&quot;);
+    /// var input = new UpdateUserInput(NewUserName: &quot;Robert&quot;, UserName: &quot;Bob&quot;);
     /// var output = await client.UpdateUserAsync(input);
     /// </code>
     /// </example>
@@ -25571,7 +31019,7 @@ public sealed class AWSIdentityManagementV20100508Client : IAWSIdentityManagemen
     /// The following upload-server-certificate command uploads a server certificate to your AWS account:
     /// </para>
     /// <code>
-    /// var input = new UploadServerCertificateInput(CertificateBody: &quot;-----BEGIN CERTIFICATE-----&lt;a very long certificate text string&gt;-----END CERTIFICATE-----&quot;, PrivateKey: &quot;-----BEGIN DSA PRIVATE KEY-----&lt;a very long private key string&gt;-----END DSA PRIVATE KEY-----&quot;, ServerCertificateName: &quot;ProdServerCert&quot;, Path: &quot;/company/servercerts/&quot;);
+    /// var input = new UploadServerCertificateInput(CertificateBody: &quot;-----BEGIN CERTIFICATE-----&lt;a very long certificate text string&gt;-----END CERTIFICATE-----&quot;, Path: &quot;/company/servercerts/&quot;, PrivateKey: &quot;-----BEGIN DSA PRIVATE KEY-----&lt;a very long private key string&gt;-----END DSA PRIVATE KEY-----&quot;, ServerCertificateName: &quot;ProdServerCert&quot;);
     /// var output = await client.UploadServerCertificateAsync(input);
     ///
     /// // Expected output:

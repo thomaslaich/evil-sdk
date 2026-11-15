@@ -27,4 +27,4 @@ namespace Com.Amazonaws.Iam;
 /// can also include any of the following characters: _+=,.@-
 /// </para>
 /// </param>
-public sealed record class AddUserToGroupInput(string GroupName, string UserName);
+public sealed record class AddUserToGroupInput(string? GroupName = null, string? UserName = null);

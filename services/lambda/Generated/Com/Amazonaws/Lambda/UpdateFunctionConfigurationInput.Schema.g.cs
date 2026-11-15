@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Lambda.Schemas;
 
 public static partial class UpdateFunctionConfigurationInputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? FunctionName { get; set; }
         public string? Role { get; set; }
@@ -47,7 +47,6 @@ public static partial class UpdateFunctionConfigurationInputSchema
                 new(
                     "FunctionName",
                     Target0,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
@@ -69,10 +68,6 @@ public static partial class UpdateFunctionConfigurationInputSchema
                             Document.From(
                                 "^(arn:(aws[a-zA-Z-]*)?:lambda:)?((eusc-)?[a-z]{2}((-gov)|(-iso([a-z]?)))?-[a-z]+-\\d{1}:)?(\\d{12}:)?(function:)?([a-zA-Z0-9-_]+)(:(\\$LATEST|[a-zA-Z0-9-_]+))?$"
                             )
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
                         ),
                     ]
                 ),
@@ -309,7 +304,6 @@ public static partial class UpdateFunctionConfigurationInputSchema
             Builder builder
         ) =>
             new global::Com.Amazonaws.Lambda.UpdateFunctionConfigurationInput(
-                builder.FunctionName ?? throw new MissingRequiredMemberException("FunctionName"),
                 builder.CapacityProviderConfig,
                 builder.DeadLetterConfig,
                 builder.Description,
@@ -317,6 +311,7 @@ public static partial class UpdateFunctionConfigurationInputSchema
                 builder.Environment,
                 builder.EphemeralStorage,
                 builder.FileSystemConfigs,
+                builder.FunctionName,
                 builder.Handler,
                 builder.ImageConfig,
                 builder.KMSKeyArn,
@@ -507,7 +502,7 @@ public static partial class UpdateFunctionConfigurationInputSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

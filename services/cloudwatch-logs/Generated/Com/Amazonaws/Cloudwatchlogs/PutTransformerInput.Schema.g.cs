@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Cloudwatchlogs.Schemas;
 
 public static partial class PutTransformerInputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? LogGroupIdentifier { get; set; }
         public IReadOnlyList<global::Com.Amazonaws.Cloudwatchlogs.Processor>? TransformerConfig { get; set; }
@@ -28,7 +28,6 @@ public static partial class PutTransformerInputSchema
                 new(
                     "logGroupIdentifier",
                     Target0,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
@@ -45,24 +44,9 @@ public static partial class PutTransformerInputSchema
                             ShapeId.Parse("smithy.api#pattern"),
                             Document.From("^[\\w#+=/:,.@-]*$")
                         ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
                     ]
                 ),
-                new(
-                    "transformerConfig",
-                    Target1,
-                    isRequired: true,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
-                    ]
-                ),
+                new("transformerConfig", Target1),
             ],
             [
                 new Trait(
@@ -91,10 +75,8 @@ public static partial class PutTransformerInputSchema
             Builder builder
         ) =>
             new global::Com.Amazonaws.Cloudwatchlogs.PutTransformerInput(
-                builder.LogGroupIdentifier
-                    ?? throw new MissingRequiredMemberException("logGroupIdentifier"),
+                builder.LogGroupIdentifier,
                 builder.TransformerConfig
-                    ?? throw new MissingRequiredMemberException("transformerConfig")
             );
 
         public override void SerializeMembers<TSerializer>(
@@ -120,7 +102,7 @@ public static partial class PutTransformerInputSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

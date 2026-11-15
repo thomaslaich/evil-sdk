@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Secretsmanager.Schemas;
 
 public static partial class ListSecretVersionIdsOutputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public IReadOnlyList<global::Com.Amazonaws.Secretsmanager.SecretVersionsListEntry>? Versions { get; set; }
         public string? NextToken { get; set; }
@@ -160,7 +160,7 @@ public static partial class ListSecretVersionIdsOutputSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

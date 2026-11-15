@@ -16,6 +16,6 @@ namespace Com.Amazonaws.Lambda;
 /// A list of tags to apply to the resource.
 /// </param>
 public sealed record class TagResourceInput(
-    string Resource,
-    IReadOnlyDictionary<string, string> Tags
+    string? Resource = null,
+    IReadOnlyDictionary<string, string>? Tags = null
 );

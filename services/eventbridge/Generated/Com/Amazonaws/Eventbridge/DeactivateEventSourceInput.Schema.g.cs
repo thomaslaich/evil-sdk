@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Eventbridge.Schemas;
 
 public static partial class DeactivateEventSourceInputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? Name { get; set; }
     }
@@ -27,7 +27,6 @@ public static partial class DeactivateEventSourceInputSchema
                 new(
                     "Name",
                     Target0,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
@@ -43,10 +42,6 @@ public static partial class DeactivateEventSourceInputSchema
                         new Trait(
                             ShapeId.Parse("smithy.api#pattern"),
                             Document.From("^aws\\.partner(/[\\.\\-_A-Za-z0-9]+){2,}$")
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
                         ),
                     ]
                 ),
@@ -72,10 +67,7 @@ public static partial class DeactivateEventSourceInputSchema
 
         public override global::Com.Amazonaws.Eventbridge.DeactivateEventSourceInput Build(
             Builder builder
-        ) =>
-            new global::Com.Amazonaws.Eventbridge.DeactivateEventSourceInput(
-                builder.Name ?? throw new MissingRequiredMemberException("Name")
-            );
+        ) => new global::Com.Amazonaws.Eventbridge.DeactivateEventSourceInput(builder.Name);
 
         public override void SerializeMembers<TSerializer>(
             global::Com.Amazonaws.Eventbridge.DeactivateEventSourceInput value,
@@ -92,7 +84,7 @@ public static partial class DeactivateEventSourceInputSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

@@ -19,8 +19,8 @@ namespace Com.Amazonaws.S3;
 /// Skips validation of Amazon SQS, Amazon SNS, and Lambda destinations. True or false value.
 /// </param>
 public sealed record class PutBucketNotificationConfigurationInput(
-    string Bucket,
-    global::Com.Amazonaws.S3.NotificationConfiguration NotificationConfiguration,
+    string? Bucket = null,
     string? ExpectedBucketOwner = null,
+    global::Com.Amazonaws.S3.NotificationConfiguration? NotificationConfiguration = null,
     bool? SkipDestinationValidation = null
 );

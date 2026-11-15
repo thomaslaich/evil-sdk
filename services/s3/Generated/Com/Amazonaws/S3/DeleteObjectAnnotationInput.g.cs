@@ -19,11 +19,11 @@ namespace Com.Amazonaws.S3;
 /// <param name="Bucket">
 /// The name of the bucket that contains the object.
 /// </param>
-/// <param name="Key">
-/// The object key.
-/// </param>
 /// <param name="ExpectedBucketOwner">
 /// The account ID of the expected bucket owner.
+/// </param>
+/// <param name="Key">
+/// The object key.
 /// </param>
 /// <param name="ObjectIfMatch">
 /// If specified, the operation only succeeds if the object's ETag matches the provided value.
@@ -32,10 +32,10 @@ namespace Com.Amazonaws.S3;
 /// The version ID of the object.
 /// </param>
 public sealed record class DeleteObjectAnnotationInput(
-    string AnnotationName,
-    string Bucket,
-    string Key,
+    string? AnnotationName = null,
+    string? Bucket = null,
     string? ExpectedBucketOwner = null,
+    string? Key = null,
     string? ObjectIfMatch = null,
     global::Com.Amazonaws.S3.RequestPayer? RequestPayer = null,
     string? VersionId = null

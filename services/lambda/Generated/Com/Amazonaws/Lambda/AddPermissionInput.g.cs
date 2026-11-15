@@ -11,6 +11,9 @@ namespace Com.Amazonaws.Lambda;
 /// The action that the principal can use on the function. For example, <c>lambda:InvokeFunction</c> or
 /// <c>lambda:GetFunction</c>.
 /// </param>
+/// <param name="EventSourceToken">
+/// For Alexa Smart Home functions, a token that the invoker must supply.
+/// </param>
 /// <param name="FunctionName">
 /// <para>
 /// The name or ARN of the Lambda function, version, or alias.
@@ -40,17 +43,6 @@ namespace Com.Amazonaws.Lambda;
 /// to the full ARN. If you specify only the function name, it is limited to 64 characters in length.
 /// </para>
 /// </param>
-/// <param name="Principal">
-/// The Amazon Web Services service, Amazon Web Services account, IAM user, or IAM role that invokes the
-/// function. If you specify a service, use <c>SourceArn</c> or <c>SourceAccount</c> to limit who can
-/// invoke the function through that service.
-/// </param>
-/// <param name="StatementId">
-/// A statement identifier that differentiates the statement from others in the same policy.
-/// </param>
-/// <param name="EventSourceToken">
-/// For Alexa Smart Home functions, a token that the invoker must supply.
-/// </param>
 /// <param name="FunctionUrlAuthType">
 /// The type of authentication that your function URL uses. Set to <c>AWS_IAM</c> if you want to
 /// restrict access to authenticated users only. Set to <c>NONE</c> if you want to bypass IAM
@@ -60,6 +52,11 @@ namespace Com.Amazonaws.Lambda;
 /// </param>
 /// <param name="InvokedViaFunctionUrl">
 /// Indicates whether the permission applies when the function is invoked through a function URL.
+/// </param>
+/// <param name="Principal">
+/// The Amazon Web Services service, Amazon Web Services account, IAM user, or IAM role that invokes the
+/// function. If you specify a service, use <c>SourceArn</c> or <c>SourceAccount</c> to limit who can
+/// invoke the function through that service.
 /// </param>
 /// <param name="PrincipalOrgID">
 /// The identifier for your organization in Organizations. Use this to grant permissions to all the
@@ -86,17 +83,20 @@ namespace Com.Amazonaws.Lambda;
 /// Note that Lambda configures the comparison using the <c>StringLike</c> operator.
 /// </para>
 /// </param>
+/// <param name="StatementId">
+/// A statement identifier that differentiates the statement from others in the same policy.
+/// </param>
 public sealed record class AddPermissionInput(
-    string Action,
-    string FunctionName,
-    string Principal,
-    string StatementId,
+    string? Action = null,
     string? EventSourceToken = null,
+    string? FunctionName = null,
     global::Com.Amazonaws.Lambda.FunctionUrlAuthType? FunctionUrlAuthType = null,
     bool? InvokedViaFunctionUrl = null,
+    string? Principal = null,
     string? PrincipalOrgID = null,
     string? Qualifier = null,
     string? RevisionId = null,
     string? SourceAccount = null,
-    string? SourceArn = null
+    string? SourceArn = null,
+    string? StatementId = null
 );

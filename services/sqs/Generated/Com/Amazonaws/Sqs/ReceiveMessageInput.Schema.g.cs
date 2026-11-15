@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Sqs.Schemas;
 
 public static partial class ReceiveMessageInputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? QueueUrl { get; set; }
         public IReadOnlyList<global::Com.Amazonaws.Sqs.QueueAttributeName>? AttributeNames { get; set; }
@@ -31,18 +31,7 @@ public static partial class ReceiveMessageInputSchema
         : StructSchema<global::Com.Amazonaws.Sqs.ReceiveMessageInput, Builder>(
             ShapeId.Parse("com.amazonaws.sqs#ReceiveMessageInput"),
             [
-                new(
-                    "QueueUrl",
-                    Target0,
-                    isRequired: true,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
-                    ]
-                ),
+                new("QueueUrl", Target0),
                 new(
                     "AttributeNames",
                     Target1,
@@ -170,11 +159,11 @@ public static partial class ReceiveMessageInputSchema
 
         public override global::Com.Amazonaws.Sqs.ReceiveMessageInput Build(Builder builder) =>
             new global::Com.Amazonaws.Sqs.ReceiveMessageInput(
-                builder.QueueUrl ?? throw new MissingRequiredMemberException("QueueUrl"),
                 builder.AttributeNames,
                 builder.MaxNumberOfMessages,
                 builder.MessageAttributeNames,
                 builder.MessageSystemAttributeNames,
+                builder.QueueUrl,
                 builder.ReceiveRequestAttemptId,
                 builder.VisibilityTimeout,
                 builder.WaitTimeSeconds
@@ -251,7 +240,7 @@ public static partial class ReceiveMessageInputSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

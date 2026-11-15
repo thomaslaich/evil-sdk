@@ -11,7 +11,7 @@ namespace Com.Amazonaws.Iam.Schemas;
 
 public static partial class GroupSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? Path { get; set; }
         public string? GroupName { get; set; }
@@ -212,7 +212,7 @@ public static partial class GroupSchema
             serializer.WriteTimestamp(4, value.CreateDate);
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

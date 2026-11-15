@@ -16,4 +16,4 @@ namespace Com.Amazonaws.Route53;
 /// resource record sets that were created when you created the traffic policy instance.
 /// </para>
 /// </param>
-public sealed record class DeleteTrafficPolicyInstanceInput(string Id);
+public sealed record class DeleteTrafficPolicyInstanceInput(string? Id = null);

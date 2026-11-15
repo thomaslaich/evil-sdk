@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Cloudwatchlogs.Schemas;
 
 public static partial class GetLookupTableInputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? LookupTableArn { get; set; }
     }
@@ -23,20 +23,7 @@ public static partial class GetLookupTableInputSchema
     private sealed class GeneratedSchema()
         : StructSchema<global::Com.Amazonaws.Cloudwatchlogs.GetLookupTableInput, Builder>(
             ShapeId.Parse("com.amazonaws.cloudwatchlogs#GetLookupTableInput"),
-            [
-                new(
-                    "lookupTableArn",
-                    Target0,
-                    isRequired: true,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
-                    ]
-                ),
-            ],
+            [new("lookupTableArn", Target0)],
             [
                 new Trait(
                     ShapeId.Parse("smithy.api#input"),
@@ -58,10 +45,7 @@ public static partial class GetLookupTableInputSchema
 
         public override global::Com.Amazonaws.Cloudwatchlogs.GetLookupTableInput Build(
             Builder builder
-        ) =>
-            new global::Com.Amazonaws.Cloudwatchlogs.GetLookupTableInput(
-                builder.LookupTableArn ?? throw new MissingRequiredMemberException("lookupTableArn")
-            );
+        ) => new global::Com.Amazonaws.Cloudwatchlogs.GetLookupTableInput(builder.LookupTableArn);
 
         public override void SerializeMembers<TSerializer>(
             global::Com.Amazonaws.Cloudwatchlogs.GetLookupTableInput value,
@@ -78,7 +62,7 @@ public static partial class GetLookupTableInputSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Secretsmanager.Schemas;
 
 public static partial class RemoveRegionsFromReplicationInputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? SecretId { get; set; }
         public IReadOnlyList<string>? RemoveReplicaRegions { get; set; }
@@ -31,7 +31,6 @@ public static partial class RemoveRegionsFromReplicationInputSchema
                 new(
                     "SecretId",
                     Target0,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
@@ -44,24 +43,9 @@ public static partial class RemoveRegionsFromReplicationInputSchema
                                 }
                             )
                         ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
                     ]
                 ),
-                new(
-                    "RemoveReplicaRegions",
-                    Target1,
-                    isRequired: true,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
-                    ]
-                ),
+                new("RemoveReplicaRegions", Target1),
             ],
             [
                 new Trait(
@@ -94,9 +78,8 @@ public static partial class RemoveRegionsFromReplicationInputSchema
             Builder builder
         ) =>
             new global::Com.Amazonaws.Secretsmanager.RemoveRegionsFromReplicationInput(
-                builder.RemoveReplicaRegions
-                    ?? throw new MissingRequiredMemberException("RemoveReplicaRegions"),
-                builder.SecretId ?? throw new MissingRequiredMemberException("SecretId")
+                builder.RemoveReplicaRegions,
+                builder.SecretId
             );
 
         public override void SerializeMembers<TSerializer>(
@@ -122,7 +105,7 @@ public static partial class RemoveRegionsFromReplicationInputSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

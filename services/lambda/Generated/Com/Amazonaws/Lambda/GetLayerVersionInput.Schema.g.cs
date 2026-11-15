@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Lambda.Schemas;
 
 public static partial class GetLayerVersionInputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? LayerName { get; set; }
         public long? VersionNumber { get; set; }
@@ -28,7 +28,6 @@ public static partial class GetLayerVersionInputSchema
                 new(
                     "LayerName",
                     Target0,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
@@ -51,16 +50,11 @@ public static partial class GetLayerVersionInputSchema
                                 "^(arn:(aws[a-zA-Z-]*)?:lambda:(eusc-)?[a-z]{2}((-gov)|(-iso([a-z]?)))?-[a-z]+-\\d{1}:\\d{12}:layer:[a-zA-Z0-9-_]+)|[a-zA-Z0-9-_]+$"
                             )
                         ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
                     ]
                 ),
                 new(
                     "VersionNumber",
                     Target1,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
@@ -70,10 +64,6 @@ public static partial class GetLayerVersionInputSchema
                         new Trait(ShapeId.Parse("smithy.api#default")),
                         new Trait(
                             ShapeId.Parse("smithy.api#httpLabel"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
                             Document.From(new Dictionary<string, Document> { })
                         ),
                     ]
@@ -102,8 +92,8 @@ public static partial class GetLayerVersionInputSchema
 
         public override global::Com.Amazonaws.Lambda.GetLayerVersionInput Build(Builder builder) =>
             new global::Com.Amazonaws.Lambda.GetLayerVersionInput(
-                builder.LayerName ?? throw new MissingRequiredMemberException("LayerName"),
-                builder.VersionNumber.GetValueOrDefault()
+                builder.LayerName,
+                builder.VersionNumber
             );
 
         public override void SerializeMembers<TSerializer>(
@@ -129,7 +119,7 @@ public static partial class GetLayerVersionInputSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

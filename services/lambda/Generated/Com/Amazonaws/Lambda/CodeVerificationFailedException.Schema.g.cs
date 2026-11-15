@@ -9,7 +9,7 @@ namespace Com.Amazonaws.Lambda.Schemas;
 
 public static partial class CodeVerificationFailedExceptionSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? Message { get; set; }
         public string? Type { get; set; }
@@ -72,7 +72,7 @@ public static partial class CodeVerificationFailedExceptionSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

@@ -98,7 +98,7 @@ namespace Com.Amazonaws.S3;
 /// <c>ListMultipartUploads</c>.
 /// </param>
 public sealed record class CreateSessionInput(
-    string Bucket,
+    string? Bucket = null,
     bool? BucketKeyEnabled = null,
     string? SSEKMSEncryptionContext = null,
     string? SSEKMSKeyId = null,

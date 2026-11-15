@@ -9,6 +9,13 @@ namespace Com.Amazonaws.Sts;
 /// <summary>
 /// Represents the Smithy structure com.amazonaws.sts#GetFederationTokenInput.
 /// </summary>
+/// <param name="DurationSeconds">
+/// The duration, in seconds, that the session should last. Acceptable durations for federation sessions
+/// range from 900 seconds (15 minutes) to 129,600 seconds (36 hours), with 43,200 seconds (12 hours) as
+/// the default. Sessions obtained using root user credentials are restricted to a maximum of 3,600
+/// seconds (one hour). If the specified duration is longer than one hour, the session obtained by using
+/// root user credentials defaults to one hour.
+/// </param>
 /// <param name="Name">
 /// <para>
 /// The name of the federated user. The name is used as an identifier for the temporary security
@@ -20,13 +27,6 @@ namespace Com.Amazonaws.Sts;
 /// lower-case alphanumeric characters with no spaces. You can also include underscores or any of the
 /// following characters: =,.@-
 /// </para>
-/// </param>
-/// <param name="DurationSeconds">
-/// The duration, in seconds, that the session should last. Acceptable durations for federation sessions
-/// range from 900 seconds (15 minutes) to 129,600 seconds (36 hours), with 43,200 seconds (12 hours) as
-/// the default. Sessions obtained using root user credentials are restricted to a maximum of 3,600
-/// seconds (one hour). If the specified duration is longer than one hour, the session obtained by using
-/// root user credentials defaults to one hour.
 /// </param>
 /// <param name="Policy">
 /// <para>
@@ -149,9 +149,9 @@ namespace Com.Amazonaws.Sts;
 /// </para>
 /// </param>
 public sealed record class GetFederationTokenInput(
-    string Name,
     int? DurationSeconds = null,
     int? MinimumSessionTokenSize = null,
+    string? Name = null,
     string? Policy = null,
     IReadOnlyList<PolicyDescriptorType>? PolicyArns = null,
     IReadOnlyList<global::Com.Amazonaws.Sts.Tag>? Tags = null

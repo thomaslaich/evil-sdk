@@ -9,7 +9,7 @@ namespace Com.Amazonaws.Sqs.Schemas;
 
 public static partial class InvalidIdFormatSchema
 {
-    public sealed class Builder { }
+    public sealed class Builder : StructBuilder { }
 
     public static StructSchema<global::Com.Amazonaws.Sqs.InvalidIdFormat, Builder> Schema { get; } =
         new GeneratedSchema();
@@ -31,7 +31,7 @@ public static partial class InvalidIdFormatSchema
             ref TSerializer serializer
         ) { }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

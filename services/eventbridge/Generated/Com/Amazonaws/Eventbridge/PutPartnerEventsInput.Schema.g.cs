@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Eventbridge.Schemas;
 
 public static partial class PutPartnerEventsInputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public IReadOnlyList<global::Com.Amazonaws.Eventbridge.PutPartnerEventsRequestEntry>? Entries { get; set; }
     }
@@ -23,20 +23,7 @@ public static partial class PutPartnerEventsInputSchema
     private sealed class GeneratedSchema()
         : StructSchema<global::Com.Amazonaws.Eventbridge.PutPartnerEventsInput, Builder>(
             ShapeId.Parse("com.amazonaws.eventbridge#PutPartnerEventsInput"),
-            [
-                new(
-                    "Entries",
-                    Target0,
-                    isRequired: true,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
-                    ]
-                ),
-            ],
+            [new("Entries", Target0)],
             [
                 new Trait(
                     ShapeId.Parse("smithy.api#input"),
@@ -60,10 +47,7 @@ public static partial class PutPartnerEventsInputSchema
 
         public override global::Com.Amazonaws.Eventbridge.PutPartnerEventsInput Build(
             Builder builder
-        ) =>
-            new global::Com.Amazonaws.Eventbridge.PutPartnerEventsInput(
-                builder.Entries ?? throw new MissingRequiredMemberException("Entries")
-            );
+        ) => new global::Com.Amazonaws.Eventbridge.PutPartnerEventsInput(builder.Entries);
 
         public override void SerializeMembers<TSerializer>(
             global::Com.Amazonaws.Eventbridge.PutPartnerEventsInput value,
@@ -80,7 +64,7 @@ public static partial class PutPartnerEventsInputSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

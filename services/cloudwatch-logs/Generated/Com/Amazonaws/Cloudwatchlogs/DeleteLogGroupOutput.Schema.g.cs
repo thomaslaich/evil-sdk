@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Cloudwatchlogs.Schemas;
 
 public static partial class DeleteLogGroupOutputSchema
 {
-    public sealed class Builder { }
+    public sealed class Builder : StructBuilder { }
 
     public static StructSchema<
         global::Com.Amazonaws.Cloudwatchlogs.DeleteLogGroupOutput,
@@ -44,7 +44,7 @@ public static partial class DeleteLogGroupOutputSchema
             ref TSerializer serializer
         ) { }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

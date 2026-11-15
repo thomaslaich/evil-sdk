@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Eventbridge.Schemas;
 
 public static partial class UntagResourceOutputSchema
 {
-    public sealed class Builder { }
+    public sealed class Builder : StructBuilder { }
 
     public static StructSchema<
         global::Com.Amazonaws.Eventbridge.UntagResourceOutput,
@@ -44,7 +44,7 @@ public static partial class UntagResourceOutputSchema
             ref TSerializer serializer
         ) { }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

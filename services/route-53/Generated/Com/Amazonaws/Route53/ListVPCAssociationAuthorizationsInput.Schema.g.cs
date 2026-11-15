@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Route53.Schemas;
 
 public static partial class ListVPCAssociationAuthorizationsInputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? HostedZoneId { get; set; }
         public string? NextToken { get; set; }
@@ -32,7 +32,6 @@ public static partial class ListVPCAssociationAuthorizationsInputSchema
                 new(
                     "HostedZoneId",
                     Target0,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
@@ -48,10 +47,6 @@ public static partial class ListVPCAssociationAuthorizationsInputSchema
                                     { "max", Document.From(32m) },
                                 }
                             )
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
                         ),
                     ]
                 ),
@@ -117,7 +112,7 @@ public static partial class ListVPCAssociationAuthorizationsInputSchema
             Builder builder
         ) =>
             new global::Com.Amazonaws.Route53.ListVPCAssociationAuthorizationsInput(
-                builder.HostedZoneId ?? throw new MissingRequiredMemberException("HostedZoneId"),
+                builder.HostedZoneId,
                 builder.MaxResults,
                 builder.NextToken
             );
@@ -153,7 +148,7 @@ public static partial class ListVPCAssociationAuthorizationsInputSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

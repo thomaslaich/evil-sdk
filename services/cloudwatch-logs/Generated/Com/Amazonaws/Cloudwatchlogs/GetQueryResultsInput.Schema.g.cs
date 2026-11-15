@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Cloudwatchlogs.Schemas;
 
 public static partial class GetQueryResultsInputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? QueryId { get; set; }
         public string? NextToken { get; set; }
@@ -29,7 +29,6 @@ public static partial class GetQueryResultsInputSchema
                 new(
                     "queryId",
                     Target0,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
@@ -41,10 +40,6 @@ public static partial class GetQueryResultsInputSchema
                                     { "max", Document.From(256m) },
                                 }
                             )
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
                         ),
                     ]
                 ),
@@ -116,9 +111,9 @@ public static partial class GetQueryResultsInputSchema
             Builder builder
         ) =>
             new global::Com.Amazonaws.Cloudwatchlogs.GetQueryResultsInput(
-                builder.QueryId ?? throw new MissingRequiredMemberException("queryId"),
                 builder.MaxItems,
-                builder.NextToken
+                builder.NextToken,
+                builder.QueryId
             );
 
         public override void SerializeMembers<TSerializer>(
@@ -152,7 +147,7 @@ public static partial class GetQueryResultsInputSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Cloudwatchlogs.Schemas;
 
 public static partial class DeleteDeliveryDestinationPolicyInputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? DeliveryDestinationName { get; set; }
     }
@@ -30,7 +30,6 @@ public static partial class DeleteDeliveryDestinationPolicyInputSchema
                 new(
                     "deliveryDestinationName",
                     Target0,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
@@ -44,10 +43,6 @@ public static partial class DeleteDeliveryDestinationPolicyInputSchema
                             )
                         ),
                         new Trait(ShapeId.Parse("smithy.api#pattern"), Document.From("^[\\w-]*$")),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
                     ]
                 ),
             ],
@@ -77,7 +72,6 @@ public static partial class DeleteDeliveryDestinationPolicyInputSchema
         ) =>
             new global::Com.Amazonaws.Cloudwatchlogs.DeleteDeliveryDestinationPolicyInput(
                 builder.DeliveryDestinationName
-                    ?? throw new MissingRequiredMemberException("deliveryDestinationName")
             );
 
         public override void SerializeMembers<TSerializer>(
@@ -95,7 +89,7 @@ public static partial class DeleteDeliveryDestinationPolicyInputSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

@@ -61,7 +61,7 @@ namespace Com.Amazonaws.Cloudwatchlogs;
 /// </para>
 /// </param>
 public sealed record class AssociateKmsKeyInput(
-    string KmsKeyId,
+    string? KmsKeyId = null,
     string? LogGroupName = null,
     string? ResourceIdentifier = null
 );

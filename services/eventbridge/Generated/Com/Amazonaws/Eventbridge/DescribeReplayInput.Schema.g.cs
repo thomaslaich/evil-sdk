@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Eventbridge.Schemas;
 
 public static partial class DescribeReplayInputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? ReplayName { get; set; }
     }
@@ -27,7 +27,6 @@ public static partial class DescribeReplayInputSchema
                 new(
                     "ReplayName",
                     Target0,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
@@ -43,10 +42,6 @@ public static partial class DescribeReplayInputSchema
                         new Trait(
                             ShapeId.Parse("smithy.api#pattern"),
                             Document.From("^[\\.\\-_A-Za-z0-9]+$")
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
                         ),
                     ]
                 ),
@@ -72,10 +67,7 @@ public static partial class DescribeReplayInputSchema
 
         public override global::Com.Amazonaws.Eventbridge.DescribeReplayInput Build(
             Builder builder
-        ) =>
-            new global::Com.Amazonaws.Eventbridge.DescribeReplayInput(
-                builder.ReplayName ?? throw new MissingRequiredMemberException("ReplayName")
-            );
+        ) => new global::Com.Amazonaws.Eventbridge.DescribeReplayInput(builder.ReplayName);
 
         public override void SerializeMembers<TSerializer>(
             global::Com.Amazonaws.Eventbridge.DescribeReplayInput value,
@@ -92,7 +84,7 @@ public static partial class DescribeReplayInputSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

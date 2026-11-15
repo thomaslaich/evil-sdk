@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Iam.Schemas;
 
 public static partial class SimulateCustomPolicyInputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public IReadOnlyList<string>? PolicyInputList { get; set; }
         public IReadOnlyList<string>? PermissionsBoundaryPolicyInputList { get; set; }
@@ -35,32 +35,10 @@ public static partial class SimulateCustomPolicyInputSchema
         : StructSchema<global::Com.Amazonaws.Iam.SimulateCustomPolicyInput, Builder>(
             ShapeId.Parse("com.amazonaws.iam#SimulateCustomPolicyInput"),
             [
-                new(
-                    "PolicyInputList",
-                    Target0,
-                    isRequired: true,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
-                    ]
-                ),
+                new("PolicyInputList", Target0),
                 new("PermissionsBoundaryPolicyInputList", Target1),
                 new("OrderedOrganizationPolicyInputList", Target2),
-                new(
-                    "ActionNames",
-                    Target3,
-                    isRequired: true,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
-                    ]
-                ),
+                new("ActionNames", Target3),
                 new("ResourceArns", Target4),
                 new(
                     "ResourcePolicy",
@@ -249,15 +227,14 @@ public static partial class SimulateCustomPolicyInputSchema
             Builder builder
         ) =>
             new global::Com.Amazonaws.Iam.SimulateCustomPolicyInput(
-                builder.ActionNames ?? throw new MissingRequiredMemberException("ActionNames"),
-                builder.PolicyInputList
-                    ?? throw new MissingRequiredMemberException("PolicyInputList"),
+                builder.ActionNames,
                 builder.CallerArn,
                 builder.ContextEntries,
                 builder.Marker,
                 builder.MaxItems,
                 builder.OrderedOrganizationPolicyInputList,
                 builder.PermissionsBoundaryPolicyInputList,
+                builder.PolicyInputList,
                 builder.ResourceArns,
                 builder.ResourceHandlingOption,
                 builder.ResourceOwner,
@@ -367,7 +344,7 @@ public static partial class SimulateCustomPolicyInputSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

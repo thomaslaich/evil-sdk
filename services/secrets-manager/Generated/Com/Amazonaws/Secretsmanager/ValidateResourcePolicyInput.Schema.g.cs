@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Secretsmanager.Schemas;
 
 public static partial class ValidateResourcePolicyInputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? SecretId { get; set; }
         public string? ResourcePolicy { get; set; }
@@ -45,7 +45,6 @@ public static partial class ValidateResourcePolicyInputSchema
                 new(
                     "ResourcePolicy",
                     Target1,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
@@ -57,10 +56,6 @@ public static partial class ValidateResourcePolicyInputSchema
                                     { "max", Document.From(20480m) },
                                 }
                             )
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
                         ),
                     ]
                 ),
@@ -92,8 +87,7 @@ public static partial class ValidateResourcePolicyInputSchema
             Builder builder
         ) =>
             new global::Com.Amazonaws.Secretsmanager.ValidateResourcePolicyInput(
-                builder.ResourcePolicy
-                    ?? throw new MissingRequiredMemberException("ResourcePolicy"),
+                builder.ResourcePolicy,
                 builder.SecretId
             );
 
@@ -120,7 +114,7 @@ public static partial class ValidateResourcePolicyInputSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

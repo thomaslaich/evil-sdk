@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Kinesis.Schemas;
 
 public static partial class RemoveTagsFromStreamOutputSchema
 {
-    public sealed class Builder { }
+    public sealed class Builder : StructBuilder { }
 
     public static StructSchema<
         global::Com.Amazonaws.Kinesis.RemoveTagsFromStreamOutput,
@@ -44,7 +44,7 @@ public static partial class RemoveTagsFromStreamOutputSchema
             ref TSerializer serializer
         ) { }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

@@ -14,6 +14,6 @@ namespace Com.Amazonaws.Cloudwatchlogs;
 /// The contents of the policy.
 /// </param>
 public sealed record class PutDeliveryDestinationPolicyInput(
-    string DeliveryDestinationName,
-    string DeliveryDestinationPolicy
+    string? DeliveryDestinationName = null,
+    string? DeliveryDestinationPolicy = null
 );

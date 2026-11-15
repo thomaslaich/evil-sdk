@@ -12,6 +12,11 @@ namespace Com.Amazonaws.Iam;
 /// <param name="Arn">
 /// The ARN of the IAM identity (user, group, or role) whose policies you want to list.
 /// </param>
+/// <param name="Marker">
+/// Use this parameter only when paginating results and only after you receive a response indicating
+/// that the results are truncated. Set it to the value of the <c>Marker</c> element in the response
+/// that you received to indicate where the next call should start.
+/// </param>
 /// <param name="ServiceNamespaces">
 /// <para>
 /// The service namespace for the Amazon Web Services services whose policies you want to list.
@@ -27,13 +32,8 @@ namespace Com.Amazonaws.Iam;
 /// Web Services service namespaces</see> in the <i>Amazon Web Services General Reference</i>.
 /// </para>
 /// </param>
-/// <param name="Marker">
-/// Use this parameter only when paginating results and only after you receive a response indicating
-/// that the results are truncated. Set it to the value of the <c>Marker</c> element in the response
-/// that you received to indicate where the next call should start.
-/// </param>
 public sealed record class ListPoliciesGrantingServiceAccessInput(
-    string Arn,
-    IReadOnlyList<string> ServiceNamespaces,
-    string? Marker = null
+    string? Arn = null,
+    string? Marker = null,
+    IReadOnlyList<string>? ServiceNamespaces = null
 );

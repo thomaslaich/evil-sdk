@@ -16,6 +16,6 @@ namespace Com.Amazonaws.Secretsmanager;
 /// The ARN or name of the secret.
 /// </param>
 public sealed record class RemoveRegionsFromReplicationInput(
-    IReadOnlyList<string> RemoveReplicaRegions,
-    string SecretId
+    IReadOnlyList<string>? RemoveReplicaRegions = null,
+    string? SecretId = null
 );

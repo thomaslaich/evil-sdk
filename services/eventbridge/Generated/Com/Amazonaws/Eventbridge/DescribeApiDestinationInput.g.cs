@@ -10,4 +10,4 @@ namespace Com.Amazonaws.Eventbridge;
 /// <param name="Name">
 /// The name of the API destination to retrieve.
 /// </param>
-public sealed record class DescribeApiDestinationInput(string Name);
+public sealed record class DescribeApiDestinationInput(string? Name = null);

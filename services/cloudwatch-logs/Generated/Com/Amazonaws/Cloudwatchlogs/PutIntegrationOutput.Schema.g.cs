@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Cloudwatchlogs.Schemas;
 
 public static partial class PutIntegrationOutputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? IntegrationName { get; set; }
         public global::Com.Amazonaws.Cloudwatchlogs.IntegrationStatus? IntegrationStatus { get; set; }
@@ -100,7 +100,7 @@ public static partial class PutIntegrationOutputSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

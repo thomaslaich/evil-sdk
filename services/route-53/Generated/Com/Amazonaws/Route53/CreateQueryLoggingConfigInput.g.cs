@@ -28,6 +28,6 @@ namespace Com.Amazonaws.Route53;
 /// hosted zones.
 /// </param>
 public sealed record class CreateQueryLoggingConfigInput(
-    string CloudWatchLogsLogGroupArn,
-    string HostedZoneId
+    string? CloudWatchLogsLogGroupArn = null,
+    string? HostedZoneId = null
 );

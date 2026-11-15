@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Dynamodb.Schemas;
 
 public static partial class UpdateGlobalTableSettingsOutputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? GlobalTableName { get; set; }
         public IReadOnlyList<global::Com.Amazonaws.Dynamodb.ReplicaSettingsDescription>? ReplicaSettings { get; set; }
@@ -100,7 +100,7 @@ public static partial class UpdateGlobalTableSettingsOutputSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

@@ -16,9 +16,6 @@ namespace Com.Amazonaws.Cloudwatchlogs;
 /// The ARN of an IAM role that grants CloudWatch Logs permissions to call the Amazon Kinesis
 /// <c>PutRecord</c> operation on the destination stream.
 /// </param>
-/// <param name="TargetArn">
-/// The ARN of an Amazon Kinesis stream to which to deliver matching log events.
-/// </param>
 /// <param name="Tags">
 /// <para>
 /// An optional list of key-value pairs to associate with the resource.
@@ -29,9 +26,12 @@ namespace Com.Amazonaws.Cloudwatchlogs;
 /// Services resources</see>
 /// </para>
 /// </param>
+/// <param name="TargetArn">
+/// The ARN of an Amazon Kinesis stream to which to deliver matching log events.
+/// </param>
 public sealed record class PutDestinationInput(
-    string DestinationName,
-    string RoleArn,
-    string TargetArn,
-    IReadOnlyDictionary<string, string>? Tags = null
+    string? DestinationName = null,
+    string? RoleArn = null,
+    IReadOnlyDictionary<string, string>? Tags = null,
+    string? TargetArn = null
 );

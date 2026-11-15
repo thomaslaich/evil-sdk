@@ -9,7 +9,7 @@ namespace Com.Amazonaws.Iam.Schemas;
 
 public static partial class PositionSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public int? Line { get; set; }
         public int? Column { get; set; }
@@ -77,7 +77,7 @@ public static partial class PositionSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Dynamodb.Schemas;
 
 public static partial class IncrementalExportSpecificationSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public DateTimeOffset? ExportFromTime { get; set; }
         public DateTimeOffset? ExportToTime { get; set; }
@@ -86,7 +86,7 @@ public static partial class IncrementalExportSpecificationSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

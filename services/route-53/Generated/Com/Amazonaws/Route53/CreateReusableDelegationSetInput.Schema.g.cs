@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Route53.Schemas;
 
 public static partial class CreateReusableDelegationSetInputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? CallerReference { get; set; }
         public string? HostedZoneId { get; set; }
@@ -28,7 +28,6 @@ public static partial class CreateReusableDelegationSetInputSchema
                 new(
                     "CallerReference",
                     Target0,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
@@ -40,10 +39,6 @@ public static partial class CreateReusableDelegationSetInputSchema
                                     { "max", Document.From(128m) },
                                 }
                             )
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
                         ),
                     ]
                 ),
@@ -92,8 +87,7 @@ public static partial class CreateReusableDelegationSetInputSchema
             Builder builder
         ) =>
             new global::Com.Amazonaws.Route53.CreateReusableDelegationSetInput(
-                builder.CallerReference
-                    ?? throw new MissingRequiredMemberException("CallerReference"),
+                builder.CallerReference,
                 builder.HostedZoneId
             );
 
@@ -120,7 +114,7 @@ public static partial class CreateReusableDelegationSetInputSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

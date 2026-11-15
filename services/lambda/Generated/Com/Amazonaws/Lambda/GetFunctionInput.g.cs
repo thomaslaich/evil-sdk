@@ -39,4 +39,4 @@ namespace Com.Amazonaws.Lambda;
 /// <param name="Qualifier">
 /// Specify a version or alias to get details about a published version of the function.
 /// </param>
-public sealed record class GetFunctionInput(string FunctionName, string? Qualifier = null);
+public sealed record class GetFunctionInput(string? FunctionName = null, string? Qualifier = null);

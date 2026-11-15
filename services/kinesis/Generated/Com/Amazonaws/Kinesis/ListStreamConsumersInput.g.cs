@@ -9,12 +9,6 @@ namespace Com.Amazonaws.Kinesis;
 /// <summary>
 /// Represents the Smithy structure com.amazonaws.kinesis#ListStreamConsumersInput.
 /// </summary>
-/// <param name="StreamARN">
-/// The ARN of the Kinesis data stream for which you want to list the registered consumers. For more
-/// information, see
-/// <see href="https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html#arn-syntax-kinesis-streams">Amazon
-/// Resource Names (ARNs) and Amazon Web Services Service Namespaces</see>.
-/// </param>
 /// <param name="MaxResults">
 /// The maximum number of consumers that you want a single call of <c>ListStreamConsumers</c> to return.
 /// The default value is 100. If you specify a value greater than 100, at most 100 results are returned.
@@ -46,6 +40,12 @@ namespace Com.Amazonaws.Kinesis;
 /// <c>ExpiredNextTokenException</c>.
 /// </para>
 /// </param>
+/// <param name="StreamARN">
+/// The ARN of the Kinesis data stream for which you want to list the registered consumers. For more
+/// information, see
+/// <see href="https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html#arn-syntax-kinesis-streams">Amazon
+/// Resource Names (ARNs) and Amazon Web Services Service Namespaces</see>.
+/// </param>
 /// <param name="StreamCreationTimestamp">
 /// <para>
 /// Specify this input parameter to distinguish data streams that have the same name. For example, if
@@ -61,9 +61,9 @@ namespace Com.Amazonaws.Kinesis;
 /// Not Implemented. Reserved for future use.
 /// </param>
 public sealed record class ListStreamConsumersInput(
-    string StreamARN,
     int? MaxResults = null,
     string? NextToken = null,
+    string? StreamARN = null,
     DateTimeOffset? StreamCreationTimestamp = null,
     string? StreamId = null
 );

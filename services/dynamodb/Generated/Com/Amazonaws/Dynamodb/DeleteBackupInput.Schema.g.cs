@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Dynamodb.Schemas;
 
 public static partial class DeleteBackupInputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? BackupArn { get; set; }
     }
@@ -27,7 +27,6 @@ public static partial class DeleteBackupInputSchema
                 new(
                     "BackupArn",
                     Target0,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
@@ -39,10 +38,6 @@ public static partial class DeleteBackupInputSchema
                                     { "max", Document.From(1024m) },
                                 }
                             )
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
                         ),
                         new Trait(
                             ShapeId.Parse("smithy.rules#contextParam"),
@@ -72,9 +67,7 @@ public static partial class DeleteBackupInputSchema
         public override Builder CreateTypedBuilder() => new();
 
         public override global::Com.Amazonaws.Dynamodb.DeleteBackupInput Build(Builder builder) =>
-            new global::Com.Amazonaws.Dynamodb.DeleteBackupInput(
-                builder.BackupArn ?? throw new MissingRequiredMemberException("BackupArn")
-            );
+            new global::Com.Amazonaws.Dynamodb.DeleteBackupInput(builder.BackupArn);
 
         public override void SerializeMembers<TSerializer>(
             global::Com.Amazonaws.Dynamodb.DeleteBackupInput value,
@@ -91,7 +84,7 @@ public static partial class DeleteBackupInputSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

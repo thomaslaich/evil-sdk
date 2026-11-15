@@ -10,4 +10,4 @@ namespace Com.Amazonaws.Iam;
 /// <param name="RoleName">
 /// The name of the service-linked role to be deleted.
 /// </param>
-public sealed record class DeleteServiceLinkedRoleInput(string RoleName);
+public sealed record class DeleteServiceLinkedRoleInput(string? RoleName = null);

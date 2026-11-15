@@ -10,6 +10,79 @@ namespace Com.Amazonaws.S3;
 /// <summary>
 /// Represents the Smithy structure com.amazonaws.s3#CopyObjectInput.
 /// </summary>
+/// <param name="ACL">
+/// <para>
+/// The canned access control list (ACL) to apply to the object.
+/// </para>
+/// <para>
+/// When you copy an object, the ACL metadata is not preserved and is set to <c>private</c> by default.
+/// Only the owner has full access control. To override the default ACL setting, specify a new ACL when
+/// you generate a copy request. For more information, see
+/// <see href="https://docs.aws.amazon.com/AmazonS3/latest/dev/S3_ACLs_UsingACLs.html">Using ACLs</see>.
+/// </para>
+/// <para>
+/// If the destination bucket that you're copying objects to uses the bucket owner enforced setting for
+/// S3 Object Ownership, ACLs are disabled and no longer affect permissions. Buckets that use this
+/// setting only accept <c>PUT</c> requests that don't specify an ACL or <c>PUT</c> requests that
+/// specify bucket owner full control ACLs, such as the <c>bucket-owner-full-control</c> canned ACL or
+/// an equivalent form of this ACL expressed in the XML format. For more information, see
+/// <see href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/about-object-ownership.html">Controlling
+/// ownership of objects and disabling ACLs</see> in the <i>Amazon S3 User Guide</i>.
+/// </para>
+/// <para><b>Note:</b></para>
+/// <list type="bullet">
+/// <item>
+/// <description>
+/// If your destination bucket uses the bucket owner enforced setting for Object Ownership, all objects
+/// written to the bucket by any account will be owned by the bucket owner.
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// This functionality is not supported for directory buckets.
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// This functionality is not supported for Amazon S3 on Outposts.
+/// </description>
+/// </item>
+/// </list>
+/// </param>
+/// <param name="AnnotationDirective">
+/// <para>
+/// Specifies whether you want to copy annotations from the source object or exclude them. If this
+/// header isn't specified, <c>COPY</c> is the default behavior.
+/// </para>
+/// <para>
+/// Valid Values: <c>COPY | EXCLUDE</c>
+/// </para>
+/// <para>
+/// You can specify this directive as either an HTTP header (<c>x-amz-object-annotation-directive</c>)
+/// or as a query string parameter. Use the query string form when generating presigned URLs that need
+/// to control annotation copy behavior.
+/// </para>
+/// <para>
+/// When set to <c>COPY</c>, you must have <c>s3:GetObjectAnnotation</c> permission on the source object
+/// and <c>s3:PutObjectAnnotation</c> permission on the destination. Each annotation copied is billed as
+/// a separate PUT request. If annotations on the source are modified during the copy, Amazon S3 returns
+/// a retryable error.
+/// </para>
+/// <para>
+/// <b>Note:</b> For directory buckets, annotations are not supported. Use <c>EXCLUDE</c> to copy
+/// objects to directory buckets without errors. If you specify <c>COPY</c> for a directory bucket, the
+/// request returns HTTP 501 (Not Implemented).
+/// </para>
+/// <para>
+/// <b>Note:</b> When you copy objects using multipart upload (for example, when the Amazon Web Services
+/// CLI or Amazon Web Services SDKs use Transfer Manager for objects larger than approximately 8 MB),
+/// annotations are not copied by default. To include annotations, specify <c>--copy-props default</c>
+/// in the Amazon Web Services CLI or the equivalent SDK configuration. With this opt-in, the SDK reads
+/// source annotations, completes the multipart upload, and then writes each annotation to the
+/// destination. Between the upload completion and the last annotation write, the destination object
+/// exists without all its annotations.
+/// </para>
+/// </param>
 /// <param name="Bucket">
 /// <para>
 /// The name of the destination bucket.
@@ -59,6 +132,75 @@ namespace Com.Amazonaws.S3;
 /// <i>AccessPointName</i>-<i>AccountId</i>.<i>outpostID</i>.s3-outposts.<i>Region</i>.amazonaws.com</c>.
 /// The hostname isn't required when you use the Amazon Web Services CLI or SDKs.
 /// </para>
+/// </param>
+/// <param name="BucketKeyEnabled">
+/// <para>
+/// Specifies whether Amazon S3 should use an S3 Bucket Key for object encryption with server-side
+/// encryption using Key Management Service (KMS) keys (SSE-KMS). If a target object uses SSE-KMS, you
+/// can enable an S3 Bucket Key for the object.
+/// </para>
+/// <para>
+/// Setting this header to <c>true</c> causes Amazon S3 to use an S3 Bucket Key for object encryption
+/// with SSE-KMS. Specifying this header with a COPY action doesn’t affect bucket-level settings for S3
+/// Bucket Key.
+/// </para>
+/// <para>
+/// For more information, see
+/// <see href="https://docs.aws.amazon.com/AmazonS3/latest/dev/bucket-key.html">Amazon S3 Bucket
+/// Keys</see> in the <i>Amazon S3 User Guide</i>.
+/// </para>
+/// <para>
+/// <b>Note:</b> <b>Directory buckets</b> - S3 Bucket Keys aren't supported, when you copy SSE-KMS
+/// encrypted objects from general purpose buckets to directory buckets, from directory buckets to
+/// general purpose buckets, or between directory buckets, through
+/// <see href="https://docs.aws.amazon.com/AmazonS3/latest/API/API_CopyObject.html">CopyObject</see>. In
+/// this case, Amazon S3 makes a call to KMS every time a copy request is made for a KMS-encrypted
+/// object.
+/// </para>
+/// </param>
+/// <param name="CacheControl">
+/// Specifies the caching behavior along the request/reply chain.
+/// </param>
+/// <param name="ChecksumAlgorithm">
+/// <para>
+/// Indicates the algorithm that you want Amazon S3 to use to create the checksum for the object. For
+/// more information, see
+/// <see href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/checking-object-integrity.html">Checking
+/// object integrity</see> in the <i>Amazon S3 User Guide</i>.
+/// </para>
+/// <para>
+/// When you copy an object, if the source object has a checksum, that checksum value will be copied to
+/// the new object by default. If the <c>CopyObject</c> request does not include this
+/// <c>x-amz-checksum-algorithm</c> header, the checksum algorithm will be copied from the source object
+/// to the destination object (if it's present on the source object). You can optionally specify a
+/// different checksum algorithm to use with the <c>x-amz-checksum-algorithm</c> header. Unrecognized or
+/// unsupported values will respond with the HTTP status code <c>400 Bad Request</c>.
+/// </para>
+/// <para>
+/// <b>Note:</b> For directory buckets, when you use Amazon Web Services SDKs, <c>CRC32</c> is the
+/// default checksum algorithm that's used for performance.
+/// </para>
+/// </param>
+/// <param name="ContentDisposition">
+/// Specifies presentational information for the object. Indicates whether an object should be displayed
+/// in a web browser or downloaded as a file. It allows specifying the desired filename for the
+/// downloaded file.
+/// </param>
+/// <param name="ContentEncoding">
+/// <para>
+/// Specifies what content encodings have been applied to the object and thus what decoding mechanisms
+/// must be applied to obtain the media-type referenced by the Content-Type header field.
+/// </para>
+/// <para>
+/// <b>Note:</b> For directory buckets, only the <c>aws-chunked</c> value is supported in this header
+/// field.
+/// </para>
+/// </param>
+/// <param name="ContentLanguage">
+/// The language the content is in.
+/// </param>
+/// <param name="ContentType">
+/// A standard MIME type that describes the format of the object data.
 /// </param>
 /// <param name="CopySource">
 /// <para>
@@ -144,151 +286,6 @@ namespace Com.Amazonaws.S3;
 /// <b>Note:</b> <b>Directory buckets</b> - S3 Versioning isn't enabled and supported for directory
 /// buckets.
 /// </para>
-/// </param>
-/// <param name="Key">
-/// The key of the destination object.
-/// </param>
-/// <param name="ACL">
-/// <para>
-/// The canned access control list (ACL) to apply to the object.
-/// </para>
-/// <para>
-/// When you copy an object, the ACL metadata is not preserved and is set to <c>private</c> by default.
-/// Only the owner has full access control. To override the default ACL setting, specify a new ACL when
-/// you generate a copy request. For more information, see
-/// <see href="https://docs.aws.amazon.com/AmazonS3/latest/dev/S3_ACLs_UsingACLs.html">Using ACLs</see>.
-/// </para>
-/// <para>
-/// If the destination bucket that you're copying objects to uses the bucket owner enforced setting for
-/// S3 Object Ownership, ACLs are disabled and no longer affect permissions. Buckets that use this
-/// setting only accept <c>PUT</c> requests that don't specify an ACL or <c>PUT</c> requests that
-/// specify bucket owner full control ACLs, such as the <c>bucket-owner-full-control</c> canned ACL or
-/// an equivalent form of this ACL expressed in the XML format. For more information, see
-/// <see href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/about-object-ownership.html">Controlling
-/// ownership of objects and disabling ACLs</see> in the <i>Amazon S3 User Guide</i>.
-/// </para>
-/// <para><b>Note:</b></para>
-/// <list type="bullet">
-/// <item>
-/// <description>
-/// If your destination bucket uses the bucket owner enforced setting for Object Ownership, all objects
-/// written to the bucket by any account will be owned by the bucket owner.
-/// </description>
-/// </item>
-/// <item>
-/// <description>
-/// This functionality is not supported for directory buckets.
-/// </description>
-/// </item>
-/// <item>
-/// <description>
-/// This functionality is not supported for Amazon S3 on Outposts.
-/// </description>
-/// </item>
-/// </list>
-/// </param>
-/// <param name="AnnotationDirective">
-/// <para>
-/// Specifies whether you want to copy annotations from the source object or exclude them. If this
-/// header isn't specified, <c>COPY</c> is the default behavior.
-/// </para>
-/// <para>
-/// Valid Values: <c>COPY | EXCLUDE</c>
-/// </para>
-/// <para>
-/// You can specify this directive as either an HTTP header (<c>x-amz-object-annotation-directive</c>)
-/// or as a query string parameter. Use the query string form when generating presigned URLs that need
-/// to control annotation copy behavior.
-/// </para>
-/// <para>
-/// When set to <c>COPY</c>, you must have <c>s3:GetObjectAnnotation</c> permission on the source object
-/// and <c>s3:PutObjectAnnotation</c> permission on the destination. Each annotation copied is billed as
-/// a separate PUT request. If annotations on the source are modified during the copy, Amazon S3 returns
-/// a retryable error.
-/// </para>
-/// <para>
-/// <b>Note:</b> For directory buckets, annotations are not supported. Use <c>EXCLUDE</c> to copy
-/// objects to directory buckets without errors. If you specify <c>COPY</c> for a directory bucket, the
-/// request returns HTTP 501 (Not Implemented).
-/// </para>
-/// <para>
-/// <b>Note:</b> When you copy objects using multipart upload (for example, when the Amazon Web Services
-/// CLI or Amazon Web Services SDKs use Transfer Manager for objects larger than approximately 8 MB),
-/// annotations are not copied by default. To include annotations, specify <c>--copy-props default</c>
-/// in the Amazon Web Services CLI or the equivalent SDK configuration. With this opt-in, the SDK reads
-/// source annotations, completes the multipart upload, and then writes each annotation to the
-/// destination. Between the upload completion and the last annotation write, the destination object
-/// exists without all its annotations.
-/// </para>
-/// </param>
-/// <param name="BucketKeyEnabled">
-/// <para>
-/// Specifies whether Amazon S3 should use an S3 Bucket Key for object encryption with server-side
-/// encryption using Key Management Service (KMS) keys (SSE-KMS). If a target object uses SSE-KMS, you
-/// can enable an S3 Bucket Key for the object.
-/// </para>
-/// <para>
-/// Setting this header to <c>true</c> causes Amazon S3 to use an S3 Bucket Key for object encryption
-/// with SSE-KMS. Specifying this header with a COPY action doesn’t affect bucket-level settings for S3
-/// Bucket Key.
-/// </para>
-/// <para>
-/// For more information, see
-/// <see href="https://docs.aws.amazon.com/AmazonS3/latest/dev/bucket-key.html">Amazon S3 Bucket
-/// Keys</see> in the <i>Amazon S3 User Guide</i>.
-/// </para>
-/// <para>
-/// <b>Note:</b> <b>Directory buckets</b> - S3 Bucket Keys aren't supported, when you copy SSE-KMS
-/// encrypted objects from general purpose buckets to directory buckets, from directory buckets to
-/// general purpose buckets, or between directory buckets, through
-/// <see href="https://docs.aws.amazon.com/AmazonS3/latest/API/API_CopyObject.html">CopyObject</see>. In
-/// this case, Amazon S3 makes a call to KMS every time a copy request is made for a KMS-encrypted
-/// object.
-/// </para>
-/// </param>
-/// <param name="CacheControl">
-/// Specifies the caching behavior along the request/reply chain.
-/// </param>
-/// <param name="ChecksumAlgorithm">
-/// <para>
-/// Indicates the algorithm that you want Amazon S3 to use to create the checksum for the object. For
-/// more information, see
-/// <see href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/checking-object-integrity.html">Checking
-/// object integrity</see> in the <i>Amazon S3 User Guide</i>.
-/// </para>
-/// <para>
-/// When you copy an object, if the source object has a checksum, that checksum value will be copied to
-/// the new object by default. If the <c>CopyObject</c> request does not include this
-/// <c>x-amz-checksum-algorithm</c> header, the checksum algorithm will be copied from the source object
-/// to the destination object (if it's present on the source object). You can optionally specify a
-/// different checksum algorithm to use with the <c>x-amz-checksum-algorithm</c> header. Unrecognized or
-/// unsupported values will respond with the HTTP status code <c>400 Bad Request</c>.
-/// </para>
-/// <para>
-/// <b>Note:</b> For directory buckets, when you use Amazon Web Services SDKs, <c>CRC32</c> is the
-/// default checksum algorithm that's used for performance.
-/// </para>
-/// </param>
-/// <param name="ContentDisposition">
-/// Specifies presentational information for the object. Indicates whether an object should be displayed
-/// in a web browser or downloaded as a file. It allows specifying the desired filename for the
-/// downloaded file.
-/// </param>
-/// <param name="ContentEncoding">
-/// <para>
-/// Specifies what content encodings have been applied to the object and thus what decoding mechanisms
-/// must be applied to obtain the media-type referenced by the Content-Type header field.
-/// </para>
-/// <para>
-/// <b>Note:</b> For directory buckets, only the <c>aws-chunked</c> value is supported in this header
-/// field.
-/// </para>
-/// </param>
-/// <param name="ContentLanguage">
-/// The language the content is in.
-/// </param>
-/// <param name="ContentType">
-/// A standard MIME type that describes the format of the object data.
 /// </param>
 /// <param name="CopySourceIfMatch">
 /// <para>
@@ -532,6 +529,9 @@ namespace Com.Amazonaws.S3;
 /// For more information about conditional requests, see
 /// <see href="https://tools.ietf.org/html/rfc7232">RFC 7232</see>.
 /// </para>
+/// </param>
+/// <param name="Key">
+/// The key of the destination object.
 /// </param>
 /// <param name="Metadata">
 /// A map of metadata to store with the object in S3.
@@ -980,11 +980,9 @@ namespace Com.Amazonaws.S3;
 /// </para>
 /// </param>
 public sealed record class CopyObjectInput(
-    string Bucket,
-    string CopySource,
-    string Key,
     ObjectCannedACL? ACL = null,
     global::Com.Amazonaws.S3.AnnotationDirective? AnnotationDirective = null,
+    string? Bucket = null,
     bool? BucketKeyEnabled = null,
     string? CacheControl = null,
     global::Com.Amazonaws.S3.ChecksumAlgorithm? ChecksumAlgorithm = null,
@@ -992,6 +990,7 @@ public sealed record class CopyObjectInput(
     string? ContentEncoding = null,
     string? ContentLanguage = null,
     string? ContentType = null,
+    string? CopySource = null,
     string? CopySourceIfMatch = null,
     DateTimeOffset? CopySourceIfModifiedSince = null,
     string? CopySourceIfNoneMatch = null,
@@ -1008,6 +1007,7 @@ public sealed record class CopyObjectInput(
     string? GrantWriteACP = null,
     string? IfMatch = null,
     string? IfNoneMatch = null,
+    string? Key = null,
     IReadOnlyDictionary<string, string>? Metadata = null,
     global::Com.Amazonaws.S3.MetadataDirective? MetadataDirective = null,
     global::Com.Amazonaws.S3.ObjectLockEventHold? ObjectLockEventHold = null,

@@ -10,7 +10,7 @@ namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class SelectObjectContentInputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? Bucket { get; set; }
         public string? Key { get; set; }
@@ -38,15 +38,10 @@ public static partial class SelectObjectContentInputSchema
                 new(
                     "Bucket",
                     Target0,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
                             ShapeId.Parse("smithy.api#httpLabel"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
                             Document.From(new Dictionary<string, Document> { })
                         ),
                         new Trait(
@@ -63,7 +58,6 @@ public static partial class SelectObjectContentInputSchema
                 new(
                     "Key",
                     Target1,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
@@ -75,10 +69,6 @@ public static partial class SelectObjectContentInputSchema
                             Document.From(
                                 new Dictionary<string, Document> { { "min", Document.From(1m) } }
                             )
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
                         ),
                     ]
                 ),
@@ -119,55 +109,11 @@ public static partial class SelectObjectContentInputSchema
                         ),
                     ]
                 ),
-                new(
-                    "Expression",
-                    Target5,
-                    isRequired: true,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
-                    ]
-                ),
-                new(
-                    "ExpressionType",
-                    Target6,
-                    isRequired: true,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
-                    ]
-                ),
+                new("Expression", Target5),
+                new("ExpressionType", Target6),
                 new("RequestProgress", Target7),
-                new(
-                    "InputSerialization",
-                    Target8,
-                    isRequired: true,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
-                    ]
-                ),
-                new(
-                    "OutputSerialization",
-                    Target9,
-                    isRequired: true,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
-                    ]
-                ),
+                new("InputSerialization", Target8),
+                new("OutputSerialization", Target9),
                 new("ScanRange", Target10),
                 new(
                     "ExpectedBucketOwner",
@@ -244,16 +190,13 @@ public static partial class SelectObjectContentInputSchema
 
         public override global::Com.Amazonaws.S3.SelectObjectContentInput Build(Builder builder) =>
             new global::Com.Amazonaws.S3.SelectObjectContentInput(
-                builder.Bucket ?? throw new MissingRequiredMemberException("Bucket"),
-                builder.Expression ?? throw new MissingRequiredMemberException("Expression"),
-                builder.ExpressionType
-                    ?? throw new MissingRequiredMemberException("ExpressionType"),
-                builder.InputSerialization
-                    ?? throw new MissingRequiredMemberException("InputSerialization"),
-                builder.Key ?? throw new MissingRequiredMemberException("Key"),
-                builder.OutputSerialization
-                    ?? throw new MissingRequiredMemberException("OutputSerialization"),
+                builder.Bucket,
                 builder.ExpectedBucketOwner,
+                builder.Expression,
+                builder.ExpressionType,
+                builder.InputSerialization,
+                builder.Key,
+                builder.OutputSerialization,
                 builder.RequestProgress,
                 builder.SSECustomerAlgorithm,
                 builder.SSECustomerKey,
@@ -314,7 +257,14 @@ public static partial class SelectObjectContentInputSchema
             {
                 serializer.WriteNull(5);
             }
-            serializer.WriteStringEnum(6, value.ExpressionType.Value);
+            if (value.ExpressionType is { } value6)
+            {
+                serializer.WriteStringEnum(6, value6.Value);
+            }
+            else
+            {
+                serializer.WriteNull(6);
+            }
             if (value.RequestProgress is { } value7)
             {
                 serializer.WriteStruct(7, value7, RequestProgressSchema.Schema);
@@ -357,7 +307,7 @@ public static partial class SelectObjectContentInputSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

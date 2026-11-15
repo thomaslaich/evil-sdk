@@ -10,4 +10,4 @@ namespace Com.Amazonaws.Lambda;
 /// <param name="CapacityProviderName">
 /// The name of the capacity provider to delete.
 /// </param>
-public sealed record class DeleteCapacityProviderInput(string CapacityProviderName);
+public sealed record class DeleteCapacityProviderInput(string? CapacityProviderName = null);

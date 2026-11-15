@@ -10,4 +10,4 @@ namespace Com.Amazonaws.Cloudwatchlogs;
 /// <param name="Name">
 /// The name of the delivery source that you want to retrieve.
 /// </param>
-public sealed record class GetDeliverySourceInput(string Name);
+public sealed record class GetDeliverySourceInput(string? Name = null);

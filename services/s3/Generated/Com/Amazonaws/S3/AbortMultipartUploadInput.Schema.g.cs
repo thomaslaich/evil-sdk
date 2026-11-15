@@ -11,7 +11,7 @@ namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class AbortMultipartUploadInputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? Bucket { get; set; }
         public string? Key { get; set; }
@@ -33,15 +33,10 @@ public static partial class AbortMultipartUploadInputSchema
                 new(
                     "Bucket",
                     Target0,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
                             ShapeId.Parse("smithy.api#httpLabel"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
                             Document.From(new Dictionary<string, Document> { })
                         ),
                         new Trait(
@@ -58,7 +53,6 @@ public static partial class AbortMultipartUploadInputSchema
                 new(
                     "Key",
                     Target1,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
@@ -70,10 +64,6 @@ public static partial class AbortMultipartUploadInputSchema
                             Document.From(
                                 new Dictionary<string, Document> { { "min", Document.From(1m) } }
                             )
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
                         ),
                         new Trait(
                             ShapeId.Parse("smithy.rules#contextParam"),
@@ -89,14 +79,9 @@ public static partial class AbortMultipartUploadInputSchema
                 new(
                     "UploadId",
                     Target2,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(ShapeId.Parse("smithy.api#httpQuery"), Document.From("uploadId")),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
                     ]
                 ),
                 new(
@@ -181,12 +166,12 @@ public static partial class AbortMultipartUploadInputSchema
 
         public override global::Com.Amazonaws.S3.AbortMultipartUploadInput Build(Builder builder) =>
             new global::Com.Amazonaws.S3.AbortMultipartUploadInput(
-                builder.Bucket ?? throw new MissingRequiredMemberException("Bucket"),
-                builder.Key ?? throw new MissingRequiredMemberException("Key"),
-                builder.UploadId ?? throw new MissingRequiredMemberException("UploadId"),
+                builder.Bucket,
                 builder.ExpectedBucketOwner,
                 builder.IfMatchInitiatedTime,
-                builder.RequestPayer
+                builder.Key,
+                builder.RequestPayer,
+                builder.UploadId
             );
 
         public override void SerializeMembers<TSerializer>(
@@ -244,7 +229,7 @@ public static partial class AbortMultipartUploadInputSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

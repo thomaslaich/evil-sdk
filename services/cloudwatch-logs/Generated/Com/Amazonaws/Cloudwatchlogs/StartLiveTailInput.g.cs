@@ -9,20 +9,6 @@ namespace Com.Amazonaws.Cloudwatchlogs;
 /// <summary>
 /// Represents the Smithy structure com.amazonaws.cloudwatchlogs#StartLiveTailInput.
 /// </summary>
-/// <param name="LogGroupIdentifiers">
-/// <para>
-/// An array where each item in the array is a log group to include in the Live Tail session.
-/// </para>
-/// <para>
-/// Specify each log group by its ARN.
-/// </para>
-/// <para>
-/// If you specify an ARN, the ARN can't end with an asterisk (*).
-/// </para>
-/// <para>
-/// <b>Note:</b> You can include up to 10 log groups.
-/// </para>
-/// </param>
 /// <param name="LogEventFilterPattern">
 /// <para>
 /// An optional pattern to use to filter the results to include only log events that match the pattern.
@@ -36,6 +22,20 @@ namespace Com.Amazonaws.Cloudwatchlogs;
 /// For more information about filter pattern syntax, see
 /// <see href="https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/FilterAndPatternSyntax.html">Filter
 /// and Pattern Syntax</see>.
+/// </para>
+/// </param>
+/// <param name="LogGroupIdentifiers">
+/// <para>
+/// An array where each item in the array is a log group to include in the Live Tail session.
+/// </para>
+/// <para>
+/// Specify each log group by its ARN.
+/// </para>
+/// <para>
+/// If you specify an ARN, the ARN can't end with an asterisk (*).
+/// </para>
+/// <para>
+/// <b>Note:</b> You can include up to 10 log groups.
 /// </para>
 /// </param>
 /// <param name="LogStreamNamePrefixes">
@@ -65,8 +65,8 @@ namespace Com.Amazonaws.Cloudwatchlogs;
 /// </para>
 /// </param>
 public sealed record class StartLiveTailInput(
-    IReadOnlyList<string> LogGroupIdentifiers,
     string? LogEventFilterPattern = null,
+    IReadOnlyList<string>? LogGroupIdentifiers = null,
     IReadOnlyList<string>? LogStreamNamePrefixes = null,
     IReadOnlyList<string>? LogStreamNames = null
 );

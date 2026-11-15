@@ -14,6 +14,6 @@ namespace Com.Amazonaws.Iam;
 /// Additional notes or comments to add to the delegation request.
 /// </param>
 public sealed record class UpdateDelegationRequestInput(
-    string DelegationRequestId,
+    string? DelegationRequestId = null,
     string? Notes = null
 );

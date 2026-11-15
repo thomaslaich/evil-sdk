@@ -7,11 +7,11 @@ namespace Com.Amazonaws.Route53;
 /// <summary>
 /// A request to update the comment for a hosted zone.
 /// </summary>
-/// <param name="Id">
-/// The ID for the hosted zone that you want to update the comment for.
-/// </param>
 /// <param name="Comment">
 /// The new comment for the hosted zone. If you don't specify a value for <c>Comment</c>, Amazon Route
 /// 53 deletes the existing value of the <c>Comment</c> element, if any.
 /// </param>
-public sealed record class UpdateHostedZoneCommentInput(string Id, string? Comment = null);
+/// <param name="Id">
+/// The ID for the hosted zone that you want to update the comment for.
+/// </param>
+public sealed record class UpdateHostedZoneCommentInput(string? Comment = null, string? Id = null);

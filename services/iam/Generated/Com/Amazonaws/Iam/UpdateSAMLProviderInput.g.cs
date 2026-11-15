@@ -7,16 +7,6 @@ namespace Com.Amazonaws.Iam;
 /// <summary>
 /// Represents the Smithy structure com.amazonaws.iam#UpdateSAMLProviderInput.
 /// </summary>
-/// <param name="SAMLProviderArn">
-/// <para>
-/// The Amazon Resource Name (ARN) of the SAML provider to update.
-/// </para>
-/// <para>
-/// For more information about ARNs, see
-/// <see href="https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html">Amazon
-/// Resource Names (ARNs)</see> in the <i>Amazon Web Services General Reference</i>.
-/// </para>
-/// </param>
 /// <param name="AddPrivateKey">
 /// Specifies the new private key from your external identity provider. The private key must be a .pem
 /// file that uses AES-GCM or AES-CBC encryption algorithm to decrypt SAML assertions.
@@ -33,10 +23,20 @@ namespace Com.Amazonaws.Iam;
 /// authentication response (assertions) that are received from the IdP. You must generate the metadata
 /// document using the identity management software that is used as your IdP.
 /// </param>
+/// <param name="SAMLProviderArn">
+/// <para>
+/// The Amazon Resource Name (ARN) of the SAML provider to update.
+/// </para>
+/// <para>
+/// For more information about ARNs, see
+/// <see href="https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html">Amazon
+/// Resource Names (ARNs)</see> in the <i>Amazon Web Services General Reference</i>.
+/// </para>
+/// </param>
 public sealed record class UpdateSAMLProviderInput(
-    string SAMLProviderArn,
     string? AddPrivateKey = null,
     AssertionEncryptionModeType? AssertionEncryptionMode = null,
     string? RemovePrivateKey = null,
-    string? SAMLMetadataDocument = null
+    string? SAMLMetadataDocument = null,
+    string? SAMLProviderArn = null
 );

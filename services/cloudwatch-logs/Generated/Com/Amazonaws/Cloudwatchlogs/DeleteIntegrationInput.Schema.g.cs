@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Cloudwatchlogs.Schemas;
 
 public static partial class DeleteIntegrationInputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? IntegrationName { get; set; }
         public bool? Force { get; set; }
@@ -28,7 +28,6 @@ public static partial class DeleteIntegrationInputSchema
                 new(
                     "integrationName",
                     Target0,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
@@ -44,10 +43,6 @@ public static partial class DeleteIntegrationInputSchema
                         new Trait(
                             ShapeId.Parse("smithy.api#pattern"),
                             Document.From("^[\\.\\-_/#A-Za-z0-9]+$")
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
                         ),
                     ]
                 ),
@@ -82,9 +77,8 @@ public static partial class DeleteIntegrationInputSchema
             Builder builder
         ) =>
             new global::Com.Amazonaws.Cloudwatchlogs.DeleteIntegrationInput(
+                builder.Force,
                 builder.IntegrationName
-                    ?? throw new MissingRequiredMemberException("integrationName"),
-                builder.Force
             );
 
         public override void SerializeMembers<TSerializer>(
@@ -114,7 +108,7 @@ public static partial class DeleteIntegrationInputSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

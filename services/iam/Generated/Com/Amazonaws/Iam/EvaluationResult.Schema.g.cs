@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Iam.Schemas;
 
 public static partial class EvaluationResultSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? EvalActionName { get; set; }
         public string? EvalResourceName { get; set; }
@@ -229,7 +229,7 @@ public static partial class EvaluationResultSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

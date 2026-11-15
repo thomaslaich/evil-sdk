@@ -16,4 +16,4 @@ namespace Com.Amazonaws.Iam;
 /// a string of characters that can consist of any upper or lowercased letter or digit.
 /// </para>
 /// </param>
-public sealed record class GetAccessKeyLastUsedInput(string AccessKeyId);
+public sealed record class GetAccessKeyLastUsedInput(string? AccessKeyId = null);

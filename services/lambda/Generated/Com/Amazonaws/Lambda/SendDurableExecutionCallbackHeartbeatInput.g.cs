@@ -10,4 +10,4 @@ namespace Com.Amazonaws.Lambda;
 /// <param name="CallbackId">
 /// The unique identifier for the callback operation.
 /// </param>
-public sealed record class SendDurableExecutionCallbackHeartbeatInput(string CallbackId);
+public sealed record class SendDurableExecutionCallbackHeartbeatInput(string? CallbackId = null);

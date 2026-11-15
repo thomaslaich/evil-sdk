@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Iam.Schemas;
 
 public static partial class UpdateLoginProfileInputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? UserName { get; set; }
         public string? Password { get; set; }
@@ -29,7 +29,6 @@ public static partial class UpdateLoginProfileInputSchema
                 new(
                     "UserName",
                     Target0,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
@@ -45,10 +44,6 @@ public static partial class UpdateLoginProfileInputSchema
                         new Trait(
                             ShapeId.Parse("smithy.api#pattern"),
                             Document.From("^[\\w+=,.@-]+$")
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
                         ),
                     ]
                 ),
@@ -116,9 +111,9 @@ public static partial class UpdateLoginProfileInputSchema
 
         public override global::Com.Amazonaws.Iam.UpdateLoginProfileInput Build(Builder builder) =>
             new global::Com.Amazonaws.Iam.UpdateLoginProfileInput(
-                builder.UserName ?? throw new MissingRequiredMemberException("UserName"),
                 builder.Password,
-                builder.PasswordResetRequired
+                builder.PasswordResetRequired,
+                builder.UserName
             );
 
         public override void SerializeMembers<TSerializer>(
@@ -152,7 +147,7 @@ public static partial class UpdateLoginProfileInputSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

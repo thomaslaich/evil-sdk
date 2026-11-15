@@ -20,6 +20,6 @@ namespace Com.Amazonaws.Sqs;
 /// </para>
 /// </param>
 public sealed record class SendMessageBatchInput(
-    IReadOnlyList<SendMessageBatchRequestEntry> Entries,
-    string QueueUrl
+    IReadOnlyList<SendMessageBatchRequestEntry>? Entries = null,
+    string? QueueUrl = null
 );

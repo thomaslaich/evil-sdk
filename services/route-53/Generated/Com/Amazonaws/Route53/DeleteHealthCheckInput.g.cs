@@ -10,4 +10,4 @@ namespace Com.Amazonaws.Route53;
 /// <param name="HealthCheckId">
 /// The ID of the health check that you want to delete.
 /// </param>
-public sealed record class DeleteHealthCheckInput(string HealthCheckId);
+public sealed record class DeleteHealthCheckInput(string? HealthCheckId = null);

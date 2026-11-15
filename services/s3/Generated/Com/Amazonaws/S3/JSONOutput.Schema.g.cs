@@ -9,7 +9,7 @@ namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class JSONOutputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? RecordDelimiter { get; set; }
     }
@@ -49,7 +49,7 @@ public static partial class JSONOutputSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

@@ -11,4 +11,4 @@ namespace Com.Amazonaws.Secretsmanager;
 /// The name of the secret or the replica ARN. The replica ARN is the same as the original primary
 /// secret ARN expect the Region is changed to the replica Region.
 /// </param>
-public sealed record class StopReplicationToReplicaInput(string SecretId);
+public sealed record class StopReplicationToReplicaInput(string? SecretId = null);

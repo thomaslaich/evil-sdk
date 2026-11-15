@@ -16,7 +16,7 @@ namespace Com.Amazonaws.S3;
 /// denied).
 /// </param>
 public sealed record class GetBucketAccelerateConfigurationInput(
-    string Bucket,
+    string? Bucket = null,
     string? ExpectedBucketOwner = null,
     global::Com.Amazonaws.S3.RequestPayer? RequestPayer = null
 );

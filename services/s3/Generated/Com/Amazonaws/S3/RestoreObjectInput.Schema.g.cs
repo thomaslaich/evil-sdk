@@ -10,7 +10,7 @@ namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class RestoreObjectInputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? Bucket { get; set; }
         public string? Key { get; set; }
@@ -33,15 +33,10 @@ public static partial class RestoreObjectInputSchema
                 new(
                     "Bucket",
                     Target0,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
                             ShapeId.Parse("smithy.api#httpLabel"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
                             Document.From(new Dictionary<string, Document> { })
                         ),
                         new Trait(
@@ -58,7 +53,6 @@ public static partial class RestoreObjectInputSchema
                 new(
                     "Key",
                     Target1,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
@@ -70,10 +64,6 @@ public static partial class RestoreObjectInputSchema
                             Document.From(
                                 new Dictionary<string, Document> { { "min", Document.From(1m) } }
                             )
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
                         ),
                     ]
                 ),
@@ -178,10 +168,10 @@ public static partial class RestoreObjectInputSchema
 
         public override global::Com.Amazonaws.S3.RestoreObjectInput Build(Builder builder) =>
             new global::Com.Amazonaws.S3.RestoreObjectInput(
-                builder.Bucket ?? throw new MissingRequiredMemberException("Bucket"),
-                builder.Key ?? throw new MissingRequiredMemberException("Key"),
+                builder.Bucket,
                 builder.ChecksumAlgorithm,
                 builder.ExpectedBucketOwner,
+                builder.Key,
                 builder.RequestPayer,
                 builder.RestoreRequest,
                 builder.VersionId
@@ -250,7 +240,7 @@ public static partial class RestoreObjectInputSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

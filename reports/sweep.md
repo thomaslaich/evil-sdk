@@ -1,6 +1,6 @@
 # Sweep report
 
-NSmithy `0.19.0`, Smithy `1.74.1`, 436 services.
+NSmithy `0.20.0`, Smithy `1.74.1`, 436 services.
 
 | Stage | Services |
 | --- | --- |
@@ -325,7 +325,7 @@ NSmithy `0.19.0`, Smithy `1.74.1`, 436 services.
 | partnercentral-benefits | awsJson1_0 | ok | 0 | 0 |  |
 | partnercentral-channel | awsJson1_0 | ok | 0 | 0 |  |
 | partnercentral-revenue-measurement | rpcv2Cbor | ok | 0 | 0 |  |
-| partnercentral-selling | awsJson1_0 | ok | 0 | 1 |  |
+| partnercentral-selling | awsJson1_0 | ok | 0 | 0 |  |
 | payment-cryptography | awsJson1_0 | ok | 0 | 0 |  |
 | payment-cryptography-data | restJson1 | ok | 0 | 0 |  |
 | pca-connector-ad | restJson1 | ok | 0 | 0 |  |

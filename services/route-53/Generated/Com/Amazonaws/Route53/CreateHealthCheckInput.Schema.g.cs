@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Route53.Schemas;
 
 public static partial class CreateHealthCheckInputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? CallerReference { get; set; }
         public global::Com.Amazonaws.Route53.HealthCheckConfig? HealthCheckConfig { get; set; }
@@ -28,7 +28,6 @@ public static partial class CreateHealthCheckInputSchema
                 new(
                     "CallerReference",
                     Target0,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
@@ -41,24 +40,9 @@ public static partial class CreateHealthCheckInputSchema
                                 }
                             )
                         ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
                     ]
                 ),
-                new(
-                    "HealthCheckConfig",
-                    Target1,
-                    isRequired: true,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
-                    ]
-                ),
+                new("HealthCheckConfig", Target1),
             ],
             [
                 new Trait(
@@ -87,10 +71,8 @@ public static partial class CreateHealthCheckInputSchema
             Builder builder
         ) =>
             new global::Com.Amazonaws.Route53.CreateHealthCheckInput(
-                builder.CallerReference
-                    ?? throw new MissingRequiredMemberException("CallerReference"),
+                builder.CallerReference,
                 builder.HealthCheckConfig
-                    ?? throw new MissingRequiredMemberException("HealthCheckConfig")
             );
 
         public override void SerializeMembers<TSerializer>(
@@ -116,7 +98,7 @@ public static partial class CreateHealthCheckInputSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

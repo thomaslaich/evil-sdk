@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Iam.Schemas;
 
 public static partial class UpdateServerCertificateInputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? ServerCertificateName { get; set; }
         public string? NewPath { get; set; }
@@ -29,7 +29,6 @@ public static partial class UpdateServerCertificateInputSchema
                 new(
                     "ServerCertificateName",
                     Target0,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
@@ -45,10 +44,6 @@ public static partial class UpdateServerCertificateInputSchema
                         new Trait(
                             ShapeId.Parse("smithy.api#pattern"),
                             Document.From("^[\\w+=,.@-]+$")
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
                         ),
                     ]
                 ),
@@ -126,10 +121,9 @@ public static partial class UpdateServerCertificateInputSchema
             Builder builder
         ) =>
             new global::Com.Amazonaws.Iam.UpdateServerCertificateInput(
-                builder.ServerCertificateName
-                    ?? throw new MissingRequiredMemberException("ServerCertificateName"),
                 builder.NewPath,
-                builder.NewServerCertificateName
+                builder.NewServerCertificateName,
+                builder.ServerCertificateName
             );
 
         public override void SerializeMembers<TSerializer>(
@@ -163,7 +157,7 @@ public static partial class UpdateServerCertificateInputSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

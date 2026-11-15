@@ -16,6 +16,6 @@ namespace Com.Amazonaws.S3;
 /// denied).
 /// </param>
 public sealed record class GetBucketPolicyStatusInput(
-    string Bucket,
+    string? Bucket = null,
     string? ExpectedBucketOwner = null
 );

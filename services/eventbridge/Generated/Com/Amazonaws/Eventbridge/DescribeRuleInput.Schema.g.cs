@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Eventbridge.Schemas;
 
 public static partial class DescribeRuleInputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? Name { get; set; }
         public string? EventBusName { get; set; }
@@ -28,7 +28,6 @@ public static partial class DescribeRuleInputSchema
                 new(
                     "Name",
                     Target0,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
@@ -44,10 +43,6 @@ public static partial class DescribeRuleInputSchema
                         new Trait(
                             ShapeId.Parse("smithy.api#pattern"),
                             Document.From("^[\\.\\-_A-Za-z0-9]+$")
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
                         ),
                     ]
                 ),
@@ -102,8 +97,8 @@ public static partial class DescribeRuleInputSchema
             Builder builder
         ) =>
             new global::Com.Amazonaws.Eventbridge.DescribeRuleInput(
-                builder.Name ?? throw new MissingRequiredMemberException("Name"),
-                builder.EventBusName
+                builder.EventBusName,
+                builder.Name
             );
 
         public override void SerializeMembers<TSerializer>(
@@ -129,7 +124,7 @@ public static partial class DescribeRuleInputSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

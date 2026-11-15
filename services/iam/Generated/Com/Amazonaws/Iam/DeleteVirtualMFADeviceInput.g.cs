@@ -18,4 +18,4 @@ namespace Com.Amazonaws.Iam;
 /// can also include any of the following characters: =,.@:/-
 /// </para>
 /// </param>
-public sealed record class DeleteVirtualMFADeviceInput(string SerialNumber);
+public sealed record class DeleteVirtualMFADeviceInput(string? SerialNumber = null);

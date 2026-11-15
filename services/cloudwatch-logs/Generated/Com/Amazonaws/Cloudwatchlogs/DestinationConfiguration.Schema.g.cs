@@ -9,7 +9,7 @@ namespace Com.Amazonaws.Cloudwatchlogs.Schemas;
 
 public static partial class DestinationConfigurationSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public global::Com.Amazonaws.Cloudwatchlogs.S3Configuration? S3Configuration { get; set; }
         public global::Com.Amazonaws.Cloudwatchlogs.LookupTableConfiguration? LookupTableConfiguration { get; set; }
@@ -71,7 +71,7 @@ public static partial class DestinationConfigurationSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

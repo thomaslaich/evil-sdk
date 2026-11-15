@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Iam.Schemas;
 
 public static partial class RoleUsageTypeSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? Region { get; set; }
         public IReadOnlyList<string>? Resources { get; set; }
@@ -82,7 +82,7 @@ public static partial class RoleUsageTypeSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

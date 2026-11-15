@@ -9,47 +9,15 @@ namespace Com.Amazonaws.Lambda;
 /// <summary>
 /// Represents the Smithy structure com.amazonaws.lambda#CreateFunctionInput.
 /// </summary>
-/// <param name="Code">
-/// The code for the function.
-/// </param>
-/// <param name="FunctionName">
-/// <para>
-/// The name or ARN of the Lambda function.
-/// </para>
-/// <para>
-/// <b>Name formats</b>
-/// </para>
-/// <list type="bullet">
-/// <item>
-/// <description>
-/// <b>Function name</b> – <c>my-function</c>.
-/// </description>
-/// </item>
-/// <item>
-/// <description>
-/// <b>Function ARN</b> – <c>arn:aws:lambda:us-west-2:123456789012:function:my-function</c>.
-/// </description>
-/// </item>
-/// <item>
-/// <description>
-/// <b>Partial ARN</b> – <c>123456789012:function:my-function</c>.
-/// </description>
-/// </item>
-/// </list>
-/// <para>
-/// The length constraint applies only to the full ARN. If you specify only the function name, it is
-/// limited to 64 characters in length.
-/// </para>
-/// </param>
-/// <param name="Role">
-/// The Amazon Resource Name (ARN) of the function's execution role.
-/// </param>
 /// <param name="Architectures">
 /// The instruction set architecture that the function supports. Enter a string array with one of the
 /// valid values (arm64 or x86_64). The default value is <c>x86_64</c>.
 /// </param>
 /// <param name="CapacityProviderConfig">
 /// Configuration for the capacity provider that manages compute resources for Lambda functions.
+/// </param>
+/// <param name="Code">
+/// The code for the function.
 /// </param>
 /// <param name="CodeSigningConfigArn">
 /// To enable code signing for this function, specify the ARN of a code-signing configuration. A
@@ -80,6 +48,35 @@ namespace Com.Amazonaws.Lambda;
 /// </param>
 /// <param name="FileSystemConfigs">
 /// Connection settings for an Amazon EFS file system or an Amazon S3 Files file system.
+/// </param>
+/// <param name="FunctionName">
+/// <para>
+/// The name or ARN of the Lambda function.
+/// </para>
+/// <para>
+/// <b>Name formats</b>
+/// </para>
+/// <list type="bullet">
+/// <item>
+/// <description>
+/// <b>Function name</b> – <c>my-function</c>.
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <b>Function ARN</b> – <c>arn:aws:lambda:us-west-2:123456789012:function:my-function</c>.
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <b>Partial ARN</b> – <c>123456789012:function:my-function</c>.
+/// </description>
+/// </item>
+/// </list>
+/// <para>
+/// The length constraint applies only to the full ARN. If you specify only the function name, it is
+/// limited to 64 characters in length.
+/// </para>
 /// </param>
 /// <param name="Handler">
 /// The name of the method within your code that Lambda calls to run your function. Handler is required
@@ -164,6 +161,9 @@ namespace Com.Amazonaws.Lambda;
 /// <param name="PublishTo">
 /// Specifies where to publish the function version or configuration.
 /// </param>
+/// <param name="Role">
+/// The Amazon Resource Name (ARN) of the function's execution role.
+/// </param>
 /// <param name="Runtime">
 /// <para>
 /// The identifier of the function's
@@ -216,11 +216,9 @@ namespace Com.Amazonaws.Lambda;
 /// function to access resources in a VPC</see>.
 /// </param>
 public sealed record class CreateFunctionInput(
-    FunctionCode Code,
-    string FunctionName,
-    string Role,
     IReadOnlyList<Architecture>? Architectures = null,
     global::Com.Amazonaws.Lambda.CapacityProviderConfig? CapacityProviderConfig = null,
+    FunctionCode? Code = null,
     string? CodeSigningConfigArn = null,
     global::Com.Amazonaws.Lambda.DeadLetterConfig? DeadLetterConfig = null,
     string? Description = null,
@@ -228,6 +226,7 @@ public sealed record class CreateFunctionInput(
     global::Com.Amazonaws.Lambda.Environment? Environment = null,
     global::Com.Amazonaws.Lambda.EphemeralStorage? EphemeralStorage = null,
     IReadOnlyList<FileSystemConfig>? FileSystemConfigs = null,
+    string? FunctionName = null,
     string? Handler = null,
     global::Com.Amazonaws.Lambda.ImageConfig? ImageConfig = null,
     string? KMSKeyArn = null,
@@ -237,6 +236,7 @@ public sealed record class CreateFunctionInput(
     global::Com.Amazonaws.Lambda.PackageType? PackageType = null,
     bool? Publish = null,
     FunctionVersionLatestPublished? PublishTo = null,
+    string? Role = null,
     global::Com.Amazonaws.Lambda.Runtime? Runtime = null,
     global::Com.Amazonaws.Lambda.SnapStart? SnapStart = null,
     IReadOnlyDictionary<string, string>? Tags = null,

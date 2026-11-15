@@ -11,7 +11,7 @@ namespace Com.Amazonaws.Dynamodb.Schemas;
 
 public static partial class DescribeContributorInsightsOutputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? TableName { get; set; }
         public string? IndexName { get; set; }
@@ -192,7 +192,7 @@ public static partial class DescribeContributorInsightsOutputSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

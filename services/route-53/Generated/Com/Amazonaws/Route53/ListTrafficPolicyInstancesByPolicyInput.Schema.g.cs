@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Route53.Schemas;
 
 public static partial class ListTrafficPolicyInstancesByPolicyInputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? TrafficPolicyId { get; set; }
         public int? TrafficPolicyVersion { get; set; }
@@ -35,7 +35,6 @@ public static partial class ListTrafficPolicyInstancesByPolicyInputSchema
                 new(
                     "TrafficPolicyId",
                     Target0,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(ShapeId.Parse("smithy.api#httpQuery"), Document.From("id")),
@@ -49,16 +48,11 @@ public static partial class ListTrafficPolicyInstancesByPolicyInputSchema
                                 }
                             )
                         ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
                     ]
                 ),
                 new(
                     "TrafficPolicyVersion",
                     Target1,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
@@ -75,10 +69,6 @@ public static partial class ListTrafficPolicyInstancesByPolicyInputSchema
                                     { "max", Document.From(1000m) },
                                 }
                             )
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
                         ),
                     ]
                 ),
@@ -181,13 +171,12 @@ public static partial class ListTrafficPolicyInstancesByPolicyInputSchema
             Builder builder
         ) =>
             new global::Com.Amazonaws.Route53.ListTrafficPolicyInstancesByPolicyInput(
-                builder.TrafficPolicyId
-                    ?? throw new MissingRequiredMemberException("TrafficPolicyId"),
-                builder.TrafficPolicyVersion.GetValueOrDefault(),
                 builder.HostedZoneIdMarker,
                 builder.MaxItems,
+                builder.TrafficPolicyId,
                 builder.TrafficPolicyInstanceNameMarker,
-                builder.TrafficPolicyInstanceTypeMarker
+                builder.TrafficPolicyInstanceTypeMarker,
+                builder.TrafficPolicyVersion
             );
 
         public override void SerializeMembers<TSerializer>(
@@ -203,7 +192,14 @@ public static partial class ListTrafficPolicyInstancesByPolicyInputSchema
             {
                 serializer.WriteNull(0);
             }
-            serializer.WriteInteger(1, value.TrafficPolicyVersion);
+            if (value.TrafficPolicyVersion is { } value1)
+            {
+                serializer.WriteInteger(1, value1);
+            }
+            else
+            {
+                serializer.WriteNull(1);
+            }
             if (value.HostedZoneIdMarker is { } value2)
             {
                 serializer.WriteString(2, value2);
@@ -238,7 +234,7 @@ public static partial class ListTrafficPolicyInstancesByPolicyInputSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

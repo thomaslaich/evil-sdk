@@ -11,7 +11,7 @@ namespace Com.Amazonaws.Dynamodb.Schemas;
 
 public static partial class BackupSummarySchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? TableName { get; set; }
         public string? TableId { get; set; }
@@ -286,7 +286,7 @@ public static partial class BackupSummarySchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

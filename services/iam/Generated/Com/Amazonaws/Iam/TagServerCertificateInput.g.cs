@@ -24,6 +24,6 @@ namespace Com.Amazonaws.Iam;
 /// name and an associated value.
 /// </param>
 public sealed record class TagServerCertificateInput(
-    string ServerCertificateName,
-    IReadOnlyList<global::Com.Amazonaws.Iam.Tag> Tags
+    string? ServerCertificateName = null,
+    IReadOnlyList<global::Com.Amazonaws.Iam.Tag>? Tags = null
 );

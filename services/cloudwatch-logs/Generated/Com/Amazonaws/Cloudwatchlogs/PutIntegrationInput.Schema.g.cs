@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Cloudwatchlogs.Schemas;
 
 public static partial class PutIntegrationInputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? IntegrationName { get; set; }
         public global::Com.Amazonaws.Cloudwatchlogs.ResourceConfig? ResourceConfig { get; set; }
@@ -29,7 +29,6 @@ public static partial class PutIntegrationInputSchema
                 new(
                     "integrationName",
                     Target0,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
@@ -46,36 +45,10 @@ public static partial class PutIntegrationInputSchema
                             ShapeId.Parse("smithy.api#pattern"),
                             Document.From("^[\\.\\-_/#A-Za-z0-9]+$")
                         ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
                     ]
                 ),
-                new(
-                    "resourceConfig",
-                    Target1,
-                    isRequired: true,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
-                    ]
-                ),
-                new(
-                    "integrationType",
-                    Target2,
-                    isRequired: true,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
-                    ]
-                ),
+                new("resourceConfig", Target1),
+                new("integrationType", Target2),
             ],
             [
                 new Trait(
@@ -106,11 +79,9 @@ public static partial class PutIntegrationInputSchema
             Builder builder
         ) =>
             new global::Com.Amazonaws.Cloudwatchlogs.PutIntegrationInput(
-                builder.IntegrationName
-                    ?? throw new MissingRequiredMemberException("integrationName"),
-                builder.IntegrationType
-                    ?? throw new MissingRequiredMemberException("integrationType"),
-                builder.ResourceConfig ?? throw new MissingRequiredMemberException("resourceConfig")
+                builder.IntegrationName,
+                builder.IntegrationType,
+                builder.ResourceConfig
             );
 
         public override void SerializeMembers<TSerializer>(
@@ -134,10 +105,17 @@ public static partial class PutIntegrationInputSchema
             {
                 serializer.WriteNull(1);
             }
-            serializer.WriteStringEnum(2, value.IntegrationType.Value);
+            if (value.IntegrationType is { } value2)
+            {
+                serializer.WriteStringEnum(2, value2.Value);
+            }
+            else
+            {
+                serializer.WriteNull(2);
+            }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

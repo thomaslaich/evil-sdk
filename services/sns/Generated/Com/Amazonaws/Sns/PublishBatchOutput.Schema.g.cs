@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Sns.Schemas;
 
 public static partial class PublishBatchOutputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public IReadOnlyList<global::Com.Amazonaws.Sns.PublishBatchResultEntry>? Successful { get; set; }
         public IReadOnlyList<global::Com.Amazonaws.Sns.BatchResultErrorEntry>? Failed { get; set; }
@@ -78,7 +78,7 @@ public static partial class PublishBatchOutputSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

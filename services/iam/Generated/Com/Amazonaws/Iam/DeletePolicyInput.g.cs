@@ -17,4 +17,4 @@ namespace Com.Amazonaws.Iam;
 /// Resource Names (ARNs)</see> in the <i>Amazon Web Services General Reference</i>.
 /// </para>
 /// </param>
-public sealed record class DeletePolicyInput(string PolicyArn);
+public sealed record class DeletePolicyInput(string? PolicyArn = null);

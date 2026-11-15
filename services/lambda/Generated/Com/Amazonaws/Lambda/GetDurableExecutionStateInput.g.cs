@@ -24,8 +24,8 @@ namespace Com.Amazonaws.Lambda;
 /// the default.
 /// </param>
 public sealed record class GetDurableExecutionStateInput(
-    string CheckpointToken,
-    string DurableExecutionArn,
+    string? CheckpointToken = null,
+    string? DurableExecutionArn = null,
     string? Marker = null,
     int? MaxItems = null
 );

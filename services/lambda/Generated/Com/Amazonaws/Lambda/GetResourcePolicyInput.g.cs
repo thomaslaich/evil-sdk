@@ -12,4 +12,4 @@ namespace Com.Amazonaws.Lambda;
 /// use a qualified or an unqualified ARN. The value must be a complete ARN, and the operation does not
 /// accept wildcard characters.
 /// </param>
-public sealed record class GetResourcePolicyInput(string ResourceArn);
+public sealed record class GetResourcePolicyInput(string? ResourceArn = null);

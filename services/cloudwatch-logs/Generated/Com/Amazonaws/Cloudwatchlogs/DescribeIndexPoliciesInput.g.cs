@@ -14,6 +14,6 @@ namespace Com.Amazonaws.Cloudwatchlogs;
 /// for.
 /// </param>
 public sealed record class DescribeIndexPoliciesInput(
-    IReadOnlyList<string> LogGroupIdentifiers,
+    IReadOnlyList<string>? LogGroupIdentifiers = null,
     string? NextToken = null
 );

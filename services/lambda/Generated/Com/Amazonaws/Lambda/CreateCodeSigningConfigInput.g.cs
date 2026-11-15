@@ -22,7 +22,7 @@ namespace Com.Amazonaws.Lambda;
 /// A list of tags to add to the code signing configuration.
 /// </param>
 public sealed record class CreateCodeSigningConfigInput(
-    global::Com.Amazonaws.Lambda.AllowedPublishers AllowedPublishers,
+    global::Com.Amazonaws.Lambda.AllowedPublishers? AllowedPublishers = null,
     global::Com.Amazonaws.Lambda.CodeSigningPolicies? CodeSigningPolicies = null,
     string? Description = null,
     IReadOnlyDictionary<string, string>? Tags = null

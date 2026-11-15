@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Iam.Schemas;
 
 public static partial class CreateGroupInputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? Path { get; set; }
         public string? GroupName { get; set; }
@@ -49,7 +49,6 @@ public static partial class CreateGroupInputSchema
                 new(
                     "GroupName",
                     Target1,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
@@ -65,10 +64,6 @@ public static partial class CreateGroupInputSchema
                         new Trait(
                             ShapeId.Parse("smithy.api#pattern"),
                             Document.From("^[\\w+=,.@-]+$")
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
                         ),
                     ]
                 ),
@@ -97,10 +92,7 @@ public static partial class CreateGroupInputSchema
         public override Builder CreateTypedBuilder() => new();
 
         public override global::Com.Amazonaws.Iam.CreateGroupInput Build(Builder builder) =>
-            new global::Com.Amazonaws.Iam.CreateGroupInput(
-                builder.GroupName ?? throw new MissingRequiredMemberException("GroupName"),
-                builder.Path
-            );
+            new global::Com.Amazonaws.Iam.CreateGroupInput(builder.GroupName, builder.Path);
 
         public override void SerializeMembers<TSerializer>(
             global::Com.Amazonaws.Iam.CreateGroupInput value,
@@ -125,7 +117,7 @@ public static partial class CreateGroupInputSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

@@ -9,12 +9,6 @@ namespace Com.Amazonaws.Eventbridge;
 /// <summary>
 /// Represents the Smithy structure com.amazonaws.eventbridge#RemoveTargetsInput.
 /// </summary>
-/// <param name="Ids">
-/// The IDs of the targets to remove from the rule.
-/// </param>
-/// <param name="Rule">
-/// The name of the rule.
-/// </param>
 /// <param name="EventBusName">
 /// The name or ARN of the event bus associated with the rule. If you omit this, the default event bus
 /// is used.
@@ -25,9 +19,15 @@ namespace Com.Amazonaws.Eventbridge;
 /// not managed rules. You can check whether a rule is a managed rule by using <c>DescribeRule</c> or
 /// <c>ListRules</c> and checking the <c>ManagedBy</c> field of the response.
 /// </param>
+/// <param name="Ids">
+/// The IDs of the targets to remove from the rule.
+/// </param>
+/// <param name="Rule">
+/// The name of the rule.
+/// </param>
 public sealed record class RemoveTargetsInput(
-    IReadOnlyList<string> Ids,
-    string Rule,
     string? EventBusName = null,
-    bool? Force = null
+    bool? Force = null,
+    IReadOnlyList<string>? Ids = null,
+    string? Rule = null
 );

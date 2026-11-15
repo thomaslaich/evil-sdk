@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Route53.Schemas;
 
 public static partial class ListCidrLocationsInputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? CollectionId { get; set; }
         public string? NextToken { get; set; }
@@ -29,7 +29,6 @@ public static partial class ListCidrLocationsInputSchema
                 new(
                     "CollectionId",
                     Target0,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
@@ -39,10 +38,6 @@ public static partial class ListCidrLocationsInputSchema
                         new Trait(
                             ShapeId.Parse("smithy.api#pattern"),
                             Document.From("^[0-9a-f]{8}-(?:[0-9a-f]{4}-){3}[0-9a-f]{12}$")
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
                         ),
                     ]
                 ),
@@ -108,7 +103,7 @@ public static partial class ListCidrLocationsInputSchema
             Builder builder
         ) =>
             new global::Com.Amazonaws.Route53.ListCidrLocationsInput(
-                builder.CollectionId ?? throw new MissingRequiredMemberException("CollectionId"),
+                builder.CollectionId,
                 builder.MaxResults,
                 builder.NextToken
             );
@@ -144,7 +139,7 @@ public static partial class ListCidrLocationsInputSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

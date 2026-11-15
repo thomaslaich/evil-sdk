@@ -10,9 +10,6 @@ namespace Com.Amazonaws.S3;
 /// <param name="Bucket">
 /// The general purpose bucket that you want to create the metadata configuration for.
 /// </param>
-/// <param name="MetadataConfiguration">
-/// The contents of your metadata configuration.
-/// </param>
 /// <param name="ChecksumAlgorithm">
 /// The checksum algorithm to use with your metadata configuration.
 /// </param>
@@ -22,10 +19,13 @@ namespace Com.Amazonaws.S3;
 /// <param name="ExpectedBucketOwner">
 /// The expected owner of the general purpose bucket that corresponds to your metadata configuration.
 /// </param>
+/// <param name="MetadataConfiguration">
+/// The contents of your metadata configuration.
+/// </param>
 public sealed record class CreateBucketMetadataConfigurationInput(
-    string Bucket,
-    global::Com.Amazonaws.S3.MetadataConfiguration MetadataConfiguration,
+    string? Bucket = null,
     global::Com.Amazonaws.S3.ChecksumAlgorithm? ChecksumAlgorithm = null,
     string? ContentMD5 = null,
-    string? ExpectedBucketOwner = null
+    string? ExpectedBucketOwner = null,
+    global::Com.Amazonaws.S3.MetadataConfiguration? MetadataConfiguration = null
 );

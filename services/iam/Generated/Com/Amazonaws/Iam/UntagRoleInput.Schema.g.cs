@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Iam.Schemas;
 
 public static partial class UntagRoleInputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? RoleName { get; set; }
         public IReadOnlyList<string>? TagKeys { get; set; }
@@ -26,7 +26,6 @@ public static partial class UntagRoleInputSchema
                 new(
                     "RoleName",
                     Target0,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
@@ -43,24 +42,9 @@ public static partial class UntagRoleInputSchema
                             ShapeId.Parse("smithy.api#pattern"),
                             Document.From("^[\\w+=,.@-]+$")
                         ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
                     ]
                 ),
-                new(
-                    "TagKeys",
-                    Target1,
-                    isRequired: true,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
-                    ]
-                ),
+                new("TagKeys", Target1),
             ],
             [
                 new Trait(
@@ -86,10 +70,7 @@ public static partial class UntagRoleInputSchema
         public override Builder CreateTypedBuilder() => new();
 
         public override global::Com.Amazonaws.Iam.UntagRoleInput Build(Builder builder) =>
-            new global::Com.Amazonaws.Iam.UntagRoleInput(
-                builder.RoleName ?? throw new MissingRequiredMemberException("RoleName"),
-                builder.TagKeys ?? throw new MissingRequiredMemberException("TagKeys")
-            );
+            new global::Com.Amazonaws.Iam.UntagRoleInput(builder.RoleName, builder.TagKeys);
 
         public override void SerializeMembers<TSerializer>(
             global::Com.Amazonaws.Iam.UntagRoleInput value,
@@ -114,7 +95,7 @@ public static partial class UntagRoleInputSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

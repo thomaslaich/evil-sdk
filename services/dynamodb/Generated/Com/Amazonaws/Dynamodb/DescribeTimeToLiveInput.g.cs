@@ -11,4 +11,4 @@ namespace Com.Amazonaws.Dynamodb;
 /// The name of the table to be described. You can also provide the Amazon Resource Name (ARN) of the
 /// table in this parameter.
 /// </param>
-public sealed record class DescribeTimeToLiveInput(string TableName);
+public sealed record class DescribeTimeToLiveInput(string? TableName = null);

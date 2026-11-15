@@ -10,7 +10,7 @@ namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class ListBucketInventoryConfigurationsOutputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? ContinuationToken { get; set; }
         public IReadOnlyList<global::Com.Amazonaws.S3.InventoryConfiguration>? InventoryConfigurationList { get; set; }
@@ -136,7 +136,7 @@ public static partial class ListBucketInventoryConfigurationsOutputSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

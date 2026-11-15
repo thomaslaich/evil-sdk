@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Lambda.Schemas;
 
 public static partial class ProvisionedPollerConfigSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public int? MinimumPollers { get; set; }
         public int? MaximumPollers { get; set; }
@@ -144,7 +144,7 @@ public static partial class ProvisionedPollerConfigSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

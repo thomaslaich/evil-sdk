@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Lambda.Schemas;
 
 public static partial class UntagResourceInputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? Resource { get; set; }
         public IReadOnlyList<string>? TagKeys { get; set; }
@@ -28,7 +28,6 @@ public static partial class UntagResourceInputSchema
                 new(
                     "Resource",
                     Target0,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
@@ -51,23 +50,14 @@ public static partial class UntagResourceInputSchema
                                 "^arn:(aws[a-zA-Z-]*):lambda:(eusc-)?[a-z]{2}((-gov)|(-iso([a-z]?)))?-[a-z]+-\\d{1}:\\d{12}:(function:[a-zA-Z0-9-_]+(:(\\$LATEST|[a-zA-Z0-9-_]+))?|code-signing-config:csc-[a-z0-9]{17}|event-source-mapping:[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}|(capacity-provider|network-connector):[a-zA-Z0-9-_]{1,64})$"
                             )
                         ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
                     ]
                 ),
                 new(
                     "TagKeys",
                     Target1,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(ShapeId.Parse("smithy.api#httpQuery"), Document.From("tagKeys")),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
                     ]
                 ),
             ],
@@ -95,10 +85,7 @@ public static partial class UntagResourceInputSchema
         public override Builder CreateTypedBuilder() => new();
 
         public override global::Com.Amazonaws.Lambda.UntagResourceInput Build(Builder builder) =>
-            new global::Com.Amazonaws.Lambda.UntagResourceInput(
-                builder.Resource ?? throw new MissingRequiredMemberException("Resource"),
-                builder.TagKeys ?? throw new MissingRequiredMemberException("TagKeys")
-            );
+            new global::Com.Amazonaws.Lambda.UntagResourceInput(builder.Resource, builder.TagKeys);
 
         public override void SerializeMembers<TSerializer>(
             global::Com.Amazonaws.Lambda.UntagResourceInput value,
@@ -123,7 +110,7 @@ public static partial class UntagResourceInputSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

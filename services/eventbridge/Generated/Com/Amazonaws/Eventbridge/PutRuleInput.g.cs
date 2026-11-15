@@ -9,9 +9,6 @@ namespace Com.Amazonaws.Eventbridge;
 /// <summary>
 /// Represents the Smithy structure com.amazonaws.eventbridge#PutRuleInput.
 /// </summary>
-/// <param name="Name">
-/// The name of the rule that you are creating or updating.
-/// </param>
 /// <param name="Description">
 /// A description of the rule.
 /// </param>
@@ -23,6 +20,9 @@ namespace Com.Amazonaws.Eventbridge;
 /// The event pattern. For more information, see
 /// <see href="https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-event-patterns.html">Amazon
 /// EventBridge event patterns</see> in the <i> <i>Amazon EventBridge User Guide</i> </i>.
+/// </param>
+/// <param name="Name">
+/// The name of the rule that you are creating or updating.
 /// </param>
 /// <param name="RoleArn">
 /// <para>
@@ -90,10 +90,10 @@ namespace Com.Amazonaws.Eventbridge;
 /// The list of key-value pairs to associate with the rule.
 /// </param>
 public sealed record class PutRuleInput(
-    string Name,
     string? Description = null,
     string? EventBusName = null,
     string? EventPattern = null,
+    string? Name = null,
     string? RoleArn = null,
     string? ScheduleExpression = null,
     RuleState? State = null,

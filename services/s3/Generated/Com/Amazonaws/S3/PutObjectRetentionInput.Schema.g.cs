@@ -10,7 +10,7 @@ namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class PutObjectRetentionInputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? Bucket { get; set; }
         public string? Key { get; set; }
@@ -35,15 +35,10 @@ public static partial class PutObjectRetentionInputSchema
                 new(
                     "Bucket",
                     Target0,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
                             ShapeId.Parse("smithy.api#httpLabel"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
                             Document.From(new Dictionary<string, Document> { })
                         ),
                         new Trait(
@@ -60,7 +55,6 @@ public static partial class PutObjectRetentionInputSchema
                 new(
                     "Key",
                     Target1,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
@@ -72,10 +66,6 @@ public static partial class PutObjectRetentionInputSchema
                             Document.From(
                                 new Dictionary<string, Document> { { "min", Document.From(1m) } }
                             )
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
                         ),
                     ]
                 ),
@@ -209,12 +199,12 @@ public static partial class PutObjectRetentionInputSchema
 
         public override global::Com.Amazonaws.S3.PutObjectRetentionInput Build(Builder builder) =>
             new global::Com.Amazonaws.S3.PutObjectRetentionInput(
-                builder.Bucket ?? throw new MissingRequiredMemberException("Bucket"),
-                builder.Key ?? throw new MissingRequiredMemberException("Key"),
+                builder.Bucket,
                 builder.BypassGovernanceRetention,
                 builder.ChecksumAlgorithm,
                 builder.ContentMD5,
                 builder.ExpectedBucketOwner,
+                builder.Key,
                 builder.RequestPayer,
                 builder.Retention,
                 builder.VersionId
@@ -299,7 +289,7 @@ public static partial class PutObjectRetentionInputSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

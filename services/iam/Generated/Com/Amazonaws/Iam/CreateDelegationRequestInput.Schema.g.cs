@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Iam.Schemas;
 
 public static partial class CreateDelegationRequestInputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? OwnerAccountId { get; set; }
         public string? Description { get; set; }
@@ -43,7 +43,6 @@ public static partial class CreateDelegationRequestInputSchema
                 new(
                     "Description",
                     Target1,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
@@ -62,24 +61,9 @@ public static partial class CreateDelegationRequestInputSchema
                                 "^[\\u0009\\u000A\\u000D\\u0020-\\u007E\\u00A1-\\u00FF]*$"
                             )
                         ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
                     ]
                 ),
-                new(
-                    "Permissions",
-                    Target2,
-                    isRequired: true,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
-                    ]
-                ),
+                new("Permissions", Target2),
                 new(
                     "RequestMessage",
                     Target3,
@@ -106,7 +90,6 @@ public static partial class CreateDelegationRequestInputSchema
                 new(
                     "RequestorWorkflowId",
                     Target4,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
@@ -124,10 +107,6 @@ public static partial class CreateDelegationRequestInputSchema
                             Document.From(
                                 "^[\\u0009\\u000A\\u000D\\u0020-\\u007E\\u00A1-\\u00FF]+$"
                             )
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
                         ),
                     ]
                 ),
@@ -157,7 +136,6 @@ public static partial class CreateDelegationRequestInputSchema
                 new(
                     "NotificationChannel",
                     Target6,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
@@ -174,16 +152,11 @@ public static partial class CreateDelegationRequestInputSchema
                             ShapeId.Parse("smithy.api#pattern"),
                             Document.From("^[a-zA-Z0-9:_.-]+$")
                         ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
                     ]
                 ),
                 new(
                     "SessionDuration",
                     Target7,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
@@ -199,10 +172,6 @@ public static partial class CreateDelegationRequestInputSchema
                                     { "max", Document.From(43200m) },
                                 }
                             )
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
                         ),
                     ]
                 ),
@@ -263,17 +232,15 @@ public static partial class CreateDelegationRequestInputSchema
             Builder builder
         ) =>
             new global::Com.Amazonaws.Iam.CreateDelegationRequestInput(
-                builder.Description ?? throw new MissingRequiredMemberException("Description"),
-                builder.NotificationChannel
-                    ?? throw new MissingRequiredMemberException("NotificationChannel"),
-                builder.Permissions ?? throw new MissingRequiredMemberException("Permissions"),
-                builder.RequestorWorkflowId
-                    ?? throw new MissingRequiredMemberException("RequestorWorkflowId"),
-                builder.SessionDuration.GetValueOrDefault(),
+                builder.Description,
+                builder.NotificationChannel,
                 builder.OnlySendByOwner,
                 builder.OwnerAccountId,
+                builder.Permissions,
                 builder.RedirectUrl,
-                builder.RequestMessage
+                builder.RequestMessage,
+                builder.RequestorWorkflowId,
+                builder.SessionDuration
             );
 
         public override void SerializeMembers<TSerializer>(
@@ -337,7 +304,14 @@ public static partial class CreateDelegationRequestInputSchema
             {
                 serializer.WriteNull(6);
             }
-            serializer.WriteInteger(7, value.SessionDuration);
+            if (value.SessionDuration is { } value7)
+            {
+                serializer.WriteInteger(7, value7);
+            }
+            else
+            {
+                serializer.WriteNull(7);
+            }
             if (value.OnlySendByOwner is { } value8)
             {
                 serializer.WriteBoolean(8, value8);
@@ -352,7 +326,7 @@ public static partial class CreateDelegationRequestInputSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

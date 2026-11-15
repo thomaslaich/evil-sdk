@@ -19,7 +19,7 @@ namespace Com.Amazonaws.S3;
 /// denied).
 /// </param>
 public sealed record class ListBucketAnalyticsConfigurationsInput(
-    string Bucket,
+    string? Bucket = null,
     string? ContinuationToken = null,
     string? ExpectedBucketOwner = null
 );

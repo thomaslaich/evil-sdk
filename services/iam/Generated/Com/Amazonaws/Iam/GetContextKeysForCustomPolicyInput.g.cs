@@ -40,5 +40,5 @@ namespace Com.Amazonaws.Iam;
 /// </list>
 /// </param>
 public sealed record class GetContextKeysForCustomPolicyInput(
-    IReadOnlyList<string> PolicyInputList
+    IReadOnlyList<string>? PolicyInputList = null
 );

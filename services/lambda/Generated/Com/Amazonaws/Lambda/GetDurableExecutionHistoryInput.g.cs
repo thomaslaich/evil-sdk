@@ -29,7 +29,7 @@ namespace Com.Amazonaws.Lambda;
 /// By default, events are returned in chronological order (oldest first).
 /// </param>
 public sealed record class GetDurableExecutionHistoryInput(
-    string DurableExecutionArn,
+    string? DurableExecutionArn = null,
     bool? IncludeExecutionData = null,
     string? Marker = null,
     int? MaxItems = null,

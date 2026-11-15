@@ -10,7 +10,7 @@ namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class UpdateObjectEncryptionInputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? Bucket { get; set; }
         public string? Key { get; set; }
@@ -34,15 +34,10 @@ public static partial class UpdateObjectEncryptionInputSchema
                 new(
                     "Bucket",
                     Target0,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
                             ShapeId.Parse("smithy.api#httpLabel"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
                             Document.From(new Dictionary<string, Document> { })
                         ),
                         new Trait(
@@ -59,7 +54,6 @@ public static partial class UpdateObjectEncryptionInputSchema
                 new(
                     "Key",
                     Target1,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
@@ -71,10 +65,6 @@ public static partial class UpdateObjectEncryptionInputSchema
                             Document.From(
                                 new Dictionary<string, Document> { { "min", Document.From(1m) } }
                             )
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
                         ),
                     ]
                 ),
@@ -92,15 +82,10 @@ public static partial class UpdateObjectEncryptionInputSchema
                 new(
                     "ObjectEncryption",
                     Target3,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
                             ShapeId.Parse("smithy.api#httpPayload"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
                             Document.From(new Dictionary<string, Document> { })
                         ),
                     ]
@@ -197,13 +182,12 @@ public static partial class UpdateObjectEncryptionInputSchema
             Builder builder
         ) =>
             new global::Com.Amazonaws.S3.UpdateObjectEncryptionInput(
-                builder.Bucket ?? throw new MissingRequiredMemberException("Bucket"),
-                builder.Key ?? throw new MissingRequiredMemberException("Key"),
-                builder.ObjectEncryption
-                    ?? throw new MissingRequiredMemberException("ObjectEncryption"),
+                builder.Bucket,
                 builder.ChecksumAlgorithm,
                 builder.ContentMD5,
                 builder.ExpectedBucketOwner,
+                builder.Key,
+                builder.ObjectEncryption,
                 builder.RequestPayer,
                 builder.VersionId
             );
@@ -279,7 +263,7 @@ public static partial class UpdateObjectEncryptionInputSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

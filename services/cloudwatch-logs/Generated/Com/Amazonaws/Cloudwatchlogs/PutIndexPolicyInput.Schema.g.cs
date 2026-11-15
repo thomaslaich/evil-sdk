@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Cloudwatchlogs.Schemas;
 
 public static partial class PutIndexPolicyInputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? LogGroupIdentifier { get; set; }
         public string? PolicyDocument { get; set; }
@@ -28,7 +28,6 @@ public static partial class PutIndexPolicyInputSchema
                 new(
                     "logGroupIdentifier",
                     Target0,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
@@ -45,16 +44,11 @@ public static partial class PutIndexPolicyInputSchema
                             ShapeId.Parse("smithy.api#pattern"),
                             Document.From("^[\\w#+=/:,.@-]*$")
                         ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
                     ]
                 ),
                 new(
                     "policyDocument",
                     Target1,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
@@ -66,10 +60,6 @@ public static partial class PutIndexPolicyInputSchema
                                     { "max", Document.From(51200m) },
                                 }
                             )
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
                         ),
                     ]
                 ),
@@ -101,9 +91,8 @@ public static partial class PutIndexPolicyInputSchema
             Builder builder
         ) =>
             new global::Com.Amazonaws.Cloudwatchlogs.PutIndexPolicyInput(
-                builder.LogGroupIdentifier
-                    ?? throw new MissingRequiredMemberException("logGroupIdentifier"),
-                builder.PolicyDocument ?? throw new MissingRequiredMemberException("policyDocument")
+                builder.LogGroupIdentifier,
+                builder.PolicyDocument
             );
 
         public override void SerializeMembers<TSerializer>(
@@ -129,7 +118,7 @@ public static partial class PutIndexPolicyInputSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

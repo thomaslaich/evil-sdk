@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Route53.Schemas;
 
 public static partial class ChangeSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public global::Com.Amazonaws.Route53.ChangeAction? Action { get; set; }
         public global::Com.Amazonaws.Route53.ResourceRecordSet? ResourceRecordSet { get; set; }
@@ -83,7 +83,7 @@ public static partial class ChangeSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

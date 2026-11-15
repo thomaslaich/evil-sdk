@@ -41,7 +41,7 @@ namespace Com.Amazonaws.S3;
 /// </para>
 /// </param>
 public sealed record class ListBucketMetricsConfigurationsInput(
-    string Bucket,
+    string? Bucket = null,
     string? ContinuationToken = null,
     string? ExpectedBucketOwner = null
 );

@@ -10,4 +10,4 @@ namespace Com.Amazonaws.Iam;
 /// <param name="DelegationRequestId">
 /// The unique identifier of the delegation request for which to send the token.
 /// </param>
-public sealed record class SendDelegationTokenInput(string DelegationRequestId);
+public sealed record class SendDelegationTokenInput(string? DelegationRequestId = null);

@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Sns.Schemas;
 
 public static partial class PublishBatchInputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? TopicArn { get; set; }
         public IReadOnlyList<global::Com.Amazonaws.Sns.PublishBatchRequestEntry>? PublishBatchRequestEntries { get; set; }
@@ -24,32 +24,7 @@ public static partial class PublishBatchInputSchema
     private sealed class GeneratedSchema()
         : StructSchema<global::Com.Amazonaws.Sns.PublishBatchInput, Builder>(
             ShapeId.Parse("com.amazonaws.sns#PublishBatchInput"),
-            [
-                new(
-                    "TopicArn",
-                    Target0,
-                    isRequired: true,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
-                    ]
-                ),
-                new(
-                    "PublishBatchRequestEntries",
-                    Target1,
-                    isRequired: true,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
-                    ]
-                ),
-            ],
+            [new("TopicArn", Target0), new("PublishBatchRequestEntries", Target1)],
             [
                 new Trait(
                     ShapeId.Parse("smithy.api#input"),
@@ -73,9 +48,8 @@ public static partial class PublishBatchInputSchema
 
         public override global::Com.Amazonaws.Sns.PublishBatchInput Build(Builder builder) =>
             new global::Com.Amazonaws.Sns.PublishBatchInput(
-                builder.PublishBatchRequestEntries
-                    ?? throw new MissingRequiredMemberException("PublishBatchRequestEntries"),
-                builder.TopicArn ?? throw new MissingRequiredMemberException("TopicArn")
+                builder.PublishBatchRequestEntries,
+                builder.TopicArn
             );
 
         public override void SerializeMembers<TSerializer>(
@@ -101,7 +75,7 @@ public static partial class PublishBatchInputSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

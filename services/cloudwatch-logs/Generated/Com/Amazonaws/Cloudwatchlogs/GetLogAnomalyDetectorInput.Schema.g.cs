@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Cloudwatchlogs.Schemas;
 
 public static partial class GetLogAnomalyDetectorInputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? AnomalyDetectorArn { get; set; }
     }
@@ -27,7 +27,6 @@ public static partial class GetLogAnomalyDetectorInputSchema
                 new(
                     "anomalyDetectorArn",
                     Target0,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
@@ -39,10 +38,6 @@ public static partial class GetLogAnomalyDetectorInputSchema
                         new Trait(
                             ShapeId.Parse("smithy.api#pattern"),
                             Document.From("^[\\w#+=/:,.@-]*$")
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
                         ),
                     ]
                 ),
@@ -71,7 +66,6 @@ public static partial class GetLogAnomalyDetectorInputSchema
         ) =>
             new global::Com.Amazonaws.Cloudwatchlogs.GetLogAnomalyDetectorInput(
                 builder.AnomalyDetectorArn
-                    ?? throw new MissingRequiredMemberException("anomalyDetectorArn")
             );
 
         public override void SerializeMembers<TSerializer>(
@@ -89,7 +83,7 @@ public static partial class GetLogAnomalyDetectorInputSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

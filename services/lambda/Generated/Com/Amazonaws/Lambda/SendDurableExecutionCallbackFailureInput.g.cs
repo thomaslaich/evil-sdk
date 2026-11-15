@@ -14,6 +14,6 @@ namespace Com.Amazonaws.Lambda;
 /// Error details describing why the callback operation failed.
 /// </param>
 public sealed record class SendDurableExecutionCallbackFailureInput(
-    string CallbackId,
+    string? CallbackId = null,
     ErrorObject? Error = null
 );

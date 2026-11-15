@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Iam.Schemas;
 
 public static partial class GetContextKeysForPrincipalPolicyInputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? PolicySourceArn { get; set; }
         public IReadOnlyList<string>? PolicyInputList { get; set; }
@@ -28,7 +28,6 @@ public static partial class GetContextKeysForPrincipalPolicyInputSchema
                 new(
                     "PolicySourceArn",
                     Target0,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
@@ -40,10 +39,6 @@ public static partial class GetContextKeysForPrincipalPolicyInputSchema
                                     { "max", Document.From(2048m) },
                                 }
                             )
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
                         ),
                     ]
                 ),
@@ -78,9 +73,8 @@ public static partial class GetContextKeysForPrincipalPolicyInputSchema
             Builder builder
         ) =>
             new global::Com.Amazonaws.Iam.GetContextKeysForPrincipalPolicyInput(
+                builder.PolicyInputList,
                 builder.PolicySourceArn
-                    ?? throw new MissingRequiredMemberException("PolicySourceArn"),
-                builder.PolicyInputList
             );
 
         public override void SerializeMembers<TSerializer>(
@@ -106,7 +100,7 @@ public static partial class GetContextKeysForPrincipalPolicyInputSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

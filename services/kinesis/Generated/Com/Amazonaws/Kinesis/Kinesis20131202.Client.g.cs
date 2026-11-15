@@ -87,7 +87,7 @@ public interface IKinesis20131202Client : IDisposable
     /// To create an S3 channel
     /// </para>
     /// <code>
-    /// var input = new CreateChannelInput(ChannelName: &quot;my-channel-name&quot;, ServiceExecutionRoleARN: &quot;arn:aws:iam::123456789012:role/my-channel-role&quot;, StreamConfigurationList: new ChannelStreamConfiguration[] { new ChannelStreamConfiguration(RecordConfiguration: new RecordConfiguration(RecordFormatType: new RecordFormatType(&quot;JSON&quot;)), StreamARN: &quot;arn:aws:kinesis:us-east-1:123456789012:stream/my-stream-name&quot;) }, EncryptionConfiguration: new ChannelEncryptionConfiguration(EncryptionType: new ChannelEncryptionType(&quot;KMS&quot;), KeyId: &quot;arn:aws:kms:us-east-1:123456789012:key/1234abcd-12ab-34cd-56ef-1234567890ab&quot;), LoggingConfiguration: new ChannelLoggingConfiguration(CloudWatchLogs: new CloudWatchLogs(Enabled: true, LogGroupName: &quot;/aws/kinesis/my-channel&quot;, LogStreamName: &quot;my-channel-log-stream&quot;)), S3DestinationConfiguration: new S3DestinationConfiguration(StorageConfiguration: new S3StorageConfiguration(BucketARN: &quot;arn:aws:s3:::my-channel-bucket&quot;, CompressionType: new S3CompressionType(&quot;ZSTD&quot;), ExpectedBucketOwner: &quot;123456789012&quot;), DeadLetterQueueS3Configuration: new DeadLetterQueueS3Configuration(BucketARN: &quot;arn:aws:s3:::my-channel-dlq-bucket&quot;, ExpectedBucketOwner: &quot;123456789012&quot;)));
+    /// var input = new CreateChannelInput(ChannelName: &quot;my-channel-name&quot;, EncryptionConfiguration: new ChannelEncryptionConfiguration(EncryptionType: new ChannelEncryptionType(&quot;KMS&quot;), KeyId: &quot;arn:aws:kms:us-east-1:123456789012:key/1234abcd-12ab-34cd-56ef-1234567890ab&quot;), LoggingConfiguration: new ChannelLoggingConfiguration(CloudWatchLogs: new CloudWatchLogs(Enabled: true, LogGroupName: &quot;/aws/kinesis/my-channel&quot;, LogStreamName: &quot;my-channel-log-stream&quot;)), S3DestinationConfiguration: new S3DestinationConfiguration(StorageConfiguration: new S3StorageConfiguration(BucketARN: &quot;arn:aws:s3:::my-channel-bucket&quot;, CompressionType: new S3CompressionType(&quot;ZSTD&quot;), ExpectedBucketOwner: &quot;123456789012&quot;), DeadLetterQueueS3Configuration: new DeadLetterQueueS3Configuration(BucketARN: &quot;arn:aws:s3:::my-channel-dlq-bucket&quot;, ExpectedBucketOwner: &quot;123456789012&quot;)), ServiceExecutionRoleARN: &quot;arn:aws:iam::123456789012:role/my-channel-role&quot;, StreamConfigurationList: new ChannelStreamConfiguration[] { new ChannelStreamConfiguration(RecordConfiguration: new RecordConfiguration(RecordFormatType: new RecordFormatType(&quot;JSON&quot;)), StreamARN: &quot;arn:aws:kinesis:us-east-1:123456789012:stream/my-stream-name&quot;) });
     /// var output = await client.CreateChannelAsync(input);
     ///
     /// // Expected output:
@@ -99,7 +99,7 @@ public interface IKinesis20131202Client : IDisposable
     /// To create an S3 Tables channel
     /// </para>
     /// <code>
-    /// var input = new CreateChannelInput(ChannelName: &quot;my-channel-name&quot;, ServiceExecutionRoleARN: &quot;arn:aws:iam::123456789012:role/my-channel-role&quot;, StreamConfigurationList: new ChannelStreamConfiguration[] { new ChannelStreamConfiguration(RecordConfiguration: new RecordConfiguration(RecordFormatType: new RecordFormatType(&quot;JSON&quot;), GSRSchemaARN: &quot;arn:aws:glue:us-east-1:123456789012:schema/my-registry/my-schema&quot;), StreamARN: &quot;arn:aws:kinesis:us-east-1:123456789012:stream/my-stream-name&quot;) }, EncryptionConfiguration: new ChannelEncryptionConfiguration(EncryptionType: new ChannelEncryptionType(&quot;KMS&quot;), KeyId: &quot;arn:aws:kms:us-east-1:123456789012:key/1234abcd-12ab-34cd-56ef-1234567890ab&quot;), LoggingConfiguration: new ChannelLoggingConfiguration(CloudWatchLogs: new CloudWatchLogs(Enabled: true, LogGroupName: &quot;/aws/kinesis/my-channel&quot;, LogStreamName: &quot;my-channel-log-stream&quot;)), S3TablesDestinationConfiguration: new S3TablesDestinationConfiguration(DeadLetterQueueS3Configuration: new DeadLetterQueueS3Configuration(BucketARN: &quot;arn:aws:s3:::my-channel-dlq-bucket&quot;, ExpectedBucketOwner: &quot;123456789012&quot;), S3TablesConfigurationList: new S3TablesConfiguration[] { new S3TablesConfiguration(CompressionType: new S3TablesCompressionType(&quot;ZSTD&quot;), Namespace: &quot;my_namespace&quot;, TableBucketARN: &quot;arn:aws:s3tables:us-east-1:123456789012:bucket/my-table-bucket&quot;, TableName: &quot;my_table&quot;, PartitionSpec: new PartitionSpec(PartitionFields: new PartitionField[] { new PartitionField(SourceName: &quot;creation_ts&quot;, Transform: new PartitionTransform(&quot;TIME_HOUR&quot;)) })) }));
+    /// var input = new CreateChannelInput(ChannelName: &quot;my-channel-name&quot;, EncryptionConfiguration: new ChannelEncryptionConfiguration(EncryptionType: new ChannelEncryptionType(&quot;KMS&quot;), KeyId: &quot;arn:aws:kms:us-east-1:123456789012:key/1234abcd-12ab-34cd-56ef-1234567890ab&quot;), LoggingConfiguration: new ChannelLoggingConfiguration(CloudWatchLogs: new CloudWatchLogs(Enabled: true, LogGroupName: &quot;/aws/kinesis/my-channel&quot;, LogStreamName: &quot;my-channel-log-stream&quot;)), S3TablesDestinationConfiguration: new S3TablesDestinationConfiguration(DeadLetterQueueS3Configuration: new DeadLetterQueueS3Configuration(BucketARN: &quot;arn:aws:s3:::my-channel-dlq-bucket&quot;, ExpectedBucketOwner: &quot;123456789012&quot;), S3TablesConfigurationList: new S3TablesConfiguration[] { new S3TablesConfiguration(CompressionType: new S3TablesCompressionType(&quot;ZSTD&quot;), Namespace: &quot;my_namespace&quot;, TableBucketARN: &quot;arn:aws:s3tables:us-east-1:123456789012:bucket/my-table-bucket&quot;, TableName: &quot;my_table&quot;, PartitionSpec: new PartitionSpec(PartitionFields: new PartitionField[] { new PartitionField(SourceName: &quot;creation_ts&quot;, Transform: new PartitionTransform(&quot;TIME_HOUR&quot;)) })) }), ServiceExecutionRoleARN: &quot;arn:aws:iam::123456789012:role/my-channel-role&quot;, StreamConfigurationList: new ChannelStreamConfiguration[] { new ChannelStreamConfiguration(RecordConfiguration: new RecordConfiguration(RecordFormatType: new RecordFormatType(&quot;JSON&quot;), GSRSchemaARN: &quot;arn:aws:glue:us-east-1:123456789012:schema/my-registry/my-schema&quot;), StreamARN: &quot;arn:aws:kinesis:us-east-1:123456789012:stream/my-stream-name&quot;) });
     /// var output = await client.CreateChannelAsync(input);
     ///
     /// // Expected output:
@@ -1823,6 +1823,237 @@ public static class Kinesis20131202ClientExtensions
 {
     /// <summary>
     /// <para>
+    /// Adds or updates tags for the specified Kinesis data stream. You can assign up to 50 tags to a data
+    /// stream.
+    /// </para>
+    /// <para>
+    /// <b>Note:</b> When invoking this API, you must use either the <c>StreamARN</c> or the
+    /// <c>StreamName</c> parameter, or both. It is recommended that you use the <c>StreamARN</c> input
+    /// parameter when you invoke this API.
+    /// </para>
+    /// <para>
+    /// If tags have already been assigned to the stream, <c>AddTagsToStream</c> overwrites any existing
+    /// tags that correspond to the specified tag keys.
+    /// </para>
+    /// <para>
+    /// AddTagsToStream has a limit of five transactions per second per account.
+    /// </para>
+    /// </summary>
+    public static Task<AddTagsToStreamOutput> AddTagsToStreamAsync(
+        this IKinesis20131202Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.AddTagsToStreamAsync(new AddTagsToStreamInput(), cancellationToken);
+    }
+
+    /// <summary>
+    /// <para>
+    /// Creates a channel that delivers records from a Kinesis data stream to a destination. A channel reads
+    /// records from the specified stream and writes them to streaming tables on Apache Iceberg (Amazon S3
+    /// Tables) or to a general purpose Amazon S3 bucket.
+    /// </para>
+    /// <para>
+    /// You must specify either <c>S3DestinationConfiguration</c> or
+    /// <c>S3TablesDestinationConfiguration</c>, but not both.
+    /// </para>
+    /// <para>
+    /// To use this operation, you must have permission to pass the specified service execution IAM role to
+    /// Amazon Kinesis Data Streams (the <c>iam:PassRole</c> permission on that role).
+    /// </para>
+    /// <para>
+    /// Creating a channel is an asynchronous operation. Upon receiving the request, Amazon Kinesis Data
+    /// Streams returns immediately with the channel in the <c>CREATING</c> state. After provisioning is
+    /// complete, Amazon Kinesis Data Streams sets the state to <c>ACTIVE</c>. You can use DescribeChannel
+    /// to check the current state.
+    /// </para>
+    /// <para>
+    /// This operation is only supported for data streams with the on-demand capacity mode.
+    /// </para>
+    /// <para>
+    /// This operation has a call limit of 5 transactions per second (TPS) for each Amazon Web Services
+    /// account. Exceeding 5 TPS results in a <c>LimitExceededException</c>.
+    /// </para>
+    /// </summary>
+    public static Task<CreateChannelOutput> CreateChannelAsync(
+        this IKinesis20131202Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.CreateChannelAsync(new CreateChannelInput(), cancellationToken);
+    }
+
+    /// <summary>
+    /// <para>
+    /// Creates a Kinesis data stream. A stream captures and transports data records that are continuously
+    /// emitted from different data sources or <i>producers</i>. Scale-out within a stream is explicitly
+    /// supported by means of shards, which are uniquely identified groups of data records in a stream.
+    /// </para>
+    /// <para>
+    /// You can create your data stream using either on-demand or provisioned capacity mode. Data streams
+    /// with an on-demand mode require no capacity planning and automatically scale to handle gigabytes of
+    /// write and read throughput per minute. With the on-demand mode, Kinesis Data Streams automatically
+    /// manages the shards in order to provide the necessary throughput.
+    /// </para>
+    /// <para>
+    /// If you'd still like to proactively scale your on-demand data stream’s capacity, you can unlock the
+    /// warm throughput feature for on-demand data streams by enabling
+    /// <c>MinimumThroughputBillingCommitment</c> for your account. Once your account has
+    /// <c>MinimumThroughputBillingCommitment</c> enabled, you can specify the warm throughput in MiB per
+    /// second that your stream can support in writes.
+    /// </para>
+    /// <para>
+    /// For the data streams with a provisioned mode, you must specify the number of shards for the data
+    /// stream. Each shard can support reads up to five transactions per second, up to a maximum data read
+    /// total of 2 MiB per second. Each shard can support writes up to 1,000 records per second, up to a
+    /// maximum data write total of 1 MiB per second. If the amount of data input increases or decreases,
+    /// you can add or remove shards.
+    /// </para>
+    /// <para>
+    /// The stream name identifies the stream. The name is scoped to the Amazon Web Services account used by
+    /// the application. It is also scoped by Amazon Web Services Region. That is, two streams in two
+    /// different accounts can have the same name, and two streams in the same account, but in two different
+    /// Regions, can have the same name.
+    /// </para>
+    /// <para>
+    /// <c>CreateStream</c> is an asynchronous operation. Upon receiving a <c>CreateStream</c> request,
+    /// Kinesis Data Streams immediately returns and sets the stream status to <c>CREATING</c>. After the
+    /// stream is created, Kinesis Data Streams sets the stream status to <c>ACTIVE</c>. You should perform
+    /// read and write operations only on an <c>ACTIVE</c> stream.
+    /// </para>
+    /// <para>
+    /// You receive a <c>LimitExceededException</c> when making a <c>CreateStream</c> request when you try
+    /// to do one of the following:
+    /// </para>
+    /// <list type="bullet">
+    /// <item>
+    /// <description>
+    /// Have more than five streams in the <c>CREATING</c> state at any point in time.
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <description>
+    /// Create more shards than are authorized for your account.
+    /// </description>
+    /// </item>
+    /// </list>
+    /// <para>
+    /// For the default shard or on-demand throughput limits for an Amazon Web Services account, see
+    /// <see href="https://docs.aws.amazon.com/kinesis/latest/dev/service-sizes-and-limits.html">Amazon
+    /// Kinesis Data Streams Limits</see> in the <i>Amazon Kinesis Data Streams Developer Guide</i>. To
+    /// increase this limit,
+    /// <see href="https://docs.aws.amazon.com/general/latest/gr/aws_service_limits.html">contact Amazon Web
+    /// Services Support</see>.
+    /// </para>
+    /// <para>
+    /// You can use DescribeStreamSummary to check the stream status, which is returned in
+    /// <c>StreamStatus</c>.
+    /// </para>
+    /// <para>
+    /// CreateStream has a limit of five transactions per second per account.
+    /// </para>
+    /// <para>
+    /// You can add tags to the stream when making a <c>CreateStream</c> request by setting the <c>Tags</c>
+    /// parameter. If you pass the <c>Tags</c> parameter, in addition to having the
+    /// <c>kinesis:CreateStream</c> permission, you must also have the <c>kinesis:AddTagsToStream</c>
+    /// permission for the stream that will be created. The <c>kinesis:TagResource</c> permission won’t work
+    /// to tag streams on creation. Tags will take effect from the <c>CREATING</c> status of the stream, but
+    /// you can't make any updates to the tags until the stream is in <c>ACTIVE</c> state.
+    /// </para>
+    /// </summary>
+    public static Task<CreateStreamOutput> CreateStreamAsync(
+        this IKinesis20131202Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.CreateStreamAsync(new CreateStreamInput(), cancellationToken);
+    }
+
+    /// <summary>
+    /// <para>
+    /// Decreases the Kinesis data stream's retention period, which is the length of time data records are
+    /// accessible after they are added to the stream. The minimum value of a stream's retention period is
+    /// 24 hours.
+    /// </para>
+    /// <para>
+    /// <b>Note:</b> When invoking this API, you must use either the <c>StreamARN</c> or the
+    /// <c>StreamName</c> parameter, or both. It is recommended that you use the <c>StreamARN</c> input
+    /// parameter when you invoke this API.
+    /// </para>
+    /// <para>
+    /// This operation may result in lost data. For example, if the stream's retention period is 48 hours
+    /// and is decreased to 24 hours, any data already in the stream that is older than 24 hours is
+    /// inaccessible.
+    /// </para>
+    /// </summary>
+    public static Task<DecreaseStreamRetentionPeriodOutput> DecreaseStreamRetentionPeriodAsync(
+        this IKinesis20131202Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.DecreaseStreamRetentionPeriodAsync(
+            new DecreaseStreamRetentionPeriodInput(),
+            cancellationToken
+        );
+    }
+
+    /// <summary>
+    /// <para>
+    /// Deletes the specified channel. Deleting a channel stops delivery from the source stream to the
+    /// destination. Data already delivered to the destination is not deleted.
+    /// </para>
+    /// <para>
+    /// A stream cannot be deleted while it has active channels. Use ListChannels with a stream filter to
+    /// find the channels attached to a stream before deleting it.
+    /// </para>
+    /// <para>
+    /// This operation has a call limit of 5 transactions per second (TPS) for each Amazon Web Services
+    /// account. Exceeding 5 TPS results in a <c>LimitExceededException</c>.
+    /// </para>
+    /// </summary>
+    public static Task<DeleteChannelOutput> DeleteChannelAsync(
+        this IKinesis20131202Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.DeleteChannelAsync(new DeleteChannelInput(), cancellationToken);
+    }
+
+    /// <summary>
+    /// <para>
+    /// Delete a policy for the specified data stream or consumer. Request patterns can be one of the
+    /// following:
+    /// </para>
+    /// <list type="bullet">
+    /// <item>
+    /// <description>
+    /// Data stream pattern: <c>arn:aws.*:kinesis:.*:\d{12}:.*stream/\S+</c>
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <description>
+    /// Consumer pattern:
+    /// <c>^(arn):aws.*:kinesis:.*:\d{12}:.*stream\/[a-zA-Z0-9_.-]+\/consumer\/[a-zA-Z0-9_.-]+:[0-9]+</c>
+    /// </description>
+    /// </item>
+    /// </list>
+    /// </summary>
+    public static Task<DeleteResourcePolicyOutput> DeleteResourcePolicyAsync(
+        this IKinesis20131202Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.DeleteResourcePolicyAsync(new DeleteResourcePolicyInput(), cancellationToken);
+    }
+
+    /// <summary>
+    /// <para>
     /// Deletes a Kinesis data stream and all its shards and data. You must shut down any applications that
     /// are operating on the stream before you delete the stream. If an application attempts to operate on a
     /// deleted stream, it receives the exception <c>ResourceNotFoundException</c>.
@@ -1908,6 +2139,28 @@ public static class Kinesis20131202ClientExtensions
             new DescribeAccountSettingsInput(),
             cancellationToken
         );
+    }
+
+    /// <summary>
+    /// <para>
+    /// Describes the specified channel, including its configuration and current status.
+    /// </para>
+    /// <para>
+    /// Use this operation to verify that a channel reached the <c>ACTIVE</c> state after creation, or to
+    /// diagnose a channel in the <c>FAILED</c> state by reading the <c>ChannelStatusReason</c>.
+    /// </para>
+    /// <para>
+    /// This operation has a call limit of 5 transactions per second (TPS) for each Amazon Web Services
+    /// account. Exceeding 5 TPS results in a <c>LimitExceededException</c>.
+    /// </para>
+    /// </summary>
+    public static Task<DescribeChannelOutput> DescribeChannelAsync(
+        this IKinesis20131202Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.DescribeChannelAsync(new DescribeChannelInput(), cancellationToken);
     }
 
     /// <summary>
@@ -2034,6 +2287,247 @@ public static class Kinesis20131202ClientExtensions
 
     /// <summary>
     /// <para>
+    /// Disables enhanced monitoring.
+    /// </para>
+    /// <para>
+    /// <b>Note:</b> When invoking this API, you must use either the <c>StreamARN</c> or the
+    /// <c>StreamName</c> parameter, or both. It is recommended that you use the <c>StreamARN</c> input
+    /// parameter when you invoke this API.
+    /// </para>
+    /// </summary>
+    public static Task<DisableEnhancedMonitoringOutput> DisableEnhancedMonitoringAsync(
+        this IKinesis20131202Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.DisableEnhancedMonitoringAsync(
+            new DisableEnhancedMonitoringInput(),
+            cancellationToken
+        );
+    }
+
+    /// <summary>
+    /// <para>
+    /// Enables enhanced Kinesis data stream monitoring for shard-level metrics.
+    /// </para>
+    /// <para>
+    /// <b>Note:</b> When invoking this API, you must use either the <c>StreamARN</c> or the
+    /// <c>StreamName</c> parameter, or both. It is recommended that you use the <c>StreamARN</c> input
+    /// parameter when you invoke this API.
+    /// </para>
+    /// </summary>
+    public static Task<EnableEnhancedMonitoringOutput> EnableEnhancedMonitoringAsync(
+        this IKinesis20131202Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.EnableEnhancedMonitoringAsync(
+            new EnableEnhancedMonitoringInput(),
+            cancellationToken
+        );
+    }
+
+    /// <summary>
+    /// <para>
+    /// Gets data records from a Kinesis data stream's shard.
+    /// </para>
+    /// <para>
+    /// <b>Note:</b> When invoking this API, you must use either the <c>StreamARN</c> or the
+    /// <c>StreamName</c> parameter, or both. It is recommended that you use the <c>StreamARN</c> input
+    /// parameter when you invoke this API.
+    /// </para>
+    /// <para>
+    /// Specify a shard iterator using the <c>ShardIterator</c> parameter. The shard iterator specifies the
+    /// position in the shard from which you want to start reading data records sequentially. If there are
+    /// no records available in the portion of the shard that the iterator points to, GetRecords returns an
+    /// empty list. It might take multiple calls to get to a portion of the shard that contains records.
+    /// </para>
+    /// <para>
+    /// You can scale by provisioning multiple shards per stream while considering service limits (for more
+    /// information, see
+    /// <see href="https://docs.aws.amazon.com/kinesis/latest/dev/service-sizes-and-limits.html">Amazon
+    /// Kinesis Data Streams Limits</see> in the <i>Amazon Kinesis Data Streams Developer Guide</i>). Your
+    /// application should have one thread per shard, each reading continuously from its stream. To read
+    /// from a stream continually, call GetRecords in a loop. Use GetShardIterator to get the shard iterator
+    /// to specify in the first GetRecords call. GetRecords returns a new shard iterator in
+    /// <c>NextShardIterator</c>. Specify the shard iterator returned in <c>NextShardIterator</c> in
+    /// subsequent calls to GetRecords. If the shard has been closed, the shard iterator can't return more
+    /// data and GetRecords returns <c>null</c> in <c>NextShardIterator</c>. You can terminate the loop when
+    /// the shard is closed, or when the shard iterator reaches the record with the sequence number or other
+    /// attribute that marks it as the last record to process.
+    /// </para>
+    /// <para>
+    /// Each data record can be up to 1 MiB in size by default. Amazon Kinesis Data Streams supports large
+    /// records up to 10 MiB in size, but the average throughput for your stream cannot exceed 1 MiB per
+    /// second. For more information about how large records are handled, see
+    /// <see href="https://docs.aws.amazon.com/streams/latest/dev/large-records.html">Large records</see>.
+    /// Each shard can read up to 2 MiB per second. You can ensure that your calls don't exceed the maximum
+    /// supported size or throughput by using the <c>Limit</c> parameter to specify the maximum number of
+    /// records that GetRecords can return. Consider your average record size when determining this limit.
+    /// The maximum number of records that can be returned per call is 10,000.
+    /// </para>
+    /// <para>
+    /// The size of the data returned by GetRecords varies depending on the utilization of the shard. It is
+    /// recommended that consumer applications retrieve records via the <c>GetRecords</c> command using the
+    /// 5 TPS limit to remain caught up. Retrieving records less frequently can lead to consumer
+    /// applications falling behind. The maximum size of data that GetRecords can return is 10 MiB. If a
+    /// call returns this amount of data, subsequent calls made within the next 5 seconds throw
+    /// <c>ProvisionedThroughputExceededException</c>. If there is insufficient provisioned throughput on
+    /// the stream, subsequent calls made within the next 1 second throw
+    /// <c>ProvisionedThroughputExceededException</c>. GetRecords doesn't return any data when it throws an
+    /// exception. For this reason, we recommend that you wait 1 second between calls to GetRecords.
+    /// However, it's possible that the application will get exceptions for longer than 1 second.
+    /// </para>
+    /// <para>
+    /// To detect whether the application is falling behind in processing, you can use the
+    /// <c>MillisBehindLatest</c> response attribute. You can also monitor the stream using CloudWatch
+    /// metrics and other mechanisms (see
+    /// <see href="https://docs.aws.amazon.com/kinesis/latest/dev/monitoring.html">Monitoring</see> in the
+    /// <i>Amazon Kinesis Data Streams Developer Guide</i>).
+    /// </para>
+    /// <para>
+    /// Each Amazon Kinesis record includes a value, <c>ApproximateArrivalTimestamp</c>, that is set when a
+    /// stream successfully receives and stores a record. This is commonly referred to as a server-side time
+    /// stamp, whereas a client-side time stamp is set when a data producer creates or sends the record to a
+    /// stream (a data producer is any data source putting data records into a stream, for example with
+    /// PutRecords). The time stamp has millisecond precision. There are no guarantees about the time stamp
+    /// accuracy, or that the time stamp is always increasing. For example, records in a shard or across a
+    /// stream might have time stamps that are out of order.
+    /// </para>
+    /// <para>
+    /// This operation has a limit of five transactions per second per shard.
+    /// </para>
+    /// </summary>
+    public static Task<GetRecordsOutput> GetRecordsAsync(
+        this IKinesis20131202Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.GetRecordsAsync(new GetRecordsInput(), cancellationToken);
+    }
+
+    /// <summary>
+    /// <para>
+    /// Returns a policy attached to the specified data stream or consumer. Request patterns can be one of
+    /// the following:
+    /// </para>
+    /// <list type="bullet">
+    /// <item>
+    /// <description>
+    /// Data stream pattern: <c>arn:aws.*:kinesis:.*:\d{12}:.*stream/\S+</c>
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <description>
+    /// Consumer pattern:
+    /// <c>^(arn):aws.*:kinesis:.*:\d{12}:.*stream\/[a-zA-Z0-9_.-]+\/consumer\/[a-zA-Z0-9_.-]+:[0-9]+</c>
+    /// </description>
+    /// </item>
+    /// </list>
+    /// </summary>
+    public static Task<GetResourcePolicyOutput> GetResourcePolicyAsync(
+        this IKinesis20131202Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.GetResourcePolicyAsync(new GetResourcePolicyInput(), cancellationToken);
+    }
+
+    /// <summary>
+    /// <para>
+    /// Gets an Amazon Kinesis shard iterator. A shard iterator expires 5 minutes after it is returned to
+    /// the requester.
+    /// </para>
+    /// <para>
+    /// <b>Note:</b> When invoking this API, you must use either the <c>StreamARN</c> or the
+    /// <c>StreamName</c> parameter, or both. It is recommended that you use the <c>StreamARN</c> input
+    /// parameter when you invoke this API.
+    /// </para>
+    /// <para>
+    /// A shard iterator specifies the shard position from which to start reading data records sequentially.
+    /// The position is specified using the sequence number of a data record in a shard. A sequence number
+    /// is the identifier associated with every record ingested in the stream, and is assigned when a record
+    /// is put into the stream. Each stream has one or more shards.
+    /// </para>
+    /// <para>
+    /// You must specify the shard iterator type. For example, you can set the <c>ShardIteratorType</c>
+    /// parameter to read exactly from the position denoted by a specific sequence number by using the
+    /// <c>AT_SEQUENCE_NUMBER</c> shard iterator type. Alternatively, the parameter can read right after the
+    /// sequence number by using the <c>AFTER_SEQUENCE_NUMBER</c> shard iterator type, using sequence
+    /// numbers returned by earlier calls to PutRecord, PutRecords, GetRecords, or DescribeStream. In the
+    /// request, you can specify the shard iterator type <c>AT_TIMESTAMP</c> to read records from an
+    /// arbitrary point in time, <c>TRIM_HORIZON</c> to cause <c>ShardIterator</c> to point to the last
+    /// untrimmed record in the shard in the system (the oldest data record in the shard), or <c>LATEST</c>
+    /// so that you always read the most recent data in the shard.
+    /// </para>
+    /// <para>
+    /// When you read repeatedly from a stream, use a GetShardIterator request to get the first shard
+    /// iterator for use in your first GetRecords request and for subsequent reads use the shard iterator
+    /// returned by the GetRecords request in <c>NextShardIterator</c>. A new shard iterator is returned by
+    /// every GetRecords request in <c>NextShardIterator</c>, which you use in the <c>ShardIterator</c>
+    /// parameter of the next GetRecords request.
+    /// </para>
+    /// <para>
+    /// If a GetShardIterator request is made too often, you receive a
+    /// <c>ProvisionedThroughputExceededException</c>. For more information about throughput limits, see
+    /// GetRecords, and
+    /// <see href="https://docs.aws.amazon.com/kinesis/latest/dev/service-sizes-and-limits.html">Streams
+    /// Limits</see> in the <i>Amazon Kinesis Data Streams Developer Guide</i>.
+    /// </para>
+    /// <para>
+    /// If the shard is closed, GetShardIterator returns a valid iterator for the last sequence number of
+    /// the shard. A shard can be closed as a result of using SplitShard or MergeShards.
+    /// </para>
+    /// <para>
+    /// GetShardIterator has a limit of five transactions per second per account per open shard.
+    /// </para>
+    /// </summary>
+    public static Task<GetShardIteratorOutput> GetShardIteratorAsync(
+        this IKinesis20131202Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.GetShardIteratorAsync(new GetShardIteratorInput(), cancellationToken);
+    }
+
+    /// <summary>
+    /// <para>
+    /// Increases the Kinesis data stream's retention period, which is the length of time data records are
+    /// accessible after they are added to the stream. The maximum value of a stream's retention period is
+    /// 8760 hours (365 days).
+    /// </para>
+    /// <para>
+    /// <b>Note:</b> When invoking this API, you must use either the <c>StreamARN</c> or the
+    /// <c>StreamName</c> parameter, or both. It is recommended that you use the <c>StreamARN</c> input
+    /// parameter when you invoke this API.
+    /// </para>
+    /// <para>
+    /// If you choose a longer stream retention period, this operation increases the time period during
+    /// which records that have not yet expired are accessible. However, it does not make previous, expired
+    /// data (older than the stream's previous retention period) accessible after the operation has been
+    /// called. For example, if a stream's retention period is set to 24 hours and is increased to 168
+    /// hours, any data that is older than 24 hours remains inaccessible to consumer applications.
+    /// </para>
+    /// </summary>
+    public static Task<IncreaseStreamRetentionPeriodOutput> IncreaseStreamRetentionPeriodAsync(
+        this IKinesis20131202Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.IncreaseStreamRetentionPeriodAsync(
+            new IncreaseStreamRetentionPeriodInput(),
+            cancellationToken
+        );
+    }
+
+    /// <summary>
+    /// <para>
     /// Lists the channels in your account. You can filter the results by source stream. The results are
     /// paginated. Use the <c>NextToken</c> value returned in the response to retrieve additional results.
     /// </para>
@@ -2135,6 +2629,45 @@ public static class Kinesis20131202ClientExtensions
 
     /// <summary>
     /// <para>
+    /// Lists the consumers registered to receive data from a stream using enhanced fan-out, and provides
+    /// information about each consumer.
+    /// </para>
+    /// <para>
+    /// This operation has a limit of 5 transactions per second per stream.
+    /// </para>
+    /// </summary>
+    public static Task<ListStreamConsumersOutput> ListStreamConsumersAsync(
+        this IKinesis20131202Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.ListStreamConsumersAsync(new ListStreamConsumersInput(), cancellationToken);
+    }
+
+    /// <summary>
+    /// <para>
+    /// Lists the consumers registered to receive data from a stream using enhanced fan-out, and provides
+    /// information about each consumer.
+    /// </para>
+    /// <para>
+    /// This operation has a limit of 5 transactions per second per stream.
+    /// </para>
+    /// </summary>
+    public static IAsyncEnumerable<ListStreamConsumersOutput> ListStreamConsumersPagesAsync(
+        this IKinesis20131202Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.ListStreamConsumersPagesAsync(
+            new ListStreamConsumersInput(),
+            cancellationToken
+        );
+    }
+
+    /// <summary>
+    /// <para>
     /// Lists your Kinesis data streams.
     /// </para>
     /// <para>
@@ -2195,6 +2728,27 @@ public static class Kinesis20131202ClientExtensions
 
     /// <summary>
     /// <para>
+    /// List all tags added to the specified Kinesis resource. Each tag is a label consisting of a
+    /// user-defined key and value. Tags can help you manage, identify, organize, search for, and filter
+    /// resources.
+    /// </para>
+    /// <para>
+    /// For more information about tagging Kinesis resources, see
+    /// <see href="https://docs.aws.amazon.com/streams/latest/dev/tagging.html">Tag your Amazon Kinesis Data
+    /// Streams resources</see>.
+    /// </para>
+    /// </summary>
+    public static Task<ListTagsForResourceOutput> ListTagsForResourceAsync(
+        this IKinesis20131202Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.ListTagsForResourceAsync(new ListTagsForResourceInput(), cancellationToken);
+    }
+
+    /// <summary>
+    /// <para>
     /// Lists the tags for the specified Kinesis data stream. This operation has a limit of five
     /// transactions per second per account.
     /// </para>
@@ -2211,6 +2765,857 @@ public static class Kinesis20131202ClientExtensions
     {
         ArgumentNullException.ThrowIfNull(client);
         return client.ListTagsForStreamAsync(new ListTagsForStreamInput(), cancellationToken);
+    }
+
+    /// <summary>
+    /// <para>
+    /// Merges two adjacent shards in a Kinesis data stream and combines them into a single shard to reduce
+    /// the stream's capacity to ingest and transport data. This API is only supported for the data streams
+    /// with the provisioned capacity mode. Two shards are considered adjacent if the union of the hash key
+    /// ranges for the two shards form a contiguous set with no gaps. For example, if you have two shards,
+    /// one with a hash key range of 276...381 and the other with a hash key range of 382...454, then you
+    /// could merge these two shards into a single shard that would have a hash key range of 276...454.
+    /// After the merge, the single child shard receives data for all hash key values covered by the two
+    /// parent shards.
+    /// </para>
+    /// <para>
+    /// <b>Note:</b> When invoking this API, you must use either the <c>StreamARN</c> or the
+    /// <c>StreamName</c> parameter, or both. It is recommended that you use the <c>StreamARN</c> input
+    /// parameter when you invoke this API.
+    /// </para>
+    /// <para>
+    /// <c>MergeShards</c> is called when there is a need to reduce the overall capacity of a stream because
+    /// of excess capacity that is not being used. You must specify the shard to be merged and the adjacent
+    /// shard for a stream. For more information about merging shards, see
+    /// <see href="https://docs.aws.amazon.com/kinesis/latest/dev/kinesis-using-sdk-java-resharding-merge.html">Merge
+    /// Two Shards</see> in the <i>Amazon Kinesis Data Streams Developer Guide</i>.
+    /// </para>
+    /// <para>
+    /// If the stream is in the <c>ACTIVE</c> state, you can call <c>MergeShards</c>. If a stream is in the
+    /// <c>CREATING</c>, <c>UPDATING</c>, or <c>DELETING</c> state, <c>MergeShards</c> returns a
+    /// <c>ResourceInUseException</c>. If the specified stream does not exist, <c>MergeShards</c> returns a
+    /// <c>ResourceNotFoundException</c>.
+    /// </para>
+    /// <para>
+    /// You can use DescribeStreamSummary to check the state of the stream, which is returned in
+    /// <c>StreamStatus</c>.
+    /// </para>
+    /// <para>
+    /// <c>MergeShards</c> is an asynchronous operation. Upon receiving a <c>MergeShards</c> request, Amazon
+    /// Kinesis Data Streams immediately returns a response and sets the <c>StreamStatus</c> to
+    /// <c>UPDATING</c>. After the operation is completed, Kinesis Data Streams sets the <c>StreamStatus</c>
+    /// to <c>ACTIVE</c>. Read and write operations continue to work while the stream is in the
+    /// <c>UPDATING</c> state.
+    /// </para>
+    /// <para>
+    /// You use DescribeStreamSummary and the ListShards APIs to determine the shard IDs that are specified
+    /// in the <c>MergeShards</c> request.
+    /// </para>
+    /// <para>
+    /// If you try to operate on too many streams in parallel using CreateStream, DeleteStream,
+    /// <c>MergeShards</c>, or SplitShard, you receive a <c>LimitExceededException</c>.
+    /// </para>
+    /// <para>
+    /// <c>MergeShards</c> has a limit of five transactions per second per account.
+    /// </para>
+    /// </summary>
+    public static Task<MergeShardsOutput> MergeShardsAsync(
+        this IKinesis20131202Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.MergeShardsAsync(new MergeShardsInput(), cancellationToken);
+    }
+
+    /// <summary>
+    /// <para>
+    /// Writes a single data record into an Amazon Kinesis data stream. Call <c>PutRecord</c> to send data
+    /// into the stream for real-time ingestion and subsequent processing, one record at a time. Each shard
+    /// can support writes up to 1,000 records per second, up to a maximum data write total of 10 MiB per
+    /// second.
+    /// </para>
+    /// <para>
+    /// <b>Note:</b> When invoking this API, you must use either the <c>StreamARN</c> or the
+    /// <c>StreamName</c> parameter, or both. It is recommended that you use the <c>StreamARN</c> input
+    /// parameter when you invoke this API.
+    /// </para>
+    /// <para>
+    /// You must specify the name of the stream that captures, stores, and transports the data; a partition
+    /// key; and the data blob itself.
+    /// </para>
+    /// <para>
+    /// The data blob can be any type of data; for example, a segment from a log file, geographic/location
+    /// data, website clickstream data, and so on.
+    /// </para>
+    /// <para>
+    /// The partition key is used by Kinesis Data Streams to distribute data across shards. Kinesis Data
+    /// Streams segregates the data records that belong to a stream into multiple shards, using the
+    /// partition key associated with each data record to determine the shard to which a given data record
+    /// belongs.
+    /// </para>
+    /// <para>
+    /// Partition keys are Unicode strings, with a maximum length limit of 256 characters for each key. An
+    /// MD5 hash function is used to map partition keys to 128-bit integer values and to map associated data
+    /// records to shards using the hash key ranges of the shards. You can override hashing the partition
+    /// key to determine the shard by explicitly specifying a hash value using the <c>ExplicitHashKey</c>
+    /// parameter. For more information, see
+    /// <see href="https://docs.aws.amazon.com/kinesis/latest/dev/developing-producers-with-sdk.html#kinesis-using-sdk-java-add-data-to-stream">Adding
+    /// Data to a Stream</see> in the <i>Amazon Kinesis Data Streams Developer Guide</i>.
+    /// </para>
+    /// <para>
+    /// <c>PutRecord</c> returns the shard ID of where the data record was placed and the sequence number
+    /// that was assigned to the data record.
+    /// </para>
+    /// <para>
+    /// Sequence numbers increase over time and are specific to a shard within a stream, not across all
+    /// shards within a stream. To guarantee strictly increasing ordering, write serially to a shard and use
+    /// the <c>SequenceNumberForOrdering</c> parameter. For more information, see
+    /// <see href="https://docs.aws.amazon.com/kinesis/latest/dev/developing-producers-with-sdk.html#kinesis-using-sdk-java-add-data-to-stream">Adding
+    /// Data to a Stream</see> in the <i>Amazon Kinesis Data Streams Developer Guide</i>.
+    /// </para>
+    /// <para>
+    /// <b>Important:</b> After you write a record to a stream, you cannot modify that record or its order
+    /// within the stream.
+    /// </para>
+    /// <para>
+    /// If a <c>PutRecord</c> request cannot be processed because of insufficient provisioned throughput on
+    /// the shard involved in the request, <c>PutRecord</c> throws
+    /// <c>ProvisionedThroughputExceededException</c>.
+    /// </para>
+    /// <para>
+    /// By default, data records are accessible for 24 hours from the time that they are added to a stream.
+    /// You can use IncreaseStreamRetentionPeriod or DecreaseStreamRetentionPeriod to modify this retention
+    /// period.
+    /// </para>
+    /// </summary>
+    public static Task<PutRecordOutput> PutRecordAsync(
+        this IKinesis20131202Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.PutRecordAsync(new PutRecordInput(), cancellationToken);
+    }
+
+    /// <summary>
+    /// <para>
+    /// Writes multiple data records into a Kinesis data stream in a single call (also referred to as a
+    /// <c>PutRecords</c> request). Use this operation to send data into the stream for data ingestion and
+    /// processing.
+    /// </para>
+    /// <para>
+    /// <b>Note:</b> When invoking this API, you must use either the <c>StreamARN</c> or the
+    /// <c>StreamName</c> parameter, or both. It is recommended that you use the <c>StreamARN</c> input
+    /// parameter when you invoke this API.
+    /// </para>
+    /// <para>
+    /// Each <c>PutRecords</c> request can support up to 500 records. Each record in the request can be as
+    /// large as 10 MiB, up to a limit of 10 MiB for the entire request, including partition keys. Each
+    /// shard can support writes up to 1,000 records per second, up to a maximum data write total of 1 MB
+    /// per second.
+    /// </para>
+    /// <para>
+    /// You must specify the name of the stream that captures, stores, and transports the data; and an array
+    /// of request <c>Records</c>, with each record in the array requiring a partition key and data blob.
+    /// The record size limit applies to the total size of the partition key and data blob.
+    /// </para>
+    /// <para>
+    /// The data blob can be any type of data; for example, a segment from a log file, geographic/location
+    /// data, website clickstream data, and so on.
+    /// </para>
+    /// <para>
+    /// The partition key is used by Kinesis Data Streams as input to a hash function that maps the
+    /// partition key and associated data to a specific shard. An MD5 hash function is used to map partition
+    /// keys to 128-bit integer values and to map associated data records to shards. As a result of this
+    /// hashing mechanism, all data records with the same partition key map to the same shard within the
+    /// stream. For more information, see
+    /// <see href="https://docs.aws.amazon.com/kinesis/latest/dev/developing-producers-with-sdk.html#kinesis-using-sdk-java-add-data-to-stream">Adding
+    /// Data to a Stream</see> in the <i>Amazon Kinesis Data Streams Developer Guide</i>.
+    /// </para>
+    /// <para>
+    /// Each record in the <c>Records</c> array may include an optional parameter, <c>ExplicitHashKey</c>,
+    /// which overrides the partition key to shard mapping. This parameter allows a data producer to
+    /// determine explicitly the shard where the record is stored. For more information, see
+    /// <see href="https://docs.aws.amazon.com/kinesis/latest/dev/developing-producers-with-sdk.html#kinesis-using-sdk-java-putrecords">Adding
+    /// Multiple Records with PutRecords</see> in the <i>Amazon Kinesis Data Streams Developer Guide</i>.
+    /// </para>
+    /// <para>
+    /// The <c>PutRecords</c> response includes an array of response <c>Records</c>. Each record in the
+    /// response array directly correlates with a record in the request array using natural ordering, from
+    /// the top to the bottom of the request and response. The response <c>Records</c> array always includes
+    /// the same number of records as the request array.
+    /// </para>
+    /// <para>
+    /// The response <c>Records</c> array includes both successfully and unsuccessfully processed records.
+    /// Kinesis Data Streams attempts to process all records in each <c>PutRecords</c> request. A single
+    /// record failure does not stop the processing of subsequent records. As a result, PutRecords doesn't
+    /// guarantee the ordering of records. If you need to read records in the same order they are written to
+    /// the stream, use PutRecord instead of <c>PutRecords</c>, and write to the same shard.
+    /// </para>
+    /// <para>
+    /// A successfully processed record includes <c>ShardId</c> and <c>SequenceNumber</c> values. The
+    /// <c>ShardId</c> parameter identifies the shard in the stream where the record is stored. The
+    /// <c>SequenceNumber</c> parameter is an identifier assigned to the put record, unique to all records
+    /// in the stream.
+    /// </para>
+    /// <para>
+    /// An unsuccessfully processed record includes <c>ErrorCode</c> and <c>ErrorMessage</c> values.
+    /// <c>ErrorCode</c> reflects the type of error and can be one of the following values:
+    /// <c>ProvisionedThroughputExceededException</c> or <c>InternalFailure</c>. <c>ErrorMessage</c>
+    /// provides more detailed information about the <c>ProvisionedThroughputExceededException</c> exception
+    /// including the account ID, stream name, and shard ID of the record that was throttled. For more
+    /// information about partially successful responses, see
+    /// <see href="https://docs.aws.amazon.com/kinesis/latest/dev/kinesis-using-sdk-java-add-data-to-stream.html#kinesis-using-sdk-java-putrecords">Adding
+    /// Multiple Records with PutRecords</see> in the <i>Amazon Kinesis Data Streams Developer Guide</i>.
+    /// </para>
+    /// <para>
+    /// <b>Important:</b> After you write a record to a stream, you cannot modify that record or its order
+    /// within the stream.
+    /// </para>
+    /// <para>
+    /// By default, data records are accessible for 24 hours from the time that they are added to a stream.
+    /// You can use IncreaseStreamRetentionPeriod or DecreaseStreamRetentionPeriod to modify this retention
+    /// period.
+    /// </para>
+    /// </summary>
+    public static Task<PutRecordsOutput> PutRecordsAsync(
+        this IKinesis20131202Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.PutRecordsAsync(new PutRecordsInput(), cancellationToken);
+    }
+
+    /// <summary>
+    /// <para>
+    /// Attaches a resource-based policy to a data stream or registered consumer. If you are using an
+    /// identity other than the root user of the Amazon Web Services account that owns the resource, the
+    /// calling identity must have the <c>PutResourcePolicy</c> permissions on the specified Kinesis Data
+    /// Streams resource and belong to the owner's account in order to use this operation. If you don't have
+    /// <c>PutResourcePolicy</c> permissions, Amazon Kinesis Data Streams returns a <c>403 Access Denied
+    /// error</c>. If you receive a <c>ResourceNotFoundException</c>, check to see if you passed a valid
+    /// stream or consumer resource.
+    /// </para>
+    /// <para>
+    /// Request patterns can be one of the following:
+    /// </para>
+    /// <list type="bullet">
+    /// <item>
+    /// <description>
+    /// Data stream pattern: <c>arn:aws.*:kinesis:.*:\d{12}:.*stream/\S+</c>
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <description>
+    /// Consumer pattern:
+    /// <c>^(arn):aws.*:kinesis:.*:\d{12}:.*stream\/[a-zA-Z0-9_.-]+\/consumer\/[a-zA-Z0-9_.-]+:[0-9]+</c>
+    /// </description>
+    /// </item>
+    /// </list>
+    /// <para>
+    /// For more information, see
+    /// <see href="https://docs.aws.amazon.com/streams/latest/dev/controlling-access.html">Controlling
+    /// Access to Amazon Kinesis Data Streams Resources Using IAM</see>.
+    /// </para>
+    /// </summary>
+    public static Task<PutResourcePolicyOutput> PutResourcePolicyAsync(
+        this IKinesis20131202Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.PutResourcePolicyAsync(new PutResourcePolicyInput(), cancellationToken);
+    }
+
+    /// <summary>
+    /// <para>
+    /// Registers a consumer with a Kinesis data stream. When you use this operation, the consumer you
+    /// register can then call SubscribeToShard to receive data from the stream using enhanced fan-out, at a
+    /// rate of up to 2 MiB per second for every shard you subscribe to. This rate is unaffected by the
+    /// total number of consumers that read from the same stream.
+    /// </para>
+    /// <para>
+    /// You can add tags to the registered consumer when making a <c>RegisterStreamConsumer</c> request by
+    /// setting the <c>Tags</c> parameter. If you pass the <c>Tags</c> parameter, in addition to having the
+    /// <c>kinesis:RegisterStreamConsumer</c> permission, you must also have the <c>kinesis:TagResource</c>
+    /// permission for the consumer that will be registered. Tags will take effect from the <c>CREATING</c>
+    /// status of the consumer.
+    /// </para>
+    /// <para>
+    /// With On-demand Advantage streams, you can register up to 50 consumers per stream to use Enhanced
+    /// Fan-out. With On-demand Standard and Provisioned streams, you can register up to 20 consumers per
+    /// stream to use Enhanced Fan-out. A given consumer can only be registered with one stream at a time.
+    /// </para>
+    /// <para>
+    /// For an example of how to use this operation, see
+    /// <see href="https://docs.aws.amazon.com/streams/latest/dev/building-enhanced-consumers-api.html">Enhanced
+    /// Fan-Out Using the Kinesis Data Streams API</see>.
+    /// </para>
+    /// <para>
+    /// The use of this operation has a limit of five transactions per second per account. Also, only 5
+    /// consumers can be created simultaneously. In other words, you cannot have more than 5 consumers in a
+    /// <c>CREATING</c> status at the same time. Registering a 6th consumer while there are 5 in a
+    /// <c>CREATING</c> status results in a <c>LimitExceededException</c>.
+    /// </para>
+    /// </summary>
+    public static Task<RegisterStreamConsumerOutput> RegisterStreamConsumerAsync(
+        this IKinesis20131202Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.RegisterStreamConsumerAsync(
+            new RegisterStreamConsumerInput(),
+            cancellationToken
+        );
+    }
+
+    /// <summary>
+    /// <para>
+    /// Removes tags from the specified Kinesis data stream. Removed tags are deleted and cannot be
+    /// recovered after this operation successfully completes.
+    /// </para>
+    /// <para>
+    /// <b>Note:</b> When invoking this API, you must use either the <c>StreamARN</c> or the
+    /// <c>StreamName</c> parameter, or both. It is recommended that you use the <c>StreamARN</c> input
+    /// parameter when you invoke this API.
+    /// </para>
+    /// <para>
+    /// If you specify a tag that does not exist, it is ignored.
+    /// </para>
+    /// <para>
+    /// RemoveTagsFromStream has a limit of five transactions per second per account.
+    /// </para>
+    /// </summary>
+    public static Task<RemoveTagsFromStreamOutput> RemoveTagsFromStreamAsync(
+        this IKinesis20131202Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.RemoveTagsFromStreamAsync(new RemoveTagsFromStreamInput(), cancellationToken);
+    }
+
+    /// <summary>
+    /// <para>
+    /// Splits a shard into two new shards in the Kinesis data stream, to increase the stream's capacity to
+    /// ingest and transport data. <c>SplitShard</c> is called when there is a need to increase the overall
+    /// capacity of a stream because of an expected increase in the volume of data records being ingested.
+    /// This API is only supported for the data streams with the provisioned capacity mode.
+    /// </para>
+    /// <para>
+    /// <b>Note:</b> When invoking this API, you must use either the <c>StreamARN</c> or the
+    /// <c>StreamName</c> parameter, or both. It is recommended that you use the <c>StreamARN</c> input
+    /// parameter when you invoke this API.
+    /// </para>
+    /// <para>
+    /// You can also use <c>SplitShard</c> when a shard appears to be approaching its maximum utilization;
+    /// for example, the producers sending data into the specific shard are suddenly sending more than
+    /// previously anticipated. You can also call <c>SplitShard</c> to increase stream capacity, so that
+    /// more Kinesis Data Streams applications can simultaneously read data from the stream for real-time
+    /// processing.
+    /// </para>
+    /// <para>
+    /// You must specify the shard to be split and the new hash key, which is the position in the shard
+    /// where the shard gets split in two. In many cases, the new hash key might be the average of the
+    /// beginning and ending hash key, but it can be any hash key value in the range being mapped into the
+    /// shard. For more information, see
+    /// <see href="https://docs.aws.amazon.com/kinesis/latest/dev/kinesis-using-sdk-java-resharding-split.html">Split
+    /// a Shard</see> in the <i>Amazon Kinesis Data Streams Developer Guide</i>.
+    /// </para>
+    /// <para>
+    /// You can use DescribeStreamSummary and the ListShards APIs to determine the shard ID and hash key
+    /// values for the <c>ShardToSplit</c> and <c>NewStartingHashKey</c> parameters that are specified in
+    /// the <c>SplitShard</c> request.
+    /// </para>
+    /// <para>
+    /// <c>SplitShard</c> is an asynchronous operation. Upon receiving a <c>SplitShard</c> request, Kinesis
+    /// Data Streams immediately returns a response and sets the stream status to <c>UPDATING</c>. After the
+    /// operation is completed, Kinesis Data Streams sets the stream status to <c>ACTIVE</c>. Read and write
+    /// operations continue to work while the stream is in the <c>UPDATING</c> state.
+    /// </para>
+    /// <para>
+    /// You can use DescribeStreamSummary to check the status of the stream, which is returned in
+    /// <c>StreamStatus</c>. If the stream is in the <c>ACTIVE</c> state, you can call <c>SplitShard</c>.
+    /// </para>
+    /// <para>
+    /// If the specified stream does not exist, DescribeStreamSummary returns a
+    /// <c>ResourceNotFoundException</c>. If you try to create more shards than are authorized for your
+    /// account, you receive a <c>LimitExceededException</c>.
+    /// </para>
+    /// <para>
+    /// For the default shard limit for an Amazon Web Services account, see
+    /// <see href="https://docs.aws.amazon.com/kinesis/latest/dev/service-sizes-and-limits.html">Kinesis
+    /// Data Streams Limits</see> in the <i>Amazon Kinesis Data Streams Developer Guide</i>. To increase
+    /// this limit,
+    /// <see href="https://docs.aws.amazon.com/general/latest/gr/aws_service_limits.html">contact Amazon Web
+    /// Services Support</see>.
+    /// </para>
+    /// <para>
+    /// If you try to operate on too many streams simultaneously using CreateStream, DeleteStream,
+    /// MergeShards, and/or SplitShard, you receive a <c>LimitExceededException</c>.
+    /// </para>
+    /// <para>
+    /// <c>SplitShard</c> has a limit of five transactions per second per account.
+    /// </para>
+    /// </summary>
+    public static Task<SplitShardOutput> SplitShardAsync(
+        this IKinesis20131202Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.SplitShardAsync(new SplitShardInput(), cancellationToken);
+    }
+
+    /// <summary>
+    /// <para>
+    /// Enables or updates server-side encryption using an Amazon Web Services KMS key for a specified
+    /// stream.
+    /// </para>
+    /// <para>
+    /// <b>Note:</b> When invoking this API, you must use either the <c>StreamARN</c> or the
+    /// <c>StreamName</c> parameter, or both. It is recommended that you use the <c>StreamARN</c> input
+    /// parameter when you invoke this API.
+    /// </para>
+    /// <para>
+    /// Starting encryption is an asynchronous operation. Upon receiving the request, Kinesis Data Streams
+    /// returns immediately and sets the status of the stream to <c>UPDATING</c>. After the update is
+    /// complete, Kinesis Data Streams sets the status of the stream back to <c>ACTIVE</c>. Updating or
+    /// applying encryption normally takes a few seconds to complete, but it can take minutes. You can
+    /// continue to read and write data to your stream while its status is <c>UPDATING</c>. Once the status
+    /// of the stream is <c>ACTIVE</c>, encryption begins for records written to the stream.
+    /// </para>
+    /// <para>
+    /// API Limits: You can successfully apply a new Amazon Web Services KMS key for server-side encryption
+    /// 25 times in a rolling 24-hour period.
+    /// </para>
+    /// <para>
+    /// Note: It can take up to 5 seconds after the stream is in an <c>ACTIVE</c> status before all records
+    /// written to the stream are encrypted. After you enable encryption, you can verify that encryption is
+    /// applied by inspecting the API response from <c>PutRecord</c> or <c>PutRecords</c>.
+    /// </para>
+    /// </summary>
+    public static Task<StartStreamEncryptionOutput> StartStreamEncryptionAsync(
+        this IKinesis20131202Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.StartStreamEncryptionAsync(
+            new StartStreamEncryptionInput(),
+            cancellationToken
+        );
+    }
+
+    /// <summary>
+    /// <para>
+    /// Disables server-side encryption for a specified stream.
+    /// </para>
+    /// <para>
+    /// <b>Note:</b> When invoking this API, you must use either the <c>StreamARN</c> or the
+    /// <c>StreamName</c> parameter, or both. It is recommended that you use the <c>StreamARN</c> input
+    /// parameter when you invoke this API.
+    /// </para>
+    /// <para>
+    /// Stopping encryption is an asynchronous operation. Upon receiving the request, Kinesis Data Streams
+    /// returns immediately and sets the status of the stream to <c>UPDATING</c>. After the update is
+    /// complete, Kinesis Data Streams sets the status of the stream back to <c>ACTIVE</c>. Stopping
+    /// encryption normally takes a few seconds to complete, but it can take minutes. You can continue to
+    /// read and write data to your stream while its status is <c>UPDATING</c>. Once the status of the
+    /// stream is <c>ACTIVE</c>, records written to the stream are no longer encrypted by Kinesis Data
+    /// Streams.
+    /// </para>
+    /// <para>
+    /// API Limits: You can successfully disable server-side encryption 25 times in a rolling 24-hour
+    /// period.
+    /// </para>
+    /// <para>
+    /// Note: It can take up to 5 seconds after the stream is in an <c>ACTIVE</c> status before all records
+    /// written to the stream are no longer subject to encryption. After you disabled encryption, you can
+    /// verify that encryption is not applied by inspecting the API response from <c>PutRecord</c> or
+    /// <c>PutRecords</c>.
+    /// </para>
+    /// </summary>
+    public static Task<StopStreamEncryptionOutput> StopStreamEncryptionAsync(
+        this IKinesis20131202Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.StopStreamEncryptionAsync(new StopStreamEncryptionInput(), cancellationToken);
+    }
+
+    /// <summary>
+    /// <para>
+    /// This operation establishes an HTTP/2 connection between the consumer you specify in the
+    /// <c>ConsumerARN</c> parameter and the shard you specify in the <c>ShardId</c> parameter. After the
+    /// connection is successfully established, Kinesis Data Streams pushes records from the shard to the
+    /// consumer over this connection. Before you call this operation, call RegisterStreamConsumer to
+    /// register the consumer with Kinesis Data Streams.
+    /// </para>
+    /// <para>
+    /// When the <c>SubscribeToShard</c> call succeeds, your consumer starts receiving events of type
+    /// SubscribeToShardEvent over the HTTP/2 connection for up to 5 minutes, after which time you need to
+    /// call <c>SubscribeToShard</c> again to renew the subscription if you want to continue to receive
+    /// records.
+    /// </para>
+    /// <para>
+    /// You can make one call to <c>SubscribeToShard</c> per second per registered consumer per shard. For
+    /// example, if you have a 4000 shard stream and two registered stream consumers, you can make one
+    /// <c>SubscribeToShard</c> request per second for each combination of shard and registered consumer,
+    /// allowing you to subscribe both consumers to all 4000 shards in one second.
+    /// </para>
+    /// <para>
+    /// If you call <c>SubscribeToShard</c> again with the same <c>ConsumerARN</c> and <c>ShardId</c> within
+    /// 5 seconds of a successful call, you'll get a <c>ResourceInUseException</c>. If you call
+    /// <c>SubscribeToShard</c> 5 seconds or more after a successful call, the second call takes over the
+    /// subscription and the previous connection expires or fails with a <c>ResourceInUseException</c>.
+    /// </para>
+    /// <para>
+    /// For an example of how to use this operation, see
+    /// <see href="https://docs.aws.amazon.com/streams/latest/dev/building-enhanced-consumers-api.html">Enhanced
+    /// Fan-Out Using the Kinesis Data Streams API</see>.
+    /// </para>
+    /// </summary>
+    public static Task<SubscribeToShardOutput> SubscribeToShardAsync(
+        this IKinesis20131202Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.SubscribeToShardAsync(new SubscribeToShardInput(), cancellationToken);
+    }
+
+    /// <summary>
+    /// Adds or updates tags for the specified Kinesis resource. Each tag is a label consisting of a
+    /// user-defined key and value. Tags can help you manage, identify, organize, search for, and filter
+    /// resources. You can assign up to 50 tags to a Kinesis resource.
+    /// </summary>
+    public static Task<TagResourceOutput> TagResourceAsync(
+        this IKinesis20131202Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.TagResourceAsync(new TagResourceInput(), cancellationToken);
+    }
+
+    /// <summary>
+    /// Removes tags from the specified Kinesis resource. Removed tags are deleted and can't be recovered
+    /// after this operation completes successfully.
+    /// </summary>
+    public static Task<UntagResourceOutput> UntagResourceAsync(
+        this IKinesis20131202Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.UntagResourceAsync(new UntagResourceInput(), cancellationToken);
+    }
+
+    /// <summary>
+    /// <para>
+    /// Updates the account-level settings for Amazon Kinesis Data Streams.
+    /// </para>
+    /// <para>
+    /// Updating account settings is a synchronous operation. Upon receiving the request, Kinesis Data
+    /// Streams will return immediately with your account’s updated settings.
+    /// </para>
+    /// <para>
+    /// <b>API limits</b>
+    /// </para>
+    /// <list type="bullet">
+    /// <item>
+    /// <description>
+    /// Certain account configurations have minimum commitment windows. Attempting to update your settings
+    /// prior to the end of the minimum commitment window might have certain restrictions.
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <description>
+    /// This API has a call limit of 5 transactions per second (TPS) for each Amazon Web Services account.
+    /// TPS over 5 will initiate the <c>LimitExceededException</c>.
+    /// </description>
+    /// </item>
+    /// </list>
+    /// </summary>
+    public static Task<UpdateAccountSettingsOutput> UpdateAccountSettingsAsync(
+        this IKinesis20131202Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.UpdateAccountSettingsAsync(
+            new UpdateAccountSettingsInput(),
+            cancellationToken
+        );
+    }
+
+    /// <summary>
+    /// <para>
+    /// Updates the data freshness interval or the Amazon CloudWatch Logs configuration of an existing
+    /// channel. You cannot change the destination, source stream, record format, schema, encryption
+    /// configuration, or service execution role of an existing channel. To change any other setting, delete
+    /// the channel and create a new one.
+    /// </para>
+    /// <para>
+    /// Updating a channel is an asynchronous operation. Upon receiving the request, Amazon Kinesis Data
+    /// Streams sets the channel to the <c>UPDATING</c> state and returns immediately. After the change is
+    /// applied, Amazon Kinesis Data Streams sets the channel back to the <c>ACTIVE</c> state.
+    /// </para>
+    /// <para>
+    /// This operation has a call limit of 5 transactions per second (TPS) for each Amazon Web Services
+    /// account. Exceeding 5 TPS results in a <c>LimitExceededException</c>.
+    /// </para>
+    /// </summary>
+    public static Task<UpdateChannelOutput> UpdateChannelAsync(
+        this IKinesis20131202Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.UpdateChannelAsync(new UpdateChannelInput(), cancellationToken);
+    }
+
+    /// <summary>
+    /// This allows you to update the <c>MaxRecordSize</c> of a single record that you can write to, and
+    /// read from a stream. You can ingest and digest single records up to 10240 KiB.
+    /// </summary>
+    public static Task<UpdateMaxRecordSizeOutput> UpdateMaxRecordSizeAsync(
+        this IKinesis20131202Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.UpdateMaxRecordSizeAsync(new UpdateMaxRecordSizeInput(), cancellationToken);
+    }
+
+    /// <summary>
+    /// <para>
+    /// Updates the shard count of the specified stream to the specified number of shards. This API is only
+    /// supported for the data streams with the provisioned capacity mode.
+    /// </para>
+    /// <para>
+    /// <b>Note:</b> When invoking this API, you must use either the <c>StreamARN</c> or the
+    /// <c>StreamName</c> parameter, or both. It is recommended that you use the <c>StreamARN</c> input
+    /// parameter when you invoke this API.
+    /// </para>
+    /// <para>
+    /// Updating the shard count is an asynchronous operation. Upon receiving the request, Kinesis Data
+    /// Streams returns immediately and sets the status of the stream to <c>UPDATING</c>. After the update
+    /// is complete, Kinesis Data Streams sets the status of the stream back to <c>ACTIVE</c>. Depending on
+    /// the size of the stream, the scaling action could take a few minutes to complete. You can continue to
+    /// read and write data to your stream while its status is <c>UPDATING</c>.
+    /// </para>
+    /// <para>
+    /// To update the shard count, Kinesis Data Streams performs splits or merges on individual shards. This
+    /// can cause short-lived shards to be created, in addition to the final shards. These short-lived
+    /// shards count towards your total shard limit for your account in the Region.
+    /// </para>
+    /// <para>
+    /// When using this operation, we recommend that you specify a target shard count that is a multiple of
+    /// 25% (25%, 50%, 75%, 100%). You can specify any target value within your shard limit. However, if you
+    /// specify a target that isn't a multiple of 25%, the scaling action might take longer to complete.
+    /// </para>
+    /// <para>
+    /// This operation has the following default limits. By default, you cannot do the following:
+    /// </para>
+    /// <list type="bullet">
+    /// <item>
+    /// <description>
+    /// Scale more than ten times per rolling 24-hour period per stream
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <description>
+    /// Scale up to more than double your current shard count for a stream
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <description>
+    /// Scale down below half your current shard count for a stream
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <description>
+    /// Scale up to more than 10000 shards in a stream
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <description>
+    /// Scale a stream with more than 10000 shards down unless the result is less than 10000 shards
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <description>
+    /// Scale up to more than the shard limit for your account
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <description>
+    /// Make over 10 TPS. TPS over 10 will trigger the LimitExceededException
+    /// </description>
+    /// </item>
+    /// </list>
+    /// <para>
+    /// For the default limits for an Amazon Web Services account, see
+    /// <see href="https://docs.aws.amazon.com/kinesis/latest/dev/service-sizes-and-limits.html">Streams
+    /// Limits</see> in the <i>Amazon Kinesis Data Streams Developer Guide</i>. To request an increase in
+    /// the call rate limit, the shard limit for this API, or your overall shard limit, use the
+    /// <see href="https://console.aws.amazon.com/support/v1#/case/create?issueType=service-limit-increase&amp;limitType=service-code-kinesis">limits
+    /// form</see>.
+    /// </para>
+    /// </summary>
+    public static Task<UpdateShardCountOutput> UpdateShardCountAsync(
+        this IKinesis20131202Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.UpdateShardCountAsync(new UpdateShardCountInput(), cancellationToken);
+    }
+
+    /// <summary>
+    /// <para>
+    /// Updates the capacity mode of the data stream. Currently, in Kinesis Data Streams, you can choose
+    /// between an <b>on-demand</b> capacity mode and a <b>provisioned</b> capacity mode for your data
+    /// stream.
+    /// </para>
+    /// <para>
+    /// If you'd still like to proactively scale your on-demand data stream’s capacity, you can unlock the
+    /// warm throughput feature for on-demand data streams by enabling
+    /// <c>MinimumThroughputBillingCommitment</c> for your account. Once your account has
+    /// <c>MinimumThroughputBillingCommitment</c> enabled, you can specify the warm throughput in MiB per
+    /// second that your stream can support in writes.
+    /// </para>
+    /// </summary>
+    public static Task<UpdateStreamModeOutput> UpdateStreamModeAsync(
+        this IKinesis20131202Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.UpdateStreamModeAsync(new UpdateStreamModeInput(), cancellationToken);
+    }
+
+    /// <summary>
+    /// <para>
+    /// Updates the record distribution strategy for the specified Amazon Kinesis Data Streams on-demand
+    /// data stream. The record distribution strategy determines how Amazon Kinesis Data Streams distributes
+    /// records across the shards in a stream.
+    /// </para>
+    /// <para>
+    /// <b>Note:</b> You must specify the stream using the <c>StreamARN</c> parameter.
+    /// </para>
+    /// <para>
+    /// The record distribution strategy is a stream-level setting. You can switch between the following
+    /// strategies at any time, and the change takes effect immediately without downtime, data loss, or
+    /// disruption to producer or consumer applications:
+    /// </para>
+    /// <list type="bullet">
+    /// <item>
+    /// <description>
+    /// <c>AUTO</c> – Amazon Kinesis Data Streams distributes records evenly across shards using
+    /// service-managed algorithms, and ignores any partition key and <c>ExplicitHashKey</c> that a producer
+    /// provides. Use this strategy for stateless workloads that do not require partition-key ordering.
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <description>
+    /// <c>USER_PARTITION_KEY</c> – Producers must provide a partition key, and Amazon Kinesis Data Streams
+    /// uses the partition key to determine shard placement. Records that share a partition key are sent to
+    /// the same shard. This is the default strategy.
+    /// </description>
+    /// </item>
+    /// </list>
+    /// <para>
+    /// This operation is only supported for data streams that use the on-demand capacity mode. Provisioned
+    /// capacity mode streams do not support the record distribution strategy setting. Attempting to set
+    /// <c>AUTO</c> on a provisioned stream results in an <c>InvalidArgumentException</c>.
+    /// </para>
+    /// <para>
+    /// New records that arrive after the change are distributed according to the new strategy. Records
+    /// already in the stream keep their original shard assignments and are not redistributed.
+    /// </para>
+    /// </summary>
+    public static Task<UpdateStreamRecordDistributionStrategyOutput> UpdateStreamRecordDistributionStrategyAsync(
+        this IKinesis20131202Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.UpdateStreamRecordDistributionStrategyAsync(
+            new UpdateStreamRecordDistributionStrategyInput(),
+            cancellationToken
+        );
+    }
+
+    /// <summary>
+    /// <para>
+    /// Updates the warm throughput configuration for the specified Amazon Kinesis Data Streams on-demand
+    /// data stream. Updates the warm throughput configuration for the specified on-demand data stream. Use
+    /// this operation to scale your stream to a specified throughput level before anticipated traffic
+    /// spikes, or to release excess capacity after traffic has decreased.
+    /// </para>
+    /// <para>
+    /// <b>Note:</b> When invoking this API, you must use either the <c>StreamARN</c> or the
+    /// <c>StreamName</c> parameter, or both. It is recommended that you use the <c>StreamARN</c> input
+    /// parameter when you invoke this API.
+    /// </para>
+    /// <para>
+    /// Updating the warm throughput is an asynchronous operation. Upon receiving the request, Kinesis Data
+    /// Streams returns immediately and sets the status of the stream to <c>UPDATING</c>. After the update
+    /// is complete, Kinesis Data Streams sets the status of the stream back to <c>ACTIVE</c>. Depending on
+    /// the size of the stream, the scaling action could take a few minutes to complete. You can continue to
+    /// read and write data to your stream while its status is <c>UPDATING</c>.
+    /// </para>
+    /// <para>
+    /// This operation is only supported for data streams with the on-demand capacity mode in accounts that
+    /// have <c>MinimumThroughputBillingCommitment</c> enabled. Provisioned capacity mode streams do not
+    /// support warm throughput configuration.
+    /// </para>
+    /// <para>
+    /// To release excess capacity, call the API again and set the warm throughput to the same or a lower
+    /// value.
+    /// </para>
+    /// <para>
+    /// This operation has the following default limits. By default, you cannot do the following:
+    /// </para>
+    /// <list type="bullet">
+    /// <item>
+    /// <description>
+    /// Scale to more than 10 GiBps for an on-demand stream.
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <description>
+    /// This API has a call limit of 5 transactions per second (TPS) for each Amazon Web Services account.
+    /// TPS over 5 will initiate the <c>LimitExceededException</c>.
+    /// </description>
+    /// </item>
+    /// </list>
+    /// <para>
+    /// For the default limits for an Amazon Web Services account, see
+    /// <see href="https://docs.aws.amazon.com/kinesis/latest/dev/service-sizes-and-limits.html">Streams
+    /// Limits</see> in the <i>Amazon Kinesis Data Streams Developer Guide</i>. To request an increase in
+    /// the call rate limit, the shard limit for this API, or your overall shard limit, use the
+    /// <see href="https://console.aws.amazon.com/support/v1#/case/create?issueType=service-limit-increase&amp;limitType=service-code-kinesis">limits
+    /// form</see>.
+    /// </para>
+    /// </summary>
+    public static Task<UpdateStreamWarmThroughputOutput> UpdateStreamWarmThroughputAsync(
+        this IKinesis20131202Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.UpdateStreamWarmThroughputAsync(
+            new UpdateStreamWarmThroughputInput(),
+            cancellationToken
+        );
     }
 }
 
@@ -4264,7 +5669,7 @@ public sealed class Kinesis20131202Client : IKinesis20131202Client
     /// To create an S3 channel
     /// </para>
     /// <code>
-    /// var input = new CreateChannelInput(ChannelName: &quot;my-channel-name&quot;, ServiceExecutionRoleARN: &quot;arn:aws:iam::123456789012:role/my-channel-role&quot;, StreamConfigurationList: new ChannelStreamConfiguration[] { new ChannelStreamConfiguration(RecordConfiguration: new RecordConfiguration(RecordFormatType: new RecordFormatType(&quot;JSON&quot;)), StreamARN: &quot;arn:aws:kinesis:us-east-1:123456789012:stream/my-stream-name&quot;) }, EncryptionConfiguration: new ChannelEncryptionConfiguration(EncryptionType: new ChannelEncryptionType(&quot;KMS&quot;), KeyId: &quot;arn:aws:kms:us-east-1:123456789012:key/1234abcd-12ab-34cd-56ef-1234567890ab&quot;), LoggingConfiguration: new ChannelLoggingConfiguration(CloudWatchLogs: new CloudWatchLogs(Enabled: true, LogGroupName: &quot;/aws/kinesis/my-channel&quot;, LogStreamName: &quot;my-channel-log-stream&quot;)), S3DestinationConfiguration: new S3DestinationConfiguration(StorageConfiguration: new S3StorageConfiguration(BucketARN: &quot;arn:aws:s3:::my-channel-bucket&quot;, CompressionType: new S3CompressionType(&quot;ZSTD&quot;), ExpectedBucketOwner: &quot;123456789012&quot;), DeadLetterQueueS3Configuration: new DeadLetterQueueS3Configuration(BucketARN: &quot;arn:aws:s3:::my-channel-dlq-bucket&quot;, ExpectedBucketOwner: &quot;123456789012&quot;)));
+    /// var input = new CreateChannelInput(ChannelName: &quot;my-channel-name&quot;, EncryptionConfiguration: new ChannelEncryptionConfiguration(EncryptionType: new ChannelEncryptionType(&quot;KMS&quot;), KeyId: &quot;arn:aws:kms:us-east-1:123456789012:key/1234abcd-12ab-34cd-56ef-1234567890ab&quot;), LoggingConfiguration: new ChannelLoggingConfiguration(CloudWatchLogs: new CloudWatchLogs(Enabled: true, LogGroupName: &quot;/aws/kinesis/my-channel&quot;, LogStreamName: &quot;my-channel-log-stream&quot;)), S3DestinationConfiguration: new S3DestinationConfiguration(StorageConfiguration: new S3StorageConfiguration(BucketARN: &quot;arn:aws:s3:::my-channel-bucket&quot;, CompressionType: new S3CompressionType(&quot;ZSTD&quot;), ExpectedBucketOwner: &quot;123456789012&quot;), DeadLetterQueueS3Configuration: new DeadLetterQueueS3Configuration(BucketARN: &quot;arn:aws:s3:::my-channel-dlq-bucket&quot;, ExpectedBucketOwner: &quot;123456789012&quot;)), ServiceExecutionRoleARN: &quot;arn:aws:iam::123456789012:role/my-channel-role&quot;, StreamConfigurationList: new ChannelStreamConfiguration[] { new ChannelStreamConfiguration(RecordConfiguration: new RecordConfiguration(RecordFormatType: new RecordFormatType(&quot;JSON&quot;)), StreamARN: &quot;arn:aws:kinesis:us-east-1:123456789012:stream/my-stream-name&quot;) });
     /// var output = await client.CreateChannelAsync(input);
     ///
     /// // Expected output:
@@ -4276,7 +5681,7 @@ public sealed class Kinesis20131202Client : IKinesis20131202Client
     /// To create an S3 Tables channel
     /// </para>
     /// <code>
-    /// var input = new CreateChannelInput(ChannelName: &quot;my-channel-name&quot;, ServiceExecutionRoleARN: &quot;arn:aws:iam::123456789012:role/my-channel-role&quot;, StreamConfigurationList: new ChannelStreamConfiguration[] { new ChannelStreamConfiguration(RecordConfiguration: new RecordConfiguration(RecordFormatType: new RecordFormatType(&quot;JSON&quot;), GSRSchemaARN: &quot;arn:aws:glue:us-east-1:123456789012:schema/my-registry/my-schema&quot;), StreamARN: &quot;arn:aws:kinesis:us-east-1:123456789012:stream/my-stream-name&quot;) }, EncryptionConfiguration: new ChannelEncryptionConfiguration(EncryptionType: new ChannelEncryptionType(&quot;KMS&quot;), KeyId: &quot;arn:aws:kms:us-east-1:123456789012:key/1234abcd-12ab-34cd-56ef-1234567890ab&quot;), LoggingConfiguration: new ChannelLoggingConfiguration(CloudWatchLogs: new CloudWatchLogs(Enabled: true, LogGroupName: &quot;/aws/kinesis/my-channel&quot;, LogStreamName: &quot;my-channel-log-stream&quot;)), S3TablesDestinationConfiguration: new S3TablesDestinationConfiguration(DeadLetterQueueS3Configuration: new DeadLetterQueueS3Configuration(BucketARN: &quot;arn:aws:s3:::my-channel-dlq-bucket&quot;, ExpectedBucketOwner: &quot;123456789012&quot;), S3TablesConfigurationList: new S3TablesConfiguration[] { new S3TablesConfiguration(CompressionType: new S3TablesCompressionType(&quot;ZSTD&quot;), Namespace: &quot;my_namespace&quot;, TableBucketARN: &quot;arn:aws:s3tables:us-east-1:123456789012:bucket/my-table-bucket&quot;, TableName: &quot;my_table&quot;, PartitionSpec: new PartitionSpec(PartitionFields: new PartitionField[] { new PartitionField(SourceName: &quot;creation_ts&quot;, Transform: new PartitionTransform(&quot;TIME_HOUR&quot;)) })) }));
+    /// var input = new CreateChannelInput(ChannelName: &quot;my-channel-name&quot;, EncryptionConfiguration: new ChannelEncryptionConfiguration(EncryptionType: new ChannelEncryptionType(&quot;KMS&quot;), KeyId: &quot;arn:aws:kms:us-east-1:123456789012:key/1234abcd-12ab-34cd-56ef-1234567890ab&quot;), LoggingConfiguration: new ChannelLoggingConfiguration(CloudWatchLogs: new CloudWatchLogs(Enabled: true, LogGroupName: &quot;/aws/kinesis/my-channel&quot;, LogStreamName: &quot;my-channel-log-stream&quot;)), S3TablesDestinationConfiguration: new S3TablesDestinationConfiguration(DeadLetterQueueS3Configuration: new DeadLetterQueueS3Configuration(BucketARN: &quot;arn:aws:s3:::my-channel-dlq-bucket&quot;, ExpectedBucketOwner: &quot;123456789012&quot;), S3TablesConfigurationList: new S3TablesConfiguration[] { new S3TablesConfiguration(CompressionType: new S3TablesCompressionType(&quot;ZSTD&quot;), Namespace: &quot;my_namespace&quot;, TableBucketARN: &quot;arn:aws:s3tables:us-east-1:123456789012:bucket/my-table-bucket&quot;, TableName: &quot;my_table&quot;, PartitionSpec: new PartitionSpec(PartitionFields: new PartitionField[] { new PartitionField(SourceName: &quot;creation_ts&quot;, Transform: new PartitionTransform(&quot;TIME_HOUR&quot;)) })) }), ServiceExecutionRoleARN: &quot;arn:aws:iam::123456789012:role/my-channel-role&quot;, StreamConfigurationList: new ChannelStreamConfiguration[] { new ChannelStreamConfiguration(RecordConfiguration: new RecordConfiguration(RecordFormatType: new RecordFormatType(&quot;JSON&quot;), GSRSchemaARN: &quot;arn:aws:glue:us-east-1:123456789012:schema/my-registry/my-schema&quot;), StreamARN: &quot;arn:aws:kinesis:us-east-1:123456789012:stream/my-stream-name&quot;) });
     /// var output = await client.CreateChannelAsync(input);
     ///
     /// // Expected output:

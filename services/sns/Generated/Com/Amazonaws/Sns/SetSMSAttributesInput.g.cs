@@ -126,4 +126,6 @@ namespace Com.Amazonaws.Sns;
 /// in the <i>Amazon SNS Developer Guide</i>.
 /// </para>
 /// </param>
-public sealed record class SetSMSAttributesInput(IReadOnlyDictionary<string, string> Attributes);
+public sealed record class SetSMSAttributesInput(
+    IReadOnlyDictionary<string, string>? Attributes = null
+);

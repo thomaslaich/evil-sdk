@@ -7,6 +7,11 @@ namespace Com.Amazonaws.Cloudwatchlogs;
 /// <summary>
 /// Represents the Smithy structure com.amazonaws.cloudwatchlogs#CreateImportTaskInput.
 /// </summary>
+/// <param name="ImportFilter">
+/// Optional filters to constrain the import by CloudTrail event time. Times are specified in Unix
+/// timestamp milliseconds. The range of data being imported must be within the specified source's
+/// retention period.
+/// </param>
 /// <param name="ImportRoleArn">
 /// The ARN of the IAM role that grants CloudWatch Logs permission to import from the CloudTrail Lake
 /// Event Data Store.
@@ -14,13 +19,8 @@ namespace Com.Amazonaws.Cloudwatchlogs;
 /// <param name="ImportSourceArn">
 /// The ARN of the source to import from.
 /// </param>
-/// <param name="ImportFilter">
-/// Optional filters to constrain the import by CloudTrail event time. Times are specified in Unix
-/// timestamp milliseconds. The range of data being imported must be within the specified source's
-/// retention period.
-/// </param>
 public sealed record class CreateImportTaskInput(
-    string ImportRoleArn,
-    string ImportSourceArn,
-    global::Com.Amazonaws.Cloudwatchlogs.ImportFilter? ImportFilter = null
+    global::Com.Amazonaws.Cloudwatchlogs.ImportFilter? ImportFilter = null,
+    string? ImportRoleArn = null,
+    string? ImportSourceArn = null
 );

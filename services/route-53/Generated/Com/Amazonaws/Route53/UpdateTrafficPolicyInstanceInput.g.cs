@@ -23,8 +23,8 @@ namespace Com.Amazonaws.Route53;
 /// sets for the specified traffic policy instance.
 /// </param>
 public sealed record class UpdateTrafficPolicyInstanceInput(
-    string Id,
-    long TTL,
-    string TrafficPolicyId,
-    int TrafficPolicyVersion
+    string? Id = null,
+    long? TTL = null,
+    string? TrafficPolicyId = null,
+    int? TrafficPolicyVersion = null
 );

@@ -10,4 +10,4 @@ namespace Com.Amazonaws.Lambda;
 /// <param name="Arn">
 /// The ARN of the layer version.
 /// </param>
-public sealed record class GetLayerVersionByArnInput(string Arn);
+public sealed record class GetLayerVersionByArnInput(string? Arn = null);

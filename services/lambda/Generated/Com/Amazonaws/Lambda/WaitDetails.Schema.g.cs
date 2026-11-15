@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Lambda.Schemas;
 
 public static partial class WaitDetailsSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public DateTimeOffset? ScheduledEndTimestamp { get; set; }
     }
@@ -50,7 +50,7 @@ public static partial class WaitDetailsSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

@@ -7,16 +7,6 @@ namespace Com.Amazonaws.Iam;
 /// <summary>
 /// Represents the Smithy structure com.amazonaws.iam#UpdateUserInput.
 /// </summary>
-/// <param name="UserName">
-/// <para>
-/// Name of the user to update. If you're changing the name of the user, this is the original user name.
-/// </para>
-/// <para>
-/// This parameter allows (through its <see href="http://wikipedia.org/wiki/regex">regex pattern</see>)
-/// a string of characters consisting of upper and lowercase alphanumeric characters with no spaces. You
-/// can also include any of the following characters: _+=,.@-
-/// </para>
-/// </param>
 /// <param name="NewPath">
 /// <para>
 /// New path for the IAM user. Include this parameter only if you're changing the user's path.
@@ -39,8 +29,18 @@ namespace Com.Amazonaws.Iam;
 /// "myresource".
 /// </para>
 /// </param>
+/// <param name="UserName">
+/// <para>
+/// Name of the user to update. If you're changing the name of the user, this is the original user name.
+/// </para>
+/// <para>
+/// This parameter allows (through its <see href="http://wikipedia.org/wiki/regex">regex pattern</see>)
+/// a string of characters consisting of upper and lowercase alphanumeric characters with no spaces. You
+/// can also include any of the following characters: _+=,.@-
+/// </para>
+/// </param>
 public sealed record class UpdateUserInput(
-    string UserName,
     string? NewPath = null,
-    string? NewUserName = null
+    string? NewUserName = null,
+    string? UserName = null
 );

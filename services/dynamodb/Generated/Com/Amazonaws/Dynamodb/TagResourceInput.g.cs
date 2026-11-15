@@ -17,6 +17,6 @@ namespace Com.Amazonaws.Dynamodb;
 /// The tags to be assigned to the Amazon DynamoDB resource.
 /// </param>
 public sealed record class TagResourceInput(
-    string ResourceArn,
-    IReadOnlyList<global::Com.Amazonaws.Dynamodb.Tag> Tags
+    string? ResourceArn = null,
+    IReadOnlyList<global::Com.Amazonaws.Dynamodb.Tag>? Tags = null
 );

@@ -23,8 +23,8 @@ namespace Com.Amazonaws.S3;
 /// The account ID of the expected bucket owner.
 /// </param>
 public sealed record class UpdateBucketMetadataAnnotationTableConfigurationInput(
-    AnnotationTableConfigurationUpdates AnnotationTableConfiguration,
-    string Bucket,
+    AnnotationTableConfigurationUpdates? AnnotationTableConfiguration = null,
+    string? Bucket = null,
     global::Com.Amazonaws.S3.ChecksumAlgorithm? ChecksumAlgorithm = null,
     string? ContentMD5 = null,
     string? ExpectedBucketOwner = null

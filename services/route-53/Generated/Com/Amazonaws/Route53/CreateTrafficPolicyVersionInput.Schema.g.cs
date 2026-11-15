@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Route53.Schemas;
 
 public static partial class CreateTrafficPolicyVersionInputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? Id { get; set; }
         public string? Document { get; set; }
@@ -29,7 +29,6 @@ public static partial class CreateTrafficPolicyVersionInputSchema
                 new(
                     "Id",
                     Target0,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
@@ -48,18 +47,11 @@ public static partial class CreateTrafficPolicyVersionInputSchema
                                 }
                             )
                         ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            global::NSmithy.Core.Document.From(
-                                new Dictionary<string, global::NSmithy.Core.Document> { }
-                            )
-                        ),
                     ]
                 ),
                 new(
                     "Document",
                     Target1,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
@@ -70,12 +62,6 @@ public static partial class CreateTrafficPolicyVersionInputSchema
                                     { "min", global::NSmithy.Core.Document.From(0m) },
                                     { "max", global::NSmithy.Core.Document.From(102400m) },
                                 }
-                            )
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            global::NSmithy.Core.Document.From(
-                                new Dictionary<string, global::NSmithy.Core.Document> { }
                             )
                         ),
                     ]
@@ -133,9 +119,9 @@ public static partial class CreateTrafficPolicyVersionInputSchema
             Builder builder
         ) =>
             new global::Com.Amazonaws.Route53.CreateTrafficPolicyVersionInput(
-                builder.Document ?? throw new MissingRequiredMemberException("Document"),
-                builder.Id ?? throw new MissingRequiredMemberException("Id"),
-                builder.Comment
+                builder.Comment,
+                builder.Document,
+                builder.Id
             );
 
         public override void SerializeMembers<TSerializer>(
@@ -169,7 +155,7 @@ public static partial class CreateTrafficPolicyVersionInputSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

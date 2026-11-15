@@ -9,9 +9,6 @@ namespace Com.Amazonaws.Dynamodb;
 /// <summary>
 /// Represents the Smithy structure com.amazonaws.dynamodb#ExecuteTransactionInput.
 /// </summary>
-/// <param name="TransactStatements">
-/// The list of PartiQL statements representing the transaction to run.
-/// </param>
 /// <param name="ClientRequestToken">
 /// Set this value to get remaining results, if <c>NextToken</c> was returned in the statement response.
 /// </param>
@@ -22,8 +19,11 @@ namespace Com.Amazonaws.Dynamodb;
 /// and
 /// <see href="https://docs.aws.amazon.com/amazondynamodb/latest/APIReference/API_TransactWriteItems.html">TransactWriteItems</see>.
 /// </param>
+/// <param name="TransactStatements">
+/// The list of PartiQL statements representing the transaction to run.
+/// </param>
 public sealed record class ExecuteTransactionInput(
-    IReadOnlyList<ParameterizedStatement> TransactStatements,
     string? ClientRequestToken = null,
-    global::Com.Amazonaws.Dynamodb.ReturnConsumedCapacity? ReturnConsumedCapacity = null
+    global::Com.Amazonaws.Dynamodb.ReturnConsumedCapacity? ReturnConsumedCapacity = null,
+    IReadOnlyList<ParameterizedStatement>? TransactStatements = null
 );

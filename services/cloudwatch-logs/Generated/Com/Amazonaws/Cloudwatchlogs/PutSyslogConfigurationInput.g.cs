@@ -14,6 +14,6 @@ namespace Com.Amazonaws.Cloudwatchlogs;
 /// The ID of the VPC endpoint to use for syslog ingestion.
 /// </param>
 public sealed record class PutSyslogConfigurationInput(
-    string LogGroupIdentifier,
+    string? LogGroupIdentifier = null,
     string? VpcEndpointId = null
 );

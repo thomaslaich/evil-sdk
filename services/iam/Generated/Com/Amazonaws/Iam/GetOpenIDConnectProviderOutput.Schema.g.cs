@@ -11,7 +11,7 @@ namespace Com.Amazonaws.Iam.Schemas;
 
 public static partial class GetOpenIDConnectProviderOutputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? Url { get; set; }
         public IReadOnlyList<string>? ClientIDList { get; set; }
@@ -144,7 +144,7 @@ public static partial class GetOpenIDConnectProviderOutputSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

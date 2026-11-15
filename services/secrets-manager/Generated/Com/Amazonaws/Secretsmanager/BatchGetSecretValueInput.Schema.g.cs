@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Secretsmanager.Schemas;
 
 public static partial class BatchGetSecretValueInputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public IReadOnlyList<string>? SecretIdList { get; set; }
         public IReadOnlyList<global::Com.Amazonaws.Secretsmanager.Filter>? Filters { get; set; }
@@ -146,7 +146,7 @@ public static partial class BatchGetSecretValueInputSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

@@ -10,9 +10,6 @@ namespace Com.Amazonaws.S3;
 /// <param name="Bucket">
 /// The bucket name.
 /// </param>
-/// <param name="VersioningConfiguration">
-/// Container for setting the versioning state.
-/// </param>
 /// <param name="ChecksumAlgorithm">
 /// <para>
 /// Indicates the algorithm used to create the checksum for the request when you use the SDK. This
@@ -54,11 +51,14 @@ namespace Com.Amazonaws.S3;
 /// <see href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/MultiFactorAuthenticationDelete.html">Configuring
 /// MFA delete</see> in the <i>Amazon Simple Storage Service User Guide</i>.
 /// </param>
+/// <param name="VersioningConfiguration">
+/// Container for setting the versioning state.
+/// </param>
 public sealed record class PutBucketVersioningInput(
-    string Bucket,
-    global::Com.Amazonaws.S3.VersioningConfiguration VersioningConfiguration,
+    string? Bucket = null,
     global::Com.Amazonaws.S3.ChecksumAlgorithm? ChecksumAlgorithm = null,
     string? ContentMD5 = null,
     string? ExpectedBucketOwner = null,
-    string? MFA = null
+    string? MFA = null,
+    global::Com.Amazonaws.S3.VersioningConfiguration? VersioningConfiguration = null
 );

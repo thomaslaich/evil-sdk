@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Secretsmanager.Schemas;
 
 public static partial class GetRandomPasswordInputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public long? PasswordLength { get; set; }
         public string? ExcludeCharacters { get; set; }
@@ -260,7 +260,7 @@ public static partial class GetRandomPasswordInputSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

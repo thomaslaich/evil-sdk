@@ -7,6 +7,23 @@ namespace Com.Amazonaws.Lambda;
 /// <summary>
 /// Represents the Smithy structure com.amazonaws.lambda#InvokeInput.
 /// </summary>
+/// <param name="ClientContext">
+/// Up to 3,583 bytes of base64-encoded data about the invoking client to pass to the function in the
+/// context object. Lambda passes the <c>ClientContext</c> object to your function for synchronous
+/// invocations only.
+/// </param>
+/// <param name="DurableExecutionName">
+/// <para>
+/// A unique name for the durable execution. If you invoke a durable function using a name that already
+/// exists with the same payload, Lambda returns the existing execution instead of creating a duplicate.
+/// If the payload differs, Lambda returns a <c>DurableExecutionAlreadyStartedException</c> error.
+/// </para>
+/// <para>
+/// If not specified, Lambda generates a unique identifier automatically. For more information, see
+/// <see href="https://docs.aws.amazon.com/lambda/latest/dg/durable-execution-idempotency.html#durable-idempotency-execution-names">Execution
+/// names</see>.
+/// </para>
+/// </param>
 /// <param name="FunctionName">
 /// <para>
 /// The name or ARN of the Lambda function, version, or alias.
@@ -34,23 +51,6 @@ namespace Com.Amazonaws.Lambda;
 /// <para>
 /// You can append a version number or alias to any of the formats. The length constraint applies only
 /// to the full ARN. If you specify only the function name, it is limited to 64 characters in length.
-/// </para>
-/// </param>
-/// <param name="ClientContext">
-/// Up to 3,583 bytes of base64-encoded data about the invoking client to pass to the function in the
-/// context object. Lambda passes the <c>ClientContext</c> object to your function for synchronous
-/// invocations only.
-/// </param>
-/// <param name="DurableExecutionName">
-/// <para>
-/// A unique name for the durable execution. If you invoke a durable function using a name that already
-/// exists with the same payload, Lambda returns the existing execution instead of creating a duplicate.
-/// If the payload differs, Lambda returns a <c>DurableExecutionAlreadyStartedException</c> error.
-/// </para>
-/// <para>
-/// If not specified, Lambda generates a unique identifier automatically. For more information, see
-/// <see href="https://docs.aws.amazon.com/lambda/latest/dg/durable-execution-idempotency.html#durable-idempotency-execution-names">Execution
-/// names</see>.
 /// </para>
 /// </param>
 /// <param name="InvocationType">
@@ -100,9 +100,9 @@ namespace Com.Amazonaws.Lambda;
 /// The identifier of the tenant in a multi-tenant Lambda function.
 /// </param>
 public sealed record class InvokeInput(
-    string FunctionName,
     string? ClientContext = null,
     string? DurableExecutionName = null,
+    string? FunctionName = null,
     global::Com.Amazonaws.Lambda.InvocationType? InvocationType = null,
     global::Com.Amazonaws.Lambda.LogType? LogType = null,
     byte[]? Payload = null,

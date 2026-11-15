@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Cloudwatchlogs.Schemas;
 
 public static partial class GetScheduledQueryHistoryInputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? Identifier { get; set; }
         public long? StartTime { get; set; }
@@ -32,7 +32,6 @@ public static partial class GetScheduledQueryHistoryInputSchema
                 new(
                     "identifier",
                     Target0,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
@@ -45,16 +44,11 @@ public static partial class GetScheduledQueryHistoryInputSchema
                                 }
                             )
                         ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
                     ]
                 ),
                 new(
                     "startTime",
                     Target1,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
@@ -66,17 +60,12 @@ public static partial class GetScheduledQueryHistoryInputSchema
                             Document.From(
                                 new Dictionary<string, Document> { { "min", Document.From(0m) } }
                             )
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
                         ),
                     ]
                 ),
                 new(
                     "endTime",
                     Target2,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
@@ -88,10 +77,6 @@ public static partial class GetScheduledQueryHistoryInputSchema
                             Document.From(
                                 new Dictionary<string, Document> { { "min", Document.From(0m) } }
                             )
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
                         ),
                     ]
                 ),
@@ -168,12 +153,12 @@ public static partial class GetScheduledQueryHistoryInputSchema
             Builder builder
         ) =>
             new global::Com.Amazonaws.Cloudwatchlogs.GetScheduledQueryHistoryInput(
-                builder.EndTime.GetValueOrDefault(),
-                builder.Identifier ?? throw new MissingRequiredMemberException("identifier"),
-                builder.StartTime.GetValueOrDefault(),
+                builder.EndTime,
                 builder.ExecutionStatuses,
+                builder.Identifier,
                 builder.MaxResults,
-                builder.NextToken
+                builder.NextToken,
+                builder.StartTime
             );
 
         public override void SerializeMembers<TSerializer>(
@@ -189,8 +174,22 @@ public static partial class GetScheduledQueryHistoryInputSchema
             {
                 serializer.WriteNull(0);
             }
-            serializer.WriteLong(1, value.StartTime);
-            serializer.WriteLong(2, value.EndTime);
+            if (value.StartTime is { } value1)
+            {
+                serializer.WriteLong(1, value1);
+            }
+            else
+            {
+                serializer.WriteNull(1);
+            }
+            if (value.EndTime is { } value2)
+            {
+                serializer.WriteLong(2, value2);
+            }
+            else
+            {
+                serializer.WriteNull(2);
+            }
             if (value.ExecutionStatuses is { } value3)
             {
                 serializer.WriteList(3, value3, ExecutionStatusListSchema.Schema);
@@ -217,7 +216,7 @@ public static partial class GetScheduledQueryHistoryInputSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

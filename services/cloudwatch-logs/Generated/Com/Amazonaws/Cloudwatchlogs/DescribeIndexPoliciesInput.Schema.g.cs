@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Cloudwatchlogs.Schemas;
 
 public static partial class DescribeIndexPoliciesInputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public IReadOnlyList<string>? LogGroupIdentifiers { get; set; }
         public string? NextToken { get; set; }
@@ -25,18 +25,7 @@ public static partial class DescribeIndexPoliciesInputSchema
         : StructSchema<global::Com.Amazonaws.Cloudwatchlogs.DescribeIndexPoliciesInput, Builder>(
             ShapeId.Parse("com.amazonaws.cloudwatchlogs#DescribeIndexPoliciesInput"),
             [
-                new(
-                    "logGroupIdentifiers",
-                    Target0,
-                    isRequired: true,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
-                    ]
-                ),
+                new("logGroupIdentifiers", Target0),
                 new(
                     "nextToken",
                     Target1,
@@ -80,8 +69,7 @@ public static partial class DescribeIndexPoliciesInputSchema
             Builder builder
         ) =>
             new global::Com.Amazonaws.Cloudwatchlogs.DescribeIndexPoliciesInput(
-                builder.LogGroupIdentifiers
-                    ?? throw new MissingRequiredMemberException("logGroupIdentifiers"),
+                builder.LogGroupIdentifiers,
                 builder.NextToken
             );
 
@@ -112,7 +100,7 @@ public static partial class DescribeIndexPoliciesInputSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

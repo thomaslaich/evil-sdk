@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Dynamodb.Schemas;
 
 public static partial class ScanInputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? TableName { get; set; }
         public string? IndexName { get; set; }
@@ -49,7 +49,6 @@ public static partial class ScanInputSchema
                 new(
                     "TableName",
                     Target0,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
@@ -61,10 +60,6 @@ public static partial class ScanInputSchema
                                     { "max", Document.From(1024m) },
                                 }
                             )
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
                         ),
                         new Trait(
                             ShapeId.Parse("smithy.rules#contextParam"),
@@ -250,7 +245,6 @@ public static partial class ScanInputSchema
 
         public override global::Com.Amazonaws.Dynamodb.ScanInput Build(Builder builder) =>
             new global::Com.Amazonaws.Dynamodb.ScanInput(
-                builder.TableName ?? throw new MissingRequiredMemberException("TableName"),
                 builder.AttributesToGet,
                 builder.ConditionalOperator,
                 builder.ConsistentRead,
@@ -265,6 +259,7 @@ public static partial class ScanInputSchema
                 builder.ScanFilter,
                 builder.Segment,
                 builder.Select,
+                builder.TableName,
                 builder.TotalSegments
             );
 
@@ -403,7 +398,7 @@ public static partial class ScanInputSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

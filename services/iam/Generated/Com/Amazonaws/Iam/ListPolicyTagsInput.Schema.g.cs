@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Iam.Schemas;
 
 public static partial class ListPolicyTagsInputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? PolicyArn { get; set; }
         public string? Marker { get; set; }
@@ -29,7 +29,6 @@ public static partial class ListPolicyTagsInputSchema
                 new(
                     "PolicyArn",
                     Target0,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
@@ -41,10 +40,6 @@ public static partial class ListPolicyTagsInputSchema
                                     { "max", Document.From(2048m) },
                                 }
                             )
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
                         ),
                     ]
                 ),
@@ -118,9 +113,9 @@ public static partial class ListPolicyTagsInputSchema
 
         public override global::Com.Amazonaws.Iam.ListPolicyTagsInput Build(Builder builder) =>
             new global::Com.Amazonaws.Iam.ListPolicyTagsInput(
-                builder.PolicyArn ?? throw new MissingRequiredMemberException("PolicyArn"),
                 builder.Marker,
-                builder.MaxItems
+                builder.MaxItems,
+                builder.PolicyArn
             );
 
         public override void SerializeMembers<TSerializer>(
@@ -154,7 +149,7 @@ public static partial class ListPolicyTagsInputSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

@@ -9,20 +9,6 @@ namespace Com.Amazonaws.Eventbridge;
 /// <summary>
 /// Represents the Smithy structure com.amazonaws.eventbridge#CreateEventBusInput.
 /// </summary>
-/// <param name="Name">
-/// <para>
-/// The name of the new event bus.
-/// </para>
-/// <para>
-/// Custom event bus names can't contain the <c>/</c> character, but you can use the <c>/</c> character
-/// in partner event bus names. In addition, for partner event buses, the name must exactly match the
-/// name of the partner event source that this event bus is matched to.
-/// </para>
-/// <para>
-/// You can't use the name <c>default</c> for a custom event bus, as this name is already used for your
-/// account's default event bus.
-/// </para>
-/// </param>
 /// <param name="Description">
 /// The event bus description.
 /// </param>
@@ -92,15 +78,29 @@ namespace Com.Amazonaws.Eventbridge;
 /// logs for event buses</see> in the <i>EventBridge User Guide</i>.
 /// </para>
 /// </param>
+/// <param name="Name">
+/// <para>
+/// The name of the new event bus.
+/// </para>
+/// <para>
+/// Custom event bus names can't contain the <c>/</c> character, but you can use the <c>/</c> character
+/// in partner event bus names. In addition, for partner event buses, the name must exactly match the
+/// name of the partner event source that this event bus is matched to.
+/// </para>
+/// <para>
+/// You can't use the name <c>default</c> for a custom event bus, as this name is already used for your
+/// account's default event bus.
+/// </para>
+/// </param>
 /// <param name="Tags">
 /// Tags to associate with the event bus.
 /// </param>
 public sealed record class CreateEventBusInput(
-    string Name,
     global::Com.Amazonaws.Eventbridge.DeadLetterConfig? DeadLetterConfig = null,
     string? Description = null,
     string? EventSourceName = null,
     string? KmsKeyIdentifier = null,
     global::Com.Amazonaws.Eventbridge.LogConfig? LogConfig = null,
+    string? Name = null,
     IReadOnlyList<global::Com.Amazonaws.Eventbridge.Tag>? Tags = null
 );

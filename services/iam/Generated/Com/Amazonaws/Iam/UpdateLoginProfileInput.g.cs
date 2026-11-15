@@ -7,16 +7,6 @@ namespace Com.Amazonaws.Iam;
 /// <summary>
 /// Represents the Smithy structure com.amazonaws.iam#UpdateLoginProfileInput.
 /// </summary>
-/// <param name="UserName">
-/// <para>
-/// The name of the user whose password you want to update.
-/// </para>
-/// <para>
-/// This parameter allows (through its <see href="http://wikipedia.org/wiki/regex">regex pattern</see>)
-/// a string of characters consisting of upper and lowercase alphanumeric characters with no spaces. You
-/// can also include any of the following characters: _+=,.@-
-/// </para>
-/// </param>
 /// <param name="Password">
 /// <para>
 /// The new password for the specified IAM user.
@@ -55,8 +45,18 @@ namespace Com.Amazonaws.Iam;
 /// Allows this new password to be used only once by requiring the specified IAM user to set a new
 /// password on next sign-in.
 /// </param>
+/// <param name="UserName">
+/// <para>
+/// The name of the user whose password you want to update.
+/// </para>
+/// <para>
+/// This parameter allows (through its <see href="http://wikipedia.org/wiki/regex">regex pattern</see>)
+/// a string of characters consisting of upper and lowercase alphanumeric characters with no spaces. You
+/// can also include any of the following characters: _+=,.@-
+/// </para>
+/// </param>
 public sealed record class UpdateLoginProfileInput(
-    string UserName,
     string? Password = null,
-    bool? PasswordResetRequired = null
+    bool? PasswordResetRequired = null,
+    string? UserName = null
 );

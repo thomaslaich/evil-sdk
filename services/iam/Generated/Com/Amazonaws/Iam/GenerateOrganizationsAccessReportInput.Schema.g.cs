@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Iam.Schemas;
 
 public static partial class GenerateOrganizationsAccessReportInputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? EntityPath { get; set; }
         public string? OrganizationsPolicyId { get; set; }
@@ -28,7 +28,6 @@ public static partial class GenerateOrganizationsAccessReportInputSchema
                 new(
                     "EntityPath",
                     Target0,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
@@ -44,10 +43,6 @@ public static partial class GenerateOrganizationsAccessReportInputSchema
                         new Trait(
                             ShapeId.Parse("smithy.api#pattern"),
                             Document.From("^o-[0-9a-z]{10,32}\\/r-[0-9a-z]{4,32}[0-9a-z-\\/]*$")
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
                         ),
                     ]
                 ),
@@ -90,7 +85,7 @@ public static partial class GenerateOrganizationsAccessReportInputSchema
             Builder builder
         ) =>
             new global::Com.Amazonaws.Iam.GenerateOrganizationsAccessReportInput(
-                builder.EntityPath ?? throw new MissingRequiredMemberException("EntityPath"),
+                builder.EntityPath,
                 builder.OrganizationsPolicyId
             );
 
@@ -117,7 +112,7 @@ public static partial class GenerateOrganizationsAccessReportInputSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

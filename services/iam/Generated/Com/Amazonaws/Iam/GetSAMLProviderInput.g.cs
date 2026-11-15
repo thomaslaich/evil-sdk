@@ -17,4 +17,4 @@ namespace Com.Amazonaws.Iam;
 /// Resource Names (ARNs)</see> in the <i>Amazon Web Services General Reference</i>.
 /// </para>
 /// </param>
-public sealed record class GetSAMLProviderInput(string SAMLProviderArn);
+public sealed record class GetSAMLProviderInput(string? SAMLProviderArn = null);

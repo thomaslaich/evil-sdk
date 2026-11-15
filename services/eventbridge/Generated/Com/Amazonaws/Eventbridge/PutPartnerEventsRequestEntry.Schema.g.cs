@@ -11,7 +11,7 @@ namespace Com.Amazonaws.Eventbridge.Schemas;
 
 public static partial class PutPartnerEventsRequestEntrySchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public DateTimeOffset? Time { get; set; }
         public string? Source { get; set; }
@@ -139,7 +139,7 @@ public static partial class PutPartnerEventsRequestEntrySchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

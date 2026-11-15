@@ -240,9 +240,9 @@ namespace Com.Amazonaws.Cloudwatchlogs;
 /// </para>
 /// </param>
 public sealed record class PutAccountPolicyInput(
-    string PolicyDocument,
-    string PolicyName,
-    global::Com.Amazonaws.Cloudwatchlogs.PolicyType PolicyType,
+    string? PolicyDocument = null,
+    string? PolicyName = null,
+    global::Com.Amazonaws.Cloudwatchlogs.PolicyType? PolicyType = null,
     global::Com.Amazonaws.Cloudwatchlogs.Scope? Scope = null,
     string? SelectionCriteria = null
 );

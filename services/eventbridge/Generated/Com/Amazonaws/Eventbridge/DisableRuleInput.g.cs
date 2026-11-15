@@ -7,11 +7,11 @@ namespace Com.Amazonaws.Eventbridge;
 /// <summary>
 /// Represents the Smithy structure com.amazonaws.eventbridge#DisableRuleInput.
 /// </summary>
-/// <param name="Name">
-/// The name of the rule.
-/// </param>
 /// <param name="EventBusName">
 /// The name or ARN of the event bus associated with the rule. If you omit this, the default event bus
 /// is used.
 /// </param>
-public sealed record class DisableRuleInput(string Name, string? EventBusName = null);
+/// <param name="Name">
+/// The name of the rule.
+/// </param>
+public sealed record class DisableRuleInput(string? EventBusName = null, string? Name = null);

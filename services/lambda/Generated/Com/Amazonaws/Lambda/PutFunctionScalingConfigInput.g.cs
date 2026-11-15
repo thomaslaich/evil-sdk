@@ -10,15 +10,15 @@ namespace Com.Amazonaws.Lambda;
 /// <param name="FunctionName">
 /// The name or ARN of the Lambda function.
 /// </param>
-/// <param name="Qualifier">
-/// Specify a version or alias to set the scaling configuration for a published version of the function.
-/// </param>
 /// <param name="FunctionScalingConfig">
 /// The scaling configuration to apply to the function, including minimum and maximum execution
 /// environment limits.
 /// </param>
+/// <param name="Qualifier">
+/// Specify a version or alias to set the scaling configuration for a published version of the function.
+/// </param>
 public sealed record class PutFunctionScalingConfigInput(
-    string FunctionName,
-    string Qualifier,
-    global::Com.Amazonaws.Lambda.FunctionScalingConfig? FunctionScalingConfig = null
+    string? FunctionName = null,
+    global::Com.Amazonaws.Lambda.FunctionScalingConfig? FunctionScalingConfig = null,
+    string? Qualifier = null
 );

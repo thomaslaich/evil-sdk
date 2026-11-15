@@ -10,7 +10,7 @@ namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class RedirectAllRequestsToSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? HostName { get; set; }
         public global::Com.Amazonaws.S3.Protocol? Protocol { get; set; }
@@ -80,7 +80,7 @@ public static partial class RedirectAllRequestsToSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Route53.Schemas;
 
 public static partial class ListResourceRecordSetsInputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? HostedZoneId { get; set; }
         public string? StartRecordName { get; set; }
@@ -31,7 +31,6 @@ public static partial class ListResourceRecordSetsInputSchema
                 new(
                     "HostedZoneId",
                     Target0,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
@@ -47,10 +46,6 @@ public static partial class ListResourceRecordSetsInputSchema
                                     { "max", Document.From(32m) },
                                 }
                             )
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
                         ),
                     ]
                 ),
@@ -145,7 +140,7 @@ public static partial class ListResourceRecordSetsInputSchema
             Builder builder
         ) =>
             new global::Com.Amazonaws.Route53.ListResourceRecordSetsInput(
-                builder.HostedZoneId ?? throw new MissingRequiredMemberException("HostedZoneId"),
+                builder.HostedZoneId,
                 builder.MaxItems,
                 builder.StartRecordIdentifier,
                 builder.StartRecordName,
@@ -199,7 +194,7 @@ public static partial class ListResourceRecordSetsInputSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Dynamodb.Schemas;
 
 public static partial class TableCreationParametersSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? TableName { get; set; }
         public IReadOnlyList<global::Com.Amazonaws.Dynamodb.AttributeDefinition>? AttributeDefinitions { get; set; }
@@ -226,7 +226,7 @@ public static partial class TableCreationParametersSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

@@ -13,31 +13,31 @@ namespace Com.Amazonaws.Lambda;
 /// <param name="LayerName">
 /// The name or Amazon Resource Name (ARN) of the layer.
 /// </param>
+/// <param name="OrganizationId">
+/// With the principal set to <c>*</c>, grant permission to all accounts in the specified organization.
+/// </param>
 /// <param name="Principal">
 /// An account ID, or <c>*</c> to grant layer usage permission to all accounts in an organization, or
 /// all Amazon Web Services accounts (if <c>organizationId</c> is not specified). For the last case,
 /// make sure that you really do want all Amazon Web Services accounts to have usage permission to this
 /// layer.
 /// </param>
-/// <param name="StatementId">
-/// An identifier that distinguishes the policy from others on the same layer version.
-/// </param>
-/// <param name="OrganizationId">
-/// With the principal set to <c>*</c>, grant permission to all accounts in the specified organization.
-/// </param>
 /// <param name="RevisionId">
 /// Only update the policy if the revision ID matches the ID specified. Use this option to avoid
 /// modifying a policy that has changed since you last read it.
+/// </param>
+/// <param name="StatementId">
+/// An identifier that distinguishes the policy from others on the same layer version.
 /// </param>
 /// <param name="VersionNumber">
 /// The version number.
 /// </param>
 public sealed record class AddLayerVersionPermissionInput(
-    string Action,
-    string LayerName,
-    string Principal,
-    string StatementId,
+    string? Action = null,
+    string? LayerName = null,
     string? OrganizationId = null,
+    string? Principal = null,
     string? RevisionId = null,
+    string? StatementId = null,
     long? VersionNumber = null
 );

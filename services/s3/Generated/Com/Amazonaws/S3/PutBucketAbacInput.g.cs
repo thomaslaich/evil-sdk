@@ -37,8 +37,8 @@ namespace Com.Amazonaws.S3;
 /// The Amazon Web Services account ID of the general purpose bucket's owner.
 /// </param>
 public sealed record class PutBucketAbacInput(
-    global::Com.Amazonaws.S3.AbacStatus AbacStatus,
-    string Bucket,
+    global::Com.Amazonaws.S3.AbacStatus? AbacStatus = null,
+    string? Bucket = null,
     global::Com.Amazonaws.S3.ChecksumAlgorithm? ChecksumAlgorithm = null,
     string? ContentMD5 = null,
     string? ExpectedBucketOwner = null

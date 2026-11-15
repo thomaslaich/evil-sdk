@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Lambda.Schemas;
 
 public static partial class UpdateEventSourceMappingInputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? UUID { get; set; }
         public string? FunctionName { get; set; }
@@ -48,7 +48,6 @@ public static partial class UpdateEventSourceMappingInputSchema
                 new(
                     "UUID",
                     Target0,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
@@ -64,10 +63,6 @@ public static partial class UpdateEventSourceMappingInputSchema
                                     { "max", Document.From(36m) },
                                 }
                             )
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
                         ),
                     ]
                 ),
@@ -380,7 +375,6 @@ public static partial class UpdateEventSourceMappingInputSchema
             Builder builder
         ) =>
             new global::Com.Amazonaws.Lambda.UpdateEventSourceMappingInput(
-                builder.UUID ?? throw new MissingRequiredMemberException("UUID"),
                 builder.AmazonManagedKafkaEventSourceConfig,
                 builder.BatchSize,
                 builder.BisectBatchOnFunctionError,
@@ -401,7 +395,8 @@ public static partial class UpdateEventSourceMappingInputSchema
                 builder.ScalingConfig,
                 builder.SelfManagedKafkaEventSourceConfig,
                 builder.SourceAccessConfigurations,
-                builder.TumblingWindowInSeconds
+                builder.TumblingWindowInSeconds,
+                builder.UUID
             );
 
         public override void SerializeMembers<TSerializer>(
@@ -591,7 +586,7 @@ public static partial class UpdateEventSourceMappingInputSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

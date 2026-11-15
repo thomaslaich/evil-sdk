@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Kinesis.Schemas;
 
 public static partial class AddTagsToStreamInputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? StreamName { get; set; }
         public IReadOnlyDictionary<string, string>? Tags { get; set; }
@@ -48,18 +48,7 @@ public static partial class AddTagsToStreamInputSchema
                         ),
                     ]
                 ),
-                new(
-                    "Tags",
-                    Target1,
-                    isRequired: true,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
-                    ]
-                ),
+                new("Tags", Target1),
                 new(
                     "StreamARN",
                     Target2,
@@ -152,10 +141,10 @@ public static partial class AddTagsToStreamInputSchema
 
         public override global::Com.Amazonaws.Kinesis.AddTagsToStreamInput Build(Builder builder) =>
             new global::Com.Amazonaws.Kinesis.AddTagsToStreamInput(
-                builder.Tags ?? throw new MissingRequiredMemberException("Tags"),
                 builder.StreamARN,
                 builder.StreamId,
-                builder.StreamName
+                builder.StreamName,
+                builder.Tags
             );
 
         public override void SerializeMembers<TSerializer>(
@@ -197,7 +186,7 @@ public static partial class AddTagsToStreamInputSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

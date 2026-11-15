@@ -7,6 +7,16 @@ namespace Com.Amazonaws.Sts;
 /// <summary>
 /// Represents the Smithy structure com.amazonaws.sts#AssumeRootInput.
 /// </summary>
+/// <param name="DurationSeconds">
+/// <para>
+/// The duration, in seconds, of the privileged session. The value can range from 0 seconds up to the
+/// maximum session duration of 900 seconds (15 minutes). If you specify a value higher than this
+/// setting, the operation fails.
+/// </para>
+/// <para>
+/// By default, the value is set to <c>900</c> seconds.
+/// </para>
+/// </param>
 /// <param name="TargetPrincipal">
 /// The member account principal ARN or account ID.
 /// </param>
@@ -43,19 +53,9 @@ namespace Com.Amazonaws.Sts;
 /// </item>
 /// </list>
 /// </param>
-/// <param name="DurationSeconds">
-/// <para>
-/// The duration, in seconds, of the privileged session. The value can range from 0 seconds up to the
-/// maximum session duration of 900 seconds (15 minutes). If you specify a value higher than this
-/// setting, the operation fails.
-/// </para>
-/// <para>
-/// By default, the value is set to <c>900</c> seconds.
-/// </para>
-/// </param>
 public sealed record class AssumeRootInput(
-    string TargetPrincipal,
-    PolicyDescriptorType TaskPolicyArn,
     int? DurationSeconds = null,
-    int? MinimumSessionTokenSize = null
+    int? MinimumSessionTokenSize = null,
+    string? TargetPrincipal = null,
+    PolicyDescriptorType? TaskPolicyArn = null
 );

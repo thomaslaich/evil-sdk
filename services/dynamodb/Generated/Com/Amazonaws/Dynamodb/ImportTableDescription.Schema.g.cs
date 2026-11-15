@@ -11,7 +11,7 @@ namespace Com.Amazonaws.Dynamodb.Schemas;
 
 public static partial class ImportTableDescriptionSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? ImportArn { get; set; }
         public global::Com.Amazonaws.Dynamodb.ImportStatus? ImportStatus { get; set; }
@@ -449,7 +449,7 @@ public static partial class ImportTableDescriptionSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

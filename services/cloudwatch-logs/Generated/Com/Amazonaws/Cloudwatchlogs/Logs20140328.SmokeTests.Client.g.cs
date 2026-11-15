@@ -55,7 +55,7 @@ public static class Logs20140328SmokeTests
             static config => new Logs20140328Client(config),
             static (client, cancellationToken) =>
                 client.GetLogEventsAsync(
-                    new GetLogEventsInput(LogStreamName: "fakestream", LogGroupName: "fakegroup"),
+                    new GetLogEventsInput(LogGroupName: "fakegroup", LogStreamName: "fakestream"),
                     cancellationToken
                 )
         ),

@@ -9,18 +9,18 @@ namespace Com.Amazonaws.Eventbridge;
 /// <summary>
 /// Represents the Smithy structure com.amazonaws.eventbridge#PutTargetsInput.
 /// </summary>
+/// <param name="EventBusName">
+/// The name or ARN of the event bus associated with the rule. If you omit this, the default event bus
+/// is used.
+/// </param>
 /// <param name="Rule">
 /// The name of the rule.
 /// </param>
 /// <param name="Targets">
 /// The targets to update or add to the rule.
 /// </param>
-/// <param name="EventBusName">
-/// The name or ARN of the event bus associated with the rule. If you omit this, the default event bus
-/// is used.
-/// </param>
 public sealed record class PutTargetsInput(
-    string Rule,
-    IReadOnlyList<Target> Targets,
-    string? EventBusName = null
+    string? EventBusName = null,
+    string? Rule = null,
+    IReadOnlyList<Target>? Targets = null
 );

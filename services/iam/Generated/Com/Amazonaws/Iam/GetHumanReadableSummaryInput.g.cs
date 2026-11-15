@@ -17,4 +17,7 @@ namespace Com.Amazonaws.Iam;
 /// <see href="/awsconsolehelpdocs/latest/gsg/change-language.html#supported-languages">Supported
 /// languages of the Amazon Web Services Management Console</see>.
 /// </param>
-public sealed record class GetHumanReadableSummaryInput(string EntityArn, string? Locale = null);
+public sealed record class GetHumanReadableSummaryInput(
+    string? EntityArn = null,
+    string? Locale = null
+);

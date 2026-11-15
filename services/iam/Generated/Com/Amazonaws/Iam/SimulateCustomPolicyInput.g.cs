@@ -14,50 +14,6 @@ namespace Com.Amazonaws.Iam;
 /// each resource. Each operation must include the service identifier, such as <c>iam:CreateUser</c>.
 /// This operation does not support using wildcards (*) in an action name.
 /// </param>
-/// <param name="PolicyInputList">
-/// <para>
-/// A list of policy documents to include in the simulation. Each document is specified as a string
-/// containing the complete, valid JSON text of an IAM policy. Do not include any resource-based
-/// policies in this parameter. Any resource-based policy must be submitted with the
-/// <c>ResourcePolicy</c> parameter. The policies cannot be "scope-down" policies, such as you could
-/// include in a call to
-/// <see href="https://docs.aws.amazon.com/IAM/latest/APIReference/API_GetFederationToken.html">GetFederationToken</see>
-/// or one of the
-/// <see href="https://docs.aws.amazon.com/IAM/latest/APIReference/API_AssumeRole.html">AssumeRole</see>
-/// API operations. In other words, do not use policies designed to restrict what a user can do while
-/// using the temporary credentials.
-/// </para>
-/// <para>
-/// The maximum length of the policy document that you can pass in this operation, including whitespace,
-/// is listed below. To view the maximum character counts of a managed policy with no whitespaces, see
-/// <see href="https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_iam-quotas.html#reference_iam-quotas-entity-length">IAM
-/// and STS character quotas</see>.
-/// </para>
-/// <para>
-/// The <see href="http://wikipedia.org/wiki/regex">regex pattern</see> used to validate this parameter
-/// is a string of characters consisting of the following:
-/// </para>
-/// <list type="bullet">
-/// <item>
-/// <description>
-/// Any printable ASCII character ranging from the space character (<c>\u0020</c>) through the end of
-/// the ASCII character range
-/// </description>
-/// </item>
-/// <item>
-/// <description>
-/// The printable characters in the Basic Latin and Latin-1 Supplement character set (through
-/// <c>\u00FF</c>)
-/// </description>
-/// </item>
-/// <item>
-/// <description>
-/// The special characters tab (<c>\u0009</c>), line feed (<c>\u000A</c>), and carriage return
-/// (<c>\u000D</c>)
-/// </description>
-/// </item>
-/// </list>
-/// </param>
 /// <param name="CallerArn">
 /// <para>
 /// The ARN of the IAM user, group, or role that you want to use as the simulated caller of the API
@@ -114,6 +70,50 @@ namespace Com.Amazonaws.Iam;
 /// <see href="https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_boundaries.html">Permissions
 /// boundaries for IAM entities</see> in the <i>IAM User Guide</i>. The policy input is specified as a
 /// string that contains the complete, valid JSON text of a permissions boundary policy.
+/// </para>
+/// <para>
+/// The maximum length of the policy document that you can pass in this operation, including whitespace,
+/// is listed below. To view the maximum character counts of a managed policy with no whitespaces, see
+/// <see href="https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_iam-quotas.html#reference_iam-quotas-entity-length">IAM
+/// and STS character quotas</see>.
+/// </para>
+/// <para>
+/// The <see href="http://wikipedia.org/wiki/regex">regex pattern</see> used to validate this parameter
+/// is a string of characters consisting of the following:
+/// </para>
+/// <list type="bullet">
+/// <item>
+/// <description>
+/// Any printable ASCII character ranging from the space character (<c>\u0020</c>) through the end of
+/// the ASCII character range
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// The printable characters in the Basic Latin and Latin-1 Supplement character set (through
+/// <c>\u00FF</c>)
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// The special characters tab (<c>\u0009</c>), line feed (<c>\u000A</c>), and carriage return
+/// (<c>\u000D</c>)
+/// </description>
+/// </item>
+/// </list>
+/// </param>
+/// <param name="PolicyInputList">
+/// <para>
+/// A list of policy documents to include in the simulation. Each document is specified as a string
+/// containing the complete, valid JSON text of an IAM policy. Do not include any resource-based
+/// policies in this parameter. Any resource-based policy must be submitted with the
+/// <c>ResourcePolicy</c> parameter. The policies cannot be "scope-down" policies, such as you could
+/// include in a call to
+/// <see href="https://docs.aws.amazon.com/IAM/latest/APIReference/API_GetFederationToken.html">GetFederationToken</see>
+/// or one of the
+/// <see href="https://docs.aws.amazon.com/IAM/latest/APIReference/API_AssumeRole.html">AssumeRole</see>
+/// API operations. In other words, do not use policies designed to restrict what a user can do while
+/// using the temporary credentials.
 /// </para>
 /// <para>
 /// The maximum length of the policy document that you can pass in this operation, including whitespace,
@@ -291,14 +291,14 @@ namespace Com.Amazonaws.Iam;
 /// </para>
 /// </param>
 public sealed record class SimulateCustomPolicyInput(
-    IReadOnlyList<string> ActionNames,
-    IReadOnlyList<string> PolicyInputList,
+    IReadOnlyList<string>? ActionNames = null,
     string? CallerArn = null,
     IReadOnlyList<ContextEntry>? ContextEntries = null,
     string? Marker = null,
     int? MaxItems = null,
     IReadOnlyList<OrderedOrganizationPolicyType>? OrderedOrganizationPolicyInputList = null,
     IReadOnlyList<string>? PermissionsBoundaryPolicyInputList = null,
+    IReadOnlyList<string>? PolicyInputList = null,
     IReadOnlyList<string>? ResourceArns = null,
     string? ResourceHandlingOption = null,
     string? ResourceOwner = null,

@@ -10,7 +10,7 @@ namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class ReplicationTimeSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public global::Com.Amazonaws.S3.ReplicationTimeStatus? Status { get; set; }
         public global::Com.Amazonaws.S3.ReplicationTimeValue? Time { get; set; }
@@ -82,7 +82,7 @@ public static partial class ReplicationTimeSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

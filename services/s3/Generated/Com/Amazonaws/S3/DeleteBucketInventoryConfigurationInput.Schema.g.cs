@@ -10,7 +10,7 @@ namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class DeleteBucketInventoryConfigurationInputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? Bucket { get; set; }
         public string? Id { get; set; }
@@ -29,15 +29,10 @@ public static partial class DeleteBucketInventoryConfigurationInputSchema
                 new(
                     "Bucket",
                     Target0,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
                             ShapeId.Parse("smithy.api#httpLabel"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
                             Document.From(new Dictionary<string, Document> { })
                         ),
                         new Trait(
@@ -54,15 +49,7 @@ public static partial class DeleteBucketInventoryConfigurationInputSchema
                 new(
                     "Id",
                     Target1,
-                    isRequired: true,
-                    traits:
-                    [
-                        new Trait(ShapeId.Parse("smithy.api#httpQuery"), Document.From("id")),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
-                    ]
+                    traits: [new Trait(ShapeId.Parse("smithy.api#httpQuery"), Document.From("id"))]
                 ),
                 new(
                     "ExpectedBucketOwner",
@@ -107,9 +94,9 @@ public static partial class DeleteBucketInventoryConfigurationInputSchema
             Builder builder
         ) =>
             new global::Com.Amazonaws.S3.DeleteBucketInventoryConfigurationInput(
-                builder.Bucket ?? throw new MissingRequiredMemberException("Bucket"),
-                builder.Id ?? throw new MissingRequiredMemberException("Id"),
-                builder.ExpectedBucketOwner
+                builder.Bucket,
+                builder.ExpectedBucketOwner,
+                builder.Id
             );
 
         public override void SerializeMembers<TSerializer>(
@@ -143,7 +130,7 @@ public static partial class DeleteBucketInventoryConfigurationInputSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

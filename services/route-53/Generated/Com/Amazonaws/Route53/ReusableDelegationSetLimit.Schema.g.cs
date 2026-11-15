@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Route53.Schemas;
 
 public static partial class ReusableDelegationSetLimitSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public global::Com.Amazonaws.Route53.ReusableDelegationSetLimitType? Type { get; set; }
         public long? Value { get; set; }
@@ -89,7 +89,7 @@ public static partial class ReusableDelegationSetLimitSchema
             serializer.WriteLong(1, value.Value);
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

@@ -33,7 +33,7 @@ namespace Com.Amazonaws.Kinesis;
 /// Not Implemented. Reserved for future use.
 /// </param>
 public sealed record class UpdateStreamRecordDistributionStrategyInput(
-    global::Com.Amazonaws.Kinesis.RecordDistributionStrategy RecordDistributionStrategy,
-    string StreamARN,
+    global::Com.Amazonaws.Kinesis.RecordDistributionStrategy? RecordDistributionStrategy = null,
+    string? StreamARN = null,
     string? StreamId = null
 );

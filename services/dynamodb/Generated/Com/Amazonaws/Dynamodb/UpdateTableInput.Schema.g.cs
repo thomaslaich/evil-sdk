@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Dynamodb.Schemas;
 
 public static partial class UpdateTableInputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public IReadOnlyList<global::Com.Amazonaws.Dynamodb.AttributeDefinition>? AttributeDefinitions { get; set; }
         public string? TableName { get; set; }
@@ -43,7 +43,6 @@ public static partial class UpdateTableInputSchema
                 new(
                     "TableName",
                     Target1,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
@@ -55,10 +54,6 @@ public static partial class UpdateTableInputSchema
                                     { "max", Document.From(1024m) },
                                 }
                             )
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
                         ),
                         new Trait(
                             ShapeId.Parse("smithy.rules#contextParam"),
@@ -171,7 +166,6 @@ public static partial class UpdateTableInputSchema
 
         public override global::Com.Amazonaws.Dynamodb.UpdateTableInput Build(Builder builder) =>
             new global::Com.Amazonaws.Dynamodb.UpdateTableInput(
-                builder.TableName ?? throw new MissingRequiredMemberException("TableName"),
                 builder.AttributeDefinitions,
                 builder.BillingMode,
                 builder.DeletionProtectionEnabled,
@@ -185,6 +179,7 @@ public static partial class UpdateTableInputSchema
                 builder.SSESpecification,
                 builder.StreamSpecification,
                 builder.TableClass,
+                builder.TableName,
                 builder.VectorIndexUpdates,
                 builder.WarmThroughput
             );
@@ -324,7 +319,7 @@ public static partial class UpdateTableInputSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

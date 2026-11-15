@@ -10,12 +10,12 @@ namespace Com.Amazonaws.Lambda;
 /// <summary>
 /// Represents the Smithy structure com.amazonaws.lambda#ListDurableExecutionsByFunctionInput.
 /// </summary>
+/// <param name="DurableExecutionName">
+/// Filter executions by name. Only executions with names that matches this string are returned.
+/// </param>
 /// <param name="FunctionName">
 /// The name or ARN of the Lambda function. You can specify a function name, a partial ARN, or a full
 /// ARN.
-/// </param>
-/// <param name="DurableExecutionName">
-/// Filter executions by name. Only executions with names that matches this string are returned.
 /// </param>
 /// <param name="Marker">
 /// Pagination token from a previous request to continue retrieving results.
@@ -40,8 +40,8 @@ namespace Com.Amazonaws.Lambda;
 /// Filter executions by status. Valid values: RUNNING, SUCCEEDED, FAILED, TIMED_OUT, STOPPED.
 /// </param>
 public sealed record class ListDurableExecutionsByFunctionInput(
-    string FunctionName,
     string? DurableExecutionName = null,
+    string? FunctionName = null,
     string? Marker = null,
     int? MaxItems = null,
     string? Qualifier = null,

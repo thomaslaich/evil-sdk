@@ -7,14 +7,14 @@ namespace Com.Amazonaws.Sns;
 /// <summary>
 /// Represents the Smithy structure com.amazonaws.sns#CreateSMSSandboxPhoneNumberInput.
 /// </summary>
+/// <param name="LanguageCode">
+/// The language to use for sending the OTP. The default value is <c>en-US</c>.
+/// </param>
 /// <param name="PhoneNumber">
 /// The destination phone number to verify. On verification, Amazon SNS adds this phone number to the
 /// list of verified phone numbers that you can send SMS messages to.
 /// </param>
-/// <param name="LanguageCode">
-/// The language to use for sending the OTP. The default value is <c>en-US</c>.
-/// </param>
 public sealed record class CreateSMSSandboxPhoneNumberInput(
-    string PhoneNumber,
-    LanguageCodeString? LanguageCode = null
+    LanguageCodeString? LanguageCode = null,
+    string? PhoneNumber = null
 );

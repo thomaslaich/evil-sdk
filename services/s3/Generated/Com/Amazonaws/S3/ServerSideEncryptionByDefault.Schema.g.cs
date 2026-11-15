@@ -10,7 +10,7 @@ namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class ServerSideEncryptionByDefaultSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public global::Com.Amazonaws.S3.ServerSideEncryption? SSEAlgorithm { get; set; }
         public string? KMSMasterKeyID { get; set; }
@@ -85,7 +85,7 @@ public static partial class ServerSideEncryptionByDefaultSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

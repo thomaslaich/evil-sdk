@@ -10,14 +10,14 @@ namespace Com.Amazonaws.Cloudwatchlogs;
 /// <param name="AnomalyDetectorArn">
 /// The ARN of the anomaly detector that you want to update.
 /// </param>
-/// <param name="Enabled">
-/// Use this parameter to pause or restart the anomaly detector.
-/// </param>
 /// <param name="AnomalyVisibilityTime">
 /// The number of days to use as the life cycle of anomalies. After this time, anomalies are
 /// automatically baselined and the anomaly detector model will treat new occurrences of similar event
 /// as normal. Therefore, if you do not correct the cause of an anomaly during this time, it will be
 /// considered normal going forward and will not be detected.
+/// </param>
+/// <param name="Enabled">
+/// Use this parameter to pause or restart the anomaly detector.
 /// </param>
 /// <param name="EvaluationFrequency">
 /// Specifies how often the anomaly detector runs and look for anomalies. Set this value according to
@@ -26,9 +26,9 @@ namespace Com.Amazonaws.Cloudwatchlogs;
 /// appropriate.
 /// </param>
 public sealed record class UpdateLogAnomalyDetectorInput(
-    string AnomalyDetectorArn,
-    bool Enabled,
+    string? AnomalyDetectorArn = null,
     long? AnomalyVisibilityTime = null,
+    bool? Enabled = null,
     global::Com.Amazonaws.Cloudwatchlogs.EvaluationFrequency? EvaluationFrequency = null,
     string? FilterPattern = null
 );

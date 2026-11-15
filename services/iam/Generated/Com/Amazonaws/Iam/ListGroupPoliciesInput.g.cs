@@ -36,7 +36,7 @@ namespace Com.Amazonaws.Iam;
 /// </para>
 /// </param>
 public sealed record class ListGroupPoliciesInput(
-    string GroupName,
+    string? GroupName = null,
     string? Marker = null,
     int? MaxItems = null
 );

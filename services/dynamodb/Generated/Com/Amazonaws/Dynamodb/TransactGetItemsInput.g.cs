@@ -9,15 +9,15 @@ namespace Com.Amazonaws.Dynamodb;
 /// <summary>
 /// Represents the Smithy structure com.amazonaws.dynamodb#TransactGetItemsInput.
 /// </summary>
-/// <param name="TransactItems">
-/// An ordered array of up to 100 <c>TransactGetItem</c> objects, each of which contains a <c>Get</c>
-/// structure.
-/// </param>
 /// <param name="ReturnConsumedCapacity">
 /// A value of <c>TOTAL</c> causes consumed capacity information to be returned, and a value of
 /// <c>NONE</c> prevents that information from being returned. No other value is valid.
 /// </param>
+/// <param name="TransactItems">
+/// An ordered array of up to 100 <c>TransactGetItem</c> objects, each of which contains a <c>Get</c>
+/// structure.
+/// </param>
 public sealed record class TransactGetItemsInput(
-    IReadOnlyList<TransactGetItem> TransactItems,
-    global::Com.Amazonaws.Dynamodb.ReturnConsumedCapacity? ReturnConsumedCapacity = null
+    global::Com.Amazonaws.Dynamodb.ReturnConsumedCapacity? ReturnConsumedCapacity = null,
+    IReadOnlyList<TransactGetItem>? TransactItems = null
 );

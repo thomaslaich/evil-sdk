@@ -10,4 +10,4 @@ namespace Com.Amazonaws.Eventbridge;
 /// <param name="ResourceARN">
 /// The ARN of the EventBridge resource for which you want to view tags.
 /// </param>
-public sealed record class ListTagsForResourceInput(string ResourceARN);
+public sealed record class ListTagsForResourceInput(string? ResourceARN = null);

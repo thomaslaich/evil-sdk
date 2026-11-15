@@ -31,7 +31,7 @@ namespace Com.Amazonaws.Route53;
 /// </para>
 /// </param>
 public sealed record class ListTrafficPolicyVersionsInput(
-    string Id,
+    string? Id = null,
     int? MaxItems = null,
     string? TrafficPolicyVersionMarker = null
 );

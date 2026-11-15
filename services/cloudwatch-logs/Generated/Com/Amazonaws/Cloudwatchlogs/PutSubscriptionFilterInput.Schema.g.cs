@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Cloudwatchlogs.Schemas;
 
 public static partial class PutSubscriptionFilterInputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? LogGroupName { get; set; }
         public string? FilterName { get; set; }
@@ -35,7 +35,6 @@ public static partial class PutSubscriptionFilterInputSchema
                 new(
                     "logGroupName",
                     Target0,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
@@ -52,16 +51,11 @@ public static partial class PutSubscriptionFilterInputSchema
                             ShapeId.Parse("smithy.api#pattern"),
                             Document.From("^[\\.\\-_/#A-Za-z0-9]+$")
                         ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
                     ]
                 ),
                 new(
                     "filterName",
                     Target1,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
@@ -75,16 +69,11 @@ public static partial class PutSubscriptionFilterInputSchema
                             )
                         ),
                         new Trait(ShapeId.Parse("smithy.api#pattern"), Document.From("^[^:*]*$")),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
                     ]
                 ),
                 new(
                     "filterPattern",
                     Target2,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
@@ -97,16 +86,11 @@ public static partial class PutSubscriptionFilterInputSchema
                                 }
                             )
                         ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
                     ]
                 ),
                 new(
                     "destinationArn",
                     Target3,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
@@ -114,10 +98,6 @@ public static partial class PutSubscriptionFilterInputSchema
                             Document.From(
                                 new Dictionary<string, Document> { { "min", Document.From(1m) } }
                             )
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
                         ),
                     ]
                 ),
@@ -210,15 +190,14 @@ public static partial class PutSubscriptionFilterInputSchema
             Builder builder
         ) =>
             new global::Com.Amazonaws.Cloudwatchlogs.PutSubscriptionFilterInput(
-                builder.DestinationArn
-                    ?? throw new MissingRequiredMemberException("destinationArn"),
-                builder.FilterName ?? throw new MissingRequiredMemberException("filterName"),
-                builder.FilterPattern ?? throw new MissingRequiredMemberException("filterPattern"),
-                builder.LogGroupName ?? throw new MissingRequiredMemberException("logGroupName"),
                 builder.ApplyOnTransformedLogs,
+                builder.DestinationArn,
                 builder.Distribution,
                 builder.EmitSystemFields,
                 builder.FieldSelectionCriteria,
+                builder.FilterName,
+                builder.FilterPattern,
+                builder.LogGroupName,
                 builder.RoleArn
             );
 
@@ -305,7 +284,7 @@ public static partial class PutSubscriptionFilterInputSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

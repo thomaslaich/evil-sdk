@@ -17,4 +17,7 @@ namespace Com.Amazonaws.Sqs;
 /// <param name="ReceiptHandle">
 /// The receipt handle associated with the message to delete.
 /// </param>
-public sealed record class DeleteMessageInput(string QueueUrl, string ReceiptHandle);
+public sealed record class DeleteMessageInput(
+    string? QueueUrl = null,
+    string? ReceiptHandle = null
+);

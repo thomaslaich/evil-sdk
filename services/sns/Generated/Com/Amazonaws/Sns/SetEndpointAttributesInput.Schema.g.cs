@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Sns.Schemas;
 
 public static partial class SetEndpointAttributesInputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? EndpointArn { get; set; }
         public IReadOnlyDictionary<string, string>? Attributes { get; set; }
@@ -24,32 +24,7 @@ public static partial class SetEndpointAttributesInputSchema
     private sealed class GeneratedSchema()
         : StructSchema<global::Com.Amazonaws.Sns.SetEndpointAttributesInput, Builder>(
             ShapeId.Parse("com.amazonaws.sns#SetEndpointAttributesInput"),
-            [
-                new(
-                    "EndpointArn",
-                    Target0,
-                    isRequired: true,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
-                    ]
-                ),
-                new(
-                    "Attributes",
-                    Target1,
-                    isRequired: true,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
-                    ]
-                ),
-            ],
+            [new("EndpointArn", Target0), new("Attributes", Target1)],
             [
                 new Trait(
                     ShapeId.Parse("smithy.api#input"),
@@ -75,8 +50,8 @@ public static partial class SetEndpointAttributesInputSchema
             Builder builder
         ) =>
             new global::Com.Amazonaws.Sns.SetEndpointAttributesInput(
-                builder.Attributes ?? throw new MissingRequiredMemberException("Attributes"),
-                builder.EndpointArn ?? throw new MissingRequiredMemberException("EndpointArn")
+                builder.Attributes,
+                builder.EndpointArn
             );
 
         public override void SerializeMembers<TSerializer>(
@@ -102,7 +77,7 @@ public static partial class SetEndpointAttributesInputSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Sqs.Schemas;
 
 public static partial class AddPermissionInputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? QueueUrl { get; set; }
         public string? Label { get; set; }
@@ -27,40 +27,13 @@ public static partial class AddPermissionInputSchema
         : StructSchema<global::Com.Amazonaws.Sqs.AddPermissionInput, Builder>(
             ShapeId.Parse("com.amazonaws.sqs#AddPermissionInput"),
             [
-                new(
-                    "QueueUrl",
-                    Target0,
-                    isRequired: true,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
-                    ]
-                ),
-                new(
-                    "Label",
-                    Target1,
-                    isRequired: true,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
-                    ]
-                ),
+                new("QueueUrl", Target0),
+                new("Label", Target1),
                 new(
                     "AWSAccountIds",
                     Target2,
-                    isRequired: true,
                     traits:
                     [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
                         new Trait(
                             ShapeId.Parse("smithy.api#xmlFlattened"),
                             Document.From(new Dictionary<string, Document> { })
@@ -74,13 +47,8 @@ public static partial class AddPermissionInputSchema
                 new(
                     "Actions",
                     Target3,
-                    isRequired: true,
                     traits:
                     [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
                         new Trait(
                             ShapeId.Parse("smithy.api#xmlFlattened"),
                             Document.From(new Dictionary<string, Document> { })
@@ -122,10 +90,10 @@ public static partial class AddPermissionInputSchema
 
         public override global::Com.Amazonaws.Sqs.AddPermissionInput Build(Builder builder) =>
             new global::Com.Amazonaws.Sqs.AddPermissionInput(
-                builder.AWSAccountIds ?? throw new MissingRequiredMemberException("AWSAccountIds"),
-                builder.Actions ?? throw new MissingRequiredMemberException("Actions"),
-                builder.Label ?? throw new MissingRequiredMemberException("Label"),
-                builder.QueueUrl ?? throw new MissingRequiredMemberException("QueueUrl")
+                builder.AWSAccountIds,
+                builder.Actions,
+                builder.Label,
+                builder.QueueUrl
             );
 
         public override void SerializeMembers<TSerializer>(
@@ -167,7 +135,7 @@ public static partial class AddPermissionInputSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Iam.Schemas;
 
 public static partial class CreatePolicyVersionInputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? PolicyArn { get; set; }
         public string? PolicyDocument { get; set; }
@@ -29,7 +29,6 @@ public static partial class CreatePolicyVersionInputSchema
                 new(
                     "PolicyArn",
                     Target0,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
@@ -42,16 +41,11 @@ public static partial class CreatePolicyVersionInputSchema
                                 }
                             )
                         ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
                     ]
                 ),
                 new(
                     "PolicyDocument",
                     Target1,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
@@ -67,10 +61,6 @@ public static partial class CreatePolicyVersionInputSchema
                         new Trait(
                             ShapeId.Parse("smithy.api#pattern"),
                             Document.From("^[\\u0009\\u000A\\u000D\\u0020-\\u00FF]+$")
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
                         ),
                     ]
                 ),
@@ -107,9 +97,8 @@ public static partial class CreatePolicyVersionInputSchema
 
         public override global::Com.Amazonaws.Iam.CreatePolicyVersionInput Build(Builder builder) =>
             new global::Com.Amazonaws.Iam.CreatePolicyVersionInput(
-                builder.PolicyArn ?? throw new MissingRequiredMemberException("PolicyArn"),
-                builder.PolicyDocument
-                    ?? throw new MissingRequiredMemberException("PolicyDocument"),
+                builder.PolicyArn,
+                builder.PolicyDocument,
                 builder.SetAsDefault
             );
 
@@ -148,7 +137,7 @@ public static partial class CreatePolicyVersionInputSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

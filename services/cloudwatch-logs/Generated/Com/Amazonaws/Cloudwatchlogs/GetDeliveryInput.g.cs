@@ -10,4 +10,4 @@ namespace Com.Amazonaws.Cloudwatchlogs;
 /// <param name="Id">
 /// The ID of the delivery that you want to retrieve.
 /// </param>
-public sealed record class GetDeliveryInput(string Id);
+public sealed record class GetDeliveryInput(string? Id = null);

@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Cloudwatchlogs.Schemas;
 
 public static partial class PutDestinationPolicyInputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? DestinationName { get; set; }
         public string? AccessPolicy { get; set; }
@@ -29,7 +29,6 @@ public static partial class PutDestinationPolicyInputSchema
                 new(
                     "destinationName",
                     Target0,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
@@ -43,16 +42,11 @@ public static partial class PutDestinationPolicyInputSchema
                             )
                         ),
                         new Trait(ShapeId.Parse("smithy.api#pattern"), Document.From("^[^:*]*$")),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
                     ]
                 ),
                 new(
                     "accessPolicy",
                     Target1,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
@@ -60,10 +54,6 @@ public static partial class PutDestinationPolicyInputSchema
                             Document.From(
                                 new Dictionary<string, Document> { { "min", Document.From(1m) } }
                             )
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
                         ),
                     ]
                 ),
@@ -108,9 +98,8 @@ public static partial class PutDestinationPolicyInputSchema
             Builder builder
         ) =>
             new global::Com.Amazonaws.Cloudwatchlogs.PutDestinationPolicyInput(
-                builder.AccessPolicy ?? throw new MissingRequiredMemberException("accessPolicy"),
-                builder.DestinationName
-                    ?? throw new MissingRequiredMemberException("destinationName"),
+                builder.AccessPolicy,
+                builder.DestinationName,
                 builder.ForceUpdate
             );
 
@@ -145,7 +134,7 @@ public static partial class PutDestinationPolicyInputSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

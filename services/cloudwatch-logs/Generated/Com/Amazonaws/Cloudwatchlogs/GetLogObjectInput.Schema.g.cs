@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Cloudwatchlogs.Schemas;
 
 public static partial class GetLogObjectInputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public bool? Unmask { get; set; }
         public string? LogObjectPointer { get; set; }
@@ -33,7 +33,6 @@ public static partial class GetLogObjectInputSchema
                 new(
                     "logObjectPointer",
                     Target1,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
@@ -45,10 +44,6 @@ public static partial class GetLogObjectInputSchema
                                     { "max", Document.From(512m) },
                                 }
                             )
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
                         ),
                     ]
                 ),
@@ -78,8 +73,7 @@ public static partial class GetLogObjectInputSchema
             Builder builder
         ) =>
             new global::Com.Amazonaws.Cloudwatchlogs.GetLogObjectInput(
-                builder.LogObjectPointer
-                    ?? throw new MissingRequiredMemberException("logObjectPointer"),
+                builder.LogObjectPointer,
                 builder.Unmask
             );
 
@@ -110,7 +104,7 @@ public static partial class GetLogObjectInputSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

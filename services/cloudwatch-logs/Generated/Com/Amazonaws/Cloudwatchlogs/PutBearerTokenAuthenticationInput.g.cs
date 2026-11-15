@@ -36,6 +36,6 @@ namespace Com.Amazonaws.Cloudwatchlogs;
 /// </para>
 /// </param>
 public sealed record class PutBearerTokenAuthenticationInput(
-    bool BearerTokenAuthenticationEnabled,
-    string LogGroupIdentifier
+    bool? BearerTokenAuthenticationEnabled = null,
+    string? LogGroupIdentifier = null
 );

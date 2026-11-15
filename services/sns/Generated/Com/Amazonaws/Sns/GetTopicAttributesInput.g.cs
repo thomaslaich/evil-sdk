@@ -10,4 +10,4 @@ namespace Com.Amazonaws.Sns;
 /// <param name="TopicArn">
 /// The ARN of the topic whose properties you want to get.
 /// </param>
-public sealed record class GetTopicAttributesInput(string TopicArn);
+public sealed record class GetTopicAttributesInput(string? TopicArn = null);

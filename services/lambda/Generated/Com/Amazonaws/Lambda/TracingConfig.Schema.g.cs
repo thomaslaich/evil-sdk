@@ -9,7 +9,7 @@ namespace Com.Amazonaws.Lambda.Schemas;
 
 public static partial class TracingConfigSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public global::Com.Amazonaws.Lambda.TracingMode? Mode { get; set; }
     }
@@ -49,7 +49,7 @@ public static partial class TracingConfigSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

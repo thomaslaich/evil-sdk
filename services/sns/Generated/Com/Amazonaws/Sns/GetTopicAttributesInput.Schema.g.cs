@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Sns.Schemas;
 
 public static partial class GetTopicAttributesInputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? TopicArn { get; set; }
     }
@@ -23,20 +23,7 @@ public static partial class GetTopicAttributesInputSchema
     private sealed class GeneratedSchema()
         : StructSchema<global::Com.Amazonaws.Sns.GetTopicAttributesInput, Builder>(
             ShapeId.Parse("com.amazonaws.sns#GetTopicAttributesInput"),
-            [
-                new(
-                    "TopicArn",
-                    Target0,
-                    isRequired: true,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
-                    ]
-                ),
-            ],
+            [new("TopicArn", Target0)],
             [
                 new Trait(
                     ShapeId.Parse("smithy.api#input"),
@@ -53,9 +40,7 @@ public static partial class GetTopicAttributesInputSchema
         public override Builder CreateTypedBuilder() => new();
 
         public override global::Com.Amazonaws.Sns.GetTopicAttributesInput Build(Builder builder) =>
-            new global::Com.Amazonaws.Sns.GetTopicAttributesInput(
-                builder.TopicArn ?? throw new MissingRequiredMemberException("TopicArn")
-            );
+            new global::Com.Amazonaws.Sns.GetTopicAttributesInput(builder.TopicArn);
 
         public override void SerializeMembers<TSerializer>(
             global::Com.Amazonaws.Sns.GetTopicAttributesInput value,
@@ -72,7 +57,7 @@ public static partial class GetTopicAttributesInputSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Route53.Schemas;
 
 public static partial class GetChangeInputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? Id { get; set; }
     }
@@ -27,7 +27,6 @@ public static partial class GetChangeInputSchema
                 new(
                     "Id",
                     Target0,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
@@ -43,10 +42,6 @@ public static partial class GetChangeInputSchema
                                     { "max", Document.From(6500m) },
                                 }
                             )
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
                         ),
                     ]
                 ),
@@ -71,9 +66,7 @@ public static partial class GetChangeInputSchema
         public override Builder CreateTypedBuilder() => new();
 
         public override global::Com.Amazonaws.Route53.GetChangeInput Build(Builder builder) =>
-            new global::Com.Amazonaws.Route53.GetChangeInput(
-                builder.Id ?? throw new MissingRequiredMemberException("Id")
-            );
+            new global::Com.Amazonaws.Route53.GetChangeInput(builder.Id);
 
         public override void SerializeMembers<TSerializer>(
             global::Com.Amazonaws.Route53.GetChangeInput value,
@@ -90,7 +83,7 @@ public static partial class GetChangeInputSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

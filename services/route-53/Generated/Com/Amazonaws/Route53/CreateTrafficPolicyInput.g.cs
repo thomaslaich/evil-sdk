@@ -7,6 +7,9 @@ namespace Com.Amazonaws.Route53;
 /// <summary>
 /// A complex type that contains information about the traffic policy that you want to create.
 /// </summary>
+/// <param name="Comment">
+/// (Optional) Any comments that you want to include about the traffic policy.
+/// </param>
 /// <param name="Document">
 /// The definition of this traffic policy in JSON format. For more information, see
 /// <see href="https://docs.aws.amazon.com/Route53/latest/APIReference/api-policies-traffic-policy-document-format.html">Traffic
@@ -15,11 +18,8 @@ namespace Com.Amazonaws.Route53;
 /// <param name="Name">
 /// The name of the traffic policy.
 /// </param>
-/// <param name="Comment">
-/// (Optional) Any comments that you want to include about the traffic policy.
-/// </param>
 public sealed record class CreateTrafficPolicyInput(
-    string Document,
-    string Name,
-    string? Comment = null
+    string? Comment = null,
+    string? Document = null,
+    string? Name = null
 );

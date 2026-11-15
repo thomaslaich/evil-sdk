@@ -14,4 +14,4 @@ namespace Com.Amazonaws.Iam;
 /// <param name="UserName">
 /// The friendly name identifying the user.
 /// </param>
-public sealed record class GetMFADeviceInput(string SerialNumber, string? UserName = null);
+public sealed record class GetMFADeviceInput(string? SerialNumber = null, string? UserName = null);

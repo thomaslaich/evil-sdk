@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Sts.Schemas;
 
 public static partial class AssumeRootInputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? TargetPrincipal { get; set; }
         public global::Com.Amazonaws.Sts.PolicyDescriptorType? TaskPolicyArn { get; set; }
@@ -28,7 +28,6 @@ public static partial class AssumeRootInputSchema
                 new(
                     "TargetPrincipal",
                     Target0,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
@@ -41,24 +40,9 @@ public static partial class AssumeRootInputSchema
                                 }
                             )
                         ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
                     ]
                 ),
-                new(
-                    "TaskPolicyArn",
-                    Target1,
-                    isRequired: true,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
-                    ]
-                ),
+                new("TaskPolicyArn", Target1),
                 new(
                     "DurationSeconds",
                     Target2,
@@ -131,11 +115,10 @@ public static partial class AssumeRootInputSchema
 
         public override global::Com.Amazonaws.Sts.AssumeRootInput Build(Builder builder) =>
             new global::Com.Amazonaws.Sts.AssumeRootInput(
-                builder.TargetPrincipal
-                    ?? throw new MissingRequiredMemberException("TargetPrincipal"),
-                builder.TaskPolicyArn ?? throw new MissingRequiredMemberException("TaskPolicyArn"),
                 builder.DurationSeconds,
-                builder.MinimumSessionTokenSize
+                builder.MinimumSessionTokenSize,
+                builder.TargetPrincipal,
+                builder.TaskPolicyArn
             );
 
         public override void SerializeMembers<TSerializer>(
@@ -177,7 +160,7 @@ public static partial class AssumeRootInputSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

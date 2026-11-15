@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Dynamodb.Schemas;
 
 public static partial class DeleteResourcePolicyInputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? ResourceArn { get; set; }
         public string? ExpectedRevisionId { get; set; }
@@ -28,7 +28,6 @@ public static partial class DeleteResourcePolicyInputSchema
                 new(
                     "ResourceArn",
                     Target0,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
@@ -40,10 +39,6 @@ public static partial class DeleteResourcePolicyInputSchema
                                     { "max", Document.From(1283m) },
                                 }
                             )
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
                         ),
                         new Trait(
                             ShapeId.Parse("smithy.rules#contextParam"),
@@ -97,8 +92,8 @@ public static partial class DeleteResourcePolicyInputSchema
             Builder builder
         ) =>
             new global::Com.Amazonaws.Dynamodb.DeleteResourcePolicyInput(
-                builder.ResourceArn ?? throw new MissingRequiredMemberException("ResourceArn"),
-                builder.ExpectedRevisionId
+                builder.ExpectedRevisionId,
+                builder.ResourceArn
             );
 
         public override void SerializeMembers<TSerializer>(
@@ -124,7 +119,7 @@ public static partial class DeleteResourcePolicyInputSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

@@ -22,6 +22,6 @@ namespace Com.Amazonaws.S3;
 /// </para>
 /// </param>
 public sealed record class DeleteBucketLifecycleInput(
-    string Bucket,
+    string? Bucket = null,
     string? ExpectedBucketOwner = null
 );

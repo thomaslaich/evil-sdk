@@ -7,11 +7,14 @@ namespace Com.Amazonaws.Sqs;
 /// <summary>
 /// Represents the Smithy structure com.amazonaws.sqs#ListMessageMoveTasksInput.
 /// </summary>
-/// <param name="SourceArn">
-/// The ARN of the queue whose message movement tasks are to be listed.
-/// </param>
 /// <param name="MaxResults">
 /// The maximum number of results to include in the response. The default is 1, which provides the most
 /// recent message movement task. The upper limit is 10.
 /// </param>
-public sealed record class ListMessageMoveTasksInput(string SourceArn, int? MaxResults = null);
+/// <param name="SourceArn">
+/// The ARN of the queue whose message movement tasks are to be listed.
+/// </param>
+public sealed record class ListMessageMoveTasksInput(
+    int? MaxResults = null,
+    string? SourceArn = null
+);

@@ -17,4 +17,7 @@ namespace Com.Amazonaws.Eventbridge;
 /// that wants to use this partner event source must create a partner event bus with a name that matches
 /// the name of the partner event source.
 /// </param>
-public sealed record class CreatePartnerEventSourceInput(string Account, string Name);
+public sealed record class CreatePartnerEventSourceInput(
+    string? Account = null,
+    string? Name = null
+);

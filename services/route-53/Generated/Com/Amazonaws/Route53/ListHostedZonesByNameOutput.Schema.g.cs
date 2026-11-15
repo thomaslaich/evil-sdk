@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Route53.Schemas;
 
 public static partial class ListHostedZonesByNameOutputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public IReadOnlyList<global::Com.Amazonaws.Route53.HostedZone>? HostedZones { get; set; }
         public string? DNSName { get; set; }
@@ -248,7 +248,7 @@ public static partial class ListHostedZonesByNameOutputSchema
             serializer.WriteInteger(6, value.MaxItems);
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

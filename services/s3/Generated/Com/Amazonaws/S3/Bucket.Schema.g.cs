@@ -11,7 +11,7 @@ namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class BucketSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? Name { get; set; }
         public DateTimeOffset? CreationDate { get; set; }
@@ -120,7 +120,7 @@ public static partial class BucketSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

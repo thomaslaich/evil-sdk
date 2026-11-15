@@ -47,7 +47,7 @@ namespace Com.Amazonaws.Lambda;
 /// Limit the number of aliases returned.
 /// </param>
 public sealed record class ListAliasesInput(
-    string FunctionName,
+    string? FunctionName = null,
     string? FunctionVersion = null,
     string? Marker = null,
     int? MaxItems = null

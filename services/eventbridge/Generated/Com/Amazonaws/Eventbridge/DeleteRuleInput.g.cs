@@ -7,9 +7,6 @@ namespace Com.Amazonaws.Eventbridge;
 /// <summary>
 /// Represents the Smithy structure com.amazonaws.eventbridge#DeleteRuleInput.
 /// </summary>
-/// <param name="Name">
-/// The name of the rule.
-/// </param>
 /// <param name="EventBusName">
 /// The name or ARN of the event bus associated with the rule. If you omit this, the default event bus
 /// is used.
@@ -20,8 +17,11 @@ namespace Com.Amazonaws.Eventbridge;
 /// not managed rules. You can check whether a rule is a managed rule by using <c>DescribeRule</c> or
 /// <c>ListRules</c> and checking the <c>ManagedBy</c> field of the response.
 /// </param>
+/// <param name="Name">
+/// The name of the rule.
+/// </param>
 public sealed record class DeleteRuleInput(
-    string Name,
     string? EventBusName = null,
-    bool? Force = null
+    bool? Force = null,
+    string? Name = null
 );

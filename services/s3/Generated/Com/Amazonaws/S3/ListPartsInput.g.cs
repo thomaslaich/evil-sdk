@@ -48,16 +48,13 @@ namespace Com.Amazonaws.S3;
 /// Outposts?</see> in the <i>Amazon S3 User Guide</i>.
 /// </para>
 /// </param>
-/// <param name="Key">
-/// Object key for which the multipart upload was initiated.
-/// </param>
-/// <param name="UploadId">
-/// Upload ID identifying the multipart upload whose parts are being listed.
-/// </param>
 /// <param name="ExpectedBucketOwner">
 /// The account ID of the expected bucket owner. If the account ID that you provide does not match the
 /// actual owner of the bucket, the request fails with the HTTP status code <c>403 Forbidden</c> (access
 /// denied).
+/// </param>
+/// <param name="Key">
+/// Object key for which the multipart upload was initiated.
 /// </param>
 /// <param name="MaxParts">
 /// Sets the maximum number of parts to return.
@@ -99,15 +96,18 @@ namespace Com.Amazonaws.S3;
 /// <b>Note:</b> This functionality is not supported for directory buckets.
 /// </para>
 /// </param>
+/// <param name="UploadId">
+/// Upload ID identifying the multipart upload whose parts are being listed.
+/// </param>
 public sealed record class ListPartsInput(
-    string Bucket,
-    string Key,
-    string UploadId,
+    string? Bucket = null,
     string? ExpectedBucketOwner = null,
+    string? Key = null,
     int? MaxParts = null,
     string? PartNumberMarker = null,
     global::Com.Amazonaws.S3.RequestPayer? RequestPayer = null,
     string? SSECustomerAlgorithm = null,
     string? SSECustomerKey = null,
-    string? SSECustomerKeyMD5 = null
+    string? SSECustomerKeyMD5 = null,
+    string? UploadId = null
 );

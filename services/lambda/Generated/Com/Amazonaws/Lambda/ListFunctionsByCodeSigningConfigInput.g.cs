@@ -18,7 +18,7 @@ namespace Com.Amazonaws.Lambda;
 /// Maximum number of items to return.
 /// </param>
 public sealed record class ListFunctionsByCodeSigningConfigInput(
-    string CodeSigningConfigArn,
+    string? CodeSigningConfigArn = null,
     string? Marker = null,
     int? MaxItems = null
 );

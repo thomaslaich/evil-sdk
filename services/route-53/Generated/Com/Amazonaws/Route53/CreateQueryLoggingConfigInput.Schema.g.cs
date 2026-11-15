@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Route53.Schemas;
 
 public static partial class CreateQueryLoggingConfigInputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? HostedZoneId { get; set; }
         public string? CloudWatchLogsLogGroupArn { get; set; }
@@ -28,7 +28,6 @@ public static partial class CreateQueryLoggingConfigInputSchema
                 new(
                     "HostedZoneId",
                     Target0,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
@@ -41,24 +40,9 @@ public static partial class CreateQueryLoggingConfigInputSchema
                                 }
                             )
                         ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
                     ]
                 ),
-                new(
-                    "CloudWatchLogsLogGroupArn",
-                    Target1,
-                    isRequired: true,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
-                    ]
-                ),
+                new("CloudWatchLogsLogGroupArn", Target1),
             ],
             [
                 new Trait(
@@ -87,9 +71,8 @@ public static partial class CreateQueryLoggingConfigInputSchema
             Builder builder
         ) =>
             new global::Com.Amazonaws.Route53.CreateQueryLoggingConfigInput(
-                builder.CloudWatchLogsLogGroupArn
-                    ?? throw new MissingRequiredMemberException("CloudWatchLogsLogGroupArn"),
-                builder.HostedZoneId ?? throw new MissingRequiredMemberException("HostedZoneId")
+                builder.CloudWatchLogsLogGroupArn,
+                builder.HostedZoneId
             );
 
         public override void SerializeMembers<TSerializer>(
@@ -115,7 +98,7 @@ public static partial class CreateQueryLoggingConfigInputSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Dynamodb.Schemas;
 
 public static partial class GlobalSecondaryIndexSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? IndexName { get; set; }
         public IReadOnlyList<global::Com.Amazonaws.Dynamodb.KeySchemaElement>? KeySchema { get; set; }
@@ -180,7 +180,7 @@ public static partial class GlobalSecondaryIndexSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

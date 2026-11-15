@@ -11,7 +11,7 @@ namespace Com.Amazonaws.Dynamodb.Schemas;
 
 public static partial class PointInTimeRecoveryDescriptionSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public global::Com.Amazonaws.Dynamodb.PointInTimeRecoveryStatus? PointInTimeRecoveryStatus { get; set; }
         public int? RecoveryPeriodInDays { get; set; }
@@ -120,7 +120,7 @@ public static partial class PointInTimeRecoveryDescriptionSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

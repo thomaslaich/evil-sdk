@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Iam.Schemas;
 
 public static partial class DeleteServiceLinkedRoleInputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? RoleName { get; set; }
     }
@@ -27,7 +27,6 @@ public static partial class DeleteServiceLinkedRoleInputSchema
                 new(
                     "RoleName",
                     Target0,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
@@ -43,10 +42,6 @@ public static partial class DeleteServiceLinkedRoleInputSchema
                         new Trait(
                             ShapeId.Parse("smithy.api#pattern"),
                             Document.From("^[\\w+=,.@-]+$")
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
                         ),
                     ]
                 ),
@@ -72,10 +67,7 @@ public static partial class DeleteServiceLinkedRoleInputSchema
 
         public override global::Com.Amazonaws.Iam.DeleteServiceLinkedRoleInput Build(
             Builder builder
-        ) =>
-            new global::Com.Amazonaws.Iam.DeleteServiceLinkedRoleInput(
-                builder.RoleName ?? throw new MissingRequiredMemberException("RoleName")
-            );
+        ) => new global::Com.Amazonaws.Iam.DeleteServiceLinkedRoleInput(builder.RoleName);
 
         public override void SerializeMembers<TSerializer>(
             global::Com.Amazonaws.Iam.DeleteServiceLinkedRoleInput value,
@@ -92,7 +84,7 @@ public static partial class DeleteServiceLinkedRoleInputSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

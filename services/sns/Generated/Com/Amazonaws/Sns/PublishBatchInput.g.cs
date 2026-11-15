@@ -16,6 +16,6 @@ namespace Com.Amazonaws.Sns;
 /// The Amazon resource name (ARN) of the topic you want to batch publish to.
 /// </param>
 public sealed record class PublishBatchInput(
-    IReadOnlyList<PublishBatchRequestEntry> PublishBatchRequestEntries,
-    string TopicArn
+    IReadOnlyList<PublishBatchRequestEntry>? PublishBatchRequestEntries = null,
+    string? TopicArn = null
 );

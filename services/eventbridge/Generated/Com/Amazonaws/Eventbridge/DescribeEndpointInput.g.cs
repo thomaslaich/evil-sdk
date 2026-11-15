@@ -7,12 +7,12 @@ namespace Com.Amazonaws.Eventbridge;
 /// <summary>
 /// Represents the Smithy structure com.amazonaws.eventbridge#DescribeEndpointInput.
 /// </summary>
-/// <param name="Name">
-/// The name of the endpoint you want to get information about. For example,
-/// <c>"Name":"us-east-2-custom_bus_A-endpoint"</c>.
-/// </param>
 /// <param name="HomeRegion">
 /// The primary Region of the endpoint you want to get information about. For example <c>"HomeRegion":
 /// "us-east-1"</c>.
 /// </param>
-public sealed record class DescribeEndpointInput(string Name, string? HomeRegion = null);
+/// <param name="Name">
+/// The name of the endpoint you want to get information about. For example,
+/// <c>"Name":"us-east-2-custom_bus_A-endpoint"</c>.
+/// </param>
+public sealed record class DescribeEndpointInput(string? HomeRegion = null, string? Name = null);

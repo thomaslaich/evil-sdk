@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Iam.Schemas;
 
 public static partial class CreateSAMLProviderOutputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? SAMLProviderArn { get; set; }
         public IReadOnlyList<global::Com.Amazonaws.Iam.Tag>? Tags { get; set; }
@@ -96,7 +96,7 @@ public static partial class CreateSAMLProviderOutputSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

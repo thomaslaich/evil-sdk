@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Dynamodb.Schemas;
 
 public static partial class GlobalSecondaryIndexWarmThroughputDescriptionSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public long? ReadUnitsPerSecond { get; set; }
         public long? WriteUnitsPerSecond { get; set; }
@@ -117,7 +117,7 @@ public static partial class GlobalSecondaryIndexWarmThroughputDescriptionSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

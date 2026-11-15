@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Lambda.Schemas;
 
 public static partial class FunctionCodeLocationSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? RepositoryType { get; set; }
         public string? Location { get; set; }
@@ -184,7 +184,7 @@ public static partial class FunctionCodeLocationSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

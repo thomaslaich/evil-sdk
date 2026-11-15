@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Iam.Schemas;
 
 public static partial class GetInstanceProfileInputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? InstanceProfileName { get; set; }
     }
@@ -27,7 +27,6 @@ public static partial class GetInstanceProfileInputSchema
                 new(
                     "InstanceProfileName",
                     Target0,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
@@ -43,10 +42,6 @@ public static partial class GetInstanceProfileInputSchema
                         new Trait(
                             ShapeId.Parse("smithy.api#pattern"),
                             Document.From("^[\\w+=,.@-]+$")
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
                         ),
                     ]
                 ),
@@ -71,10 +66,7 @@ public static partial class GetInstanceProfileInputSchema
         public override Builder CreateTypedBuilder() => new();
 
         public override global::Com.Amazonaws.Iam.GetInstanceProfileInput Build(Builder builder) =>
-            new global::Com.Amazonaws.Iam.GetInstanceProfileInput(
-                builder.InstanceProfileName
-                    ?? throw new MissingRequiredMemberException("InstanceProfileName")
-            );
+            new global::Com.Amazonaws.Iam.GetInstanceProfileInput(builder.InstanceProfileName);
 
         public override void SerializeMembers<TSerializer>(
             global::Com.Amazonaws.Iam.GetInstanceProfileInput value,
@@ -91,7 +83,7 @@ public static partial class GetInstanceProfileInputSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

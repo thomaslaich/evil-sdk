@@ -11,7 +11,7 @@ namespace Com.Amazonaws.Iam.Schemas;
 
 public static partial class ServiceSpecificCredentialSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public DateTimeOffset? CreateDate { get; set; }
         public DateTimeOffset? ExpirationDate { get; set; }
@@ -338,7 +338,7 @@ public static partial class ServiceSpecificCredentialSchema
             serializer.WriteStringEnum(9, value.Status.Value);
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

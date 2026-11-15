@@ -23,4 +23,7 @@ namespace Com.Amazonaws.Iam;
 /// A list of key names as a simple array of strings. The tags with matching keys are removed from the
 /// specified role.
 /// </param>
-public sealed record class UntagRoleInput(string RoleName, IReadOnlyList<string> TagKeys);
+public sealed record class UntagRoleInput(
+    string? RoleName = null,
+    IReadOnlyList<string>? TagKeys = null
+);

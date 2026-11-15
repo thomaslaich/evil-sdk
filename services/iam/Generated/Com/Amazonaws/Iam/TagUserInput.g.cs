@@ -24,6 +24,6 @@ namespace Com.Amazonaws.Iam;
 /// </para>
 /// </param>
 public sealed record class TagUserInput(
-    IReadOnlyList<global::Com.Amazonaws.Iam.Tag> Tags,
-    string UserName
+    IReadOnlyList<global::Com.Amazonaws.Iam.Tag>? Tags = null,
+    string? UserName = null
 );

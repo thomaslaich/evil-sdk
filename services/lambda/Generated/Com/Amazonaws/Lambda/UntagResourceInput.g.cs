@@ -15,4 +15,7 @@ namespace Com.Amazonaws.Lambda;
 /// <param name="TagKeys">
 /// A list of tag keys to remove from the resource.
 /// </param>
-public sealed record class UntagResourceInput(string Resource, IReadOnlyList<string> TagKeys);
+public sealed record class UntagResourceInput(
+    string? Resource = null,
+    IReadOnlyList<string>? TagKeys = null
+);

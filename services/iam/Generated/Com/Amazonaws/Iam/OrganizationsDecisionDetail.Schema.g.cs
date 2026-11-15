@@ -9,7 +9,7 @@ namespace Com.Amazonaws.Iam.Schemas;
 
 public static partial class OrganizationsDecisionDetailSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public bool? AllowedByOrganizations { get; set; }
     }
@@ -63,7 +63,7 @@ public static partial class OrganizationsDecisionDetailSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

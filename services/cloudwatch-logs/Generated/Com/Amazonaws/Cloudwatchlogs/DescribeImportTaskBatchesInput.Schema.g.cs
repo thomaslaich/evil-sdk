@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Cloudwatchlogs.Schemas;
 
 public static partial class DescribeImportTaskBatchesInputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? ImportId { get; set; }
         public IReadOnlyList<global::Com.Amazonaws.Cloudwatchlogs.ImportStatus>? BatchImportStatus { get; set; }
@@ -33,7 +33,6 @@ public static partial class DescribeImportTaskBatchesInputSchema
                 new(
                     "importId",
                     Target0,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
@@ -49,10 +48,6 @@ public static partial class DescribeImportTaskBatchesInputSchema
                         new Trait(
                             ShapeId.Parse("smithy.api#pattern"),
                             Document.From("^[\\-a-zA-Z0-9]+$")
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
                         ),
                     ]
                 ),
@@ -125,8 +120,8 @@ public static partial class DescribeImportTaskBatchesInputSchema
             Builder builder
         ) =>
             new global::Com.Amazonaws.Cloudwatchlogs.DescribeImportTaskBatchesInput(
-                builder.ImportId ?? throw new MissingRequiredMemberException("importId"),
                 builder.BatchImportStatus,
+                builder.ImportId,
                 builder.Limit,
                 builder.NextToken
             );
@@ -170,7 +165,7 @@ public static partial class DescribeImportTaskBatchesInputSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

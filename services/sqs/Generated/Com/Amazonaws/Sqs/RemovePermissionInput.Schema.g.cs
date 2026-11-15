@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Sqs.Schemas;
 
 public static partial class RemovePermissionInputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? QueueUrl { get; set; }
         public string? Label { get; set; }
@@ -24,32 +24,7 @@ public static partial class RemovePermissionInputSchema
     private sealed class GeneratedSchema()
         : StructSchema<global::Com.Amazonaws.Sqs.RemovePermissionInput, Builder>(
             ShapeId.Parse("com.amazonaws.sqs#RemovePermissionInput"),
-            [
-                new(
-                    "QueueUrl",
-                    Target0,
-                    isRequired: true,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
-                    ]
-                ),
-                new(
-                    "Label",
-                    Target1,
-                    isRequired: true,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
-                    ]
-                ),
-            ],
+            [new("QueueUrl", Target0), new("Label", Target1)],
             [
                 new Trait(
                     ShapeId.Parse("smithy.api#input"),
@@ -74,10 +49,7 @@ public static partial class RemovePermissionInputSchema
         public override Builder CreateTypedBuilder() => new();
 
         public override global::Com.Amazonaws.Sqs.RemovePermissionInput Build(Builder builder) =>
-            new global::Com.Amazonaws.Sqs.RemovePermissionInput(
-                builder.Label ?? throw new MissingRequiredMemberException("Label"),
-                builder.QueueUrl ?? throw new MissingRequiredMemberException("QueueUrl")
-            );
+            new global::Com.Amazonaws.Sqs.RemovePermissionInput(builder.Label, builder.QueueUrl);
 
         public override void SerializeMembers<TSerializer>(
             global::Com.Amazonaws.Sqs.RemovePermissionInput value,
@@ -102,7 +74,7 @@ public static partial class RemovePermissionInputSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

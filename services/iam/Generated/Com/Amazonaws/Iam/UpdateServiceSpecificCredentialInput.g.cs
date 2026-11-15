@@ -31,7 +31,7 @@ namespace Com.Amazonaws.Iam;
 /// </para>
 /// </param>
 public sealed record class UpdateServiceSpecificCredentialInput(
-    string ServiceSpecificCredentialId,
-    StatusType Status,
+    string? ServiceSpecificCredentialId = null,
+    StatusType? Status = null,
     string? UserName = null
 );

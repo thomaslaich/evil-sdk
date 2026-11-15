@@ -9,7 +9,7 @@ namespace Com.Amazonaws.Cloudwatchlogs.Schemas;
 
 public static partial class ExportTaskStatusSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public global::Com.Amazonaws.Cloudwatchlogs.ExportTaskStatusCode? Code { get; set; }
         public string? Message { get; set; }
@@ -67,7 +67,7 @@ public static partial class ExportTaskStatusSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

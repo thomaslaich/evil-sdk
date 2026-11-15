@@ -45,10 +45,10 @@ namespace Com.Amazonaws.S3;
 /// A token to allow Object Lock to be enabled for an existing bucket.
 /// </param>
 public sealed record class PutBucketReplicationInput(
-    string Bucket,
-    global::Com.Amazonaws.S3.ReplicationConfiguration ReplicationConfiguration,
+    string? Bucket = null,
     global::Com.Amazonaws.S3.ChecksumAlgorithm? ChecksumAlgorithm = null,
     string? ContentMD5 = null,
     string? ExpectedBucketOwner = null,
+    global::Com.Amazonaws.S3.ReplicationConfiguration? ReplicationConfiguration = null,
     string? Token = null
 );

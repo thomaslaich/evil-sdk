@@ -7,16 +7,6 @@ namespace Com.Amazonaws.Secretsmanager;
 /// <summary>
 /// Represents the Smithy structure com.amazonaws.secretsmanager#DeleteSecretInput.
 /// </summary>
-/// <param name="SecretId">
-/// <para>
-/// The ARN or name of the secret to delete.
-/// </para>
-/// <para>
-/// For an ARN, we recommend that you specify a complete ARN rather than a partial ARN. See
-/// <see href="https://docs.aws.amazon.com/secretsmanager/latest/userguide/troubleshoot.html#ARN_secretnamehyphen">Finding
-/// a secret from a partial ARN</see>.
-/// </para>
-/// </param>
 /// <param name="ForceDeleteWithoutRecovery">
 /// <para>
 /// Specifies whether to delete the secret without any recovery window. You can't use both this
@@ -45,8 +35,18 @@ namespace Com.Amazonaws.Secretsmanager;
 /// You can't use both this parameter and <c>ForceDeleteWithoutRecovery</c> in the same call. If you
 /// don't use either, then by default Secrets Manager uses a 30 day recovery window.
 /// </param>
+/// <param name="SecretId">
+/// <para>
+/// The ARN or name of the secret to delete.
+/// </para>
+/// <para>
+/// For an ARN, we recommend that you specify a complete ARN rather than a partial ARN. See
+/// <see href="https://docs.aws.amazon.com/secretsmanager/latest/userguide/troubleshoot.html#ARN_secretnamehyphen">Finding
+/// a secret from a partial ARN</see>.
+/// </para>
+/// </param>
 public sealed record class DeleteSecretInput(
-    string SecretId,
     bool? ForceDeleteWithoutRecovery = null,
-    long? RecoveryWindowInDays = null
+    long? RecoveryWindowInDays = null,
+    string? SecretId = null
 );

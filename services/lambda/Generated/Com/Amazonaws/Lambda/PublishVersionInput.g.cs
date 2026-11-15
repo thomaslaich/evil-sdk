@@ -7,6 +7,14 @@ namespace Com.Amazonaws.Lambda;
 /// <summary>
 /// Represents the Smithy structure com.amazonaws.lambda#PublishVersionInput.
 /// </summary>
+/// <param name="CodeSha256">
+/// Only publish a version if the hash value matches the value that's specified. Use this option to
+/// avoid publishing a version if the function code has changed since you last updated it. You can get
+/// the hash for the version that you uploaded from the output of UpdateFunctionCode.
+/// </param>
+/// <param name="Description">
+/// A description for the version to override the description in the function configuration.
+/// </param>
 /// <param name="FunctionName">
 /// <para>
 /// The name or ARN of the Lambda function.
@@ -36,14 +44,6 @@ namespace Com.Amazonaws.Lambda;
 /// limited to 64 characters in length.
 /// </para>
 /// </param>
-/// <param name="CodeSha256">
-/// Only publish a version if the hash value matches the value that's specified. Use this option to
-/// avoid publishing a version if the function code has changed since you last updated it. You can get
-/// the hash for the version that you uploaded from the output of UpdateFunctionCode.
-/// </param>
-/// <param name="Description">
-/// A description for the version to override the description in the function configuration.
-/// </param>
 /// <param name="PublishTo">
 /// Specifies where to publish the function version or configuration.
 /// </param>
@@ -52,9 +52,9 @@ namespace Com.Amazonaws.Lambda;
 /// avoid publishing a version if the function configuration has changed since you last updated it.
 /// </param>
 public sealed record class PublishVersionInput(
-    string FunctionName,
     string? CodeSha256 = null,
     string? Description = null,
+    string? FunctionName = null,
     FunctionVersionLatestPublished? PublishTo = null,
     string? RevisionId = null
 );

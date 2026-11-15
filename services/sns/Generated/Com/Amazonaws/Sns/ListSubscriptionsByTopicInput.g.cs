@@ -7,10 +7,13 @@ namespace Com.Amazonaws.Sns;
 /// <summary>
 /// Input for ListSubscriptionsByTopic action.
 /// </summary>
-/// <param name="TopicArn">
-/// The ARN of the topic for which you wish to find subscriptions.
-/// </param>
 /// <param name="NextToken">
 /// Token returned by the previous <c>ListSubscriptionsByTopic</c> request.
 /// </param>
-public sealed record class ListSubscriptionsByTopicInput(string TopicArn, string? NextToken = null);
+/// <param name="TopicArn">
+/// The ARN of the topic for which you wish to find subscriptions.
+/// </param>
+public sealed record class ListSubscriptionsByTopicInput(
+    string? NextToken = null,
+    string? TopicArn = null
+);

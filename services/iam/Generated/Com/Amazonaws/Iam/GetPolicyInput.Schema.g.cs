@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Iam.Schemas;
 
 public static partial class GetPolicyInputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? PolicyArn { get; set; }
     }
@@ -25,7 +25,6 @@ public static partial class GetPolicyInputSchema
                 new(
                     "PolicyArn",
                     Target0,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
@@ -37,10 +36,6 @@ public static partial class GetPolicyInputSchema
                                     { "max", Document.From(2048m) },
                                 }
                             )
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
                         ),
                     ]
                 ),
@@ -65,9 +60,7 @@ public static partial class GetPolicyInputSchema
         public override Builder CreateTypedBuilder() => new();
 
         public override global::Com.Amazonaws.Iam.GetPolicyInput Build(Builder builder) =>
-            new global::Com.Amazonaws.Iam.GetPolicyInput(
-                builder.PolicyArn ?? throw new MissingRequiredMemberException("PolicyArn")
-            );
+            new global::Com.Amazonaws.Iam.GetPolicyInput(builder.PolicyArn);
 
         public override void SerializeMembers<TSerializer>(
             global::Com.Amazonaws.Iam.GetPolicyInput value,
@@ -84,7 +77,7 @@ public static partial class GetPolicyInputSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

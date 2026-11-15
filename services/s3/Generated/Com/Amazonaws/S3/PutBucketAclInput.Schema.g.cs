@@ -10,7 +10,7 @@ namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class PutBucketAclInputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public global::Com.Amazonaws.S3.BucketCannedACL? ACL { get; set; }
         public global::Com.Amazonaws.S3.AccessControlPolicy? AccessControlPolicy { get; set; }
@@ -63,15 +63,10 @@ public static partial class PutBucketAclInputSchema
                 new(
                     "Bucket",
                     Target2,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
                             ShapeId.Parse("smithy.api#httpLabel"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
                             Document.From(new Dictionary<string, Document> { })
                         ),
                         new Trait(
@@ -231,9 +226,9 @@ public static partial class PutBucketAclInputSchema
 
         public override global::Com.Amazonaws.S3.PutBucketAclInput Build(Builder builder) =>
             new global::Com.Amazonaws.S3.PutBucketAclInput(
-                builder.Bucket ?? throw new MissingRequiredMemberException("Bucket"),
                 builder.ACL,
                 builder.AccessControlPolicy,
+                builder.Bucket,
                 builder.ChecksumAlgorithm,
                 builder.ContentMD5,
                 builder.ExpectedBucketOwner,
@@ -339,7 +334,7 @@ public static partial class PutBucketAclInputSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

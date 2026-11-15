@@ -11,7 +11,7 @@ namespace Com.Amazonaws.Eventbridge.Schemas;
 
 public static partial class ArchiveSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? ArchiveName { get; set; }
         public string? EventSourceArn { get; set; }
@@ -243,7 +243,7 @@ public static partial class ArchiveSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

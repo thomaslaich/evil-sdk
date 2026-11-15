@@ -10,7 +10,7 @@ namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class PutBucketWebsiteInputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? Bucket { get; set; }
         public string? ContentMD5 { get; set; }
@@ -31,15 +31,10 @@ public static partial class PutBucketWebsiteInputSchema
                 new(
                     "Bucket",
                     Target0,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
                             ShapeId.Parse("smithy.api#httpLabel"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
                             Document.From(new Dictionary<string, Document> { })
                         ),
                         new Trait(
@@ -78,15 +73,10 @@ public static partial class PutBucketWebsiteInputSchema
                 new(
                     "WebsiteConfiguration",
                     Target3,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
                             ShapeId.Parse("smithy.api#httpPayload"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
                             Document.From(new Dictionary<string, Document> { })
                         ),
                         new Trait(
@@ -142,12 +132,11 @@ public static partial class PutBucketWebsiteInputSchema
 
         public override global::Com.Amazonaws.S3.PutBucketWebsiteInput Build(Builder builder) =>
             new global::Com.Amazonaws.S3.PutBucketWebsiteInput(
-                builder.Bucket ?? throw new MissingRequiredMemberException("Bucket"),
-                builder.WebsiteConfiguration
-                    ?? throw new MissingRequiredMemberException("WebsiteConfiguration"),
+                builder.Bucket,
                 builder.ChecksumAlgorithm,
                 builder.ContentMD5,
-                builder.ExpectedBucketOwner
+                builder.ExpectedBucketOwner,
+                builder.WebsiteConfiguration
             );
 
         public override void SerializeMembers<TSerializer>(
@@ -197,7 +186,7 @@ public static partial class PutBucketWebsiteInputSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

@@ -9,15 +9,6 @@ namespace Com.Amazonaws.Dynamodb;
 /// <summary>
 /// Represents the input of a <c>Scan</c> operation.
 /// </summary>
-/// <param name="TableName">
-/// <para>
-/// The name of the table containing the requested items or if you provide <c>IndexName</c>, the name of
-/// the table to which that index belongs.
-/// </para>
-/// <para>
-/// You can also provide the Amazon Resource Name (ARN) of the table in this parameter.
-/// </para>
-/// </param>
 /// <param name="AttributesToGet">
 /// This is a legacy parameter. Use <c>ProjectionExpression</c> instead. For more information, see
 /// <see href="https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/LegacyConditionalParameters.AttributesToGet.html">AttributesToGet</see>
@@ -303,6 +294,15 @@ namespace Com.Amazonaws.Dynamodb;
 /// can only be <c>SPECIFIC_ATTRIBUTES</c>. Any other value for <c>Select</c> will return an error.
 /// </para>
 /// </param>
+/// <param name="TableName">
+/// <para>
+/// The name of the table containing the requested items or if you provide <c>IndexName</c>, the name of
+/// the table to which that index belongs.
+/// </para>
+/// <para>
+/// You can also provide the Amazon Resource Name (ARN) of the table in this parameter.
+/// </para>
+/// </param>
 /// <param name="TotalSegments">
 /// <para>
 /// For a parallel <c>Scan</c> request, <c>TotalSegments</c> represents the total number of segments
@@ -321,7 +321,6 @@ namespace Com.Amazonaws.Dynamodb;
 /// </para>
 /// </param>
 public sealed record class ScanInput(
-    string TableName,
     IReadOnlyList<string>? AttributesToGet = null,
     global::Com.Amazonaws.Dynamodb.ConditionalOperator? ConditionalOperator = null,
     bool? ConsistentRead = null,
@@ -336,5 +335,6 @@ public sealed record class ScanInput(
     IReadOnlyDictionary<string, Condition>? ScanFilter = null,
     int? Segment = null,
     global::Com.Amazonaws.Dynamodb.Select? Select = null,
+    string? TableName = null,
     int? TotalSegments = null
 );

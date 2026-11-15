@@ -8,14 +8,6 @@ namespace Com.Amazonaws.Sqs;
 
 /// <summary>
 /// </summary>
-/// <param name="QueueUrl">
-/// <para>
-/// The URL of the Amazon SQS queue whose attribute information is retrieved.
-/// </para>
-/// <para>
-/// Queue URLs and names are case-sensitive.
-/// </para>
-/// </param>
 /// <param name="AttributeNames">
 /// <para>
 /// A list of attributes for which to retrieve information.
@@ -310,7 +302,15 @@ namespace Com.Amazonaws.Sqs;
 /// related to messages</see> in the <i>Amazon SQS Developer Guide</i>.
 /// </para>
 /// </param>
+/// <param name="QueueUrl">
+/// <para>
+/// The URL of the Amazon SQS queue whose attribute information is retrieved.
+/// </para>
+/// <para>
+/// Queue URLs and names are case-sensitive.
+/// </para>
+/// </param>
 public sealed record class GetQueueAttributesInput(
-    string QueueUrl,
-    IReadOnlyList<QueueAttributeName>? AttributeNames = null
+    IReadOnlyList<QueueAttributeName>? AttributeNames = null,
+    string? QueueUrl = null
 );

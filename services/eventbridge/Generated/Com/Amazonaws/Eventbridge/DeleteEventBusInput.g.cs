@@ -10,4 +10,4 @@ namespace Com.Amazonaws.Eventbridge;
 /// <param name="Name">
 /// The name of the event bus to delete.
 /// </param>
-public sealed record class DeleteEventBusInput(string Name);
+public sealed record class DeleteEventBusInput(string? Name = null);

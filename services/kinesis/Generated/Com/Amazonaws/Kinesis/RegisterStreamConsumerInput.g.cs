@@ -25,8 +25,8 @@ namespace Com.Amazonaws.Kinesis;
 /// A set of up to 50 key-value pairs. A tag consists of a required key and an optional value.
 /// </param>
 public sealed record class RegisterStreamConsumerInput(
-    string ConsumerName,
-    string StreamARN,
+    string? ConsumerName = null,
+    string? StreamARN = null,
     string? StreamId = null,
     IReadOnlyDictionary<string, string>? Tags = null
 );

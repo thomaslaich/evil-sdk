@@ -14,4 +14,4 @@ namespace Com.Amazonaws.Sqs;
 /// Queue URLs and names are case-sensitive.
 /// </para>
 /// </param>
-public sealed record class DeleteQueueInput(string QueueUrl);
+public sealed record class DeleteQueueInput(string? QueueUrl = null);

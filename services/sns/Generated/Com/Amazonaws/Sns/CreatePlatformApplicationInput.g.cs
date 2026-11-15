@@ -22,7 +22,7 @@ namespace Com.Amazonaws.Sns;
 /// Service), APNS_SANDBOX, and GCM (Firebase Cloud Messaging).
 /// </param>
 public sealed record class CreatePlatformApplicationInput(
-    IReadOnlyDictionary<string, string> Attributes,
-    string Name,
-    string Platform
+    IReadOnlyDictionary<string, string>? Attributes = null,
+    string? Name = null,
+    string? Platform = null
 );

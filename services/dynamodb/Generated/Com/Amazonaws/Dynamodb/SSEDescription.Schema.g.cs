@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Dynamodb.Schemas;
 
 public static partial class SSEDescriptionSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public global::Com.Amazonaws.Dynamodb.SSEStatus? Status { get; set; }
         public global::Com.Amazonaws.Dynamodb.SSEType? SSEType { get; set; }
@@ -97,7 +97,7 @@ public static partial class SSEDescriptionSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

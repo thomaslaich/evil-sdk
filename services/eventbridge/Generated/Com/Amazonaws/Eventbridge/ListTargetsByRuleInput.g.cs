@@ -7,9 +7,6 @@ namespace Com.Amazonaws.Eventbridge;
 /// <summary>
 /// Represents the Smithy structure com.amazonaws.eventbridge#ListTargetsByRuleInput.
 /// </summary>
-/// <param name="Rule">
-/// The name of the rule.
-/// </param>
 /// <param name="EventBusName">
 /// The name or ARN of the event bus associated with the rule. If you omit this, the default event bus
 /// is used.
@@ -29,9 +26,12 @@ namespace Com.Amazonaws.Eventbridge;
 /// Using an expired pagination token results in an <c>HTTP 400 InvalidToken</c> error.
 /// </para>
 /// </param>
+/// <param name="Rule">
+/// The name of the rule.
+/// </param>
 public sealed record class ListTargetsByRuleInput(
-    string Rule,
     string? EventBusName = null,
     int? Limit = null,
-    string? NextToken = null
+    string? NextToken = null,
+    string? Rule = null
 );

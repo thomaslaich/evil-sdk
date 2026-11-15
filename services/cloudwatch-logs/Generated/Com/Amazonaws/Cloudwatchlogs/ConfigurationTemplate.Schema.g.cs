@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Cloudwatchlogs.Schemas;
 
 public static partial class ConfigurationTemplateSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? Service { get; set; }
         public string? LogType { get; set; }
@@ -280,7 +280,7 @@ public static partial class ConfigurationTemplateSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

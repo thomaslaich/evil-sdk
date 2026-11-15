@@ -22,7 +22,7 @@ namespace Com.Amazonaws.Route53;
 /// </para>
 /// </param>
 public sealed record class ListCidrLocationsInput(
-    string CollectionId,
+    string? CollectionId = null,
     int? MaxResults = null,
     string? NextToken = null
 );

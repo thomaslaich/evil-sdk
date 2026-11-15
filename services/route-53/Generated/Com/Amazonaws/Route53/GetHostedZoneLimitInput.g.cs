@@ -29,4 +29,7 @@ namespace Com.Amazonaws.Route53;
 /// </item>
 /// </list>
 /// </param>
-public sealed record class GetHostedZoneLimitInput(string HostedZoneId, HostedZoneLimitType Type);
+public sealed record class GetHostedZoneLimitInput(
+    string? HostedZoneId = null,
+    HostedZoneLimitType? Type = null
+);

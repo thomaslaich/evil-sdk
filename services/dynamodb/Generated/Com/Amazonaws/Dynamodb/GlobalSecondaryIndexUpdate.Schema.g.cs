@@ -9,7 +9,7 @@ namespace Com.Amazonaws.Dynamodb.Schemas;
 
 public static partial class GlobalSecondaryIndexUpdateSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public global::Com.Amazonaws.Dynamodb.UpdateGlobalSecondaryIndexAction? Update { get; set; }
         public global::Com.Amazonaws.Dynamodb.CreateGlobalSecondaryIndexAction? Create { get; set; }
@@ -89,7 +89,7 @@ public static partial class GlobalSecondaryIndexUpdateSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

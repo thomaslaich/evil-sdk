@@ -10,7 +10,7 @@ namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class PutObjectAclInputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public global::Com.Amazonaws.S3.ObjectCannedACL? ACL { get; set; }
         public global::Com.Amazonaws.S3.AccessControlPolicy? AccessControlPolicy { get; set; }
@@ -66,15 +66,10 @@ public static partial class PutObjectAclInputSchema
                 new(
                     "Bucket",
                     Target2,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
                             ShapeId.Parse("smithy.api#httpLabel"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
                             Document.From(new Dictionary<string, Document> { })
                         ),
                         new Trait(
@@ -168,7 +163,6 @@ public static partial class PutObjectAclInputSchema
                 new(
                     "Key",
                     Target10,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
@@ -180,10 +174,6 @@ public static partial class PutObjectAclInputSchema
                             Document.From(
                                 new Dictionary<string, Document> { { "min", Document.From(1m) } }
                             )
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
                         ),
                         new Trait(
                             ShapeId.Parse("smithy.rules#contextParam"),
@@ -297,10 +287,9 @@ public static partial class PutObjectAclInputSchema
 
         public override global::Com.Amazonaws.S3.PutObjectAclInput Build(Builder builder) =>
             new global::Com.Amazonaws.S3.PutObjectAclInput(
-                builder.Bucket ?? throw new MissingRequiredMemberException("Bucket"),
-                builder.Key ?? throw new MissingRequiredMemberException("Key"),
                 builder.ACL,
                 builder.AccessControlPolicy,
+                builder.Bucket,
                 builder.ChecksumAlgorithm,
                 builder.ContentMD5,
                 builder.ExpectedBucketOwner,
@@ -309,6 +298,7 @@ public static partial class PutObjectAclInputSchema
                 builder.GrantReadACP,
                 builder.GrantWrite,
                 builder.GrantWriteACP,
+                builder.Key,
                 builder.RequestPayer,
                 builder.VersionId
             );
@@ -432,7 +422,7 @@ public static partial class PutObjectAclInputSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

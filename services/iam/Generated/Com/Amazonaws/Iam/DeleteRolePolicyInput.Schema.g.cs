@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Iam.Schemas;
 
 public static partial class DeleteRolePolicyInputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? RoleName { get; set; }
         public string? PolicyName { get; set; }
@@ -28,7 +28,6 @@ public static partial class DeleteRolePolicyInputSchema
                 new(
                     "RoleName",
                     Target0,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
@@ -45,16 +44,11 @@ public static partial class DeleteRolePolicyInputSchema
                             ShapeId.Parse("smithy.api#pattern"),
                             Document.From("^[\\w+=,.@-]+$")
                         ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
                     ]
                 ),
                 new(
                     "PolicyName",
                     Target1,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
@@ -70,10 +64,6 @@ public static partial class DeleteRolePolicyInputSchema
                         new Trait(
                             ShapeId.Parse("smithy.api#pattern"),
                             Document.From("^[\\w+=,.@-]+$")
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
                         ),
                     ]
                 ),
@@ -103,8 +93,8 @@ public static partial class DeleteRolePolicyInputSchema
 
         public override global::Com.Amazonaws.Iam.DeleteRolePolicyInput Build(Builder builder) =>
             new global::Com.Amazonaws.Iam.DeleteRolePolicyInput(
-                builder.PolicyName ?? throw new MissingRequiredMemberException("PolicyName"),
-                builder.RoleName ?? throw new MissingRequiredMemberException("RoleName")
+                builder.PolicyName,
+                builder.RoleName
             );
 
         public override void SerializeMembers<TSerializer>(
@@ -130,7 +120,7 @@ public static partial class DeleteRolePolicyInputSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

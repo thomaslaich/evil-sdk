@@ -7,16 +7,6 @@ namespace Com.Amazonaws.Secretsmanager;
 /// <summary>
 /// Represents the Smithy structure com.amazonaws.secretsmanager#UpdateSecretInput.
 /// </summary>
-/// <param name="SecretId">
-/// <para>
-/// The ARN or name of the secret.
-/// </para>
-/// <para>
-/// For an ARN, we recommend that you specify a complete ARN rather than a partial ARN. See
-/// <see href="https://docs.aws.amazon.com/secretsmanager/latest/userguide/troubleshoot.html#ARN_secretnamehyphen">Finding
-/// a secret from a partial ARN</see>.
-/// </para>
-/// </param>
 /// <param name="ClientRequestToken">
 /// <para>
 /// If you include <c>SecretString</c> or <c>SecretBinary</c>, then Secrets Manager creates a new
@@ -90,6 +80,16 @@ namespace Com.Amazonaws.Secretsmanager;
 /// information in this field.
 /// </para>
 /// </param>
+/// <param name="SecretId">
+/// <para>
+/// The ARN or name of the secret.
+/// </para>
+/// <para>
+/// For an ARN, we recommend that you specify a complete ARN rather than a partial ARN. See
+/// <see href="https://docs.aws.amazon.com/secretsmanager/latest/userguide/troubleshoot.html#ARN_secretnamehyphen">Finding
+/// a secret from a partial ARN</see>.
+/// </para>
+/// </param>
 /// <param name="SecretString">
 /// <para>
 /// The text data to encrypt and store in the new version of the secret. We recommend you use a JSON
@@ -111,11 +111,11 @@ namespace Com.Amazonaws.Secretsmanager;
 /// external secret partners</see>.
 /// </param>
 public sealed record class UpdateSecretInput(
-    string SecretId,
     string? ClientRequestToken = null,
     string? Description = null,
     string? KmsKeyId = null,
     byte[]? SecretBinary = null,
+    string? SecretId = null,
     string? SecretString = null,
     string? Type = null
 );

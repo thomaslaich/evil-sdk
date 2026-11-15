@@ -7,6 +7,9 @@ namespace Com.Amazonaws.Lambda;
 /// <summary>
 /// Represents the Smithy structure com.amazonaws.lambda#UpdateAliasInput.
 /// </summary>
+/// <param name="Description">
+/// A description of the alias.
+/// </param>
 /// <param name="FunctionName">
 /// <para>
 /// The name or ARN of the Lambda function.
@@ -36,14 +39,11 @@ namespace Com.Amazonaws.Lambda;
 /// limited to 64 characters in length.
 /// </para>
 /// </param>
-/// <param name="Name">
-/// The name of the alias.
-/// </param>
-/// <param name="Description">
-/// A description of the alias.
-/// </param>
 /// <param name="FunctionVersion">
 /// The function version that the alias invokes.
+/// </param>
+/// <param name="Name">
+/// The name of the alias.
 /// </param>
 /// <param name="RevisionId">
 /// Only update the alias if the revision ID matches the ID that's specified. Use this option to avoid
@@ -55,10 +55,10 @@ namespace Com.Amazonaws.Lambda;
 /// configuration</see> of the alias.
 /// </param>
 public sealed record class UpdateAliasInput(
-    string FunctionName,
-    string Name,
     string? Description = null,
+    string? FunctionName = null,
     string? FunctionVersion = null,
+    string? Name = null,
     string? RevisionId = null,
     AliasRoutingConfiguration? RoutingConfig = null
 );

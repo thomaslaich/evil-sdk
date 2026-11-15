@@ -9,60 +9,6 @@ namespace Com.Amazonaws.Dynamodb;
 /// <summary>
 /// Represents the input of a <c>PutItem</c> operation.
 /// </summary>
-/// <param name="Item">
-/// <para>
-/// A map of attribute name/value pairs, one for each attribute. Only the primary key attributes are
-/// required; you can optionally provide other attribute name-value pairs for the item.
-/// </para>
-/// <para>
-/// You must provide all of the attributes for the primary key. For example, with a simple primary key,
-/// you only need to provide a value for the partition key. For a composite primary key, you must
-/// provide both values for both the partition key and the sort key.
-/// </para>
-/// <para>
-/// If you specify any attributes that are part of an index key, then the data types for those
-/// attributes must match those of the schema in the table's attribute definition.
-/// </para>
-/// <para>
-/// If the table has vector indexes, the following validations apply to write operations. A violation of
-/// any of these constraints results in a <c>ValidationException</c>:
-/// </para>
-/// <list type="bullet">
-/// <item>
-/// <description>
-/// The vector attribute must be a list of numbers with dimensions matching the index configuration.
-/// </description>
-/// </item>
-/// <item>
-/// <description>
-/// Vector values must fit in 32-bit IEEE-754 floating point format (f32).
-/// </description>
-/// </item>
-/// <item>
-/// <description>
-/// Partition key and inline filter attributes defined in the search schema must have data types
-/// matching the index schema definition.
-/// </description>
-/// </item>
-/// </list>
-/// <para>
-/// Empty String and Binary attribute values are allowed. Attribute values of type String and Binary
-/// must have a length greater than zero if the attribute is used as a key attribute for a table or
-/// index.
-/// </para>
-/// <para>
-/// For more information about primary keys, see
-/// <see href="https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/HowItWorks.CoreComponents.html#HowItWorks.CoreComponents.PrimaryKey">Primary
-/// Key</see> in the <i>Amazon DynamoDB Developer Guide</i>.
-/// </para>
-/// <para>
-/// Each element in the <c>Item</c> map is an <c>AttributeValue</c> object.
-/// </para>
-/// </param>
-/// <param name="TableName">
-/// The name of the table to contain the item. You can also provide the Amazon Resource Name (ARN) of
-/// the table in this parameter.
-/// </param>
 /// <param name="ConditionExpression">
 /// <para>
 /// A condition that must be satisfied in order for a conditional <c>PutItem</c> operation to succeed.
@@ -206,6 +152,56 @@ namespace Com.Amazonaws.Dynamodb;
 /// Expressions</see> in the <i>Amazon DynamoDB Developer Guide</i>.
 /// </para>
 /// </param>
+/// <param name="Item">
+/// <para>
+/// A map of attribute name/value pairs, one for each attribute. Only the primary key attributes are
+/// required; you can optionally provide other attribute name-value pairs for the item.
+/// </para>
+/// <para>
+/// You must provide all of the attributes for the primary key. For example, with a simple primary key,
+/// you only need to provide a value for the partition key. For a composite primary key, you must
+/// provide both values for both the partition key and the sort key.
+/// </para>
+/// <para>
+/// If you specify any attributes that are part of an index key, then the data types for those
+/// attributes must match those of the schema in the table's attribute definition.
+/// </para>
+/// <para>
+/// If the table has vector indexes, the following validations apply to write operations. A violation of
+/// any of these constraints results in a <c>ValidationException</c>:
+/// </para>
+/// <list type="bullet">
+/// <item>
+/// <description>
+/// The vector attribute must be a list of numbers with dimensions matching the index configuration.
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// Vector values must fit in 32-bit IEEE-754 floating point format (f32).
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// Partition key and inline filter attributes defined in the search schema must have data types
+/// matching the index schema definition.
+/// </description>
+/// </item>
+/// </list>
+/// <para>
+/// Empty String and Binary attribute values are allowed. Attribute values of type String and Binary
+/// must have a length greater than zero if the attribute is used as a key attribute for a table or
+/// index.
+/// </para>
+/// <para>
+/// For more information about primary keys, see
+/// <see href="https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/HowItWorks.CoreComponents.html#HowItWorks.CoreComponents.PrimaryKey">Primary
+/// Key</see> in the <i>Amazon DynamoDB Developer Guide</i>.
+/// </para>
+/// <para>
+/// Each element in the <c>Item</c> map is an <c>AttributeValue</c> object.
+/// </para>
+/// </param>
 /// <param name="ReturnItemCollectionMetrics">
 /// Determines whether item collection metrics are returned. If set to <c>SIZE</c>, the response
 /// includes statistics about item collections, if any, that were modified during the operation are
@@ -252,17 +248,21 @@ namespace Com.Amazonaws.Dynamodb;
 /// and processing overhead of receiving a larger response. No read capacity units are consumed.
 /// </para>
 /// </param>
+/// <param name="TableName">
+/// The name of the table to contain the item. You can also provide the Amazon Resource Name (ARN) of
+/// the table in this parameter.
+/// </param>
 public sealed record class PutItemInput(
-    IReadOnlyDictionary<string, AttributeValue> Item,
-    string TableName,
     string? ConditionExpression = null,
     global::Com.Amazonaws.Dynamodb.ConditionalOperator? ConditionalOperator = null,
     IReadOnlyDictionary<string, ExpectedAttributeValue>? Expected = null,
     IReadOnlyDictionary<string, string>? ExpressionAttributeNames = null,
     IReadOnlyDictionary<string, AttributeValue>? ExpressionAttributeValues = null,
+    IReadOnlyDictionary<string, AttributeValue>? Item = null,
     global::Com.Amazonaws.Dynamodb.ReturnConsumedCapacity? ReturnConsumedCapacity = null,
     global::Com.Amazonaws.Dynamodb.ReturnItemCollectionMetrics? ReturnItemCollectionMetrics = null,
     ReturnValue? ReturnValues = null,
     global::Com.Amazonaws.Dynamodb.ReturnValuesOnConditionCheckFailure? ReturnValuesOnConditionCheckFailure =
-        null
+        null,
+    string? TableName = null
 );

@@ -13,4 +13,6 @@ namespace Com.Amazonaws.Iam;
 /// <see href="https://docs.aws.amazon.com/IAM/latest/APIReference/API_ListOpenIDConnectProviders.html">ListOpenIDConnectProviders</see>
 /// operation.
 /// </param>
-public sealed record class DeleteOpenIDConnectProviderInput(string OpenIDConnectProviderArn);
+public sealed record class DeleteOpenIDConnectProviderInput(
+    string? OpenIDConnectProviderArn = null
+);

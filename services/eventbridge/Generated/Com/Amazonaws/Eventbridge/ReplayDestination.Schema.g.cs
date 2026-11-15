@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Eventbridge.Schemas;
 
 public static partial class ReplayDestinationSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? Arn { get; set; }
         public IReadOnlyList<string>? FilterArns { get; set; }
@@ -96,7 +96,7 @@ public static partial class ReplayDestinationSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

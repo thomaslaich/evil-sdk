@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Sns.Schemas;
 
 public static partial class AddPermissionInputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? TopicArn { get; set; }
         public string? Label { get; set; }
@@ -27,54 +27,10 @@ public static partial class AddPermissionInputSchema
         : StructSchema<global::Com.Amazonaws.Sns.AddPermissionInput, Builder>(
             ShapeId.Parse("com.amazonaws.sns#AddPermissionInput"),
             [
-                new(
-                    "TopicArn",
-                    Target0,
-                    isRequired: true,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
-                    ]
-                ),
-                new(
-                    "Label",
-                    Target1,
-                    isRequired: true,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
-                    ]
-                ),
-                new(
-                    "AWSAccountId",
-                    Target2,
-                    isRequired: true,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
-                    ]
-                ),
-                new(
-                    "ActionName",
-                    Target3,
-                    isRequired: true,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
-                    ]
-                ),
+                new("TopicArn", Target0),
+                new("Label", Target1),
+                new("AWSAccountId", Target2),
+                new("ActionName", Target3),
             ],
             [
                 new Trait(
@@ -105,10 +61,10 @@ public static partial class AddPermissionInputSchema
 
         public override global::Com.Amazonaws.Sns.AddPermissionInput Build(Builder builder) =>
             new global::Com.Amazonaws.Sns.AddPermissionInput(
-                builder.AWSAccountId ?? throw new MissingRequiredMemberException("AWSAccountId"),
-                builder.ActionName ?? throw new MissingRequiredMemberException("ActionName"),
-                builder.Label ?? throw new MissingRequiredMemberException("Label"),
-                builder.TopicArn ?? throw new MissingRequiredMemberException("TopicArn")
+                builder.AWSAccountId,
+                builder.ActionName,
+                builder.Label,
+                builder.TopicArn
             );
 
         public override void SerializeMembers<TSerializer>(
@@ -150,7 +106,7 @@ public static partial class AddPermissionInputSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

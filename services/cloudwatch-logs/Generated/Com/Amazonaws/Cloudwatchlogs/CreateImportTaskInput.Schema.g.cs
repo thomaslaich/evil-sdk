@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Cloudwatchlogs.Schemas;
 
 public static partial class CreateImportTaskInputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? ImportSourceArn { get; set; }
         public string? ImportRoleArn { get; set; }
@@ -26,22 +26,10 @@ public static partial class CreateImportTaskInputSchema
         : StructSchema<global::Com.Amazonaws.Cloudwatchlogs.CreateImportTaskInput, Builder>(
             ShapeId.Parse("com.amazonaws.cloudwatchlogs#CreateImportTaskInput"),
             [
-                new(
-                    "importSourceArn",
-                    Target0,
-                    isRequired: true,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
-                    ]
-                ),
+                new("importSourceArn", Target0),
                 new(
                     "importRoleArn",
                     Target1,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
@@ -49,10 +37,6 @@ public static partial class CreateImportTaskInputSchema
                             Document.From(
                                 new Dictionary<string, Document> { { "min", Document.From(1m) } }
                             )
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
                         ),
                     ]
                 ),
@@ -89,10 +73,9 @@ public static partial class CreateImportTaskInputSchema
             Builder builder
         ) =>
             new global::Com.Amazonaws.Cloudwatchlogs.CreateImportTaskInput(
-                builder.ImportRoleArn ?? throw new MissingRequiredMemberException("importRoleArn"),
+                builder.ImportFilter,
+                builder.ImportRoleArn,
                 builder.ImportSourceArn
-                    ?? throw new MissingRequiredMemberException("importSourceArn"),
-                builder.ImportFilter
             );
 
         public override void SerializeMembers<TSerializer>(
@@ -126,7 +109,7 @@ public static partial class CreateImportTaskInputSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

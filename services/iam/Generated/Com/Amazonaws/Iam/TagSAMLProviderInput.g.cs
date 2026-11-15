@@ -24,6 +24,6 @@ namespace Com.Amazonaws.Iam;
 /// a key name and an associated value.
 /// </param>
 public sealed record class TagSAMLProviderInput(
-    string SAMLProviderArn,
-    IReadOnlyList<global::Com.Amazonaws.Iam.Tag> Tags
+    string? SAMLProviderArn = null,
+    IReadOnlyList<global::Com.Amazonaws.Iam.Tag>? Tags = null
 );

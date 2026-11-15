@@ -7,17 +7,6 @@ namespace Com.Amazonaws.Iam;
 /// <summary>
 /// Represents the Smithy structure com.amazonaws.iam#ListMFADeviceTagsInput.
 /// </summary>
-/// <param name="SerialNumber">
-/// <para>
-/// The unique identifier for the IAM virtual MFA device whose tags you want to see. For virtual MFA
-/// devices, the serial number is the same as the ARN.
-/// </para>
-/// <para>
-/// This parameter allows (through its <see href="http://wikipedia.org/wiki/regex">regex pattern</see>)
-/// a string of characters consisting of upper and lowercase alphanumeric characters with no spaces. You
-/// can also include any of the following characters: _+=,.@-
-/// </para>
-/// </param>
 /// <param name="Marker">
 /// Use this parameter only when paginating results and only after you receive a response indicating
 /// that the results are truncated. Set it to the value of the <c>Marker</c> element in the response
@@ -36,8 +25,19 @@ namespace Com.Amazonaws.Iam;
 /// include in the subsequent call that tells the service where to continue from.
 /// </para>
 /// </param>
+/// <param name="SerialNumber">
+/// <para>
+/// The unique identifier for the IAM virtual MFA device whose tags you want to see. For virtual MFA
+/// devices, the serial number is the same as the ARN.
+/// </para>
+/// <para>
+/// This parameter allows (through its <see href="http://wikipedia.org/wiki/regex">regex pattern</see>)
+/// a string of characters consisting of upper and lowercase alphanumeric characters with no spaces. You
+/// can also include any of the following characters: _+=,.@-
+/// </para>
+/// </param>
 public sealed record class ListMFADeviceTagsInput(
-    string SerialNumber,
     string? Marker = null,
-    int? MaxItems = null
+    int? MaxItems = null,
+    string? SerialNumber = null
 );

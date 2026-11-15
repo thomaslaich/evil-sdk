@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Iam.Schemas;
 
 public static partial class CreateVirtualMFADeviceInputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? Path { get; set; }
         public string? VirtualMFADeviceName { get; set; }
@@ -50,7 +50,6 @@ public static partial class CreateVirtualMFADeviceInputSchema
                 new(
                     "VirtualMFADeviceName",
                     Target1,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
@@ -62,10 +61,6 @@ public static partial class CreateVirtualMFADeviceInputSchema
                         new Trait(
                             ShapeId.Parse("smithy.api#pattern"),
                             Document.From("^[\\w+=,.@-]+$")
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
                         ),
                     ]
                 ),
@@ -102,10 +97,9 @@ public static partial class CreateVirtualMFADeviceInputSchema
             Builder builder
         ) =>
             new global::Com.Amazonaws.Iam.CreateVirtualMFADeviceInput(
-                builder.VirtualMFADeviceName
-                    ?? throw new MissingRequiredMemberException("VirtualMFADeviceName"),
                 builder.Path,
-                builder.Tags
+                builder.Tags,
+                builder.VirtualMFADeviceName
             );
 
         public override void SerializeMembers<TSerializer>(
@@ -139,7 +133,7 @@ public static partial class CreateVirtualMFADeviceInputSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

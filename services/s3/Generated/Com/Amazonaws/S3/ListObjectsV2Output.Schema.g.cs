@@ -10,7 +10,7 @@ namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class ListObjectsV2OutputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public bool? IsTruncated { get; set; }
         public IReadOnlyList<global::Com.Amazonaws.S3.Object>? Contents { get; set; }
@@ -292,7 +292,7 @@ public static partial class ListObjectsV2OutputSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

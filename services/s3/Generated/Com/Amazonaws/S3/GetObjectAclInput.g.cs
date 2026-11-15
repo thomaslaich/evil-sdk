@@ -24,13 +24,13 @@ namespace Com.Amazonaws.S3;
 /// access points</see> in the <i>Amazon S3 User Guide</i>.
 /// </para>
 /// </param>
-/// <param name="Key">
-/// The key of the object for which to get the ACL information.
-/// </param>
 /// <param name="ExpectedBucketOwner">
 /// The account ID of the expected bucket owner. If the account ID that you provide does not match the
 /// actual owner of the bucket, the request fails with the HTTP status code <c>403 Forbidden</c> (access
 /// denied).
+/// </param>
+/// <param name="Key">
+/// The key of the object for which to get the ACL information.
 /// </param>
 /// <param name="VersionId">
 /// <para>
@@ -41,9 +41,9 @@ namespace Com.Amazonaws.S3;
 /// </para>
 /// </param>
 public sealed record class GetObjectAclInput(
-    string Bucket,
-    string Key,
+    string? Bucket = null,
     string? ExpectedBucketOwner = null,
+    string? Key = null,
     global::Com.Amazonaws.S3.RequestPayer? RequestPayer = null,
     string? VersionId = null
 );

@@ -13,4 +13,7 @@ namespace Com.Amazonaws.S3;
 /// <param name="ExpectedBucketOwner">
 /// The Amazon Web Services account ID of the general purpose bucket's owner.
 /// </param>
-public sealed record class GetBucketAbacInput(string Bucket, string? ExpectedBucketOwner = null);
+public sealed record class GetBucketAbacInput(
+    string? Bucket = null,
+    string? ExpectedBucketOwner = null
+);

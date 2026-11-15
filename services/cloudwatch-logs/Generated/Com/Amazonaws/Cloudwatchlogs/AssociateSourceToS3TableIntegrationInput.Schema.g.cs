@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Cloudwatchlogs.Schemas;
 
 public static partial class AssociateSourceToS3TableIntegrationInputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? IntegrationArn { get; set; }
         public global::Com.Amazonaws.Cloudwatchlogs.DataSource? DataSource { get; set; }
@@ -27,32 +27,7 @@ public static partial class AssociateSourceToS3TableIntegrationInputSchema
             Builder
         >(
             ShapeId.Parse("com.amazonaws.cloudwatchlogs#AssociateSourceToS3TableIntegrationInput"),
-            [
-                new(
-                    "integrationArn",
-                    Target0,
-                    isRequired: true,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
-                    ]
-                ),
-                new(
-                    "dataSource",
-                    Target1,
-                    isRequired: true,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
-                    ]
-                ),
-            ],
+            [new("integrationArn", Target0), new("dataSource", Target1)],
             [
                 new Trait(
                     ShapeId.Parse("smithy.api#input"),
@@ -82,8 +57,8 @@ public static partial class AssociateSourceToS3TableIntegrationInputSchema
             Builder builder
         ) =>
             new global::Com.Amazonaws.Cloudwatchlogs.AssociateSourceToS3TableIntegrationInput(
-                builder.DataSource ?? throw new MissingRequiredMemberException("dataSource"),
-                builder.IntegrationArn ?? throw new MissingRequiredMemberException("integrationArn")
+                builder.DataSource,
+                builder.IntegrationArn
             );
 
         public override void SerializeMembers<TSerializer>(
@@ -109,7 +84,7 @@ public static partial class AssociateSourceToS3TableIntegrationInputSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

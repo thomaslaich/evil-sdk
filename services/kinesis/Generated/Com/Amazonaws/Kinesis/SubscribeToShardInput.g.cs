@@ -10,6 +10,9 @@ namespace Com.Amazonaws.Kinesis;
 /// <param name="ConsumerARN">
 /// For this parameter, use the value you obtained when you called RegisterStreamConsumer.
 /// </param>
+/// <param name="DryRun">
+/// Checks if your request will succeed. <c>DryRun</c> is an optional parameter.
+/// </param>
 /// <param name="ShardId">
 /// The ID of the shard you want to subscribe to. To see a list of all the shards for a given stream,
 /// use ListShards.
@@ -17,16 +20,13 @@ namespace Com.Amazonaws.Kinesis;
 /// <param name="StartingPosition">
 /// The starting position in the data stream from which to start streaming.
 /// </param>
-/// <param name="DryRun">
-/// Checks if your request will succeed. <c>DryRun</c> is an optional parameter.
-/// </param>
 /// <param name="StreamId">
 /// Not Implemented. Reserved for future use.
 /// </param>
 public sealed record class SubscribeToShardInput(
-    string ConsumerARN,
-    string ShardId,
-    global::Com.Amazonaws.Kinesis.StartingPosition StartingPosition,
+    string? ConsumerARN = null,
     bool? DryRun = null,
+    string? ShardId = null,
+    global::Com.Amazonaws.Kinesis.StartingPosition? StartingPosition = null,
     string? StreamId = null
 );

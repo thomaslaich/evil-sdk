@@ -20,6 +20,6 @@ namespace Com.Amazonaws.Route53;
 /// that includes the ID and region of the VPC.
 /// </param>
 public sealed record class DeleteVPCAssociationAuthorizationInput(
-    string HostedZoneId,
-    global::Com.Amazonaws.Route53.VPC VPC
+    string? HostedZoneId = null,
+    global::Com.Amazonaws.Route53.VPC? VPC = null
 );

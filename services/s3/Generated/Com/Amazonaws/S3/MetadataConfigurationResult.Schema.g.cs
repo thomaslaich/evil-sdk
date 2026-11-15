@@ -10,7 +10,7 @@ namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class MetadataConfigurationResultSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public global::Com.Amazonaws.S3.DestinationResult? DestinationResult { get; set; }
         public global::Com.Amazonaws.S3.JournalTableConfigurationResult? JournalTableConfigurationResult { get; set; }
@@ -121,7 +121,7 @@ public static partial class MetadataConfigurationResultSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

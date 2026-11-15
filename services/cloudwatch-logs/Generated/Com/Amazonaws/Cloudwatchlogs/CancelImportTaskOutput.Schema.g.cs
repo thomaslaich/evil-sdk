@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Cloudwatchlogs.Schemas;
 
 public static partial class CancelImportTaskOutputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? ImportId { get; set; }
         public global::Com.Amazonaws.Cloudwatchlogs.ImportStatistics? ImportStatistics { get; set; }
@@ -173,7 +173,7 @@ public static partial class CancelImportTaskOutputSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

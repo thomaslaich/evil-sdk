@@ -12,24 +12,24 @@ namespace Com.Amazonaws.Cloudwatchlogs;
 /// <param name="EndTime">
 /// The end time for the history query in Unix epoch format.
 /// </param>
-/// <param name="Identifier">
-/// The ARN or name of the scheduled query to retrieve history for.
-/// </param>
-/// <param name="StartTime">
-/// The start time for the history query in Unix epoch format.
-/// </param>
 /// <param name="ExecutionStatuses">
 /// An array of execution statuses to filter the history results. Only executions with the specified
 /// statuses are returned.
 /// </param>
+/// <param name="Identifier">
+/// The ARN or name of the scheduled query to retrieve history for.
+/// </param>
 /// <param name="MaxResults">
 /// The maximum number of history records to return. Valid range is 1 to 1000.
 /// </param>
+/// <param name="StartTime">
+/// The start time for the history query in Unix epoch format.
+/// </param>
 public sealed record class GetScheduledQueryHistoryInput(
-    long EndTime,
-    string Identifier,
-    long StartTime,
+    long? EndTime = null,
     IReadOnlyList<ExecutionStatus>? ExecutionStatuses = null,
+    string? Identifier = null,
     int? MaxResults = null,
-    string? NextToken = null
+    string? NextToken = null,
+    long? StartTime = null
 );

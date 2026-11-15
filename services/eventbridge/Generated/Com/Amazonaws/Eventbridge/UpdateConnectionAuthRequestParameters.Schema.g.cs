@@ -9,7 +9,7 @@ namespace Com.Amazonaws.Eventbridge.Schemas;
 
 public static partial class UpdateConnectionAuthRequestParametersSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public global::Com.Amazonaws.Eventbridge.UpdateConnectionBasicAuthRequestParameters? BasicAuthParameters { get; set; }
         public global::Com.Amazonaws.Eventbridge.UpdateConnectionOAuthRequestParameters? OAuthParameters { get; set; }
@@ -142,7 +142,7 @@ public static partial class UpdateConnectionAuthRequestParametersSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

@@ -29,8 +29,8 @@ namespace Com.Amazonaws.Sns;
 /// The ARN of the topic whose access control policy you wish to modify.
 /// </param>
 public sealed record class AddPermissionInput(
-    IReadOnlyList<string> AWSAccountId,
-    IReadOnlyList<string> ActionName,
-    string Label,
-    string TopicArn
+    IReadOnlyList<string>? AWSAccountId = null,
+    IReadOnlyList<string>? ActionName = null,
+    string? Label = null,
+    string? TopicArn = null
 );

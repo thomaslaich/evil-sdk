@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Iam.Schemas;
 
 public static partial class GetHumanReadableSummaryInputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? EntityArn { get; set; }
         public string? Locale { get; set; }
@@ -28,7 +28,6 @@ public static partial class GetHumanReadableSummaryInputSchema
                 new(
                     "EntityArn",
                     Target0,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
@@ -40,10 +39,6 @@ public static partial class GetHumanReadableSummaryInputSchema
                                     { "max", Document.From(2048m) },
                                 }
                             )
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
                         ),
                     ]
                 ),
@@ -92,7 +87,7 @@ public static partial class GetHumanReadableSummaryInputSchema
             Builder builder
         ) =>
             new global::Com.Amazonaws.Iam.GetHumanReadableSummaryInput(
-                builder.EntityArn ?? throw new MissingRequiredMemberException("EntityArn"),
+                builder.EntityArn,
                 builder.Locale
             );
 
@@ -119,7 +114,7 @@ public static partial class GetHumanReadableSummaryInputSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

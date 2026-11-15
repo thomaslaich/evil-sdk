@@ -7,13 +7,13 @@ namespace Com.Amazonaws.Eventbridge;
 /// <summary>
 /// Represents the Smithy structure com.amazonaws.eventbridge#ListPartnerEventSourcesInput.
 /// </summary>
-/// <param name="NamePrefix">
-/// If you specify this, the results are limited to only those partner event sources that start with the
-/// string you specify.
-/// </param>
 /// <param name="Limit">
 /// pecifying this limits the number of results returned by this operation. The operation also returns a
 /// NextToken which you can use in a subsequent operation to retrieve the next set of results.
+/// </param>
+/// <param name="NamePrefix">
+/// If you specify this, the results are limited to only those partner event sources that start with the
+/// string you specify.
 /// </param>
 /// <param name="NextToken">
 /// <para>
@@ -28,7 +28,7 @@ namespace Com.Amazonaws.Eventbridge;
 /// </para>
 /// </param>
 public sealed record class ListPartnerEventSourcesInput(
-    string NamePrefix,
     int? Limit = null,
+    string? NamePrefix = null,
     string? NextToken = null
 );

@@ -33,6 +33,6 @@ namespace Com.Amazonaws.Secretsmanager;
 /// </para>
 /// </param>
 public sealed record class TagResourceInput(
-    string SecretId,
-    IReadOnlyList<global::Com.Amazonaws.Secretsmanager.Tag> Tags
+    string? SecretId = null,
+    IReadOnlyList<global::Com.Amazonaws.Secretsmanager.Tag>? Tags = null
 );

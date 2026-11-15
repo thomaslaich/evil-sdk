@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Cloudwatchlogs.Schemas;
 
 public static partial class QueryCompileErrorLocationSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public int? StartCharOffset { get; set; }
         public int? EndCharOffset { get; set; }
@@ -89,7 +89,7 @@ public static partial class QueryCompileErrorLocationSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

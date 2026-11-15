@@ -731,25 +731,25 @@ public sealed class AmazonS3EndpointResolver : IEndpointResolver
             "AbortMultipartUpload" when parameters.Input is AbortMultipartUploadInput input =>
                 clientParameters with
                 {
-                    Bucket = input.Bucket,
-                    Key = input.Key,
+                    Bucket = input.Bucket ?? clientParameters.Bucket,
+                    Key = input.Key ?? clientParameters.Key,
                 },
             "CompleteMultipartUpload" when parameters.Input is CompleteMultipartUploadInput input =>
                 clientParameters with
                 {
-                    Bucket = input.Bucket,
-                    Key = input.Key,
+                    Bucket = input.Bucket ?? clientParameters.Bucket,
+                    Key = input.Key ?? clientParameters.Key,
                 },
             "CopyObject" when parameters.Input is CopyObjectInput input => clientParameters with
             {
-                Bucket = input.Bucket,
-                CopySource = input.CopySource,
-                Key = input.Key,
+                Bucket = input.Bucket ?? clientParameters.Bucket,
+                CopySource = input.CopySource ?? clientParameters.CopySource,
+                Key = input.Key ?? clientParameters.Key,
                 DisableS3ExpressSessionAuth = true,
             },
             "CreateBucket" when parameters.Input is CreateBucketInput input => clientParameters with
             {
-                Bucket = input.Bucket,
+                Bucket = input.Bucket ?? clientParameters.Bucket,
                 UseS3ExpressControlEndpoint = true,
                 DisableAccessPoints = true,
             },
@@ -757,604 +757,604 @@ public sealed class AmazonS3EndpointResolver : IEndpointResolver
                 when parameters.Input is CreateBucketMetadataConfigurationInput input =>
                 clientParameters with
                 {
-                    Bucket = input.Bucket,
+                    Bucket = input.Bucket ?? clientParameters.Bucket,
                     UseS3ExpressControlEndpoint = true,
                 },
             "CreateBucketMetadataTableConfiguration"
                 when parameters.Input is CreateBucketMetadataTableConfigurationInput input =>
                 clientParameters with
                 {
-                    Bucket = input.Bucket,
+                    Bucket = input.Bucket ?? clientParameters.Bucket,
                     UseS3ExpressControlEndpoint = true,
                 },
             "CreateMultipartUpload" when parameters.Input is CreateMultipartUploadInput input =>
                 clientParameters with
                 {
-                    Bucket = input.Bucket,
-                    Key = input.Key,
+                    Bucket = input.Bucket ?? clientParameters.Bucket,
+                    Key = input.Key ?? clientParameters.Key,
                 },
             "CreateSession" when parameters.Input is CreateSessionInput input =>
                 clientParameters with
                 {
-                    Bucket = input.Bucket,
+                    Bucket = input.Bucket ?? clientParameters.Bucket,
                     DisableS3ExpressSessionAuth = true,
                 },
             "DeleteBucket" when parameters.Input is DeleteBucketInput input => clientParameters with
             {
-                Bucket = input.Bucket,
+                Bucket = input.Bucket ?? clientParameters.Bucket,
                 UseS3ExpressControlEndpoint = true,
             },
             "DeleteBucketAnalyticsConfiguration"
                 when parameters.Input is DeleteBucketAnalyticsConfigurationInput input =>
                 clientParameters with
                 {
-                    Bucket = input.Bucket,
+                    Bucket = input.Bucket ?? clientParameters.Bucket,
                     UseS3ExpressControlEndpoint = true,
                 },
             "DeleteBucketCors" when parameters.Input is DeleteBucketCorsInput input =>
                 clientParameters with
                 {
-                    Bucket = input.Bucket,
+                    Bucket = input.Bucket ?? clientParameters.Bucket,
                     UseS3ExpressControlEndpoint = true,
                 },
             "DeleteBucketEncryption" when parameters.Input is DeleteBucketEncryptionInput input =>
                 clientParameters with
                 {
-                    Bucket = input.Bucket,
+                    Bucket = input.Bucket ?? clientParameters.Bucket,
                     UseS3ExpressControlEndpoint = true,
                 },
             "DeleteBucketIntelligentTieringConfiguration"
                 when parameters.Input is DeleteBucketIntelligentTieringConfigurationInput input =>
                 clientParameters with
                 {
-                    Bucket = input.Bucket,
+                    Bucket = input.Bucket ?? clientParameters.Bucket,
                     UseS3ExpressControlEndpoint = true,
                 },
             "DeleteBucketInventoryConfiguration"
                 when parameters.Input is DeleteBucketInventoryConfigurationInput input =>
                 clientParameters with
                 {
-                    Bucket = input.Bucket,
+                    Bucket = input.Bucket ?? clientParameters.Bucket,
                     UseS3ExpressControlEndpoint = true,
                 },
             "DeleteBucketLifecycle" when parameters.Input is DeleteBucketLifecycleInput input =>
                 clientParameters with
                 {
-                    Bucket = input.Bucket,
+                    Bucket = input.Bucket ?? clientParameters.Bucket,
                     UseS3ExpressControlEndpoint = true,
                 },
             "DeleteBucketMetadataConfiguration"
                 when parameters.Input is DeleteBucketMetadataConfigurationInput input =>
                 clientParameters with
                 {
-                    Bucket = input.Bucket,
+                    Bucket = input.Bucket ?? clientParameters.Bucket,
                     UseS3ExpressControlEndpoint = true,
                 },
             "DeleteBucketMetadataTableConfiguration"
                 when parameters.Input is DeleteBucketMetadataTableConfigurationInput input =>
                 clientParameters with
                 {
-                    Bucket = input.Bucket,
+                    Bucket = input.Bucket ?? clientParameters.Bucket,
                     UseS3ExpressControlEndpoint = true,
                 },
             "DeleteBucketMetricsConfiguration"
                 when parameters.Input is DeleteBucketMetricsConfigurationInput input =>
                 clientParameters with
                 {
-                    Bucket = input.Bucket,
+                    Bucket = input.Bucket ?? clientParameters.Bucket,
                     UseS3ExpressControlEndpoint = true,
                 },
             "DeleteBucketOwnershipControls"
                 when parameters.Input is DeleteBucketOwnershipControlsInput input =>
                 clientParameters with
                 {
-                    Bucket = input.Bucket,
+                    Bucket = input.Bucket ?? clientParameters.Bucket,
                     UseS3ExpressControlEndpoint = true,
                 },
             "DeleteBucketPolicy" when parameters.Input is DeleteBucketPolicyInput input =>
                 clientParameters with
                 {
-                    Bucket = input.Bucket,
+                    Bucket = input.Bucket ?? clientParameters.Bucket,
                     UseS3ExpressControlEndpoint = true,
                 },
             "DeleteBucketReplication" when parameters.Input is DeleteBucketReplicationInput input =>
                 clientParameters with
                 {
-                    Bucket = input.Bucket,
+                    Bucket = input.Bucket ?? clientParameters.Bucket,
                     UseS3ExpressControlEndpoint = true,
                 },
             "DeleteBucketTagging" when parameters.Input is DeleteBucketTaggingInput input =>
                 clientParameters with
                 {
-                    Bucket = input.Bucket,
+                    Bucket = input.Bucket ?? clientParameters.Bucket,
                     UseS3ExpressControlEndpoint = true,
                 },
             "DeleteBucketWebsite" when parameters.Input is DeleteBucketWebsiteInput input =>
                 clientParameters with
                 {
-                    Bucket = input.Bucket,
+                    Bucket = input.Bucket ?? clientParameters.Bucket,
                     UseS3ExpressControlEndpoint = true,
                 },
             "DeleteObject" when parameters.Input is DeleteObjectInput input => clientParameters with
             {
-                Bucket = input.Bucket,
-                Key = input.Key,
+                Bucket = input.Bucket ?? clientParameters.Bucket,
+                Key = input.Key ?? clientParameters.Key,
             },
             "DeleteObjectAnnotation" when parameters.Input is DeleteObjectAnnotationInput input =>
                 clientParameters with
                 {
-                    Bucket = input.Bucket,
+                    Bucket = input.Bucket ?? clientParameters.Bucket,
                 },
             "DeleteObjectTagging" when parameters.Input is DeleteObjectTaggingInput input =>
                 clientParameters with
                 {
-                    Bucket = input.Bucket,
+                    Bucket = input.Bucket ?? clientParameters.Bucket,
                 },
             "DeleteObjects" when parameters.Input is DeleteObjectsInput input =>
                 clientParameters with
                 {
-                    Bucket = input.Bucket,
+                    Bucket = input.Bucket ?? clientParameters.Bucket,
                 },
             "DeletePublicAccessBlock" when parameters.Input is DeletePublicAccessBlockInput input =>
                 clientParameters with
                 {
-                    Bucket = input.Bucket,
+                    Bucket = input.Bucket ?? clientParameters.Bucket,
                     UseS3ExpressControlEndpoint = true,
                 },
             "GetBucketAbac" when parameters.Input is GetBucketAbacInput input =>
                 clientParameters with
                 {
-                    Bucket = input.Bucket,
+                    Bucket = input.Bucket ?? clientParameters.Bucket,
                 },
             "GetBucketAccelerateConfiguration"
                 when parameters.Input is GetBucketAccelerateConfigurationInput input =>
                 clientParameters with
                 {
-                    Bucket = input.Bucket,
+                    Bucket = input.Bucket ?? clientParameters.Bucket,
                     UseS3ExpressControlEndpoint = true,
                 },
             "GetBucketAcl" when parameters.Input is GetBucketAclInput input => clientParameters with
             {
-                Bucket = input.Bucket,
+                Bucket = input.Bucket ?? clientParameters.Bucket,
                 UseS3ExpressControlEndpoint = true,
             },
             "GetBucketAnalyticsConfiguration"
                 when parameters.Input is GetBucketAnalyticsConfigurationInput input =>
                 clientParameters with
                 {
-                    Bucket = input.Bucket,
+                    Bucket = input.Bucket ?? clientParameters.Bucket,
                     UseS3ExpressControlEndpoint = true,
                 },
             "GetBucketCors" when parameters.Input is GetBucketCorsInput input =>
                 clientParameters with
                 {
-                    Bucket = input.Bucket,
+                    Bucket = input.Bucket ?? clientParameters.Bucket,
                     UseS3ExpressControlEndpoint = true,
                 },
             "GetBucketEncryption" when parameters.Input is GetBucketEncryptionInput input =>
                 clientParameters with
                 {
-                    Bucket = input.Bucket,
+                    Bucket = input.Bucket ?? clientParameters.Bucket,
                     UseS3ExpressControlEndpoint = true,
                 },
             "GetBucketIntelligentTieringConfiguration"
                 when parameters.Input is GetBucketIntelligentTieringConfigurationInput input =>
                 clientParameters with
                 {
-                    Bucket = input.Bucket,
+                    Bucket = input.Bucket ?? clientParameters.Bucket,
                     UseS3ExpressControlEndpoint = true,
                 },
             "GetBucketInventoryConfiguration"
                 when parameters.Input is GetBucketInventoryConfigurationInput input =>
                 clientParameters with
                 {
-                    Bucket = input.Bucket,
+                    Bucket = input.Bucket ?? clientParameters.Bucket,
                     UseS3ExpressControlEndpoint = true,
                 },
             "GetBucketLifecycleConfiguration"
                 when parameters.Input is GetBucketLifecycleConfigurationInput input =>
                 clientParameters with
                 {
-                    Bucket = input.Bucket,
+                    Bucket = input.Bucket ?? clientParameters.Bucket,
                     UseS3ExpressControlEndpoint = true,
                 },
             "GetBucketLocation" when parameters.Input is GetBucketLocationInput input =>
                 clientParameters with
                 {
-                    Bucket = input.Bucket,
+                    Bucket = input.Bucket ?? clientParameters.Bucket,
                     UseS3ExpressControlEndpoint = true,
                 },
             "GetBucketLogging" when parameters.Input is GetBucketLoggingInput input =>
                 clientParameters with
                 {
-                    Bucket = input.Bucket,
+                    Bucket = input.Bucket ?? clientParameters.Bucket,
                     UseS3ExpressControlEndpoint = true,
                 },
             "GetBucketMetadataConfiguration"
                 when parameters.Input is GetBucketMetadataConfigurationInput input =>
                 clientParameters with
                 {
-                    Bucket = input.Bucket,
+                    Bucket = input.Bucket ?? clientParameters.Bucket,
                     UseS3ExpressControlEndpoint = true,
                 },
             "GetBucketMetadataTableConfiguration"
                 when parameters.Input is GetBucketMetadataTableConfigurationInput input =>
                 clientParameters with
                 {
-                    Bucket = input.Bucket,
+                    Bucket = input.Bucket ?? clientParameters.Bucket,
                     UseS3ExpressControlEndpoint = true,
                 },
             "GetBucketMetricsConfiguration"
                 when parameters.Input is GetBucketMetricsConfigurationInput input =>
                 clientParameters with
                 {
-                    Bucket = input.Bucket,
+                    Bucket = input.Bucket ?? clientParameters.Bucket,
                     UseS3ExpressControlEndpoint = true,
                 },
             "GetBucketNotificationConfiguration"
                 when parameters.Input is GetBucketNotificationConfigurationInput input =>
                 clientParameters with
                 {
-                    Bucket = input.Bucket,
+                    Bucket = input.Bucket ?? clientParameters.Bucket,
                     UseS3ExpressControlEndpoint = true,
                 },
             "GetBucketOwnershipControls"
                 when parameters.Input is GetBucketOwnershipControlsInput input =>
                 clientParameters with
                 {
-                    Bucket = input.Bucket,
+                    Bucket = input.Bucket ?? clientParameters.Bucket,
                     UseS3ExpressControlEndpoint = true,
                 },
             "GetBucketPolicy" when parameters.Input is GetBucketPolicyInput input =>
                 clientParameters with
                 {
-                    Bucket = input.Bucket,
+                    Bucket = input.Bucket ?? clientParameters.Bucket,
                     UseS3ExpressControlEndpoint = true,
                 },
             "GetBucketPolicyStatus" when parameters.Input is GetBucketPolicyStatusInput input =>
                 clientParameters with
                 {
-                    Bucket = input.Bucket,
+                    Bucket = input.Bucket ?? clientParameters.Bucket,
                     UseS3ExpressControlEndpoint = true,
                 },
             "GetBucketReplication" when parameters.Input is GetBucketReplicationInput input =>
                 clientParameters with
                 {
-                    Bucket = input.Bucket,
+                    Bucket = input.Bucket ?? clientParameters.Bucket,
                     UseS3ExpressControlEndpoint = true,
                 },
             "GetBucketRequestPayment" when parameters.Input is GetBucketRequestPaymentInput input =>
                 clientParameters with
                 {
-                    Bucket = input.Bucket,
+                    Bucket = input.Bucket ?? clientParameters.Bucket,
                     UseS3ExpressControlEndpoint = true,
                 },
             "GetBucketTagging" when parameters.Input is GetBucketTaggingInput input =>
                 clientParameters with
                 {
-                    Bucket = input.Bucket,
+                    Bucket = input.Bucket ?? clientParameters.Bucket,
                     UseS3ExpressControlEndpoint = true,
                 },
             "GetBucketVersioning" when parameters.Input is GetBucketVersioningInput input =>
                 clientParameters with
                 {
-                    Bucket = input.Bucket,
+                    Bucket = input.Bucket ?? clientParameters.Bucket,
                     UseS3ExpressControlEndpoint = true,
                 },
             "GetBucketWebsite" when parameters.Input is GetBucketWebsiteInput input =>
                 clientParameters with
                 {
-                    Bucket = input.Bucket,
+                    Bucket = input.Bucket ?? clientParameters.Bucket,
                     UseS3ExpressControlEndpoint = true,
                 },
             "GetObject" when parameters.Input is GetObjectInput input => clientParameters with
             {
-                Bucket = input.Bucket,
-                Key = input.Key,
+                Bucket = input.Bucket ?? clientParameters.Bucket,
+                Key = input.Key ?? clientParameters.Key,
             },
             "GetObjectAcl" when parameters.Input is GetObjectAclInput input => clientParameters with
             {
-                Bucket = input.Bucket,
-                Key = input.Key,
+                Bucket = input.Bucket ?? clientParameters.Bucket,
+                Key = input.Key ?? clientParameters.Key,
             },
             "GetObjectAnnotation" when parameters.Input is GetObjectAnnotationInput input =>
                 clientParameters with
                 {
-                    Bucket = input.Bucket,
-                    Key = input.Key,
+                    Bucket = input.Bucket ?? clientParameters.Bucket,
+                    Key = input.Key ?? clientParameters.Key,
                 },
             "GetObjectAttributes" when parameters.Input is GetObjectAttributesInput input =>
                 clientParameters with
                 {
-                    Bucket = input.Bucket,
+                    Bucket = input.Bucket ?? clientParameters.Bucket,
                 },
             "GetObjectLegalHold" when parameters.Input is GetObjectLegalHoldInput input =>
                 clientParameters with
                 {
-                    Bucket = input.Bucket,
+                    Bucket = input.Bucket ?? clientParameters.Bucket,
                 },
             "GetObjectLockConfiguration"
                 when parameters.Input is GetObjectLockConfigurationInput input =>
                 clientParameters with
                 {
-                    Bucket = input.Bucket,
+                    Bucket = input.Bucket ?? clientParameters.Bucket,
                 },
             "GetObjectRetention" when parameters.Input is GetObjectRetentionInput input =>
                 clientParameters with
                 {
-                    Bucket = input.Bucket,
+                    Bucket = input.Bucket ?? clientParameters.Bucket,
                 },
             "GetObjectTagging" when parameters.Input is GetObjectTaggingInput input =>
                 clientParameters with
                 {
-                    Bucket = input.Bucket,
+                    Bucket = input.Bucket ?? clientParameters.Bucket,
                 },
             "GetObjectTorrent" when parameters.Input is GetObjectTorrentInput input =>
                 clientParameters with
                 {
-                    Bucket = input.Bucket,
+                    Bucket = input.Bucket ?? clientParameters.Bucket,
                 },
             "GetPublicAccessBlock" when parameters.Input is GetPublicAccessBlockInput input =>
                 clientParameters with
                 {
-                    Bucket = input.Bucket,
+                    Bucket = input.Bucket ?? clientParameters.Bucket,
                     UseS3ExpressControlEndpoint = true,
                 },
             "HeadBucket" when parameters.Input is HeadBucketInput input => clientParameters with
             {
-                Bucket = input.Bucket,
+                Bucket = input.Bucket ?? clientParameters.Bucket,
             },
             "HeadObject" when parameters.Input is HeadObjectInput input => clientParameters with
             {
-                Bucket = input.Bucket,
-                Key = input.Key,
+                Bucket = input.Bucket ?? clientParameters.Bucket,
+                Key = input.Key ?? clientParameters.Key,
             },
             "ListBucketAnalyticsConfigurations"
                 when parameters.Input is ListBucketAnalyticsConfigurationsInput input =>
                 clientParameters with
                 {
-                    Bucket = input.Bucket,
+                    Bucket = input.Bucket ?? clientParameters.Bucket,
                     UseS3ExpressControlEndpoint = true,
                 },
             "ListBucketIntelligentTieringConfigurations"
                 when parameters.Input is ListBucketIntelligentTieringConfigurationsInput input =>
                 clientParameters with
                 {
-                    Bucket = input.Bucket,
+                    Bucket = input.Bucket ?? clientParameters.Bucket,
                     UseS3ExpressControlEndpoint = true,
                 },
             "ListBucketInventoryConfigurations"
                 when parameters.Input is ListBucketInventoryConfigurationsInput input =>
                 clientParameters with
                 {
-                    Bucket = input.Bucket,
+                    Bucket = input.Bucket ?? clientParameters.Bucket,
                     UseS3ExpressControlEndpoint = true,
                 },
             "ListBucketMetricsConfigurations"
                 when parameters.Input is ListBucketMetricsConfigurationsInput input =>
                 clientParameters with
                 {
-                    Bucket = input.Bucket,
+                    Bucket = input.Bucket ?? clientParameters.Bucket,
                     UseS3ExpressControlEndpoint = true,
                 },
             "ListDirectoryBuckets" => clientParameters with { UseS3ExpressControlEndpoint = true },
             "ListMultipartUploads" when parameters.Input is ListMultipartUploadsInput input =>
                 clientParameters with
                 {
-                    Bucket = input.Bucket,
+                    Bucket = input.Bucket ?? clientParameters.Bucket,
                     Prefix = input.Prefix ?? clientParameters.Prefix,
                 },
             "ListObjectAnnotations" when parameters.Input is ListObjectAnnotationsInput input =>
                 clientParameters with
                 {
-                    Bucket = input.Bucket,
+                    Bucket = input.Bucket ?? clientParameters.Bucket,
                 },
             "ListObjectVersions" when parameters.Input is ListObjectVersionsInput input =>
                 clientParameters with
                 {
-                    Bucket = input.Bucket,
+                    Bucket = input.Bucket ?? clientParameters.Bucket,
                     Prefix = input.Prefix ?? clientParameters.Prefix,
                 },
             "ListObjects" when parameters.Input is ListObjectsInput input => clientParameters with
             {
-                Bucket = input.Bucket,
+                Bucket = input.Bucket ?? clientParameters.Bucket,
                 Prefix = input.Prefix ?? clientParameters.Prefix,
             },
             "ListObjectsV2" when parameters.Input is ListObjectsV2Input input =>
                 clientParameters with
                 {
-                    Bucket = input.Bucket,
+                    Bucket = input.Bucket ?? clientParameters.Bucket,
                     Prefix = input.Prefix ?? clientParameters.Prefix,
                 },
             "ListParts" when parameters.Input is ListPartsInput input => clientParameters with
             {
-                Bucket = input.Bucket,
-                Key = input.Key,
+                Bucket = input.Bucket ?? clientParameters.Bucket,
+                Key = input.Key ?? clientParameters.Key,
             },
             "PutBucketAbac" when parameters.Input is PutBucketAbacInput input =>
                 clientParameters with
                 {
-                    Bucket = input.Bucket,
+                    Bucket = input.Bucket ?? clientParameters.Bucket,
                 },
             "PutBucketAccelerateConfiguration"
                 when parameters.Input is PutBucketAccelerateConfigurationInput input =>
                 clientParameters with
                 {
-                    Bucket = input.Bucket,
+                    Bucket = input.Bucket ?? clientParameters.Bucket,
                     UseS3ExpressControlEndpoint = true,
                 },
             "PutBucketAcl" when parameters.Input is PutBucketAclInput input => clientParameters with
             {
-                Bucket = input.Bucket,
+                Bucket = input.Bucket ?? clientParameters.Bucket,
                 UseS3ExpressControlEndpoint = true,
             },
             "PutBucketAnalyticsConfiguration"
                 when parameters.Input is PutBucketAnalyticsConfigurationInput input =>
                 clientParameters with
                 {
-                    Bucket = input.Bucket,
+                    Bucket = input.Bucket ?? clientParameters.Bucket,
                     UseS3ExpressControlEndpoint = true,
                 },
             "PutBucketCors" when parameters.Input is PutBucketCorsInput input =>
                 clientParameters with
                 {
-                    Bucket = input.Bucket,
+                    Bucket = input.Bucket ?? clientParameters.Bucket,
                     UseS3ExpressControlEndpoint = true,
                 },
             "PutBucketEncryption" when parameters.Input is PutBucketEncryptionInput input =>
                 clientParameters with
                 {
-                    Bucket = input.Bucket,
+                    Bucket = input.Bucket ?? clientParameters.Bucket,
                     UseS3ExpressControlEndpoint = true,
                 },
             "PutBucketIntelligentTieringConfiguration"
                 when parameters.Input is PutBucketIntelligentTieringConfigurationInput input =>
                 clientParameters with
                 {
-                    Bucket = input.Bucket,
+                    Bucket = input.Bucket ?? clientParameters.Bucket,
                     UseS3ExpressControlEndpoint = true,
                 },
             "PutBucketInventoryConfiguration"
                 when parameters.Input is PutBucketInventoryConfigurationInput input =>
                 clientParameters with
                 {
-                    Bucket = input.Bucket,
+                    Bucket = input.Bucket ?? clientParameters.Bucket,
                     UseS3ExpressControlEndpoint = true,
                 },
             "PutBucketLifecycleConfiguration"
                 when parameters.Input is PutBucketLifecycleConfigurationInput input =>
                 clientParameters with
                 {
-                    Bucket = input.Bucket,
+                    Bucket = input.Bucket ?? clientParameters.Bucket,
                     UseS3ExpressControlEndpoint = true,
                 },
             "PutBucketLogging" when parameters.Input is PutBucketLoggingInput input =>
                 clientParameters with
                 {
-                    Bucket = input.Bucket,
+                    Bucket = input.Bucket ?? clientParameters.Bucket,
                     UseS3ExpressControlEndpoint = true,
                 },
             "PutBucketMetricsConfiguration"
                 when parameters.Input is PutBucketMetricsConfigurationInput input =>
                 clientParameters with
                 {
-                    Bucket = input.Bucket,
+                    Bucket = input.Bucket ?? clientParameters.Bucket,
                     UseS3ExpressControlEndpoint = true,
                 },
             "PutBucketNotificationConfiguration"
                 when parameters.Input is PutBucketNotificationConfigurationInput input =>
                 clientParameters with
                 {
-                    Bucket = input.Bucket,
+                    Bucket = input.Bucket ?? clientParameters.Bucket,
                     UseS3ExpressControlEndpoint = true,
                 },
             "PutBucketOwnershipControls"
                 when parameters.Input is PutBucketOwnershipControlsInput input =>
                 clientParameters with
                 {
-                    Bucket = input.Bucket,
+                    Bucket = input.Bucket ?? clientParameters.Bucket,
                     UseS3ExpressControlEndpoint = true,
                 },
             "PutBucketPolicy" when parameters.Input is PutBucketPolicyInput input =>
                 clientParameters with
                 {
-                    Bucket = input.Bucket,
+                    Bucket = input.Bucket ?? clientParameters.Bucket,
                     UseS3ExpressControlEndpoint = true,
                 },
             "PutBucketReplication" when parameters.Input is PutBucketReplicationInput input =>
                 clientParameters with
                 {
-                    Bucket = input.Bucket,
+                    Bucket = input.Bucket ?? clientParameters.Bucket,
                     UseS3ExpressControlEndpoint = true,
                 },
             "PutBucketRequestPayment" when parameters.Input is PutBucketRequestPaymentInput input =>
                 clientParameters with
                 {
-                    Bucket = input.Bucket,
+                    Bucket = input.Bucket ?? clientParameters.Bucket,
                     UseS3ExpressControlEndpoint = true,
                 },
             "PutBucketTagging" when parameters.Input is PutBucketTaggingInput input =>
                 clientParameters with
                 {
-                    Bucket = input.Bucket,
+                    Bucket = input.Bucket ?? clientParameters.Bucket,
                     UseS3ExpressControlEndpoint = true,
                 },
             "PutBucketVersioning" when parameters.Input is PutBucketVersioningInput input =>
                 clientParameters with
                 {
-                    Bucket = input.Bucket,
+                    Bucket = input.Bucket ?? clientParameters.Bucket,
                     UseS3ExpressControlEndpoint = true,
                 },
             "PutBucketWebsite" when parameters.Input is PutBucketWebsiteInput input =>
                 clientParameters with
                 {
-                    Bucket = input.Bucket,
+                    Bucket = input.Bucket ?? clientParameters.Bucket,
                     UseS3ExpressControlEndpoint = true,
                 },
             "PutObject" when parameters.Input is PutObjectInput input => clientParameters with
             {
-                Bucket = input.Bucket,
-                Key = input.Key,
+                Bucket = input.Bucket ?? clientParameters.Bucket,
+                Key = input.Key ?? clientParameters.Key,
             },
             "PutObjectAcl" when parameters.Input is PutObjectAclInput input => clientParameters with
             {
-                Bucket = input.Bucket,
-                Key = input.Key,
+                Bucket = input.Bucket ?? clientParameters.Bucket,
+                Key = input.Key ?? clientParameters.Key,
             },
             "PutObjectAnnotation" when parameters.Input is PutObjectAnnotationInput input =>
                 clientParameters with
                 {
-                    Bucket = input.Bucket,
-                    Key = input.Key,
+                    Bucket = input.Bucket ?? clientParameters.Bucket,
+                    Key = input.Key ?? clientParameters.Key,
                 },
             "PutObjectLegalHold" when parameters.Input is PutObjectLegalHoldInput input =>
                 clientParameters with
                 {
-                    Bucket = input.Bucket,
+                    Bucket = input.Bucket ?? clientParameters.Bucket,
                 },
             "PutObjectLockConfiguration"
                 when parameters.Input is PutObjectLockConfigurationInput input =>
                 clientParameters with
                 {
-                    Bucket = input.Bucket,
+                    Bucket = input.Bucket ?? clientParameters.Bucket,
                 },
             "PutObjectRetention" when parameters.Input is PutObjectRetentionInput input =>
                 clientParameters with
                 {
-                    Bucket = input.Bucket,
+                    Bucket = input.Bucket ?? clientParameters.Bucket,
                 },
             "PutObjectTagging" when parameters.Input is PutObjectTaggingInput input =>
                 clientParameters with
                 {
-                    Bucket = input.Bucket,
+                    Bucket = input.Bucket ?? clientParameters.Bucket,
                 },
             "PutPublicAccessBlock" when parameters.Input is PutPublicAccessBlockInput input =>
                 clientParameters with
                 {
-                    Bucket = input.Bucket,
+                    Bucket = input.Bucket ?? clientParameters.Bucket,
                     UseS3ExpressControlEndpoint = true,
                 },
             "RenameObject" when parameters.Input is RenameObjectInput input => clientParameters with
             {
-                Bucket = input.Bucket,
-                Key = input.Key,
+                Bucket = input.Bucket ?? clientParameters.Bucket,
+                Key = input.Key ?? clientParameters.Key,
             },
             "RestoreObject" when parameters.Input is RestoreObjectInput input =>
                 clientParameters with
                 {
-                    Bucket = input.Bucket,
+                    Bucket = input.Bucket ?? clientParameters.Bucket,
                 },
             "SelectObjectContent" when parameters.Input is SelectObjectContentInput input =>
                 clientParameters with
                 {
-                    Bucket = input.Bucket,
+                    Bucket = input.Bucket ?? clientParameters.Bucket,
                 },
             "UpdateBucketMetadataAnnotationTableConfiguration"
                 when parameters.Input
                     is UpdateBucketMetadataAnnotationTableConfigurationInput input =>
                 clientParameters with
                 {
-                    Bucket = input.Bucket,
+                    Bucket = input.Bucket ?? clientParameters.Bucket,
                     UseS3ExpressControlEndpoint = true,
                 },
             "UpdateBucketMetadataInventoryTableConfiguration"
@@ -1362,30 +1362,30 @@ public sealed class AmazonS3EndpointResolver : IEndpointResolver
                     is UpdateBucketMetadataInventoryTableConfigurationInput input =>
                 clientParameters with
                 {
-                    Bucket = input.Bucket,
+                    Bucket = input.Bucket ?? clientParameters.Bucket,
                     UseS3ExpressControlEndpoint = true,
                 },
             "UpdateBucketMetadataJournalTableConfiguration"
                 when parameters.Input is UpdateBucketMetadataJournalTableConfigurationInput input =>
                 clientParameters with
                 {
-                    Bucket = input.Bucket,
+                    Bucket = input.Bucket ?? clientParameters.Bucket,
                     UseS3ExpressControlEndpoint = true,
                 },
             "UpdateObjectEncryption" when parameters.Input is UpdateObjectEncryptionInput input =>
                 clientParameters with
                 {
-                    Bucket = input.Bucket,
+                    Bucket = input.Bucket ?? clientParameters.Bucket,
                 },
             "UploadPart" when parameters.Input is UploadPartInput input => clientParameters with
             {
-                Bucket = input.Bucket,
-                Key = input.Key,
+                Bucket = input.Bucket ?? clientParameters.Bucket,
+                Key = input.Key ?? clientParameters.Key,
             },
             "UploadPartCopy" when parameters.Input is UploadPartCopyInput input =>
                 clientParameters with
                 {
-                    Bucket = input.Bucket,
+                    Bucket = input.Bucket ?? clientParameters.Bucket,
                     DisableS3ExpressSessionAuth = true,
                 },
             "WriteGetObjectResponse" => clientParameters with { UseObjectLambdaEndpoint = true },

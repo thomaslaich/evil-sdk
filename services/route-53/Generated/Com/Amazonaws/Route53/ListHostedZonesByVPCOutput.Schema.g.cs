@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Route53.Schemas;
 
 public static partial class ListHostedZonesByVPCOutputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public IReadOnlyList<global::Com.Amazonaws.Route53.HostedZoneSummary>? HostedZoneSummaries { get; set; }
         public int? MaxItems { get; set; }
@@ -127,7 +127,7 @@ public static partial class ListHostedZonesByVPCOutputSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

@@ -15,6 +15,6 @@ namespace Com.Amazonaws.Cloudwatchlogs;
 /// The Amazon Resource Name (ARN) of the S3 Table Integration to associate the data source with.
 /// </param>
 public sealed record class AssociateSourceToS3TableIntegrationInput(
-    global::Com.Amazonaws.Cloudwatchlogs.DataSource DataSource,
-    string IntegrationArn
+    global::Com.Amazonaws.Cloudwatchlogs.DataSource? DataSource = null,
+    string? IntegrationArn = null
 );

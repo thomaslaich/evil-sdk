@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Sns.Schemas;
 
 public static partial class PublishInputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? TopicArn { get; set; }
         public string? TargetArn { get; set; }
@@ -46,18 +46,7 @@ public static partial class PublishInputSchema
                         ),
                     ]
                 ),
-                new(
-                    "Message",
-                    Target3,
-                    isRequired: true,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
-                    ]
-                ),
+                new("Message", Target3),
                 new("Subject", Target4),
                 new("MessageStructure", Target5),
                 new("MessageAttributes", Target6),
@@ -115,7 +104,7 @@ public static partial class PublishInputSchema
 
         public override global::Com.Amazonaws.Sns.PublishInput Build(Builder builder) =>
             new global::Com.Amazonaws.Sns.PublishInput(
-                builder.Message ?? throw new MissingRequiredMemberException("Message"),
+                builder.Message,
                 builder.MessageAttributes,
                 builder.MessageDeduplicationId,
                 builder.MessageGroupId,
@@ -205,7 +194,7 @@ public static partial class PublishInputSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

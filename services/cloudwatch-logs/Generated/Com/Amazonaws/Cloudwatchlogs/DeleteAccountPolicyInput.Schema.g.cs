@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Cloudwatchlogs.Schemas;
 
 public static partial class DeleteAccountPolicyInputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? PolicyName { get; set; }
         public global::Com.Amazonaws.Cloudwatchlogs.PolicyType? PolicyType { get; set; }
@@ -24,32 +24,7 @@ public static partial class DeleteAccountPolicyInputSchema
     private sealed class GeneratedSchema()
         : StructSchema<global::Com.Amazonaws.Cloudwatchlogs.DeleteAccountPolicyInput, Builder>(
             ShapeId.Parse("com.amazonaws.cloudwatchlogs#DeleteAccountPolicyInput"),
-            [
-                new(
-                    "policyName",
-                    Target0,
-                    isRequired: true,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
-                    ]
-                ),
-                new(
-                    "policyType",
-                    Target1,
-                    isRequired: true,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
-                    ]
-                ),
-            ],
+            [new("policyName", Target0), new("policyType", Target1)],
             [
                 new Trait(
                     ShapeId.Parse("smithy.api#input"),
@@ -75,8 +50,8 @@ public static partial class DeleteAccountPolicyInputSchema
             Builder builder
         ) =>
             new global::Com.Amazonaws.Cloudwatchlogs.DeleteAccountPolicyInput(
-                builder.PolicyName ?? throw new MissingRequiredMemberException("policyName"),
-                builder.PolicyType ?? throw new MissingRequiredMemberException("policyType")
+                builder.PolicyName,
+                builder.PolicyType
             );
 
         public override void SerializeMembers<TSerializer>(
@@ -92,10 +67,17 @@ public static partial class DeleteAccountPolicyInputSchema
             {
                 serializer.WriteNull(0);
             }
-            serializer.WriteStringEnum(1, value.PolicyType.Value);
+            if (value.PolicyType is { } value1)
+            {
+                serializer.WriteStringEnum(1, value1.Value);
+            }
+            else
+            {
+                serializer.WriteNull(1);
+            }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

@@ -9,6 +9,10 @@ namespace Com.Amazonaws.Cloudwatchlogs;
 /// <summary>
 /// Represents the Smithy structure com.amazonaws.cloudwatchlogs#PutDeliverySourceInput.
 /// </summary>
+/// <param name="DeliverySourceConfiguration">
+/// A map of key-value pairs to configure the delivery source. Both keys and values must be between 1
+/// and 255 characters in length. For example, <c>{"samplingRate": "50"}</c>.
+/// </param>
 /// <param name="LogType">
 /// <para>
 /// Defines the type of log that the source is sending.
@@ -235,10 +239,6 @@ namespace Com.Amazonaws.Cloudwatchlogs;
 /// specific log group ARN for this log type.
 /// </para>
 /// </param>
-/// <param name="DeliverySourceConfiguration">
-/// A map of key-value pairs to configure the delivery source. Both keys and values must be between 1
-/// and 255 characters in length. For example, <c>{"samplingRate": "50"}</c>.
-/// </param>
 /// <param name="Tags">
 /// <para>
 /// An optional list of key-value pairs to associate with the resource.
@@ -250,9 +250,9 @@ namespace Com.Amazonaws.Cloudwatchlogs;
 /// </para>
 /// </param>
 public sealed record class PutDeliverySourceInput(
-    string LogType,
-    string Name,
-    string ResourceArn,
     IReadOnlyDictionary<string, string>? DeliverySourceConfiguration = null,
+    string? LogType = null,
+    string? Name = null,
+    string? ResourceArn = null,
     IReadOnlyDictionary<string, string>? Tags = null
 );

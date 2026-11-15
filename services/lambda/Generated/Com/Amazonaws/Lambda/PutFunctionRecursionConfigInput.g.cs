@@ -61,6 +61,6 @@ namespace Com.Amazonaws.Lambda;
 /// </para>
 /// </param>
 public sealed record class PutFunctionRecursionConfigInput(
-    string FunctionName,
-    global::Com.Amazonaws.Lambda.RecursiveLoop RecursiveLoop
+    string? FunctionName = null,
+    global::Com.Amazonaws.Lambda.RecursiveLoop? RecursiveLoop = null
 );

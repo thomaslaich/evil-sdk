@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Iam.Schemas;
 
 public static partial class SourceRoleTemplateSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? TemplateArn { get; set; }
         public int? TemplateMinorVersion { get; set; }
@@ -98,7 +98,7 @@ public static partial class SourceRoleTemplateSchema
             serializer.WriteInteger(1, value.TemplateMinorVersion);
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

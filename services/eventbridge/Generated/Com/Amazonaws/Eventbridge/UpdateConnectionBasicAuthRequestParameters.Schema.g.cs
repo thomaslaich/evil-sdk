@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Eventbridge.Schemas;
 
 public static partial class UpdateConnectionBasicAuthRequestParametersSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? Username { get; set; }
         public string? Password { get; set; }
@@ -124,7 +124,7 @@ public static partial class UpdateConnectionBasicAuthRequestParametersSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

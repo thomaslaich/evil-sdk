@@ -46,7 +46,7 @@ namespace Com.Amazonaws.Eventbridge;
 /// The number of days to retain events in the archive.
 /// </param>
 public sealed record class UpdateArchiveInput(
-    string ArchiveName,
+    string? ArchiveName = null,
     string? Description = null,
     string? EventPattern = null,
     string? KmsKeyIdentifier = null,

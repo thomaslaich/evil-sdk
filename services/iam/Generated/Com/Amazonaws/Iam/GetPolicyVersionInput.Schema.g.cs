@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Iam.Schemas;
 
 public static partial class GetPolicyVersionInputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? PolicyArn { get; set; }
         public string? VersionId { get; set; }
@@ -28,7 +28,6 @@ public static partial class GetPolicyVersionInputSchema
                 new(
                     "PolicyArn",
                     Target0,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
@@ -41,25 +40,16 @@ public static partial class GetPolicyVersionInputSchema
                                 }
                             )
                         ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
                     ]
                 ),
                 new(
                     "VersionId",
                     Target1,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
                             ShapeId.Parse("smithy.api#pattern"),
                             Document.From("^v[1-9][0-9]*(\\.[A-Za-z0-9-]*)?$")
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
                         ),
                     ]
                 ),
@@ -89,8 +79,8 @@ public static partial class GetPolicyVersionInputSchema
 
         public override global::Com.Amazonaws.Iam.GetPolicyVersionInput Build(Builder builder) =>
             new global::Com.Amazonaws.Iam.GetPolicyVersionInput(
-                builder.PolicyArn ?? throw new MissingRequiredMemberException("PolicyArn"),
-                builder.VersionId ?? throw new MissingRequiredMemberException("VersionId")
+                builder.PolicyArn,
+                builder.VersionId
             );
 
         public override void SerializeMembers<TSerializer>(
@@ -116,7 +106,7 @@ public static partial class GetPolicyVersionInputSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

@@ -69,7 +69,7 @@ namespace Com.Amazonaws.S3;
 /// </para>
 /// </param>
 public sealed record class PutBucketLifecycleConfigurationInput(
-    string Bucket,
+    string? Bucket = null,
     global::Com.Amazonaws.S3.ChecksumAlgorithm? ChecksumAlgorithm = null,
     string? ExpectedBucketOwner = null,
     BucketLifecycleConfiguration? LifecycleConfiguration = null,

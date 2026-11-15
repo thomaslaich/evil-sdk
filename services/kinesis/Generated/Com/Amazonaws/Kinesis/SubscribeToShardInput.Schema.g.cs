@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Kinesis.Schemas;
 
 public static partial class SubscribeToShardInputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? ConsumerARN { get; set; }
         public string? StreamId { get; set; }
@@ -31,7 +31,6 @@ public static partial class SubscribeToShardInputSchema
                 new(
                     "ConsumerARN",
                     Target0,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
@@ -49,10 +48,6 @@ public static partial class SubscribeToShardInputSchema
                             Document.From(
                                 "^(arn):aws.*:kinesis:.*:\\d{12}:.*stream\\/[a-zA-Z0-9_.-]+\\/consumer\\/[a-zA-Z0-9_.-]+:[0-9]+$"
                             )
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
                         ),
                         new Trait(
                             ShapeId.Parse("smithy.rules#contextParam"),
@@ -98,7 +93,6 @@ public static partial class SubscribeToShardInputSchema
                 new(
                     "ShardId",
                     Target2,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
@@ -115,24 +109,9 @@ public static partial class SubscribeToShardInputSchema
                             ShapeId.Parse("smithy.api#pattern"),
                             Document.From("^[a-zA-Z0-9_.-]+$")
                         ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
                     ]
                 ),
-                new(
-                    "StartingPosition",
-                    Target3,
-                    isRequired: true,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
-                    ]
-                ),
+                new("StartingPosition", Target3),
                 new(
                     "DryRun",
                     Target4,
@@ -178,11 +157,10 @@ public static partial class SubscribeToShardInputSchema
             Builder builder
         ) =>
             new global::Com.Amazonaws.Kinesis.SubscribeToShardInput(
-                builder.ConsumerARN ?? throw new MissingRequiredMemberException("ConsumerARN"),
-                builder.ShardId ?? throw new MissingRequiredMemberException("ShardId"),
-                builder.StartingPosition
-                    ?? throw new MissingRequiredMemberException("StartingPosition"),
+                builder.ConsumerARN,
                 builder.DryRun,
+                builder.ShardId,
+                builder.StartingPosition,
                 builder.StreamId
             );
 
@@ -233,7 +211,7 @@ public static partial class SubscribeToShardInputSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

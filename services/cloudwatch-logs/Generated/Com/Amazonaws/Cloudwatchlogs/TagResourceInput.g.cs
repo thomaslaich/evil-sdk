@@ -31,6 +31,6 @@ namespace Com.Amazonaws.Cloudwatchlogs;
 /// The list of key-value pairs to associate with the resource.
 /// </param>
 public sealed record class TagResourceInput(
-    string ResourceArn,
-    IReadOnlyDictionary<string, string> Tags
+    string? ResourceArn = null,
+    IReadOnlyDictionary<string, string>? Tags = null
 );

@@ -24,6 +24,6 @@ namespace Com.Amazonaws.Iam;
 /// specified IAM server certificate.
 /// </param>
 public sealed record class UntagServerCertificateInput(
-    string ServerCertificateName,
-    IReadOnlyList<string> TagKeys
+    string? ServerCertificateName = null,
+    IReadOnlyList<string>? TagKeys = null
 );

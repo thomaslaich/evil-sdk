@@ -10,4 +10,4 @@ namespace Com.Amazonaws.Route53;
 /// <param name="Id">
 /// The ID of the reusable delegation set that you want to get a list of name servers for.
 /// </param>
-public sealed record class GetReusableDelegationSetInput(string Id);
+public sealed record class GetReusableDelegationSetInput(string? Id = null);

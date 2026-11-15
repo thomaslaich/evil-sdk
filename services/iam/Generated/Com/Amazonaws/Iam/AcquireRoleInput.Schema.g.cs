@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Iam.Schemas;
 
 public static partial class AcquireRoleInputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? TemplateArn { get; set; }
         public int? TemplateMinorVersion { get; set; }
@@ -32,7 +32,6 @@ public static partial class AcquireRoleInputSchema
                 new(
                     "TemplateArn",
                     Target0,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
@@ -44,10 +43,6 @@ public static partial class AcquireRoleInputSchema
                                     { "max", Document.From(2048m) },
                                 }
                             )
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
                         ),
                     ]
                 ),
@@ -95,8 +90,8 @@ public static partial class AcquireRoleInputSchema
 
         public override global::Com.Amazonaws.Iam.AcquireRoleInput Build(Builder builder) =>
             new global::Com.Amazonaws.Iam.AcquireRoleInput(
-                builder.TemplateArn ?? throw new MissingRequiredMemberException("TemplateArn"),
                 builder.ReplacementValues,
+                builder.TemplateArn,
                 builder.TemplateMinorVersion
             );
 
@@ -131,7 +126,7 @@ public static partial class AcquireRoleInputSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

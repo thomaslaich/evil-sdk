@@ -152,7 +152,7 @@ namespace Com.Amazonaws.S3;
 /// </para>
 /// </param>
 public sealed record class ListObjectsV2Input(
-    string Bucket,
+    string? Bucket = null,
     string? ContinuationToken = null,
     string? Delimiter = null,
     global::Com.Amazonaws.S3.EncodingType? EncodingType = null,

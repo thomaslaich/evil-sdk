@@ -7,21 +7,6 @@ namespace Com.Amazonaws.Secretsmanager;
 /// <summary>
 /// Represents the Smithy structure com.amazonaws.secretsmanager#PutResourcePolicyInput.
 /// </summary>
-/// <param name="ResourcePolicy">
-/// A JSON-formatted string for an Amazon Web Services resource-based policy. For example policies, see
-/// <see href="https://docs.aws.amazon.com/secretsmanager/latest/userguide/auth-and-access_examples.html">Permissions
-/// policy examples</see>.
-/// </param>
-/// <param name="SecretId">
-/// <para>
-/// The ARN or name of the secret to attach the resource-based policy.
-/// </para>
-/// <para>
-/// For an ARN, we recommend that you specify a complete ARN rather than a partial ARN. See
-/// <see href="https://docs.aws.amazon.com/secretsmanager/latest/userguide/troubleshoot.html#ARN_secretnamehyphen">Finding
-/// a secret from a partial ARN</see>.
-/// </para>
-/// </param>
 /// <param name="BlockPublicPolicy">
 /// <para>
 /// Specifies whether to block resource-based policies that allow broad access to the secret, for
@@ -53,8 +38,23 @@ namespace Com.Amazonaws.Secretsmanager;
 /// who has permissions to your secrets</see>.
 /// </para>
 /// </param>
+/// <param name="ResourcePolicy">
+/// A JSON-formatted string for an Amazon Web Services resource-based policy. For example policies, see
+/// <see href="https://docs.aws.amazon.com/secretsmanager/latest/userguide/auth-and-access_examples.html">Permissions
+/// policy examples</see>.
+/// </param>
+/// <param name="SecretId">
+/// <para>
+/// The ARN or name of the secret to attach the resource-based policy.
+/// </para>
+/// <para>
+/// For an ARN, we recommend that you specify a complete ARN rather than a partial ARN. See
+/// <see href="https://docs.aws.amazon.com/secretsmanager/latest/userguide/troubleshoot.html#ARN_secretnamehyphen">Finding
+/// a secret from a partial ARN</see>.
+/// </para>
+/// </param>
 public sealed record class PutResourcePolicyInput(
-    string ResourcePolicy,
-    string SecretId,
-    bool? BlockPublicPolicy = null
+    bool? BlockPublicPolicy = null,
+    string? ResourcePolicy = null,
+    string? SecretId = null
 );

@@ -11,7 +11,7 @@ namespace Com.Amazonaws.Lambda.Schemas;
 
 public static partial class CreateEventSourceMappingOutputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? UUID { get; set; }
         public global::Com.Amazonaws.Lambda.EventSourcePosition? StartingPosition { get; set; }
@@ -782,7 +782,7 @@ public static partial class CreateEventSourceMappingOutputSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

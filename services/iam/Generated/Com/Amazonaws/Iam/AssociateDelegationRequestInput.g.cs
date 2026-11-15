@@ -10,4 +10,4 @@ namespace Com.Amazonaws.Iam;
 /// <param name="DelegationRequestId">
 /// The unique identifier of the delegation request to associate.
 /// </param>
-public sealed record class AssociateDelegationRequestInput(string DelegationRequestId);
+public sealed record class AssociateDelegationRequestInput(string? DelegationRequestId = null);

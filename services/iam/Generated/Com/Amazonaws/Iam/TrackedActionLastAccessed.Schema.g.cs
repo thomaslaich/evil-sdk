@@ -11,7 +11,7 @@ namespace Com.Amazonaws.Iam.Schemas;
 
 public static partial class TrackedActionLastAccessedSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? ActionName { get; set; }
         public string? LastAccessedEntity { get; set; }
@@ -120,7 +120,7 @@ public static partial class TrackedActionLastAccessedSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

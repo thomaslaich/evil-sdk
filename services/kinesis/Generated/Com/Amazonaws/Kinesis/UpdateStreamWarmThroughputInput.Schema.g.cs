@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Kinesis.Schemas;
 
 public static partial class UpdateStreamWarmThroughputInputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? StreamARN { get; set; }
         public string? StreamName { get; set; }
@@ -111,7 +111,6 @@ public static partial class UpdateStreamWarmThroughputInputSchema
                 new(
                     "WarmThroughputMiBps",
                     Target3,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
@@ -123,10 +122,6 @@ public static partial class UpdateStreamWarmThroughputInputSchema
                             Document.From(
                                 new Dictionary<string, Document> { { "min", Document.From(0m) } }
                             )
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
                         ),
                     ]
                 ),
@@ -160,10 +155,10 @@ public static partial class UpdateStreamWarmThroughputInputSchema
             Builder builder
         ) =>
             new global::Com.Amazonaws.Kinesis.UpdateStreamWarmThroughputInput(
-                builder.WarmThroughputMiBps.GetValueOrDefault(),
                 builder.StreamARN,
                 builder.StreamId,
-                builder.StreamName
+                builder.StreamName,
+                builder.WarmThroughputMiBps
             );
 
         public override void SerializeMembers<TSerializer>(
@@ -195,10 +190,17 @@ public static partial class UpdateStreamWarmThroughputInputSchema
             {
                 serializer.WriteNull(2);
             }
-            serializer.WriteInteger(3, value.WarmThroughputMiBps);
+            if (value.WarmThroughputMiBps is { } value3)
+            {
+                serializer.WriteInteger(3, value3);
+            }
+            else
+            {
+                serializer.WriteNull(3);
+            }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

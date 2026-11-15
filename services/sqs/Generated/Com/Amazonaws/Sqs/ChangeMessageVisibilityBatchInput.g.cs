@@ -20,6 +20,6 @@ namespace Com.Amazonaws.Sqs;
 /// </para>
 /// </param>
 public sealed record class ChangeMessageVisibilityBatchInput(
-    IReadOnlyList<ChangeMessageVisibilityBatchRequestEntry> Entries,
-    string QueueUrl
+    IReadOnlyList<ChangeMessageVisibilityBatchRequestEntry>? Entries = null,
+    string? QueueUrl = null
 );

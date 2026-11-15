@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Cloudwatchlogs.Schemas;
 
 public static partial class CancelExportTaskInputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? TaskId { get; set; }
     }
@@ -27,7 +27,6 @@ public static partial class CancelExportTaskInputSchema
                 new(
                     "taskId",
                     Target0,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
@@ -39,10 +38,6 @@ public static partial class CancelExportTaskInputSchema
                                     { "max", Document.From(512m) },
                                 }
                             )
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
                         ),
                     ]
                 ),
@@ -68,10 +63,7 @@ public static partial class CancelExportTaskInputSchema
 
         public override global::Com.Amazonaws.Cloudwatchlogs.CancelExportTaskInput Build(
             Builder builder
-        ) =>
-            new global::Com.Amazonaws.Cloudwatchlogs.CancelExportTaskInput(
-                builder.TaskId ?? throw new MissingRequiredMemberException("taskId")
-            );
+        ) => new global::Com.Amazonaws.Cloudwatchlogs.CancelExportTaskInput(builder.TaskId);
 
         public override void SerializeMembers<TSerializer>(
             global::Com.Amazonaws.Cloudwatchlogs.CancelExportTaskInput value,
@@ -88,7 +80,7 @@ public static partial class CancelExportTaskInputSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

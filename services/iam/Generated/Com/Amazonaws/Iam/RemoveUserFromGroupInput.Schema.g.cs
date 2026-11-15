@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Iam.Schemas;
 
 public static partial class RemoveUserFromGroupInputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? GroupName { get; set; }
         public string? UserName { get; set; }
@@ -28,7 +28,6 @@ public static partial class RemoveUserFromGroupInputSchema
                 new(
                     "GroupName",
                     Target0,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
@@ -44,17 +43,12 @@ public static partial class RemoveUserFromGroupInputSchema
                         new Trait(
                             ShapeId.Parse("smithy.api#pattern"),
                             Document.From("^[\\w+=,.@-]+$")
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
                         ),
                     ]
                 ),
                 new(
                     "UserName",
                     Target1,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
@@ -70,10 +64,6 @@ public static partial class RemoveUserFromGroupInputSchema
                         new Trait(
                             ShapeId.Parse("smithy.api#pattern"),
                             Document.From("^[\\w+=,.@-]+$")
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
                         ),
                     ]
                 ),
@@ -103,8 +93,8 @@ public static partial class RemoveUserFromGroupInputSchema
 
         public override global::Com.Amazonaws.Iam.RemoveUserFromGroupInput Build(Builder builder) =>
             new global::Com.Amazonaws.Iam.RemoveUserFromGroupInput(
-                builder.GroupName ?? throw new MissingRequiredMemberException("GroupName"),
-                builder.UserName ?? throw new MissingRequiredMemberException("UserName")
+                builder.GroupName,
+                builder.UserName
             );
 
         public override void SerializeMembers<TSerializer>(
@@ -130,7 +120,7 @@ public static partial class RemoveUserFromGroupInputSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

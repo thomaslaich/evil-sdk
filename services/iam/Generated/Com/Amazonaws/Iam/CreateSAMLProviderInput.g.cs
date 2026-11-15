@@ -9,6 +9,13 @@ namespace Com.Amazonaws.Iam;
 /// <summary>
 /// Represents the Smithy structure com.amazonaws.iam#CreateSAMLProviderInput.
 /// </summary>
+/// <param name="AddPrivateKey">
+/// The private key generated from your external identity provider. The private key must be a .pem file
+/// that uses AES-GCM or AES-CBC encryption algorithm to decrypt SAML assertions.
+/// </param>
+/// <param name="AssertionEncryptionMode">
+/// Specifies the encryption setting for the SAML provider.
+/// </param>
 /// <param name="Name">
 /// <para>
 /// The name of the provider to create.
@@ -32,13 +39,6 @@ namespace Com.Amazonaws.Iam;
 /// 2.0-based federation</see> in the <i>IAM User Guide</i>
 /// </para>
 /// </param>
-/// <param name="AddPrivateKey">
-/// The private key generated from your external identity provider. The private key must be a .pem file
-/// that uses AES-GCM or AES-CBC encryption algorithm to decrypt SAML assertions.
-/// </param>
-/// <param name="AssertionEncryptionMode">
-/// Specifies the encryption setting for the SAML provider.
-/// </param>
 /// <param name="Tags">
 /// <para>
 /// A list of tags that you want to attach to the new IAM SAML provider. Each tag consists of a key name
@@ -52,9 +52,9 @@ namespace Com.Amazonaws.Iam;
 /// </para>
 /// </param>
 public sealed record class CreateSAMLProviderInput(
-    string Name,
-    string SAMLMetadataDocument,
     string? AddPrivateKey = null,
     AssertionEncryptionModeType? AssertionEncryptionMode = null,
+    string? Name = null,
+    string? SAMLMetadataDocument = null,
     IReadOnlyList<global::Com.Amazonaws.Iam.Tag>? Tags = null
 );

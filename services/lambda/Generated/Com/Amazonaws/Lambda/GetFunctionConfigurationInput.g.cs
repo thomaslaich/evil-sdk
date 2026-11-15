@@ -40,6 +40,6 @@ namespace Com.Amazonaws.Lambda;
 /// Specify a version or alias to get details about a published version of the function.
 /// </param>
 public sealed record class GetFunctionConfigurationInput(
-    string FunctionName,
+    string? FunctionName = null,
     string? Qualifier = null
 );

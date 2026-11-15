@@ -10,7 +10,7 @@ namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class ListBucketIntelligentTieringConfigurationsInputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? Bucket { get; set; }
         public string? ContinuationToken { get; set; }
@@ -32,15 +32,10 @@ public static partial class ListBucketIntelligentTieringConfigurationsInputSchem
                 new(
                     "Bucket",
                     Target0,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
                             ShapeId.Parse("smithy.api#httpLabel"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
                             Document.From(new Dictionary<string, Document> { })
                         ),
                         new Trait(
@@ -110,7 +105,7 @@ public static partial class ListBucketIntelligentTieringConfigurationsInputSchem
             Builder builder
         ) =>
             new global::Com.Amazonaws.S3.ListBucketIntelligentTieringConfigurationsInput(
-                builder.Bucket ?? throw new MissingRequiredMemberException("Bucket"),
+                builder.Bucket,
                 builder.ContinuationToken,
                 builder.ExpectedBucketOwner
             );
@@ -146,7 +141,7 @@ public static partial class ListBucketIntelligentTieringConfigurationsInputSchem
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

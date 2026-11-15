@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Route53.Schemas;
 
 public static partial class GetHostedZoneLimitInputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public global::Com.Amazonaws.Route53.HostedZoneLimitType? Type { get; set; }
         public string? HostedZoneId { get; set; }
@@ -28,15 +28,10 @@ public static partial class GetHostedZoneLimitInputSchema
                 new(
                     "Type",
                     Target0,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
                             ShapeId.Parse("smithy.api#httpLabel"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
                             Document.From(new Dictionary<string, Document> { })
                         ),
                     ]
@@ -44,7 +39,6 @@ public static partial class GetHostedZoneLimitInputSchema
                 new(
                     "HostedZoneId",
                     Target1,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
@@ -60,10 +54,6 @@ public static partial class GetHostedZoneLimitInputSchema
                                     { "max", Document.From(32m) },
                                 }
                             )
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
                         ),
                     ]
                 ),
@@ -93,8 +83,8 @@ public static partial class GetHostedZoneLimitInputSchema
             Builder builder
         ) =>
             new global::Com.Amazonaws.Route53.GetHostedZoneLimitInput(
-                builder.HostedZoneId ?? throw new MissingRequiredMemberException("HostedZoneId"),
-                builder.Type ?? throw new MissingRequiredMemberException("Type")
+                builder.HostedZoneId,
+                builder.Type
             );
 
         public override void SerializeMembers<TSerializer>(
@@ -102,7 +92,14 @@ public static partial class GetHostedZoneLimitInputSchema
             ref TSerializer serializer
         )
         {
-            serializer.WriteStringEnum(0, value.Type.Value);
+            if (value.Type is { } value0)
+            {
+                serializer.WriteStringEnum(0, value0.Value);
+            }
+            else
+            {
+                serializer.WriteNull(0);
+            }
             if (value.HostedZoneId is { } value1)
             {
                 serializer.WriteString(1, value1);
@@ -113,7 +110,7 @@ public static partial class GetHostedZoneLimitInputSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

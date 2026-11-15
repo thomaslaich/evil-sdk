@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Iam.Schemas;
 
 public static partial class UpdateOpenIDConnectProviderThumbprintInputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? OpenIDConnectProviderArn { get; set; }
         public IReadOnlyList<string>? ThumbprintList { get; set; }
@@ -31,7 +31,6 @@ public static partial class UpdateOpenIDConnectProviderThumbprintInputSchema
                 new(
                     "OpenIDConnectProviderArn",
                     Target0,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
@@ -44,24 +43,9 @@ public static partial class UpdateOpenIDConnectProviderThumbprintInputSchema
                                 }
                             )
                         ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
                     ]
                 ),
-                new(
-                    "ThumbprintList",
-                    Target1,
-                    isRequired: true,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
-                    ]
-                ),
+                new("ThumbprintList", Target1),
             ],
             [
                 new Trait(
@@ -90,9 +74,8 @@ public static partial class UpdateOpenIDConnectProviderThumbprintInputSchema
             Builder builder
         ) =>
             new global::Com.Amazonaws.Iam.UpdateOpenIDConnectProviderThumbprintInput(
-                builder.OpenIDConnectProviderArn
-                    ?? throw new MissingRequiredMemberException("OpenIDConnectProviderArn"),
-                builder.ThumbprintList ?? throw new MissingRequiredMemberException("ThumbprintList")
+                builder.OpenIDConnectProviderArn,
+                builder.ThumbprintList
             );
 
         public override void SerializeMembers<TSerializer>(
@@ -118,7 +101,7 @@ public static partial class UpdateOpenIDConnectProviderThumbprintInputSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

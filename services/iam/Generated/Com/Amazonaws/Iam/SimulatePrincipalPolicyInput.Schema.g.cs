@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Iam.Schemas;
 
 public static partial class SimulatePrincipalPolicyInputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? PolicySourceArn { get; set; }
         public IReadOnlyList<string>? PolicyInputList { get; set; }
@@ -39,7 +39,6 @@ public static partial class SimulatePrincipalPolicyInputSchema
                 new(
                     "PolicySourceArn",
                     Target0,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
@@ -52,27 +51,12 @@ public static partial class SimulatePrincipalPolicyInputSchema
                                 }
                             )
                         ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
                     ]
                 ),
                 new("PolicyInputList", Target1),
                 new("PermissionsBoundaryPolicyInputList", Target2),
                 new("PolicyExclusionList", Target3),
-                new(
-                    "ActionNames",
-                    Target4,
-                    isRequired: true,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
-                    ]
-                ),
+                new("ActionNames", Target4),
                 new("ResourceArns", Target5),
                 new(
                     "ResourcePolicy",
@@ -265,9 +249,7 @@ public static partial class SimulatePrincipalPolicyInputSchema
             Builder builder
         ) =>
             new global::Com.Amazonaws.Iam.SimulatePrincipalPolicyInput(
-                builder.ActionNames ?? throw new MissingRequiredMemberException("ActionNames"),
-                builder.PolicySourceArn
-                    ?? throw new MissingRequiredMemberException("PolicySourceArn"),
+                builder.ActionNames,
                 builder.CallerArn,
                 builder.ContextEntries,
                 builder.Marker,
@@ -275,6 +257,7 @@ public static partial class SimulatePrincipalPolicyInputSchema
                 builder.PermissionsBoundaryPolicyInputList,
                 builder.PolicyExclusionList,
                 builder.PolicyInputList,
+                builder.PolicySourceArn,
                 builder.ResourceArns,
                 builder.ResourceHandlingOption,
                 builder.ResourceOwner,
@@ -392,7 +375,7 @@ public static partial class SimulatePrincipalPolicyInputSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

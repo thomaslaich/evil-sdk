@@ -15,6 +15,6 @@ namespace Com.Amazonaws.S3;
 /// configuration from.
 /// </param>
 public sealed record class DeleteBucketMetadataConfigurationInput(
-    string Bucket,
+    string? Bucket = null,
     string? ExpectedBucketOwner = null
 );

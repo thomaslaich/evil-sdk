@@ -10,4 +10,4 @@ namespace Com.Amazonaws.Cloudwatchlogs;
 /// <param name="LogGroupIdentifier">
 /// The name or ARN of the log group that you want to delete the data protection policy for.
 /// </param>
-public sealed record class DeleteDataProtectionPolicyInput(string LogGroupIdentifier);
+public sealed record class DeleteDataProtectionPolicyInput(string? LogGroupIdentifier = null);

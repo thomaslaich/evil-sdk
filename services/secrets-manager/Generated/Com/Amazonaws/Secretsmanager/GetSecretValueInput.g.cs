@@ -43,7 +43,7 @@ namespace Com.Amazonaws.Secretsmanager;
 /// </para>
 /// </param>
 public sealed record class GetSecretValueInput(
-    string SecretId,
+    string? SecretId = null,
     string? VersionId = null,
     string? VersionStage = null
 );

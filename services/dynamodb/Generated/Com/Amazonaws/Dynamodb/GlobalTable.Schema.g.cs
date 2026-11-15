@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Dynamodb.Schemas;
 
 public static partial class GlobalTableSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? GlobalTableName { get; set; }
         public IReadOnlyList<global::Com.Amazonaws.Dynamodb.Replica>? ReplicationGroup { get; set; }
@@ -91,7 +91,7 @@ public static partial class GlobalTableSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Eventbridge.Schemas;
 
 public static partial class PutEventsInputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public IReadOnlyList<global::Com.Amazonaws.Eventbridge.PutEventsRequestEntry>? Entries { get; set; }
         public string? EndpointId { get; set; }
@@ -25,18 +25,7 @@ public static partial class PutEventsInputSchema
         : StructSchema<global::Com.Amazonaws.Eventbridge.PutEventsInput, Builder>(
             ShapeId.Parse("com.amazonaws.eventbridge#PutEventsInput"),
             [
-                new(
-                    "Entries",
-                    Target0,
-                    isRequired: true,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
-                    ]
-                ),
+                new("Entries", Target0),
                 new(
                     "EndpointId",
                     Target1,
@@ -95,8 +84,8 @@ public static partial class PutEventsInputSchema
 
         public override global::Com.Amazonaws.Eventbridge.PutEventsInput Build(Builder builder) =>
             new global::Com.Amazonaws.Eventbridge.PutEventsInput(
-                builder.Entries ?? throw new MissingRequiredMemberException("Entries"),
-                builder.EndpointId
+                builder.EndpointId,
+                builder.Entries
             );
 
         public override void SerializeMembers<TSerializer>(
@@ -122,7 +111,7 @@ public static partial class PutEventsInputSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

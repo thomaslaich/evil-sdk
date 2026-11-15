@@ -24,6 +24,6 @@ namespace Com.Amazonaws.Iam;
 /// associated value.
 /// </param>
 public sealed record class TagRoleInput(
-    string RoleName,
-    IReadOnlyList<global::Com.Amazonaws.Iam.Tag> Tags
+    string? RoleName = null,
+    IReadOnlyList<global::Com.Amazonaws.Iam.Tag>? Tags = null
 );

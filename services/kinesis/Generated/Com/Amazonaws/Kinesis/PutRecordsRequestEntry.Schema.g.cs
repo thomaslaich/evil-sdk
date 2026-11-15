@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Kinesis.Schemas;
 
 public static partial class PutRecordsRequestEntrySchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public byte[]? Data { get; set; }
         public string? ExplicitHashKey { get; set; }
@@ -135,7 +135,7 @@ public static partial class PutRecordsRequestEntrySchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

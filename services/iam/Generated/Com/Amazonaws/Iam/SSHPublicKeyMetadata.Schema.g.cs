@@ -11,7 +11,7 @@ namespace Com.Amazonaws.Iam.Schemas;
 
 public static partial class SSHPublicKeyMetadataSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? UserName { get; set; }
         public string? SSHPublicKeyId { get; set; }
@@ -156,7 +156,7 @@ public static partial class SSHPublicKeyMetadataSchema
             serializer.WriteTimestamp(3, value.UploadDate);
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

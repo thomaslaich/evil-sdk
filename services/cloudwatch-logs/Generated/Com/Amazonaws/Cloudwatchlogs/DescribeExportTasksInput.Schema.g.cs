@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Cloudwatchlogs.Schemas;
 
 public static partial class DescribeExportTasksInputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? TaskId { get; set; }
         public global::Com.Amazonaws.Cloudwatchlogs.ExportTaskStatusCode? StatusCode { get; set; }
@@ -156,7 +156,7 @@ public static partial class DescribeExportTasksInputSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

@@ -36,7 +36,7 @@ namespace Com.Amazonaws.Iam;
 /// </para>
 /// </param>
 public sealed record class GetGroupInput(
-    string GroupName,
+    string? GroupName = null,
     string? Marker = null,
     int? MaxItems = null
 );

@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Route53.Schemas;
 
 public static partial class ListHostedZonesByVPCInputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? VPCId { get; set; }
         public global::Com.Amazonaws.Route53.VPCRegion? VPCRegion { get; set; }
@@ -30,7 +30,6 @@ public static partial class ListHostedZonesByVPCInputSchema
                 new(
                     "VPCId",
                     Target0,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(ShapeId.Parse("smithy.api#httpQuery"), Document.From("vpcid")),
@@ -44,25 +43,16 @@ public static partial class ListHostedZonesByVPCInputSchema
                                 }
                             )
                         ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
                     ]
                 ),
                 new(
                     "VPCRegion",
                     Target1,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
                             ShapeId.Parse("smithy.api#httpQuery"),
                             Document.From("vpcregion")
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
                         ),
                     ]
                 ),
@@ -127,10 +117,10 @@ public static partial class ListHostedZonesByVPCInputSchema
             Builder builder
         ) =>
             new global::Com.Amazonaws.Route53.ListHostedZonesByVPCInput(
-                builder.VPCId ?? throw new MissingRequiredMemberException("VPCId"),
-                builder.VPCRegion ?? throw new MissingRequiredMemberException("VPCRegion"),
                 builder.MaxItems,
-                builder.NextToken
+                builder.NextToken,
+                builder.VPCId,
+                builder.VPCRegion
             );
 
         public override void SerializeMembers<TSerializer>(
@@ -146,7 +136,14 @@ public static partial class ListHostedZonesByVPCInputSchema
             {
                 serializer.WriteNull(0);
             }
-            serializer.WriteStringEnum(1, value.VPCRegion.Value);
+            if (value.VPCRegion is { } value1)
+            {
+                serializer.WriteStringEnum(1, value1.Value);
+            }
+            else
+            {
+                serializer.WriteNull(1);
+            }
             if (value.MaxItems is { } value2)
             {
                 serializer.WriteInteger(2, value2);
@@ -165,7 +162,7 @@ public static partial class ListHostedZonesByVPCInputSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Iam.Schemas;
 
 public static partial class PutUserPolicyInputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? UserName { get; set; }
         public string? PolicyName { get; set; }
@@ -29,7 +29,6 @@ public static partial class PutUserPolicyInputSchema
                 new(
                     "UserName",
                     Target0,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
@@ -45,17 +44,12 @@ public static partial class PutUserPolicyInputSchema
                         new Trait(
                             ShapeId.Parse("smithy.api#pattern"),
                             Document.From("^[\\w+=,.@-]+$")
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
                         ),
                     ]
                 ),
                 new(
                     "PolicyName",
                     Target1,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
@@ -72,16 +66,11 @@ public static partial class PutUserPolicyInputSchema
                             ShapeId.Parse("smithy.api#pattern"),
                             Document.From("^[\\w+=,.@-]+$")
                         ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
                     ]
                 ),
                 new(
                     "PolicyDocument",
                     Target2,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
@@ -97,10 +86,6 @@ public static partial class PutUserPolicyInputSchema
                         new Trait(
                             ShapeId.Parse("smithy.api#pattern"),
                             Document.From("^[\\u0009\\u000A\\u000D\\u0020-\\u00FF]+$")
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
                         ),
                     ]
                 ),
@@ -134,10 +119,9 @@ public static partial class PutUserPolicyInputSchema
 
         public override global::Com.Amazonaws.Iam.PutUserPolicyInput Build(Builder builder) =>
             new global::Com.Amazonaws.Iam.PutUserPolicyInput(
-                builder.PolicyDocument
-                    ?? throw new MissingRequiredMemberException("PolicyDocument"),
-                builder.PolicyName ?? throw new MissingRequiredMemberException("PolicyName"),
-                builder.UserName ?? throw new MissingRequiredMemberException("UserName")
+                builder.PolicyDocument,
+                builder.PolicyName,
+                builder.UserName
             );
 
         public override void SerializeMembers<TSerializer>(
@@ -171,7 +155,7 @@ public static partial class PutUserPolicyInputSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

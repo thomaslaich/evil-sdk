@@ -28,6 +28,6 @@ namespace Com.Amazonaws.Iam;
 /// </para>
 /// </param>
 public sealed record class ResetServiceSpecificCredentialInput(
-    string ServiceSpecificCredentialId,
+    string? ServiceSpecificCredentialId = null,
     string? UserName = null
 );

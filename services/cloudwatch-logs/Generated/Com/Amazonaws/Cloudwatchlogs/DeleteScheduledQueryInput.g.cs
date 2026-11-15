@@ -10,4 +10,4 @@ namespace Com.Amazonaws.Cloudwatchlogs;
 /// <param name="Identifier">
 /// The ARN or name of the scheduled query to delete.
 /// </param>
-public sealed record class DeleteScheduledQueryInput(string Identifier);
+public sealed record class DeleteScheduledQueryInput(string? Identifier = null);

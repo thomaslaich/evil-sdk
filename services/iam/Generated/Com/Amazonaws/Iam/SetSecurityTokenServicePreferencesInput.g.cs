@@ -21,5 +21,5 @@ namespace Com.Amazonaws.Iam;
 /// </para>
 /// </param>
 public sealed record class SetSecurityTokenServicePreferencesInput(
-    global::Com.Amazonaws.Iam.GlobalEndpointTokenVersion GlobalEndpointTokenVersion
+    global::Com.Amazonaws.Iam.GlobalEndpointTokenVersion? GlobalEndpointTokenVersion = null
 );

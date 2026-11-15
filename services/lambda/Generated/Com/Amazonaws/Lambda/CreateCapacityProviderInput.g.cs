@@ -12,14 +12,6 @@ namespace Com.Amazonaws.Lambda;
 /// <param name="CapacityProviderName">
 /// The name of the capacity provider.
 /// </param>
-/// <param name="PermissionsConfig">
-/// The permissions configuration that specifies the IAM role ARN used by the capacity provider to
-/// manage compute resources.
-/// </param>
-/// <param name="VpcConfig">
-/// The VPC configuration for the capacity provider, including subnet IDs and security group IDs where
-/// compute instances will be launched.
-/// </param>
 /// <param name="CapacityProviderScalingConfig">
 /// The scaling configuration that defines how the capacity provider scales compute instances, including
 /// maximum vCPU count and scaling policies.
@@ -30,6 +22,10 @@ namespace Com.Amazonaws.Lambda;
 /// </param>
 /// <param name="KmsKeyArn">
 /// The ARN of the KMS key used to encrypt data associated with the capacity provider.
+/// </param>
+/// <param name="PermissionsConfig">
+/// The permissions configuration that specifies the IAM role ARN used by the capacity provider to
+/// manage compute resources.
 /// </param>
 /// <param name="PropagateTags">
 /// The tag propagation configuration for the capacity provider. Specifies tags to apply to managed
@@ -42,15 +38,19 @@ namespace Com.Amazonaws.Lambda;
 /// The telemetry configuration for the capacity provider. Specifies logging settings for managed
 /// resources.
 /// </param>
+/// <param name="VpcConfig">
+/// The VPC configuration for the capacity provider, including subnet IDs and security group IDs where
+/// compute instances will be launched.
+/// </param>
 public sealed record class CreateCapacityProviderInput(
-    string CapacityProviderName,
-    CapacityProviderPermissionsConfig PermissionsConfig,
-    CapacityProviderVpcConfig VpcConfig,
+    string? CapacityProviderName = null,
     global::Com.Amazonaws.Lambda.CapacityProviderScalingConfig? CapacityProviderScalingConfig =
         null,
     global::Com.Amazonaws.Lambda.InstanceRequirements? InstanceRequirements = null,
     string? KmsKeyArn = null,
+    CapacityProviderPermissionsConfig? PermissionsConfig = null,
     global::Com.Amazonaws.Lambda.PropagateTags? PropagateTags = null,
     IReadOnlyDictionary<string, string>? Tags = null,
-    CapacityProviderTelemetryConfig? TelemetryConfig = null
+    CapacityProviderTelemetryConfig? TelemetryConfig = null,
+    CapacityProviderVpcConfig? VpcConfig = null
 );

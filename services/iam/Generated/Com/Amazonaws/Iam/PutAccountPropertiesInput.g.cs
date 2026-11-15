@@ -23,5 +23,5 @@ namespace Com.Amazonaws.Iam;
 /// </para>
 /// </param>
 public sealed record class PutAccountPropertiesInput(
-    IReadOnlyDictionary<string, string> Properties
+    IReadOnlyDictionary<string, string>? Properties = null
 );

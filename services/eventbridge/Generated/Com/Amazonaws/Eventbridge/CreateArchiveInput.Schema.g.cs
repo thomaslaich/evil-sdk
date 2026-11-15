@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Eventbridge.Schemas;
 
 public static partial class CreateArchiveInputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? ArchiveName { get; set; }
         public string? EventSourceArn { get; set; }
@@ -32,7 +32,6 @@ public static partial class CreateArchiveInputSchema
                 new(
                     "ArchiveName",
                     Target0,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
@@ -49,16 +48,11 @@ public static partial class CreateArchiveInputSchema
                             ShapeId.Parse("smithy.api#pattern"),
                             Document.From("^[\\.\\-_A-Za-z0-9]+$")
                         ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
                     ]
                 ),
                 new(
                     "EventSourceArn",
                     Target1,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
@@ -76,10 +70,6 @@ public static partial class CreateArchiveInputSchema
                             Document.From(
                                 "^arn:aws([a-z]|\\-)*:events:([a-z]|\\d|\\-)*:([0-9]{12})?:.+\\/.+$"
                             )
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
                         ),
                     ]
                 ),
@@ -198,11 +188,10 @@ public static partial class CreateArchiveInputSchema
             Builder builder
         ) =>
             new global::Com.Amazonaws.Eventbridge.CreateArchiveInput(
-                builder.ArchiveName ?? throw new MissingRequiredMemberException("ArchiveName"),
-                builder.EventSourceArn
-                    ?? throw new MissingRequiredMemberException("EventSourceArn"),
+                builder.ArchiveName,
                 builder.Description,
                 builder.EventPattern,
+                builder.EventSourceArn,
                 builder.KmsKeyIdentifier,
                 builder.RetentionDays
             );
@@ -262,7 +251,7 @@ public static partial class CreateArchiveInputSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

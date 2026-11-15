@@ -17,7 +17,7 @@ namespace Com.Amazonaws.Cloudwatchlogs;
 /// A structure that contains configuration information for the integration that you are creating.
 /// </param>
 public sealed record class PutIntegrationInput(
-    string IntegrationName,
-    global::Com.Amazonaws.Cloudwatchlogs.IntegrationType IntegrationType,
-    global::Com.Amazonaws.Cloudwatchlogs.ResourceConfig ResourceConfig
+    string? IntegrationName = null,
+    global::Com.Amazonaws.Cloudwatchlogs.IntegrationType? IntegrationType = null,
+    global::Com.Amazonaws.Cloudwatchlogs.ResourceConfig? ResourceConfig = null
 );

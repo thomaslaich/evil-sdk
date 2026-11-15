@@ -9,9 +9,6 @@ namespace Com.Amazonaws.Dynamodb;
 /// <summary>
 /// Represents the Smithy structure com.amazonaws.dynamodb#ExecuteStatementInput.
 /// </summary>
-/// <param name="Statement">
-/// The PartiQL statement representing the operation to run.
-/// </param>
 /// <param name="ConsistentRead">
 /// The consistency of a read operation. If set to <c>true</c>, then a strongly consistent read is used;
 /// otherwise, an eventually consistent read is used.
@@ -41,13 +38,16 @@ namespace Com.Amazonaws.Dynamodb;
 /// and processing overhead of receiving a larger response. No read capacity units are consumed.
 /// </para>
 /// </param>
+/// <param name="Statement">
+/// The PartiQL statement representing the operation to run.
+/// </param>
 public sealed record class ExecuteStatementInput(
-    string Statement,
     bool? ConsistentRead = null,
     int? Limit = null,
     string? NextToken = null,
     IReadOnlyList<AttributeValue>? Parameters = null,
     global::Com.Amazonaws.Dynamodb.ReturnConsumedCapacity? ReturnConsumedCapacity = null,
     global::Com.Amazonaws.Dynamodb.ReturnValuesOnConditionCheckFailure? ReturnValuesOnConditionCheckFailure =
-        null
+        null,
+    string? Statement = null
 );

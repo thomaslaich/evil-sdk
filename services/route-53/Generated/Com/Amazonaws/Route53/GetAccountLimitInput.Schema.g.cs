@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Route53.Schemas;
 
 public static partial class GetAccountLimitInputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public global::Com.Amazonaws.Route53.AccountLimitType? Type { get; set; }
     }
@@ -27,15 +27,10 @@ public static partial class GetAccountLimitInputSchema
                 new(
                     "Type",
                     Target0,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
                             ShapeId.Parse("smithy.api#httpLabel"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
                             Document.From(new Dictionary<string, Document> { })
                         ),
                     ]
@@ -59,19 +54,24 @@ public static partial class GetAccountLimitInputSchema
         public override Builder CreateTypedBuilder() => new();
 
         public override global::Com.Amazonaws.Route53.GetAccountLimitInput Build(Builder builder) =>
-            new global::Com.Amazonaws.Route53.GetAccountLimitInput(
-                builder.Type ?? throw new MissingRequiredMemberException("Type")
-            );
+            new global::Com.Amazonaws.Route53.GetAccountLimitInput(builder.Type);
 
         public override void SerializeMembers<TSerializer>(
             global::Com.Amazonaws.Route53.GetAccountLimitInput value,
             ref TSerializer serializer
         )
         {
-            serializer.WriteStringEnum(0, value.Type.Value);
+            if (value.Type is { } value0)
+            {
+                serializer.WriteStringEnum(0, value0.Value);
+            }
+            else
+            {
+                serializer.WriteNull(0);
+            }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

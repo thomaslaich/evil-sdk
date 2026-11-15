@@ -11,7 +11,7 @@ namespace Com.Amazonaws.Kinesis.Schemas;
 
 public static partial class ConsumerSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? ConsumerName { get; set; }
         public string? ConsumerARN { get; set; }
@@ -158,7 +158,7 @@ public static partial class ConsumerSchema
             serializer.WriteTimestamp(3, value.ConsumerCreationTimestamp);
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

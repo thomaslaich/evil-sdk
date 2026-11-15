@@ -10,4 +10,4 @@ namespace Com.Amazonaws.Dynamodb;
 /// <param name="BackupArn">
 /// The ARN associated with the backup.
 /// </param>
-public sealed record class DeleteBackupInput(string BackupArn);
+public sealed record class DeleteBackupInput(string? BackupArn = null);

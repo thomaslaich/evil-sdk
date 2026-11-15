@@ -11,7 +11,7 @@ namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class PutObjectAnnotationInputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? Bucket { get; set; }
         public string? Key { get; set; }
@@ -47,15 +47,10 @@ public static partial class PutObjectAnnotationInputSchema
                 new(
                     "Bucket",
                     Target0,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
                             ShapeId.Parse("smithy.api#httpLabel"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
                             Document.From(new Dictionary<string, Document> { })
                         ),
                         new Trait(
@@ -72,7 +67,6 @@ public static partial class PutObjectAnnotationInputSchema
                 new(
                     "Key",
                     Target1,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
@@ -84,10 +78,6 @@ public static partial class PutObjectAnnotationInputSchema
                             Document.From(
                                 new Dictionary<string, Document> { { "min", Document.From(1m) } }
                             )
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
                         ),
                         new Trait(
                             ShapeId.Parse("smithy.rules#contextParam"),
@@ -114,31 +104,21 @@ public static partial class PutObjectAnnotationInputSchema
                 new(
                     "AnnotationName",
                     Target3,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
                             ShapeId.Parse("smithy.api#httpQuery"),
                             Document.From("annotationName")
                         ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
                     ]
                 ),
                 new(
                     "AnnotationPayload",
                     Target4,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
                             ShapeId.Parse("smithy.api#httpPayload"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
                             Document.From(new Dictionary<string, Document> { })
                         ),
                         new Trait(
@@ -406,12 +386,9 @@ public static partial class PutObjectAnnotationInputSchema
 
         public override global::Com.Amazonaws.S3.PutObjectAnnotationInput Build(Builder builder) =>
             new global::Com.Amazonaws.S3.PutObjectAnnotationInput(
-                builder.AnnotationName
-                    ?? throw new MissingRequiredMemberException("AnnotationName"),
-                builder.AnnotationPayload
-                    ?? throw new MissingRequiredMemberException("AnnotationPayload"),
-                builder.Bucket ?? throw new MissingRequiredMemberException("Bucket"),
-                builder.Key ?? throw new MissingRequiredMemberException("Key"),
+                builder.AnnotationName,
+                builder.AnnotationPayload,
+                builder.Bucket,
                 builder.ChecksumAlgorithm,
                 builder.ChecksumCRC32,
                 builder.ChecksumCRC32C,
@@ -425,6 +402,7 @@ public static partial class PutObjectAnnotationInputSchema
                 builder.ChecksumXXHASH64,
                 builder.ContentMD5,
                 builder.ExpectedBucketOwner,
+                builder.Key,
                 builder.ObjectIfMatch,
                 builder.RequestPayer,
                 builder.VersionId
@@ -597,7 +575,7 @@ public static partial class PutObjectAnnotationInputSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

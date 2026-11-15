@@ -13,5 +13,5 @@ namespace Com.Amazonaws.Eventbridge;
 /// The list of events to write to the event bus.
 /// </param>
 public sealed record class PutPartnerEventsInput(
-    IReadOnlyList<PutPartnerEventsRequestEntry> Entries
+    IReadOnlyList<PutPartnerEventsRequestEntry>? Entries = null
 );

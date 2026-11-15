@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Sns.Schemas;
 
 public static partial class TagResourceInputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? ResourceArn { get; set; }
         public IReadOnlyList<global::Com.Amazonaws.Sns.Tag>? Tags { get; set; }
@@ -28,7 +28,6 @@ public static partial class TagResourceInputSchema
                 new(
                     "ResourceArn",
                     Target0,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
@@ -41,24 +40,9 @@ public static partial class TagResourceInputSchema
                                 }
                             )
                         ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
                     ]
                 ),
-                new(
-                    "Tags",
-                    Target1,
-                    isRequired: true,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
-                    ]
-                ),
+                new("Tags", Target1),
             ],
             [
                 new Trait(
@@ -84,10 +68,7 @@ public static partial class TagResourceInputSchema
         public override Builder CreateTypedBuilder() => new();
 
         public override global::Com.Amazonaws.Sns.TagResourceInput Build(Builder builder) =>
-            new global::Com.Amazonaws.Sns.TagResourceInput(
-                builder.ResourceArn ?? throw new MissingRequiredMemberException("ResourceArn"),
-                builder.Tags ?? throw new MissingRequiredMemberException("Tags")
-            );
+            new global::Com.Amazonaws.Sns.TagResourceInput(builder.ResourceArn, builder.Tags);
 
         public override void SerializeMembers<TSerializer>(
             global::Com.Amazonaws.Sns.TagResourceInput value,
@@ -112,7 +93,7 @@ public static partial class TagResourceInputSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

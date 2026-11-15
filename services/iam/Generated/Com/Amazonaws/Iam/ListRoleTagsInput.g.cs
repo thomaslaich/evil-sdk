@@ -7,16 +7,6 @@ namespace Com.Amazonaws.Iam;
 /// <summary>
 /// Represents the Smithy structure com.amazonaws.iam#ListRoleTagsInput.
 /// </summary>
-/// <param name="RoleName">
-/// <para>
-/// The name of the IAM role for which you want to see the list of tags.
-/// </para>
-/// <para>
-/// This parameter accepts (through its <see href="http://wikipedia.org/wiki/regex">regex pattern</see>)
-/// a string of characters that consist of upper and lowercase alphanumeric characters with no spaces.
-/// You can also include any of the following characters: _+=,.@-
-/// </para>
-/// </param>
 /// <param name="Marker">
 /// Use this parameter only when paginating results and only after you receive a response indicating
 /// that the results are truncated. Set it to the value of the <c>Marker</c> element in the response
@@ -35,8 +25,18 @@ namespace Com.Amazonaws.Iam;
 /// include in the subsequent call that tells the service where to continue from.
 /// </para>
 /// </param>
+/// <param name="RoleName">
+/// <para>
+/// The name of the IAM role for which you want to see the list of tags.
+/// </para>
+/// <para>
+/// This parameter accepts (through its <see href="http://wikipedia.org/wiki/regex">regex pattern</see>)
+/// a string of characters that consist of upper and lowercase alphanumeric characters with no spaces.
+/// You can also include any of the following characters: _+=,.@-
+/// </para>
+/// </param>
 public sealed record class ListRoleTagsInput(
-    string RoleName,
     string? Marker = null,
-    int? MaxItems = null
+    int? MaxItems = null,
+    string? RoleName = null
 );

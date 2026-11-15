@@ -9,7 +9,7 @@ namespace Com.Amazonaws.Cloudwatchlogs.Schemas;
 
 public static partial class ScheduledQueryDestinationSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public global::Com.Amazonaws.Cloudwatchlogs.ScheduledQueryDestinationType? DestinationType { get; set; }
         public string? DestinationIdentifier { get; set; }
@@ -113,7 +113,7 @@ public static partial class ScheduledQueryDestinationSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

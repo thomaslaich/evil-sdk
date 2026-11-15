@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Dynamodb.Schemas;
 
 public static partial class UpdateItemInputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? TableName { get; set; }
         public IReadOnlyDictionary<
@@ -51,7 +51,6 @@ public static partial class UpdateItemInputSchema
                 new(
                     "TableName",
                     Target0,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
@@ -65,10 +64,6 @@ public static partial class UpdateItemInputSchema
                             )
                         ),
                         new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.rules#contextParam"),
                             Document.From(
                                 new Dictionary<string, Document>
@@ -79,18 +74,7 @@ public static partial class UpdateItemInputSchema
                         ),
                     ]
                 ),
-                new(
-                    "Key",
-                    Target1,
-                    isRequired: true,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
-                    ]
-                ),
+                new("Key", Target1),
                 new("AttributeUpdates", Target2),
                 new("Expected", Target3),
                 new("ConditionalOperator", Target4),
@@ -170,18 +154,18 @@ public static partial class UpdateItemInputSchema
 
         public override global::Com.Amazonaws.Dynamodb.UpdateItemInput Build(Builder builder) =>
             new global::Com.Amazonaws.Dynamodb.UpdateItemInput(
-                builder.Key ?? throw new MissingRequiredMemberException("Key"),
-                builder.TableName ?? throw new MissingRequiredMemberException("TableName"),
                 builder.AttributeUpdates,
                 builder.ConditionExpression,
                 builder.ConditionalOperator,
                 builder.Expected,
                 builder.ExpressionAttributeNames,
                 builder.ExpressionAttributeValues,
+                builder.Key,
                 builder.ReturnConsumedCapacity,
                 builder.ReturnItemCollectionMetrics,
                 builder.ReturnValues,
                 builder.ReturnValuesOnConditionCheckFailure,
+                builder.TableName,
                 builder.UpdateExpression
             );
 
@@ -296,7 +280,7 @@ public static partial class UpdateItemInputSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

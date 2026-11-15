@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Cloudwatchlogs.Schemas;
 
 public static partial class GetIntegrationInputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? IntegrationName { get; set; }
     }
@@ -27,7 +27,6 @@ public static partial class GetIntegrationInputSchema
                 new(
                     "integrationName",
                     Target0,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
@@ -43,10 +42,6 @@ public static partial class GetIntegrationInputSchema
                         new Trait(
                             ShapeId.Parse("smithy.api#pattern"),
                             Document.From("^[\\.\\-_/#A-Za-z0-9]+$")
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
                         ),
                     ]
                 ),
@@ -72,11 +67,7 @@ public static partial class GetIntegrationInputSchema
 
         public override global::Com.Amazonaws.Cloudwatchlogs.GetIntegrationInput Build(
             Builder builder
-        ) =>
-            new global::Com.Amazonaws.Cloudwatchlogs.GetIntegrationInput(
-                builder.IntegrationName
-                    ?? throw new MissingRequiredMemberException("integrationName")
-            );
+        ) => new global::Com.Amazonaws.Cloudwatchlogs.GetIntegrationInput(builder.IntegrationName);
 
         public override void SerializeMembers<TSerializer>(
             global::Com.Amazonaws.Cloudwatchlogs.GetIntegrationInput value,
@@ -93,7 +84,7 @@ public static partial class GetIntegrationInputSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

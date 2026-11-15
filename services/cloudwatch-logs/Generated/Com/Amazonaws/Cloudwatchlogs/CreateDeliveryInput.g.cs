@@ -38,8 +38,8 @@ namespace Com.Amazonaws.Cloudwatchlogs;
 /// </para>
 /// </param>
 public sealed record class CreateDeliveryInput(
-    string DeliveryDestinationArn,
-    string DeliverySourceName,
+    string? DeliveryDestinationArn = null,
+    string? DeliverySourceName = null,
     string? FieldDelimiter = null,
     IReadOnlyList<string>? RecordFields = null,
     global::Com.Amazonaws.Cloudwatchlogs.S3DeliveryConfiguration? S3DeliveryConfiguration = null,

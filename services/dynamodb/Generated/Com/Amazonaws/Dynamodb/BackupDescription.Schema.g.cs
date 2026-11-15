@@ -9,7 +9,7 @@ namespace Com.Amazonaws.Dynamodb.Schemas;
 
 public static partial class BackupDescriptionSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public global::Com.Amazonaws.Dynamodb.BackupDetails? BackupDetails { get; set; }
         public global::Com.Amazonaws.Dynamodb.SourceTableDetails? SourceTableDetails { get; set; }
@@ -87,7 +87,7 @@ public static partial class BackupDescriptionSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

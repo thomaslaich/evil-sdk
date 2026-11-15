@@ -27,4 +27,7 @@ namespace Com.Amazonaws.Iam;
 /// optionally followed by a period '.' and a string of letters and digits.
 /// </para>
 /// </param>
-public sealed record class GetPolicyVersionInput(string PolicyArn, string VersionId);
+public sealed record class GetPolicyVersionInput(
+    string? PolicyArn = null,
+    string? VersionId = null
+);

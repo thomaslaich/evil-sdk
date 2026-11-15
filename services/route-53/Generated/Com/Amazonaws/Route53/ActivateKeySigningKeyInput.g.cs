@@ -14,4 +14,7 @@ namespace Com.Amazonaws.Route53;
 /// A string used to identify a key-signing key (KSK). <c>Name</c> can include numbers, letters, and
 /// underscores (_). <c>Name</c> must be unique for each key-signing key in the same hosted zone.
 /// </param>
-public sealed record class ActivateKeySigningKeyInput(string HostedZoneId, string Name);
+public sealed record class ActivateKeySigningKeyInput(
+    string? HostedZoneId = null,
+    string? Name = null
+);

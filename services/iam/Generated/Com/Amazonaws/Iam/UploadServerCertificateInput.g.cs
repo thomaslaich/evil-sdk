@@ -38,46 +38,6 @@ namespace Com.Amazonaws.Iam;
 /// </item>
 /// </list>
 /// </param>
-/// <param name="PrivateKey">
-/// <para>
-/// The contents of the private key in PEM-encoded format.
-/// </para>
-/// <para>
-/// The <see href="http://wikipedia.org/wiki/regex">regex pattern</see> used to validate this parameter
-/// is a string of characters consisting of the following:
-/// </para>
-/// <list type="bullet">
-/// <item>
-/// <description>
-/// Any printable ASCII character ranging from the space character (<c>\u0020</c>) through the end of
-/// the ASCII character range
-/// </description>
-/// </item>
-/// <item>
-/// <description>
-/// The printable characters in the Basic Latin and Latin-1 Supplement character set (through
-/// <c>\u00FF</c>)
-/// </description>
-/// </item>
-/// <item>
-/// <description>
-/// The special characters tab (<c>\u0009</c>), line feed (<c>\u000A</c>), and carriage return
-/// (<c>\u000D</c>)
-/// </description>
-/// </item>
-/// </list>
-/// </param>
-/// <param name="ServerCertificateName">
-/// <para>
-/// The name for the server certificate. Do not include the path in this value. The name of the
-/// certificate cannot contain any spaces.
-/// </para>
-/// <para>
-/// This parameter allows (through its <see href="http://wikipedia.org/wiki/regex">regex pattern</see>)
-/// a string of characters consisting of upper and lowercase alphanumeric characters with no spaces. You
-/// can also include any of the following characters: _+=,.@-
-/// </para>
-/// </param>
 /// <param name="CertificateChain">
 /// <para>
 /// The contents of the certificate chain. This is typically a concatenation of the PEM-encoded public
@@ -128,6 +88,46 @@ namespace Com.Amazonaws.Iam;
 /// <c>/cloudfront</c> and must include a trailing slash (for example, <c>/cloudfront/test/</c>).
 /// </para>
 /// </param>
+/// <param name="PrivateKey">
+/// <para>
+/// The contents of the private key in PEM-encoded format.
+/// </para>
+/// <para>
+/// The <see href="http://wikipedia.org/wiki/regex">regex pattern</see> used to validate this parameter
+/// is a string of characters consisting of the following:
+/// </para>
+/// <list type="bullet">
+/// <item>
+/// <description>
+/// Any printable ASCII character ranging from the space character (<c>\u0020</c>) through the end of
+/// the ASCII character range
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// The printable characters in the Basic Latin and Latin-1 Supplement character set (through
+/// <c>\u00FF</c>)
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// The special characters tab (<c>\u0009</c>), line feed (<c>\u000A</c>), and carriage return
+/// (<c>\u000D</c>)
+/// </description>
+/// </item>
+/// </list>
+/// </param>
+/// <param name="ServerCertificateName">
+/// <para>
+/// The name for the server certificate. Do not include the path in this value. The name of the
+/// certificate cannot contain any spaces.
+/// </para>
+/// <para>
+/// This parameter allows (through its <see href="http://wikipedia.org/wiki/regex">regex pattern</see>)
+/// a string of characters consisting of upper and lowercase alphanumeric characters with no spaces. You
+/// can also include any of the following characters: _+=,.@-
+/// </para>
+/// </param>
 /// <param name="Tags">
 /// <para>
 /// A list of tags that you want to attach to the new IAM server certificate resource. Each tag consists
@@ -141,10 +141,10 @@ namespace Com.Amazonaws.Iam;
 /// </para>
 /// </param>
 public sealed record class UploadServerCertificateInput(
-    string CertificateBody,
-    string PrivateKey,
-    string ServerCertificateName,
+    string? CertificateBody = null,
     string? CertificateChain = null,
     string? Path = null,
+    string? PrivateKey = null,
+    string? ServerCertificateName = null,
     IReadOnlyList<global::Com.Amazonaws.Iam.Tag>? Tags = null
 );

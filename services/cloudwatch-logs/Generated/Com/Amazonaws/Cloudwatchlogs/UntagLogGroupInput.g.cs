@@ -15,4 +15,7 @@ namespace Com.Amazonaws.Cloudwatchlogs;
 /// <param name="Tags">
 /// The tag keys. The corresponding tags are removed from the log group.
 /// </param>
-public sealed record class UntagLogGroupInput(string LogGroupName, IReadOnlyList<string> Tags);
+public sealed record class UntagLogGroupInput(
+    string? LogGroupName = null,
+    IReadOnlyList<string>? Tags = null
+);

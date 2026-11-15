@@ -9,11 +9,11 @@ namespace Com.Amazonaws.Kinesis;
 /// <summary>
 /// A <c>PutRecords</c> request.
 /// </summary>
-/// <param name="Records">
-/// The records associated with the request.
-/// </param>
 /// <param name="DryRun">
 /// Checks if your request will succeed. <c>DryRun</c> is an optional parameter.
+/// </param>
+/// <param name="Records">
+/// The records associated with the request.
 /// </param>
 /// <param name="StreamARN">
 /// The ARN of the stream.
@@ -25,8 +25,8 @@ namespace Com.Amazonaws.Kinesis;
 /// The stream name associated with the request.
 /// </param>
 public sealed record class PutRecordsInput(
-    IReadOnlyList<PutRecordsRequestEntry> Records,
     bool? DryRun = null,
+    IReadOnlyList<PutRecordsRequestEntry>? Records = null,
     string? StreamARN = null,
     string? StreamId = null,
     string? StreamName = null

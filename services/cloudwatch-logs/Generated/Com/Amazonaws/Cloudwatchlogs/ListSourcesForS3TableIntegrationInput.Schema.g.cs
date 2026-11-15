@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Cloudwatchlogs.Schemas;
 
 public static partial class ListSourcesForS3TableIntegrationInputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? IntegrationArn { get; set; }
         public int? MaxResults { get; set; }
@@ -29,18 +29,7 @@ public static partial class ListSourcesForS3TableIntegrationInputSchema
         >(
             ShapeId.Parse("com.amazonaws.cloudwatchlogs#ListSourcesForS3TableIntegrationInput"),
             [
-                new(
-                    "integrationArn",
-                    Target0,
-                    isRequired: true,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
-                    ]
-                ),
+                new("integrationArn", Target0),
                 new(
                     "maxResults",
                     Target1,
@@ -107,8 +96,7 @@ public static partial class ListSourcesForS3TableIntegrationInputSchema
             Builder builder
         ) =>
             new global::Com.Amazonaws.Cloudwatchlogs.ListSourcesForS3TableIntegrationInput(
-                builder.IntegrationArn
-                    ?? throw new MissingRequiredMemberException("integrationArn"),
+                builder.IntegrationArn,
                 builder.MaxResults,
                 builder.NextToken
             );
@@ -144,7 +132,7 @@ public static partial class ListSourcesForS3TableIntegrationInputSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

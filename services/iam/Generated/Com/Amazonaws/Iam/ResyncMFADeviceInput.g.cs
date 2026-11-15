@@ -44,8 +44,8 @@ namespace Com.Amazonaws.Iam;
 /// </para>
 /// </param>
 public sealed record class ResyncMFADeviceInput(
-    string AuthenticationCode1,
-    string AuthenticationCode2,
-    string SerialNumber,
-    string UserName
+    string? AuthenticationCode1 = null,
+    string? AuthenticationCode2 = null,
+    string? SerialNumber = null,
+    string? UserName = null
 );

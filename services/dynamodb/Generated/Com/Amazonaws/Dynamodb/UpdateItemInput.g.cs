@@ -9,21 +9,6 @@ namespace Com.Amazonaws.Dynamodb;
 /// <summary>
 /// Represents the input of an <c>UpdateItem</c> operation.
 /// </summary>
-/// <param name="Key">
-/// <para>
-/// The primary key of the item to be updated. Each element consists of an attribute name and a value
-/// for that attribute.
-/// </para>
-/// <para>
-/// For the primary key, you must provide all of the attributes. For example, with a simple primary key,
-/// you only need to provide a value for the partition key. For a composite primary key, you must
-/// provide values for both the partition key and the sort key.
-/// </para>
-/// </param>
-/// <param name="TableName">
-/// The name of the table containing the item to update. You can also provide the Amazon Resource Name
-/// (ARN) of the table in this parameter.
-/// </param>
 /// <param name="AttributeUpdates">
 /// This is a legacy parameter. Use <c>UpdateExpression</c> instead. For more information, see
 /// <see href="https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/LegacyConditionalParameters.AttributeUpdates.html">AttributeUpdates</see>
@@ -172,6 +157,17 @@ namespace Com.Amazonaws.Dynamodb;
 /// Expressions</see> in the <i>Amazon DynamoDB Developer Guide</i>.
 /// </para>
 /// </param>
+/// <param name="Key">
+/// <para>
+/// The primary key of the item to be updated. Each element consists of an attribute name and a value
+/// for that attribute.
+/// </para>
+/// <para>
+/// For the primary key, you must provide all of the attributes. For example, with a simple primary key,
+/// you only need to provide a value for the partition key. For a composite primary key, you must
+/// provide values for both the partition key and the sort key.
+/// </para>
+/// </param>
 /// <param name="ReturnItemCollectionMetrics">
 /// Determines whether item collection metrics are returned. If set to <c>SIZE</c>, the response
 /// includes statistics about item collections, if any, that were modified during the operation are
@@ -231,6 +227,10 @@ namespace Com.Amazonaws.Dynamodb;
 /// There is no additional cost associated with requesting a return value aside from the small network
 /// and processing overhead of receiving a larger response. No read capacity units are consumed.
 /// </para>
+/// </param>
+/// <param name="TableName">
+/// The name of the table containing the item to update. You can also provide the Amazon Resource Name
+/// (ARN) of the table in this parameter.
 /// </param>
 /// <param name="UpdateExpression">
 /// <para>
@@ -352,18 +352,18 @@ namespace Com.Amazonaws.Dynamodb;
 /// </para>
 /// </param>
 public sealed record class UpdateItemInput(
-    IReadOnlyDictionary<string, AttributeValue> Key,
-    string TableName,
     IReadOnlyDictionary<string, AttributeValueUpdate>? AttributeUpdates = null,
     string? ConditionExpression = null,
     global::Com.Amazonaws.Dynamodb.ConditionalOperator? ConditionalOperator = null,
     IReadOnlyDictionary<string, ExpectedAttributeValue>? Expected = null,
     IReadOnlyDictionary<string, string>? ExpressionAttributeNames = null,
     IReadOnlyDictionary<string, AttributeValue>? ExpressionAttributeValues = null,
+    IReadOnlyDictionary<string, AttributeValue>? Key = null,
     global::Com.Amazonaws.Dynamodb.ReturnConsumedCapacity? ReturnConsumedCapacity = null,
     global::Com.Amazonaws.Dynamodb.ReturnItemCollectionMetrics? ReturnItemCollectionMetrics = null,
     ReturnValue? ReturnValues = null,
     global::Com.Amazonaws.Dynamodb.ReturnValuesOnConditionCheckFailure? ReturnValuesOnConditionCheckFailure =
         null,
+    string? TableName = null,
     string? UpdateExpression = null
 );

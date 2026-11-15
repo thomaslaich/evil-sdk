@@ -13,4 +13,4 @@ namespace Com.Amazonaws.Sns;
 /// <param name="TopicArn">
 /// The ARN of the topic whose access control policy you wish to modify.
 /// </param>
-public sealed record class RemovePermissionInput(string Label, string TopicArn);
+public sealed record class RemovePermissionInput(string? Label = null, string? TopicArn = null);

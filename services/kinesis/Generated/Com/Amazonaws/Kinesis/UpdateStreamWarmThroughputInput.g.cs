@@ -7,10 +7,6 @@ namespace Com.Amazonaws.Kinesis;
 /// <summary>
 /// Represents the Smithy structure com.amazonaws.kinesis#UpdateStreamWarmThroughputInput.
 /// </summary>
-/// <param name="WarmThroughputMiBps">
-/// The target warm throughput in MB/s that the stream should be scaled to handle. This represents the
-/// throughput capacity that will be immediately available for write operations.
-/// </param>
 /// <param name="StreamARN">
 /// The ARN of the stream to be updated.
 /// </param>
@@ -20,9 +16,13 @@ namespace Com.Amazonaws.Kinesis;
 /// <param name="StreamName">
 /// The name of the stream to be updated.
 /// </param>
+/// <param name="WarmThroughputMiBps">
+/// The target warm throughput in MB/s that the stream should be scaled to handle. This represents the
+/// throughput capacity that will be immediately available for write operations.
+/// </param>
 public sealed record class UpdateStreamWarmThroughputInput(
-    int WarmThroughputMiBps,
     string? StreamARN = null,
     string? StreamId = null,
-    string? StreamName = null
+    string? StreamName = null,
+    int? WarmThroughputMiBps = null
 );

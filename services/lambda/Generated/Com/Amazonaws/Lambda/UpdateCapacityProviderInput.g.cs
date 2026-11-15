@@ -17,7 +17,7 @@ namespace Com.Amazonaws.Lambda;
 /// The updated telemetry configuration for the capacity provider.
 /// </param>
 public sealed record class UpdateCapacityProviderInput(
-    string CapacityProviderName,
+    string? CapacityProviderName = null,
     global::Com.Amazonaws.Lambda.CapacityProviderScalingConfig? CapacityProviderScalingConfig =
         null,
     global::Com.Amazonaws.Lambda.PropagateTags? PropagateTags = null,

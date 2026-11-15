@@ -9,16 +9,6 @@ namespace Com.Amazonaws.Secretsmanager;
 /// <summary>
 /// Represents the Smithy structure com.amazonaws.secretsmanager#RotateSecretInput.
 /// </summary>
-/// <param name="SecretId">
-/// <para>
-/// The ARN or name of the secret to rotate.
-/// </para>
-/// <para>
-/// For an ARN, we recommend that you specify a complete ARN rather than a partial ARN. See
-/// <see href="https://docs.aws.amazon.com/secretsmanager/latest/userguide/troubleshoot.html#ARN_secretnamehyphen">Finding
-/// a secret from a partial ARN</see>.
-/// </para>
-/// </param>
 /// <param name="ClientRequestToken">
 /// <para>
 /// A unique identifier for the new version of the secret. You only need to specify this value if you
@@ -126,12 +116,22 @@ namespace Com.Amazonaws.Secretsmanager;
 /// </item>
 /// </list>
 /// </param>
+/// <param name="SecretId">
+/// <para>
+/// The ARN or name of the secret to rotate.
+/// </para>
+/// <para>
+/// For an ARN, we recommend that you specify a complete ARN rather than a partial ARN. See
+/// <see href="https://docs.aws.amazon.com/secretsmanager/latest/userguide/troubleshoot.html#ARN_secretnamehyphen">Finding
+/// a secret from a partial ARN</see>.
+/// </para>
+/// </param>
 public sealed record class RotateSecretInput(
-    string SecretId,
     string? ClientRequestToken = null,
     IReadOnlyList<ExternalSecretRotationMetadataItem>? ExternalSecretRotationMetadata = null,
     string? ExternalSecretRotationRoleArn = null,
     bool? RotateImmediately = null,
     string? RotationLambdaARN = null,
-    RotationRulesType? RotationRules = null
+    RotationRulesType? RotationRules = null,
+    string? SecretId = null
 );

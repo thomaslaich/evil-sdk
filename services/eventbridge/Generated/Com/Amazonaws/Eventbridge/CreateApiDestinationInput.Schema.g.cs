@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Eventbridge.Schemas;
 
 public static partial class CreateApiDestinationInputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? Name { get; set; }
         public string? Description { get; set; }
@@ -32,7 +32,6 @@ public static partial class CreateApiDestinationInputSchema
                 new(
                     "Name",
                     Target0,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
@@ -48,10 +47,6 @@ public static partial class CreateApiDestinationInputSchema
                         new Trait(
                             ShapeId.Parse("smithy.api#pattern"),
                             Document.From("^[\\.\\-_A-Za-z0-9]+$")
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
                         ),
                     ]
                 ),
@@ -76,7 +71,6 @@ public static partial class CreateApiDestinationInputSchema
                 new(
                     "ConnectionArn",
                     Target2,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
@@ -95,16 +89,11 @@ public static partial class CreateApiDestinationInputSchema
                                 "^arn:aws([a-z]|\\-)*:events:([a-z]|\\d|\\-)*:([0-9]{12})?:connection\\/[\\.\\-_A-Za-z0-9]+\\/[\\-A-Za-z0-9]+$"
                             )
                         ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
                     ]
                 ),
                 new(
                     "InvocationEndpoint",
                     Target3,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
@@ -123,24 +112,9 @@ public static partial class CreateApiDestinationInputSchema
                                 "^((%[0-9A-Fa-f]{2}|[-()_.!~*';/?:@\\x26=+$,A-Za-z0-9])+)([).!';/?:,])?$"
                             )
                         ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
                     ]
                 ),
-                new(
-                    "HttpMethod",
-                    Target4,
-                    isRequired: true,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
-                    ]
-                ),
+                new("HttpMethod", Target4),
                 new(
                     "InvocationRateLimitPerSecond",
                     Target5,
@@ -198,13 +172,12 @@ public static partial class CreateApiDestinationInputSchema
             Builder builder
         ) =>
             new global::Com.Amazonaws.Eventbridge.CreateApiDestinationInput(
-                builder.ConnectionArn ?? throw new MissingRequiredMemberException("ConnectionArn"),
-                builder.HttpMethod ?? throw new MissingRequiredMemberException("HttpMethod"),
-                builder.InvocationEndpoint
-                    ?? throw new MissingRequiredMemberException("InvocationEndpoint"),
-                builder.Name ?? throw new MissingRequiredMemberException("Name"),
+                builder.ConnectionArn,
                 builder.Description,
-                builder.InvocationRateLimitPerSecond
+                builder.HttpMethod,
+                builder.InvocationEndpoint,
+                builder.InvocationRateLimitPerSecond,
+                builder.Name
             );
 
         public override void SerializeMembers<TSerializer>(
@@ -244,7 +217,14 @@ public static partial class CreateApiDestinationInputSchema
             {
                 serializer.WriteNull(3);
             }
-            serializer.WriteStringEnum(4, value.HttpMethod.Value);
+            if (value.HttpMethod is { } value4)
+            {
+                serializer.WriteStringEnum(4, value4.Value);
+            }
+            else
+            {
+                serializer.WriteNull(4);
+            }
             if (value.InvocationRateLimitPerSecond is { } value5)
             {
                 serializer.WriteInteger(5, value5);
@@ -255,7 +235,7 @@ public static partial class CreateApiDestinationInputSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

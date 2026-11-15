@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Cloudwatchlogs.Schemas;
 
 public static partial class LogFieldTypeSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? Type { get; set; }
         public global::Com.Amazonaws.Cloudwatchlogs.LogFieldType? Element { get; set; }
@@ -82,7 +82,7 @@ public static partial class LogFieldTypeSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

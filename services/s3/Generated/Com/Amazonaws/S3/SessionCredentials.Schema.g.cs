@@ -11,7 +11,7 @@ namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class SessionCredentialsSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? AccessKeyId { get; set; }
         public string? SecretAccessKey { get; set; }
@@ -161,7 +161,7 @@ public static partial class SessionCredentialsSchema
             serializer.WriteTimestamp(3, value.Expiration);
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

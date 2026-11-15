@@ -11,7 +11,7 @@ namespace Com.Amazonaws.Sns.Schemas;
 
 public static partial class PhoneNumberInformationSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public DateTimeOffset? CreatedAt { get; set; }
         public string? PhoneNumber { get; set; }
@@ -160,7 +160,7 @@ public static partial class PhoneNumberInformationSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

@@ -9,12 +9,12 @@ namespace Com.Amazonaws.Cloudwatchlogs;
 /// <summary>
 /// Represents the Smithy structure com.amazonaws.cloudwatchlogs#DescribeImportTaskBatchesInput.
 /// </summary>
-/// <param name="ImportId">
-/// The ID of the import task to get batch information for.
-/// </param>
 /// <param name="BatchImportStatus">
 /// Optional filter to list import batches by their status. Accepts multiple status values: IN_PROGRESS,
 /// CANCELLED, COMPLETED and FAILED.
+/// </param>
+/// <param name="ImportId">
+/// The ID of the import task to get batch information for.
 /// </param>
 /// <param name="Limit">
 /// The maximum number of import batches to return in the response. Default: 10
@@ -23,8 +23,8 @@ namespace Com.Amazonaws.Cloudwatchlogs;
 /// The pagination token for the next set of results.
 /// </param>
 public sealed record class DescribeImportTaskBatchesInput(
-    string ImportId,
     IReadOnlyList<ImportStatus>? BatchImportStatus = null,
+    string? ImportId = null,
     int? Limit = null,
     string? NextToken = null
 );

@@ -24,6 +24,6 @@ namespace Com.Amazonaws.Iam;
 /// key name and an associated value.
 /// </param>
 public sealed record class TagPolicyInput(
-    string PolicyArn,
-    IReadOnlyList<global::Com.Amazonaws.Iam.Tag> Tags
+    string? PolicyArn = null,
+    IReadOnlyList<global::Com.Amazonaws.Iam.Tag>? Tags = null
 );

@@ -45,7 +45,7 @@ namespace Com.Amazonaws.Lambda;
 /// of 50 items in each response, even if you set the number higher.
 /// </param>
 public sealed record class ListVersionsByFunctionInput(
-    string FunctionName,
+    string? FunctionName = null,
     string? Marker = null,
     int? MaxItems = null
 );

@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Sqs.Schemas;
 
 public static partial class ChangeMessageVisibilityInputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? QueueUrl { get; set; }
         public string? ReceiptHandle { get; set; }
@@ -26,42 +26,15 @@ public static partial class ChangeMessageVisibilityInputSchema
         : StructSchema<global::Com.Amazonaws.Sqs.ChangeMessageVisibilityInput, Builder>(
             ShapeId.Parse("com.amazonaws.sqs#ChangeMessageVisibilityInput"),
             [
-                new(
-                    "QueueUrl",
-                    Target0,
-                    isRequired: true,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
-                    ]
-                ),
-                new(
-                    "ReceiptHandle",
-                    Target1,
-                    isRequired: true,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
-                    ]
-                ),
+                new("QueueUrl", Target0),
+                new("ReceiptHandle", Target1),
                 new(
                     "VisibilityTimeout",
                     Target2,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
                             ShapeId.Parse("smithy.api#box"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
                             Document.From(new Dictionary<string, Document> { })
                         ),
                     ]
@@ -96,9 +69,9 @@ public static partial class ChangeMessageVisibilityInputSchema
             Builder builder
         ) =>
             new global::Com.Amazonaws.Sqs.ChangeMessageVisibilityInput(
-                builder.QueueUrl ?? throw new MissingRequiredMemberException("QueueUrl"),
-                builder.ReceiptHandle ?? throw new MissingRequiredMemberException("ReceiptHandle"),
-                builder.VisibilityTimeout.GetValueOrDefault()
+                builder.QueueUrl,
+                builder.ReceiptHandle,
+                builder.VisibilityTimeout
             );
 
         public override void SerializeMembers<TSerializer>(
@@ -122,10 +95,17 @@ public static partial class ChangeMessageVisibilityInputSchema
             {
                 serializer.WriteNull(1);
             }
-            serializer.WriteInteger(2, value.VisibilityTimeout);
+            if (value.VisibilityTimeout is { } value2)
+            {
+                serializer.WriteInteger(2, value2);
+            }
+            else
+            {
+                serializer.WriteNull(2);
+            }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

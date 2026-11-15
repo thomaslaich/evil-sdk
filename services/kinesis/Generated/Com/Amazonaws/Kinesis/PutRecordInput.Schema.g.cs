@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Kinesis.Schemas;
 
 public static partial class PutRecordInputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? StreamName { get; set; }
         public byte[]? Data { get; set; }
@@ -55,7 +55,6 @@ public static partial class PutRecordInputSchema
                 new(
                     "Data",
                     Target1,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
@@ -67,10 +66,6 @@ public static partial class PutRecordInputSchema
                                     { "max", Document.From(10485760m) },
                                 }
                             )
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
                         ),
                     ]
                 ),
@@ -228,7 +223,7 @@ public static partial class PutRecordInputSchema
 
         public override global::Com.Amazonaws.Kinesis.PutRecordInput Build(Builder builder) =>
             new global::Com.Amazonaws.Kinesis.PutRecordInput(
-                builder.Data ?? throw new MissingRequiredMemberException("Data"),
+                builder.Data,
                 builder.DryRun,
                 builder.ExplicitHashKey,
                 builder.PartitionKey,
@@ -309,7 +304,7 @@ public static partial class PutRecordInputSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

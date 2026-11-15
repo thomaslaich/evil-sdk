@@ -10,7 +10,7 @@ namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class GetBucketAccelerateConfigurationOutputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public global::Com.Amazonaws.S3.BucketAccelerateStatus? Status { get; set; }
         public global::Com.Amazonaws.S3.RequestCharged? RequestCharged { get; set; }
@@ -88,7 +88,7 @@ public static partial class GetBucketAccelerateConfigurationOutputSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

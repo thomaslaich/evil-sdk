@@ -16,6 +16,6 @@ namespace Com.Amazonaws.Cloudwatchlogs;
 /// The key-value pairs to use for the tags.
 /// </param>
 public sealed record class TagLogGroupInput(
-    string LogGroupName,
-    IReadOnlyDictionary<string, string> Tags
+    string? LogGroupName = null,
+    IReadOnlyDictionary<string, string>? Tags = null
 );

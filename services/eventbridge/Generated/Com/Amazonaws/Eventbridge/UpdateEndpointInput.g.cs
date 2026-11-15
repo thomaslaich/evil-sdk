@@ -9,14 +9,14 @@ namespace Com.Amazonaws.Eventbridge;
 /// <summary>
 /// Represents the Smithy structure com.amazonaws.eventbridge#UpdateEndpointInput.
 /// </summary>
-/// <param name="Name">
-/// The name of the endpoint you want to update.
-/// </param>
 /// <param name="Description">
 /// A description for the endpoint.
 /// </param>
 /// <param name="EventBuses">
 /// Define event buses used for replication.
+/// </param>
+/// <param name="Name">
+/// The name of the endpoint you want to update.
 /// </param>
 /// <param name="ReplicationConfig">
 /// Whether event replication was enabled or disabled by this request.
@@ -28,9 +28,9 @@ namespace Com.Amazonaws.Eventbridge;
 /// Configure the routing policy, including the health check and secondary Region.
 /// </param>
 public sealed record class UpdateEndpointInput(
-    string Name,
     string? Description = null,
     IReadOnlyList<EndpointEventBus>? EventBuses = null,
+    string? Name = null,
     global::Com.Amazonaws.Eventbridge.ReplicationConfig? ReplicationConfig = null,
     string? RoleArn = null,
     global::Com.Amazonaws.Eventbridge.RoutingConfig? RoutingConfig = null

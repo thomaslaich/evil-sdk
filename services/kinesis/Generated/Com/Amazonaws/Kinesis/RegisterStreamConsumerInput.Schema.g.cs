@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Kinesis.Schemas;
 
 public static partial class RegisterStreamConsumerInputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? StreamARN { get; set; }
         public string? ConsumerName { get; set; }
@@ -30,7 +30,6 @@ public static partial class RegisterStreamConsumerInputSchema
                 new(
                     "StreamARN",
                     Target0,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
@@ -48,10 +47,6 @@ public static partial class RegisterStreamConsumerInputSchema
                             Document.From("^arn:aws.*:kinesis:.*:\\d{12}:stream/\\S+$")
                         ),
                         new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.rules#contextParam"),
                             Document.From(
                                 new Dictionary<string, Document>
@@ -65,7 +60,6 @@ public static partial class RegisterStreamConsumerInputSchema
                 new(
                     "ConsumerName",
                     Target1,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
@@ -81,10 +75,6 @@ public static partial class RegisterStreamConsumerInputSchema
                         new Trait(
                             ShapeId.Parse("smithy.api#pattern"),
                             Document.From("^[a-zA-Z0-9_.-]+$")
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
                         ),
                     ]
                 ),
@@ -153,8 +143,8 @@ public static partial class RegisterStreamConsumerInputSchema
             Builder builder
         ) =>
             new global::Com.Amazonaws.Kinesis.RegisterStreamConsumerInput(
-                builder.ConsumerName ?? throw new MissingRequiredMemberException("ConsumerName"),
-                builder.StreamARN ?? throw new MissingRequiredMemberException("StreamARN"),
+                builder.ConsumerName,
+                builder.StreamARN,
                 builder.StreamId,
                 builder.Tags
             );
@@ -198,7 +188,7 @@ public static partial class RegisterStreamConsumerInputSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

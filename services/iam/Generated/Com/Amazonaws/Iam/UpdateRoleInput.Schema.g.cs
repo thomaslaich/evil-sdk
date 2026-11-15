@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Iam.Schemas;
 
 public static partial class UpdateRoleInputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? RoleName { get; set; }
         public string? Description { get; set; }
@@ -27,7 +27,6 @@ public static partial class UpdateRoleInputSchema
                 new(
                     "RoleName",
                     Target0,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
@@ -43,10 +42,6 @@ public static partial class UpdateRoleInputSchema
                         new Trait(
                             ShapeId.Parse("smithy.api#pattern"),
                             Document.From("^[\\w+=,.@-]+$")
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
                         ),
                     ]
                 ),
@@ -122,9 +117,9 @@ public static partial class UpdateRoleInputSchema
 
         public override global::Com.Amazonaws.Iam.UpdateRoleInput Build(Builder builder) =>
             new global::Com.Amazonaws.Iam.UpdateRoleInput(
-                builder.RoleName ?? throw new MissingRequiredMemberException("RoleName"),
                 builder.Description,
-                builder.MaxSessionDuration
+                builder.MaxSessionDuration,
+                builder.RoleName
             );
 
         public override void SerializeMembers<TSerializer>(
@@ -158,7 +153,7 @@ public static partial class UpdateRoleInputSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

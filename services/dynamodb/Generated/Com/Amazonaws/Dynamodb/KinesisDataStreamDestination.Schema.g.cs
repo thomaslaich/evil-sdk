@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Dynamodb.Schemas;
 
 public static partial class KinesisDataStreamDestinationSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? StreamArn { get; set; }
         public global::Com.Amazonaws.Dynamodb.DestinationStatus? DestinationStatus { get; set; }
@@ -117,7 +117,7 @@ public static partial class KinesisDataStreamDestinationSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

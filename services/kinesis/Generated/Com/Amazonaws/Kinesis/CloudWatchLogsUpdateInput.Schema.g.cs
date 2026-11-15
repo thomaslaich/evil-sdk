@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Kinesis.Schemas;
 
 public static partial class CloudWatchLogsUpdateInputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public bool? Enabled { get; set; }
         public string? LogGroupName { get; set; }
@@ -131,7 +131,7 @@ public static partial class CloudWatchLogsUpdateInputSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

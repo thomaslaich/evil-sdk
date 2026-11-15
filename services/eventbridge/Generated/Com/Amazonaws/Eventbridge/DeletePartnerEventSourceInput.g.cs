@@ -14,4 +14,7 @@ namespace Com.Amazonaws.Eventbridge;
 /// <param name="Name">
 /// The name of the event source to delete.
 /// </param>
-public sealed record class DeletePartnerEventSourceInput(string Account, string Name);
+public sealed record class DeletePartnerEventSourceInput(
+    string? Account = null,
+    string? Name = null
+);

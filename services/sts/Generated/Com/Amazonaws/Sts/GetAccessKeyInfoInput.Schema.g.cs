@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Sts.Schemas;
 
 public static partial class GetAccessKeyInfoInputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? AccessKeyId { get; set; }
     }
@@ -27,7 +27,6 @@ public static partial class GetAccessKeyInfoInputSchema
                 new(
                     "AccessKeyId",
                     Target0,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
@@ -41,10 +40,6 @@ public static partial class GetAccessKeyInfoInputSchema
                             )
                         ),
                         new Trait(ShapeId.Parse("smithy.api#pattern"), Document.From("^[\\w]*$")),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
                     ]
                 ),
             ],
@@ -68,9 +63,7 @@ public static partial class GetAccessKeyInfoInputSchema
         public override Builder CreateTypedBuilder() => new();
 
         public override global::Com.Amazonaws.Sts.GetAccessKeyInfoInput Build(Builder builder) =>
-            new global::Com.Amazonaws.Sts.GetAccessKeyInfoInput(
-                builder.AccessKeyId ?? throw new MissingRequiredMemberException("AccessKeyId")
-            );
+            new global::Com.Amazonaws.Sts.GetAccessKeyInfoInput(builder.AccessKeyId);
 
         public override void SerializeMembers<TSerializer>(
             global::Com.Amazonaws.Sts.GetAccessKeyInfoInput value,
@@ -87,7 +80,7 @@ public static partial class GetAccessKeyInfoInputSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

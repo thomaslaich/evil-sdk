@@ -9,21 +9,6 @@ namespace Com.Amazonaws.Cloudwatchlogs;
 /// <summary>
 /// Represents the Smithy structure com.amazonaws.cloudwatchlogs#UpdateScheduledQueryInput.
 /// </summary>
-/// <param name="ExecutionRoleArn">
-/// The updated ARN of the IAM role that grants permissions to execute the query and deliver results.
-/// </param>
-/// <param name="Identifier">
-/// The ARN or name of the scheduled query to update.
-/// </param>
-/// <param name="QueryLanguage">
-/// The updated query language for the scheduled query.
-/// </param>
-/// <param name="QueryString">
-/// The updated query string to execute.
-/// </param>
-/// <param name="ScheduleExpression">
-/// The updated cron expression that defines when the scheduled query runs.
-/// </param>
 /// <param name="Description">
 /// An updated description for the scheduled query.
 /// </param>
@@ -33,11 +18,26 @@ namespace Com.Amazonaws.Cloudwatchlogs;
 /// <param name="EndTimeOffset">
 /// The updated time offset in seconds that defines the end of the lookback period for the query.
 /// </param>
+/// <param name="ExecutionRoleArn">
+/// The updated ARN of the IAM role that grants permissions to execute the query and deliver results.
+/// </param>
+/// <param name="Identifier">
+/// The ARN or name of the scheduled query to update.
+/// </param>
 /// <param name="LogGroupIdentifiers">
 /// The updated array of log group names or ARNs to query.
 /// </param>
+/// <param name="QueryLanguage">
+/// The updated query language for the scheduled query.
+/// </param>
+/// <param name="QueryString">
+/// The updated query string to execute.
+/// </param>
 /// <param name="ScheduleEndTime">
 /// The updated end time for the scheduled query in Unix epoch format.
+/// </param>
+/// <param name="ScheduleExpression">
+/// The updated cron expression that defines when the scheduled query runs.
 /// </param>
 /// <param name="ScheduleStartTime">
 /// The updated start time for the scheduled query in Unix epoch format.
@@ -52,16 +52,16 @@ namespace Com.Amazonaws.Cloudwatchlogs;
 /// The updated timezone for evaluating the schedule expression.
 /// </param>
 public sealed record class UpdateScheduledQueryInput(
-    string ExecutionRoleArn,
-    string Identifier,
-    global::Com.Amazonaws.Cloudwatchlogs.QueryLanguage QueryLanguage,
-    string QueryString,
-    string ScheduleExpression,
     string? Description = null,
     global::Com.Amazonaws.Cloudwatchlogs.DestinationConfiguration? DestinationConfiguration = null,
     long? EndTimeOffset = null,
+    string? ExecutionRoleArn = null,
+    string? Identifier = null,
     IReadOnlyList<string>? LogGroupIdentifiers = null,
+    global::Com.Amazonaws.Cloudwatchlogs.QueryLanguage? QueryLanguage = null,
+    string? QueryString = null,
     long? ScheduleEndTime = null,
+    string? ScheduleExpression = null,
     long? ScheduleStartTime = null,
     long? StartTimeOffset = null,
     ScheduledQueryState? State = null,

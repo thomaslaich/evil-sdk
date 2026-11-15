@@ -11,7 +11,7 @@ namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class HeadObjectOutputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public bool? DeleteMarker { get; set; }
         public string? AcceptRanges { get; set; }
@@ -1202,7 +1202,7 @@ public static partial class HeadObjectOutputSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

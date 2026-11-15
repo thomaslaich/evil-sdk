@@ -36,6 +36,18 @@ namespace Com.Amazonaws.Lambda;
 /// limited to 64 characters in length.
 /// </para>
 /// </param>
+/// <param name="Qualifier">
+/// Specify a version of the function. This can be <c>$LATEST</c> or a published version number. If no
+/// value is specified, the configuration for the <c>$LATEST</c> version is returned.
+/// </param>
+/// <param name="RuntimeVersionArn">
+/// <para>
+/// The ARN of the runtime version you want the function to use.
+/// </para>
+/// <para>
+/// <b>Note:</b> This is only required if you're using the <b>Manual</b> runtime update mode.
+/// </para>
+/// </param>
 /// <param name="UpdateRuntimeOn">
 /// <para>
 /// Specify the runtime update mode.
@@ -70,21 +82,9 @@ namespace Com.Amazonaws.Lambda;
 /// </item>
 /// </list>
 /// </param>
-/// <param name="Qualifier">
-/// Specify a version of the function. This can be <c>$LATEST</c> or a published version number. If no
-/// value is specified, the configuration for the <c>$LATEST</c> version is returned.
-/// </param>
-/// <param name="RuntimeVersionArn">
-/// <para>
-/// The ARN of the runtime version you want the function to use.
-/// </para>
-/// <para>
-/// <b>Note:</b> This is only required if you're using the <b>Manual</b> runtime update mode.
-/// </para>
-/// </param>
 public sealed record class PutRuntimeManagementConfigInput(
-    string FunctionName,
-    global::Com.Amazonaws.Lambda.UpdateRuntimeOn UpdateRuntimeOn,
+    string? FunctionName = null,
     string? Qualifier = null,
-    string? RuntimeVersionArn = null
+    string? RuntimeVersionArn = null,
+    global::Com.Amazonaws.Lambda.UpdateRuntimeOn? UpdateRuntimeOn = null
 );

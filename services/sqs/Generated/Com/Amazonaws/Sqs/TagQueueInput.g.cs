@@ -15,4 +15,7 @@ namespace Com.Amazonaws.Sqs;
 /// <param name="Tags">
 /// The list of tags to be added to the specified queue.
 /// </param>
-public sealed record class TagQueueInput(string QueueUrl, IReadOnlyDictionary<string, string> Tags);
+public sealed record class TagQueueInput(
+    string? QueueUrl = null,
+    IReadOnlyDictionary<string, string>? Tags = null
+);

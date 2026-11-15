@@ -27,4 +27,7 @@ namespace Com.Amazonaws.Iam;
 /// for managed policies</see> in the <i>IAM User Guide</i>.
 /// </para>
 /// </param>
-public sealed record class SetDefaultPolicyVersionInput(string PolicyArn, string VersionId);
+public sealed record class SetDefaultPolicyVersionInput(
+    string? PolicyArn = null,
+    string? VersionId = null
+);

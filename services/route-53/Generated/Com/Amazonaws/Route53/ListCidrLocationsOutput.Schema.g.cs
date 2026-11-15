@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Route53.Schemas;
 
 public static partial class ListCidrLocationsOutputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? NextToken { get; set; }
         public IReadOnlyList<global::Com.Amazonaws.Route53.LocationSummary>? CidrLocations { get; set; }
@@ -98,7 +98,7 @@ public static partial class ListCidrLocationsOutputSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

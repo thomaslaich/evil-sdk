@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Cloudwatchlogs.Schemas;
 
 public static partial class TransformedLogRecordSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public long? EventNumber { get; set; }
         public string? EventMessage { get; set; }
@@ -118,7 +118,7 @@ public static partial class TransformedLogRecordSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

@@ -10,4 +10,4 @@ namespace Com.Amazonaws.Cloudwatchlogs;
 /// <param name="DestinationName">
 /// The name of the destination.
 /// </param>
-public sealed record class DeleteDestinationInput(string DestinationName);
+public sealed record class DeleteDestinationInput(string? DestinationName = null);

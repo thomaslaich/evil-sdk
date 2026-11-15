@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Eventbridge.Schemas;
 
 public static partial class ListTagsForResourceInputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? ResourceARN { get; set; }
     }
@@ -27,7 +27,6 @@ public static partial class ListTagsForResourceInputSchema
                 new(
                     "ResourceARN",
                     Target0,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
@@ -39,10 +38,6 @@ public static partial class ListTagsForResourceInputSchema
                                     { "max", Document.From(1600m) },
                                 }
                             )
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
                         ),
                     ]
                 ),
@@ -68,10 +63,7 @@ public static partial class ListTagsForResourceInputSchema
 
         public override global::Com.Amazonaws.Eventbridge.ListTagsForResourceInput Build(
             Builder builder
-        ) =>
-            new global::Com.Amazonaws.Eventbridge.ListTagsForResourceInput(
-                builder.ResourceARN ?? throw new MissingRequiredMemberException("ResourceARN")
-            );
+        ) => new global::Com.Amazonaws.Eventbridge.ListTagsForResourceInput(builder.ResourceARN);
 
         public override void SerializeMembers<TSerializer>(
             global::Com.Amazonaws.Eventbridge.ListTagsForResourceInput value,
@@ -88,7 +80,7 @@ public static partial class ListTagsForResourceInputSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

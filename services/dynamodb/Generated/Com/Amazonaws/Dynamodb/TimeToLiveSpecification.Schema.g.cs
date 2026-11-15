@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Dynamodb.Schemas;
 
 public static partial class TimeToLiveSpecificationSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public bool? Enabled { get; set; }
         public string? AttributeName { get; set; }
@@ -100,7 +100,7 @@ public static partial class TimeToLiveSpecificationSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

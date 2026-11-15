@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Sts.Schemas;
 
 public static partial class GetSessionTokenInputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public int? DurationSeconds { get; set; }
         public string? SerialNumber { get; set; }
@@ -183,7 +183,7 @@ public static partial class GetSessionTokenInputSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

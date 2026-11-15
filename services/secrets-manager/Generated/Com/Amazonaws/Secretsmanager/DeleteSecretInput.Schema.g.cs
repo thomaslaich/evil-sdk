@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Secretsmanager.Schemas;
 
 public static partial class DeleteSecretInputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? SecretId { get; set; }
         public long? RecoveryWindowInDays { get; set; }
@@ -29,7 +29,6 @@ public static partial class DeleteSecretInputSchema
                 new(
                     "SecretId",
                     Target0,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
@@ -41,10 +40,6 @@ public static partial class DeleteSecretInputSchema
                                     { "max", Document.From(2048m) },
                                 }
                             )
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
                         ),
                     ]
                 ),
@@ -100,9 +95,9 @@ public static partial class DeleteSecretInputSchema
             Builder builder
         ) =>
             new global::Com.Amazonaws.Secretsmanager.DeleteSecretInput(
-                builder.SecretId ?? throw new MissingRequiredMemberException("SecretId"),
                 builder.ForceDeleteWithoutRecovery,
-                builder.RecoveryWindowInDays
+                builder.RecoveryWindowInDays,
+                builder.SecretId
             );
 
         public override void SerializeMembers<TSerializer>(
@@ -136,7 +131,7 @@ public static partial class DeleteSecretInputSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

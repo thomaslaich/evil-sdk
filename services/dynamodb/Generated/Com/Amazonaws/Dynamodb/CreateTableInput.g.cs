@@ -9,10 +9,6 @@ namespace Com.Amazonaws.Dynamodb;
 /// <summary>
 /// Represents the input of a <c>CreateTable</c> operation.
 /// </summary>
-/// <param name="TableName">
-/// The name of the table to create. You can also provide the Amazon Resource Name (ARN) of the table in
-/// this parameter.
-/// </param>
 /// <param name="AttributeDefinitions">
 /// An array of attributes that describe the key schema for the table and indexes.
 /// </param>
@@ -349,6 +345,10 @@ namespace Com.Amazonaws.Dynamodb;
 /// The table class of the new table. Valid values are <c>STANDARD</c> and
 /// <c>STANDARD_INFREQUENT_ACCESS</c>.
 /// </param>
+/// <param name="TableName">
+/// The name of the table to create. You can also provide the Amazon Resource Name (ARN) of the table in
+/// this parameter.
+/// </param>
 /// <param name="Tags">
 /// A list of key-value pairs to label the table. For more information, see
 /// <see href="https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Tagging.html">Tagging
@@ -403,7 +403,6 @@ namespace Com.Amazonaws.Dynamodb;
 /// table.
 /// </param>
 public sealed record class CreateTableInput(
-    string TableName,
     IReadOnlyList<AttributeDefinition>? AttributeDefinitions = null,
     global::Com.Amazonaws.Dynamodb.BillingMode? BillingMode = null,
     bool? DeletionProtectionEnabled = null,
@@ -419,6 +418,7 @@ public sealed record class CreateTableInput(
     global::Com.Amazonaws.Dynamodb.SSESpecification? SSESpecification = null,
     global::Com.Amazonaws.Dynamodb.StreamSpecification? StreamSpecification = null,
     global::Com.Amazonaws.Dynamodb.TableClass? TableClass = null,
+    string? TableName = null,
     IReadOnlyList<global::Com.Amazonaws.Dynamodb.Tag>? Tags = null,
     IReadOnlyList<VectorIndex>? VectorIndexes = null,
     global::Com.Amazonaws.Dynamodb.WarmThroughput? WarmThroughput = null

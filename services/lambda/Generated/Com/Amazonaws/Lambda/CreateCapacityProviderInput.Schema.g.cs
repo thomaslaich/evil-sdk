@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Lambda.Schemas;
 
 public static partial class CreateCapacityProviderInputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? CapacityProviderName { get; set; }
         public global::Com.Amazonaws.Lambda.CapacityProviderVpcConfig? VpcConfig { get; set; }
@@ -35,7 +35,6 @@ public static partial class CreateCapacityProviderInputSchema
                 new(
                     "CapacityProviderName",
                     Target0,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
@@ -54,36 +53,10 @@ public static partial class CreateCapacityProviderInputSchema
                                 "^(arn:aws[a-zA-Z-]*:lambda:(eusc-)?[a-z]{2}((-gov)|(-iso([a-z]?)))?-[a-z]+-\\d{1}:\\d{12}:capacity-provider:[a-zA-Z0-9-_]+)|[a-zA-Z0-9-_]+$"
                             )
                         ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
                     ]
                 ),
-                new(
-                    "VpcConfig",
-                    Target1,
-                    isRequired: true,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
-                    ]
-                ),
-                new(
-                    "PermissionsConfig",
-                    Target2,
-                    isRequired: true,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
-                    ]
-                ),
+                new("VpcConfig", Target1),
+                new("PermissionsConfig", Target2),
                 new("InstanceRequirements", Target3),
                 new("CapacityProviderScalingConfig", Target4),
                 new(
@@ -176,17 +149,15 @@ public static partial class CreateCapacityProviderInputSchema
             Builder builder
         ) =>
             new global::Com.Amazonaws.Lambda.CreateCapacityProviderInput(
-                builder.CapacityProviderName
-                    ?? throw new MissingRequiredMemberException("CapacityProviderName"),
-                builder.PermissionsConfig
-                    ?? throw new MissingRequiredMemberException("PermissionsConfig"),
-                builder.VpcConfig ?? throw new MissingRequiredMemberException("VpcConfig"),
+                builder.CapacityProviderName,
                 builder.CapacityProviderScalingConfig,
                 builder.InstanceRequirements,
                 builder.KmsKeyArn,
+                builder.PermissionsConfig,
                 builder.PropagateTags,
                 builder.Tags,
-                builder.TelemetryConfig
+                builder.TelemetryConfig,
+                builder.VpcConfig
             );
 
         public override void SerializeMembers<TSerializer>(
@@ -268,7 +239,7 @@ public static partial class CreateCapacityProviderInputSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

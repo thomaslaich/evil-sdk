@@ -22,8 +22,51 @@ namespace Com.Amazonaws.Iam;
 /// onboarding documentation</see> for more details.
 /// </para>
 /// </param>
+/// <param name="OnlySendByOwner">
+/// <para>
+/// Specifies whether the delegation token should only be sent by the owner.
+/// </para>
+/// <para>
+/// This flag prevents any party other than the owner from calling <c>SendDelegationToken</c> API for
+/// this delegation request. This behavior becomes useful when the delegation request owner needs to be
+/// present for subsequent partner interactions, but the delegation request was sent to a more
+/// privileged user for approval due to the owner lacking sufficient delegation permissions.
+/// </para>
+/// </param>
+/// <param name="OwnerAccountId">
+/// <para>
+/// The Amazon Web Services account ID this delegation request is targeted to.
+/// </para>
+/// <para>
+/// If the account ID is not known, this parameter can be omitted, resulting in a request that can be
+/// associated by any account. If the account ID passed, then the created delegation request can only be
+/// associated with an identity of that target account.
+/// </para>
+/// </param>
 /// <param name="Permissions">
 /// The permissions to be delegated in this delegation request.
+/// </param>
+/// <param name="RedirectUrl">
+/// <para>
+/// The URL to redirect to after the delegation request is processed.
+/// </para>
+/// <para>
+/// This URL is used by the IAM console to show a link to the customer to re-load the partner workflow.
+/// </para>
+/// </param>
+/// <param name="RequestMessage">
+/// <para>
+/// A message explaining the reason for the delegation request.
+/// </para>
+/// <para>
+/// Requesters can utilize this field to add a custom note to the delegation request. This field is
+/// different from the description such that this is to be utilized for a custom messaging on a
+/// case-by-case basis.
+/// </para>
+/// <para>
+/// For example, if the current delegation request is in response to a previous request being rejected,
+/// this explanation can be added to the request via this field.
+/// </para>
 /// </param>
 /// <param name="RequestorWorkflowId">
 /// <para>
@@ -48,57 +91,14 @@ namespace Com.Amazonaws.Iam;
 /// API.
 /// </para>
 /// </param>
-/// <param name="OnlySendByOwner">
-/// <para>
-/// Specifies whether the delegation token should only be sent by the owner.
-/// </para>
-/// <para>
-/// This flag prevents any party other than the owner from calling <c>SendDelegationToken</c> API for
-/// this delegation request. This behavior becomes useful when the delegation request owner needs to be
-/// present for subsequent partner interactions, but the delegation request was sent to a more
-/// privileged user for approval due to the owner lacking sufficient delegation permissions.
-/// </para>
-/// </param>
-/// <param name="OwnerAccountId">
-/// <para>
-/// The Amazon Web Services account ID this delegation request is targeted to.
-/// </para>
-/// <para>
-/// If the account ID is not known, this parameter can be omitted, resulting in a request that can be
-/// associated by any account. If the account ID passed, then the created delegation request can only be
-/// associated with an identity of that target account.
-/// </para>
-/// </param>
-/// <param name="RedirectUrl">
-/// <para>
-/// The URL to redirect to after the delegation request is processed.
-/// </para>
-/// <para>
-/// This URL is used by the IAM console to show a link to the customer to re-load the partner workflow.
-/// </para>
-/// </param>
-/// <param name="RequestMessage">
-/// <para>
-/// A message explaining the reason for the delegation request.
-/// </para>
-/// <para>
-/// Requesters can utilize this field to add a custom note to the delegation request. This field is
-/// different from the description such that this is to be utilized for a custom messaging on a
-/// case-by-case basis.
-/// </para>
-/// <para>
-/// For example, if the current delegation request is in response to a previous request being rejected,
-/// this explanation can be added to the request via this field.
-/// </para>
-/// </param>
 public sealed record class CreateDelegationRequestInput(
-    string Description,
-    string NotificationChannel,
-    DelegationPermission Permissions,
-    string RequestorWorkflowId,
-    int SessionDuration,
+    string? Description = null,
+    string? NotificationChannel = null,
     bool? OnlySendByOwner = null,
     string? OwnerAccountId = null,
+    DelegationPermission? Permissions = null,
     string? RedirectUrl = null,
-    string? RequestMessage = null
+    string? RequestMessage = null,
+    string? RequestorWorkflowId = null,
+    int? SessionDuration = null
 );

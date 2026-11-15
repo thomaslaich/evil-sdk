@@ -14,6 +14,6 @@ namespace Com.Amazonaws.Iam;
 /// Optional notes explaining the reason for rejecting the delegation request.
 /// </param>
 public sealed record class RejectDelegationRequestInput(
-    string DelegationRequestId,
+    string? DelegationRequestId = null,
     string? Notes = null
 );

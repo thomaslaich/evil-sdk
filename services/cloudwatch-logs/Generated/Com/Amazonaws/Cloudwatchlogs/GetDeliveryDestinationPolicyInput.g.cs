@@ -10,4 +10,6 @@ namespace Com.Amazonaws.Cloudwatchlogs;
 /// <param name="DeliveryDestinationName">
 /// The name of the delivery destination that you want to retrieve the policy of.
 /// </param>
-public sealed record class GetDeliveryDestinationPolicyInput(string DeliveryDestinationName);
+public sealed record class GetDeliveryDestinationPolicyInput(
+    string? DeliveryDestinationName = null
+);

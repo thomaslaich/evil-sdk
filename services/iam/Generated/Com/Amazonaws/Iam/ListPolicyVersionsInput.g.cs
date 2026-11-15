@@ -7,16 +7,6 @@ namespace Com.Amazonaws.Iam;
 /// <summary>
 /// Represents the Smithy structure com.amazonaws.iam#ListPolicyVersionsInput.
 /// </summary>
-/// <param name="PolicyArn">
-/// <para>
-/// The Amazon Resource Name (ARN) of the IAM policy for which you want the versions.
-/// </para>
-/// <para>
-/// For more information about ARNs, see
-/// <see href="https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html">Amazon
-/// Resource Names (ARNs)</see> in the <i>Amazon Web Services General Reference</i>.
-/// </para>
-/// </param>
 /// <param name="Marker">
 /// Use this parameter only when paginating results and only after you receive a response indicating
 /// that the results are truncated. Set it to the value of the <c>Marker</c> element in the response
@@ -35,8 +25,18 @@ namespace Com.Amazonaws.Iam;
 /// include in the subsequent call that tells the service where to continue from.
 /// </para>
 /// </param>
+/// <param name="PolicyArn">
+/// <para>
+/// The Amazon Resource Name (ARN) of the IAM policy for which you want the versions.
+/// </para>
+/// <para>
+/// For more information about ARNs, see
+/// <see href="https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html">Amazon
+/// Resource Names (ARNs)</see> in the <i>Amazon Web Services General Reference</i>.
+/// </para>
+/// </param>
 public sealed record class ListPolicyVersionsInput(
-    string PolicyArn,
     string? Marker = null,
-    int? MaxItems = null
+    int? MaxItems = null,
+    string? PolicyArn = null
 );

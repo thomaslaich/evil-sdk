@@ -9,6 +9,18 @@ namespace Com.Amazonaws.Cloudwatchlogs;
 /// <summary>
 /// Represents the Smithy structure com.amazonaws.cloudwatchlogs#PutSubscriptionFilterInput.
 /// </summary>
+/// <param name="ApplyOnTransformedLogs">
+/// <para>
+/// This parameter is valid only for log groups that have an active log transformer. For more
+/// information about log transformers, see
+/// <see href="https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_PutTransformer.html">PutTransformer</see>.
+/// </para>
+/// <para>
+/// If the log group uses either a log-group level or account-level transformer, and you specify
+/// <c>true</c>, the subscription filter will be applied on the transformed version of the log events
+/// instead of the original ingested log events.
+/// </para>
+/// </param>
 /// <param name="DestinationArn">
 /// <para>
 /// The ARN of the destination to deliver matching log events to. Currently, the supported destinations
@@ -49,30 +61,6 @@ namespace Com.Amazonaws.Cloudwatchlogs;
 /// </item>
 /// </list>
 /// </param>
-/// <param name="FilterName">
-/// A name for the subscription filter. If you are updating an existing filter, you must specify the
-/// correct name in <c>filterName</c>. To find the name of the filter currently associated with a log
-/// group, use
-/// <see href="https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_DescribeSubscriptionFilters.html">DescribeSubscriptionFilters</see>.
-/// </param>
-/// <param name="FilterPattern">
-/// A filter pattern for subscribing to a filtered stream of log events.
-/// </param>
-/// <param name="LogGroupName">
-/// The name of the log group.
-/// </param>
-/// <param name="ApplyOnTransformedLogs">
-/// <para>
-/// This parameter is valid only for log groups that have an active log transformer. For more
-/// information about log transformers, see
-/// <see href="https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_PutTransformer.html">PutTransformer</see>.
-/// </para>
-/// <para>
-/// If the log group uses either a log-group level or account-level transformer, and you specify
-/// <c>true</c>, the subscription filter will be applied on the transformed version of the log events
-/// instead of the original ingested log events.
-/// </para>
-/// </param>
 /// <param name="Distribution">
 /// The method used to distribute log data to the destination. By default, log data is grouped by log
 /// stream, but the grouping can be set to random for a more even distribution. This property is only
@@ -90,19 +78,31 @@ namespace Com.Amazonaws.Cloudwatchlogs;
 /// <c>@aws.region NOT IN ["cn-north-1"]</c> or <c>@aws.account = "123456789012" AND @aws.region =
 /// "us-east-1"</c>. Maximum length: 2000 characters.
 /// </param>
+/// <param name="FilterName">
+/// A name for the subscription filter. If you are updating an existing filter, you must specify the
+/// correct name in <c>filterName</c>. To find the name of the filter currently associated with a log
+/// group, use
+/// <see href="https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_DescribeSubscriptionFilters.html">DescribeSubscriptionFilters</see>.
+/// </param>
+/// <param name="FilterPattern">
+/// A filter pattern for subscribing to a filtered stream of log events.
+/// </param>
+/// <param name="LogGroupName">
+/// The name of the log group.
+/// </param>
 /// <param name="RoleArn">
 /// The ARN of an IAM role that grants CloudWatch Logs permissions to deliver ingested log events to the
 /// destination stream. You don't need to provide the ARN when you are working with a logical
 /// destination for cross-account delivery.
 /// </param>
 public sealed record class PutSubscriptionFilterInput(
-    string DestinationArn,
-    string FilterName,
-    string FilterPattern,
-    string LogGroupName,
     bool? ApplyOnTransformedLogs = null,
+    string? DestinationArn = null,
     global::Com.Amazonaws.Cloudwatchlogs.Distribution? Distribution = null,
     IReadOnlyList<string>? EmitSystemFields = null,
     string? FieldSelectionCriteria = null,
+    string? FilterName = null,
+    string? FilterPattern = null,
+    string? LogGroupName = null,
     string? RoleArn = null
 );

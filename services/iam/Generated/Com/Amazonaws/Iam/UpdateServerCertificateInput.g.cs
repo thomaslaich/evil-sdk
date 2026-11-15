@@ -7,16 +7,6 @@ namespace Com.Amazonaws.Iam;
 /// <summary>
 /// Represents the Smithy structure com.amazonaws.iam#UpdateServerCertificateInput.
 /// </summary>
-/// <param name="ServerCertificateName">
-/// <para>
-/// The name of the server certificate that you want to update.
-/// </para>
-/// <para>
-/// This parameter allows (through its <see href="http://wikipedia.org/wiki/regex">regex pattern</see>)
-/// a string of characters consisting of upper and lowercase alphanumeric characters with no spaces. You
-/// can also include any of the following characters: _+=,.@-
-/// </para>
-/// </param>
 /// <param name="NewPath">
 /// <para>
 /// The new path for the server certificate. Include this only if you are updating the server
@@ -41,8 +31,18 @@ namespace Com.Amazonaws.Iam;
 /// can also include any of the following characters: _+=,.@-
 /// </para>
 /// </param>
+/// <param name="ServerCertificateName">
+/// <para>
+/// The name of the server certificate that you want to update.
+/// </para>
+/// <para>
+/// This parameter allows (through its <see href="http://wikipedia.org/wiki/regex">regex pattern</see>)
+/// a string of characters consisting of upper and lowercase alphanumeric characters with no spaces. You
+/// can also include any of the following characters: _+=,.@-
+/// </para>
+/// </param>
 public sealed record class UpdateServerCertificateInput(
-    string ServerCertificateName,
     string? NewPath = null,
-    string? NewServerCertificateName = null
+    string? NewServerCertificateName = null,
+    string? ServerCertificateName = null
 );

@@ -24,10 +24,6 @@ namespace Com.Amazonaws.S3;
 /// bucket naming rules</see> in the <i>Amazon S3 User Guide</i>
 /// </para>
 /// </param>
-/// <param name="Id">
-/// The ID used to identify the metrics configuration. The ID has a 64 character limit and can only
-/// contain letters, numbers, periods, dashes, and underscores.
-/// </param>
 /// <param name="ExpectedBucketOwner">
 /// <para>
 /// The account ID of the expected bucket owner. If the account ID that you provide does not match the
@@ -39,8 +35,12 @@ namespace Com.Amazonaws.S3;
 /// specify this header, the request fails with the HTTP status code <c>501 Not Implemented</c>.
 /// </para>
 /// </param>
+/// <param name="Id">
+/// The ID used to identify the metrics configuration. The ID has a 64 character limit and can only
+/// contain letters, numbers, periods, dashes, and underscores.
+/// </param>
 public sealed record class DeleteBucketMetricsConfigurationInput(
-    string Bucket,
-    string Id,
-    string? ExpectedBucketOwner = null
+    string? Bucket = null,
+    string? ExpectedBucketOwner = null,
+    string? Id = null
 );

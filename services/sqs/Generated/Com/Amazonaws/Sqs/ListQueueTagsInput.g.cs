@@ -10,4 +10,4 @@ namespace Com.Amazonaws.Sqs;
 /// <param name="QueueUrl">
 /// The URL of the queue.
 /// </param>
-public sealed record class ListQueueTagsInput(string QueueUrl);
+public sealed record class ListQueueTagsInput(string? QueueUrl = null);

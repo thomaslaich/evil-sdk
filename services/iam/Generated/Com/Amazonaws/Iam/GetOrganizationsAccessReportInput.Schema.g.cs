@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Iam.Schemas;
 
 public static partial class GetOrganizationsAccessReportInputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? JobId { get; set; }
         public int? MaxItems { get; set; }
@@ -30,7 +30,6 @@ public static partial class GetOrganizationsAccessReportInputSchema
                 new(
                     "JobId",
                     Target0,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
@@ -42,10 +41,6 @@ public static partial class GetOrganizationsAccessReportInputSchema
                                     { "max", Document.From(36m) },
                                 }
                             )
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
                         ),
                     ]
                 ),
@@ -124,7 +119,7 @@ public static partial class GetOrganizationsAccessReportInputSchema
             Builder builder
         ) =>
             new global::Com.Amazonaws.Iam.GetOrganizationsAccessReportInput(
-                builder.JobId ?? throw new MissingRequiredMemberException("JobId"),
+                builder.JobId,
                 builder.Marker,
                 builder.MaxItems,
                 builder.SortKey
@@ -169,7 +164,7 @@ public static partial class GetOrganizationsAccessReportInputSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

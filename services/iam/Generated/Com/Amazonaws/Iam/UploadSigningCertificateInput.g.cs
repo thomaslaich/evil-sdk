@@ -47,6 +47,6 @@ namespace Com.Amazonaws.Iam;
 /// </para>
 /// </param>
 public sealed record class UploadSigningCertificateInput(
-    string CertificateBody,
+    string? CertificateBody = null,
     string? UserName = null
 );

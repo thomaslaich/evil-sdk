@@ -14,6 +14,6 @@ namespace Com.Amazonaws.Cloudwatchlogs;
 /// The type of policy to delete.
 /// </param>
 public sealed record class DeleteAccountPolicyInput(
-    string PolicyName,
-    global::Com.Amazonaws.Cloudwatchlogs.PolicyType PolicyType
+    string? PolicyName = null,
+    global::Com.Amazonaws.Cloudwatchlogs.PolicyType? PolicyType = null
 );

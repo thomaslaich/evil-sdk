@@ -75,7 +75,7 @@ namespace Com.Amazonaws.Kinesis;
 /// The name of the Kinesis data stream for which to disable enhanced monitoring.
 /// </param>
 public sealed record class DisableEnhancedMonitoringInput(
-    IReadOnlyList<MetricsName> ShardLevelMetrics,
+    IReadOnlyList<MetricsName>? ShardLevelMetrics = null,
     string? StreamARN = null,
     string? StreamId = null,
     string? StreamName = null

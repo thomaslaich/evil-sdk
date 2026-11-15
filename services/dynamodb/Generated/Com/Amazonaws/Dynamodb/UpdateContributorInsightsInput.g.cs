@@ -10,10 +10,6 @@ namespace Com.Amazonaws.Dynamodb;
 /// <param name="ContributorInsightsAction">
 /// Represents the contributor insights action.
 /// </param>
-/// <param name="TableName">
-/// The name of the table. You can also provide the Amazon Resource Name (ARN) of the table in this
-/// parameter.
-/// </param>
 /// <param name="ContributorInsightsMode">
 /// Specifies whether to track all access and throttled events or throttled events only for the DynamoDB
 /// table or index.
@@ -21,9 +17,13 @@ namespace Com.Amazonaws.Dynamodb;
 /// <param name="IndexName">
 /// The global secondary index name, if applicable.
 /// </param>
+/// <param name="TableName">
+/// The name of the table. You can also provide the Amazon Resource Name (ARN) of the table in this
+/// parameter.
+/// </param>
 public sealed record class UpdateContributorInsightsInput(
-    global::Com.Amazonaws.Dynamodb.ContributorInsightsAction ContributorInsightsAction,
-    string TableName,
+    global::Com.Amazonaws.Dynamodb.ContributorInsightsAction? ContributorInsightsAction = null,
     global::Com.Amazonaws.Dynamodb.ContributorInsightsMode? ContributorInsightsMode = null,
-    string? IndexName = null
+    string? IndexName = null,
+    string? TableName = null
 );

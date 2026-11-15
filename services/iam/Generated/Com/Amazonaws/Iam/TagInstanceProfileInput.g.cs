@@ -24,6 +24,6 @@ namespace Com.Amazonaws.Iam;
 /// name and an associated value.
 /// </param>
 public sealed record class TagInstanceProfileInput(
-    string InstanceProfileName,
-    IReadOnlyList<global::Com.Amazonaws.Iam.Tag> Tags
+    string? InstanceProfileName = null,
+    IReadOnlyList<global::Com.Amazonaws.Iam.Tag>? Tags = null
 );

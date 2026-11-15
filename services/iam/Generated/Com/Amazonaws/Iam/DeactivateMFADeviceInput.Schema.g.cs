@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Iam.Schemas;
 
 public static partial class DeactivateMFADeviceInputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? UserName { get; set; }
         public string? SerialNumber { get; set; }
@@ -49,7 +49,6 @@ public static partial class DeactivateMFADeviceInputSchema
                 new(
                     "SerialNumber",
                     Target1,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
@@ -65,10 +64,6 @@ public static partial class DeactivateMFADeviceInputSchema
                         new Trait(
                             ShapeId.Parse("smithy.api#pattern"),
                             Document.From("^[\\w+=/:,.@-]+$")
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
                         ),
                     ]
                 ),
@@ -98,7 +93,7 @@ public static partial class DeactivateMFADeviceInputSchema
 
         public override global::Com.Amazonaws.Iam.DeactivateMFADeviceInput Build(Builder builder) =>
             new global::Com.Amazonaws.Iam.DeactivateMFADeviceInput(
-                builder.SerialNumber ?? throw new MissingRequiredMemberException("SerialNumber"),
+                builder.SerialNumber,
                 builder.UserName
             );
 
@@ -125,7 +120,7 @@ public static partial class DeactivateMFADeviceInputSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

@@ -13,4 +13,7 @@ namespace Com.Amazonaws.Cloudwatchlogs;
 /// <param name="LogGroupName">
 /// The name of the log group.
 /// </param>
-public sealed record class DeleteSubscriptionFilterInput(string FilterName, string LogGroupName);
+public sealed record class DeleteSubscriptionFilterInput(
+    string? FilterName = null,
+    string? LogGroupName = null
+);

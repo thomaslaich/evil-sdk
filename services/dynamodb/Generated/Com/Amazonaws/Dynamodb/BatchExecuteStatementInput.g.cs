@@ -13,6 +13,6 @@ namespace Com.Amazonaws.Dynamodb;
 /// The list of PartiQL statements representing the batch to run.
 /// </param>
 public sealed record class BatchExecuteStatementInput(
-    IReadOnlyList<BatchStatementRequest> Statements,
-    global::Com.Amazonaws.Dynamodb.ReturnConsumedCapacity? ReturnConsumedCapacity = null
+    global::Com.Amazonaws.Dynamodb.ReturnConsumedCapacity? ReturnConsumedCapacity = null,
+    IReadOnlyList<BatchStatementRequest>? Statements = null
 );

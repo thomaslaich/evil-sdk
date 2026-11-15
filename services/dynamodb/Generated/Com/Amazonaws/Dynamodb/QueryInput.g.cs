@@ -9,10 +9,6 @@ namespace Com.Amazonaws.Dynamodb;
 /// <summary>
 /// Represents the input of a <c>Query</c> operation.
 /// </summary>
-/// <param name="TableName">
-/// The name of the table containing the requested items. You can also provide the Amazon Resource Name
-/// (ARN) of the table in this parameter.
-/// </param>
 /// <param name="AttributesToGet">
 /// This is a legacy parameter. Use <c>ProjectionExpression</c> instead. For more information, see
 /// <see href="https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/LegacyConditionalParameters.AttributesToGet.html">AttributesToGet</see>
@@ -396,8 +392,11 @@ namespace Com.Amazonaws.Dynamodb;
 /// can only be <c>SPECIFIC_ATTRIBUTES</c>. Any other value for <c>Select</c> will return an error.
 /// </para>
 /// </param>
+/// <param name="TableName">
+/// The name of the table containing the requested items. You can also provide the Amazon Resource Name
+/// (ARN) of the table in this parameter.
+/// </param>
 public sealed record class QueryInput(
-    string TableName,
     IReadOnlyList<string>? AttributesToGet = null,
     global::Com.Amazonaws.Dynamodb.ConditionalOperator? ConditionalOperator = null,
     bool? ConsistentRead = null,
@@ -413,5 +412,6 @@ public sealed record class QueryInput(
     IReadOnlyDictionary<string, Condition>? QueryFilter = null,
     global::Com.Amazonaws.Dynamodb.ReturnConsumedCapacity? ReturnConsumedCapacity = null,
     bool? ScanIndexForward = null,
-    global::Com.Amazonaws.Dynamodb.Select? Select = null
+    global::Com.Amazonaws.Dynamodb.Select? Select = null,
+    string? TableName = null
 );

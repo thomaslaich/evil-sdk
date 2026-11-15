@@ -9,7 +9,7 @@ namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class NoSuchKeySchema
 {
-    public sealed class Builder { }
+    public sealed class Builder : StructBuilder { }
 
     public static StructSchema<global::Com.Amazonaws.S3.NoSuchKey, Builder> Schema { get; } =
         new GeneratedSchema();
@@ -34,7 +34,7 @@ public static partial class NoSuchKeySchema
             ref TSerializer serializer
         ) { }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

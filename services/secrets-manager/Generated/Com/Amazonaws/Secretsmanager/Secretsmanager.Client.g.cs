@@ -284,7 +284,7 @@ public interface ISecretsmanagerClient : IDisposable
     /// The following example shows how to create a secret. The credentials stored in the encrypted secret value are retrieved from a file on disk named mycreds.json.
     /// </para>
     /// <code>
-    /// var input = new CreateSecretInput(Name: &quot;MyTestDatabaseSecret&quot;, ClientRequestToken: &quot;EXAMPLE1-90ab-cdef-fedc-ba987SECRET1&quot;, Description: &quot;My test database secret created with the CLI&quot;, SecretString: &quot;{\&quot;username\&quot;:\&quot;david\&quot;,\&quot;password\&quot;:\&quot;EXAMPLE-PASSWORD\&quot;}&quot;);
+    /// var input = new CreateSecretInput(ClientRequestToken: &quot;EXAMPLE1-90ab-cdef-fedc-ba987SECRET1&quot;, Description: &quot;My test database secret created with the CLI&quot;, Name: &quot;MyTestDatabaseSecret&quot;, SecretString: &quot;{\&quot;username\&quot;:\&quot;david\&quot;,\&quot;password\&quot;:\&quot;EXAMPLE-PASSWORD\&quot;}&quot;);
     /// var output = await client.CreateSecretAsync(input);
     ///
     /// // Expected output:
@@ -581,7 +581,7 @@ public interface ISecretsmanagerClient : IDisposable
     /// The following example shows how to retrieve a list of all of the versions of a secret, including those without any staging labels.
     /// </para>
     /// <code>
-    /// var input = new ListSecretVersionIdsInput(SecretId: &quot;MyTestDatabaseSecret&quot;, IncludeDeprecated: true);
+    /// var input = new ListSecretVersionIdsInput(IncludeDeprecated: true, SecretId: &quot;MyTestDatabaseSecret&quot;);
     /// var output = await client.ListSecretVersionIdsAsync(input);
     ///
     /// // Expected output:
@@ -822,7 +822,7 @@ public interface ISecretsmanagerClient : IDisposable
     /// The following example shows how to create a new version of the secret. Alternatively, you can use the update-secret command.
     /// </para>
     /// <code>
-    /// var input = new PutSecretValueInput(SecretId: &quot;MyTestDatabaseSecret&quot;, ClientRequestToken: &quot;EXAMPLE2-90ab-cdef-fedc-ba987EXAMPLE&quot;, SecretString: &quot;{\&quot;username\&quot;:\&quot;david\&quot;,\&quot;password\&quot;:\&quot;EXAMPLE-PASSWORD\&quot;}&quot;);
+    /// var input = new PutSecretValueInput(ClientRequestToken: &quot;EXAMPLE2-90ab-cdef-fedc-ba987EXAMPLE&quot;, SecretId: &quot;MyTestDatabaseSecret&quot;, SecretString: &quot;{\&quot;username\&quot;:\&quot;david\&quot;,\&quot;password\&quot;:\&quot;EXAMPLE-PASSWORD\&quot;}&quot;);
     /// var output = await client.PutSecretValueAsync(input);
     ///
     /// // Expected output:
@@ -891,7 +891,7 @@ public interface ISecretsmanagerClient : IDisposable
     /// The following example replicates a secret to eu-west-3. The replica is encrypted with the AWS managed key aws/secretsmanager.
     /// </para>
     /// <code>
-    /// var input = new ReplicateSecretToRegionsInput(AddReplicaRegions: new ReplicaRegionType[] { new ReplicaRegionType(Region: &quot;eu-west-3&quot;) }, SecretId: &quot;MyTestSecret&quot;, ForceOverwriteReplicaSecret: true);
+    /// var input = new ReplicateSecretToRegionsInput(AddReplicaRegions: new ReplicaRegionType[] { new ReplicaRegionType(Region: &quot;eu-west-3&quot;) }, ForceOverwriteReplicaSecret: true, SecretId: &quot;MyTestSecret&quot;);
     /// var output = await client.ReplicateSecretToRegionsAsync(input);
     ///
     /// // Expected output:
@@ -988,7 +988,7 @@ public interface ISecretsmanagerClient : IDisposable
     /// The following example configures rotation for a secret using a cron expression. The first rotation happens immediately after the changes are stored in the secret. The rotation schedule is the first and 15th day of every month. The rotation window begins at 4:00 PM UTC and ends at 6:00 PM.
     /// </para>
     /// <code>
-    /// var input = new RotateSecretInput(SecretId: &quot;MyTestDatabaseSecret&quot;, RotationLambdaARN: &quot;arn:aws:lambda:us-west-2:123456789012:function:MyTestDatabaseRotationLambda&quot;, RotationRules: new RotationRulesType(Duration: &quot;2h&quot;, ScheduleExpression: &quot;cron(0 16 1,15 * ? *)&quot;));
+    /// var input = new RotateSecretInput(RotationLambdaARN: &quot;arn:aws:lambda:us-west-2:123456789012:function:MyTestDatabaseRotationLambda&quot;, RotationRules: new RotationRulesType(Duration: &quot;2h&quot;, ScheduleExpression: &quot;cron(0 16 1,15 * ? *)&quot;), SecretId: &quot;MyTestDatabaseSecret&quot;);
     /// var output = await client.RotateSecretAsync(input);
     ///
     /// // Expected output:
@@ -1218,7 +1218,7 @@ public interface ISecretsmanagerClient : IDisposable
     /// The following example shows how to modify the description of a secret.
     /// </para>
     /// <code>
-    /// var input = new UpdateSecretInput(SecretId: &quot;MyTestDatabaseSecret&quot;, ClientRequestToken: &quot;EXAMPLE1-90ab-cdef-fedc-ba987EXAMPLE&quot;, Description: &quot;This is a new description for the secret.&quot;);
+    /// var input = new UpdateSecretInput(ClientRequestToken: &quot;EXAMPLE1-90ab-cdef-fedc-ba987EXAMPLE&quot;, Description: &quot;This is a new description for the secret.&quot;, SecretId: &quot;MyTestDatabaseSecret&quot;);
     /// var output = await client.UpdateSecretAsync(input);
     ///
     /// // Expected output:
@@ -1233,7 +1233,7 @@ public interface ISecretsmanagerClient : IDisposable
     /// This example shows how to update the KMS customer managed key (CMK) used to encrypt the secret value. The KMS CMK must be in the same region as the secret.
     /// </para>
     /// <code>
-    /// var input = new UpdateSecretInput(SecretId: &quot;MyTestDatabaseSecret&quot;, KmsKeyId: &quot;arn:aws:kms:us-west-2:123456789012:key/EXAMPLE2-90ab-cdef-fedc-ba987EXAMPLE&quot;);
+    /// var input = new UpdateSecretInput(KmsKeyId: &quot;arn:aws:kms:us-west-2:123456789012:key/EXAMPLE2-90ab-cdef-fedc-ba987EXAMPLE&quot;, SecretId: &quot;MyTestDatabaseSecret&quot;);
     /// var output = await client.UpdateSecretAsync(input);
     ///
     /// // Expected output:
@@ -1293,7 +1293,7 @@ public interface ISecretsmanagerClient : IDisposable
     /// The following example shows you how to add a staging label to a version of a secret. You can review the results by running the operation ListSecretVersionIds and viewing the VersionStages response field for the affected version.
     /// </para>
     /// <code>
-    /// var input = new UpdateSecretVersionStageInput(SecretId: &quot;MyTestDatabaseSecret&quot;, VersionStage: &quot;STAGINGLABEL1&quot;, MoveToVersionId: &quot;EXAMPLE1-90ab-cdef-fedc-ba987SECRET1&quot;);
+    /// var input = new UpdateSecretVersionStageInput(MoveToVersionId: &quot;EXAMPLE1-90ab-cdef-fedc-ba987SECRET1&quot;, SecretId: &quot;MyTestDatabaseSecret&quot;, VersionStage: &quot;STAGINGLABEL1&quot;);
     /// var output = await client.UpdateSecretVersionStageAsync(input);
     ///
     /// // Expected output:
@@ -1308,7 +1308,7 @@ public interface ISecretsmanagerClient : IDisposable
     /// The following example shows you how to delete a staging label that is attached to a version of a secret. You can review the results by running the operation ListSecretVersionIds and viewing the VersionStages response field for the affected version.
     /// </para>
     /// <code>
-    /// var input = new UpdateSecretVersionStageInput(SecretId: &quot;MyTestDatabaseSecret&quot;, VersionStage: &quot;STAGINGLABEL1&quot;, RemoveFromVersionId: &quot;EXAMPLE1-90ab-cdef-fedc-ba987SECRET1&quot;);
+    /// var input = new UpdateSecretVersionStageInput(RemoveFromVersionId: &quot;EXAMPLE1-90ab-cdef-fedc-ba987SECRET1&quot;, SecretId: &quot;MyTestDatabaseSecret&quot;, VersionStage: &quot;STAGINGLABEL1&quot;);
     /// var output = await client.UpdateSecretVersionStageAsync(input);
     ///
     /// // Expected output:
@@ -1323,7 +1323,7 @@ public interface ISecretsmanagerClient : IDisposable
     /// The following example shows you how to move a staging label that is attached to one version of a secret to a different version. You can review the results by running the operation ListSecretVersionIds and viewing the VersionStages response field for the affected version.
     /// </para>
     /// <code>
-    /// var input = new UpdateSecretVersionStageInput(SecretId: &quot;MyTestDatabaseSecret&quot;, VersionStage: &quot;AWSCURRENT&quot;, MoveToVersionId: &quot;EXAMPLE2-90ab-cdef-fedc-ba987SECRET2&quot;, RemoveFromVersionId: &quot;EXAMPLE1-90ab-cdef-fedc-ba987SECRET1&quot;);
+    /// var input = new UpdateSecretVersionStageInput(MoveToVersionId: &quot;EXAMPLE2-90ab-cdef-fedc-ba987SECRET2&quot;, RemoveFromVersionId: &quot;EXAMPLE1-90ab-cdef-fedc-ba987SECRET1&quot;, SecretId: &quot;MyTestDatabaseSecret&quot;, VersionStage: &quot;AWSCURRENT&quot;);
     /// var output = await client.UpdateSecretVersionStageAsync(input);
     ///
     /// // Expected output:
@@ -1485,6 +1485,242 @@ public static class SecretsmanagerClientExtensions
 
     /// <summary>
     /// <para>
+    /// Turns off automatic rotation, and if a rotation is currently in progress, cancels the rotation.
+    /// </para>
+    /// <para>
+    /// If you cancel a rotation in progress, it can leave the <c>VersionStage</c> labels in an unexpected
+    /// state. You might need to remove the staging label <c>AWSPENDING</c> from the partially created
+    /// version. You also need to determine whether to roll back to the previous version of the secret by
+    /// moving the staging label <c>AWSCURRENT</c> to the version that has <c>AWSPENDING</c>. To determine
+    /// which version has a specific staging label, call ListSecretVersionIds. Then use
+    /// UpdateSecretVersionStage to change staging labels. For more information, see
+    /// <see href="https://docs.aws.amazon.com/secretsmanager/latest/userguide/rotate-secrets_how.html">How
+    /// rotation works</see>.
+    /// </para>
+    /// <para>
+    /// To turn on automatic rotation again, call RotateSecret.
+    /// </para>
+    /// <para>
+    /// Secrets Manager generates a CloudTrail log entry when you call this action. Do not include sensitive
+    /// information in request parameters because it might be logged. For more information, see
+    /// <see href="https://docs.aws.amazon.com/secretsmanager/latest/userguide/retrieve-ct-entries.html">Logging
+    /// Secrets Manager events with CloudTrail</see>.
+    /// </para>
+    /// <para>
+    /// <b>Required permissions: </b> <c>secretsmanager:CancelRotateSecret</c>. For more information, see
+    /// <see href="https://docs.aws.amazon.com/secretsmanager/latest/userguide/reference_iam-permissions.html#reference_iam-permissions_actions">IAM
+    /// policy actions for Secrets Manager</see> and
+    /// <see href="https://docs.aws.amazon.com/secretsmanager/latest/userguide/auth-and-access.html">Authentication
+    /// and access control in Secrets Manager</see>.
+    /// </para>
+    /// </summary>
+    public static Task<CancelRotateSecretOutput> CancelRotateSecretAsync(
+        this ISecretsmanagerClient client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.CancelRotateSecretAsync(new CancelRotateSecretInput(), cancellationToken);
+    }
+
+    /// <summary>
+    /// <para>
+    /// Creates a new secret. A <i>secret</i> can be a password, a set of credentials such as a user name
+    /// and password, an OAuth token, or other secret information that you store in an encrypted form in
+    /// Secrets Manager. The secret also includes the connection information to access a database or other
+    /// service, which Secrets Manager doesn't encrypt. A secret in Secrets Manager consists of both the
+    /// protected secret data and the important information needed to manage the secret.
+    /// </para>
+    /// <para>
+    /// For secrets that use <i>managed rotation</i>, you need to create the secret through the managing
+    /// service. For more information, see
+    /// <see href="https://docs.aws.amazon.com/secretsmanager/latest/userguide/service-linked-secrets.html">Secrets
+    /// Manager secrets managed by other Amazon Web Services services</see>.
+    /// </para>
+    /// <para>
+    /// For information about creating a secret in the console, see
+    /// <see href="https://docs.aws.amazon.com/secretsmanager/latest/userguide/manage_create-basic-secret.html">Create
+    /// a secret</see>.
+    /// </para>
+    /// <para>
+    /// To create a secret, you can provide the secret value to be encrypted in either the
+    /// <c>SecretString</c> parameter or the <c>SecretBinary</c> parameter, but not both. If you include
+    /// <c>SecretString</c> or <c>SecretBinary</c> then Secrets Manager creates an initial secret version
+    /// and automatically attaches the staging label <c>AWSCURRENT</c> to it.
+    /// </para>
+    /// <para>
+    /// For database credentials you want to rotate, for Secrets Manager to be able to rotate the secret,
+    /// you must make sure the JSON you store in the <c>SecretString</c> matches the
+    /// <see href="https://docs.aws.amazon.com/secretsmanager/latest/userguide/reference_secret_json_structure.html">JSON
+    /// structure of a database secret</see>.
+    /// </para>
+    /// <para>
+    /// If you don't specify an KMS encryption key, Secrets Manager uses the Amazon Web Services managed key
+    /// <c>aws/secretsmanager</c>. If this key doesn't already exist in your account, then Secrets Manager
+    /// creates it for you automatically. All users and roles in the Amazon Web Services account
+    /// automatically have access to use <c>aws/secretsmanager</c>. Creating <c>aws/secretsmanager</c> can
+    /// result in a one-time significant delay in returning the result.
+    /// </para>
+    /// <para>
+    /// If the secret is in a different Amazon Web Services account from the credentials calling the API,
+    /// then you can't use <c>aws/secretsmanager</c> to encrypt the secret, and you must create and use a
+    /// customer managed KMS key.
+    /// </para>
+    /// <para>
+    /// Secrets Manager generates a CloudTrail log entry when you call this action. Do not include sensitive
+    /// information in request parameters except <c>SecretBinary</c> or <c>SecretString</c> because it might
+    /// be logged. For more information, see
+    /// <see href="https://docs.aws.amazon.com/secretsmanager/latest/userguide/retrieve-ct-entries.html">Logging
+    /// Secrets Manager events with CloudTrail</see>.
+    /// </para>
+    /// <para>
+    /// <b>Required permissions: </b> <c>secretsmanager:CreateSecret</c>. If you include tags in the secret,
+    /// you also need <c>secretsmanager:TagResource</c>. To add replica Regions, you must also have
+    /// <c>secretsmanager:ReplicateSecretToRegions</c>. For more information, see
+    /// <see href="https://docs.aws.amazon.com/secretsmanager/latest/userguide/reference_iam-permissions.html#reference_iam-permissions_actions">IAM
+    /// policy actions for Secrets Manager</see> and
+    /// <see href="https://docs.aws.amazon.com/secretsmanager/latest/userguide/auth-and-access.html">Authentication
+    /// and access control in Secrets Manager</see>.
+    /// </para>
+    /// <para>
+    /// To encrypt the secret with a KMS key other than <c>aws/secretsmanager</c>, you need
+    /// <c>kms:GenerateDataKey</c> and <c>kms:Decrypt</c> permission to the key.
+    /// </para>
+    /// <para>
+    /// <b>Important:</b> When you enter commands in a command shell, there is a risk of the command history
+    /// being accessed or utilities having access to your command parameters. This is a concern if the
+    /// command includes the value of a secret. Learn how to
+    /// <see href="https://docs.aws.amazon.com/secretsmanager/latest/userguide/security_cli-exposure-risks.html">Mitigate
+    /// the risks of using command-line tools to store Secrets Manager secrets</see>.
+    /// </para>
+    /// </summary>
+    public static Task<CreateSecretOutput> CreateSecretAsync(
+        this ISecretsmanagerClient client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.CreateSecretAsync(new CreateSecretInput(), cancellationToken);
+    }
+
+    /// <summary>
+    /// <para>
+    /// Deletes the resource-based permission policy attached to the secret. To attach a policy to a secret,
+    /// use PutResourcePolicy.
+    /// </para>
+    /// <para>
+    /// Secrets Manager generates a CloudTrail log entry when you call this action. Do not include sensitive
+    /// information in request parameters because it might be logged. For more information, see
+    /// <see href="https://docs.aws.amazon.com/secretsmanager/latest/userguide/retrieve-ct-entries.html">Logging
+    /// Secrets Manager events with CloudTrail</see>.
+    /// </para>
+    /// <para>
+    /// <b>Required permissions: </b> <c>secretsmanager:DeleteResourcePolicy</c>. For more information, see
+    /// <see href="https://docs.aws.amazon.com/secretsmanager/latest/userguide/reference_iam-permissions.html#reference_iam-permissions_actions">IAM
+    /// policy actions for Secrets Manager</see> and
+    /// <see href="https://docs.aws.amazon.com/secretsmanager/latest/userguide/auth-and-access.html">Authentication
+    /// and access control in Secrets Manager</see>.
+    /// </para>
+    /// </summary>
+    public static Task<DeleteResourcePolicyOutput> DeleteResourcePolicyAsync(
+        this ISecretsmanagerClient client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.DeleteResourcePolicyAsync(new DeleteResourcePolicyInput(), cancellationToken);
+    }
+
+    /// <summary>
+    /// <para>
+    /// Deletes a secret and all of its versions. You can specify a recovery window during which you can
+    /// restore the secret. The minimum recovery window is 7 days. The default recovery window is 30 days.
+    /// Secrets Manager attaches a <c>DeletionDate</c> stamp to the secret that specifies the end of the
+    /// recovery window. At the end of the recovery window, Secrets Manager deletes the secret permanently.
+    /// </para>
+    /// <para>
+    /// You can't delete a primary secret that is replicated to other Regions. You must first delete the
+    /// replicas using RemoveRegionsFromReplication, and then delete the primary secret. When you delete a
+    /// replica, it is deleted immediately.
+    /// </para>
+    /// <para>
+    /// You can't directly delete a version of a secret. Instead, you remove all staging labels from the
+    /// version using UpdateSecretVersionStage. This marks the version as deprecated, and then Secrets
+    /// Manager can automatically delete the version in the background.
+    /// </para>
+    /// <para>
+    /// To determine whether an application still uses a secret, you can create an Amazon CloudWatch alarm
+    /// to alert you to any attempts to access a secret during the recovery window. For more information,
+    /// see
+    /// <see href="https://docs.aws.amazon.com/secretsmanager/latest/userguide/monitoring_cloudwatch_deleted-secrets.html">Monitor
+    /// secrets scheduled for deletion</see>.
+    /// </para>
+    /// <para>
+    /// Secrets Manager performs the permanent secret deletion at the end of the waiting period as a
+    /// background task with low priority. There is no guarantee of a specific time after the recovery
+    /// window for the permanent delete to occur.
+    /// </para>
+    /// <para>
+    /// At any time before recovery window ends, you can use RestoreSecret to remove the <c>DeletionDate</c>
+    /// and cancel the deletion of the secret.
+    /// </para>
+    /// <para>
+    /// When a secret is scheduled for deletion, you cannot retrieve the secret value. You must first cancel
+    /// the deletion with RestoreSecret and then you can retrieve the secret.
+    /// </para>
+    /// <para>
+    /// Secrets Manager generates a CloudTrail log entry when you call this action. Do not include sensitive
+    /// information in request parameters because it might be logged. For more information, see
+    /// <see href="https://docs.aws.amazon.com/secretsmanager/latest/userguide/retrieve-ct-entries.html">Logging
+    /// Secrets Manager events with CloudTrail</see>.
+    /// </para>
+    /// <para>
+    /// <b>Required permissions: </b> <c>secretsmanager:DeleteSecret</c>. For more information, see
+    /// <see href="https://docs.aws.amazon.com/secretsmanager/latest/userguide/reference_iam-permissions.html#reference_iam-permissions_actions">IAM
+    /// policy actions for Secrets Manager</see> and
+    /// <see href="https://docs.aws.amazon.com/secretsmanager/latest/userguide/auth-and-access.html">Authentication
+    /// and access control in Secrets Manager</see>.
+    /// </para>
+    /// </summary>
+    public static Task<DeleteSecretOutput> DeleteSecretAsync(
+        this ISecretsmanagerClient client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.DeleteSecretAsync(new DeleteSecretInput(), cancellationToken);
+    }
+
+    /// <summary>
+    /// <para>
+    /// Retrieves the details of a secret. It does not include the encrypted secret value. Secrets Manager
+    /// only returns fields that have a value in the response.
+    /// </para>
+    /// <para>
+    /// Secrets Manager generates a CloudTrail log entry when you call this action. Do not include sensitive
+    /// information in request parameters because it might be logged. For more information, see
+    /// <see href="https://docs.aws.amazon.com/secretsmanager/latest/userguide/retrieve-ct-entries.html">Logging
+    /// Secrets Manager events with CloudTrail</see>.
+    /// </para>
+    /// <para>
+    /// <b>Required permissions: </b> <c>secretsmanager:DescribeSecret</c>. For more information, see
+    /// <see href="https://docs.aws.amazon.com/secretsmanager/latest/userguide/reference_iam-permissions.html#reference_iam-permissions_actions">IAM
+    /// policy actions for Secrets Manager</see> and
+    /// <see href="https://docs.aws.amazon.com/secretsmanager/latest/userguide/auth-and-access.html">Authentication
+    /// and access control in Secrets Manager</see>.
+    /// </para>
+    /// </summary>
+    public static Task<DescribeSecretOutput> DescribeSecretAsync(
+        this ISecretsmanagerClient client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.DescribeSecretAsync(new DescribeSecretInput(), cancellationToken);
+    }
+
+    /// <summary>
+    /// <para>
     /// Generates a random password. We recommend that you specify the maximum length and include every
     /// character type that the system you are generating a password for can support. By default, Secrets
     /// Manager uses uppercase and lowercase letters, numbers, and the following characters in passwords:
@@ -1508,6 +1744,149 @@ public static class SecretsmanagerClientExtensions
     {
         ArgumentNullException.ThrowIfNull(client);
         return client.GetRandomPasswordAsync(new GetRandomPasswordInput(), cancellationToken);
+    }
+
+    /// <summary>
+    /// <para>
+    /// Retrieves the JSON text of the resource-based policy document attached to the secret. For more
+    /// information about permissions policies attached to a secret, see
+    /// <see href="https://docs.aws.amazon.com/secretsmanager/latest/userguide/auth-and-access_resource-policies.html">Permissions
+    /// policies attached to a secret</see>.
+    /// </para>
+    /// <para>
+    /// Secrets Manager generates a CloudTrail log entry when you call this action. Do not include sensitive
+    /// information in request parameters because it might be logged. For more information, see
+    /// <see href="https://docs.aws.amazon.com/secretsmanager/latest/userguide/retrieve-ct-entries.html">Logging
+    /// Secrets Manager events with CloudTrail</see>.
+    /// </para>
+    /// <para>
+    /// <b>Required permissions: </b> <c>secretsmanager:GetResourcePolicy</c>. For more information, see
+    /// <see href="https://docs.aws.amazon.com/secretsmanager/latest/userguide/reference_iam-permissions.html#reference_iam-permissions_actions">IAM
+    /// policy actions for Secrets Manager</see> and
+    /// <see href="https://docs.aws.amazon.com/secretsmanager/latest/userguide/auth-and-access.html">Authentication
+    /// and access control in Secrets Manager</see>.
+    /// </para>
+    /// </summary>
+    public static Task<GetResourcePolicyOutput> GetResourcePolicyAsync(
+        this ISecretsmanagerClient client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.GetResourcePolicyAsync(new GetResourcePolicyInput(), cancellationToken);
+    }
+
+    /// <summary>
+    /// <para>
+    /// Retrieves the contents of the encrypted fields <c>SecretString</c> or <c>SecretBinary</c> from the
+    /// specified version of a secret, whichever contains content.
+    /// </para>
+    /// <para>
+    /// To retrieve the values for a group of secrets, call BatchGetSecretValue.
+    /// </para>
+    /// <para>
+    /// We recommend that you cache your secret values by using client-side caching. Caching secrets
+    /// improves speed and reduces your costs. For more information, see
+    /// <see href="https://docs.aws.amazon.com/secretsmanager/latest/userguide/retrieving-secrets.html">Cache
+    /// secrets for your applications</see>.
+    /// </para>
+    /// <para>
+    /// To retrieve the previous version of a secret, use <c>VersionStage</c> and specify AWSPREVIOUS. To
+    /// revert to the previous version of a secret, call
+    /// <see href="https://docs.aws.amazon.com/cli/latest/reference/secretsmanager/update-secret-version-stage.html">UpdateSecretVersionStage</see>.
+    /// </para>
+    /// <para>
+    /// Secrets Manager generates a CloudTrail log entry when you call this action. Do not include sensitive
+    /// information in request parameters because it might be logged. For more information, see
+    /// <see href="https://docs.aws.amazon.com/secretsmanager/latest/userguide/retrieve-ct-entries.html">Logging
+    /// Secrets Manager events with CloudTrail</see>.
+    /// </para>
+    /// <para>
+    /// <b>Required permissions: </b> <c>secretsmanager:GetSecretValue</c>. If the secret is encrypted using
+    /// a customer-managed key instead of the Amazon Web Services managed key <c>aws/secretsmanager</c>,
+    /// then you also need <c>kms:Decrypt</c> permissions for that key. For more information, see
+    /// <see href="https://docs.aws.amazon.com/secretsmanager/latest/userguide/reference_iam-permissions.html#reference_iam-permissions_actions">IAM
+    /// policy actions for Secrets Manager</see> and
+    /// <see href="https://docs.aws.amazon.com/secretsmanager/latest/userguide/auth-and-access.html">Authentication
+    /// and access control in Secrets Manager</see>.
+    /// </para>
+    /// </summary>
+    public static Task<GetSecretValueOutput> GetSecretValueAsync(
+        this ISecretsmanagerClient client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.GetSecretValueAsync(new GetSecretValueInput(), cancellationToken);
+    }
+
+    /// <summary>
+    /// <para>
+    /// Lists the versions of a secret. Secrets Manager uses staging labels to indicate the different
+    /// versions of a secret. For more information, see
+    /// <see href="https://docs.aws.amazon.com/secretsmanager/latest/userguide/getting-started.html#term_version">Secrets
+    /// Manager concepts: Versions</see>.
+    /// </para>
+    /// <para>
+    /// To list the secrets in the account, use ListSecrets.
+    /// </para>
+    /// <para>
+    /// Secrets Manager generates a CloudTrail log entry when you call this action. Do not include sensitive
+    /// information in request parameters because it might be logged. For more information, see
+    /// <see href="https://docs.aws.amazon.com/secretsmanager/latest/userguide/retrieve-ct-entries.html">Logging
+    /// Secrets Manager events with CloudTrail</see>.
+    /// </para>
+    /// <para>
+    /// <b>Required permissions: </b> <c>secretsmanager:ListSecretVersionIds</c>. For more information, see
+    /// <see href="https://docs.aws.amazon.com/secretsmanager/latest/userguide/reference_iam-permissions.html#reference_iam-permissions_actions">IAM
+    /// policy actions for Secrets Manager</see> and
+    /// <see href="https://docs.aws.amazon.com/secretsmanager/latest/userguide/auth-and-access.html">Authentication
+    /// and access control in Secrets Manager</see>.
+    /// </para>
+    /// </summary>
+    public static Task<ListSecretVersionIdsOutput> ListSecretVersionIdsAsync(
+        this ISecretsmanagerClient client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.ListSecretVersionIdsAsync(new ListSecretVersionIdsInput(), cancellationToken);
+    }
+
+    /// <summary>
+    /// <para>
+    /// Lists the versions of a secret. Secrets Manager uses staging labels to indicate the different
+    /// versions of a secret. For more information, see
+    /// <see href="https://docs.aws.amazon.com/secretsmanager/latest/userguide/getting-started.html#term_version">Secrets
+    /// Manager concepts: Versions</see>.
+    /// </para>
+    /// <para>
+    /// To list the secrets in the account, use ListSecrets.
+    /// </para>
+    /// <para>
+    /// Secrets Manager generates a CloudTrail log entry when you call this action. Do not include sensitive
+    /// information in request parameters because it might be logged. For more information, see
+    /// <see href="https://docs.aws.amazon.com/secretsmanager/latest/userguide/retrieve-ct-entries.html">Logging
+    /// Secrets Manager events with CloudTrail</see>.
+    /// </para>
+    /// <para>
+    /// <b>Required permissions: </b> <c>secretsmanager:ListSecretVersionIds</c>. For more information, see
+    /// <see href="https://docs.aws.amazon.com/secretsmanager/latest/userguide/reference_iam-permissions.html#reference_iam-permissions_actions">IAM
+    /// policy actions for Secrets Manager</see> and
+    /// <see href="https://docs.aws.amazon.com/secretsmanager/latest/userguide/auth-and-access.html">Authentication
+    /// and access control in Secrets Manager</see>.
+    /// </para>
+    /// </summary>
+    public static IAsyncEnumerable<ListSecretVersionIdsOutput> ListSecretVersionIdsPagesAsync(
+        this ISecretsmanagerClient client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.ListSecretVersionIdsPagesAsync(
+            new ListSecretVersionIdsInput(),
+            cancellationToken
+        );
     }
 
     /// <summary>
@@ -1598,6 +1977,529 @@ public static class SecretsmanagerClientExtensions
     {
         ArgumentNullException.ThrowIfNull(client);
         return client.ListSecretsPagesAsync(new ListSecretsInput(), cancellationToken);
+    }
+
+    /// <summary>
+    /// <para>
+    /// Attaches a resource-based permission policy to a secret. A resource-based policy is optional. For
+    /// more information, see
+    /// <see href="https://docs.aws.amazon.com/secretsmanager/latest/userguide/auth-and-access.html">Authentication
+    /// and access control for Secrets Manager</see>
+    /// </para>
+    /// <para>
+    /// For information about attaching a policy in the console, see
+    /// <see href="https://docs.aws.amazon.com/secretsmanager/latest/userguide/auth-and-access_resource-based-policies.html">Attach
+    /// a permissions policy to a secret</see>.
+    /// </para>
+    /// <para>
+    /// Secrets Manager generates a CloudTrail log entry when you call this action. Do not include sensitive
+    /// information in request parameters because it might be logged. For more information, see
+    /// <see href="https://docs.aws.amazon.com/secretsmanager/latest/userguide/retrieve-ct-entries.html">Logging
+    /// Secrets Manager events with CloudTrail</see>.
+    /// </para>
+    /// <para>
+    /// <b>Required permissions: </b> <c>secretsmanager:PutResourcePolicy</c>. For more information, see
+    /// <see href="https://docs.aws.amazon.com/secretsmanager/latest/userguide/reference_iam-permissions.html#reference_iam-permissions_actions">IAM
+    /// policy actions for Secrets Manager</see> and
+    /// <see href="https://docs.aws.amazon.com/secretsmanager/latest/userguide/auth-and-access.html">Authentication
+    /// and access control in Secrets Manager</see>.
+    /// </para>
+    /// </summary>
+    public static Task<PutResourcePolicyOutput> PutResourcePolicyAsync(
+        this ISecretsmanagerClient client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.PutResourcePolicyAsync(new PutResourcePolicyInput(), cancellationToken);
+    }
+
+    /// <summary>
+    /// <para>
+    /// Creates a new version of your secret by creating a new encrypted value and attaching it to the
+    /// secret. version can contain a new <c>SecretString</c> value or a new <c>SecretBinary</c> value.
+    /// </para>
+    /// <para>
+    /// Do not call <c>PutSecretValue</c> at a sustained rate of more than once every 10 minutes. When you
+    /// update the secret value, Secrets Manager creates a new version of the secret. Secrets Manager keeps
+    /// 100 of the most recent versions, but it keeps <i>all</i> secret versions created in the last 24
+    /// hours. If you call <c>PutSecretValue</c> more than once every 10 minutes, you will create more
+    /// versions than Secrets Manager removes, and you will reach the quota for secret versions.
+    /// </para>
+    /// <para>
+    /// You can specify the staging labels to attach to the new version in <c>VersionStages</c>. If you
+    /// don't include <c>VersionStages</c>, then Secrets Manager automatically moves the staging label
+    /// <c>AWSCURRENT</c> to this version. If this operation creates the first version for the secret, then
+    /// Secrets Manager automatically attaches the staging label <c>AWSCURRENT</c> to it. If this operation
+    /// moves the staging label <c>AWSCURRENT</c> from another version to this version, then Secrets Manager
+    /// also automatically moves the staging label <c>AWSPREVIOUS</c> to the version that <c>AWSCURRENT</c>
+    /// was removed from.
+    /// </para>
+    /// <para>
+    /// This operation is idempotent. If you call this operation with a <c>ClientRequestToken</c> that
+    /// matches an existing version's VersionId, and you specify the same secret data, the operation
+    /// succeeds but does nothing. However, if the secret data is different, then the operation fails
+    /// because you can't modify an existing version; you can only create new ones.
+    /// </para>
+    /// <para>
+    /// Secrets Manager generates a CloudTrail log entry when you call this action. Do not include sensitive
+    /// information in request parameters except <c>SecretBinary</c>, <c>SecretString</c>, or
+    /// <c>RotationToken</c> because it might be logged. For more information, see
+    /// <see href="https://docs.aws.amazon.com/secretsmanager/latest/userguide/retrieve-ct-entries.html">Logging
+    /// Secrets Manager events with CloudTrail</see>.
+    /// </para>
+    /// <para>
+    /// <b>Required permissions: </b> <c>secretsmanager:PutSecretValue</c>. For more information, see
+    /// <see href="https://docs.aws.amazon.com/secretsmanager/latest/userguide/reference_iam-permissions.html#reference_iam-permissions_actions">IAM
+    /// policy actions for Secrets Manager</see> and
+    /// <see href="https://docs.aws.amazon.com/secretsmanager/latest/userguide/auth-and-access.html">Authentication
+    /// and access control in Secrets Manager</see>.
+    /// </para>
+    /// <para>
+    /// <b>Important:</b> When you enter commands in a command shell, there is a risk of the command history
+    /// being accessed or utilities having access to your command parameters. This is a concern if the
+    /// command includes the value of a secret. Learn how to
+    /// <see href="https://docs.aws.amazon.com/secretsmanager/latest/userguide/security_cli-exposure-risks.html">Mitigate
+    /// the risks of using command-line tools to store Secrets Manager secrets</see>.
+    /// </para>
+    /// </summary>
+    public static Task<PutSecretValueOutput> PutSecretValueAsync(
+        this ISecretsmanagerClient client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.PutSecretValueAsync(new PutSecretValueInput(), cancellationToken);
+    }
+
+    /// <summary>
+    /// <para>
+    /// For a secret that is replicated to other Regions, deletes the secret replicas from the Regions you
+    /// specify.
+    /// </para>
+    /// <para>
+    /// Secrets Manager generates a CloudTrail log entry when you call this action. Do not include sensitive
+    /// information in request parameters because it might be logged. For more information, see
+    /// <see href="https://docs.aws.amazon.com/secretsmanager/latest/userguide/retrieve-ct-entries.html">Logging
+    /// Secrets Manager events with CloudTrail</see>.
+    /// </para>
+    /// <para>
+    /// <b>Required permissions: </b> <c>secretsmanager:RemoveRegionsFromReplication</c>. For more
+    /// information, see
+    /// <see href="https://docs.aws.amazon.com/secretsmanager/latest/userguide/reference_iam-permissions.html#reference_iam-permissions_actions">IAM
+    /// policy actions for Secrets Manager</see> and
+    /// <see href="https://docs.aws.amazon.com/secretsmanager/latest/userguide/auth-and-access.html">Authentication
+    /// and access control in Secrets Manager</see>.
+    /// </para>
+    /// </summary>
+    public static Task<RemoveRegionsFromReplicationOutput> RemoveRegionsFromReplicationAsync(
+        this ISecretsmanagerClient client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.RemoveRegionsFromReplicationAsync(
+            new RemoveRegionsFromReplicationInput(),
+            cancellationToken
+        );
+    }
+
+    /// <summary>
+    /// <para>
+    /// Replicates the secret to a new Regions. See
+    /// <see href="https://docs.aws.amazon.com/secretsmanager/latest/userguide/create-manage-multi-region-secrets.html">Multi-Region
+    /// secrets</see>.
+    /// </para>
+    /// <para>
+    /// Secrets Manager generates a CloudTrail log entry when you call this action. Do not include sensitive
+    /// information in request parameters because it might be logged. For more information, see
+    /// <see href="https://docs.aws.amazon.com/secretsmanager/latest/userguide/retrieve-ct-entries.html">Logging
+    /// Secrets Manager events with CloudTrail</see>.
+    /// </para>
+    /// <para>
+    /// <b>Required permissions: </b> <c>secretsmanager:ReplicateSecretToRegions</c>. If the primary secret
+    /// is encrypted with a KMS key other than <c>aws/secretsmanager</c>, you also need <c>kms:Decrypt</c>
+    /// permission to the key. To encrypt the replicated secret with a KMS key other than
+    /// <c>aws/secretsmanager</c>, you need <c>kms:GenerateDataKey</c> and <c>kms:Encrypt</c> to the key.
+    /// For more information, see
+    /// <see href="https://docs.aws.amazon.com/secretsmanager/latest/userguide/reference_iam-permissions.html#reference_iam-permissions_actions">IAM
+    /// policy actions for Secrets Manager</see> and
+    /// <see href="https://docs.aws.amazon.com/secretsmanager/latest/userguide/auth-and-access.html">Authentication
+    /// and access control in Secrets Manager</see>.
+    /// </para>
+    /// </summary>
+    public static Task<ReplicateSecretToRegionsOutput> ReplicateSecretToRegionsAsync(
+        this ISecretsmanagerClient client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.ReplicateSecretToRegionsAsync(
+            new ReplicateSecretToRegionsInput(),
+            cancellationToken
+        );
+    }
+
+    /// <summary>
+    /// <para>
+    /// Cancels the scheduled deletion of a secret by removing the <c>DeletedDate</c> time stamp. You can
+    /// access a secret again after it has been restored.
+    /// </para>
+    /// <para>
+    /// Secrets Manager generates a CloudTrail log entry when you call this action. Do not include sensitive
+    /// information in request parameters because it might be logged. For more information, see
+    /// <see href="https://docs.aws.amazon.com/secretsmanager/latest/userguide/retrieve-ct-entries.html">Logging
+    /// Secrets Manager events with CloudTrail</see>.
+    /// </para>
+    /// <para>
+    /// <b>Required permissions: </b> <c>secretsmanager:RestoreSecret</c>. For more information, see
+    /// <see href="https://docs.aws.amazon.com/secretsmanager/latest/userguide/reference_iam-permissions.html#reference_iam-permissions_actions">IAM
+    /// policy actions for Secrets Manager</see> and
+    /// <see href="https://docs.aws.amazon.com/secretsmanager/latest/userguide/auth-and-access.html">Authentication
+    /// and access control in Secrets Manager</see>.
+    /// </para>
+    /// </summary>
+    public static Task<RestoreSecretOutput> RestoreSecretAsync(
+        this ISecretsmanagerClient client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.RestoreSecretAsync(new RestoreSecretInput(), cancellationToken);
+    }
+
+    /// <summary>
+    /// <para>
+    /// Configures and starts the asynchronous process of rotating the secret. For information about
+    /// rotation, see
+    /// <see href="https://docs.aws.amazon.com/secretsmanager/latest/userguide/rotating-secrets.html">Rotate
+    /// secrets</see> in the <i>Secrets Manager User Guide</i>. If you include the configuration parameters,
+    /// the operation sets the values for the secret and then immediately starts a rotation. If you don't
+    /// include the configuration parameters, the operation starts a rotation with the values already stored
+    /// in the secret.
+    /// </para>
+    /// <para>
+    /// When rotation is successful, the <c>AWSPENDING</c> staging label might be attached to the same
+    /// version as the <c>AWSCURRENT</c> version, or it might not be attached to any version. If the
+    /// <c>AWSPENDING</c> staging label is present but not attached to the same version as
+    /// <c>AWSCURRENT</c>, then any later invocation of <c>RotateSecret</c> assumes that a previous rotation
+    /// request is still in progress and returns an error. When rotation is unsuccessful, the
+    /// <c>AWSPENDING</c> staging label might be attached to an empty secret version. For more information,
+    /// see
+    /// <see href="https://docs.aws.amazon.com/secretsmanager/latest/userguide/troubleshoot_rotation.html">Troubleshoot
+    /// rotation</see> in the <i>Secrets Manager User Guide</i>.
+    /// </para>
+    /// <para>
+    /// Secrets Manager generates a CloudTrail log entry when you call this action. Do not include sensitive
+    /// information in request parameters because it might be logged. For more information, see
+    /// <see href="https://docs.aws.amazon.com/secretsmanager/latest/userguide/retrieve-ct-entries.html">Logging
+    /// Secrets Manager events with CloudTrail</see>.
+    /// </para>
+    /// <para>
+    /// <b>Required permissions: </b> <c>secretsmanager:RotateSecret</c>. For more information, see
+    /// <see href="https://docs.aws.amazon.com/secretsmanager/latest/userguide/reference_iam-permissions.html#reference_iam-permissions_actions">IAM
+    /// policy actions for Secrets Manager</see> and
+    /// <see href="https://docs.aws.amazon.com/secretsmanager/latest/userguide/auth-and-access.html">Authentication
+    /// and access control in Secrets Manager</see>. You also need <c>lambda:InvokeFunction</c> permissions
+    /// on the rotation function. For more information, see
+    /// <see href="https://docs.aws.amazon.com/secretsmanager/latest/userguide/rotating-secrets-required-permissions-function.html">Permissions
+    /// for rotation</see>.
+    /// </para>
+    /// </summary>
+    public static Task<RotateSecretOutput> RotateSecretAsync(
+        this ISecretsmanagerClient client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.RotateSecretAsync(new RotateSecretInput(), cancellationToken);
+    }
+
+    /// <summary>
+    /// <para>
+    /// Removes the link between the replica secret and the primary secret and promotes the replica to a
+    /// primary secret in the replica Region.
+    /// </para>
+    /// <para>
+    /// You must call this operation from the Region in which you want to promote the replica to a primary
+    /// secret.
+    /// </para>
+    /// <para>
+    /// Secrets Manager generates a CloudTrail log entry when you call this action. Do not include sensitive
+    /// information in request parameters because it might be logged. For more information, see
+    /// <see href="https://docs.aws.amazon.com/secretsmanager/latest/userguide/retrieve-ct-entries.html">Logging
+    /// Secrets Manager events with CloudTrail</see>.
+    /// </para>
+    /// <para>
+    /// <b>Required permissions: </b> <c>secretsmanager:StopReplicationToReplica</c>. For more information,
+    /// see
+    /// <see href="https://docs.aws.amazon.com/secretsmanager/latest/userguide/reference_iam-permissions.html#reference_iam-permissions_actions">IAM
+    /// policy actions for Secrets Manager</see> and
+    /// <see href="https://docs.aws.amazon.com/secretsmanager/latest/userguide/auth-and-access.html">Authentication
+    /// and access control in Secrets Manager</see>.
+    /// </para>
+    /// </summary>
+    public static Task<StopReplicationToReplicaOutput> StopReplicationToReplicaAsync(
+        this ISecretsmanagerClient client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.StopReplicationToReplicaAsync(
+            new StopReplicationToReplicaInput(),
+            cancellationToken
+        );
+    }
+
+    /// <summary>
+    /// <para>
+    /// Attaches tags to a secret. Tags consist of a key name and a value. Tags are part of the secret's
+    /// metadata. They are not associated with specific versions of the secret. This operation appends tags
+    /// to the existing list of tags.
+    /// </para>
+    /// <para>
+    /// For tag quotas and naming restrictions, see
+    /// <see href="https://docs.aws.amazon.com/general/latest/gr/arg.html#taged-reference-quotas">Service
+    /// quotas for Tagging</see> in the <i>Amazon Web Services General Reference guide</i>.
+    /// </para>
+    /// <para>
+    /// <b>Important:</b> If you use tags as part of your security strategy, then adding or removing a tag
+    /// can change permissions. If successfully completing this operation would result in you losing your
+    /// permissions for this secret, then the operation is blocked and returns an Access Denied error.
+    /// </para>
+    /// <para>
+    /// Secrets Manager generates a CloudTrail log entry when you call this action. Do not include sensitive
+    /// information in request parameters because it might be logged. For more information, see
+    /// <see href="https://docs.aws.amazon.com/secretsmanager/latest/userguide/retrieve-ct-entries.html">Logging
+    /// Secrets Manager events with CloudTrail</see>.
+    /// </para>
+    /// <para>
+    /// <b>Required permissions: </b> <c>secretsmanager:TagResource</c>. For more information, see
+    /// <see href="https://docs.aws.amazon.com/secretsmanager/latest/userguide/reference_iam-permissions.html#reference_iam-permissions_actions">IAM
+    /// policy actions for Secrets Manager</see> and
+    /// <see href="https://docs.aws.amazon.com/secretsmanager/latest/userguide/auth-and-access.html">Authentication
+    /// and access control in Secrets Manager</see>.
+    /// </para>
+    /// </summary>
+    public static Task<TagResourceOutput> TagResourceAsync(
+        this ISecretsmanagerClient client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.TagResourceAsync(new TagResourceInput(), cancellationToken);
+    }
+
+    /// <summary>
+    /// <para>
+    /// Removes specific tags from a secret.
+    /// </para>
+    /// <para>
+    /// This operation is idempotent. If a requested tag is not attached to the secret, no error is returned
+    /// and the secret metadata is unchanged.
+    /// </para>
+    /// <para>
+    /// <b>Important:</b> If you use tags as part of your security strategy, then removing a tag can change
+    /// permissions. If successfully completing this operation would result in you losing your permissions
+    /// for this secret, then the operation is blocked and returns an Access Denied error.
+    /// </para>
+    /// <para>
+    /// Secrets Manager generates a CloudTrail log entry when you call this action. Do not include sensitive
+    /// information in request parameters because it might be logged. For more information, see
+    /// <see href="https://docs.aws.amazon.com/secretsmanager/latest/userguide/retrieve-ct-entries.html">Logging
+    /// Secrets Manager events with CloudTrail</see>.
+    /// </para>
+    /// <para>
+    /// <b>Required permissions: </b> <c>secretsmanager:UntagResource</c>. For more information, see
+    /// <see href="https://docs.aws.amazon.com/secretsmanager/latest/userguide/reference_iam-permissions.html#reference_iam-permissions_actions">IAM
+    /// policy actions for Secrets Manager</see> and
+    /// <see href="https://docs.aws.amazon.com/secretsmanager/latest/userguide/auth-and-access.html">Authentication
+    /// and access control in Secrets Manager</see>.
+    /// </para>
+    /// </summary>
+    public static Task<UntagResourceOutput> UntagResourceAsync(
+        this ISecretsmanagerClient client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.UntagResourceAsync(new UntagResourceInput(), cancellationToken);
+    }
+
+    /// <summary>
+    /// <para>
+    /// Modifies the details of a secret, including metadata and the secret value. To change the secret
+    /// value, you can also use PutSecretValue.
+    /// </para>
+    /// <para>
+    /// To change the rotation configuration of a secret, use RotateSecret instead.
+    /// </para>
+    /// <para>
+    /// To change a secret so that it is managed by another service, you need to recreate the secret in that
+    /// service. See
+    /// <see href="https://docs.aws.amazon.com/secretsmanager/latest/userguide/service-linked-secrets.html">Secrets
+    /// Manager secrets managed by other Amazon Web Services services</see>.
+    /// </para>
+    /// <para>
+    /// We recommend you avoid calling <c>UpdateSecret</c> at a sustained rate of more than once every 10
+    /// minutes. When you call <c>UpdateSecret</c> to update the secret value, Secrets Manager creates a new
+    /// version of the secret. Secrets Manager removes outdated versions when there are more than 100, but
+    /// it does not remove versions created less than 24 hours ago. If you update the secret value more than
+    /// once every 10 minutes, you create more versions than Secrets Manager removes, and you will reach the
+    /// quota for secret versions.
+    /// </para>
+    /// <para>
+    /// If you include <c>SecretString</c> or <c>SecretBinary</c> to create a new secret version, Secrets
+    /// Manager automatically moves the staging label <c>AWSCURRENT</c> to the new version. Then it attaches
+    /// the label <c>AWSPREVIOUS</c> to the version that <c>AWSCURRENT</c> was removed from.
+    /// </para>
+    /// <para>
+    /// If you call this operation with a <c>ClientRequestToken</c> that matches an existing version's
+    /// <c>VersionId</c>, the operation results in an error. You can't modify an existing version, you can
+    /// only create a new version. To remove a version, remove all staging labels from it. See
+    /// UpdateSecretVersionStage.
+    /// </para>
+    /// <para>
+    /// Secrets Manager generates a CloudTrail log entry when you call this action. Do not include sensitive
+    /// information in request parameters except <c>SecretBinary</c> or <c>SecretString</c> because it might
+    /// be logged. For more information, see
+    /// <see href="https://docs.aws.amazon.com/secretsmanager/latest/userguide/retrieve-ct-entries.html">Logging
+    /// Secrets Manager events with CloudTrail</see>.
+    /// </para>
+    /// <para>
+    /// <b>Required permissions: </b> <c>secretsmanager:UpdateSecret</c>. For more information, see
+    /// <see href="https://docs.aws.amazon.com/secretsmanager/latest/userguide/reference_iam-permissions.html#reference_iam-permissions_actions">IAM
+    /// policy actions for Secrets Manager</see> and
+    /// <see href="https://docs.aws.amazon.com/secretsmanager/latest/userguide/auth-and-access.html">Authentication
+    /// and access control in Secrets Manager</see>. If you use a customer managed key, you must also have
+    /// <c>kms:GenerateDataKey</c>, <c>kms:Encrypt</c>, and <c>kms:Decrypt</c> permissions on the key. If
+    /// you change the KMS key and you don't have <c>kms:Encrypt</c> permission to the new key, Secrets
+    /// Manager does not re-encrypt existing secret versions with the new key. For more information, see
+    /// <see href="https://docs.aws.amazon.com/secretsmanager/latest/userguide/security-encryption.html">Secret
+    /// encryption and decryption</see>.
+    /// </para>
+    /// <para>
+    /// <b>Important:</b> When you enter commands in a command shell, there is a risk of the command history
+    /// being accessed or utilities having access to your command parameters. This is a concern if the
+    /// command includes the value of a secret. Learn how to
+    /// <see href="https://docs.aws.amazon.com/secretsmanager/latest/userguide/security_cli-exposure-risks.html">Mitigate
+    /// the risks of using command-line tools to store Secrets Manager secrets</see>.
+    /// </para>
+    /// </summary>
+    public static Task<UpdateSecretOutput> UpdateSecretAsync(
+        this ISecretsmanagerClient client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.UpdateSecretAsync(new UpdateSecretInput(), cancellationToken);
+    }
+
+    /// <summary>
+    /// <para>
+    /// Modifies the staging labels attached to a version of a secret. Secrets Manager uses staging labels
+    /// to track a version as it progresses through the secret rotation process. Each staging label can be
+    /// attached to only one version at a time. To add a staging label to a version when it is already
+    /// attached to another version, Secrets Manager first removes it from the other version first and then
+    /// attaches it to this one. For more information about versions and staging labels, see
+    /// <see href="https://docs.aws.amazon.com/secretsmanager/latest/userguide/getting-started.html#term_version">Concepts:
+    /// Version</see>.
+    /// </para>
+    /// <para>
+    /// The staging labels that you specify in the <c>VersionStage</c> parameter are added to the existing
+    /// list of staging labels for the version.
+    /// </para>
+    /// <para>
+    /// You can move the <c>AWSCURRENT</c> staging label to this version by including it in this call.
+    /// </para>
+    /// <para>
+    /// <b>Note:</b> Whenever you move <c>AWSCURRENT</c>, Secrets Manager automatically moves the label
+    /// <c>AWSPREVIOUS</c> to the version that <c>AWSCURRENT</c> was removed from.
+    /// </para>
+    /// <para>
+    /// If this action results in the last label being removed from a version, then the version is
+    /// considered to be 'deprecated' and can be deleted by Secrets Manager.
+    /// </para>
+    /// <para>
+    /// Secrets Manager generates a CloudTrail log entry when you call this action. Do not include sensitive
+    /// information in request parameters because it might be logged. For more information, see
+    /// <see href="https://docs.aws.amazon.com/secretsmanager/latest/userguide/retrieve-ct-entries.html">Logging
+    /// Secrets Manager events with CloudTrail</see>.
+    /// </para>
+    /// <para>
+    /// <b>Required permissions: </b> <c>secretsmanager:UpdateSecretVersionStage</c>. For more information,
+    /// see
+    /// <see href="https://docs.aws.amazon.com/secretsmanager/latest/userguide/reference_iam-permissions.html#reference_iam-permissions_actions">IAM
+    /// policy actions for Secrets Manager</see> and
+    /// <see href="https://docs.aws.amazon.com/secretsmanager/latest/userguide/auth-and-access.html">Authentication
+    /// and access control in Secrets Manager</see>.
+    /// </para>
+    /// </summary>
+    public static Task<UpdateSecretVersionStageOutput> UpdateSecretVersionStageAsync(
+        this ISecretsmanagerClient client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.UpdateSecretVersionStageAsync(
+            new UpdateSecretVersionStageInput(),
+            cancellationToken
+        );
+    }
+
+    /// <summary>
+    /// <para>
+    /// Validates that a resource policy does not grant a wide range of principals access to your secret. A
+    /// resource-based policy is optional for secrets.
+    /// </para>
+    /// <para>
+    /// The API performs three checks when validating the policy:
+    /// </para>
+    /// <list type="bullet">
+    /// <item>
+    /// <description>
+    /// Sends a call to
+    /// <see href="https://aws.amazon.com/blogs/security/protect-sensitive-data-in-the-cloud-with-automated-reasoning-zelkova/">Zelkova</see>,
+    /// an automated reasoning engine, to ensure your resource policy does not allow broad access to your
+    /// secret, for example policies that use a wildcard for the principal.
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <description>
+    /// Checks for correct syntax in a policy.
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <description>
+    /// Verifies the policy does not lock out a caller.
+    /// </description>
+    /// </item>
+    /// </list>
+    /// <para>
+    /// Secrets Manager generates a CloudTrail log entry when you call this action. Do not include sensitive
+    /// information in request parameters because it might be logged. For more information, see
+    /// <see href="https://docs.aws.amazon.com/secretsmanager/latest/userguide/retrieve-ct-entries.html">Logging
+    /// Secrets Manager events with CloudTrail</see>.
+    /// </para>
+    /// <para>
+    /// <b>Required permissions: </b> <c>secretsmanager:ValidateResourcePolicy</c> and
+    /// <c>secretsmanager:PutResourcePolicy</c>. For more information, see
+    /// <see href="https://docs.aws.amazon.com/secretsmanager/latest/userguide/reference_iam-permissions.html#reference_iam-permissions_actions">IAM
+    /// policy actions for Secrets Manager</see> and
+    /// <see href="https://docs.aws.amazon.com/secretsmanager/latest/userguide/auth-and-access.html">Authentication
+    /// and access control in Secrets Manager</see>.
+    /// </para>
+    /// </summary>
+    public static Task<ValidateResourcePolicyOutput> ValidateResourcePolicyAsync(
+        this ISecretsmanagerClient client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.ValidateResourcePolicyAsync(
+            new ValidateResourcePolicyInput(),
+            cancellationToken
+        );
     }
 }
 
@@ -3133,7 +4035,7 @@ public sealed class SecretsmanagerClient : ISecretsmanagerClient
     /// The following example shows how to create a secret. The credentials stored in the encrypted secret value are retrieved from a file on disk named mycreds.json.
     /// </para>
     /// <code>
-    /// var input = new CreateSecretInput(Name: &quot;MyTestDatabaseSecret&quot;, ClientRequestToken: &quot;EXAMPLE1-90ab-cdef-fedc-ba987SECRET1&quot;, Description: &quot;My test database secret created with the CLI&quot;, SecretString: &quot;{\&quot;username\&quot;:\&quot;david\&quot;,\&quot;password\&quot;:\&quot;EXAMPLE-PASSWORD\&quot;}&quot;);
+    /// var input = new CreateSecretInput(ClientRequestToken: &quot;EXAMPLE1-90ab-cdef-fedc-ba987SECRET1&quot;, Description: &quot;My test database secret created with the CLI&quot;, Name: &quot;MyTestDatabaseSecret&quot;, SecretString: &quot;{\&quot;username\&quot;:\&quot;david\&quot;,\&quot;password\&quot;:\&quot;EXAMPLE-PASSWORD\&quot;}&quot;);
     /// var output = await client.CreateSecretAsync(input);
     ///
     /// // Expected output:
@@ -3462,7 +4364,7 @@ public sealed class SecretsmanagerClient : ISecretsmanagerClient
     /// The following example shows how to retrieve a list of all of the versions of a secret, including those without any staging labels.
     /// </para>
     /// <code>
-    /// var input = new ListSecretVersionIdsInput(SecretId: &quot;MyTestDatabaseSecret&quot;, IncludeDeprecated: true);
+    /// var input = new ListSecretVersionIdsInput(IncludeDeprecated: true, SecretId: &quot;MyTestDatabaseSecret&quot;);
     /// var output = await client.ListSecretVersionIdsAsync(input);
     ///
     /// // Expected output:
@@ -3743,7 +4645,7 @@ public sealed class SecretsmanagerClient : ISecretsmanagerClient
     /// The following example shows how to create a new version of the secret. Alternatively, you can use the update-secret command.
     /// </para>
     /// <code>
-    /// var input = new PutSecretValueInput(SecretId: &quot;MyTestDatabaseSecret&quot;, ClientRequestToken: &quot;EXAMPLE2-90ab-cdef-fedc-ba987EXAMPLE&quot;, SecretString: &quot;{\&quot;username\&quot;:\&quot;david\&quot;,\&quot;password\&quot;:\&quot;EXAMPLE-PASSWORD\&quot;}&quot;);
+    /// var input = new PutSecretValueInput(ClientRequestToken: &quot;EXAMPLE2-90ab-cdef-fedc-ba987EXAMPLE&quot;, SecretId: &quot;MyTestDatabaseSecret&quot;, SecretString: &quot;{\&quot;username\&quot;:\&quot;david\&quot;,\&quot;password\&quot;:\&quot;EXAMPLE-PASSWORD\&quot;}&quot;);
     /// var output = await client.PutSecretValueAsync(input);
     ///
     /// // Expected output:
@@ -3824,7 +4726,7 @@ public sealed class SecretsmanagerClient : ISecretsmanagerClient
     /// The following example replicates a secret to eu-west-3. The replica is encrypted with the AWS managed key aws/secretsmanager.
     /// </para>
     /// <code>
-    /// var input = new ReplicateSecretToRegionsInput(AddReplicaRegions: new ReplicaRegionType[] { new ReplicaRegionType(Region: &quot;eu-west-3&quot;) }, SecretId: &quot;MyTestSecret&quot;, ForceOverwriteReplicaSecret: true);
+    /// var input = new ReplicateSecretToRegionsInput(AddReplicaRegions: new ReplicaRegionType[] { new ReplicaRegionType(Region: &quot;eu-west-3&quot;) }, ForceOverwriteReplicaSecret: true, SecretId: &quot;MyTestSecret&quot;);
     /// var output = await client.ReplicateSecretToRegionsAsync(input);
     ///
     /// // Expected output:
@@ -3929,7 +4831,7 @@ public sealed class SecretsmanagerClient : ISecretsmanagerClient
     /// The following example configures rotation for a secret using a cron expression. The first rotation happens immediately after the changes are stored in the secret. The rotation schedule is the first and 15th day of every month. The rotation window begins at 4:00 PM UTC and ends at 6:00 PM.
     /// </para>
     /// <code>
-    /// var input = new RotateSecretInput(SecretId: &quot;MyTestDatabaseSecret&quot;, RotationLambdaARN: &quot;arn:aws:lambda:us-west-2:123456789012:function:MyTestDatabaseRotationLambda&quot;, RotationRules: new RotationRulesType(Duration: &quot;2h&quot;, ScheduleExpression: &quot;cron(0 16 1,15 * ? *)&quot;));
+    /// var input = new RotateSecretInput(RotationLambdaARN: &quot;arn:aws:lambda:us-west-2:123456789012:function:MyTestDatabaseRotationLambda&quot;, RotationRules: new RotationRulesType(Duration: &quot;2h&quot;, ScheduleExpression: &quot;cron(0 16 1,15 * ? *)&quot;), SecretId: &quot;MyTestDatabaseSecret&quot;);
     /// var output = await client.RotateSecretAsync(input);
     ///
     /// // Expected output:
@@ -4179,7 +5081,7 @@ public sealed class SecretsmanagerClient : ISecretsmanagerClient
     /// The following example shows how to modify the description of a secret.
     /// </para>
     /// <code>
-    /// var input = new UpdateSecretInput(SecretId: &quot;MyTestDatabaseSecret&quot;, ClientRequestToken: &quot;EXAMPLE1-90ab-cdef-fedc-ba987EXAMPLE&quot;, Description: &quot;This is a new description for the secret.&quot;);
+    /// var input = new UpdateSecretInput(ClientRequestToken: &quot;EXAMPLE1-90ab-cdef-fedc-ba987EXAMPLE&quot;, Description: &quot;This is a new description for the secret.&quot;, SecretId: &quot;MyTestDatabaseSecret&quot;);
     /// var output = await client.UpdateSecretAsync(input);
     ///
     /// // Expected output:
@@ -4194,7 +5096,7 @@ public sealed class SecretsmanagerClient : ISecretsmanagerClient
     /// This example shows how to update the KMS customer managed key (CMK) used to encrypt the secret value. The KMS CMK must be in the same region as the secret.
     /// </para>
     /// <code>
-    /// var input = new UpdateSecretInput(SecretId: &quot;MyTestDatabaseSecret&quot;, KmsKeyId: &quot;arn:aws:kms:us-west-2:123456789012:key/EXAMPLE2-90ab-cdef-fedc-ba987EXAMPLE&quot;);
+    /// var input = new UpdateSecretInput(KmsKeyId: &quot;arn:aws:kms:us-west-2:123456789012:key/EXAMPLE2-90ab-cdef-fedc-ba987EXAMPLE&quot;, SecretId: &quot;MyTestDatabaseSecret&quot;);
     /// var output = await client.UpdateSecretAsync(input);
     ///
     /// // Expected output:
@@ -4262,7 +5164,7 @@ public sealed class SecretsmanagerClient : ISecretsmanagerClient
     /// The following example shows you how to add a staging label to a version of a secret. You can review the results by running the operation ListSecretVersionIds and viewing the VersionStages response field for the affected version.
     /// </para>
     /// <code>
-    /// var input = new UpdateSecretVersionStageInput(SecretId: &quot;MyTestDatabaseSecret&quot;, VersionStage: &quot;STAGINGLABEL1&quot;, MoveToVersionId: &quot;EXAMPLE1-90ab-cdef-fedc-ba987SECRET1&quot;);
+    /// var input = new UpdateSecretVersionStageInput(MoveToVersionId: &quot;EXAMPLE1-90ab-cdef-fedc-ba987SECRET1&quot;, SecretId: &quot;MyTestDatabaseSecret&quot;, VersionStage: &quot;STAGINGLABEL1&quot;);
     /// var output = await client.UpdateSecretVersionStageAsync(input);
     ///
     /// // Expected output:
@@ -4277,7 +5179,7 @@ public sealed class SecretsmanagerClient : ISecretsmanagerClient
     /// The following example shows you how to delete a staging label that is attached to a version of a secret. You can review the results by running the operation ListSecretVersionIds and viewing the VersionStages response field for the affected version.
     /// </para>
     /// <code>
-    /// var input = new UpdateSecretVersionStageInput(SecretId: &quot;MyTestDatabaseSecret&quot;, VersionStage: &quot;STAGINGLABEL1&quot;, RemoveFromVersionId: &quot;EXAMPLE1-90ab-cdef-fedc-ba987SECRET1&quot;);
+    /// var input = new UpdateSecretVersionStageInput(RemoveFromVersionId: &quot;EXAMPLE1-90ab-cdef-fedc-ba987SECRET1&quot;, SecretId: &quot;MyTestDatabaseSecret&quot;, VersionStage: &quot;STAGINGLABEL1&quot;);
     /// var output = await client.UpdateSecretVersionStageAsync(input);
     ///
     /// // Expected output:
@@ -4292,7 +5194,7 @@ public sealed class SecretsmanagerClient : ISecretsmanagerClient
     /// The following example shows you how to move a staging label that is attached to one version of a secret to a different version. You can review the results by running the operation ListSecretVersionIds and viewing the VersionStages response field for the affected version.
     /// </para>
     /// <code>
-    /// var input = new UpdateSecretVersionStageInput(SecretId: &quot;MyTestDatabaseSecret&quot;, VersionStage: &quot;AWSCURRENT&quot;, MoveToVersionId: &quot;EXAMPLE2-90ab-cdef-fedc-ba987SECRET2&quot;, RemoveFromVersionId: &quot;EXAMPLE1-90ab-cdef-fedc-ba987SECRET1&quot;);
+    /// var input = new UpdateSecretVersionStageInput(MoveToVersionId: &quot;EXAMPLE2-90ab-cdef-fedc-ba987SECRET2&quot;, RemoveFromVersionId: &quot;EXAMPLE1-90ab-cdef-fedc-ba987SECRET1&quot;, SecretId: &quot;MyTestDatabaseSecret&quot;, VersionStage: &quot;AWSCURRENT&quot;);
     /// var output = await client.UpdateSecretVersionStageAsync(input);
     ///
     /// // Expected output:

@@ -10,7 +10,7 @@ namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class GetBucketIntelligentTieringConfigurationOutputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public global::Com.Amazonaws.S3.IntelligentTieringConfiguration? IntelligentTieringConfiguration { get; set; }
     }
@@ -78,7 +78,7 @@ public static partial class GetBucketIntelligentTieringConfigurationOutputSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

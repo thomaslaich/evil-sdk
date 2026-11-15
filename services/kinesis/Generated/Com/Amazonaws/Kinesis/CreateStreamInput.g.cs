@@ -9,12 +9,6 @@ namespace Com.Amazonaws.Kinesis;
 /// <summary>
 /// Represents the input for <c>CreateStream</c>.
 /// </summary>
-/// <param name="StreamName">
-/// A name to identify the stream. The stream name is scoped to the Amazon Web Services account used by
-/// the application that creates the stream. It is also scoped by Amazon Web Services Region. That is,
-/// two streams in two different Amazon Web Services accounts can have the same name. Two streams in the
-/// same Amazon Web Services account but in two different Regions can also have the same name.
-/// </param>
 /// <param name="MaxRecordSizeInKiB">
 /// The maximum record size of a single record in kibibyte (KiB) that you can write to, and read from a
 /// stream.
@@ -53,6 +47,12 @@ namespace Com.Amazonaws.Kinesis;
 /// between an <b>on-demand</b> capacity mode and a <b>provisioned</b> capacity mode for your data
 /// streams.
 /// </param>
+/// <param name="StreamName">
+/// A name to identify the stream. The stream name is scoped to the Amazon Web Services account used by
+/// the application that creates the stream. It is also scoped by Amazon Web Services Region. That is,
+/// two streams in two different Amazon Web Services accounts can have the same name. Two streams in the
+/// same Amazon Web Services account but in two different Regions can also have the same name.
+/// </param>
 /// <param name="Tags">
 /// A set of up to 50 key-value pairs to use to create the tags. A tag consists of a required key and an
 /// optional value.
@@ -62,11 +62,11 @@ namespace Com.Amazonaws.Kinesis;
 /// throughput capacity that will be immediately available for write operations.
 /// </param>
 public sealed record class CreateStreamInput(
-    string StreamName,
     int? MaxRecordSizeInKiB = null,
     global::Com.Amazonaws.Kinesis.RecordDistributionStrategy? RecordDistributionStrategy = null,
     int? ShardCount = null,
     global::Com.Amazonaws.Kinesis.StreamModeDetails? StreamModeDetails = null,
+    string? StreamName = null,
     IReadOnlyDictionary<string, string>? Tags = null,
     int? WarmThroughputMiBps = null
 );

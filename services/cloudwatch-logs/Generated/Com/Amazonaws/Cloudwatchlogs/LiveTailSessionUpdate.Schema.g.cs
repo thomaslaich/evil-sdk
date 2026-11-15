@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Cloudwatchlogs.Schemas;
 
 public static partial class LiveTailSessionUpdateSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public global::Com.Amazonaws.Cloudwatchlogs.LiveTailSessionMetadata? SessionMetadata { get; set; }
         public IReadOnlyList<global::Com.Amazonaws.Cloudwatchlogs.LiveTailSessionLogEvent>? SessionResults { get; set; }
@@ -70,7 +70,7 @@ public static partial class LiveTailSessionUpdateSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

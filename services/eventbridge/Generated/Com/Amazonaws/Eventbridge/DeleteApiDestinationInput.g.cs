@@ -10,4 +10,4 @@ namespace Com.Amazonaws.Eventbridge;
 /// <param name="Name">
 /// The name of the destination to delete.
 /// </param>
-public sealed record class DeleteApiDestinationInput(string Name);
+public sealed record class DeleteApiDestinationInput(string? Name = null);

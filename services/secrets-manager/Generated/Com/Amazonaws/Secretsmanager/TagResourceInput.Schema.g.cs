@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Secretsmanager.Schemas;
 
 public static partial class TagResourceInputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? SecretId { get; set; }
         public IReadOnlyList<global::Com.Amazonaws.Secretsmanager.Tag>? Tags { get; set; }
@@ -28,7 +28,6 @@ public static partial class TagResourceInputSchema
                 new(
                     "SecretId",
                     Target0,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
@@ -41,24 +40,9 @@ public static partial class TagResourceInputSchema
                                 }
                             )
                         ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
                     ]
                 ),
-                new(
-                    "Tags",
-                    Target1,
-                    isRequired: true,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
-                    ]
-                ),
+                new("Tags", Target1),
             ],
             [
                 new Trait(
@@ -87,8 +71,8 @@ public static partial class TagResourceInputSchema
             Builder builder
         ) =>
             new global::Com.Amazonaws.Secretsmanager.TagResourceInput(
-                builder.SecretId ?? throw new MissingRequiredMemberException("SecretId"),
-                builder.Tags ?? throw new MissingRequiredMemberException("Tags")
+                builder.SecretId,
+                builder.Tags
             );
 
         public override void SerializeMembers<TSerializer>(
@@ -114,7 +98,7 @@ public static partial class TagResourceInputSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

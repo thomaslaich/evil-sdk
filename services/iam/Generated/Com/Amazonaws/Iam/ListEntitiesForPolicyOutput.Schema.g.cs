@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Iam.Schemas;
 
 public static partial class ListEntitiesForPolicyOutputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public IReadOnlyList<global::Com.Amazonaws.Iam.PolicyGroup>? PolicyGroups { get; set; }
         public IReadOnlyList<global::Com.Amazonaws.Iam.PolicyUser>? PolicyUsers { get; set; }
@@ -133,7 +133,7 @@ public static partial class ListEntitiesForPolicyOutputSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

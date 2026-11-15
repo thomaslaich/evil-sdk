@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Cloudwatchlogs.Schemas;
 
 public static partial class CreateScheduledQueryInputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? Name { get; set; }
         public string? Description { get; set; }
@@ -41,7 +41,6 @@ public static partial class CreateScheduledQueryInputSchema
                 new(
                     "name",
                     Target0,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
@@ -53,10 +52,6 @@ public static partial class CreateScheduledQueryInputSchema
                                     { "max", Document.From(300m) },
                                 }
                             )
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
                         ),
                     ]
                 ),
@@ -77,22 +72,10 @@ public static partial class CreateScheduledQueryInputSchema
                         ),
                     ]
                 ),
-                new(
-                    "queryLanguage",
-                    Target2,
-                    isRequired: true,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
-                    ]
-                ),
+                new("queryLanguage", Target2),
                 new(
                     "queryString",
                     Target3,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
@@ -105,17 +88,12 @@ public static partial class CreateScheduledQueryInputSchema
                                 }
                             )
                         ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
                     ]
                 ),
                 new("logGroupIdentifiers", Target4),
                 new(
                     "scheduleExpression",
                     Target5,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
@@ -127,10 +105,6 @@ public static partial class CreateScheduledQueryInputSchema
                                     { "max", Document.From(256m) },
                                 }
                             )
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
                         ),
                     ]
                 ),
@@ -207,7 +181,6 @@ public static partial class CreateScheduledQueryInputSchema
                 new(
                     "executionRoleArn",
                     Target12,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
@@ -215,10 +188,6 @@ public static partial class CreateScheduledQueryInputSchema
                             Document.From(
                                 new Dictionary<string, Document> { { "min", Document.From(1m) } }
                             )
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
                         ),
                     ]
                 ),
@@ -298,18 +267,16 @@ public static partial class CreateScheduledQueryInputSchema
             Builder builder
         ) =>
             new global::Com.Amazonaws.Cloudwatchlogs.CreateScheduledQueryInput(
-                builder.ExecutionRoleArn
-                    ?? throw new MissingRequiredMemberException("executionRoleArn"),
-                builder.Name ?? throw new MissingRequiredMemberException("name"),
-                builder.QueryLanguage ?? throw new MissingRequiredMemberException("queryLanguage"),
-                builder.QueryString ?? throw new MissingRequiredMemberException("queryString"),
-                builder.ScheduleExpression
-                    ?? throw new MissingRequiredMemberException("scheduleExpression"),
                 builder.Description,
                 builder.DestinationConfiguration,
                 builder.EndTimeOffset,
+                builder.ExecutionRoleArn,
                 builder.LogGroupIdentifiers,
+                builder.Name,
+                builder.QueryLanguage,
+                builder.QueryString,
                 builder.ScheduleEndTime,
+                builder.ScheduleExpression,
                 builder.ScheduleStartTime,
                 builder.StartTimeOffset,
                 builder.State,
@@ -338,7 +305,14 @@ public static partial class CreateScheduledQueryInputSchema
             {
                 serializer.WriteNull(1);
             }
-            serializer.WriteStringEnum(2, value.QueryLanguage.Value);
+            if (value.QueryLanguage is { } value2)
+            {
+                serializer.WriteStringEnum(2, value2.Value);
+            }
+            else
+            {
+                serializer.WriteNull(2);
+            }
             if (value.QueryString is { } value3)
             {
                 serializer.WriteString(3, value3);
@@ -437,7 +411,7 @@ public static partial class CreateScheduledQueryInputSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

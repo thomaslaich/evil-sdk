@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Sns.Schemas;
 
 public static partial class SMSSandboxPhoneNumberSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? PhoneNumber { get; set; }
         public global::Com.Amazonaws.Sns.SMSSandboxPhoneNumberVerificationStatus? Status { get; set; }
@@ -95,7 +95,7 @@ public static partial class SMSSandboxPhoneNumberSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

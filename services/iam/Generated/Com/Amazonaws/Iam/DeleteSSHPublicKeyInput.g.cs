@@ -26,4 +26,7 @@ namespace Com.Amazonaws.Iam;
 /// can also include any of the following characters: _+=,.@-
 /// </para>
 /// </param>
-public sealed record class DeleteSSHPublicKeyInput(string SSHPublicKeyId, string UserName);
+public sealed record class DeleteSSHPublicKeyInput(
+    string? SSHPublicKeyId = null,
+    string? UserName = null
+);

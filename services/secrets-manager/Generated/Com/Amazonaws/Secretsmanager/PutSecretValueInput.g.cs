@@ -9,19 +9,6 @@ namespace Com.Amazonaws.Secretsmanager;
 /// <summary>
 /// Represents the Smithy structure com.amazonaws.secretsmanager#PutSecretValueInput.
 /// </summary>
-/// <param name="SecretId">
-/// <para>
-/// The ARN or name of the secret to add a new version to.
-/// </para>
-/// <para>
-/// For an ARN, we recommend that you specify a complete ARN rather than a partial ARN. See
-/// <see href="https://docs.aws.amazon.com/secretsmanager/latest/userguide/troubleshoot.html#ARN_secretnamehyphen">Finding
-/// a secret from a partial ARN</see>.
-/// </para>
-/// <para>
-/// If the secret doesn't already exist, use <c>CreateSecret</c> instead.
-/// </para>
-/// </param>
 /// <param name="ClientRequestToken">
 /// <para>
 /// A unique identifier for the new version of the secret.
@@ -104,6 +91,19 @@ namespace Com.Amazonaws.Secretsmanager;
 /// information in this field.
 /// </para>
 /// </param>
+/// <param name="SecretId">
+/// <para>
+/// The ARN or name of the secret to add a new version to.
+/// </para>
+/// <para>
+/// For an ARN, we recommend that you specify a complete ARN rather than a partial ARN. See
+/// <see href="https://docs.aws.amazon.com/secretsmanager/latest/userguide/troubleshoot.html#ARN_secretnamehyphen">Finding
+/// a secret from a partial ARN</see>.
+/// </para>
+/// <para>
+/// If the secret doesn't already exist, use <c>CreateSecret</c> instead.
+/// </para>
+/// </param>
 /// <param name="SecretString">
 /// <para>
 /// The text to encrypt and store in the new version of the secret.
@@ -138,10 +138,10 @@ namespace Com.Amazonaws.Secretsmanager;
 /// </para>
 /// </param>
 public sealed record class PutSecretValueInput(
-    string SecretId,
     string? ClientRequestToken = null,
     string? RotationToken = null,
     byte[]? SecretBinary = null,
+    string? SecretId = null,
     string? SecretString = null,
     IReadOnlyList<string>? VersionStages = null
 );

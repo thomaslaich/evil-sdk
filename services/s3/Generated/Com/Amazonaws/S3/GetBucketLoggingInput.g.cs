@@ -15,4 +15,7 @@ namespace Com.Amazonaws.S3;
 /// actual owner of the bucket, the request fails with the HTTP status code <c>403 Forbidden</c> (access
 /// denied).
 /// </param>
-public sealed record class GetBucketLoggingInput(string Bucket, string? ExpectedBucketOwner = null);
+public sealed record class GetBucketLoggingInput(
+    string? Bucket = null,
+    string? ExpectedBucketOwner = null
+);

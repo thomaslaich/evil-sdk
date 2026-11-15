@@ -10,4 +10,4 @@ namespace Com.Amazonaws.Cloudwatchlogs;
 /// <param name="Name">
 /// The name of the delivery destination that you want to retrieve.
 /// </param>
-public sealed record class GetDeliveryDestinationInput(string Name);
+public sealed record class GetDeliveryDestinationInput(string? Name = null);

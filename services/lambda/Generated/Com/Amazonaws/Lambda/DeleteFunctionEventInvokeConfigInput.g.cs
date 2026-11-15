@@ -40,6 +40,6 @@ namespace Com.Amazonaws.Lambda;
 /// A version number or alias name.
 /// </param>
 public sealed record class DeleteFunctionEventInvokeConfigInput(
-    string FunctionName,
+    string? FunctionName = null,
     string? Qualifier = null
 );

@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Sns.Schemas;
 
 public static partial class CreatePlatformEndpointInputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? PlatformApplicationArn { get; set; }
         public string? Token { get; set; }
@@ -27,30 +27,8 @@ public static partial class CreatePlatformEndpointInputSchema
         : StructSchema<global::Com.Amazonaws.Sns.CreatePlatformEndpointInput, Builder>(
             ShapeId.Parse("com.amazonaws.sns#CreatePlatformEndpointInput"),
             [
-                new(
-                    "PlatformApplicationArn",
-                    Target0,
-                    isRequired: true,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
-                    ]
-                ),
-                new(
-                    "Token",
-                    Target1,
-                    isRequired: true,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
-                    ]
-                ),
+                new("PlatformApplicationArn", Target0),
+                new("Token", Target1),
                 new("CustomUserData", Target2),
                 new("Attributes", Target3),
             ],
@@ -87,11 +65,10 @@ public static partial class CreatePlatformEndpointInputSchema
             Builder builder
         ) =>
             new global::Com.Amazonaws.Sns.CreatePlatformEndpointInput(
-                builder.PlatformApplicationArn
-                    ?? throw new MissingRequiredMemberException("PlatformApplicationArn"),
-                builder.Token ?? throw new MissingRequiredMemberException("Token"),
                 builder.Attributes,
-                builder.CustomUserData
+                builder.CustomUserData,
+                builder.PlatformApplicationArn,
+                builder.Token
             );
 
         public override void SerializeMembers<TSerializer>(
@@ -133,7 +110,7 @@ public static partial class CreatePlatformEndpointInputSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

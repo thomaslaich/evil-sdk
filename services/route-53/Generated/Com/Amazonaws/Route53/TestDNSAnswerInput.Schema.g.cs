@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Route53.Schemas;
 
 public static partial class TestDNSAnswerInputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? HostedZoneId { get; set; }
         public string? RecordName { get; set; }
@@ -32,7 +32,6 @@ public static partial class TestDNSAnswerInputSchema
                 new(
                     "HostedZoneId",
                     Target0,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
@@ -49,16 +48,11 @@ public static partial class TestDNSAnswerInputSchema
                                 }
                             )
                         ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
                     ]
                 ),
                 new(
                     "RecordName",
                     Target1,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
@@ -75,25 +69,16 @@ public static partial class TestDNSAnswerInputSchema
                                 }
                             )
                         ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
                     ]
                 ),
                 new(
                     "RecordType",
                     Target2,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
                             ShapeId.Parse("smithy.api#httpQuery"),
                             Document.From("recordtype")
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
                         ),
                     ]
                 ),
@@ -212,11 +197,11 @@ public static partial class TestDNSAnswerInputSchema
 
         public override global::Com.Amazonaws.Route53.TestDNSAnswerInput Build(Builder builder) =>
             new global::Com.Amazonaws.Route53.TestDNSAnswerInput(
-                builder.HostedZoneId ?? throw new MissingRequiredMemberException("HostedZoneId"),
-                builder.RecordName ?? throw new MissingRequiredMemberException("RecordName"),
-                builder.RecordType ?? throw new MissingRequiredMemberException("RecordType"),
                 builder.EDNS0ClientSubnetIP,
                 builder.EDNS0ClientSubnetMask,
+                builder.HostedZoneId,
+                builder.RecordName,
+                builder.RecordType,
                 builder.ResolverIP
             );
 
@@ -241,7 +226,14 @@ public static partial class TestDNSAnswerInputSchema
             {
                 serializer.WriteNull(1);
             }
-            serializer.WriteStringEnum(2, value.RecordType.Value);
+            if (value.RecordType is { } value2)
+            {
+                serializer.WriteStringEnum(2, value2.Value);
+            }
+            else
+            {
+                serializer.WriteNull(2);
+            }
             if (value.ResolverIP is { } value3)
             {
                 serializer.WriteString(3, value3);
@@ -268,7 +260,7 @@ public static partial class TestDNSAnswerInputSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

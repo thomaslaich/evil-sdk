@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Sqs.Schemas;
 
 public static partial class DeleteMessageInputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? QueueUrl { get; set; }
         public string? ReceiptHandle { get; set; }
@@ -24,32 +24,7 @@ public static partial class DeleteMessageInputSchema
     private sealed class GeneratedSchema()
         : StructSchema<global::Com.Amazonaws.Sqs.DeleteMessageInput, Builder>(
             ShapeId.Parse("com.amazonaws.sqs#DeleteMessageInput"),
-            [
-                new(
-                    "QueueUrl",
-                    Target0,
-                    isRequired: true,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
-                    ]
-                ),
-                new(
-                    "ReceiptHandle",
-                    Target1,
-                    isRequired: true,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
-                    ]
-                ),
-            ],
+            [new("QueueUrl", Target0), new("ReceiptHandle", Target1)],
             [
                 new Trait(
                     ShapeId.Parse("smithy.api#input"),
@@ -75,8 +50,8 @@ public static partial class DeleteMessageInputSchema
 
         public override global::Com.Amazonaws.Sqs.DeleteMessageInput Build(Builder builder) =>
             new global::Com.Amazonaws.Sqs.DeleteMessageInput(
-                builder.QueueUrl ?? throw new MissingRequiredMemberException("QueueUrl"),
-                builder.ReceiptHandle ?? throw new MissingRequiredMemberException("ReceiptHandle")
+                builder.QueueUrl,
+                builder.ReceiptHandle
             );
 
         public override void SerializeMembers<TSerializer>(
@@ -102,7 +77,7 @@ public static partial class DeleteMessageInputSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

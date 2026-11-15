@@ -10,4 +10,4 @@ namespace Com.Amazonaws.Sns;
 /// <param name="PhoneNumber">
 /// The phone number to opt in. Use E.164 format.
 /// </param>
-public sealed record class OptInPhoneNumberInput(string PhoneNumber);
+public sealed record class OptInPhoneNumberInput(string? PhoneNumber = null);

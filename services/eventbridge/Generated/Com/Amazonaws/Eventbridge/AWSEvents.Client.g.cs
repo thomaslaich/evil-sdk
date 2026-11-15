@@ -1056,6 +1056,414 @@ public interface IAWSEventsClient : IDisposable
 public static class AWSEventsClientExtensions
 {
     /// <summary>
+    /// Activates a partner event source that has been deactivated. Once activated, your matching event bus
+    /// will start receiving events from the event source.
+    /// </summary>
+    public static Task<ActivateEventSourceOutput> ActivateEventSourceAsync(
+        this IAWSEventsClient client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.ActivateEventSourceAsync(new ActivateEventSourceInput(), cancellationToken);
+    }
+
+    /// <summary>
+    /// Cancels the specified replay.
+    /// </summary>
+    public static Task<CancelReplayOutput> CancelReplayAsync(
+        this IAWSEventsClient client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.CancelReplayAsync(new CancelReplayInput(), cancellationToken);
+    }
+
+    /// <summary>
+    /// <para>
+    /// Creates an API destination, which is an HTTP invocation endpoint configured as a target for events.
+    /// </para>
+    /// <para>
+    /// API destinations do not support private destinations, such as interface VPC endpoints.
+    /// </para>
+    /// <para>
+    /// For more information, see
+    /// <see href="https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-api-destinations.html">API
+    /// destinations</see> in the <i>EventBridge User Guide</i>.
+    /// </para>
+    /// </summary>
+    public static Task<CreateApiDestinationOutput> CreateApiDestinationAsync(
+        this IAWSEventsClient client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.CreateApiDestinationAsync(new CreateApiDestinationInput(), cancellationToken);
+    }
+
+    /// <summary>
+    /// <para>
+    /// Creates an archive of events with the specified settings. When you create an archive, incoming
+    /// events might not immediately start being sent to the archive. Allow a short period of time for
+    /// changes to take effect. If you do not specify a pattern to filter events sent to the archive, all
+    /// events are sent to the archive except replayed events. Replayed events are not sent to an archive.
+    /// </para>
+    /// <para>
+    /// <b>Important:</b> If you have specified that EventBridge use a customer managed key for encrypting
+    /// the source event bus, we strongly recommend you also specify a customer managed key for any archives
+    /// for the event bus as well.
+    /// </para>
+    /// <para>
+    /// For more information, see
+    /// <see href="https://docs.aws.amazon.com/eventbridge/latest/userguide/encryption-archives.html">Encrypting
+    /// archives</see> in the <i>Amazon EventBridge User Guide</i>.
+    /// </para>
+    /// </summary>
+    public static Task<CreateArchiveOutput> CreateArchiveAsync(
+        this IAWSEventsClient client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.CreateArchiveAsync(new CreateArchiveInput(), cancellationToken);
+    }
+
+    /// <summary>
+    /// <para>
+    /// Creates a connection. A connection defines the authorization type and credentials to use for
+    /// authorization with an API destination HTTP endpoint.
+    /// </para>
+    /// <para>
+    /// For more information, see
+    /// <see href="https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-target-connection.html">Connections
+    /// for endpoint targets</see> in the <i>Amazon EventBridge User Guide</i>.
+    /// </para>
+    /// </summary>
+    public static Task<CreateConnectionOutput> CreateConnectionAsync(
+        this IAWSEventsClient client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.CreateConnectionAsync(new CreateConnectionInput(), cancellationToken);
+    }
+
+    /// <summary>
+    /// Creates a global endpoint. Global endpoints improve your application's availability by making it
+    /// regional-fault tolerant. To do this, you define a primary and secondary Region with event buses in
+    /// each Region. You also create a Amazon Route 53 health check that will tell EventBridge to route
+    /// events to the secondary Region when an "unhealthy" state is encountered and events will be routed
+    /// back to the primary Region when the health check reports a "healthy" state.
+    /// </summary>
+    public static Task<CreateEndpointOutput> CreateEndpointAsync(
+        this IAWSEventsClient client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.CreateEndpointAsync(new CreateEndpointInput(), cancellationToken);
+    }
+
+    /// <summary>
+    /// Creates a new event bus within your account. This can be a custom event bus which you can use to
+    /// receive events from your custom applications and services, or it can be a partner event bus which
+    /// can be matched to a partner event source.
+    /// </summary>
+    public static Task<CreateEventBusOutput> CreateEventBusAsync(
+        this IAWSEventsClient client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.CreateEventBusAsync(new CreateEventBusInput(), cancellationToken);
+    }
+
+    /// <summary>
+    /// <para>
+    /// Called by an SaaS partner to create a partner event source. This operation is not used by Amazon Web
+    /// Services customers.
+    /// </para>
+    /// <para>
+    /// Each partner event source can be used by one Amazon Web Services account to create a matching
+    /// partner event bus in that Amazon Web Services account. A SaaS partner must create one partner event
+    /// source for each Amazon Web Services account that wants to receive those event types.
+    /// </para>
+    /// <para>
+    /// A partner event source creates events based on resources within the SaaS partner's service or
+    /// application.
+    /// </para>
+    /// <para>
+    /// An Amazon Web Services account that creates a partner event bus that matches the partner event
+    /// source can use that event bus to receive events from the partner, and then process them using Amazon
+    /// Web Services Events rules and targets.
+    /// </para>
+    /// <para>
+    /// Partner event source names follow this format:
+    /// </para>
+    /// <para>
+    /// <c> <i>partner_name</i>/<i>event_namespace</i>/<i>event_name</i> </c>
+    /// </para>
+    /// <list type="bullet">
+    /// <item>
+    /// <description>
+    /// <i>partner_name</i> is determined during partner registration, and identifies the partner to Amazon
+    /// Web Services customers.
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <description>
+    /// <i>event_namespace</i> is determined by the partner, and is a way for the partner to categorize
+    /// their events.
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <description>
+    /// <para>
+    /// <i>event_name</i> is determined by the partner, and should uniquely identify an event-generating
+    /// resource within the partner system.
+    /// </para>
+    /// <para>
+    /// The <i>event_name</i> must be unique across all Amazon Web Services customers. This is because the
+    /// event source is a shared resource between the partner and customer accounts, and each partner event
+    /// source unique in the partner account.
+    /// </para>
+    /// </description>
+    /// </item>
+    /// </list>
+    /// <para>
+    /// The combination of <i>event_namespace</i> and <i>event_name</i> should help Amazon Web Services
+    /// customers decide whether to create an event bus to receive these events.
+    /// </para>
+    /// </summary>
+    public static Task<CreatePartnerEventSourceOutput> CreatePartnerEventSourceAsync(
+        this IAWSEventsClient client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.CreatePartnerEventSourceAsync(
+            new CreatePartnerEventSourceInput(),
+            cancellationToken
+        );
+    }
+
+    /// <summary>
+    /// <para>
+    /// You can use this operation to temporarily stop receiving events from the specified partner event
+    /// source. The matching event bus is not deleted.
+    /// </para>
+    /// <para>
+    /// When you deactivate a partner event source, the source goes into PENDING state. If it remains in
+    /// PENDING state for more than two weeks, it is deleted.
+    /// </para>
+    /// <para>
+    /// To activate a deactivated partner event source, use
+    /// <see href="https://docs.aws.amazon.com/eventbridge/latest/APIReference/API_ActivateEventSource.html">ActivateEventSource</see>.
+    /// </para>
+    /// </summary>
+    public static Task<DeactivateEventSourceOutput> DeactivateEventSourceAsync(
+        this IAWSEventsClient client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.DeactivateEventSourceAsync(
+            new DeactivateEventSourceInput(),
+            cancellationToken
+        );
+    }
+
+    /// <summary>
+    /// Removes all authorization parameters from the connection. This lets you remove the secret from the
+    /// connection so you can reuse it without having to create a new connection.
+    /// </summary>
+    public static Task<DeauthorizeConnectionOutput> DeauthorizeConnectionAsync(
+        this IAWSEventsClient client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.DeauthorizeConnectionAsync(
+            new DeauthorizeConnectionInput(),
+            cancellationToken
+        );
+    }
+
+    /// <summary>
+    /// Deletes the specified API destination.
+    /// </summary>
+    public static Task<DeleteApiDestinationOutput> DeleteApiDestinationAsync(
+        this IAWSEventsClient client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.DeleteApiDestinationAsync(new DeleteApiDestinationInput(), cancellationToken);
+    }
+
+    /// <summary>
+    /// Deletes the specified archive.
+    /// </summary>
+    public static Task<DeleteArchiveOutput> DeleteArchiveAsync(
+        this IAWSEventsClient client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.DeleteArchiveAsync(new DeleteArchiveInput(), cancellationToken);
+    }
+
+    /// <summary>
+    /// Deletes a connection.
+    /// </summary>
+    public static Task<DeleteConnectionOutput> DeleteConnectionAsync(
+        this IAWSEventsClient client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.DeleteConnectionAsync(new DeleteConnectionInput(), cancellationToken);
+    }
+
+    /// <summary>
+    /// Delete an existing global endpoint. For more information about global endpoints, see
+    /// <see href="https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-global-endpoints.html">Making
+    /// applications Regional-fault tolerant with global endpoints and event replication</see> in the <i>
+    /// <i>Amazon EventBridge User Guide</i> </i>.
+    /// </summary>
+    public static Task<DeleteEndpointOutput> DeleteEndpointAsync(
+        this IAWSEventsClient client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.DeleteEndpointAsync(new DeleteEndpointInput(), cancellationToken);
+    }
+
+    /// <summary>
+    /// Deletes the specified custom event bus or partner event bus. All rules associated with this event
+    /// bus need to be deleted. You can't delete your account's default event bus.
+    /// </summary>
+    public static Task<DeleteEventBusOutput> DeleteEventBusAsync(
+        this IAWSEventsClient client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.DeleteEventBusAsync(new DeleteEventBusInput(), cancellationToken);
+    }
+
+    /// <summary>
+    /// <para>
+    /// This operation is used by SaaS partners to delete a partner event source. This operation is not used
+    /// by Amazon Web Services customers.
+    /// </para>
+    /// <para>
+    /// When you delete an event source, the status of the corresponding partner event bus in the Amazon Web
+    /// Services customer account becomes DELETED.
+    /// </para>
+    /// </summary>
+    public static Task<DeletePartnerEventSourceOutput> DeletePartnerEventSourceAsync(
+        this IAWSEventsClient client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.DeletePartnerEventSourceAsync(
+            new DeletePartnerEventSourceInput(),
+            cancellationToken
+        );
+    }
+
+    /// <summary>
+    /// <para>
+    /// Deletes the specified rule.
+    /// </para>
+    /// <para>
+    /// Before you can delete the rule, you must remove all targets, using
+    /// <see href="https://docs.aws.amazon.com/eventbridge/latest/APIReference/API_RemoveTargets.html">RemoveTargets</see>.
+    /// </para>
+    /// <para>
+    /// When you delete a rule, incoming events might continue to match to the deleted rule. Allow a short
+    /// period of time for changes to take effect.
+    /// </para>
+    /// <para>
+    /// If you call delete rule multiple times for the same rule, all calls will succeed. When you call
+    /// delete rule for a non-existent custom eventbus, <c>ResourceNotFoundException</c> is returned.
+    /// </para>
+    /// <para>
+    /// Managed rules are rules created and managed by another Amazon Web Services service on your behalf.
+    /// These rules are created by those other Amazon Web Services services to support functionality in
+    /// those services. You can delete these rules using the <c>Force</c> option, but you should do so only
+    /// if you are sure the other service is not still using that rule.
+    /// </para>
+    /// </summary>
+    public static Task<DeleteRuleOutput> DeleteRuleAsync(
+        this IAWSEventsClient client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.DeleteRuleAsync(new DeleteRuleInput(), cancellationToken);
+    }
+
+    /// <summary>
+    /// Retrieves details about an API destination.
+    /// </summary>
+    public static Task<DescribeApiDestinationOutput> DescribeApiDestinationAsync(
+        this IAWSEventsClient client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.DescribeApiDestinationAsync(
+            new DescribeApiDestinationInput(),
+            cancellationToken
+        );
+    }
+
+    /// <summary>
+    /// Retrieves details about an archive.
+    /// </summary>
+    public static Task<DescribeArchiveOutput> DescribeArchiveAsync(
+        this IAWSEventsClient client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.DescribeArchiveAsync(new DescribeArchiveInput(), cancellationToken);
+    }
+
+    /// <summary>
+    /// Retrieves details about a connection.
+    /// </summary>
+    public static Task<DescribeConnectionOutput> DescribeConnectionAsync(
+        this IAWSEventsClient client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.DescribeConnectionAsync(new DescribeConnectionInput(), cancellationToken);
+    }
+
+    /// <summary>
+    /// Get the information about an existing global endpoint. For more information about global endpoints,
+    /// see
+    /// <see href="https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-global-endpoints.html">Making
+    /// applications Regional-fault tolerant with global endpoints and event replication</see> in the <i>
+    /// <i>Amazon EventBridge User Guide</i> </i>.
+    /// </summary>
+    public static Task<DescribeEndpointOutput> DescribeEndpointAsync(
+        this IAWSEventsClient client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.DescribeEndpointAsync(new DescribeEndpointInput(), cancellationToken);
+    }
+
+    /// <summary>
     /// <para>
     /// Displays details about an event bus in your account. This can include the external Amazon Web
     /// Services accounts that are permitted to write events to your default event bus, and the associated
@@ -1078,6 +1486,111 @@ public static class AWSEventsClientExtensions
     {
         ArgumentNullException.ThrowIfNull(client);
         return client.DescribeEventBusAsync(new DescribeEventBusInput(), cancellationToken);
+    }
+
+    /// <summary>
+    /// This operation lists details about a partner event source that is shared with your account.
+    /// </summary>
+    public static Task<DescribeEventSourceOutput> DescribeEventSourceAsync(
+        this IAWSEventsClient client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.DescribeEventSourceAsync(new DescribeEventSourceInput(), cancellationToken);
+    }
+
+    /// <summary>
+    /// An SaaS partner can use this operation to list details about a partner event source that they have
+    /// created. Amazon Web Services customers do not use this operation. Instead, Amazon Web Services
+    /// customers can use
+    /// <see href="https://docs.aws.amazon.com/eventbridge/latest/APIReference/API_DescribeEventSource.html">DescribeEventSource</see>
+    /// to see details about a partner event source that is shared with them.
+    /// </summary>
+    public static Task<DescribePartnerEventSourceOutput> DescribePartnerEventSourceAsync(
+        this IAWSEventsClient client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.DescribePartnerEventSourceAsync(
+            new DescribePartnerEventSourceInput(),
+            cancellationToken
+        );
+    }
+
+    /// <summary>
+    /// Retrieves details about a replay. Use <c>DescribeReplay</c> to determine the progress of a running
+    /// replay. A replay processes events to replay based on the time in the event, and replays them using 1
+    /// minute intervals. If you use <c>StartReplay</c> and specify an <c>EventStartTime</c> and an
+    /// <c>EventEndTime</c> that covers a 20 minute time range, the events are replayed from the first
+    /// minute of that 20 minute range first. Then the events from the second minute are replayed. You can
+    /// use <c>DescribeReplay</c> to determine the progress of a replay. The value returned for
+    /// <c>EventLastReplayedTime</c> indicates the time within the specified time range associated with the
+    /// last event replayed.
+    /// </summary>
+    public static Task<DescribeReplayOutput> DescribeReplayAsync(
+        this IAWSEventsClient client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.DescribeReplayAsync(new DescribeReplayInput(), cancellationToken);
+    }
+
+    /// <summary>
+    /// <para>
+    /// Describes the specified rule.
+    /// </para>
+    /// <para>
+    /// DescribeRule does not list the targets of a rule. To see the targets associated with a rule, use
+    /// <see href="https://docs.aws.amazon.com/eventbridge/latest/APIReference/API_ListTargetsByRule.html">ListTargetsByRule</see>.
+    /// </para>
+    /// </summary>
+    public static Task<DescribeRuleOutput> DescribeRuleAsync(
+        this IAWSEventsClient client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.DescribeRuleAsync(new DescribeRuleInput(), cancellationToken);
+    }
+
+    /// <summary>
+    /// <para>
+    /// Disables the specified rule. A disabled rule won't match any events, and won't self-trigger if it
+    /// has a schedule expression.
+    /// </para>
+    /// <para>
+    /// When you disable a rule, incoming events might continue to match to the disabled rule. Allow a short
+    /// period of time for changes to take effect.
+    /// </para>
+    /// </summary>
+    public static Task<DisableRuleOutput> DisableRuleAsync(
+        this IAWSEventsClient client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.DisableRuleAsync(new DisableRuleInput(), cancellationToken);
+    }
+
+    /// <summary>
+    /// <para>
+    /// Enables the specified rule. If the rule does not exist, the operation fails.
+    /// </para>
+    /// <para>
+    /// When you enable a rule, incoming events might not immediately start matching to a newly enabled
+    /// rule. Allow a short period of time for changes to take effect.
+    /// </para>
+    /// </summary>
+    public static Task<EnableRuleOutput> EnableRuleAsync(
+        this IAWSEventsClient client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.EnableRuleAsync(new EnableRuleInput(), cancellationToken);
     }
 
     /// <summary>
@@ -1161,6 +1674,39 @@ public static class AWSEventsClientExtensions
     }
 
     /// <summary>
+    /// An SaaS partner can use this operation to display the Amazon Web Services account ID that a
+    /// particular partner event source name is associated with. This operation is not used by Amazon Web
+    /// Services customers.
+    /// </summary>
+    public static Task<ListPartnerEventSourceAccountsOutput> ListPartnerEventSourceAccountsAsync(
+        this IAWSEventsClient client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.ListPartnerEventSourceAccountsAsync(
+            new ListPartnerEventSourceAccountsInput(),
+            cancellationToken
+        );
+    }
+
+    /// <summary>
+    /// An SaaS partner can use this operation to list all the partner event source names that they have
+    /// created. This operation is not used by Amazon Web Services customers.
+    /// </summary>
+    public static Task<ListPartnerEventSourcesOutput> ListPartnerEventSourcesAsync(
+        this IAWSEventsClient client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.ListPartnerEventSourcesAsync(
+            new ListPartnerEventSourcesInput(),
+            cancellationToken
+        );
+    }
+
+    /// <summary>
     /// Lists your replays. You can either list all the replays or you can provide a prefix to match to the
     /// replay names. Filter parameters are exclusive.
     /// </summary>
@@ -1171,6 +1717,27 @@ public static class AWSEventsClientExtensions
     {
         ArgumentNullException.ThrowIfNull(client);
         return client.ListReplaysAsync(new ListReplaysInput(), cancellationToken);
+    }
+
+    /// <summary>
+    /// <para>
+    /// Lists the rules for the specified target. You can see which of the rules in Amazon EventBridge can
+    /// invoke a specific target in your account.
+    /// </para>
+    /// <para>
+    /// The maximum number of results per page for requests is 100.
+    /// </para>
+    /// </summary>
+    public static Task<ListRuleNamesByTargetOutput> ListRuleNamesByTargetAsync(
+        this IAWSEventsClient client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.ListRuleNamesByTargetAsync(
+            new ListRuleNamesByTargetInput(),
+            cancellationToken
+        );
     }
 
     /// <summary>
@@ -1193,6 +1760,84 @@ public static class AWSEventsClientExtensions
     {
         ArgumentNullException.ThrowIfNull(client);
         return client.ListRulesAsync(new ListRulesInput(), cancellationToken);
+    }
+
+    /// <summary>
+    /// Displays the tags associated with an EventBridge resource. In EventBridge, rules and event buses can
+    /// be tagged.
+    /// </summary>
+    public static Task<ListTagsForResourceOutput> ListTagsForResourceAsync(
+        this IAWSEventsClient client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.ListTagsForResourceAsync(new ListTagsForResourceInput(), cancellationToken);
+    }
+
+    /// <summary>
+    /// <para>
+    /// Lists the targets assigned to the specified rule.
+    /// </para>
+    /// <para>
+    /// The maximum number of results per page for requests is 100.
+    /// </para>
+    /// </summary>
+    public static Task<ListTargetsByRuleOutput> ListTargetsByRuleAsync(
+        this IAWSEventsClient client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.ListTargetsByRuleAsync(new ListTargetsByRuleInput(), cancellationToken);
+    }
+
+    /// <summary>
+    /// <para>
+    /// Sends custom events to Amazon EventBridge so that they can be matched to rules.
+    /// </para>
+    /// <para>
+    /// You can batch multiple event entries into one request for efficiency. However, the total entry size
+    /// must be less than 1MB. You can calculate the entry size before you send the events. For more
+    /// information, see
+    /// <see href="https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-putevents.html#eb-putevent-size">Calculating
+    /// PutEvents event entry size</see> in the <i> <i>Amazon EventBridge User Guide</i> </i>.
+    /// </para>
+    /// <para>
+    /// PutEvents accepts the data in JSON format. For the JSON number (integer) data type, the constraints
+    /// are: a minimum value of -9,223,372,036,854,775,808 and a maximum value of 9,223,372,036,854,775,807.
+    /// </para>
+    /// <para>
+    /// <b>Note:</b> PutEvents will only process nested JSON up to 1000 levels deep.
+    /// </para>
+    /// </summary>
+    public static Task<PutEventsOutput> PutEventsAsync(
+        this IAWSEventsClient client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.PutEventsAsync(new PutEventsInput(), cancellationToken);
+    }
+
+    /// <summary>
+    /// <para>
+    /// This is used by SaaS partners to write events to a customer's partner event bus. Amazon Web Services
+    /// customers do not use this operation.
+    /// </para>
+    /// <para>
+    /// For information on calculating event batch size, see
+    /// <see href="https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-putevent-size.html">Calculating
+    /// EventBridge PutEvents event entry size</see> in the <i>EventBridge User Guide</i>.
+    /// </para>
+    /// </summary>
+    public static Task<PutPartnerEventsOutput> PutPartnerEventsAsync(
+        this IAWSEventsClient client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.PutPartnerEventsAsync(new PutPartnerEventsInput(), cancellationToken);
     }
 
     /// <summary>
@@ -1234,6 +1879,248 @@ public static class AWSEventsClientExtensions
     }
 
     /// <summary>
+    /// <para>
+    /// Creates or updates the specified rule. Rules are enabled by default, or based on value of the state.
+    /// You can disable a rule using
+    /// <see href="https://docs.aws.amazon.com/eventbridge/latest/APIReference/API_DisableRule.html">DisableRule</see>.
+    /// </para>
+    /// <para>
+    /// A single rule watches for events from a single event bus. Events generated by Amazon Web Services
+    /// services go to your account's default event bus. Events generated by SaaS partner services or
+    /// applications go to the matching partner event bus. If you have custom applications or services, you
+    /// can specify whether their events go to your default event bus or a custom event bus that you have
+    /// created. For more information, see
+    /// <see href="https://docs.aws.amazon.com/eventbridge/latest/APIReference/API_CreateEventBus.html">CreateEventBus</see>.
+    /// </para>
+    /// <para>
+    /// If you are updating an existing rule, the rule is replaced with what you specify in this
+    /// <c>PutRule</c> command. If you omit arguments in <c>PutRule</c>, the old values for those arguments
+    /// are not kept. Instead, they are replaced with null values.
+    /// </para>
+    /// <para>
+    /// When you create or update a rule, incoming events might not immediately start matching to new or
+    /// updated rules. Allow a short period of time for changes to take effect.
+    /// </para>
+    /// <para>
+    /// A rule must contain at least an EventPattern or ScheduleExpression. Rules with EventPatterns are
+    /// triggered when a matching event is observed. Rules with ScheduleExpressions self-trigger based on
+    /// the given schedule. A rule can have both an EventPattern and a ScheduleExpression, in which case the
+    /// rule triggers on matching events as well as on a schedule.
+    /// </para>
+    /// <para>
+    /// When you initially create a rule, you can optionally assign one or more tags to the rule. Tags can
+    /// help you organize and categorize your resources. You can also use them to scope user permissions, by
+    /// granting a user permission to access or change only rules with certain tag values. To use the
+    /// <c>PutRule</c> operation and assign tags, you must have both the <c>events:PutRule</c> and
+    /// <c>events:TagResource</c> permissions.
+    /// </para>
+    /// <para>
+    /// If you are updating an existing rule, any tags you specify in the <c>PutRule</c> operation are
+    /// ignored. To update the tags of an existing rule, use
+    /// <see href="https://docs.aws.amazon.com/eventbridge/latest/APIReference/API_TagResource.html">TagResource</see>
+    /// and
+    /// <see href="https://docs.aws.amazon.com/eventbridge/latest/APIReference/API_UntagResource.html">UntagResource</see>.
+    /// </para>
+    /// <para>
+    /// Most services in Amazon Web Services treat : or / as the same character in Amazon Resource Names
+    /// (ARNs). However, EventBridge uses an exact match in event patterns and rules. Be sure to use the
+    /// correct ARN characters when creating event patterns so that they match the ARN syntax in the event
+    /// you want to match.
+    /// </para>
+    /// <para>
+    /// In EventBridge, it is possible to create rules that lead to infinite loops, where a rule is fired
+    /// repeatedly. For example, a rule might detect that ACLs have changed on an S3 bucket, and trigger
+    /// software to change them to the desired state. If the rule is not written carefully, the subsequent
+    /// change to the ACLs fires the rule again, creating an infinite loop.
+    /// </para>
+    /// <para>
+    /// To prevent this, write the rules so that the triggered actions do not re-fire the same rule. For
+    /// example, your rule could fire only if ACLs are found to be in a bad state, instead of after any
+    /// change.
+    /// </para>
+    /// <para>
+    /// An infinite loop can quickly cause higher than expected charges. We recommend that you use
+    /// budgeting, which alerts you when charges exceed your specified limit. For more information, see
+    /// <see href="https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/budgets-managing-costs.html">Managing
+    /// Your Costs with Budgets</see>.
+    /// </para>
+    /// <para>
+    /// To create a rule that filters for management events from Amazon Web Services services, see
+    /// <see href="https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-service-event-cloudtrail.html#eb-service-event-cloudtrail-management">Receiving
+    /// read-only management events from Amazon Web Services services</see> in the <i>EventBridge User
+    /// Guide</i>.
+    /// </para>
+    /// </summary>
+    public static Task<PutRuleOutput> PutRuleAsync(
+        this IAWSEventsClient client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.PutRuleAsync(new PutRuleInput(), cancellationToken);
+    }
+
+    /// <summary>
+    /// <para>
+    /// Adds the specified targets to the specified rule, or updates the targets if they are already
+    /// associated with the rule.
+    /// </para>
+    /// <para>
+    /// Targets are the resources that are invoked when a rule is triggered.
+    /// </para>
+    /// <para>
+    /// The maximum number of entries per request is 10.
+    /// </para>
+    /// <para>
+    /// <b>Note:</b> Each rule can have up to five (5) targets associated with it at one time.
+    /// </para>
+    /// <para>
+    /// For a list of services you can configure as targets for events, see
+    /// <see href="https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-targets.html">EventBridge
+    /// targets</see> in the <i> <i>Amazon EventBridge User Guide</i> </i>.
+    /// </para>
+    /// <para>
+    /// Creating rules with built-in targets is supported only in the Amazon Web Services Management
+    /// Console. The built-in targets are:
+    /// </para>
+    /// <list type="bullet">
+    /// <item>
+    /// <description>
+    /// <c>Amazon EBS CreateSnapshot API call</c>
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <description>
+    /// <c>Amazon EC2 RebootInstances API call</c>
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <description>
+    /// <c>Amazon EC2 StopInstances API call</c>
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <description>
+    /// <c>Amazon EC2 TerminateInstances API call</c>
+    /// </description>
+    /// </item>
+    /// </list>
+    /// <para>
+    /// For some target types, <c>PutTargets</c> provides target-specific parameters. If the target is a
+    /// Kinesis data stream, you can optionally specify which shard the event goes to by using the
+    /// <c>KinesisParameters</c> argument. To invoke a command on multiple EC2 instances with one rule, you
+    /// can use the <c>RunCommandParameters</c> field.
+    /// </para>
+    /// <para>
+    /// To be able to make API calls against the resources that you own, Amazon EventBridge needs the
+    /// appropriate permissions:
+    /// </para>
+    /// <list type="bullet">
+    /// <item>
+    /// <description>
+    /// For Lambda and Amazon SNS resources, EventBridge relies on resource-based policies.
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <description>
+    /// For EC2 instances, Kinesis Data Streams, Step Functions state machines and API Gateway APIs,
+    /// EventBridge relies on IAM roles that you specify in the <c>RoleARN</c> argument in
+    /// <c>PutTargets</c>.
+    /// </description>
+    /// </item>
+    /// </list>
+    /// <para>
+    /// For more information, see
+    /// <see href="https://docs.aws.amazon.com/eventbridge/latest/userguide/auth-and-access-control-eventbridge.html">Authentication
+    /// and Access Control</see> in the <i> <i>Amazon EventBridge User Guide</i> </i>.
+    /// </para>
+    /// <para>
+    /// If another Amazon Web Services account is in the same region and has granted you permission (using
+    /// <c>PutPermission</c>), you can send events to that account. Set that account's event bus as a target
+    /// of the rules in your account. To send the matched events to the other account, specify that
+    /// account's event bus as the <c>Arn</c> value when you run <c>PutTargets</c>. If your account sends
+    /// events to another account, your account is charged for each sent event. Each event sent to another
+    /// account is charged as a custom event. The account receiving the event is not charged. For more
+    /// information, see <see href="http://aws.amazon.com/eventbridge/pricing/">Amazon EventBridge
+    /// Pricing</see>.
+    /// </para>
+    /// <para>
+    /// <b>Note:</b> <c>Input</c>, <c>InputPath</c>, and <c>InputTransformer</c> are not available with
+    /// <c>PutTarget</c> if the target is an event bus of a different Amazon Web Services account.
+    /// </para>
+    /// <para>
+    /// If you are setting the event bus of another account as the target, and that account granted
+    /// permission to your account through an organization instead of directly by the account ID, then you
+    /// must specify a <c>RoleArn</c> with proper permissions in the <c>Target</c> structure. For more
+    /// information, see
+    /// <see href="https://docs.aws.amazon.com/eventbridge/latest/userguide/eventbridge-cross-account-event-delivery.html">Sending
+    /// and Receiving Events Between Amazon Web Services Accounts</see> in the <i>Amazon EventBridge User
+    /// Guide</i>.
+    /// </para>
+    /// <para>
+    /// <b>Note:</b> If you have an IAM role on a cross-account event bus target, a <c>PutTargets</c> call
+    /// without a role on the same target (same <c>Id</c> and <c>Arn</c>) will not remove the role.
+    /// </para>
+    /// <para>
+    /// For more information about enabling cross-account events, see
+    /// <see href="https://docs.aws.amazon.com/eventbridge/latest/APIReference/API_PutPermission.html">PutPermission</see>.
+    /// </para>
+    /// <para>
+    /// <b>Input</b>, <b>InputPath</b>, and <b>InputTransformer</b> are mutually exclusive and optional
+    /// parameters of a target. When a rule is triggered due to a matched event:
+    /// </para>
+    /// <list type="bullet">
+    /// <item>
+    /// <description>
+    /// If none of the following arguments are specified for a target, then the entire event is passed to
+    /// the target in JSON format (unless the target is Amazon EC2 Run Command or Amazon ECS task, in which
+    /// case nothing from the event is passed to the target).
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <description>
+    /// If <b>Input</b> is specified in the form of valid JSON, then the matched event is overridden with
+    /// this constant.
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <description>
+    /// If <b>InputPath</b> is specified in the form of JSONPath (for example, <c>$.detail</c>), then only
+    /// the part of the event specified in the path is passed to the target (for example, only the detail
+    /// part of the event is passed).
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <description>
+    /// If <b>InputTransformer</b> is specified, then one or more specified JSONPaths are extracted from the
+    /// event and used as values in a template that you specify as the input to the target.
+    /// </description>
+    /// </item>
+    /// </list>
+    /// <para>
+    /// When you specify <c>InputPath</c> or <c>InputTransformer</c>, you must use JSON dot notation, not
+    /// bracket notation.
+    /// </para>
+    /// <para>
+    /// When you add targets to a rule and the associated rule triggers soon after, new or updated targets
+    /// might not be immediately invoked. Allow a short period of time for changes to take effect.
+    /// </para>
+    /// <para>
+    /// This action can partially fail if too many requests are made at the same time. If that happens,
+    /// <c>FailedEntryCount</c> is non-zero in the response and each entry in <c>FailedEntries</c> provides
+    /// the ID of the failed target and the error code.
+    /// </para>
+    /// </summary>
+    public static Task<PutTargetsOutput> PutTargetsAsync(
+        this IAWSEventsClient client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.PutTargetsAsync(new PutTargetsInput(), cancellationToken);
+    }
+
+    /// <summary>
     /// Revokes the permission of another Amazon Web Services account to be able to put events to the
     /// specified event bus. Specify the account to revoke by the <c>StatementId</c> value that you
     /// associated with the account when you granted it permission with <c>PutPermission</c>. You can find
@@ -1247,6 +2134,170 @@ public static class AWSEventsClientExtensions
     {
         ArgumentNullException.ThrowIfNull(client);
         return client.RemovePermissionAsync(new RemovePermissionInput(), cancellationToken);
+    }
+
+    /// <summary>
+    /// <para>
+    /// Removes the specified targets from the specified rule. When the rule is triggered, those targets are
+    /// no longer be invoked.
+    /// </para>
+    /// <para>
+    /// <b>Note:</b> A successful execution of <c>RemoveTargets</c> doesn't guarantee all targets are
+    /// removed from the rule, it means that the target(s) listed in the request are removed.
+    /// </para>
+    /// <para>
+    /// When you remove a target, when the associated rule triggers, removed targets might continue to be
+    /// invoked. Allow a short period of time for changes to take effect.
+    /// </para>
+    /// <para>
+    /// This action can partially fail if too many requests are made at the same time. If that happens,
+    /// <c>FailedEntryCount</c> is non-zero in the response and each entry in <c>FailedEntries</c> provides
+    /// the ID of the failed target and the error code.
+    /// </para>
+    /// <para>
+    /// The maximum number of entries per request is 10.
+    /// </para>
+    /// </summary>
+    public static Task<RemoveTargetsOutput> RemoveTargetsAsync(
+        this IAWSEventsClient client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.RemoveTargetsAsync(new RemoveTargetsInput(), cancellationToken);
+    }
+
+    /// <summary>
+    /// Starts the specified replay. Events are not necessarily replayed in the exact same order that they
+    /// were added to the archive. A replay processes events to replay based on the time in the event, and
+    /// replays them using 1 minute intervals. If you specify an <c>EventStartTime</c> and an
+    /// <c>EventEndTime</c> that covers a 20 minute time range, the events are replayed from the first
+    /// minute of that 20 minute range first. Then the events from the second minute are replayed. You can
+    /// use <c>DescribeReplay</c> to determine the progress of a replay. The value returned for
+    /// <c>EventLastReplayedTime</c> indicates the time within the specified time range associated with the
+    /// last event replayed.
+    /// </summary>
+    public static Task<StartReplayOutput> StartReplayAsync(
+        this IAWSEventsClient client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.StartReplayAsync(new StartReplayInput(), cancellationToken);
+    }
+
+    /// <summary>
+    /// <para>
+    /// Assigns one or more tags (key-value pairs) to the specified EventBridge resource. Tags can help you
+    /// organize and categorize your resources. You can also use them to scope user permissions by granting
+    /// a user permission to access or change only resources with certain tag values. In EventBridge, rules
+    /// and event buses can be tagged.
+    /// </para>
+    /// <para>
+    /// Tags don't have any semantic meaning to Amazon Web Services and are interpreted strictly as strings
+    /// of characters.
+    /// </para>
+    /// <para>
+    /// You can use the <c>TagResource</c> action with a resource that already has tags. If you specify a
+    /// new tag key, this tag is appended to the list of tags associated with the resource. If you specify a
+    /// tag key that is already associated with the resource, the new tag value that you specify replaces
+    /// the previous value for that tag.
+    /// </para>
+    /// <para>
+    /// You can associate as many as 50 tags with a resource.
+    /// </para>
+    /// </summary>
+    public static Task<TagResourceOutput> TagResourceAsync(
+        this IAWSEventsClient client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.TagResourceAsync(new TagResourceInput(), cancellationToken);
+    }
+
+    /// <summary>
+    /// <para>
+    /// Tests whether the specified event pattern matches the provided event.
+    /// </para>
+    /// <para>
+    /// Most services in Amazon Web Services treat : or / as the same character in Amazon Resource Names
+    /// (ARNs). However, EventBridge uses an exact match in event patterns and rules. Be sure to use the
+    /// correct ARN characters when creating event patterns so that they match the ARN syntax in the event
+    /// you want to match.
+    /// </para>
+    /// </summary>
+    public static Task<TestEventPatternOutput> TestEventPatternAsync(
+        this IAWSEventsClient client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.TestEventPatternAsync(new TestEventPatternInput(), cancellationToken);
+    }
+
+    /// <summary>
+    /// Removes one or more tags from the specified EventBridge resource. In Amazon EventBridge, rules and
+    /// event buses can be tagged.
+    /// </summary>
+    public static Task<UntagResourceOutput> UntagResourceAsync(
+        this IAWSEventsClient client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.UntagResourceAsync(new UntagResourceInput(), cancellationToken);
+    }
+
+    /// <summary>
+    /// Updates an API destination.
+    /// </summary>
+    public static Task<UpdateApiDestinationOutput> UpdateApiDestinationAsync(
+        this IAWSEventsClient client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.UpdateApiDestinationAsync(new UpdateApiDestinationInput(), cancellationToken);
+    }
+
+    /// <summary>
+    /// Updates the specified archive.
+    /// </summary>
+    public static Task<UpdateArchiveOutput> UpdateArchiveAsync(
+        this IAWSEventsClient client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.UpdateArchiveAsync(new UpdateArchiveInput(), cancellationToken);
+    }
+
+    /// <summary>
+    /// Updates settings for a connection.
+    /// </summary>
+    public static Task<UpdateConnectionOutput> UpdateConnectionAsync(
+        this IAWSEventsClient client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.UpdateConnectionAsync(new UpdateConnectionInput(), cancellationToken);
+    }
+
+    /// <summary>
+    /// Update an existing endpoint. For more information about global endpoints, see
+    /// <see href="https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-global-endpoints.html">Making
+    /// applications Regional-fault tolerant with global endpoints and event replication</see> in the <i>
+    /// <i>Amazon EventBridge User Guide</i> </i>.
+    /// </summary>
+    public static Task<UpdateEndpointOutput> UpdateEndpointAsync(
+        this IAWSEventsClient client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.UpdateEndpointAsync(new UpdateEndpointInput(), cancellationToken);
     }
 
     /// <summary>

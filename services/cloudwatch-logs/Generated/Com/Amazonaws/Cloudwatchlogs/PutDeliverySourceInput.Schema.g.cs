@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Cloudwatchlogs.Schemas;
 
 public static partial class PutDeliverySourceInputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? Name { get; set; }
         public string? ResourceArn { get; set; }
@@ -31,7 +31,6 @@ public static partial class PutDeliverySourceInputSchema
                 new(
                     "name",
                     Target0,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
@@ -45,28 +44,12 @@ public static partial class PutDeliverySourceInputSchema
                             )
                         ),
                         new Trait(ShapeId.Parse("smithy.api#pattern"), Document.From("^[\\w-]*$")),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
                     ]
                 ),
-                new(
-                    "resourceArn",
-                    Target1,
-                    isRequired: true,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
-                    ]
-                ),
+                new("resourceArn", Target1),
                 new(
                     "logType",
                     Target2,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
@@ -80,10 +63,6 @@ public static partial class PutDeliverySourceInputSchema
                             )
                         ),
                         new Trait(ShapeId.Parse("smithy.api#pattern"), Document.From("^[\\w]*$")),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
                     ]
                 ),
                 new("tags", Target3),
@@ -132,10 +111,10 @@ public static partial class PutDeliverySourceInputSchema
             Builder builder
         ) =>
             new global::Com.Amazonaws.Cloudwatchlogs.PutDeliverySourceInput(
-                builder.LogType ?? throw new MissingRequiredMemberException("logType"),
-                builder.Name ?? throw new MissingRequiredMemberException("name"),
-                builder.ResourceArn ?? throw new MissingRequiredMemberException("resourceArn"),
                 builder.DeliverySourceConfiguration,
+                builder.LogType,
+                builder.Name,
+                builder.ResourceArn,
                 builder.Tags
             );
 
@@ -186,7 +165,7 @@ public static partial class PutDeliverySourceInputSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

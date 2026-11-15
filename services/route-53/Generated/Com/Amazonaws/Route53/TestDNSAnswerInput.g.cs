@@ -9,15 +9,6 @@ namespace Com.Amazonaws.Route53;
 /// and type. You can optionally specify the IP address of a DNS resolver, an EDNS0 client subnet IP
 /// address, and a subnet mask.
 /// </summary>
-/// <param name="HostedZoneId">
-/// The ID of the hosted zone that you want Amazon Route 53 to simulate a query for.
-/// </param>
-/// <param name="RecordName">
-/// The name of the resource record set that you want Amazon Route 53 to simulate a query for.
-/// </param>
-/// <param name="RecordType">
-/// The type of the resource record set.
-/// </param>
 /// <param name="EDNS0ClientSubnetIP">
 /// If the resolver that you specified for resolverip supports EDNS0, specify the IPv4 or IPv6 address
 /// of a client in the applicable location, for example, <c>192.0.2.44</c> or
@@ -48,16 +39,25 @@ namespace Com.Amazonaws.Route53;
 /// </item>
 /// </list>
 /// </param>
+/// <param name="HostedZoneId">
+/// The ID of the hosted zone that you want Amazon Route 53 to simulate a query for.
+/// </param>
+/// <param name="RecordName">
+/// The name of the resource record set that you want Amazon Route 53 to simulate a query for.
+/// </param>
+/// <param name="RecordType">
+/// The type of the resource record set.
+/// </param>
 /// <param name="ResolverIP">
 /// If you want to simulate a request from a specific DNS resolver, specify the IP address for that
 /// resolver. If you omit this value, <c>TestDnsAnswer</c> uses the IP address of a DNS resolver in the
 /// Amazon Web Services US East (N. Virginia) Region (<c>us-east-1</c>).
 /// </param>
 public sealed record class TestDNSAnswerInput(
-    string HostedZoneId,
-    string RecordName,
-    RRType RecordType,
     string? EDNS0ClientSubnetIP = null,
     string? EDNS0ClientSubnetMask = null,
+    string? HostedZoneId = null,
+    string? RecordName = null,
+    RRType? RecordType = null,
     string? ResolverIP = null
 );

@@ -10,7 +10,7 @@ namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class CreateSessionInputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public global::Com.Amazonaws.S3.SessionMode? SessionMode { get; set; }
         public string? Bucket { get; set; }
@@ -43,15 +43,10 @@ public static partial class CreateSessionInputSchema
                 new(
                     "Bucket",
                     Target1,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
                             ShapeId.Parse("smithy.api#httpLabel"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
                             Document.From(new Dictionary<string, Document> { })
                         ),
                         new Trait(
@@ -157,7 +152,7 @@ public static partial class CreateSessionInputSchema
 
         public override global::Com.Amazonaws.S3.CreateSessionInput Build(Builder builder) =>
             new global::Com.Amazonaws.S3.CreateSessionInput(
-                builder.Bucket ?? throw new MissingRequiredMemberException("Bucket"),
+                builder.Bucket,
                 builder.BucketKeyEnabled,
                 builder.SSEKMSEncryptionContext,
                 builder.SSEKMSKeyId,
@@ -220,7 +215,7 @@ public static partial class CreateSessionInputSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

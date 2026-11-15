@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Sqs.Schemas;
 
 public static partial class CreateQueueInputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? QueueName { get; set; }
         public IReadOnlyDictionary<string, string>? Attributes { get; set; }
@@ -26,18 +26,7 @@ public static partial class CreateQueueInputSchema
         : StructSchema<global::Com.Amazonaws.Sqs.CreateQueueInput, Builder>(
             ShapeId.Parse("com.amazonaws.sqs#CreateQueueInput"),
             [
-                new(
-                    "QueueName",
-                    Target0,
-                    isRequired: true,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
-                    ]
-                ),
+                new("QueueName", Target0),
                 new(
                     "Attributes",
                     Target1,
@@ -96,8 +85,8 @@ public static partial class CreateQueueInputSchema
 
         public override global::Com.Amazonaws.Sqs.CreateQueueInput Build(Builder builder) =>
             new global::Com.Amazonaws.Sqs.CreateQueueInput(
-                builder.QueueName ?? throw new MissingRequiredMemberException("QueueName"),
                 builder.Attributes,
+                builder.QueueName,
                 builder.Tags
             );
 
@@ -132,7 +121,7 @@ public static partial class CreateQueueInputSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

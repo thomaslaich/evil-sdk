@@ -10,4 +10,4 @@ namespace Com.Amazonaws.Route53;
 /// <param name="Id">
 /// The UUID of the collection to delete.
 /// </param>
-public sealed record class DeleteCidrCollectionInput(string Id);
+public sealed record class DeleteCidrCollectionInput(string? Id = null);

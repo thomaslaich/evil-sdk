@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Sqs.Schemas;
 
 public static partial class SendMessageInputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? QueueUrl { get; set; }
         public string? MessageBody { get; set; }
@@ -36,30 +36,8 @@ public static partial class SendMessageInputSchema
         : StructSchema<global::Com.Amazonaws.Sqs.SendMessageInput, Builder>(
             ShapeId.Parse("com.amazonaws.sqs#SendMessageInput"),
             [
-                new(
-                    "QueueUrl",
-                    Target0,
-                    isRequired: true,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
-                    ]
-                ),
-                new(
-                    "MessageBody",
-                    Target1,
-                    isRequired: true,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
-                    ]
-                ),
+                new("QueueUrl", Target0),
+                new("MessageBody", Target1),
                 new(
                     "DelaySeconds",
                     Target2,
@@ -153,13 +131,13 @@ public static partial class SendMessageInputSchema
 
         public override global::Com.Amazonaws.Sqs.SendMessageInput Build(Builder builder) =>
             new global::Com.Amazonaws.Sqs.SendMessageInput(
-                builder.MessageBody ?? throw new MissingRequiredMemberException("MessageBody"),
-                builder.QueueUrl ?? throw new MissingRequiredMemberException("QueueUrl"),
                 builder.DelaySeconds,
                 builder.MessageAttributes,
+                builder.MessageBody,
                 builder.MessageDeduplicationId,
                 builder.MessageGroupId,
-                builder.MessageSystemAttributes
+                builder.MessageSystemAttributes,
+                builder.QueueUrl
             );
 
         public override void SerializeMembers<TSerializer>(
@@ -225,7 +203,7 @@ public static partial class SendMessageInputSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

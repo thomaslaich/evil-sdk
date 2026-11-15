@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Dynamodb.Schemas;
 
 public static partial class UpdateGlobalTableInputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? GlobalTableName { get; set; }
         public IReadOnlyList<global::Com.Amazonaws.Dynamodb.ReplicaUpdate>? ReplicaUpdates { get; set; }
@@ -28,7 +28,6 @@ public static partial class UpdateGlobalTableInputSchema
                 new(
                     "GlobalTableName",
                     Target0,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
@@ -46,10 +45,6 @@ public static partial class UpdateGlobalTableInputSchema
                             Document.From("^[a-zA-Z0-9_.-]+$")
                         ),
                         new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.rules#contextParam"),
                             Document.From(
                                 new Dictionary<string, Document>
@@ -60,18 +55,7 @@ public static partial class UpdateGlobalTableInputSchema
                         ),
                     ]
                 ),
-                new(
-                    "ReplicaUpdates",
-                    Target1,
-                    isRequired: true,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
-                    ]
-                ),
+                new("ReplicaUpdates", Target1),
             ],
             [
                 new Trait(
@@ -96,9 +80,8 @@ public static partial class UpdateGlobalTableInputSchema
             Builder builder
         ) =>
             new global::Com.Amazonaws.Dynamodb.UpdateGlobalTableInput(
-                builder.GlobalTableName
-                    ?? throw new MissingRequiredMemberException("GlobalTableName"),
-                builder.ReplicaUpdates ?? throw new MissingRequiredMemberException("ReplicaUpdates")
+                builder.GlobalTableName,
+                builder.ReplicaUpdates
             );
 
         public override void SerializeMembers<TSerializer>(
@@ -124,7 +107,7 @@ public static partial class UpdateGlobalTableInputSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

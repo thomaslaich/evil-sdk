@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Lambda.Schemas;
 
 public static partial class CreateAliasInputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? FunctionName { get; set; }
         public string? Name { get; set; }
@@ -31,7 +31,6 @@ public static partial class CreateAliasInputSchema
                 new(
                     "FunctionName",
                     Target0,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
@@ -54,16 +53,11 @@ public static partial class CreateAliasInputSchema
                                 "^(arn:(aws[a-zA-Z-]*)?:lambda:)?((eusc-)?[a-z]{2}((-gov)|(-iso([a-z]?)))?-[a-z]+-\\d{1}:)?(\\d{12}:)?(function:)?([a-zA-Z0-9-_]+)(:(\\$LATEST|[a-zA-Z0-9-_]+))?$"
                             )
                         ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
                     ]
                 ),
                 new(
                     "Name",
                     Target1,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
@@ -81,10 +75,6 @@ public static partial class CreateAliasInputSchema
                             Document.From("^(?!^[0-9]+$)([a-zA-Z0-9-_]+)$")
                         ),
                         new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#resourceIdentifier"),
                             Document.From("Alias")
                         ),
@@ -93,7 +83,6 @@ public static partial class CreateAliasInputSchema
                 new(
                     "FunctionVersion",
                     Target2,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
@@ -109,10 +98,6 @@ public static partial class CreateAliasInputSchema
                         new Trait(
                             ShapeId.Parse("smithy.api#pattern"),
                             Document.From("^(\\$LATEST(\\.PUBLISHED)?|[0-9]+)$")
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
                         ),
                     ]
                 ),
@@ -174,11 +159,10 @@ public static partial class CreateAliasInputSchema
 
         public override global::Com.Amazonaws.Lambda.CreateAliasInput Build(Builder builder) =>
             new global::Com.Amazonaws.Lambda.CreateAliasInput(
-                builder.FunctionName ?? throw new MissingRequiredMemberException("FunctionName"),
-                builder.FunctionVersion
-                    ?? throw new MissingRequiredMemberException("FunctionVersion"),
-                builder.Name ?? throw new MissingRequiredMemberException("Name"),
                 builder.Description,
+                builder.FunctionName,
+                builder.FunctionVersion,
+                builder.Name,
                 builder.RoutingConfig
             );
 
@@ -229,7 +213,7 @@ public static partial class CreateAliasInputSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

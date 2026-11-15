@@ -11,5 +11,5 @@ namespace Com.Amazonaws.Kinesis;
 /// Specifies the minimum throughput billing commitment configuration for your account.
 /// </param>
 public sealed record class UpdateAccountSettingsInput(
-    MinimumThroughputBillingCommitmentInput MinimumThroughputBillingCommitment
+    MinimumThroughputBillingCommitmentInput? MinimumThroughputBillingCommitment = null
 );

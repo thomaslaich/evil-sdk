@@ -10,7 +10,7 @@ namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class PutBucketLoggingInputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? Bucket { get; set; }
         public global::Com.Amazonaws.S3.BucketLoggingStatus? BucketLoggingStatus { get; set; }
@@ -31,15 +31,10 @@ public static partial class PutBucketLoggingInputSchema
                 new(
                     "Bucket",
                     Target0,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
                             ShapeId.Parse("smithy.api#httpLabel"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
                             Document.From(new Dictionary<string, Document> { })
                         ),
                         new Trait(
@@ -56,15 +51,10 @@ public static partial class PutBucketLoggingInputSchema
                 new(
                     "BucketLoggingStatus",
                     Target1,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
                             ShapeId.Parse("smithy.api#httpPayload"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
                             Document.From(new Dictionary<string, Document> { })
                         ),
                         new Trait(
@@ -142,9 +132,8 @@ public static partial class PutBucketLoggingInputSchema
 
         public override global::Com.Amazonaws.S3.PutBucketLoggingInput Build(Builder builder) =>
             new global::Com.Amazonaws.S3.PutBucketLoggingInput(
-                builder.Bucket ?? throw new MissingRequiredMemberException("Bucket"),
-                builder.BucketLoggingStatus
-                    ?? throw new MissingRequiredMemberException("BucketLoggingStatus"),
+                builder.Bucket,
+                builder.BucketLoggingStatus,
                 builder.ChecksumAlgorithm,
                 builder.ContentMD5,
                 builder.ExpectedBucketOwner
@@ -197,7 +186,7 @@ public static partial class PutBucketLoggingInputSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

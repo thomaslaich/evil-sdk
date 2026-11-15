@@ -10,17 +10,17 @@ namespace Com.Amazonaws.S3;
 /// <param name="Bucket">
 /// The name of the bucket containing the object for which to get the torrent files.
 /// </param>
-/// <param name="Key">
-/// The object key for which to get the information.
-/// </param>
 /// <param name="ExpectedBucketOwner">
 /// The account ID of the expected bucket owner. If the account ID that you provide does not match the
 /// actual owner of the bucket, the request fails with the HTTP status code <c>403 Forbidden</c> (access
 /// denied).
 /// </param>
+/// <param name="Key">
+/// The object key for which to get the information.
+/// </param>
 public sealed record class GetObjectTorrentInput(
-    string Bucket,
-    string Key,
+    string? Bucket = null,
     string? ExpectedBucketOwner = null,
+    string? Key = null,
     global::Com.Amazonaws.S3.RequestPayer? RequestPayer = null
 );

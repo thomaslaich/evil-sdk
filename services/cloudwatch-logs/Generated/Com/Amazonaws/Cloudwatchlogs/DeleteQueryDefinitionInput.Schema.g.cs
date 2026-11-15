@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Cloudwatchlogs.Schemas;
 
 public static partial class DeleteQueryDefinitionInputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? QueryDefinitionId { get; set; }
     }
@@ -27,7 +27,6 @@ public static partial class DeleteQueryDefinitionInputSchema
                 new(
                     "queryDefinitionId",
                     Target0,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
@@ -39,10 +38,6 @@ public static partial class DeleteQueryDefinitionInputSchema
                                     { "max", Document.From(256m) },
                                 }
                             )
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
                         ),
                     ]
                 ),
@@ -71,7 +66,6 @@ public static partial class DeleteQueryDefinitionInputSchema
         ) =>
             new global::Com.Amazonaws.Cloudwatchlogs.DeleteQueryDefinitionInput(
                 builder.QueryDefinitionId
-                    ?? throw new MissingRequiredMemberException("queryDefinitionId")
             );
 
         public override void SerializeMembers<TSerializer>(
@@ -89,7 +83,7 @@ public static partial class DeleteQueryDefinitionInputSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

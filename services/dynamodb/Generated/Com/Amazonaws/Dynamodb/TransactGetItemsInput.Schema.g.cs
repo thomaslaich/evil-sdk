@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Dynamodb.Schemas;
 
 public static partial class TransactGetItemsInputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public IReadOnlyList<global::Com.Amazonaws.Dynamodb.TransactGetItem>? TransactItems { get; set; }
         public global::Com.Amazonaws.Dynamodb.ReturnConsumedCapacity? ReturnConsumedCapacity { get; set; }
@@ -24,21 +24,7 @@ public static partial class TransactGetItemsInputSchema
     private sealed class GeneratedSchema()
         : StructSchema<global::Com.Amazonaws.Dynamodb.TransactGetItemsInput, Builder>(
             ShapeId.Parse("com.amazonaws.dynamodb#TransactGetItemsInput"),
-            [
-                new(
-                    "TransactItems",
-                    Target0,
-                    isRequired: true,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
-                    ]
-                ),
-                new("ReturnConsumedCapacity", Target1),
-            ],
+            [new("TransactItems", Target0), new("ReturnConsumedCapacity", Target1)],
             [
                 new Trait(
                     ShapeId.Parse("smithy.api#input"),
@@ -60,8 +46,8 @@ public static partial class TransactGetItemsInputSchema
             Builder builder
         ) =>
             new global::Com.Amazonaws.Dynamodb.TransactGetItemsInput(
-                builder.TransactItems ?? throw new MissingRequiredMemberException("TransactItems"),
-                builder.ReturnConsumedCapacity
+                builder.ReturnConsumedCapacity,
+                builder.TransactItems
             );
 
         public override void SerializeMembers<TSerializer>(
@@ -87,7 +73,7 @@ public static partial class TransactGetItemsInputSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

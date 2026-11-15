@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Iam.Schemas;
 
 public static partial class GenerateServiceLastAccessedDetailsInputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? Arn { get; set; }
         public global::Com.Amazonaws.Iam.AccessAdvisorUsageGranularityType? Granularity { get; set; }
@@ -28,7 +28,6 @@ public static partial class GenerateServiceLastAccessedDetailsInputSchema
                 new(
                     "Arn",
                     Target0,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
@@ -40,10 +39,6 @@ public static partial class GenerateServiceLastAccessedDetailsInputSchema
                                     { "max", Document.From(2048m) },
                                 }
                             )
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
                         ),
                     ]
                 ),
@@ -76,7 +71,7 @@ public static partial class GenerateServiceLastAccessedDetailsInputSchema
             Builder builder
         ) =>
             new global::Com.Amazonaws.Iam.GenerateServiceLastAccessedDetailsInput(
-                builder.Arn ?? throw new MissingRequiredMemberException("Arn"),
+                builder.Arn,
                 builder.Granularity
             );
 
@@ -103,7 +98,7 @@ public static partial class GenerateServiceLastAccessedDetailsInputSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

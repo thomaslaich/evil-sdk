@@ -9,7 +9,7 @@ namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class InputSerializationSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public global::Com.Amazonaws.S3.CSVInput? CSV { get; set; }
         public global::Com.Amazonaws.S3.CompressionType? CompressionType { get; set; }
@@ -98,7 +98,7 @@ public static partial class InputSerializationSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Cloudwatchlogs.Schemas;
 
 public static partial class PutQueryDefinitionInputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public global::Com.Amazonaws.Cloudwatchlogs.QueryLanguage? QueryLanguage { get; set; }
         public string? Name { get; set; }
@@ -34,7 +34,6 @@ public static partial class PutQueryDefinitionInputSchema
                 new(
                     "name",
                     Target1,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
@@ -46,10 +45,6 @@ public static partial class PutQueryDefinitionInputSchema
                                     { "max", Document.From(255m) },
                                 }
                             )
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
                         ),
                     ]
                 ),
@@ -74,7 +69,6 @@ public static partial class PutQueryDefinitionInputSchema
                 new(
                     "queryString",
                     Target4,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
@@ -86,10 +80,6 @@ public static partial class PutQueryDefinitionInputSchema
                                     { "max", Document.From(10000m) },
                                 }
                             )
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
                         ),
                     ]
                 ),
@@ -165,13 +155,13 @@ public static partial class PutQueryDefinitionInputSchema
             Builder builder
         ) =>
             new global::Com.Amazonaws.Cloudwatchlogs.PutQueryDefinitionInput(
-                builder.Name ?? throw new MissingRequiredMemberException("name"),
-                builder.QueryString ?? throw new MissingRequiredMemberException("queryString"),
                 builder.ClientToken,
                 builder.LogGroupNames,
+                builder.Name,
                 builder.Parameters,
                 builder.QueryDefinitionId,
-                builder.QueryLanguage
+                builder.QueryLanguage,
+                builder.QueryString
             );
 
         public override void SerializeMembers<TSerializer>(
@@ -237,7 +227,7 @@ public static partial class PutQueryDefinitionInputSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

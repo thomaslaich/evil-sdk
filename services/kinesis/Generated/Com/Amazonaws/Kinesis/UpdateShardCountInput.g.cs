@@ -10,6 +10,15 @@ namespace Com.Amazonaws.Kinesis;
 /// <param name="ScalingType">
 /// The scaling type. Uniform scaling creates shards of equal size.
 /// </param>
+/// <param name="StreamARN">
+/// The ARN of the stream.
+/// </param>
+/// <param name="StreamId">
+/// Not Implemented. Reserved for future use.
+/// </param>
+/// <param name="StreamName">
+/// The name of the stream.
+/// </param>
 /// <param name="TargetShardCount">
 /// <para>
 /// The new number of shards. This value has the following default limits. By default, you cannot do the
@@ -39,19 +48,10 @@ namespace Com.Amazonaws.Kinesis;
 /// </item>
 /// </list>
 /// </param>
-/// <param name="StreamARN">
-/// The ARN of the stream.
-/// </param>
-/// <param name="StreamId">
-/// Not Implemented. Reserved for future use.
-/// </param>
-/// <param name="StreamName">
-/// The name of the stream.
-/// </param>
 public sealed record class UpdateShardCountInput(
-    global::Com.Amazonaws.Kinesis.ScalingType ScalingType,
-    int TargetShardCount,
+    global::Com.Amazonaws.Kinesis.ScalingType? ScalingType = null,
     string? StreamARN = null,
     string? StreamId = null,
-    string? StreamName = null
+    string? StreamName = null,
+    int? TargetShardCount = null
 );

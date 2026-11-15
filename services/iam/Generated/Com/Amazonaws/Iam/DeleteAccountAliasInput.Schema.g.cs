@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Iam.Schemas;
 
 public static partial class DeleteAccountAliasInputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? AccountAlias { get; set; }
     }
@@ -27,7 +27,6 @@ public static partial class DeleteAccountAliasInputSchema
                 new(
                     "AccountAlias",
                     Target0,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
@@ -43,10 +42,6 @@ public static partial class DeleteAccountAliasInputSchema
                         new Trait(
                             ShapeId.Parse("smithy.api#pattern"),
                             Document.From("^[a-z0-9]([a-z0-9]|-(?!-)){1,61}[a-z0-9]$")
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
                         ),
                     ]
                 ),
@@ -71,9 +66,7 @@ public static partial class DeleteAccountAliasInputSchema
         public override Builder CreateTypedBuilder() => new();
 
         public override global::Com.Amazonaws.Iam.DeleteAccountAliasInput Build(Builder builder) =>
-            new global::Com.Amazonaws.Iam.DeleteAccountAliasInput(
-                builder.AccountAlias ?? throw new MissingRequiredMemberException("AccountAlias")
-            );
+            new global::Com.Amazonaws.Iam.DeleteAccountAliasInput(builder.AccountAlias);
 
         public override void SerializeMembers<TSerializer>(
             global::Com.Amazonaws.Iam.DeleteAccountAliasInput value,
@@ -90,7 +83,7 @@ public static partial class DeleteAccountAliasInputSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

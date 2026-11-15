@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Iam.Schemas;
 
 public static partial class GetAccessKeyLastUsedOutputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? UserName { get; set; }
         public global::Com.Amazonaws.Iam.AccessKeyLastUsed? AccessKeyLastUsed { get; set; }
@@ -102,7 +102,7 @@ public static partial class GetAccessKeyLastUsedOutputSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

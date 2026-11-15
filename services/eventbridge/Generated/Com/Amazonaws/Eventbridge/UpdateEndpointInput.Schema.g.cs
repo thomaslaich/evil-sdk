@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Eventbridge.Schemas;
 
 public static partial class UpdateEndpointInputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? Name { get; set; }
         public string? Description { get; set; }
@@ -32,7 +32,6 @@ public static partial class UpdateEndpointInputSchema
                 new(
                     "Name",
                     Target0,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
@@ -48,10 +47,6 @@ public static partial class UpdateEndpointInputSchema
                         new Trait(
                             ShapeId.Parse("smithy.api#pattern"),
                             Document.From("^[\\.\\-_A-Za-z0-9]+$")
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
                         ),
                     ]
                 ),
@@ -141,9 +136,9 @@ public static partial class UpdateEndpointInputSchema
             Builder builder
         ) =>
             new global::Com.Amazonaws.Eventbridge.UpdateEndpointInput(
-                builder.Name ?? throw new MissingRequiredMemberException("Name"),
                 builder.Description,
                 builder.EventBuses,
+                builder.Name,
                 builder.ReplicationConfig,
                 builder.RoleArn,
                 builder.RoutingConfig
@@ -204,7 +199,7 @@ public static partial class UpdateEndpointInputSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

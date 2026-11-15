@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Lambda.Schemas;
 
 public static partial class AddPermissionInputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? FunctionName { get; set; }
         public string? StatementId { get; set; }
@@ -38,7 +38,6 @@ public static partial class AddPermissionInputSchema
                 new(
                     "FunctionName",
                     Target0,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
@@ -61,16 +60,11 @@ public static partial class AddPermissionInputSchema
                                 "^(arn:(aws[a-zA-Z-]*)?:lambda:)?((eusc-)?[a-z]{2}((-gov)|(-iso([a-z]?)))?-[a-z]+-\\d{1}:)?(\\d{12}:)?(function:)?([a-zA-Z0-9-_\\.]+)(:(\\$LATEST(\\.PUBLISHED)?|[a-zA-Z0-9-_]+))?$"
                             )
                         ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
                     ]
                 ),
                 new(
                     "StatementId",
                     Target1,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
@@ -87,16 +81,11 @@ public static partial class AddPermissionInputSchema
                             ShapeId.Parse("smithy.api#pattern"),
                             Document.From("^([a-zA-Z0-9-_]+)$")
                         ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
                     ]
                 ),
                 new(
                     "Action",
                     Target2,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
@@ -113,16 +102,11 @@ public static partial class AddPermissionInputSchema
                             ShapeId.Parse("smithy.api#pattern"),
                             Document.From("^(lambda:[*]|lambda:[a-zA-Z]+|[*])$")
                         ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
                     ]
                 ),
                 new(
                     "Principal",
                     Target3,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
@@ -136,10 +120,6 @@ public static partial class AddPermissionInputSchema
                             )
                         ),
                         new Trait(ShapeId.Parse("smithy.api#pattern"), Document.From("^[^\\s]+$")),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
                     ]
                 ),
                 new(
@@ -326,18 +306,18 @@ public static partial class AddPermissionInputSchema
 
         public override global::Com.Amazonaws.Lambda.AddPermissionInput Build(Builder builder) =>
             new global::Com.Amazonaws.Lambda.AddPermissionInput(
-                builder.Action ?? throw new MissingRequiredMemberException("Action"),
-                builder.FunctionName ?? throw new MissingRequiredMemberException("FunctionName"),
-                builder.Principal ?? throw new MissingRequiredMemberException("Principal"),
-                builder.StatementId ?? throw new MissingRequiredMemberException("StatementId"),
+                builder.Action,
                 builder.EventSourceToken,
+                builder.FunctionName,
                 builder.FunctionUrlAuthType,
                 builder.InvokedViaFunctionUrl,
+                builder.Principal,
                 builder.PrincipalOrgID,
                 builder.Qualifier,
                 builder.RevisionId,
                 builder.SourceAccount,
-                builder.SourceArn
+                builder.SourceArn,
+                builder.StatementId
             );
 
         public override void SerializeMembers<TSerializer>(
@@ -443,7 +423,7 @@ public static partial class AddPermissionInputSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

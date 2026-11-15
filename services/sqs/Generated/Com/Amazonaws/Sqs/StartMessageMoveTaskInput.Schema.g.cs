@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Sqs.Schemas;
 
 public static partial class StartMessageMoveTaskInputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? SourceArn { get; set; }
         public string? DestinationArn { get; set; }
@@ -26,18 +26,7 @@ public static partial class StartMessageMoveTaskInputSchema
         : StructSchema<global::Com.Amazonaws.Sqs.StartMessageMoveTaskInput, Builder>(
             ShapeId.Parse("com.amazonaws.sqs#StartMessageMoveTaskInput"),
             [
-                new(
-                    "SourceArn",
-                    Target0,
-                    isRequired: true,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
-                    ]
-                ),
+                new("SourceArn", Target0),
                 new("DestinationArn", Target1),
                 new(
                     "MaxNumberOfMessagesPerSecond",
@@ -80,9 +69,9 @@ public static partial class StartMessageMoveTaskInputSchema
             Builder builder
         ) =>
             new global::Com.Amazonaws.Sqs.StartMessageMoveTaskInput(
-                builder.SourceArn ?? throw new MissingRequiredMemberException("SourceArn"),
                 builder.DestinationArn,
-                builder.MaxNumberOfMessagesPerSecond
+                builder.MaxNumberOfMessagesPerSecond,
+                builder.SourceArn
             );
 
         public override void SerializeMembers<TSerializer>(
@@ -116,7 +105,7 @@ public static partial class StartMessageMoveTaskInputSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

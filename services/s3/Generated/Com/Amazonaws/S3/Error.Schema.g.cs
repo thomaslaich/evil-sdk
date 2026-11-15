@@ -10,7 +10,7 @@ namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class ErrorSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? Key { get; set; }
         public string? VersionId { get; set; }
@@ -111,7 +111,7 @@ public static partial class ErrorSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

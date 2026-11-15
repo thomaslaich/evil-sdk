@@ -12,7 +12,7 @@ namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class WriteGetObjectResponseInputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? RequestRoute { get; set; }
         public string? RequestToken { get; set; }
@@ -74,7 +74,6 @@ public static partial class WriteGetObjectResponseInputSchema
                 new(
                     "RequestRoute",
                     Target0,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
@@ -85,25 +84,16 @@ public static partial class WriteGetObjectResponseInputSchema
                             ShapeId.Parse("smithy.api#httpHeader"),
                             Document.From("x-amz-request-route")
                         ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
                     ]
                 ),
                 new(
                     "RequestToken",
                     Target1,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
                             ShapeId.Parse("smithy.api#httpHeader"),
                             Document.From("x-amz-request-token")
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
                         ),
                     ]
                 ),
@@ -825,8 +815,6 @@ public static partial class WriteGetObjectResponseInputSchema
             Builder builder
         ) =>
             new global::Com.Amazonaws.S3.WriteGetObjectResponseInput(
-                builder.RequestRoute ?? throw new MissingRequiredMemberException("RequestRoute"),
-                builder.RequestToken ?? throw new MissingRequiredMemberException("RequestToken"),
                 builder.AcceptRanges,
                 builder.Body,
                 builder.BucketKeyEnabled,
@@ -862,6 +850,8 @@ public static partial class WriteGetObjectResponseInputSchema
                 builder.PartsCount,
                 builder.ReplicationStatus,
                 builder.RequestCharged,
+                builder.RequestRoute,
+                builder.RequestToken,
                 builder.Restore,
                 builder.SSECustomerAlgorithm,
                 builder.SSECustomerKeyMD5,
@@ -1252,7 +1242,7 @@ public static partial class WriteGetObjectResponseInputSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Dynamodb.Schemas;
 
 public static partial class CreateBackupInputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? TableName { get; set; }
         public string? BackupName { get; set; }
@@ -28,7 +28,6 @@ public static partial class CreateBackupInputSchema
                 new(
                     "TableName",
                     Target0,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
@@ -40,10 +39,6 @@ public static partial class CreateBackupInputSchema
                                     { "max", Document.From(1024m) },
                                 }
                             )
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
                         ),
                         new Trait(
                             ShapeId.Parse("smithy.rules#contextParam"),
@@ -59,7 +54,6 @@ public static partial class CreateBackupInputSchema
                 new(
                     "BackupName",
                     Target1,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
@@ -75,10 +69,6 @@ public static partial class CreateBackupInputSchema
                         new Trait(
                             ShapeId.Parse("smithy.api#pattern"),
                             Document.From("^[a-zA-Z0-9_.-]+$")
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
                         ),
                     ]
                 ),
@@ -104,8 +94,8 @@ public static partial class CreateBackupInputSchema
 
         public override global::Com.Amazonaws.Dynamodb.CreateBackupInput Build(Builder builder) =>
             new global::Com.Amazonaws.Dynamodb.CreateBackupInput(
-                builder.BackupName ?? throw new MissingRequiredMemberException("BackupName"),
-                builder.TableName ?? throw new MissingRequiredMemberException("TableName")
+                builder.BackupName,
+                builder.TableName
             );
 
         public override void SerializeMembers<TSerializer>(
@@ -131,7 +121,7 @@ public static partial class CreateBackupInputSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

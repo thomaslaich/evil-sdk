@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Route53.Schemas;
 
 public static partial class GetHealthCheckInputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? HealthCheckId { get; set; }
     }
@@ -27,7 +27,6 @@ public static partial class GetHealthCheckInputSchema
                 new(
                     "HealthCheckId",
                     Target0,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
@@ -43,10 +42,6 @@ public static partial class GetHealthCheckInputSchema
                                     { "max", Document.From(64m) },
                                 }
                             )
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
                         ),
                     ]
                 ),
@@ -71,9 +66,7 @@ public static partial class GetHealthCheckInputSchema
         public override Builder CreateTypedBuilder() => new();
 
         public override global::Com.Amazonaws.Route53.GetHealthCheckInput Build(Builder builder) =>
-            new global::Com.Amazonaws.Route53.GetHealthCheckInput(
-                builder.HealthCheckId ?? throw new MissingRequiredMemberException("HealthCheckId")
-            );
+            new global::Com.Amazonaws.Route53.GetHealthCheckInput(builder.HealthCheckId);
 
         public override void SerializeMembers<TSerializer>(
             global::Com.Amazonaws.Route53.GetHealthCheckInput value,
@@ -90,7 +83,7 @@ public static partial class GetHealthCheckInputSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

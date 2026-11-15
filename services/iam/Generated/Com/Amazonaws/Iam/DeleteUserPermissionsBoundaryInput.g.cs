@@ -11,4 +11,4 @@ namespace Com.Amazonaws.Iam;
 /// The name (friendly name, not ARN) of the IAM user from which you want to remove the permissions
 /// boundary.
 /// </param>
-public sealed record class DeleteUserPermissionsBoundaryInput(string UserName);
+public sealed record class DeleteUserPermissionsBoundaryInput(string? UserName = null);

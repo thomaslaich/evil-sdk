@@ -27,4 +27,4 @@ namespace Com.Amazonaws.Iam;
 /// can also include any of the following characters: _+=,.@-
 /// </para>
 /// </param>
-public sealed record class GetGroupPolicyInput(string GroupName, string PolicyName);
+public sealed record class GetGroupPolicyInput(string? GroupName = null, string? PolicyName = null);

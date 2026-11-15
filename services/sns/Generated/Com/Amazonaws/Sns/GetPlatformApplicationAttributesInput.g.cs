@@ -10,4 +10,6 @@ namespace Com.Amazonaws.Sns;
 /// <param name="PlatformApplicationArn">
 /// <c>PlatformApplicationArn</c> for GetPlatformApplicationAttributesInput.
 /// </param>
-public sealed record class GetPlatformApplicationAttributesInput(string PlatformApplicationArn);
+public sealed record class GetPlatformApplicationAttributesInput(
+    string? PlatformApplicationArn = null
+);

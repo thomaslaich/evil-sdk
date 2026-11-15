@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Route53.Schemas;
 
 public static partial class DeleteQueryLoggingConfigInputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? Id { get; set; }
     }
@@ -27,7 +27,6 @@ public static partial class DeleteQueryLoggingConfigInputSchema
                 new(
                     "Id",
                     Target0,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
@@ -43,10 +42,6 @@ public static partial class DeleteQueryLoggingConfigInputSchema
                                     { "max", Document.From(36m) },
                                 }
                             )
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
                         ),
                     ]
                 ),
@@ -72,10 +67,7 @@ public static partial class DeleteQueryLoggingConfigInputSchema
 
         public override global::Com.Amazonaws.Route53.DeleteQueryLoggingConfigInput Build(
             Builder builder
-        ) =>
-            new global::Com.Amazonaws.Route53.DeleteQueryLoggingConfigInput(
-                builder.Id ?? throw new MissingRequiredMemberException("Id")
-            );
+        ) => new global::Com.Amazonaws.Route53.DeleteQueryLoggingConfigInput(builder.Id);
 
         public override void SerializeMembers<TSerializer>(
             global::Com.Amazonaws.Route53.DeleteQueryLoggingConfigInput value,
@@ -92,7 +84,7 @@ public static partial class DeleteQueryLoggingConfigInputSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

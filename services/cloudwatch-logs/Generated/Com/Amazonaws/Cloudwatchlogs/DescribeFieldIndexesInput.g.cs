@@ -9,9 +9,6 @@ namespace Com.Amazonaws.Cloudwatchlogs;
 /// <summary>
 /// Represents the Smithy structure com.amazonaws.cloudwatchlogs#DescribeFieldIndexesInput.
 /// </summary>
-/// <param name="LogGroupIdentifiers">
-/// An array containing the names or ARNs of the log groups that you want to retrieve field indexes for.
-/// </param>
 /// <param name="IndexCategories">
 /// <para>
 /// The index categories to return. The following values are supported:
@@ -55,8 +52,11 @@ namespace Com.Amazonaws.Cloudwatchlogs;
 /// indexed fields</see>.
 /// </para>
 /// </param>
+/// <param name="LogGroupIdentifiers">
+/// An array containing the names or ARNs of the log groups that you want to retrieve field indexes for.
+/// </param>
 public sealed record class DescribeFieldIndexesInput(
-    IReadOnlyList<string> LogGroupIdentifiers,
     IReadOnlyList<IndexCategory>? IndexCategories = null,
+    IReadOnlyList<string>? LogGroupIdentifiers = null,
     string? NextToken = null
 );

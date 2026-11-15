@@ -10,7 +10,7 @@ namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class DeleteObjectAnnotationInputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? Bucket { get; set; }
         public string? Key { get; set; }
@@ -33,15 +33,10 @@ public static partial class DeleteObjectAnnotationInputSchema
                 new(
                     "Bucket",
                     Target0,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
                             ShapeId.Parse("smithy.api#httpLabel"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
                             Document.From(new Dictionary<string, Document> { })
                         ),
                         new Trait(
@@ -58,7 +53,6 @@ public static partial class DeleteObjectAnnotationInputSchema
                 new(
                     "Key",
                     Target1,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
@@ -71,25 +65,16 @@ public static partial class DeleteObjectAnnotationInputSchema
                                 new Dictionary<string, Document> { { "min", Document.From(1m) } }
                             )
                         ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
                     ]
                 ),
                 new(
                     "AnnotationName",
                     Target2,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
                             ShapeId.Parse("smithy.api#httpQuery"),
                             Document.From("annotationName")
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
                         ),
                     ]
                 ),
@@ -183,11 +168,10 @@ public static partial class DeleteObjectAnnotationInputSchema
             Builder builder
         ) =>
             new global::Com.Amazonaws.S3.DeleteObjectAnnotationInput(
-                builder.AnnotationName
-                    ?? throw new MissingRequiredMemberException("AnnotationName"),
-                builder.Bucket ?? throw new MissingRequiredMemberException("Bucket"),
-                builder.Key ?? throw new MissingRequiredMemberException("Key"),
+                builder.AnnotationName,
+                builder.Bucket,
                 builder.ExpectedBucketOwner,
+                builder.Key,
                 builder.ObjectIfMatch,
                 builder.RequestPayer,
                 builder.VersionId
@@ -256,7 +240,7 @@ public static partial class DeleteObjectAnnotationInputSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

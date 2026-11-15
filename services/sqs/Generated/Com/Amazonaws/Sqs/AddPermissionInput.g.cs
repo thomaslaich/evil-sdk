@@ -47,8 +47,8 @@ namespace Com.Amazonaws.Sqs;
 /// </para>
 /// </param>
 public sealed record class AddPermissionInput(
-    IReadOnlyList<string> AWSAccountIds,
-    IReadOnlyList<string> Actions,
-    string Label,
-    string QueueUrl
+    IReadOnlyList<string>? AWSAccountIds = null,
+    IReadOnlyList<string>? Actions = null,
+    string? Label = null,
+    string? QueueUrl = null
 );

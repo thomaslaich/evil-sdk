@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Route53.Schemas;
 
 public static partial class ChangeTagsForResourceInputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public global::Com.Amazonaws.Route53.TagResourceType? ResourceType { get; set; }
         public string? ResourceId { get; set; }
@@ -30,15 +30,10 @@ public static partial class ChangeTagsForResourceInputSchema
                 new(
                     "ResourceType",
                     Target0,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
                             ShapeId.Parse("smithy.api#httpLabel"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
                             Document.From(new Dictionary<string, Document> { })
                         ),
                     ]
@@ -46,7 +41,6 @@ public static partial class ChangeTagsForResourceInputSchema
                 new(
                     "ResourceId",
                     Target1,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
@@ -62,10 +56,6 @@ public static partial class ChangeTagsForResourceInputSchema
                                     { "max", Document.From(64m) },
                                 }
                             )
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
                         ),
                     ]
                 ),
@@ -105,10 +95,10 @@ public static partial class ChangeTagsForResourceInputSchema
             Builder builder
         ) =>
             new global::Com.Amazonaws.Route53.ChangeTagsForResourceInput(
-                builder.ResourceId ?? throw new MissingRequiredMemberException("ResourceId"),
-                builder.ResourceType ?? throw new MissingRequiredMemberException("ResourceType"),
                 builder.AddTags,
-                builder.RemoveTagKeys
+                builder.RemoveTagKeys,
+                builder.ResourceId,
+                builder.ResourceType
             );
 
         public override void SerializeMembers<TSerializer>(
@@ -116,7 +106,14 @@ public static partial class ChangeTagsForResourceInputSchema
             ref TSerializer serializer
         )
         {
-            serializer.WriteStringEnum(0, value.ResourceType.Value);
+            if (value.ResourceType is { } value0)
+            {
+                serializer.WriteStringEnum(0, value0.Value);
+            }
+            else
+            {
+                serializer.WriteNull(0);
+            }
             if (value.ResourceId is { } value1)
             {
                 serializer.WriteString(1, value1);
@@ -143,7 +140,7 @@ public static partial class ChangeTagsForResourceInputSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

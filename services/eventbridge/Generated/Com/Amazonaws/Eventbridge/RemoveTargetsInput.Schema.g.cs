@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Eventbridge.Schemas;
 
 public static partial class RemoveTargetsInputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? Rule { get; set; }
         public string? EventBusName { get; set; }
@@ -30,7 +30,6 @@ public static partial class RemoveTargetsInputSchema
                 new(
                     "Rule",
                     Target0,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
@@ -46,10 +45,6 @@ public static partial class RemoveTargetsInputSchema
                         new Trait(
                             ShapeId.Parse("smithy.api#pattern"),
                             Document.From("^[\\.\\-_A-Za-z0-9]+$")
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
                         ),
                     ]
                 ),
@@ -76,18 +71,7 @@ public static partial class RemoveTargetsInputSchema
                         ),
                     ]
                 ),
-                new(
-                    "Ids",
-                    Target2,
-                    isRequired: true,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
-                    ]
-                ),
+                new("Ids", Target2),
                 new(
                     "Force",
                     Target3,
@@ -127,10 +111,10 @@ public static partial class RemoveTargetsInputSchema
             Builder builder
         ) =>
             new global::Com.Amazonaws.Eventbridge.RemoveTargetsInput(
-                builder.Ids ?? throw new MissingRequiredMemberException("Ids"),
-                builder.Rule ?? throw new MissingRequiredMemberException("Rule"),
                 builder.EventBusName,
-                builder.Force
+                builder.Force,
+                builder.Ids,
+                builder.Rule
             );
 
         public override void SerializeMembers<TSerializer>(
@@ -176,7 +160,7 @@ public static partial class RemoveTargetsInputSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

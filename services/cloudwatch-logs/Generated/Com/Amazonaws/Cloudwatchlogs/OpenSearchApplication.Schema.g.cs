@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Cloudwatchlogs.Schemas;
 
 public static partial class OpenSearchApplicationSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? ApplicationEndpoint { get; set; }
         public string? ApplicationArn { get; set; }
@@ -145,7 +145,7 @@ public static partial class OpenSearchApplicationSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

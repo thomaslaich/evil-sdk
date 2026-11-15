@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Cloudwatchlogs.Schemas;
 
 public static partial class DescribeAccountPoliciesInputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public global::Com.Amazonaws.Cloudwatchlogs.PolicyType? PolicyType { get; set; }
         public string? PolicyName { get; set; }
@@ -27,18 +27,7 @@ public static partial class DescribeAccountPoliciesInputSchema
         : StructSchema<global::Com.Amazonaws.Cloudwatchlogs.DescribeAccountPoliciesInput, Builder>(
             ShapeId.Parse("com.amazonaws.cloudwatchlogs#DescribeAccountPoliciesInput"),
             [
-                new(
-                    "policyType",
-                    Target0,
-                    isRequired: true,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
-                    ]
-                ),
+                new("policyType", Target0),
                 new("policyName", Target1),
                 new("accountIdentifiers", Target2),
                 new(
@@ -88,10 +77,10 @@ public static partial class DescribeAccountPoliciesInputSchema
             Builder builder
         ) =>
             new global::Com.Amazonaws.Cloudwatchlogs.DescribeAccountPoliciesInput(
-                builder.PolicyType ?? throw new MissingRequiredMemberException("policyType"),
                 builder.AccountIdentifiers,
                 builder.NextToken,
-                builder.PolicyName
+                builder.PolicyName,
+                builder.PolicyType
             );
 
         public override void SerializeMembers<TSerializer>(
@@ -99,7 +88,14 @@ public static partial class DescribeAccountPoliciesInputSchema
             ref TSerializer serializer
         )
         {
-            serializer.WriteStringEnum(0, value.PolicyType.Value);
+            if (value.PolicyType is { } value0)
+            {
+                serializer.WriteStringEnum(0, value0.Value);
+            }
+            else
+            {
+                serializer.WriteNull(0);
+            }
             if (value.PolicyName is { } value1)
             {
                 serializer.WriteString(1, value1);
@@ -126,7 +122,7 @@ public static partial class DescribeAccountPoliciesInputSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

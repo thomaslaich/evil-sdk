@@ -10,4 +10,4 @@ namespace Com.Amazonaws.Eventbridge;
 /// <param name="Name">
 /// The name of the partner event source to display the details of.
 /// </param>
-public sealed record class DescribeEventSourceInput(string Name);
+public sealed record class DescribeEventSourceInput(string? Name = null);

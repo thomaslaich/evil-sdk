@@ -36,7 +36,7 @@ namespace Com.Amazonaws.Iam;
 /// </para>
 /// </param>
 public sealed record class ListInstanceProfileTagsInput(
-    string InstanceProfileName,
+    string? InstanceProfileName = null,
     string? Marker = null,
     int? MaxItems = null
 );

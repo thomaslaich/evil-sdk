@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Lambda.Schemas;
 
 public static partial class CreateCodeSigningConfigInputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? Description { get; set; }
         public global::Com.Amazonaws.Lambda.AllowedPublishers? AllowedPublishers { get; set; }
@@ -44,18 +44,7 @@ public static partial class CreateCodeSigningConfigInputSchema
                         ),
                     ]
                 ),
-                new(
-                    "AllowedPublishers",
-                    Target1,
-                    isRequired: true,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
-                    ]
-                ),
+                new("AllowedPublishers", Target1),
                 new("CodeSigningPolicies", Target2),
                 new("Tags", Target3),
             ],
@@ -96,8 +85,7 @@ public static partial class CreateCodeSigningConfigInputSchema
             Builder builder
         ) =>
             new global::Com.Amazonaws.Lambda.CreateCodeSigningConfigInput(
-                builder.AllowedPublishers
-                    ?? throw new MissingRequiredMemberException("AllowedPublishers"),
+                builder.AllowedPublishers,
                 builder.CodeSigningPolicies,
                 builder.Description,
                 builder.Tags
@@ -142,7 +130,7 @@ public static partial class CreateCodeSigningConfigInputSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

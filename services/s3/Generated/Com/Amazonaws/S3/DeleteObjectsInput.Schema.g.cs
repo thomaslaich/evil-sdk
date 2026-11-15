@@ -10,7 +10,7 @@ namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class DeleteObjectsInputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? Bucket { get; set; }
         public global::Com.Amazonaws.S3.Delete? Delete { get; set; }
@@ -33,15 +33,10 @@ public static partial class DeleteObjectsInputSchema
                 new(
                     "Bucket",
                     Target0,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
                             ShapeId.Parse("smithy.api#httpLabel"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
                             Document.From(new Dictionary<string, Document> { })
                         ),
                         new Trait(
@@ -58,15 +53,10 @@ public static partial class DeleteObjectsInputSchema
                 new(
                     "Delete",
                     Target1,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
                             ShapeId.Parse("smithy.api#httpPayload"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
                             Document.From(new Dictionary<string, Document> { })
                         ),
                         new Trait(ShapeId.Parse("smithy.api#xmlName"), Document.From("Delete")),
@@ -171,10 +161,10 @@ public static partial class DeleteObjectsInputSchema
 
         public override global::Com.Amazonaws.S3.DeleteObjectsInput Build(Builder builder) =>
             new global::Com.Amazonaws.S3.DeleteObjectsInput(
-                builder.Bucket ?? throw new MissingRequiredMemberException("Bucket"),
-                builder.Delete ?? throw new MissingRequiredMemberException("Delete"),
+                builder.Bucket,
                 builder.BypassGovernanceRetention,
                 builder.ChecksumAlgorithm,
+                builder.Delete,
                 builder.ExpectedBucketOwner,
                 builder.MFA,
                 builder.RequestPayer
@@ -243,7 +233,7 @@ public static partial class DeleteObjectsInputSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

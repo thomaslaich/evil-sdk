@@ -178,7 +178,7 @@ public interface IAWSSecurityTokenServiceV20110615Client : IDisposable
     /// To assume a role
     /// </para>
     /// <code>
-    /// var input = new AssumeRoleInput(RoleArn: &quot;arn:aws:iam::123456789012:role/demo&quot;, RoleSessionName: &quot;testAssumeRoleSession&quot;, ExternalId: &quot;123ABC&quot;, Policy: &quot;escaped-JSON-IAM-POLICY&quot;, Tags: new global::Com.Amazonaws.Sts.Tag[] { new global::Com.Amazonaws.Sts.Tag(Key: &quot;Project&quot;, Value: &quot;Unicorn&quot;), new global::Com.Amazonaws.Sts.Tag(Key: &quot;Team&quot;, Value: &quot;Automation&quot;), new global::Com.Amazonaws.Sts.Tag(Key: &quot;Cost-Center&quot;, Value: &quot;12345&quot;) }, TransitiveTagKeys: new string[] { &quot;Project&quot;, &quot;Cost-Center&quot; });
+    /// var input = new AssumeRoleInput(ExternalId: &quot;123ABC&quot;, Policy: &quot;escaped-JSON-IAM-POLICY&quot;, RoleArn: &quot;arn:aws:iam::123456789012:role/demo&quot;, RoleSessionName: &quot;testAssumeRoleSession&quot;, Tags: new global::Com.Amazonaws.Sts.Tag[] { new global::Com.Amazonaws.Sts.Tag(Key: &quot;Project&quot;, Value: &quot;Unicorn&quot;), new global::Com.Amazonaws.Sts.Tag(Key: &quot;Team&quot;, Value: &quot;Automation&quot;), new global::Com.Amazonaws.Sts.Tag(Key: &quot;Cost-Center&quot;, Value: &quot;12345&quot;) }, TransitiveTagKeys: new string[] { &quot;Project&quot;, &quot;Cost-Center&quot; });
     /// var output = await client.AssumeRoleAsync(input);
     ///
     /// // Expected output:
@@ -359,7 +359,7 @@ public interface IAWSSecurityTokenServiceV20110615Client : IDisposable
     /// To assume a role using a SAML assertion
     /// </para>
     /// <code>
-    /// var input = new AssumeRoleWithSAMLInput(PrincipalArn: &quot;arn:aws:iam::123456789012:saml-provider/SAML-test&quot;, RoleArn: &quot;arn:aws:iam::123456789012:role/TestSaml&quot;, SAMLAssertion: &quot;VERYLONGENCODEDASSERTIONEXAMPLExzYW1sOkF1ZGllbmNlPmJsYW5rPC9zYW1sOkF1ZGllbmNlPjwvc2FtbDpBdWRpZW5jZVJlc3RyaWN0aW9uPjwvc2FtbDpDb25kaXRpb25zPjxzYW1sOlN1YmplY3Q+PHNhbWw6TmFtZUlEIEZvcm1hdD0idXJuOm9hc2lzOm5hbWVzOnRjOlNBTUw6Mi4wOm5hbWVpZC1mb3JtYXQ6dHJhbnNpZW50Ij5TYW1sRXhhbXBsZTwvc2FtbDpOYW1lSUQ+PHNhbWw6U3ViamVjdENvbmZpcm1hdGlvbiBNZXRob2Q9InVybjpvYXNpczpuYW1lczp0YzpTQU1MOjIuMDpjbTpiZWFyZXIiPjxzYW1sOlN1YmplY3RDb25maXJtYXRpb25EYXRhIE5vdE9uT3JBZnRlcj0iMjAxOS0xMS0wMVQyMDoyNTowNS4xNDVaIiBSZWNpcGllbnQ9Imh0dHBzOi8vc2lnbmluLmF3cy5hbWF6b24uY29tL3NhbWwiLz48L3NhbWw6U3ViamVjdENvbmZpcm1hdGlvbj48L3NhbWw6U3ViamVjdD48c2FtbDpBdXRoblN0YXRlbWVudCBBdXRoPD94bWwgdmpSZXNwb25zZT4=&quot;, DurationSeconds: 3600);
+    /// var input = new AssumeRoleWithSAMLInput(DurationSeconds: 3600, PrincipalArn: &quot;arn:aws:iam::123456789012:saml-provider/SAML-test&quot;, RoleArn: &quot;arn:aws:iam::123456789012:role/TestSaml&quot;, SAMLAssertion: &quot;VERYLONGENCODEDASSERTIONEXAMPLExzYW1sOkF1ZGllbmNlPmJsYW5rPC9zYW1sOkF1ZGllbmNlPjwvc2FtbDpBdWRpZW5jZVJlc3RyaWN0aW9uPjwvc2FtbDpDb25kaXRpb25zPjxzYW1sOlN1YmplY3Q+PHNhbWw6TmFtZUlEIEZvcm1hdD0idXJuOm9hc2lzOm5hbWVzOnRjOlNBTUw6Mi4wOm5hbWVpZC1mb3JtYXQ6dHJhbnNpZW50Ij5TYW1sRXhhbXBsZTwvc2FtbDpOYW1lSUQ+PHNhbWw6U3ViamVjdENvbmZpcm1hdGlvbiBNZXRob2Q9InVybjpvYXNpczpuYW1lczp0YzpTQU1MOjIuMDpjbTpiZWFyZXIiPjxzYW1sOlN1YmplY3RDb25maXJtYXRpb25EYXRhIE5vdE9uT3JBZnRlcj0iMjAxOS0xMS0wMVQyMDoyNTowNS4xNDVaIiBSZWNpcGllbnQ9Imh0dHBzOi8vc2lnbmluLmF3cy5hbWF6b24uY29tL3NhbWwiLz48L3NhbWw6U3ViamVjdENvbmZpcm1hdGlvbj48L3NhbWw6U3ViamVjdD48c2FtbDpBdXRoblN0YXRlbWVudCBBdXRoPD94bWwgdmpSZXNwb25zZT4=&quot;);
     /// var output = await client.AssumeRoleWithSAMLAsync(input);
     ///
     /// // Expected output:
@@ -536,7 +536,7 @@ public interface IAWSSecurityTokenServiceV20110615Client : IDisposable
     /// To assume a role as an OpenID Connect-federated user
     /// </para>
     /// <code>
-    /// var input = new AssumeRoleWithWebIdentityInput(RoleArn: &quot;arn:aws:iam::123456789012:role/FederatedWebIdentityRole&quot;, RoleSessionName: &quot;app1&quot;, WebIdentityToken: &quot;Atza%7CIQEBLjAsAhRFiXuWpUXuRvQ9PZL3GMFcYevydwIUFAHZwXZXXXXXXXXJnrulxKDHwy87oGKPznh0D6bEQZTSCzyoCtL_8S07pLpr0zMbn6w1lfVZKNTBdDansFBmtGnIsIapjI6xKR02Yc_2bQ8LZbUXSGm6Ry6_BG7PrtLZtj_dfCTj92xNGed-CrKqjG7nPBjNIL016GGvuS5gSvPRUxWES3VYfm1wl7WTI7jn-Pcb6M-buCgHhFOzTQxod27L9CqnOLio7N3gZAGpsp6n1-AJBOCJckcyXe2c6uD0srOJeZlKUm2eTDVMf8IehDVI0r1QOnTV6KzzAI3OY87Vd_cVMQ&quot;, DurationSeconds: 3600, Policy: &quot;escaped-JSON-IAM-POLICY&quot;, ProviderId: &quot;www.amazon.com&quot;);
+    /// var input = new AssumeRoleWithWebIdentityInput(DurationSeconds: 3600, Policy: &quot;escaped-JSON-IAM-POLICY&quot;, ProviderId: &quot;www.amazon.com&quot;, RoleArn: &quot;arn:aws:iam::123456789012:role/FederatedWebIdentityRole&quot;, RoleSessionName: &quot;app1&quot;, WebIdentityToken: &quot;Atza%7CIQEBLjAsAhRFiXuWpUXuRvQ9PZL3GMFcYevydwIUFAHZwXZXXXXXXXXJnrulxKDHwy87oGKPznh0D6bEQZTSCzyoCtL_8S07pLpr0zMbn6w1lfVZKNTBdDansFBmtGnIsIapjI6xKR02Yc_2bQ8LZbUXSGm6Ry6_BG7PrtLZtj_dfCTj92xNGed-CrKqjG7nPBjNIL016GGvuS5gSvPRUxWES3VYfm1wl7WTI7jn-Pcb6M-buCgHhFOzTQxod27L9CqnOLio7N3gZAGpsp6n1-AJBOCJckcyXe2c6uD0srOJeZlKUm2eTDVMf8IehDVI0r1QOnTV6KzzAI3OY87Vd_cVMQ&quot;);
     /// var output = await client.AssumeRoleWithWebIdentityAsync(input);
     ///
     /// // Expected output:
@@ -591,7 +591,7 @@ public interface IAWSSecurityTokenServiceV20110615Client : IDisposable
     /// The following command retrieves a set of short-term credentials you can use to unlock an S3 bucket for a member account by removing the bucket policy.
     /// </para>
     /// <code>
-    /// var input = new AssumeRootInput(TargetPrincipal: &quot;111122223333&quot;, TaskPolicyArn: new PolicyDescriptorType(Arn: &quot;arn:aws:iam::aws:policy/root-task/S3UnlockBucketPolicy&quot;), DurationSeconds: 900);
+    /// var input = new AssumeRootInput(DurationSeconds: 900, TargetPrincipal: &quot;111122223333&quot;, TaskPolicyArn: new PolicyDescriptorType(Arn: &quot;arn:aws:iam::aws:policy/root-task/S3UnlockBucketPolicy&quot;));
     /// var output = await client.AssumeRootAsync(input);
     ///
     /// // Expected output:
@@ -916,7 +916,7 @@ public interface IAWSSecurityTokenServiceV20110615Client : IDisposable
     /// To get temporary credentials for a role by using GetFederationToken
     /// </para>
     /// <code>
-    /// var input = new GetFederationTokenInput(Name: &quot;testFedUserSession&quot;, DurationSeconds: 3600, Policy: &quot;escaped-JSON-IAM-POLICY&quot;, Tags: new global::Com.Amazonaws.Sts.Tag[] { new global::Com.Amazonaws.Sts.Tag(Key: &quot;Project&quot;, Value: &quot;Pegasus&quot;), new global::Com.Amazonaws.Sts.Tag(Key: &quot;Cost-Center&quot;, Value: &quot;98765&quot;) });
+    /// var input = new GetFederationTokenInput(DurationSeconds: 3600, Name: &quot;testFedUserSession&quot;, Policy: &quot;escaped-JSON-IAM-POLICY&quot;, Tags: new global::Com.Amazonaws.Sts.Tag[] { new global::Com.Amazonaws.Sts.Tag(Key: &quot;Project&quot;, Value: &quot;Pegasus&quot;), new global::Com.Amazonaws.Sts.Tag(Key: &quot;Cost-Center&quot;, Value: &quot;98765&quot;) });
     /// var output = await client.GetFederationTokenAsync(input);
     ///
     /// // Expected output:
@@ -1044,6 +1044,630 @@ public static class AWSSecurityTokenServiceV20110615ClientExtensions
 {
     /// <summary>
     /// <para>
+    /// Returns a set of temporary security credentials that you can use to access Amazon Web Services
+    /// resources. These temporary credentials consist of an access key ID, a secret access key, and a
+    /// security token. Typically, you use <c>AssumeRole</c> within your account or for cross-account
+    /// access. For a comparison of <c>AssumeRole</c> with other API operations that produce temporary
+    /// credentials, see
+    /// <see href="https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_temp_request.html">Requesting
+    /// Temporary Security Credentials</see> and
+    /// <see href="https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_sts-comparison.html">Compare
+    /// STS credentials</see> in the <i>IAM User Guide</i>.
+    /// </para>
+    /// <para>
+    /// <b>Permissions</b>
+    /// </para>
+    /// <para>
+    /// The temporary security credentials created by <c>AssumeRole</c> can be used to make API calls to any
+    /// Amazon Web Services service with the following exception: You cannot call the Amazon Web Services
+    /// STS <c>GetFederationToken</c> or <c>GetSessionToken</c> API operations.
+    /// </para>
+    /// <para>
+    /// (Optional) You can pass inline or managed session policies to this operation. You can pass a single
+    /// JSON policy document to use as an inline session policy. You can also specify up to 10 managed
+    /// policy Amazon Resource Names (ARNs) to use as managed session policies. The plaintext that you use
+    /// for both inline and managed session policies can't exceed 2,048 characters. Passing policies to this
+    /// operation returns new temporary credentials. The resulting session's permissions are the
+    /// intersection of the role's identity-based policy and the session policies. You can use the role's
+    /// temporary credentials in subsequent Amazon Web Services API calls to access resources in the account
+    /// that owns the role. You cannot use session policies to grant more permissions than those allowed by
+    /// the identity-based policy of the role that is being assumed. For more information, see
+    /// <see href="https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies.html#policies_session">Session
+    /// Policies</see> in the <i>IAM User Guide</i>.
+    /// </para>
+    /// <para>
+    /// When you create a role, you create two policies: a role trust policy that specifies <i>who</i> can
+    /// assume the role, and a permissions policy that specifies <i>what</i> can be done with the role. You
+    /// specify the trusted principal that is allowed to assume the role in the role trust policy.
+    /// </para>
+    /// <para>
+    /// To assume a role from a different account, your Amazon Web Services account must be trusted by the
+    /// role. The trust relationship is defined in the role's trust policy when the role is created. That
+    /// trust policy states which accounts are allowed to delegate that access to users in the account.
+    /// </para>
+    /// <para>
+    /// A user who wants to access a role in a different account must also have permissions that are
+    /// delegated from the account administrator. The administrator must attach a policy that allows the
+    /// user to call <c>AssumeRole</c> for the ARN of the role in the other account.
+    /// </para>
+    /// <para>
+    /// To allow a user to assume a role in the same account, you can do either of the following:
+    /// </para>
+    /// <list type="bullet">
+    /// <item>
+    /// <description>
+    /// Attach a policy to the user that allows the user to call <c>AssumeRole</c> (as long as the role's
+    /// trust policy trusts the account).
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <description>
+    /// Add the user as a principal directly in the role's trust policy.
+    /// </description>
+    /// </item>
+    /// </list>
+    /// <para>
+    /// You can do either because the role’s trust policy acts as an IAM resource-based policy. When a
+    /// resource-based policy grants access to a principal in the same account, no additional identity-based
+    /// policy is required. For more information about trust policies and resource-based policies, see
+    /// <see href="https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies.html">IAM Policies</see>
+    /// in the <i>IAM User Guide</i>.
+    /// </para>
+    /// <para>
+    /// <b>Tags</b>
+    /// </para>
+    /// <para>
+    /// (Optional) You can pass tag key-value pairs to your session. These tags are called session tags. For
+    /// more information about session tags, see
+    /// <see href="https://docs.aws.amazon.com/IAM/latest/UserGuide/id_session-tags.html">Passing Session
+    /// Tags in STS</see> in the <i>IAM User Guide</i>.
+    /// </para>
+    /// <para>
+    /// An administrator must grant you the permissions necessary to pass session tags. The administrator
+    /// can also create granular permissions to allow you to pass only specific session tags. For more
+    /// information, see
+    /// <see href="https://docs.aws.amazon.com/IAM/latest/UserGuide/tutorial_attribute-based-access-control.html">Tutorial:
+    /// Using Tags for Attribute-Based Access Control</see> in the <i>IAM User Guide</i>.
+    /// </para>
+    /// <para>
+    /// You can set the session tags as transitive. Transitive tags persist during role chaining. For more
+    /// information, see
+    /// <see href="https://docs.aws.amazon.com/IAM/latest/UserGuide/id_session-tags.html#id_session-tags_role-chaining">Chaining
+    /// Roles with Session Tags</see> in the <i>IAM User Guide</i>.
+    /// </para>
+    /// <para>
+    /// <b>Using MFA with AssumeRole</b>
+    /// </para>
+    /// <para>
+    /// (Optional) You can include multi-factor authentication (MFA) information when you call
+    /// <c>AssumeRole</c>. This is useful for cross-account scenarios to ensure that the user that assumes
+    /// the role has been authenticated with an Amazon Web Services MFA device. In that scenario, the trust
+    /// policy of the role being assumed includes a condition that tests for MFA authentication. If the
+    /// caller does not include valid MFA information, the request to assume the role is denied. The
+    /// condition in a trust policy that tests for MFA authentication might look like the following example.
+    /// </para>
+    /// <para>
+    /// <c>"Condition": {"Bool": {"aws:MultiFactorAuthPresent": true}}</c>
+    /// </para>
+    /// <para>
+    /// For more information, see
+    /// <see href="https://docs.aws.amazon.com/IAM/latest/UserGuide/MFAProtectedAPI.html">Configuring
+    /// MFA-Protected API Access</see> in the <i>IAM User Guide</i> guide.
+    /// </para>
+    /// <para>
+    /// To use MFA with <c>AssumeRole</c>, you pass values for the <c>SerialNumber</c> and <c>TokenCode</c>
+    /// parameters. The <c>SerialNumber</c> value identifies the user's hardware or virtual MFA device. The
+    /// <c>TokenCode</c> is the time-based one-time password (TOTP) that the MFA device produces.
+    /// </para>
+    /// </summary>
+    public static Task<AssumeRoleOutput> AssumeRoleAsync(
+        this IAWSSecurityTokenServiceV20110615Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.AssumeRoleAsync(new AssumeRoleInput(), cancellationToken);
+    }
+
+    /// <summary>
+    /// <para>
+    /// Returns a set of temporary security credentials for users who have been authenticated via a SAML
+    /// authentication response. This operation provides a mechanism for tying an enterprise identity store
+    /// or directory to role-based Amazon Web Services access without user-specific credentials or
+    /// configuration. For a comparison of <c>AssumeRoleWithSAML</c> with the other API operations that
+    /// produce temporary credentials, see
+    /// <see href="https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_temp_request.html">Requesting
+    /// Temporary Security Credentials</see> and
+    /// <see href="https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_sts-comparison.html">Compare
+    /// STS credentials</see> in the <i>IAM User Guide</i>.
+    /// </para>
+    /// <para>
+    /// The temporary security credentials returned by this operation consist of an access key ID, a secret
+    /// access key, and a security token. Applications can use these temporary security credentials to sign
+    /// calls to Amazon Web Services services.
+    /// </para>
+    /// <para>
+    /// <b>Note:</b> AssumeRoleWithSAML will not work on IAM Identity Center managed roles. These roles'
+    /// names start with <c>AWSReservedSSO_</c>.
+    /// </para>
+    /// <para>
+    /// <b>Session Duration</b>
+    /// </para>
+    /// <para>
+    /// By default, the temporary security credentials created by <c>AssumeRoleWithSAML</c> last for one
+    /// hour. However, you can use the optional <c>DurationSeconds</c> parameter to specify the duration of
+    /// your session. Your role session lasts for the duration that you specify, or until the time specified
+    /// in the SAML authentication response's <c>SessionNotOnOrAfter</c> value, whichever is shorter. You
+    /// can provide a <c>DurationSeconds</c> value from 900 seconds (15 minutes) up to the maximum session
+    /// duration setting for the role. This setting can have a value from 1 hour to 12 hours. To learn how
+    /// to view the maximum value for your role, see
+    /// <see href="https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_use.html#id_roles_use_view-role-max-session">View
+    /// the Maximum Session Duration Setting for a Role</see> in the <i>IAM User Guide</i>. The maximum
+    /// session duration limit applies when you use the <c>AssumeRole*</c> API operations or the
+    /// <c>assume-role*</c> CLI commands. However the limit does not apply when you use those operations to
+    /// create a console URL. For more information, see
+    /// <see href="https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_use.html">Using IAM Roles</see>
+    /// in the <i>IAM User Guide</i>.
+    /// </para>
+    /// <para>
+    /// <b>Note:</b>
+    /// <see href="https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_terms-and-concepts.html#iam-term-role-chaining">Role
+    /// chaining</see> limits your CLI or Amazon Web Services API role session to a maximum of one hour.
+    /// When you use the <c>AssumeRole</c> API operation to assume a role, you can specify the duration of
+    /// your role session with the <c>DurationSeconds</c> parameter. You can specify a parameter value of up
+    /// to 43200 seconds (12 hours), depending on the maximum session duration setting for your role.
+    /// However, if you assume a role using role chaining and provide a <c>DurationSeconds</c> parameter
+    /// value greater than one hour, the operation fails.
+    /// </para>
+    /// <para>
+    /// <b>Permissions</b>
+    /// </para>
+    /// <para>
+    /// The temporary security credentials created by <c>AssumeRoleWithSAML</c> can be used to make API
+    /// calls to any Amazon Web Services service with the following exception: you cannot call the STS
+    /// <c>GetFederationToken</c> or <c>GetSessionToken</c> API operations.
+    /// </para>
+    /// <para>
+    /// (Optional) You can pass inline or managed
+    /// <see href="https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies.html#policies_session">session
+    /// policies</see> to this operation. You can pass a single JSON policy document to use as an inline
+    /// session policy. You can also specify up to 10 managed policy Amazon Resource Names (ARNs) to use as
+    /// managed session policies. The plaintext that you use for both inline and managed session policies
+    /// can't exceed 2,048 characters. Passing policies to this operation returns new temporary credentials.
+    /// The resulting session's permissions are the intersection of the role's identity-based policy and the
+    /// session policies. You can use the role's temporary credentials in subsequent Amazon Web Services API
+    /// calls to access resources in the account that owns the role. You cannot use session policies to
+    /// grant more permissions than those allowed by the identity-based policy of the role that is being
+    /// assumed. For more information, see
+    /// <see href="https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies.html#policies_session">Session
+    /// Policies</see> in the <i>IAM User Guide</i>.
+    /// </para>
+    /// <para>
+    /// Calling <c>AssumeRoleWithSAML</c> does not require the use of Amazon Web Services security
+    /// credentials. The identity of the caller is validated by using keys in the metadata document that is
+    /// uploaded for the SAML provider entity for your identity provider.
+    /// </para>
+    /// <para>
+    /// <b>Important:</b> Calling <c>AssumeRoleWithSAML</c> can result in an entry in your CloudTrail logs.
+    /// The entry includes the value in the <c>NameID</c> element of the SAML assertion. We recommend that
+    /// you use a <c>NameIDType</c> that is not associated with any personally identifiable information
+    /// (PII). For example, you could instead use the persistent identifier
+    /// (<c>urn:oasis:names:tc:SAML:2.0:nameid-format:persistent</c>).
+    /// </para>
+    /// <para>
+    /// <b>Tags</b>
+    /// </para>
+    /// <para>
+    /// (Optional) You can configure your IdP to pass attributes into your SAML assertion as session tags.
+    /// Each session tag consists of a key name and an associated value. For more information about session
+    /// tags, see <see href="https://docs.aws.amazon.com/IAM/latest/UserGuide/id_session-tags.html">Passing
+    /// Session Tags in STS</see> in the <i>IAM User Guide</i>.
+    /// </para>
+    /// <para>
+    /// You can pass up to 50 session tags. The plaintext session tag keys can’t exceed 128 characters and
+    /// the values can’t exceed 256 characters. For these and additional limits, see
+    /// <see href="https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_iam-limits.html#reference_iam-limits-entity-length">IAM
+    /// and STS Character Limits</see> in the <i>IAM User Guide</i>.
+    /// </para>
+    /// <para>
+    /// <b>Note:</b> An Amazon Web Services conversion compresses the passed inline session policy, managed
+    /// policy ARNs, and session tags into a packed binary format that has a separate limit. Your request
+    /// can fail for this limit even if your plaintext meets the other requirements. The
+    /// <c>PackedPolicySize</c> response element indicates by percentage how close the policies and tags for
+    /// your request are to the upper size limit.
+    /// </para>
+    /// <para>
+    /// You can pass a session tag with the same key as a tag that is attached to the role. When you do,
+    /// session tags override the role's tags with the same key.
+    /// </para>
+    /// <para>
+    /// An administrator must grant you the permissions necessary to pass session tags. The administrator
+    /// can also create granular permissions to allow you to pass only specific session tags. For more
+    /// information, see
+    /// <see href="https://docs.aws.amazon.com/IAM/latest/UserGuide/tutorial_attribute-based-access-control.html">Tutorial:
+    /// Using Tags for Attribute-Based Access Control</see> in the <i>IAM User Guide</i>.
+    /// </para>
+    /// <para>
+    /// You can set the session tags as transitive. Transitive tags persist during role chaining. For more
+    /// information, see
+    /// <see href="https://docs.aws.amazon.com/IAM/latest/UserGuide/id_session-tags.html#id_session-tags_role-chaining">Chaining
+    /// Roles with Session Tags</see> in the <i>IAM User Guide</i>.
+    /// </para>
+    /// <para>
+    /// <b>SAML Configuration</b>
+    /// </para>
+    /// <para>
+    /// Before your application can call <c>AssumeRoleWithSAML</c>, you must configure your SAML identity
+    /// provider (IdP) to issue the claims required by Amazon Web Services. Additionally, you must use
+    /// Identity and Access Management (IAM) to create a SAML provider entity in your Amazon Web Services
+    /// account that represents your identity provider. You must also create an IAM role that specifies this
+    /// SAML provider in its trust policy.
+    /// </para>
+    /// <para>
+    /// For more information, see the following resources:
+    /// </para>
+    /// <list type="bullet">
+    /// <item>
+    /// <description>
+    /// <see href="https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_providers_saml.html">About SAML
+    /// 2.0-based Federation</see> in the <i>IAM User Guide</i>.
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <description>
+    /// <see href="https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_providers_create_saml.html">Creating
+    /// SAML Identity Providers</see> in the <i>IAM User Guide</i>.
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <description>
+    /// <see href="https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_providers_create_saml_relying-party.html">Configuring
+    /// a Relying Party and Claims</see> in the <i>IAM User Guide</i>.
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <description>
+    /// <see href="https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_create_for-idp_saml.html">Creating
+    /// a Role for SAML 2.0 Federation</see> in the <i>IAM User Guide</i>.
+    /// </description>
+    /// </item>
+    /// </list>
+    /// </summary>
+    public static Task<AssumeRoleWithSAMLOutput> AssumeRoleWithSAMLAsync(
+        this IAWSSecurityTokenServiceV20110615Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.AssumeRoleWithSAMLAsync(new AssumeRoleWithSAMLInput(), cancellationToken);
+    }
+
+    /// <summary>
+    /// <para>
+    /// Returns a set of temporary security credentials for users who have been authenticated in a mobile or
+    /// web application with a web identity provider. Example providers include the OAuth 2.0 providers
+    /// Login with Amazon and Facebook, or any OpenID Connect-compatible identity provider such as Google or
+    /// <see href="https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-identity.html">Amazon
+    /// Cognito federated identities</see>.
+    /// </para>
+    /// <para>
+    /// <b>Note:</b> For mobile applications, we recommend that you use Amazon Cognito. You can use Amazon
+    /// Cognito with the <see href="http://aws.amazon.com/sdkforios/">Amazon Web Services SDK for iOS
+    /// Developer Guide</see> and the <see href="http://aws.amazon.com/sdkforandroid/">Amazon Web Services
+    /// SDK for Android Developer Guide</see> to uniquely identify a user. You can also supply the user with
+    /// a consistent identity throughout the lifetime of an application.
+    /// </para>
+    /// <para>
+    /// To learn more about Amazon Cognito, see
+    /// <see href="https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-identity.html">Amazon
+    /// Cognito identity pools</see> in <i>Amazon Cognito Developer Guide</i>.
+    /// </para>
+    /// <para>
+    /// Calling <c>AssumeRoleWithWebIdentity</c> does not require the use of Amazon Web Services security
+    /// credentials. Therefore, you can distribute an application (for example, on mobile devices) that
+    /// requests temporary security credentials without including long-term Amazon Web Services credentials
+    /// in the application. You also don't need to deploy server-based proxy services that use long-term
+    /// Amazon Web Services credentials. Instead, the identity of the caller is validated by using a token
+    /// from the web identity provider. For a comparison of <c>AssumeRoleWithWebIdentity</c> with the other
+    /// API operations that produce temporary credentials, see
+    /// <see href="https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_temp_request.html">Requesting
+    /// Temporary Security Credentials</see> and
+    /// <see href="https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_sts-comparison.html">Compare
+    /// STS credentials</see> in the <i>IAM User Guide</i>.
+    /// </para>
+    /// <para>
+    /// The temporary security credentials returned by this API consist of an access key ID, a secret access
+    /// key, and a security token. Applications can use these temporary security credentials to sign calls
+    /// to Amazon Web Services service API operations.
+    /// </para>
+    /// <para>
+    /// <b>Session Duration</b>
+    /// </para>
+    /// <para>
+    /// By default, the temporary security credentials created by <c>AssumeRoleWithWebIdentity</c> last for
+    /// one hour. However, you can use the optional <c>DurationSeconds</c> parameter to specify the duration
+    /// of your session. You can provide a value from 900 seconds (15 minutes) up to the maximum session
+    /// duration setting for the role. This setting can have a value from 1 hour to 12 hours. To learn how
+    /// to view the maximum value for your role, see
+    /// <see href="https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_update-role-settings.html#id_roles_update-session-duration">Update
+    /// the maximum session duration for a role</see> in the <i>IAM User Guide</i>. The maximum session
+    /// duration limit applies when you use the <c>AssumeRole*</c> API operations or the <c>assume-role*</c>
+    /// CLI commands. However the limit does not apply when you use those operations to create a console
+    /// URL. For more information, see
+    /// <see href="https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_use.html">Using IAM Roles</see>
+    /// in the <i>IAM User Guide</i>.
+    /// </para>
+    /// <para>
+    /// <b>Permissions</b>
+    /// </para>
+    /// <para>
+    /// The temporary security credentials created by <c>AssumeRoleWithWebIdentity</c> can be used to make
+    /// API calls to any Amazon Web Services service with the following exception: you cannot call the STS
+    /// <c>GetFederationToken</c> or <c>GetSessionToken</c> API operations.
+    /// </para>
+    /// <para>
+    /// (Optional) You can pass inline or managed
+    /// <see href="https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies.html#policies_session">session
+    /// policies</see> to this operation. You can pass a single JSON policy document to use as an inline
+    /// session policy. You can also specify up to 10 managed policy Amazon Resource Names (ARNs) to use as
+    /// managed session policies. The plaintext that you use for both inline and managed session policies
+    /// can't exceed 2,048 characters. Passing policies to this operation returns new temporary credentials.
+    /// The resulting session's permissions are the intersection of the role's identity-based policy and the
+    /// session policies. You can use the role's temporary credentials in subsequent Amazon Web Services API
+    /// calls to access resources in the account that owns the role. You cannot use session policies to
+    /// grant more permissions than those allowed by the identity-based policy of the role that is being
+    /// assumed. For more information, see
+    /// <see href="https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies.html#policies_session">Session
+    /// Policies</see> in the <i>IAM User Guide</i>.
+    /// </para>
+    /// <para>
+    /// <b>Tags</b>
+    /// </para>
+    /// <para>
+    /// (Optional) You can configure your IdP to pass attributes into your web identity token as session
+    /// tags. Each session tag consists of a key name and an associated value. For more information about
+    /// session tags, see
+    /// <see href="https://docs.aws.amazon.com/IAM/latest/UserGuide/id_session-tags.html#id_session-tags_adding-assume-role-idp">Passing
+    /// session tags using AssumeRoleWithWebIdentity</see> in the <i>IAM User Guide</i>.
+    /// </para>
+    /// <para>
+    /// You can pass up to 50 session tags. The plaintext session tag keys can’t exceed 128 characters and
+    /// the values can’t exceed 256 characters. For these and additional limits, see
+    /// <see href="https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_iam-limits.html#reference_iam-limits-entity-length">IAM
+    /// and STS Character Limits</see> in the <i>IAM User Guide</i>.
+    /// </para>
+    /// <para>
+    /// <b>Note:</b> An Amazon Web Services conversion compresses the passed inline session policy, managed
+    /// policy ARNs, and session tags into a packed binary format that has a separate limit. Your request
+    /// can fail for this limit even if your plaintext meets the other requirements. The
+    /// <c>PackedPolicySize</c> response element indicates by percentage how close the policies and tags for
+    /// your request are to the upper size limit.
+    /// </para>
+    /// <para>
+    /// You can pass a session tag with the same key as a tag that is attached to the role. When you do, the
+    /// session tag overrides the role tag with the same key.
+    /// </para>
+    /// <para>
+    /// An administrator must grant you the permissions necessary to pass session tags. The administrator
+    /// can also create granular permissions to allow you to pass only specific session tags. For more
+    /// information, see
+    /// <see href="https://docs.aws.amazon.com/IAM/latest/UserGuide/tutorial_attribute-based-access-control.html">Tutorial:
+    /// Using Tags for Attribute-Based Access Control</see> in the <i>IAM User Guide</i>.
+    /// </para>
+    /// <para>
+    /// You can set the session tags as transitive. Transitive tags persist during role chaining. For more
+    /// information, see
+    /// <see href="https://docs.aws.amazon.com/IAM/latest/UserGuide/id_session-tags.html#id_session-tags_role-chaining">Chaining
+    /// Roles with Session Tags</see> in the <i>IAM User Guide</i>.
+    /// </para>
+    /// <para>
+    /// <b>Identities</b>
+    /// </para>
+    /// <para>
+    /// Before your application can call <c>AssumeRoleWithWebIdentity</c>, you must have an identity token
+    /// from a supported identity provider and create a role that the application can assume. The role that
+    /// your application assumes must trust the identity provider that is associated with the identity
+    /// token. In other words, the identity provider must be specified in the role's trust policy.
+    /// </para>
+    /// <para>
+    /// <b>Important:</b> Calling <c>AssumeRoleWithWebIdentity</c> can result in an entry in your CloudTrail
+    /// logs. The entry includes the
+    /// <see href="http://openid.net/specs/openid-connect-core-1_0.html#Claims">Subject</see> of the
+    /// provided web identity token. We recommend that you avoid using any personally identifiable
+    /// information (PII) in this field. For example, you could instead use a GUID or a pairwise identifier,
+    /// as <see href="http://openid.net/specs/openid-connect-core-1_0.html#SubjectIDTypes">suggested in the
+    /// OIDC specification</see>.
+    /// </para>
+    /// <para>
+    /// For more information about how to use OIDC federation and the <c>AssumeRoleWithWebIdentity</c> API,
+    /// see the following resources:
+    /// </para>
+    /// <list type="bullet">
+    /// <item>
+    /// <description>
+    /// <see href="https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_providers_oidc_manual.html">Using
+    /// Web Identity Federation API Operations for Mobile Apps</see> and
+    /// <see href="https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_temp_request.html#api_assumerolewithwebidentity">Federation
+    /// Through a Web-based Identity Provider</see>.
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <description>
+    /// <see href="http://aws.amazon.com/sdkforios/">Amazon Web Services SDK for iOS Developer Guide</see>
+    /// and <see href="http://aws.amazon.com/sdkforandroid/">Amazon Web Services SDK for Android Developer
+    /// Guide</see>. These toolkits contain sample apps that show how to invoke the identity providers. The
+    /// toolkits then show how to use the information from these providers to get and use temporary security
+    /// credentials.
+    /// </description>
+    /// </item>
+    /// </list>
+    /// </summary>
+    public static Task<AssumeRoleWithWebIdentityOutput> AssumeRoleWithWebIdentityAsync(
+        this IAWSSecurityTokenServiceV20110615Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.AssumeRoleWithWebIdentityAsync(
+            new AssumeRoleWithWebIdentityInput(),
+            cancellationToken
+        );
+    }
+
+    /// <summary>
+    /// <para>
+    /// Returns a set of short term credentials you can use to perform privileged tasks on a member account
+    /// in your organization. You must use credentials from an Organizations management account or a
+    /// delegated administrator account for IAM to call <c>AssumeRoot</c>. You cannot use root user
+    /// credentials to make this call.
+    /// </para>
+    /// <para>
+    /// Before you can launch a privileged session, you must have centralized root access in your
+    /// organization. For steps to enable this feature, see
+    /// <see href="https://docs.aws.amazon.com/IAM/latest/UserGuide/id_root-enable-root-access.html">Centralize
+    /// root access for member accounts</see> in the <i>IAM User Guide</i>.
+    /// </para>
+    /// <para>
+    /// <b>Note:</b> The STS global endpoint is not supported for AssumeRoot. You must send this request to
+    /// a Regional STS endpoint. For more information, see
+    /// <see href="https://docs.aws.amazon.com/STS/latest/APIReference/welcome.html#sts-endpoints">Endpoints</see>.
+    /// </para>
+    /// <para>
+    /// You can track AssumeRoot in CloudTrail logs to determine what actions were performed in a session.
+    /// For more information, see
+    /// <see href="https://docs.aws.amazon.com/IAM/latest/UserGuide/cloudtrail-track-privileged-tasks.html">Track
+    /// privileged tasks in CloudTrail</see> in the <i>IAM User Guide</i>.
+    /// </para>
+    /// <para>
+    /// When granting access to privileged tasks you should only grant the necessary permissions required to
+    /// perform that task. For more information, see
+    /// <see href="https://docs.aws.amazon.com/IAM/latest/UserGuide/best-practices.html">Security best
+    /// practices in IAM</see>. In addition, you can use
+    /// <see href="https://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_policies_scps.html">service
+    /// control policies</see> (SCPs) to manage and limit permissions in your organization. See
+    /// <see href="https://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_policies_scps_examples_general.html">General
+    /// examples</see> in the <i>Organizations User Guide</i> for more information on SCPs.
+    /// </para>
+    /// </summary>
+    public static Task<AssumeRootOutput> AssumeRootAsync(
+        this IAWSSecurityTokenServiceV20110615Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.AssumeRootAsync(new AssumeRootInput(), cancellationToken);
+    }
+
+    /// <summary>
+    /// <para>
+    /// Decodes additional information about the authorization status of a request from an encoded message
+    /// returned in response to an Amazon Web Services request.
+    /// </para>
+    /// <para>
+    /// For example, if a user is not authorized to perform an operation that he or she has requested, the
+    /// request returns a <c>Client.UnauthorizedOperation</c> response (an HTTP 403 response). Some Amazon
+    /// Web Services operations additionally return an encoded message that can provide details about this
+    /// authorization failure.
+    /// </para>
+    /// <para>
+    /// <b>Note:</b> Only certain Amazon Web Services operations return an encoded authorization message.
+    /// The documentation for an individual operation indicates whether that operation returns an encoded
+    /// message in addition to returning an HTTP code.
+    /// </para>
+    /// <para>
+    /// The message is encoded because the details of the authorization status can contain privileged
+    /// information that the user who requested the operation should not see. To decode an authorization
+    /// status message, a user must be granted permissions through an IAM
+    /// <see href="https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies.html">policy</see> to
+    /// request the <c>DecodeAuthorizationMessage</c> (<c>sts:DecodeAuthorizationMessage</c>) action.
+    /// </para>
+    /// <para>
+    /// The decoded message includes the following type of information:
+    /// </para>
+    /// <list type="bullet">
+    /// <item>
+    /// <description>
+    /// Whether the request was denied due to an explicit deny or due to the absence of an explicit allow.
+    /// For more information, see
+    /// <see href="https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_evaluation-logic.html#policy-eval-denyallow">Determining
+    /// Whether a Request is Allowed or Denied</see> in the <i>IAM User Guide</i>.
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <description>
+    /// The principal who made the request.
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <description>
+    /// The requested action.
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <description>
+    /// The requested resource.
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <description>
+    /// The values of condition keys in the context of the user's request.
+    /// </description>
+    /// </item>
+    /// </list>
+    /// </summary>
+    public static Task<DecodeAuthorizationMessageOutput> DecodeAuthorizationMessageAsync(
+        this IAWSSecurityTokenServiceV20110615Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.DecodeAuthorizationMessageAsync(
+            new DecodeAuthorizationMessageInput(),
+            cancellationToken
+        );
+    }
+
+    /// <summary>
+    /// <para>
+    /// Returns the account identifier for the specified access key ID.
+    /// </para>
+    /// <para>
+    /// Access keys consist of two parts: an access key ID (for example, <c>AKIAIOSFODNN7EXAMPLE</c>) and a
+    /// secret access key (for example, <c>wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY</c>). For more
+    /// information about access keys, see
+    /// <see href="https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_access-keys.html">Managing
+    /// Access Keys for IAM Users</see> in the <i>IAM User Guide</i>.
+    /// </para>
+    /// <para>
+    /// When you pass an access key ID to this operation, it returns the ID of the Amazon Web Services
+    /// account to which the keys belong. Access key IDs beginning with <c>AKIA</c> are long-term
+    /// credentials for an IAM user or the Amazon Web Services account root user. Access key IDs beginning
+    /// with <c>ASIA</c> are temporary credentials that are created using STS operations. If the account in
+    /// the response belongs to you, you can sign in as the root user and review your root user access keys.
+    /// Then, you can pull a
+    /// <see href="https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_getting-report.html">credentials
+    /// report</see> to learn which IAM user owns the keys. To learn who requested the temporary credentials
+    /// for an <c>ASIA</c> access key, view the STS events in your
+    /// <see href="https://docs.aws.amazon.com/IAM/latest/UserGuide/cloudtrail-integration.html">CloudTrail
+    /// logs</see> in the <i>IAM User Guide</i>.
+    /// </para>
+    /// <para>
+    /// This operation does not indicate the state of the access key. The key might be active, inactive, or
+    /// deleted. Active keys might not have permissions to perform an operation. Providing a deleted access
+    /// key might return an error that the key doesn't exist.
+    /// </para>
+    /// </summary>
+    public static Task<GetAccessKeyInfoOutput> GetAccessKeyInfoAsync(
+        this IAWSSecurityTokenServiceV20110615Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.GetAccessKeyInfoAsync(new GetAccessKeyInfoInput(), cancellationToken);
+    }
+
+    /// <summary>
+    /// <para>
     /// Returns details about the IAM user or role whose credentials are used to call the operation.
     /// </para>
     /// <para>
@@ -1062,6 +1686,158 @@ public static class AWSSecurityTokenServiceV20110615ClientExtensions
     {
         ArgumentNullException.ThrowIfNull(client);
         return client.GetCallerIdentityAsync(new GetCallerIdentityInput(), cancellationToken);
+    }
+
+    /// <summary>
+    /// Exchanges a trade-in token for temporary Amazon Web Services credentials with the permissions
+    /// associated with the assumed principal. This operation allows you to obtain credentials for a
+    /// specific principal based on a trade-in token, enabling delegation of access to Amazon Web Services
+    /// resources.
+    /// </summary>
+    public static Task<GetDelegatedAccessTokenOutput> GetDelegatedAccessTokenAsync(
+        this IAWSSecurityTokenServiceV20110615Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.GetDelegatedAccessTokenAsync(
+            new GetDelegatedAccessTokenInput(),
+            cancellationToken
+        );
+    }
+
+    /// <summary>
+    /// <para>
+    /// Returns a set of temporary security credentials (consisting of an access key ID, a secret access
+    /// key, and a security token) for a user. A typical use is in a proxy application that gets temporary
+    /// security credentials on behalf of distributed applications inside a corporate network.
+    /// </para>
+    /// <para>
+    /// You must call the <c>GetFederationToken</c> operation using the long-term security credentials of an
+    /// IAM user. As a result, this call is appropriate in contexts where those credentials can be
+    /// safeguarded, usually in a server-based application. For a comparison of <c>GetFederationToken</c>
+    /// with the other API operations that produce temporary credentials, see
+    /// <see href="https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_temp_request.html">Requesting
+    /// Temporary Security Credentials</see> and
+    /// <see href="https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_sts-comparison.html">Compare
+    /// STS credentials</see> in the <i>IAM User Guide</i>.
+    /// </para>
+    /// <para>
+    /// Although it is possible to call <c>GetFederationToken</c> using the security credentials of an
+    /// Amazon Web Services account root user rather than an IAM user that you create for the purpose of a
+    /// proxy application, we do not recommend it. For more information, see
+    /// <see href="https://docs.aws.amazon.com/IAM/latest/UserGuide/best-practices.html#lock-away-credentials">Safeguard
+    /// your root user credentials and don't use them for everyday tasks</see> in the <i>IAM User Guide</i>.
+    /// </para>
+    /// <para>
+    /// <b>Note:</b> You can create a mobile-based or browser-based app that can authenticate users using a
+    /// web identity provider like Login with Amazon, Facebook, Google, or an OpenID Connect-compatible
+    /// identity provider. In this case, we recommend that you use
+    /// <see href="http://aws.amazon.com/cognito/">Amazon Cognito</see> or <c>AssumeRoleWithWebIdentity</c>.
+    /// For more information, see
+    /// <see href="https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_temp_request.html#api_assumerolewithwebidentity">Federation
+    /// Through a Web-based Identity Provider</see> in the <i>IAM User Guide</i>.
+    /// </para>
+    /// <para>
+    /// <b>Session duration</b>
+    /// </para>
+    /// <para>
+    /// The temporary credentials are valid for the specified duration, from 900 seconds (15 minutes) up to
+    /// a maximum of 129,600 seconds (36 hours). The default session duration is 43,200 seconds (12 hours).
+    /// Temporary credentials obtained by using the root user credentials have a maximum duration of 3,600
+    /// seconds (1 hour).
+    /// </para>
+    /// <para>
+    /// <b>Permissions</b>
+    /// </para>
+    /// <para>
+    /// You can use the temporary credentials created by <c>GetFederationToken</c> in any Amazon Web
+    /// Services service with the following exceptions:
+    /// </para>
+    /// <list type="bullet">
+    /// <item>
+    /// <description>
+    /// You cannot call any IAM operations using the CLI or the Amazon Web Services API. This limitation
+    /// does not apply to console sessions.
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <description>
+    /// You cannot call any STS operations except <c>GetCallerIdentity</c>.
+    /// </description>
+    /// </item>
+    /// </list>
+    /// <para>
+    /// You can use temporary credentials for single sign-on (SSO) to the console.
+    /// </para>
+    /// <para>
+    /// You must pass an inline or managed
+    /// <see href="https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies.html#policies_session">session
+    /// policy</see> to this operation. You can pass a single JSON policy document to use as an inline
+    /// session policy. You can also specify up to 10 managed policy Amazon Resource Names (ARNs) to use as
+    /// managed session policies. The plaintext that you use for both inline and managed session policies
+    /// can't exceed 2,048 characters.
+    /// </para>
+    /// <para>
+    /// Though the session policy parameters are optional, if you do not pass a policy, then the resulting
+    /// federated user session has no permissions. When you pass session policies, the session permissions
+    /// are the intersection of the IAM user policies and the session policies that you pass. This gives you
+    /// a way to further restrict the permissions for a federated user. You cannot use session policies to
+    /// grant more permissions than those that are defined in the permissions policy of the IAM user. For
+    /// more information, see
+    /// <see href="https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies.html#policies_session">Session
+    /// Policies</see> in the <i>IAM User Guide</i>. For information about using <c>GetFederationToken</c>
+    /// to create temporary security credentials, see
+    /// <see href="https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_temp_request.html#api_getfederationtoken">GetFederationToken—Federation
+    /// Through a Custom Identity Broker</see>.
+    /// </para>
+    /// <para>
+    /// You can use the credentials to access a resource that has a resource-based policy. If that policy
+    /// specifically references the federated user session in the <c>Principal</c> element of the policy,
+    /// the session has the permissions allowed by the policy. These permissions are granted in addition to
+    /// the permissions granted by the session policies.
+    /// </para>
+    /// <para>
+    /// <b>Tags</b>
+    /// </para>
+    /// <para>
+    /// (Optional) You can pass tag key-value pairs to your session. These are called session tags. For more
+    /// information about session tags, see
+    /// <see href="https://docs.aws.amazon.com/IAM/latest/UserGuide/id_session-tags.html">Passing Session
+    /// Tags in STS</see> in the <i>IAM User Guide</i>.
+    /// </para>
+    /// <para>
+    /// <b>Note:</b> You can create a mobile-based or browser-based app that can authenticate users using a
+    /// web identity provider like Login with Amazon, Facebook, Google, or an OpenID Connect-compatible
+    /// identity provider. In this case, we recommend that you use
+    /// <see href="http://aws.amazon.com/cognito/">Amazon Cognito</see> or <c>AssumeRoleWithWebIdentity</c>.
+    /// For more information, see
+    /// <see href="https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_temp_request.html#api_assumerolewithwebidentity">Federation
+    /// Through a Web-based Identity Provider</see> in the <i>IAM User Guide</i>.
+    /// </para>
+    /// <para>
+    /// An administrator must grant you the permissions necessary to pass session tags. The administrator
+    /// can also create granular permissions to allow you to pass only specific session tags. For more
+    /// information, see
+    /// <see href="https://docs.aws.amazon.com/IAM/latest/UserGuide/tutorial_attribute-based-access-control.html">Tutorial:
+    /// Using Tags for Attribute-Based Access Control</see> in the <i>IAM User Guide</i>.
+    /// </para>
+    /// <para>
+    /// Tag key–value pairs are not case sensitive, but case is preserved. This means that you cannot have
+    /// separate <c>Department</c> and <c>department</c> tag keys. Assume that the user that you are
+    /// federating has the <c>Department</c>=<c>Marketing</c> tag and you pass the
+    /// <c>department</c>=<c>engineering</c> session tag. <c>Department</c> and <c>department</c> are not
+    /// saved as separate tags, and the session tag passed in the request takes precedence over the user
+    /// tag.
+    /// </para>
+    /// </summary>
+    public static Task<GetFederationTokenOutput> GetFederationTokenAsync(
+        this IAWSSecurityTokenServiceV20110615Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.GetFederationTokenAsync(new GetFederationTokenInput(), cancellationToken);
     }
 
     /// <summary>
@@ -1146,6 +1922,26 @@ public static class AWSSecurityTokenServiceV20110615ClientExtensions
     {
         ArgumentNullException.ThrowIfNull(client);
         return client.GetSessionTokenAsync(new GetSessionTokenInput(), cancellationToken);
+    }
+
+    /// <summary>
+    /// <para>
+    /// Returns a signed JSON Web Token (JWT) that represents the calling Amazon Web Services identity. The
+    /// returned JWT can be used to authenticate with external services that support OIDC discovery. The
+    /// token is signed by Amazon Web Services STS and can be publicly verified using the verification keys
+    /// published at the issuer's JWKS endpoint.
+    /// </para>
+    /// <para>
+    /// <b>Note:</b> The <c>GetWebIdentityToken</c> API is not available on the STS Global endpoint.
+    /// </para>
+    /// </summary>
+    public static Task<GetWebIdentityTokenOutput> GetWebIdentityTokenAsync(
+        this IAWSSecurityTokenServiceV20110615Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.GetWebIdentityTokenAsync(new GetWebIdentityTokenInput(), cancellationToken);
     }
 }
 
@@ -1876,7 +2672,7 @@ public sealed class AWSSecurityTokenServiceV20110615Client : IAWSSecurityTokenSe
     /// To assume a role
     /// </para>
     /// <code>
-    /// var input = new AssumeRoleInput(RoleArn: &quot;arn:aws:iam::123456789012:role/demo&quot;, RoleSessionName: &quot;testAssumeRoleSession&quot;, ExternalId: &quot;123ABC&quot;, Policy: &quot;escaped-JSON-IAM-POLICY&quot;, Tags: new global::Com.Amazonaws.Sts.Tag[] { new global::Com.Amazonaws.Sts.Tag(Key: &quot;Project&quot;, Value: &quot;Unicorn&quot;), new global::Com.Amazonaws.Sts.Tag(Key: &quot;Team&quot;, Value: &quot;Automation&quot;), new global::Com.Amazonaws.Sts.Tag(Key: &quot;Cost-Center&quot;, Value: &quot;12345&quot;) }, TransitiveTagKeys: new string[] { &quot;Project&quot;, &quot;Cost-Center&quot; });
+    /// var input = new AssumeRoleInput(ExternalId: &quot;123ABC&quot;, Policy: &quot;escaped-JSON-IAM-POLICY&quot;, RoleArn: &quot;arn:aws:iam::123456789012:role/demo&quot;, RoleSessionName: &quot;testAssumeRoleSession&quot;, Tags: new global::Com.Amazonaws.Sts.Tag[] { new global::Com.Amazonaws.Sts.Tag(Key: &quot;Project&quot;, Value: &quot;Unicorn&quot;), new global::Com.Amazonaws.Sts.Tag(Key: &quot;Team&quot;, Value: &quot;Automation&quot;), new global::Com.Amazonaws.Sts.Tag(Key: &quot;Cost-Center&quot;, Value: &quot;12345&quot;) }, TransitiveTagKeys: new string[] { &quot;Project&quot;, &quot;Cost-Center&quot; });
     /// var output = await client.AssumeRoleAsync(input);
     ///
     /// // Expected output:
@@ -2061,7 +2857,7 @@ public sealed class AWSSecurityTokenServiceV20110615Client : IAWSSecurityTokenSe
     /// To assume a role using a SAML assertion
     /// </para>
     /// <code>
-    /// var input = new AssumeRoleWithSAMLInput(PrincipalArn: &quot;arn:aws:iam::123456789012:saml-provider/SAML-test&quot;, RoleArn: &quot;arn:aws:iam::123456789012:role/TestSaml&quot;, SAMLAssertion: &quot;VERYLONGENCODEDASSERTIONEXAMPLExzYW1sOkF1ZGllbmNlPmJsYW5rPC9zYW1sOkF1ZGllbmNlPjwvc2FtbDpBdWRpZW5jZVJlc3RyaWN0aW9uPjwvc2FtbDpDb25kaXRpb25zPjxzYW1sOlN1YmplY3Q+PHNhbWw6TmFtZUlEIEZvcm1hdD0idXJuOm9hc2lzOm5hbWVzOnRjOlNBTUw6Mi4wOm5hbWVpZC1mb3JtYXQ6dHJhbnNpZW50Ij5TYW1sRXhhbXBsZTwvc2FtbDpOYW1lSUQ+PHNhbWw6U3ViamVjdENvbmZpcm1hdGlvbiBNZXRob2Q9InVybjpvYXNpczpuYW1lczp0YzpTQU1MOjIuMDpjbTpiZWFyZXIiPjxzYW1sOlN1YmplY3RDb25maXJtYXRpb25EYXRhIE5vdE9uT3JBZnRlcj0iMjAxOS0xMS0wMVQyMDoyNTowNS4xNDVaIiBSZWNpcGllbnQ9Imh0dHBzOi8vc2lnbmluLmF3cy5hbWF6b24uY29tL3NhbWwiLz48L3NhbWw6U3ViamVjdENvbmZpcm1hdGlvbj48L3NhbWw6U3ViamVjdD48c2FtbDpBdXRoblN0YXRlbWVudCBBdXRoPD94bWwgdmpSZXNwb25zZT4=&quot;, DurationSeconds: 3600);
+    /// var input = new AssumeRoleWithSAMLInput(DurationSeconds: 3600, PrincipalArn: &quot;arn:aws:iam::123456789012:saml-provider/SAML-test&quot;, RoleArn: &quot;arn:aws:iam::123456789012:role/TestSaml&quot;, SAMLAssertion: &quot;VERYLONGENCODEDASSERTIONEXAMPLExzYW1sOkF1ZGllbmNlPmJsYW5rPC9zYW1sOkF1ZGllbmNlPjwvc2FtbDpBdWRpZW5jZVJlc3RyaWN0aW9uPjwvc2FtbDpDb25kaXRpb25zPjxzYW1sOlN1YmplY3Q+PHNhbWw6TmFtZUlEIEZvcm1hdD0idXJuOm9hc2lzOm5hbWVzOnRjOlNBTUw6Mi4wOm5hbWVpZC1mb3JtYXQ6dHJhbnNpZW50Ij5TYW1sRXhhbXBsZTwvc2FtbDpOYW1lSUQ+PHNhbWw6U3ViamVjdENvbmZpcm1hdGlvbiBNZXRob2Q9InVybjpvYXNpczpuYW1lczp0YzpTQU1MOjIuMDpjbTpiZWFyZXIiPjxzYW1sOlN1YmplY3RDb25maXJtYXRpb25EYXRhIE5vdE9uT3JBZnRlcj0iMjAxOS0xMS0wMVQyMDoyNTowNS4xNDVaIiBSZWNpcGllbnQ9Imh0dHBzOi8vc2lnbmluLmF3cy5hbWF6b24uY29tL3NhbWwiLz48L3NhbWw6U3ViamVjdENvbmZpcm1hdGlvbj48L3NhbWw6U3ViamVjdD48c2FtbDpBdXRoblN0YXRlbWVudCBBdXRoPD94bWwgdmpSZXNwb25zZT4=&quot;);
     /// var output = await client.AssumeRoleWithSAMLAsync(input);
     ///
     /// // Expected output:
@@ -2242,7 +3038,7 @@ public sealed class AWSSecurityTokenServiceV20110615Client : IAWSSecurityTokenSe
     /// To assume a role as an OpenID Connect-federated user
     /// </para>
     /// <code>
-    /// var input = new AssumeRoleWithWebIdentityInput(RoleArn: &quot;arn:aws:iam::123456789012:role/FederatedWebIdentityRole&quot;, RoleSessionName: &quot;app1&quot;, WebIdentityToken: &quot;Atza%7CIQEBLjAsAhRFiXuWpUXuRvQ9PZL3GMFcYevydwIUFAHZwXZXXXXXXXXJnrulxKDHwy87oGKPznh0D6bEQZTSCzyoCtL_8S07pLpr0zMbn6w1lfVZKNTBdDansFBmtGnIsIapjI6xKR02Yc_2bQ8LZbUXSGm6Ry6_BG7PrtLZtj_dfCTj92xNGed-CrKqjG7nPBjNIL016GGvuS5gSvPRUxWES3VYfm1wl7WTI7jn-Pcb6M-buCgHhFOzTQxod27L9CqnOLio7N3gZAGpsp6n1-AJBOCJckcyXe2c6uD0srOJeZlKUm2eTDVMf8IehDVI0r1QOnTV6KzzAI3OY87Vd_cVMQ&quot;, DurationSeconds: 3600, Policy: &quot;escaped-JSON-IAM-POLICY&quot;, ProviderId: &quot;www.amazon.com&quot;);
+    /// var input = new AssumeRoleWithWebIdentityInput(DurationSeconds: 3600, Policy: &quot;escaped-JSON-IAM-POLICY&quot;, ProviderId: &quot;www.amazon.com&quot;, RoleArn: &quot;arn:aws:iam::123456789012:role/FederatedWebIdentityRole&quot;, RoleSessionName: &quot;app1&quot;, WebIdentityToken: &quot;Atza%7CIQEBLjAsAhRFiXuWpUXuRvQ9PZL3GMFcYevydwIUFAHZwXZXXXXXXXXJnrulxKDHwy87oGKPznh0D6bEQZTSCzyoCtL_8S07pLpr0zMbn6w1lfVZKNTBdDansFBmtGnIsIapjI6xKR02Yc_2bQ8LZbUXSGm6Ry6_BG7PrtLZtj_dfCTj92xNGed-CrKqjG7nPBjNIL016GGvuS5gSvPRUxWES3VYfm1wl7WTI7jn-Pcb6M-buCgHhFOzTQxod27L9CqnOLio7N3gZAGpsp6n1-AJBOCJckcyXe2c6uD0srOJeZlKUm2eTDVMf8IehDVI0r1QOnTV6KzzAI3OY87Vd_cVMQ&quot;);
     /// var output = await client.AssumeRoleWithWebIdentityAsync(input);
     ///
     /// // Expected output:
@@ -2301,7 +3097,7 @@ public sealed class AWSSecurityTokenServiceV20110615Client : IAWSSecurityTokenSe
     /// The following command retrieves a set of short-term credentials you can use to unlock an S3 bucket for a member account by removing the bucket policy.
     /// </para>
     /// <code>
-    /// var input = new AssumeRootInput(TargetPrincipal: &quot;111122223333&quot;, TaskPolicyArn: new PolicyDescriptorType(Arn: &quot;arn:aws:iam::aws:policy/root-task/S3UnlockBucketPolicy&quot;), DurationSeconds: 900);
+    /// var input = new AssumeRootInput(DurationSeconds: 900, TargetPrincipal: &quot;111122223333&quot;, TaskPolicyArn: new PolicyDescriptorType(Arn: &quot;arn:aws:iam::aws:policy/root-task/S3UnlockBucketPolicy&quot;));
     /// var output = await client.AssumeRootAsync(input);
     ///
     /// // Expected output:
@@ -2646,7 +3442,7 @@ public sealed class AWSSecurityTokenServiceV20110615Client : IAWSSecurityTokenSe
     /// To get temporary credentials for a role by using GetFederationToken
     /// </para>
     /// <code>
-    /// var input = new GetFederationTokenInput(Name: &quot;testFedUserSession&quot;, DurationSeconds: 3600, Policy: &quot;escaped-JSON-IAM-POLICY&quot;, Tags: new global::Com.Amazonaws.Sts.Tag[] { new global::Com.Amazonaws.Sts.Tag(Key: &quot;Project&quot;, Value: &quot;Pegasus&quot;), new global::Com.Amazonaws.Sts.Tag(Key: &quot;Cost-Center&quot;, Value: &quot;98765&quot;) });
+    /// var input = new GetFederationTokenInput(DurationSeconds: 3600, Name: &quot;testFedUserSession&quot;, Policy: &quot;escaped-JSON-IAM-POLICY&quot;, Tags: new global::Com.Amazonaws.Sts.Tag[] { new global::Com.Amazonaws.Sts.Tag(Key: &quot;Project&quot;, Value: &quot;Pegasus&quot;), new global::Com.Amazonaws.Sts.Tag(Key: &quot;Cost-Center&quot;, Value: &quot;98765&quot;) });
     /// var output = await client.GetFederationTokenAsync(input);
     ///
     /// // Expected output:

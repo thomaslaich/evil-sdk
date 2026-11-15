@@ -11,7 +11,7 @@ namespace Com.Amazonaws.Dynamodb.Schemas;
 
 public static partial class ExportTableToPointInTimeInputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? TableArn { get; set; }
         public DateTimeOffset? ExportTime { get; set; }
@@ -39,7 +39,6 @@ public static partial class ExportTableToPointInTimeInputSchema
                 new(
                     "TableArn",
                     Target0,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
@@ -51,10 +50,6 @@ public static partial class ExportTableToPointInTimeInputSchema
                                     { "max", Document.From(1024m) },
                                 }
                             )
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
                         ),
                         new Trait(
                             ShapeId.Parse("smithy.rules#contextParam"),
@@ -83,7 +78,6 @@ public static partial class ExportTableToPointInTimeInputSchema
                 new(
                     "S3Bucket",
                     Target3,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
@@ -99,10 +93,6 @@ public static partial class ExportTableToPointInTimeInputSchema
                         new Trait(
                             ShapeId.Parse("smithy.api#pattern"),
                             Document.From("^[a-z0-9A-Z]+[\\.\\-\\w]*[a-z0-9A-Z]+$")
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
                         ),
                     ]
                 ),
@@ -216,18 +206,18 @@ public static partial class ExportTableToPointInTimeInputSchema
             Builder builder
         ) =>
             new global::Com.Amazonaws.Dynamodb.ExportTableToPointInTimeInput(
-                builder.S3Bucket ?? throw new MissingRequiredMemberException("S3Bucket"),
-                builder.TableArn ?? throw new MissingRequiredMemberException("TableArn"),
                 builder.ClientToken,
                 builder.ExportFormat,
                 builder.ExportTime,
                 builder.ExportType,
                 builder.FilterSpecification,
                 builder.IncrementalExportSpecification,
+                builder.S3Bucket,
                 builder.S3BucketOwner,
                 builder.S3Prefix,
                 builder.S3SseAlgorithm,
-                builder.S3SseKmsKeyId
+                builder.S3SseKmsKeyId,
+                builder.TableArn
             );
 
         public override void SerializeMembers<TSerializer>(
@@ -333,7 +323,7 @@ public static partial class ExportTableToPointInTimeInputSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

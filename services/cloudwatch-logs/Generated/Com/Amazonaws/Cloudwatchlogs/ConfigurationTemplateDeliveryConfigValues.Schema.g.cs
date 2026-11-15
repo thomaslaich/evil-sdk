@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Cloudwatchlogs.Schemas;
 
 public static partial class ConfigurationTemplateDeliveryConfigValuesSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public IReadOnlyList<string>? RecordFields { get; set; }
         public string? FieldDelimiter { get; set; }
@@ -107,7 +107,7 @@ public static partial class ConfigurationTemplateDeliveryConfigValuesSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

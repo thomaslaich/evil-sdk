@@ -10,7 +10,7 @@ namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class ObjectLockRetentionSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public global::Com.Amazonaws.S3.ObjectLockRetentionMode? Mode { get; set; }
         public DateTimeOffset? RetainUntilDate { get; set; }
@@ -112,7 +112,7 @@ public static partial class ObjectLockRetentionSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

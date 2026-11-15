@@ -9,21 +9,6 @@ namespace Com.Amazonaws.Dynamodb;
 /// <summary>
 /// Represents the input of a <c>GetItem</c> operation.
 /// </summary>
-/// <param name="Key">
-/// <para>
-/// A map of attribute names to <c>AttributeValue</c> objects, representing the primary key of the item
-/// to retrieve.
-/// </para>
-/// <para>
-/// For the primary key, you must provide all of the attributes. For example, with a simple primary key,
-/// you only need to provide a value for the partition key. For a composite primary key, you must
-/// provide values for both the partition key and the sort key.
-/// </para>
-/// </param>
-/// <param name="TableName">
-/// The name of the table containing the requested item. You can also provide the Amazon Resource Name
-/// (ARN) of the table in this parameter.
-/// </param>
 /// <param name="AttributesToGet">
 /// This is a legacy parameter. Use <c>ProjectionExpression</c> instead. For more information, see
 /// <see href="https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/LegacyConditionalParameters.AttributesToGet.html">AttributesToGet</see>
@@ -100,6 +85,17 @@ namespace Com.Amazonaws.Dynamodb;
 /// Item Attributes</see> in the <i>Amazon DynamoDB Developer Guide</i>.
 /// </para>
 /// </param>
+/// <param name="Key">
+/// <para>
+/// A map of attribute names to <c>AttributeValue</c> objects, representing the primary key of the item
+/// to retrieve.
+/// </para>
+/// <para>
+/// For the primary key, you must provide all of the attributes. For example, with a simple primary key,
+/// you only need to provide a value for the partition key. For a composite primary key, you must
+/// provide values for both the partition key and the sort key.
+/// </para>
+/// </param>
 /// <param name="ProjectionExpression">
 /// <para>
 /// A string that identifies one or more attributes to retrieve from the table. These attributes can
@@ -116,12 +112,16 @@ namespace Com.Amazonaws.Dynamodb;
 /// Item Attributes</see> in the <i>Amazon DynamoDB Developer Guide</i>.
 /// </para>
 /// </param>
+/// <param name="TableName">
+/// The name of the table containing the requested item. You can also provide the Amazon Resource Name
+/// (ARN) of the table in this parameter.
+/// </param>
 public sealed record class GetItemInput(
-    IReadOnlyDictionary<string, AttributeValue> Key,
-    string TableName,
     IReadOnlyList<string>? AttributesToGet = null,
     bool? ConsistentRead = null,
     IReadOnlyDictionary<string, string>? ExpressionAttributeNames = null,
+    IReadOnlyDictionary<string, AttributeValue>? Key = null,
     string? ProjectionExpression = null,
-    global::Com.Amazonaws.Dynamodb.ReturnConsumedCapacity? ReturnConsumedCapacity = null
+    global::Com.Amazonaws.Dynamodb.ReturnConsumedCapacity? ReturnConsumedCapacity = null,
+    string? TableName = null
 );

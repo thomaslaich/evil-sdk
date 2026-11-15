@@ -7,6 +7,9 @@ namespace Com.Amazonaws.Dynamodb;
 /// <summary>
 /// Represents the Smithy structure com.amazonaws.dynamodb#DisableKinesisStreamingDestinationInput.
 /// </summary>
+/// <param name="EnableKinesisStreamingConfiguration">
+/// The source for the Kinesis streaming information that is being enabled.
+/// </param>
 /// <param name="StreamArn">
 /// The ARN for a Kinesis data stream.
 /// </param>
@@ -14,12 +17,9 @@ namespace Com.Amazonaws.Dynamodb;
 /// The name of the DynamoDB table. You can also provide the Amazon Resource Name (ARN) of the table in
 /// this parameter.
 /// </param>
-/// <param name="EnableKinesisStreamingConfiguration">
-/// The source for the Kinesis streaming information that is being enabled.
-/// </param>
 public sealed record class DisableKinesisStreamingDestinationInput(
-    string StreamArn,
-    string TableName,
     global::Com.Amazonaws.Dynamodb.EnableKinesisStreamingConfiguration? EnableKinesisStreamingConfiguration =
-        null
+        null,
+    string? StreamArn = null,
+    string? TableName = null
 );

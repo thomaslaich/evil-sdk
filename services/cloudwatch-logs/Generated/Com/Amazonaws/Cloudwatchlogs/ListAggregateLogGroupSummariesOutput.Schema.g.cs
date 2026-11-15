@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Cloudwatchlogs.Schemas;
 
 public static partial class ListAggregateLogGroupSummariesOutputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public IReadOnlyList<global::Com.Amazonaws.Cloudwatchlogs.AggregateLogGroupSummary>? AggregateLogGroupSummaries { get; set; }
         public string? NextToken { get; set; }
@@ -101,7 +101,7 @@ public static partial class ListAggregateLogGroupSummariesOutputSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

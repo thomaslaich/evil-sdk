@@ -31,7 +31,7 @@ namespace Com.Amazonaws.Iam;
 /// </para>
 /// </param>
 public sealed record class GetSSHPublicKeyInput(
-    EncodingType Encoding,
-    string SSHPublicKeyId,
-    string UserName
+    EncodingType? Encoding = null,
+    string? SSHPublicKeyId = null,
+    string? UserName = null
 );

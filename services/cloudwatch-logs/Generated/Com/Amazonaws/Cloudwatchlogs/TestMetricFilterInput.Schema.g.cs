@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Cloudwatchlogs.Schemas;
 
 public static partial class TestMetricFilterInputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? FilterPattern { get; set; }
         public IReadOnlyList<string>? LogEventMessages { get; set; }
@@ -28,7 +28,6 @@ public static partial class TestMetricFilterInputSchema
                 new(
                     "filterPattern",
                     Target0,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
@@ -41,24 +40,9 @@ public static partial class TestMetricFilterInputSchema
                                 }
                             )
                         ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
                     ]
                 ),
-                new(
-                    "logEventMessages",
-                    Target1,
-                    isRequired: true,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
-                    ]
-                ),
+                new("logEventMessages", Target1),
             ],
             [
                 new Trait(
@@ -87,9 +71,8 @@ public static partial class TestMetricFilterInputSchema
             Builder builder
         ) =>
             new global::Com.Amazonaws.Cloudwatchlogs.TestMetricFilterInput(
-                builder.FilterPattern ?? throw new MissingRequiredMemberException("filterPattern"),
+                builder.FilterPattern,
                 builder.LogEventMessages
-                    ?? throw new MissingRequiredMemberException("logEventMessages")
             );
 
         public override void SerializeMembers<TSerializer>(
@@ -115,7 +98,7 @@ public static partial class TestMetricFilterInputSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

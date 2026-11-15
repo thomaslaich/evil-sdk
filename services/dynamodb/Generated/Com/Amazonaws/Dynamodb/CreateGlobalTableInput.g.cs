@@ -16,6 +16,6 @@ namespace Com.Amazonaws.Dynamodb;
 /// The Regions where the global table needs to be created.
 /// </param>
 public sealed record class CreateGlobalTableInput(
-    string GlobalTableName,
-    IReadOnlyList<Replica> ReplicationGroup
+    string? GlobalTableName = null,
+    IReadOnlyList<Replica>? ReplicationGroup = null
 );

@@ -48,6 +48,6 @@ namespace Com.Amazonaws.Route53;
 /// A complex type that contains settings for a new health check.
 /// </param>
 public sealed record class CreateHealthCheckInput(
-    string CallerReference,
-    global::Com.Amazonaws.Route53.HealthCheckConfig HealthCheckConfig
+    string? CallerReference = null,
+    global::Com.Amazonaws.Route53.HealthCheckConfig? HealthCheckConfig = null
 );

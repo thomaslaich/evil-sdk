@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Iam.Schemas;
 
 public static partial class UpdateAssumeRolePolicyInputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? RoleName { get; set; }
         public string? PolicyDocument { get; set; }
@@ -28,7 +28,6 @@ public static partial class UpdateAssumeRolePolicyInputSchema
                 new(
                     "RoleName",
                     Target0,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
@@ -45,16 +44,11 @@ public static partial class UpdateAssumeRolePolicyInputSchema
                             ShapeId.Parse("smithy.api#pattern"),
                             Document.From("^[\\w+=,.@-]+$")
                         ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
                     ]
                 ),
                 new(
                     "PolicyDocument",
                     Target1,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
@@ -70,10 +64,6 @@ public static partial class UpdateAssumeRolePolicyInputSchema
                         new Trait(
                             ShapeId.Parse("smithy.api#pattern"),
                             Document.From("^[\\u0009\\u000A\\u000D\\u0020-\\u00FF]+$")
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
                         ),
                     ]
                 ),
@@ -105,9 +95,8 @@ public static partial class UpdateAssumeRolePolicyInputSchema
             Builder builder
         ) =>
             new global::Com.Amazonaws.Iam.UpdateAssumeRolePolicyInput(
-                builder.PolicyDocument
-                    ?? throw new MissingRequiredMemberException("PolicyDocument"),
-                builder.RoleName ?? throw new MissingRequiredMemberException("RoleName")
+                builder.PolicyDocument,
+                builder.RoleName
             );
 
         public override void SerializeMembers<TSerializer>(
@@ -133,7 +122,7 @@ public static partial class UpdateAssumeRolePolicyInputSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

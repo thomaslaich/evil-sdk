@@ -10,7 +10,7 @@ namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class AccessControlPolicySchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public IReadOnlyList<global::Com.Amazonaws.S3.Grant>? Grants { get; set; }
         public global::Com.Amazonaws.S3.Owner? Owner { get; set; }
@@ -78,7 +78,7 @@ public static partial class AccessControlPolicySchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

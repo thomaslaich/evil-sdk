@@ -13,4 +13,7 @@ namespace Com.Amazonaws.Lambda;
 /// <param name="VersionNumber">
 /// The version number.
 /// </param>
-public sealed record class GetLayerVersionPolicyInput(string LayerName, long? VersionNumber = null);
+public sealed record class GetLayerVersionPolicyInput(
+    string? LayerName = null,
+    long? VersionNumber = null
+);

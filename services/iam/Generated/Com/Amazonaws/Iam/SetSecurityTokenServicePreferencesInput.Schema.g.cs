@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Iam.Schemas;
 
 public static partial class SetSecurityTokenServicePreferencesInputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public global::Com.Amazonaws.Iam.GlobalEndpointTokenVersion? GlobalEndpointTokenVersion { get; set; }
     }
@@ -23,20 +23,7 @@ public static partial class SetSecurityTokenServicePreferencesInputSchema
     private sealed class GeneratedSchema()
         : StructSchema<global::Com.Amazonaws.Iam.SetSecurityTokenServicePreferencesInput, Builder>(
             ShapeId.Parse("com.amazonaws.iam#SetSecurityTokenServicePreferencesInput"),
-            [
-                new(
-                    "GlobalEndpointTokenVersion",
-                    Target0,
-                    isRequired: true,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
-                    ]
-                ),
-            ],
+            [new("GlobalEndpointTokenVersion", Target0)],
             [
                 new Trait(
                     ShapeId.Parse("smithy.api#input"),
@@ -59,7 +46,6 @@ public static partial class SetSecurityTokenServicePreferencesInputSchema
         ) =>
             new global::Com.Amazonaws.Iam.SetSecurityTokenServicePreferencesInput(
                 builder.GlobalEndpointTokenVersion
-                    ?? throw new MissingRequiredMemberException("GlobalEndpointTokenVersion")
             );
 
         public override void SerializeMembers<TSerializer>(
@@ -67,10 +53,17 @@ public static partial class SetSecurityTokenServicePreferencesInputSchema
             ref TSerializer serializer
         )
         {
-            serializer.WriteStringEnum(0, value.GlobalEndpointTokenVersion.Value);
+            if (value.GlobalEndpointTokenVersion is { } value0)
+            {
+                serializer.WriteStringEnum(0, value0.Value);
+            }
+            else
+            {
+                serializer.WriteNull(0);
+            }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

@@ -12,7 +12,7 @@ namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class PutObjectInputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public global::Com.Amazonaws.S3.ObjectCannedACL? ACL { get; set; }
         public Stream? Body { get; set; }
@@ -102,15 +102,10 @@ public static partial class PutObjectInputSchema
                 new(
                     "Bucket",
                     Target2,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
                             ShapeId.Parse("smithy.api#httpLabel"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
                             Document.From(new Dictionary<string, Document> { })
                         ),
                         new Trait(
@@ -403,7 +398,6 @@ public static partial class PutObjectInputSchema
                 new(
                     "Key",
                     Target28,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
@@ -415,10 +409,6 @@ public static partial class PutObjectInputSchema
                             Document.From(
                                 new Dictionary<string, Document> { { "min", Document.From(1m) } }
                             )
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
                         ),
                         new Trait(
                             ShapeId.Parse("smithy.rules#contextParam"),
@@ -878,10 +868,9 @@ public static partial class PutObjectInputSchema
 
         public override global::Com.Amazonaws.S3.PutObjectInput Build(Builder builder) =>
             new global::Com.Amazonaws.S3.PutObjectInput(
-                builder.Bucket ?? throw new MissingRequiredMemberException("Bucket"),
-                builder.Key ?? throw new MissingRequiredMemberException("Key"),
                 builder.ACL,
                 builder.Body,
+                builder.Bucket,
                 builder.BucketKeyEnabled,
                 builder.CacheControl,
                 builder.ChecksumAlgorithm,
@@ -909,6 +898,7 @@ public static partial class PutObjectInputSchema
                 builder.GrantWriteACP,
                 builder.IfMatch,
                 builder.IfNoneMatch,
+                builder.Key,
                 builder.Metadata,
                 builder.ObjectLockEventHold,
                 builder.ObjectLockEventHoldDurationDays,
@@ -1332,7 +1322,7 @@ public static partial class PutObjectInputSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

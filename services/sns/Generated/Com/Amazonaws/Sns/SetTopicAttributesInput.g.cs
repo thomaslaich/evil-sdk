@@ -312,14 +312,14 @@ namespace Com.Amazonaws.Sns;
 /// </item>
 /// </list>
 /// </param>
-/// <param name="TopicArn">
-/// The ARN of the topic to modify.
-/// </param>
 /// <param name="AttributeValue">
 /// The new value for the attribute.
 /// </param>
+/// <param name="TopicArn">
+/// The ARN of the topic to modify.
+/// </param>
 public sealed record class SetTopicAttributesInput(
-    string AttributeName,
-    string TopicArn,
-    string? AttributeValue = null
+    string? AttributeName = null,
+    string? AttributeValue = null,
+    string? TopicArn = null
 );

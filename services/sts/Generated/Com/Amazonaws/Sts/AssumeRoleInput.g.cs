@@ -9,35 +9,6 @@ namespace Com.Amazonaws.Sts;
 /// <summary>
 /// Represents the Smithy structure com.amazonaws.sts#AssumeRoleInput.
 /// </summary>
-/// <param name="RoleArn">
-/// The Amazon Resource Name (ARN) of the role to assume.
-/// </param>
-/// <param name="RoleSessionName">
-/// <para>
-/// An identifier for the assumed role session.
-/// </para>
-/// <para>
-/// Use the role session name to uniquely identify a session when the same role is assumed by different
-/// principals or for different reasons. In cross-account scenarios, the role session name is visible
-/// to, and can be logged by the account that owns the role. The role session name is also used in the
-/// ARN of the assumed role principal. This means that subsequent cross-account API requests that use
-/// the temporary security credentials will expose the role session name to the external account in
-/// their CloudTrail logs.
-/// </para>
-/// <para>
-/// For security purposes, administrators can view this field in
-/// <see href="https://docs.aws.amazon.com/IAM/latest/UserGuide/cloudtrail-integration.html#cloudtrail-integration_signin-tempcreds">CloudTrail
-/// logs</see> to help identify who performed an action in Amazon Web Services. Your administrator might
-/// require that you specify your user name as the session name when you assume the role. For more
-/// information, see
-/// <see href="https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_iam-condition-keys.html#ck_rolesessionname"><c>sts:RoleSessionName</c></see>.
-/// </para>
-/// <para>
-/// The regex used to validate this parameter is a string of characters consisting of upper- and
-/// lower-case alphanumeric characters with no spaces. You can also include underscores or any of the
-/// following characters: +=,.@-
-/// </para>
-/// </param>
 /// <param name="DurationSeconds">
 /// <para>
 /// The duration, in seconds, of the role session. The value specified can range from 900 seconds (15
@@ -168,6 +139,35 @@ namespace Com.Amazonaws.Sts;
 /// <c>[{"ProviderArn":"arn:aws:iam::aws:contextProvider/IdentityCenter","ContextAssertion":"trusted-context-assertion"}]</c>
 /// </para>
 /// </param>
+/// <param name="RoleArn">
+/// The Amazon Resource Name (ARN) of the role to assume.
+/// </param>
+/// <param name="RoleSessionName">
+/// <para>
+/// An identifier for the assumed role session.
+/// </para>
+/// <para>
+/// Use the role session name to uniquely identify a session when the same role is assumed by different
+/// principals or for different reasons. In cross-account scenarios, the role session name is visible
+/// to, and can be logged by the account that owns the role. The role session name is also used in the
+/// ARN of the assumed role principal. This means that subsequent cross-account API requests that use
+/// the temporary security credentials will expose the role session name to the external account in
+/// their CloudTrail logs.
+/// </para>
+/// <para>
+/// For security purposes, administrators can view this field in
+/// <see href="https://docs.aws.amazon.com/IAM/latest/UserGuide/cloudtrail-integration.html#cloudtrail-integration_signin-tempcreds">CloudTrail
+/// logs</see> to help identify who performed an action in Amazon Web Services. Your administrator might
+/// require that you specify your user name as the session name when you assume the role. For more
+/// information, see
+/// <see href="https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_iam-condition-keys.html#ck_rolesessionname"><c>sts:RoleSessionName</c></see>.
+/// </para>
+/// <para>
+/// The regex used to validate this parameter is a string of characters consisting of upper- and
+/// lower-case alphanumeric characters with no spaces. You can also include underscores or any of the
+/// following characters: +=,.@-
+/// </para>
+/// </param>
 /// <param name="SerialNumber">
 /// <para>
 /// The identification number of the MFA device that is associated with the user who is making the
@@ -277,14 +277,14 @@ namespace Com.Amazonaws.Sts;
 /// </para>
 /// </param>
 public sealed record class AssumeRoleInput(
-    string RoleArn,
-    string RoleSessionName,
     int? DurationSeconds = null,
     string? ExternalId = null,
     int? MinimumSessionTokenSize = null,
     string? Policy = null,
     IReadOnlyList<PolicyDescriptorType>? PolicyArns = null,
     IReadOnlyList<ProvidedContext>? ProvidedContexts = null,
+    string? RoleArn = null,
+    string? RoleSessionName = null,
     string? SerialNumber = null,
     string? SourceIdentity = null,
     IReadOnlyList<global::Com.Amazonaws.Sts.Tag>? Tags = null,

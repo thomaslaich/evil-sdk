@@ -9,10 +9,6 @@ namespace Com.Amazonaws.Dynamodb;
 /// <summary>
 /// Represents the input of an <c>UpdateTable</c> operation.
 /// </summary>
-/// <param name="TableName">
-/// The name of the table to be updated. You can also provide the Amazon Resource Name (ARN) of the
-/// table in this parameter.
-/// </param>
 /// <param name="AttributeDefinitions">
 /// An array of attributes that describe the key schema for the table and indexes. If you are adding a
 /// new global secondary index to the table, <c>AttributeDefinitions</c> must include the key element(s)
@@ -186,6 +182,10 @@ namespace Com.Amazonaws.Dynamodb;
 /// The table class of the table to be updated. Valid values are <c>STANDARD</c> and
 /// <c>STANDARD_INFREQUENT_ACCESS</c>.
 /// </param>
+/// <param name="TableName">
+/// The name of the table to be updated. You can also provide the Amazon Resource Name (ARN) of the
+/// table in this parameter.
+/// </param>
 /// <param name="VectorIndexUpdates">
 /// <para>
 /// A list of vector indexes to be added to or removed from the table. You can add or remove one vector
@@ -202,7 +202,6 @@ namespace Com.Amazonaws.Dynamodb;
 /// table.
 /// </param>
 public sealed record class UpdateTableInput(
-    string TableName,
     IReadOnlyList<AttributeDefinition>? AttributeDefinitions = null,
     global::Com.Amazonaws.Dynamodb.BillingMode? BillingMode = null,
     bool? DeletionProtectionEnabled = null,
@@ -217,6 +216,7 @@ public sealed record class UpdateTableInput(
     global::Com.Amazonaws.Dynamodb.SSESpecification? SSESpecification = null,
     global::Com.Amazonaws.Dynamodb.StreamSpecification? StreamSpecification = null,
     global::Com.Amazonaws.Dynamodb.TableClass? TableClass = null,
+    string? TableName = null,
     IReadOnlyList<VectorIndexUpdate>? VectorIndexUpdates = null,
     global::Com.Amazonaws.Dynamodb.WarmThroughput? WarmThroughput = null
 );

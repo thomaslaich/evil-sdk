@@ -10,7 +10,7 @@ namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class ListPartsInputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? Bucket { get; set; }
         public string? Key { get; set; }
@@ -34,15 +34,10 @@ public static partial class ListPartsInputSchema
                 new(
                     "Bucket",
                     Target0,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
                             ShapeId.Parse("smithy.api#httpLabel"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
                             Document.From(new Dictionary<string, Document> { })
                         ),
                         new Trait(
@@ -59,7 +54,6 @@ public static partial class ListPartsInputSchema
                 new(
                     "Key",
                     Target1,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
@@ -71,10 +65,6 @@ public static partial class ListPartsInputSchema
                             Document.From(
                                 new Dictionary<string, Document> { { "min", Document.From(1m) } }
                             )
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
                         ),
                         new Trait(
                             ShapeId.Parse("smithy.rules#contextParam"),
@@ -116,14 +106,9 @@ public static partial class ListPartsInputSchema
                 new(
                     "UploadId",
                     Target4,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(ShapeId.Parse("smithy.api#httpQuery"), Document.From("uploadId")),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
                     ]
                 ),
                 new(
@@ -239,16 +224,16 @@ public static partial class ListPartsInputSchema
 
         public override global::Com.Amazonaws.S3.ListPartsInput Build(Builder builder) =>
             new global::Com.Amazonaws.S3.ListPartsInput(
-                builder.Bucket ?? throw new MissingRequiredMemberException("Bucket"),
-                builder.Key ?? throw new MissingRequiredMemberException("Key"),
-                builder.UploadId ?? throw new MissingRequiredMemberException("UploadId"),
+                builder.Bucket,
                 builder.ExpectedBucketOwner,
+                builder.Key,
                 builder.MaxParts,
                 builder.PartNumberMarker,
                 builder.RequestPayer,
                 builder.SSECustomerAlgorithm,
                 builder.SSECustomerKey,
-                builder.SSECustomerKeyMD5
+                builder.SSECustomerKeyMD5,
+                builder.UploadId
             );
 
         public override void SerializeMembers<TSerializer>(
@@ -338,7 +323,7 @@ public static partial class ListPartsInputSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

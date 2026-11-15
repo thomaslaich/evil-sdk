@@ -10,4 +10,4 @@ namespace Com.Amazonaws.Cloudwatchlogs;
 /// <param name="LookupTableArn">
 /// The ARN of the lookup table to delete.
 /// </param>
-public sealed record class DeleteLookupTableInput(string LookupTableArn);
+public sealed record class DeleteLookupTableInput(string? LookupTableArn = null);

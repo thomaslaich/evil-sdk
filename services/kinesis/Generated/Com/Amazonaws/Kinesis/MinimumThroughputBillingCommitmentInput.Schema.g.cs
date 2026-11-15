@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Kinesis.Schemas;
 
 public static partial class MinimumThroughputBillingCommitmentInputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public global::Com.Amazonaws.Kinesis.MinimumThroughputBillingCommitmentInputStatus? Status { get; set; }
     }
@@ -65,7 +65,7 @@ public static partial class MinimumThroughputBillingCommitmentInputSchema
             serializer.WriteStringEnum(0, value.Status.Value);
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

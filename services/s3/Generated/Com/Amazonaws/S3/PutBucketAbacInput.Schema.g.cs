@@ -10,7 +10,7 @@ namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class PutBucketAbacInputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? Bucket { get; set; }
         public string? ContentMD5 { get; set; }
@@ -31,15 +31,10 @@ public static partial class PutBucketAbacInputSchema
                 new(
                     "Bucket",
                     Target0,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
                             ShapeId.Parse("smithy.api#httpLabel"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
                             Document.From(new Dictionary<string, Document> { })
                         ),
                         new Trait(
@@ -89,15 +84,10 @@ public static partial class PutBucketAbacInputSchema
                 new(
                     "AbacStatus",
                     Target4,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
                             ShapeId.Parse("smithy.api#httpPayload"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
                             Document.From(new Dictionary<string, Document> { })
                         ),
                         new Trait(ShapeId.Parse("smithy.api#xmlName"), Document.From("AbacStatus")),
@@ -139,8 +129,8 @@ public static partial class PutBucketAbacInputSchema
 
         public override global::Com.Amazonaws.S3.PutBucketAbacInput Build(Builder builder) =>
             new global::Com.Amazonaws.S3.PutBucketAbacInput(
-                builder.AbacStatus ?? throw new MissingRequiredMemberException("AbacStatus"),
-                builder.Bucket ?? throw new MissingRequiredMemberException("Bucket"),
+                builder.AbacStatus,
+                builder.Bucket,
                 builder.ChecksumAlgorithm,
                 builder.ContentMD5,
                 builder.ExpectedBucketOwner
@@ -193,7 +183,7 @@ public static partial class PutBucketAbacInputSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Cloudwatchlogs.Schemas;
 
 public static partial class GetScheduledQueryInputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? Identifier { get; set; }
     }
@@ -27,7 +27,6 @@ public static partial class GetScheduledQueryInputSchema
                 new(
                     "identifier",
                     Target0,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
@@ -39,10 +38,6 @@ public static partial class GetScheduledQueryInputSchema
                                     { "max", Document.From(300m) },
                                 }
                             )
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
                         ),
                     ]
                 ),
@@ -68,10 +63,7 @@ public static partial class GetScheduledQueryInputSchema
 
         public override global::Com.Amazonaws.Cloudwatchlogs.GetScheduledQueryInput Build(
             Builder builder
-        ) =>
-            new global::Com.Amazonaws.Cloudwatchlogs.GetScheduledQueryInput(
-                builder.Identifier ?? throw new MissingRequiredMemberException("identifier")
-            );
+        ) => new global::Com.Amazonaws.Cloudwatchlogs.GetScheduledQueryInput(builder.Identifier);
 
         public override void SerializeMembers<TSerializer>(
             global::Com.Amazonaws.Cloudwatchlogs.GetScheduledQueryInput value,
@@ -88,7 +80,7 @@ public static partial class GetScheduledQueryInputSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

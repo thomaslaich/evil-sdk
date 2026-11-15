@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Lambda.Schemas;
 
 public static partial class PutProvisionedConcurrencyConfigInputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? FunctionName { get; set; }
         public string? Qualifier { get; set; }
@@ -29,7 +29,6 @@ public static partial class PutProvisionedConcurrencyConfigInputSchema
                 new(
                     "FunctionName",
                     Target0,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
@@ -52,16 +51,11 @@ public static partial class PutProvisionedConcurrencyConfigInputSchema
                                 "^(arn:(aws[a-zA-Z-]*)?:lambda:)?((eusc-)?[a-z]{2}((-gov)|(-iso([a-z]?)))?-[a-z]+-\\d{1}:)?(\\d{12}:)?(function:)?([a-zA-Z0-9-_]+)(:(\\$LATEST|[a-zA-Z0-9-_]+))?$"
                             )
                         ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
                     ]
                 ),
                 new(
                     "Qualifier",
                     Target1,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
@@ -82,16 +76,11 @@ public static partial class PutProvisionedConcurrencyConfigInputSchema
                             ShapeId.Parse("smithy.api#pattern"),
                             Document.From("^(|[a-zA-Z0-9$_-]+)$")
                         ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
                     ]
                 ),
                 new(
                     "ProvisionedConcurrentExecutions",
                     Target2,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
@@ -103,10 +92,6 @@ public static partial class PutProvisionedConcurrencyConfigInputSchema
                             Document.From(
                                 new Dictionary<string, Document> { { "min", Document.From(1m) } }
                             )
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
                         ),
                     ]
                 ),
@@ -140,9 +125,9 @@ public static partial class PutProvisionedConcurrencyConfigInputSchema
             Builder builder
         ) =>
             new global::Com.Amazonaws.Lambda.PutProvisionedConcurrencyConfigInput(
-                builder.FunctionName ?? throw new MissingRequiredMemberException("FunctionName"),
-                builder.ProvisionedConcurrentExecutions.GetValueOrDefault(),
-                builder.Qualifier ?? throw new MissingRequiredMemberException("Qualifier")
+                builder.FunctionName,
+                builder.ProvisionedConcurrentExecutions,
+                builder.Qualifier
             );
 
         public override void SerializeMembers<TSerializer>(
@@ -166,10 +151,17 @@ public static partial class PutProvisionedConcurrencyConfigInputSchema
             {
                 serializer.WriteNull(1);
             }
-            serializer.WriteInteger(2, value.ProvisionedConcurrentExecutions);
+            if (value.ProvisionedConcurrentExecutions is { } value2)
+            {
+                serializer.WriteInteger(2, value2);
+            }
+            else
+            {
+                serializer.WriteNull(2);
+            }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

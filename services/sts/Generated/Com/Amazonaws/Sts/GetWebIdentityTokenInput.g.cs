@@ -14,23 +14,23 @@ namespace Com.Amazonaws.Sts;
 /// JWT and should identify the service or application that will validate and use the token. The
 /// external service should verify this claim to ensure the token was intended for their use.
 /// </param>
-/// <param name="SigningAlgorithm">
-/// The cryptographic algorithm to use for signing the JSON Web Token (JWT). Valid values are RS256 (RSA
-/// with SHA-256) and ES384 (ECDSA using P-384 curve with SHA-384).
-/// </param>
 /// <param name="DurationSeconds">
 /// The duration, in seconds, for which the JSON Web Token (JWT) will remain valid. The value can range
 /// from 60 seconds (1 minute) to 3600 seconds (1 hour). If not specified, the default duration is 300
 /// seconds (5 minutes). The token is designed to be short-lived and should be used for proof of
 /// identity, then exchanged for credentials or short-lived tokens in the external service.
 /// </param>
+/// <param name="SigningAlgorithm">
+/// The cryptographic algorithm to use for signing the JSON Web Token (JWT). Valid values are RS256 (RSA
+/// with SHA-256) and ES384 (ECDSA using P-384 curve with SHA-384).
+/// </param>
 /// <param name="Tags">
 /// An optional list of tags to include in the JSON Web Token (JWT). These tags are added as custom
 /// claims to the JWT and can be used by the downstream service for authorization decisions.
 /// </param>
 public sealed record class GetWebIdentityTokenInput(
-    IReadOnlyList<string> Audience,
-    string SigningAlgorithm,
+    IReadOnlyList<string>? Audience = null,
     int? DurationSeconds = null,
+    string? SigningAlgorithm = null,
     IReadOnlyList<global::Com.Amazonaws.Sts.Tag>? Tags = null
 );

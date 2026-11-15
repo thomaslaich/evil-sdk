@@ -9,9 +9,6 @@ namespace Com.Amazonaws.Kinesis;
 /// <summary>
 /// Represents the input for <c>RemoveTagsFromStream</c>.
 /// </summary>
-/// <param name="TagKeys">
-/// A list of tag keys. Each corresponding tag is removed from the stream.
-/// </param>
 /// <param name="StreamARN">
 /// The ARN of the stream.
 /// </param>
@@ -21,9 +18,12 @@ namespace Com.Amazonaws.Kinesis;
 /// <param name="StreamName">
 /// The name of the stream.
 /// </param>
+/// <param name="TagKeys">
+/// A list of tag keys. Each corresponding tag is removed from the stream.
+/// </param>
 public sealed record class RemoveTagsFromStreamInput(
-    IReadOnlyList<string> TagKeys,
     string? StreamARN = null,
     string? StreamId = null,
-    string? StreamName = null
+    string? StreamName = null,
+    IReadOnlyList<string>? TagKeys = null
 );

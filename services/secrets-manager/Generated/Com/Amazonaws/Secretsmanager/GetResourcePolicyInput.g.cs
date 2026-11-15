@@ -17,4 +17,4 @@ namespace Com.Amazonaws.Secretsmanager;
 /// a secret from a partial ARN</see>.
 /// </para>
 /// </param>
-public sealed record class GetResourcePolicyInput(string SecretId);
+public sealed record class GetResourcePolicyInput(string? SecretId = null);

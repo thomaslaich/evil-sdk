@@ -9,6 +9,9 @@ namespace Com.Amazonaws.Cloudwatchlogs;
 /// <summary>
 /// Represents the Smithy structure com.amazonaws.cloudwatchlogs#PutLogEventsInput.
 /// </summary>
+/// <param name="Entity">
+/// The entity associated with the log events.
+/// </param>
 /// <param name="LogEvents">
 /// The log events.
 /// </param>
@@ -17,9 +20,6 @@ namespace Com.Amazonaws.Cloudwatchlogs;
 /// </param>
 /// <param name="LogStreamName">
 /// The name of the log stream.
-/// </param>
-/// <param name="Entity">
-/// The entity associated with the log events.
 /// </param>
 /// <param name="SequenceToken">
 /// <para>
@@ -32,9 +32,9 @@ namespace Com.Amazonaws.Cloudwatchlogs;
 /// </para>
 /// </param>
 public sealed record class PutLogEventsInput(
-    IReadOnlyList<InputLogEvent> LogEvents,
-    string LogGroupName,
-    string LogStreamName,
     global::Com.Amazonaws.Cloudwatchlogs.Entity? Entity = null,
+    IReadOnlyList<InputLogEvent>? LogEvents = null,
+    string? LogGroupName = null,
+    string? LogStreamName = null,
     string? SequenceToken = null
 );

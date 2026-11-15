@@ -10,7 +10,7 @@ namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class CompletedPartSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? ETag { get; set; }
         public string? ChecksumCRC32 { get; set; }
@@ -227,7 +227,7 @@ public static partial class CompletedPartSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

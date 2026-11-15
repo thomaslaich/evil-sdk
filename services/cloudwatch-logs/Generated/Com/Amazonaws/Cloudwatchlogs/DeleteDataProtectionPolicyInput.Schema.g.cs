@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Cloudwatchlogs.Schemas;
 
 public static partial class DeleteDataProtectionPolicyInputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? LogGroupIdentifier { get; set; }
     }
@@ -30,7 +30,6 @@ public static partial class DeleteDataProtectionPolicyInputSchema
                 new(
                     "logGroupIdentifier",
                     Target0,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
@@ -46,10 +45,6 @@ public static partial class DeleteDataProtectionPolicyInputSchema
                         new Trait(
                             ShapeId.Parse("smithy.api#pattern"),
                             Document.From("^[\\w#+=/:,.@-]*$")
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
                         ),
                     ]
                 ),
@@ -78,7 +73,6 @@ public static partial class DeleteDataProtectionPolicyInputSchema
         ) =>
             new global::Com.Amazonaws.Cloudwatchlogs.DeleteDataProtectionPolicyInput(
                 builder.LogGroupIdentifier
-                    ?? throw new MissingRequiredMemberException("logGroupIdentifier")
             );
 
         public override void SerializeMembers<TSerializer>(
@@ -96,7 +90,7 @@ public static partial class DeleteDataProtectionPolicyInputSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

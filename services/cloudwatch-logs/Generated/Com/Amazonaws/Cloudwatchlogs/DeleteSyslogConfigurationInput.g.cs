@@ -14,6 +14,6 @@ namespace Com.Amazonaws.Cloudwatchlogs;
 /// The ID of the VPC endpoint associated with the syslog configuration to delete.
 /// </param>
 public sealed record class DeleteSyslogConfigurationInput(
-    string LogGroupIdentifier,
+    string? LogGroupIdentifier = null,
     string? VpcEndpointId = null
 );

@@ -10,4 +10,6 @@ namespace Com.Amazonaws.Cloudwatchlogs;
 /// <param name="DeliveryDestinationName">
 /// The name of the delivery destination that you want to delete the policy for.
 /// </param>
-public sealed record class DeleteDeliveryDestinationPolicyInput(string DeliveryDestinationName);
+public sealed record class DeleteDeliveryDestinationPolicyInput(
+    string? DeliveryDestinationName = null
+);

@@ -18,4 +18,4 @@ namespace Com.Amazonaws.Route53;
 /// status of a calculated health check.
 /// </para>
 /// </param>
-public sealed record class GetHealthCheckStatusInput(string HealthCheckId);
+public sealed record class GetHealthCheckStatusInput(string? HealthCheckId = null);

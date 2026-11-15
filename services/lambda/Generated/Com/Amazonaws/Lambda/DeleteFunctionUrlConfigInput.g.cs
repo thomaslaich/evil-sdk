@@ -40,6 +40,6 @@ namespace Com.Amazonaws.Lambda;
 /// The alias name.
 /// </param>
 public sealed record class DeleteFunctionUrlConfigInput(
-    string FunctionName,
+    string? FunctionName = null,
     string? Qualifier = null
 );

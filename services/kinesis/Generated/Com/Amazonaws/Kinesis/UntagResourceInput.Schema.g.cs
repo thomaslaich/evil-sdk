@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Kinesis.Schemas;
 
 public static partial class UntagResourceInputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public IReadOnlyList<string>? TagKeys { get; set; }
         public string? ResourceARN { get; set; }
@@ -26,22 +26,10 @@ public static partial class UntagResourceInputSchema
         : StructSchema<global::Com.Amazonaws.Kinesis.UntagResourceInput, Builder>(
             ShapeId.Parse("com.amazonaws.kinesis#UntagResourceInput"),
             [
-                new(
-                    "TagKeys",
-                    Target0,
-                    isRequired: true,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
-                    ]
-                ),
+                new("TagKeys", Target0),
                 new(
                     "ResourceARN",
                     Target1,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
@@ -57,10 +45,6 @@ public static partial class UntagResourceInputSchema
                         new Trait(
                             ShapeId.Parse("smithy.api#pattern"),
                             Document.From("^arn:aws.*:kinesis:.*:\\d{12}:.*(stream|channel)/\\S+$")
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
                         ),
                         new Trait(
                             ShapeId.Parse("smithy.rules#contextParam"),
@@ -129,9 +113,9 @@ public static partial class UntagResourceInputSchema
 
         public override global::Com.Amazonaws.Kinesis.UntagResourceInput Build(Builder builder) =>
             new global::Com.Amazonaws.Kinesis.UntagResourceInput(
-                builder.ResourceARN ?? throw new MissingRequiredMemberException("ResourceARN"),
-                builder.TagKeys ?? throw new MissingRequiredMemberException("TagKeys"),
-                builder.StreamId
+                builder.ResourceARN,
+                builder.StreamId,
+                builder.TagKeys
             );
 
         public override void SerializeMembers<TSerializer>(
@@ -165,7 +149,7 @@ public static partial class UntagResourceInputSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

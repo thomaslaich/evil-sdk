@@ -10,7 +10,7 @@ namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class AnnotationTableConfigurationResultSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public global::Com.Amazonaws.S3.AnnotationConfigurationState? ConfigurationState { get; set; }
         public string? TableStatus { get; set; }
@@ -136,7 +136,7 @@ public static partial class AnnotationTableConfigurationResultSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

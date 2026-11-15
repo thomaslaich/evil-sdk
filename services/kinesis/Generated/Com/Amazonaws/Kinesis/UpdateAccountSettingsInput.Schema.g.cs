@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Kinesis.Schemas;
 
 public static partial class UpdateAccountSettingsInputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public global::Com.Amazonaws.Kinesis.MinimumThroughputBillingCommitmentInput? MinimumThroughputBillingCommitment { get; set; }
     }
@@ -23,20 +23,7 @@ public static partial class UpdateAccountSettingsInputSchema
     private sealed class GeneratedSchema()
         : StructSchema<global::Com.Amazonaws.Kinesis.UpdateAccountSettingsInput, Builder>(
             ShapeId.Parse("com.amazonaws.kinesis#UpdateAccountSettingsInput"),
-            [
-                new(
-                    "MinimumThroughputBillingCommitment",
-                    Target0,
-                    isRequired: true,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
-                    ]
-                ),
-            ],
+            [new("MinimumThroughputBillingCommitment", Target0)],
             [
                 new Trait(
                     ShapeId.Parse("smithy.api#input"),
@@ -59,9 +46,6 @@ public static partial class UpdateAccountSettingsInputSchema
         ) =>
             new global::Com.Amazonaws.Kinesis.UpdateAccountSettingsInput(
                 builder.MinimumThroughputBillingCommitment
-                    ?? throw new MissingRequiredMemberException(
-                        "MinimumThroughputBillingCommitment"
-                    )
             );
 
         public override void SerializeMembers<TSerializer>(
@@ -83,7 +67,7 @@ public static partial class UpdateAccountSettingsInputSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

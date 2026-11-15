@@ -33,12 +33,6 @@ namespace Com.Amazonaws.S3;
 /// Outposts?</see> in the <i>Amazon S3 User Guide</i>.
 /// </para>
 /// </param>
-/// <param name="Key">
-/// Name of the object key.
-/// </param>
-/// <param name="Tagging">
-/// Container for the <c>TagSet</c> and <c>Tag</c> elements
-/// </param>
 /// <param name="ChecksumAlgorithm">
 /// <para>
 /// Indicates the algorithm used to create the checksum for the object when you use the SDK. This header
@@ -68,20 +62,26 @@ namespace Com.Amazonaws.S3;
 /// actual owner of the bucket, the request fails with the HTTP status code <c>403 Forbidden</c> (access
 /// denied).
 /// </param>
+/// <param name="Key">
+/// Name of the object key.
+/// </param>
 /// <param name="RequestPayer">
 /// Confirms that the requester knows that she or he will be charged for the tagging object request.
 /// Bucket owners need not specify this parameter in their requests.
+/// </param>
+/// <param name="Tagging">
+/// Container for the <c>TagSet</c> and <c>Tag</c> elements
 /// </param>
 /// <param name="VersionId">
 /// The versionId of the object that the tag-set will be added to.
 /// </param>
 public sealed record class PutObjectTaggingInput(
-    string Bucket,
-    string Key,
-    global::Com.Amazonaws.S3.Tagging Tagging,
+    string? Bucket = null,
     global::Com.Amazonaws.S3.ChecksumAlgorithm? ChecksumAlgorithm = null,
     string? ContentMD5 = null,
     string? ExpectedBucketOwner = null,
+    string? Key = null,
     global::Com.Amazonaws.S3.RequestPayer? RequestPayer = null,
+    global::Com.Amazonaws.S3.Tagging? Tagging = null,
     string? VersionId = null
 );

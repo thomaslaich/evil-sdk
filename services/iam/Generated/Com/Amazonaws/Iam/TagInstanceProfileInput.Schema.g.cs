@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Iam.Schemas;
 
 public static partial class TagInstanceProfileInputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? InstanceProfileName { get; set; }
         public IReadOnlyList<global::Com.Amazonaws.Iam.Tag>? Tags { get; set; }
@@ -28,7 +28,6 @@ public static partial class TagInstanceProfileInputSchema
                 new(
                     "InstanceProfileName",
                     Target0,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
@@ -45,24 +44,9 @@ public static partial class TagInstanceProfileInputSchema
                             ShapeId.Parse("smithy.api#pattern"),
                             Document.From("^[\\w+=,.@-]+$")
                         ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
                     ]
                 ),
-                new(
-                    "Tags",
-                    Target1,
-                    isRequired: true,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
-                    ]
-                ),
+                new("Tags", Target1),
             ],
             [
                 new Trait(
@@ -89,9 +73,8 @@ public static partial class TagInstanceProfileInputSchema
 
         public override global::Com.Amazonaws.Iam.TagInstanceProfileInput Build(Builder builder) =>
             new global::Com.Amazonaws.Iam.TagInstanceProfileInput(
-                builder.InstanceProfileName
-                    ?? throw new MissingRequiredMemberException("InstanceProfileName"),
-                builder.Tags ?? throw new MissingRequiredMemberException("Tags")
+                builder.InstanceProfileName,
+                builder.Tags
             );
 
         public override void SerializeMembers<TSerializer>(
@@ -117,7 +100,7 @@ public static partial class TagInstanceProfileInputSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Iam.Schemas;
 
 public static partial class ResourceSpecificResultSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? EvalResourceName { get; set; }
         public global::Com.Amazonaws.Iam.PolicyEvaluationDecisionType? EvalResourceDecision { get; set; }
@@ -165,7 +165,7 @@ public static partial class ResourceSpecificResultSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

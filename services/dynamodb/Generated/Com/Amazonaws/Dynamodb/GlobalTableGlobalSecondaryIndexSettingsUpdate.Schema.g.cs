@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Dynamodb.Schemas;
 
 public static partial class GlobalTableGlobalSecondaryIndexSettingsUpdateSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? IndexName { get; set; }
         public long? ProvisionedWriteCapacityUnits { get; set; }
@@ -132,7 +132,7 @@ public static partial class GlobalTableGlobalSecondaryIndexSettingsUpdateSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

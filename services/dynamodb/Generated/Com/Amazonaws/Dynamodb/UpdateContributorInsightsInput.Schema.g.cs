@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Dynamodb.Schemas;
 
 public static partial class UpdateContributorInsightsInputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? TableName { get; set; }
         public string? IndexName { get; set; }
@@ -30,7 +30,6 @@ public static partial class UpdateContributorInsightsInputSchema
                 new(
                     "TableName",
                     Target0,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
@@ -42,10 +41,6 @@ public static partial class UpdateContributorInsightsInputSchema
                                     { "max", Document.From(1024m) },
                                 }
                             )
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
                         ),
                         new Trait(
                             ShapeId.Parse("smithy.rules#contextParam"),
@@ -79,18 +74,7 @@ public static partial class UpdateContributorInsightsInputSchema
                         ),
                     ]
                 ),
-                new(
-                    "ContributorInsightsAction",
-                    Target2,
-                    isRequired: true,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
-                    ]
-                ),
+                new("ContributorInsightsAction", Target2),
                 new("ContributorInsightsMode", Target3),
             ],
             [
@@ -120,11 +104,10 @@ public static partial class UpdateContributorInsightsInputSchema
             Builder builder
         ) =>
             new global::Com.Amazonaws.Dynamodb.UpdateContributorInsightsInput(
-                builder.ContributorInsightsAction
-                    ?? throw new MissingRequiredMemberException("ContributorInsightsAction"),
-                builder.TableName ?? throw new MissingRequiredMemberException("TableName"),
+                builder.ContributorInsightsAction,
                 builder.ContributorInsightsMode,
-                builder.IndexName
+                builder.IndexName,
+                builder.TableName
             );
 
         public override void SerializeMembers<TSerializer>(
@@ -148,7 +131,14 @@ public static partial class UpdateContributorInsightsInputSchema
             {
                 serializer.WriteNull(1);
             }
-            serializer.WriteStringEnum(2, value.ContributorInsightsAction.Value);
+            if (value.ContributorInsightsAction is { } value2)
+            {
+                serializer.WriteStringEnum(2, value2.Value);
+            }
+            else
+            {
+                serializer.WriteNull(2);
+            }
             if (value.ContributorInsightsMode is { } value3)
             {
                 serializer.WriteStringEnum(3, value3.Value);
@@ -159,7 +149,7 @@ public static partial class UpdateContributorInsightsInputSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

@@ -7,10 +7,6 @@ namespace Com.Amazonaws.Cloudwatchlogs;
 /// <summary>
 /// Represents the Smithy structure com.amazonaws.cloudwatchlogs#DeleteIntegrationInput.
 /// </summary>
-/// <param name="IntegrationName">
-/// The name of the integration to delete. To find the name of your integration, use
-/// <see href="https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_ListIntegrations.html">ListIntegrations</see>.
-/// </param>
 /// <param name="Force">
 /// <para>
 /// Specify <c>true</c> to force the deletion of the integration even if vended logs dashboards
@@ -20,4 +16,11 @@ namespace Com.Amazonaws.Cloudwatchlogs;
 /// The default is <c>false</c>.
 /// </para>
 /// </param>
-public sealed record class DeleteIntegrationInput(string IntegrationName, bool? Force = null);
+/// <param name="IntegrationName">
+/// The name of the integration to delete. To find the name of your integration, use
+/// <see href="https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_ListIntegrations.html">ListIntegrations</see>.
+/// </param>
+public sealed record class DeleteIntegrationInput(
+    bool? Force = null,
+    string? IntegrationName = null
+);

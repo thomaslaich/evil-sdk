@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Dynamodb.Schemas;
 
 public static partial class PutResourcePolicyInputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? ResourceArn { get; set; }
         public string? Policy { get; set; }
@@ -30,7 +30,6 @@ public static partial class PutResourcePolicyInputSchema
                 new(
                     "ResourceArn",
                     Target0,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
@@ -44,10 +43,6 @@ public static partial class PutResourcePolicyInputSchema
                             )
                         ),
                         new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.rules#contextParam"),
                             Document.From(
                                 new Dictionary<string, Document>
@@ -58,18 +53,7 @@ public static partial class PutResourcePolicyInputSchema
                         ),
                     ]
                 ),
-                new(
-                    "Policy",
-                    Target1,
-                    isRequired: true,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
-                    ]
-                ),
+                new("Policy", Target1),
                 new(
                     "ExpectedRevisionId",
                     Target2,
@@ -130,10 +114,10 @@ public static partial class PutResourcePolicyInputSchema
             Builder builder
         ) =>
             new global::Com.Amazonaws.Dynamodb.PutResourcePolicyInput(
-                builder.Policy ?? throw new MissingRequiredMemberException("Policy"),
-                builder.ResourceArn ?? throw new MissingRequiredMemberException("ResourceArn"),
                 builder.ConfirmRemoveSelfResourceAccess,
-                builder.ExpectedRevisionId
+                builder.ExpectedRevisionId,
+                builder.Policy,
+                builder.ResourceArn
             );
 
         public override void SerializeMembers<TSerializer>(
@@ -179,7 +163,7 @@ public static partial class PutResourcePolicyInputSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Cloudwatchlogs.Schemas;
 
 public static partial class GetLogRecordInputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? LogRecordPointer { get; set; }
         public bool? Unmask { get; set; }
@@ -25,18 +25,7 @@ public static partial class GetLogRecordInputSchema
         : StructSchema<global::Com.Amazonaws.Cloudwatchlogs.GetLogRecordInput, Builder>(
             ShapeId.Parse("com.amazonaws.cloudwatchlogs#GetLogRecordInput"),
             [
-                new(
-                    "logRecordPointer",
-                    Target0,
-                    isRequired: true,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
-                    ]
-                ),
+                new("logRecordPointer", Target0),
                 new(
                     "unmask",
                     Target1,
@@ -68,8 +57,7 @@ public static partial class GetLogRecordInputSchema
             Builder builder
         ) =>
             new global::Com.Amazonaws.Cloudwatchlogs.GetLogRecordInput(
-                builder.LogRecordPointer
-                    ?? throw new MissingRequiredMemberException("logRecordPointer"),
+                builder.LogRecordPointer,
                 builder.Unmask
             );
 
@@ -100,7 +88,7 @@ public static partial class GetLogRecordInputSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

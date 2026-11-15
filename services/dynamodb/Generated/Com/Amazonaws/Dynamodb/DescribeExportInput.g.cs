@@ -10,4 +10,4 @@ namespace Com.Amazonaws.Dynamodb;
 /// <param name="ExportArn">
 /// The Amazon Resource Name (ARN) associated with the export.
 /// </param>
-public sealed record class DescribeExportInput(string ExportArn);
+public sealed record class DescribeExportInput(string? ExportArn = null);

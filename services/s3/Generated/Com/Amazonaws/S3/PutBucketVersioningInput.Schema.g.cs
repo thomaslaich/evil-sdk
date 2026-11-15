@@ -10,7 +10,7 @@ namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class PutBucketVersioningInputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? Bucket { get; set; }
         public string? ContentMD5 { get; set; }
@@ -32,15 +32,10 @@ public static partial class PutBucketVersioningInputSchema
                 new(
                     "Bucket",
                     Target0,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
                             ShapeId.Parse("smithy.api#httpLabel"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
                             Document.From(new Dictionary<string, Document> { })
                         ),
                         new Trait(
@@ -90,15 +85,10 @@ public static partial class PutBucketVersioningInputSchema
                 new(
                     "VersioningConfiguration",
                     Target4,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
                             ShapeId.Parse("smithy.api#httpPayload"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
                             Document.From(new Dictionary<string, Document> { })
                         ),
                         new Trait(
@@ -158,13 +148,12 @@ public static partial class PutBucketVersioningInputSchema
 
         public override global::Com.Amazonaws.S3.PutBucketVersioningInput Build(Builder builder) =>
             new global::Com.Amazonaws.S3.PutBucketVersioningInput(
-                builder.Bucket ?? throw new MissingRequiredMemberException("Bucket"),
-                builder.VersioningConfiguration
-                    ?? throw new MissingRequiredMemberException("VersioningConfiguration"),
+                builder.Bucket,
                 builder.ChecksumAlgorithm,
                 builder.ContentMD5,
                 builder.ExpectedBucketOwner,
-                builder.MFA
+                builder.MFA,
+                builder.VersioningConfiguration
             );
 
         public override void SerializeMembers<TSerializer>(
@@ -222,7 +211,7 @@ public static partial class PutBucketVersioningInputSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

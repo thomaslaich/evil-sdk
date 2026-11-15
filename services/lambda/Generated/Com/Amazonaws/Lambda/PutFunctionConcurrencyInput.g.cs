@@ -40,6 +40,6 @@ namespace Com.Amazonaws.Lambda;
 /// The number of simultaneous executions to reserve for the function.
 /// </param>
 public sealed record class PutFunctionConcurrencyInput(
-    string FunctionName,
-    int ReservedConcurrentExecutions
+    string? FunctionName = null,
+    int? ReservedConcurrentExecutions = null
 );

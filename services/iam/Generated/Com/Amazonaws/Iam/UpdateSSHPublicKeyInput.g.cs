@@ -31,7 +31,7 @@ namespace Com.Amazonaws.Iam;
 /// </para>
 /// </param>
 public sealed record class UpdateSSHPublicKeyInput(
-    string SSHPublicKeyId,
-    StatusType Status,
-    string UserName
+    string? SSHPublicKeyId = null,
+    StatusType? Status = null,
+    string? UserName = null
 );

@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Lambda.Schemas;
 
 public static partial class AddLayerVersionPermissionInputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? LayerName { get; set; }
         public long? VersionNumber { get; set; }
@@ -33,7 +33,6 @@ public static partial class AddLayerVersionPermissionInputSchema
                 new(
                     "LayerName",
                     Target0,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
@@ -56,16 +55,11 @@ public static partial class AddLayerVersionPermissionInputSchema
                                 "^(arn:(aws[a-zA-Z-]*)?:lambda:(eusc-)?[a-z]{2}((-gov)|(-iso([a-z]?)))?-[a-z]+-\\d{1}:\\d{12}:layer:[a-zA-Z0-9-_]+)|[a-zA-Z0-9-_]+$"
                             )
                         ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
                     ]
                 ),
                 new(
                     "VersionNumber",
                     Target1,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
@@ -77,16 +71,11 @@ public static partial class AddLayerVersionPermissionInputSchema
                             ShapeId.Parse("smithy.api#httpLabel"),
                             Document.From(new Dictionary<string, Document> { })
                         ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
                     ]
                 ),
                 new(
                     "StatementId",
                     Target2,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
@@ -103,16 +92,11 @@ public static partial class AddLayerVersionPermissionInputSchema
                             ShapeId.Parse("smithy.api#pattern"),
                             Document.From("^([a-zA-Z0-9-_]+)$")
                         ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
                     ]
                 ),
                 new(
                     "Action",
                     Target3,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
@@ -129,16 +113,11 @@ public static partial class AddLayerVersionPermissionInputSchema
                             ShapeId.Parse("smithy.api#pattern"),
                             Document.From("^lambda:GetLayerVersion$")
                         ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
                     ]
                 ),
                 new(
                     "Principal",
                     Target4,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
@@ -154,10 +133,6 @@ public static partial class AddLayerVersionPermissionInputSchema
                         new Trait(
                             ShapeId.Parse("smithy.api#pattern"),
                             Document.From("^\\d{12}|\\*|arn:(aws[a-zA-Z-]*):iam::\\d{12}:root$")
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
                         ),
                     ]
                 ),
@@ -240,13 +215,13 @@ public static partial class AddLayerVersionPermissionInputSchema
             Builder builder
         ) =>
             new global::Com.Amazonaws.Lambda.AddLayerVersionPermissionInput(
-                builder.Action ?? throw new MissingRequiredMemberException("Action"),
-                builder.LayerName ?? throw new MissingRequiredMemberException("LayerName"),
-                builder.Principal ?? throw new MissingRequiredMemberException("Principal"),
-                builder.StatementId ?? throw new MissingRequiredMemberException("StatementId"),
+                builder.Action,
+                builder.LayerName,
                 builder.OrganizationId,
+                builder.Principal,
                 builder.RevisionId,
-                builder.VersionNumber.GetValueOrDefault()
+                builder.StatementId,
+                builder.VersionNumber
             );
 
         public override void SerializeMembers<TSerializer>(
@@ -312,7 +287,7 @@ public static partial class AddLayerVersionPermissionInputSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

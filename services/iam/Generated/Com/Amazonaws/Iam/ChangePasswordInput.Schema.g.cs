@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Iam.Schemas;
 
 public static partial class ChangePasswordInputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? OldPassword { get; set; }
         public string? NewPassword { get; set; }
@@ -28,7 +28,6 @@ public static partial class ChangePasswordInputSchema
                 new(
                     "OldPassword",
                     Target0,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
@@ -44,10 +43,6 @@ public static partial class ChangePasswordInputSchema
                         new Trait(
                             ShapeId.Parse("smithy.api#pattern"),
                             Document.From("^[\\u0009\\u000A\\u000D\\u0020-\\u00FF]+$")
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
                         ),
                         new Trait(
                             ShapeId.Parse("smithy.api#sensitive"),
@@ -58,7 +53,6 @@ public static partial class ChangePasswordInputSchema
                 new(
                     "NewPassword",
                     Target1,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
@@ -74,10 +68,6 @@ public static partial class ChangePasswordInputSchema
                         new Trait(
                             ShapeId.Parse("smithy.api#pattern"),
                             Document.From("^[\\u0009\\u000A\\u000D\\u0020-\\u00FF]+$")
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
                         ),
                         new Trait(
                             ShapeId.Parse("smithy.api#sensitive"),
@@ -111,8 +101,8 @@ public static partial class ChangePasswordInputSchema
 
         public override global::Com.Amazonaws.Iam.ChangePasswordInput Build(Builder builder) =>
             new global::Com.Amazonaws.Iam.ChangePasswordInput(
-                builder.NewPassword ?? throw new MissingRequiredMemberException("NewPassword"),
-                builder.OldPassword ?? throw new MissingRequiredMemberException("OldPassword")
+                builder.NewPassword,
+                builder.OldPassword
             );
 
         public override void SerializeMembers<TSerializer>(
@@ -138,7 +128,7 @@ public static partial class ChangePasswordInputSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

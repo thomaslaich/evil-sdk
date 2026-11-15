@@ -8,31 +8,6 @@ namespace Com.Amazonaws.Sqs;
 
 /// <summary>
 /// </summary>
-/// <param name="QueueName">
-/// <para>
-/// The name of the new queue. The following limits apply to this name:
-/// </para>
-/// <list type="bullet">
-/// <item>
-/// <description>
-/// A queue name can have up to 80 characters.
-/// </description>
-/// </item>
-/// <item>
-/// <description>
-/// Valid values: alphanumeric characters, hyphens (<c>-</c>), and underscores (<c>_</c>).
-/// </description>
-/// </item>
-/// <item>
-/// <description>
-/// A FIFO queue name must end with the <c>.fifo</c> suffix.
-/// </description>
-/// </item>
-/// </list>
-/// <para>
-/// Queue URLs and names are case-sensitive.
-/// </para>
-/// </param>
 /// <param name="Attributes">
 /// <para>
 /// A map of attributes with their corresponding values.
@@ -338,6 +313,31 @@ namespace Com.Amazonaws.Sqs;
 /// related to messages</see> in the <i>Amazon SQS Developer Guide</i>.
 /// </para>
 /// </param>
+/// <param name="QueueName">
+/// <para>
+/// The name of the new queue. The following limits apply to this name:
+/// </para>
+/// <list type="bullet">
+/// <item>
+/// <description>
+/// A queue name can have up to 80 characters.
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// Valid values: alphanumeric characters, hyphens (<c>-</c>), and underscores (<c>_</c>).
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// A FIFO queue name must end with the <c>.fifo</c> suffix.
+/// </description>
+/// </item>
+/// </list>
+/// <para>
+/// Queue URLs and names are case-sensitive.
+/// </para>
+/// </param>
 /// <param name="Tags">
 /// <para>
 /// Add cost allocation tags to the specified Amazon SQS queue. For an overview, see
@@ -385,7 +385,7 @@ namespace Com.Amazonaws.Sqs;
 /// </para>
 /// </param>
 public sealed record class CreateQueueInput(
-    string QueueName,
     IReadOnlyDictionary<string, string>? Attributes = null,
+    string? QueueName = null,
     IReadOnlyDictionary<string, string>? Tags = null
 );

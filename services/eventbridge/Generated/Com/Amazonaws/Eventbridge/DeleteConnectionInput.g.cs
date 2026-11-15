@@ -10,4 +10,4 @@ namespace Com.Amazonaws.Eventbridge;
 /// <param name="Name">
 /// The name of the connection to delete.
 /// </param>
-public sealed record class DeleteConnectionInput(string Name);
+public sealed record class DeleteConnectionInput(string? Name = null);

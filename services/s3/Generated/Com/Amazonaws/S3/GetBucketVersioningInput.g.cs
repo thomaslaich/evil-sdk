@@ -16,6 +16,6 @@ namespace Com.Amazonaws.S3;
 /// denied).
 /// </param>
 public sealed record class GetBucketVersioningInput(
-    string Bucket,
+    string? Bucket = null,
     string? ExpectedBucketOwner = null
 );

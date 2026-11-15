@@ -10,4 +10,4 @@ namespace Com.Amazonaws.Eventbridge;
 /// <param name="Name">
 /// The name of the connection to remove authorization from.
 /// </param>
-public sealed record class DeauthorizeConnectionInput(string Name);
+public sealed record class DeauthorizeConnectionInput(string? Name = null);

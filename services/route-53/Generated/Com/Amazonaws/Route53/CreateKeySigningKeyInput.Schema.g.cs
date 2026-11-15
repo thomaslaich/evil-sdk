@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Route53.Schemas;
 
 public static partial class CreateKeySigningKeyInputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? CallerReference { get; set; }
         public string? HostedZoneId { get; set; }
@@ -31,7 +31,6 @@ public static partial class CreateKeySigningKeyInputSchema
                 new(
                     "CallerReference",
                     Target0,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
@@ -44,16 +43,11 @@ public static partial class CreateKeySigningKeyInputSchema
                                 }
                             )
                         ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
                     ]
                 ),
                 new(
                     "HostedZoneId",
                     Target1,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
@@ -66,28 +60,12 @@ public static partial class CreateKeySigningKeyInputSchema
                                 }
                             )
                         ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
                     ]
                 ),
-                new(
-                    "KeyManagementServiceArn",
-                    Target2,
-                    isRequired: true,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
-                    ]
-                ),
+                new("KeyManagementServiceArn", Target2),
                 new(
                     "Name",
                     Target3,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
@@ -100,16 +78,11 @@ public static partial class CreateKeySigningKeyInputSchema
                                 }
                             )
                         ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
                     ]
                 ),
                 new(
                     "Status",
                     Target4,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
@@ -121,10 +94,6 @@ public static partial class CreateKeySigningKeyInputSchema
                                     { "max", Document.From(150m) },
                                 }
                             )
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
                         ),
                     ]
                 ),
@@ -168,13 +137,11 @@ public static partial class CreateKeySigningKeyInputSchema
             Builder builder
         ) =>
             new global::Com.Amazonaws.Route53.CreateKeySigningKeyInput(
-                builder.CallerReference
-                    ?? throw new MissingRequiredMemberException("CallerReference"),
-                builder.HostedZoneId ?? throw new MissingRequiredMemberException("HostedZoneId"),
-                builder.KeyManagementServiceArn
-                    ?? throw new MissingRequiredMemberException("KeyManagementServiceArn"),
-                builder.Name ?? throw new MissingRequiredMemberException("Name"),
-                builder.Status ?? throw new MissingRequiredMemberException("Status")
+                builder.CallerReference,
+                builder.HostedZoneId,
+                builder.KeyManagementServiceArn,
+                builder.Name,
+                builder.Status
             );
 
         public override void SerializeMembers<TSerializer>(
@@ -224,7 +191,7 @@ public static partial class CreateKeySigningKeyInputSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

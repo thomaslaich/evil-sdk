@@ -10,4 +10,4 @@ namespace Com.Amazonaws.Cloudwatchlogs;
 /// <param name="Identifier">
 /// The ARN or name of the scheduled query to retrieve.
 /// </param>
-public sealed record class GetScheduledQueryInput(string Identifier);
+public sealed record class GetScheduledQueryInput(string? Identifier = null);

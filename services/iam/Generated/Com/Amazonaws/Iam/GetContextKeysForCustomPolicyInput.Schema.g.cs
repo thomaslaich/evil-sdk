@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Iam.Schemas;
 
 public static partial class GetContextKeysForCustomPolicyInputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public IReadOnlyList<string>? PolicyInputList { get; set; }
     }
@@ -23,20 +23,7 @@ public static partial class GetContextKeysForCustomPolicyInputSchema
     private sealed class GeneratedSchema()
         : StructSchema<global::Com.Amazonaws.Iam.GetContextKeysForCustomPolicyInput, Builder>(
             ShapeId.Parse("com.amazonaws.iam#GetContextKeysForCustomPolicyInput"),
-            [
-                new(
-                    "PolicyInputList",
-                    Target0,
-                    isRequired: true,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
-                    ]
-                ),
-            ],
+            [new("PolicyInputList", Target0)],
             [
                 new Trait(
                     ShapeId.Parse("smithy.api#input"),
@@ -63,7 +50,6 @@ public static partial class GetContextKeysForCustomPolicyInputSchema
         ) =>
             new global::Com.Amazonaws.Iam.GetContextKeysForCustomPolicyInput(
                 builder.PolicyInputList
-                    ?? throw new MissingRequiredMemberException("PolicyInputList")
             );
 
         public override void SerializeMembers<TSerializer>(
@@ -81,7 +67,7 @@ public static partial class GetContextKeysForCustomPolicyInputSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

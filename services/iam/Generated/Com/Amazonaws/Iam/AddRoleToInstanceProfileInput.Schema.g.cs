@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Iam.Schemas;
 
 public static partial class AddRoleToInstanceProfileInputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? InstanceProfileName { get; set; }
         public string? RoleName { get; set; }
@@ -28,7 +28,6 @@ public static partial class AddRoleToInstanceProfileInputSchema
                 new(
                     "InstanceProfileName",
                     Target0,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
@@ -45,16 +44,11 @@ public static partial class AddRoleToInstanceProfileInputSchema
                             ShapeId.Parse("smithy.api#pattern"),
                             Document.From("^[\\w+=,.@-]+$")
                         ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
                     ]
                 ),
                 new(
                     "RoleName",
                     Target1,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
@@ -70,10 +64,6 @@ public static partial class AddRoleToInstanceProfileInputSchema
                         new Trait(
                             ShapeId.Parse("smithy.api#pattern"),
                             Document.From("^[\\w+=,.@-]+$")
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
                         ),
                     ]
                 ),
@@ -105,9 +95,8 @@ public static partial class AddRoleToInstanceProfileInputSchema
             Builder builder
         ) =>
             new global::Com.Amazonaws.Iam.AddRoleToInstanceProfileInput(
-                builder.InstanceProfileName
-                    ?? throw new MissingRequiredMemberException("InstanceProfileName"),
-                builder.RoleName ?? throw new MissingRequiredMemberException("RoleName")
+                builder.InstanceProfileName,
+                builder.RoleName
             );
 
         public override void SerializeMembers<TSerializer>(
@@ -133,7 +122,7 @@ public static partial class AddRoleToInstanceProfileInputSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

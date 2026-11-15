@@ -7,11 +7,6 @@ namespace Com.Amazonaws.Sqs;
 /// <summary>
 /// Represents the Smithy structure com.amazonaws.sqs#StartMessageMoveTaskInput.
 /// </summary>
-/// <param name="SourceArn">
-/// The ARN of the queue that contains the messages to be moved to another queue. Currently, only ARNs
-/// of dead-letter queues (DLQs) whose sources are other Amazon SQS queues are accepted. DLQs whose
-/// sources are non-SQS queues, such as Lambda or Amazon SNS topics, are not currently supported.
-/// </param>
 /// <param name="DestinationArn">
 /// The ARN of the queue that receives the moved messages. You can use this field to specify the
 /// destination queue where you would like to redrive messages. If this field is left blank, the
@@ -23,8 +18,13 @@ namespace Com.Amazonaws.Sqs;
 /// field is left blank, the system will optimize the rate based on the queue message backlog size,
 /// which may vary throughout the duration of the message movement task.
 /// </param>
+/// <param name="SourceArn">
+/// The ARN of the queue that contains the messages to be moved to another queue. Currently, only ARNs
+/// of dead-letter queues (DLQs) whose sources are other Amazon SQS queues are accepted. DLQs whose
+/// sources are non-SQS queues, such as Lambda or Amazon SNS topics, are not currently supported.
+/// </param>
 public sealed record class StartMessageMoveTaskInput(
-    string SourceArn,
     string? DestinationArn = null,
-    int? MaxNumberOfMessagesPerSecond = null
+    int? MaxNumberOfMessagesPerSecond = null,
+    string? SourceArn = null
 );

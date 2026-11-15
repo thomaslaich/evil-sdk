@@ -9,22 +9,6 @@ namespace Com.Amazonaws.Sts;
 /// <summary>
 /// Represents the Smithy structure com.amazonaws.sts#AssumeRoleWithSAMLInput.
 /// </summary>
-/// <param name="PrincipalArn">
-/// The Amazon Resource Name (ARN) of the SAML provider in IAM that describes the IdP.
-/// </param>
-/// <param name="RoleArn">
-/// The Amazon Resource Name (ARN) of the role that the caller is assuming.
-/// </param>
-/// <param name="SAMLAssertion">
-/// <para>
-/// The base64 encoded SAML authentication response provided by the IdP.
-/// </para>
-/// <para>
-/// For more information, see
-/// <see href="https://docs.aws.amazon.com/IAM/latest/UserGuide/create-role-saml-IdP-tasks.html">Configuring
-/// a Relying Party and Adding Claims</see> in the <i>IAM User Guide</i>.
-/// </para>
-/// </param>
 /// <param name="DurationSeconds">
 /// <para>
 /// The duration, in seconds, of the role session. Your role session lasts for the duration that you
@@ -115,12 +99,28 @@ namespace Com.Amazonaws.Sts;
 /// Policies</see> in the <i>IAM User Guide</i>.
 /// </para>
 /// </param>
+/// <param name="PrincipalArn">
+/// The Amazon Resource Name (ARN) of the SAML provider in IAM that describes the IdP.
+/// </param>
+/// <param name="RoleArn">
+/// The Amazon Resource Name (ARN) of the role that the caller is assuming.
+/// </param>
+/// <param name="SAMLAssertion">
+/// <para>
+/// The base64 encoded SAML authentication response provided by the IdP.
+/// </para>
+/// <para>
+/// For more information, see
+/// <see href="https://docs.aws.amazon.com/IAM/latest/UserGuide/create-role-saml-IdP-tasks.html">Configuring
+/// a Relying Party and Adding Claims</see> in the <i>IAM User Guide</i>.
+/// </para>
+/// </param>
 public sealed record class AssumeRoleWithSAMLInput(
-    string PrincipalArn,
-    string RoleArn,
-    string SAMLAssertion,
     int? DurationSeconds = null,
     int? MinimumSessionTokenSize = null,
     string? Policy = null,
-    IReadOnlyList<PolicyDescriptorType>? PolicyArns = null
+    IReadOnlyList<PolicyDescriptorType>? PolicyArns = null,
+    string? PrincipalArn = null,
+    string? RoleArn = null,
+    string? SAMLAssertion = null
 );

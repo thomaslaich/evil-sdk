@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Eventbridge.Schemas;
 
 public static partial class RemoveTargetsResultEntrySchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? TargetId { get; set; }
         public string? ErrorCode { get; set; }
@@ -108,7 +108,7 @@ public static partial class RemoveTargetsResultEntrySchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

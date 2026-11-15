@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Sqs.Schemas;
 
 public static partial class SetQueueAttributesInputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? QueueUrl { get; set; }
         public IReadOnlyDictionary<string, string>? Attributes { get; set; }
@@ -25,28 +25,12 @@ public static partial class SetQueueAttributesInputSchema
         : StructSchema<global::Com.Amazonaws.Sqs.SetQueueAttributesInput, Builder>(
             ShapeId.Parse("com.amazonaws.sqs#SetQueueAttributesInput"),
             [
-                new(
-                    "QueueUrl",
-                    Target0,
-                    isRequired: true,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
-                    ]
-                ),
+                new("QueueUrl", Target0),
                 new(
                     "Attributes",
                     Target1,
-                    isRequired: true,
                     traits:
                     [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
                         new Trait(
                             ShapeId.Parse("smithy.api#xmlFlattened"),
                             Document.From(new Dictionary<string, Document> { })
@@ -82,8 +66,8 @@ public static partial class SetQueueAttributesInputSchema
 
         public override global::Com.Amazonaws.Sqs.SetQueueAttributesInput Build(Builder builder) =>
             new global::Com.Amazonaws.Sqs.SetQueueAttributesInput(
-                builder.Attributes ?? throw new MissingRequiredMemberException("Attributes"),
-                builder.QueueUrl ?? throw new MissingRequiredMemberException("QueueUrl")
+                builder.Attributes,
+                builder.QueueUrl
             );
 
         public override void SerializeMembers<TSerializer>(
@@ -109,7 +93,7 @@ public static partial class SetQueueAttributesInputSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

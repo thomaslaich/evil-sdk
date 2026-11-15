@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Lambda.Schemas;
 
 public static partial class RuntimeVersionConfigSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? RuntimeVersionArn { get; set; }
         public global::Com.Amazonaws.Lambda.RuntimeVersionError? Error { get; set; }
@@ -93,7 +93,7 @@ public static partial class RuntimeVersionConfigSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

@@ -28,7 +28,7 @@ namespace Com.Amazonaws.Lambda;
 /// the current revision ID, use the GetResourcePolicy operation.
 /// </param>
 public sealed record class PutResourcePolicyInput(
-    string Policy,
-    string ResourceArn,
+    string? Policy = null,
+    string? ResourceArn = null,
     string? RevisionId = null
 );

@@ -11,7 +11,7 @@ namespace Com.Amazonaws.Kinesis.Schemas;
 
 public static partial class ListStreamConsumersInputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? StreamARN { get; set; }
         public string? NextToken { get; set; }
@@ -32,7 +32,6 @@ public static partial class ListStreamConsumersInputSchema
                 new(
                     "StreamARN",
                     Target0,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
@@ -48,10 +47,6 @@ public static partial class ListStreamConsumersInputSchema
                         new Trait(
                             ShapeId.Parse("smithy.api#pattern"),
                             Document.From("^arn:aws.*:kinesis:.*:\\d{12}:stream/\\S+$")
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
                         ),
                         new Trait(
                             ShapeId.Parse("smithy.rules#contextParam"),
@@ -167,9 +162,9 @@ public static partial class ListStreamConsumersInputSchema
             Builder builder
         ) =>
             new global::Com.Amazonaws.Kinesis.ListStreamConsumersInput(
-                builder.StreamARN ?? throw new MissingRequiredMemberException("StreamARN"),
                 builder.MaxResults,
                 builder.NextToken,
+                builder.StreamARN,
                 builder.StreamCreationTimestamp,
                 builder.StreamId
             );
@@ -221,7 +216,7 @@ public static partial class ListStreamConsumersInputSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

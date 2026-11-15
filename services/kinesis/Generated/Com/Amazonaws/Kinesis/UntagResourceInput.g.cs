@@ -12,15 +12,15 @@ namespace Com.Amazonaws.Kinesis;
 /// <param name="ResourceARN">
 /// The Amazon Resource Name (ARN) of the Kinesis resource from which to remove tags.
 /// </param>
+/// <param name="StreamId">
+/// Not Implemented. Reserved for future use.
+/// </param>
 /// <param name="TagKeys">
 /// A list of tag key-value pairs. Existing tags of the resource whose keys are members of this list
 /// will be removed from the Kinesis resource.
 /// </param>
-/// <param name="StreamId">
-/// Not Implemented. Reserved for future use.
-/// </param>
 public sealed record class UntagResourceInput(
-    string ResourceARN,
-    IReadOnlyList<string> TagKeys,
-    string? StreamId = null
+    string? ResourceARN = null,
+    string? StreamId = null,
+    IReadOnlyList<string>? TagKeys = null
 );

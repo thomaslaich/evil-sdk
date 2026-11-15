@@ -11,9 +11,6 @@ namespace Com.Amazonaws.S3;
 /// The general purpose bucket that corresponds to the metadata configuration that you want to enable or
 /// disable journal table record expiration for.
 /// </param>
-/// <param name="JournalTableConfiguration">
-/// The contents of your journal table configuration.
-/// </param>
 /// <param name="ChecksumAlgorithm">
 /// The checksum algorithm to use with your journal table configuration.
 /// </param>
@@ -24,10 +21,13 @@ namespace Com.Amazonaws.S3;
 /// The expected owner of the general purpose bucket that corresponds to the metadata table
 /// configuration that you want to enable or disable journal table record expiration for.
 /// </param>
+/// <param name="JournalTableConfiguration">
+/// The contents of your journal table configuration.
+/// </param>
 public sealed record class UpdateBucketMetadataJournalTableConfigurationInput(
-    string Bucket,
-    JournalTableConfigurationUpdates JournalTableConfiguration,
+    string? Bucket = null,
     global::Com.Amazonaws.S3.ChecksumAlgorithm? ChecksumAlgorithm = null,
     string? ContentMD5 = null,
-    string? ExpectedBucketOwner = null
+    string? ExpectedBucketOwner = null,
+    JournalTableConfigurationUpdates? JournalTableConfiguration = null
 );

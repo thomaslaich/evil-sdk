@@ -13,4 +13,4 @@ namespace Com.Amazonaws.Route53;
 /// <param name="Version">
 /// The version number of the traffic policy that you want to delete.
 /// </param>
-public sealed record class DeleteTrafficPolicyInput(string Id, int Version);
+public sealed record class DeleteTrafficPolicyInput(string? Id = null, int? Version = null);

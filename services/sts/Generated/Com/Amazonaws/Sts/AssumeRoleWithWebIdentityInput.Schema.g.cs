@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Sts.Schemas;
 
 public static partial class AssumeRoleWithWebIdentityInputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? RoleArn { get; set; }
         public string? RoleSessionName { get; set; }
@@ -34,7 +34,6 @@ public static partial class AssumeRoleWithWebIdentityInputSchema
                 new(
                     "RoleArn",
                     Target0,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
@@ -53,16 +52,11 @@ public static partial class AssumeRoleWithWebIdentityInputSchema
                                 "^[\\u0009\\u000A\\u000D\\u0020-\\u007E\\u0085\\u00A0-\\uD7FF\\uE000-\\uFFFD\\u10000-\\u10FFFF]+$"
                             )
                         ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
                     ]
                 ),
                 new(
                     "RoleSessionName",
                     Target1,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
@@ -79,16 +73,11 @@ public static partial class AssumeRoleWithWebIdentityInputSchema
                             ShapeId.Parse("smithy.api#pattern"),
                             Document.From("^[\\w+=,.@-]*$")
                         ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
                     ]
                 ),
                 new(
                     "WebIdentityToken",
                     Target2,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
@@ -100,10 +89,6 @@ public static partial class AssumeRoleWithWebIdentityInputSchema
                                     { "max", Document.From(20000m) },
                                 }
                             )
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
                         ),
                         new Trait(
                             ShapeId.Parse("smithy.api#sensitive"),
@@ -242,16 +227,14 @@ public static partial class AssumeRoleWithWebIdentityInputSchema
             Builder builder
         ) =>
             new global::Com.Amazonaws.Sts.AssumeRoleWithWebIdentityInput(
-                builder.RoleArn ?? throw new MissingRequiredMemberException("RoleArn"),
-                builder.RoleSessionName
-                    ?? throw new MissingRequiredMemberException("RoleSessionName"),
-                builder.WebIdentityToken
-                    ?? throw new MissingRequiredMemberException("WebIdentityToken"),
                 builder.DurationSeconds,
                 builder.MinimumSessionTokenSize,
                 builder.Policy,
                 builder.PolicyArns,
-                builder.ProviderId
+                builder.ProviderId,
+                builder.RoleArn,
+                builder.RoleSessionName,
+                builder.WebIdentityToken
             );
 
         public override void SerializeMembers<TSerializer>(
@@ -325,7 +308,7 @@ public static partial class AssumeRoleWithWebIdentityInputSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

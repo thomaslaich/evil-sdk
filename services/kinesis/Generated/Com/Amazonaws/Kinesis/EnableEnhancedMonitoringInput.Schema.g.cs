@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Kinesis.Schemas;
 
 public static partial class EnableEnhancedMonitoringInputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? StreamName { get; set; }
         public IReadOnlyList<global::Com.Amazonaws.Kinesis.MetricsName>? ShardLevelMetrics { get; set; }
@@ -48,18 +48,7 @@ public static partial class EnableEnhancedMonitoringInputSchema
                         ),
                     ]
                 ),
-                new(
-                    "ShardLevelMetrics",
-                    Target1,
-                    isRequired: true,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
-                    ]
-                ),
+                new("ShardLevelMetrics", Target1),
                 new(
                     "StreamARN",
                     Target2,
@@ -152,8 +141,7 @@ public static partial class EnableEnhancedMonitoringInputSchema
             Builder builder
         ) =>
             new global::Com.Amazonaws.Kinesis.EnableEnhancedMonitoringInput(
-                builder.ShardLevelMetrics
-                    ?? throw new MissingRequiredMemberException("ShardLevelMetrics"),
+                builder.ShardLevelMetrics,
                 builder.StreamARN,
                 builder.StreamId,
                 builder.StreamName
@@ -198,7 +186,7 @@ public static partial class EnableEnhancedMonitoringInputSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

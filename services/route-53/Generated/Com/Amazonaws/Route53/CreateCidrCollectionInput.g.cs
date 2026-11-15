@@ -16,4 +16,7 @@ namespace Com.Amazonaws.Route53;
 /// A unique identifier for the account that can be used to reference the collection from other API
 /// calls.
 /// </param>
-public sealed record class CreateCidrCollectionInput(string CallerReference, string Name);
+public sealed record class CreateCidrCollectionInput(
+    string? CallerReference = null,
+    string? Name = null
+);

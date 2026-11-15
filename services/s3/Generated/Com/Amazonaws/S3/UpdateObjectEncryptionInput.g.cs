@@ -23,18 +23,6 @@ namespace Com.Amazonaws.S3;
 /// access points</see> in the <i>Amazon S3 User Guide</i>.
 /// </para>
 /// </param>
-/// <param name="Key">
-/// The key name of the object that you want to update the server-side encryption type for.
-/// </param>
-/// <param name="ObjectEncryption">
-/// <para>
-/// The updated server-side encryption type for this object. The <c>UpdateObjectEncryption</c> operation
-/// supports the SSE-S3 and SSE-KMS encryption types.
-/// </para>
-/// <para>
-/// Valid Values: <c>SSES3</c> | <c>SSEKMS</c>
-/// </para>
-/// </param>
 /// <param name="ChecksumAlgorithm">
 /// <para>
 /// Indicates the algorithm used to create the checksum for the object when you use an Amazon Web
@@ -59,16 +47,28 @@ namespace Com.Amazonaws.S3;
 /// actual owner of the bucket, the request fails with the HTTP status code <c>403 Forbidden</c> (access
 /// denied).
 /// </param>
+/// <param name="Key">
+/// The key name of the object that you want to update the server-side encryption type for.
+/// </param>
+/// <param name="ObjectEncryption">
+/// <para>
+/// The updated server-side encryption type for this object. The <c>UpdateObjectEncryption</c> operation
+/// supports the SSE-S3 and SSE-KMS encryption types.
+/// </para>
+/// <para>
+/// Valid Values: <c>SSES3</c> | <c>SSEKMS</c>
+/// </para>
+/// </param>
 /// <param name="VersionId">
 /// The version ID of the object that you want to update the server-side encryption type for.
 /// </param>
 public sealed record class UpdateObjectEncryptionInput(
-    string Bucket,
-    string Key,
-    global::Com.Amazonaws.S3.ObjectEncryption ObjectEncryption,
+    string? Bucket = null,
     global::Com.Amazonaws.S3.ChecksumAlgorithm? ChecksumAlgorithm = null,
     string? ContentMD5 = null,
     string? ExpectedBucketOwner = null,
+    string? Key = null,
+    global::Com.Amazonaws.S3.ObjectEncryption? ObjectEncryption = null,
     global::Com.Amazonaws.S3.RequestPayer? RequestPayer = null,
     string? VersionId = null
 );

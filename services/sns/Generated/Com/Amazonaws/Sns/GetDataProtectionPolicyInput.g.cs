@@ -17,4 +17,4 @@ namespace Com.Amazonaws.Sns;
 /// Resource Names (ARNs)</see> in the Amazon Web Services General Reference.
 /// </para>
 /// </param>
-public sealed record class GetDataProtectionPolicyInput(string ResourceArn);
+public sealed record class GetDataProtectionPolicyInput(string? ResourceArn = null);

@@ -25,6 +25,6 @@ namespace Com.Amazonaws.Iam;
 /// name and an associated value.
 /// </param>
 public sealed record class TagMFADeviceInput(
-    string SerialNumber,
-    IReadOnlyList<global::Com.Amazonaws.Iam.Tag> Tags
+    string? SerialNumber = null,
+    IReadOnlyList<global::Com.Amazonaws.Iam.Tag>? Tags = null
 );

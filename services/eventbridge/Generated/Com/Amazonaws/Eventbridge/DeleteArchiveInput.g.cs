@@ -10,4 +10,4 @@ namespace Com.Amazonaws.Eventbridge;
 /// <param name="ArchiveName">
 /// The name of the archive to delete.
 /// </param>
-public sealed record class DeleteArchiveInput(string ArchiveName);
+public sealed record class DeleteArchiveInput(string? ArchiveName = null);

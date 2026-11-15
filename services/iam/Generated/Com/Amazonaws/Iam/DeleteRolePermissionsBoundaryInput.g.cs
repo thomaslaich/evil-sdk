@@ -11,4 +11,4 @@ namespace Com.Amazonaws.Iam;
 /// The name (friendly name, not ARN) of the IAM role from which you want to remove the permissions
 /// boundary.
 /// </param>
-public sealed record class DeleteRolePermissionsBoundaryInput(string RoleName);
+public sealed record class DeleteRolePermissionsBoundaryInput(string? RoleName = null);

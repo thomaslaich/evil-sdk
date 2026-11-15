@@ -28,6 +28,6 @@ namespace Com.Amazonaws.Iam;
 /// <see href="https://docs.aws.amazon.com/IAM/latest/APIReference/API_CreateOpenIDConnectProvider.html">CreateOpenIDConnectProvider</see>.
 /// </param>
 public sealed record class UpdateOpenIDConnectProviderThumbprintInput(
-    string OpenIDConnectProviderArn,
-    IReadOnlyList<string> ThumbprintList
+    string? OpenIDConnectProviderArn = null,
+    IReadOnlyList<string>? ThumbprintList = null
 );

@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Dynamodb.Schemas;
 
 public static partial class BatchWriteItemInputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public IReadOnlyDictionary<
             string,
@@ -29,18 +29,7 @@ public static partial class BatchWriteItemInputSchema
         : StructSchema<global::Com.Amazonaws.Dynamodb.BatchWriteItemInput, Builder>(
             ShapeId.Parse("com.amazonaws.dynamodb#BatchWriteItemInput"),
             [
-                new(
-                    "RequestItems",
-                    Target0,
-                    isRequired: true,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
-                    ]
-                ),
+                new("RequestItems", Target0),
                 new("ReturnConsumedCapacity", Target1),
                 new("ReturnItemCollectionMetrics", Target2),
             ],
@@ -67,7 +56,7 @@ public static partial class BatchWriteItemInputSchema
 
         public override global::Com.Amazonaws.Dynamodb.BatchWriteItemInput Build(Builder builder) =>
             new global::Com.Amazonaws.Dynamodb.BatchWriteItemInput(
-                builder.RequestItems ?? throw new MissingRequiredMemberException("RequestItems"),
+                builder.RequestItems,
                 builder.ReturnConsumedCapacity,
                 builder.ReturnItemCollectionMetrics
             );
@@ -103,7 +92,7 @@ public static partial class BatchWriteItemInputSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

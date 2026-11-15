@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Route53.Schemas;
 
 public static partial class ChangeCidrCollectionInputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? Id { get; set; }
         public long? CollectionVersion { get; set; }
@@ -29,7 +29,6 @@ public static partial class ChangeCidrCollectionInputSchema
                 new(
                     "Id",
                     Target0,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
@@ -39,10 +38,6 @@ public static partial class ChangeCidrCollectionInputSchema
                         new Trait(
                             ShapeId.Parse("smithy.api#pattern"),
                             Document.From("^[0-9a-f]{8}-(?:[0-9a-f]{4}-){3}[0-9a-f]{12}$")
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
                         ),
                     ]
                 ),
@@ -63,18 +58,7 @@ public static partial class ChangeCidrCollectionInputSchema
                         ),
                     ]
                 ),
-                new(
-                    "Changes",
-                    Target2,
-                    isRequired: true,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
-                    ]
-                ),
+                new("Changes", Target2),
             ],
             [
                 new Trait(
@@ -105,9 +89,9 @@ public static partial class ChangeCidrCollectionInputSchema
             Builder builder
         ) =>
             new global::Com.Amazonaws.Route53.ChangeCidrCollectionInput(
-                builder.Changes ?? throw new MissingRequiredMemberException("Changes"),
-                builder.Id ?? throw new MissingRequiredMemberException("Id"),
-                builder.CollectionVersion
+                builder.Changes,
+                builder.CollectionVersion,
+                builder.Id
             );
 
         public override void SerializeMembers<TSerializer>(
@@ -141,7 +125,7 @@ public static partial class ChangeCidrCollectionInputSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

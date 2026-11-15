@@ -18,6 +18,6 @@ namespace Com.Amazonaws.Sqs;
 /// required when you are attempting to access a queue owned by another Amazon Web Services account.
 /// </param>
 public sealed record class GetQueueUrlInput(
-    string QueueName,
+    string? QueueName = null,
     string? QueueOwnerAWSAccountId = null
 );

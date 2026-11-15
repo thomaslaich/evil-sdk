@@ -9,10 +9,6 @@ namespace Com.Amazonaws.Cloudwatchlogs;
 /// <summary>
 /// Represents the Smithy structure com.amazonaws.cloudwatchlogs#PutDeliveryDestinationInput.
 /// </summary>
-/// <param name="Name">
-/// A name for this delivery destination. This name must be unique for all delivery destinations in your
-/// account.
-/// </param>
 /// <param name="DeliveryDestinationConfiguration">
 /// <para>
 /// A structure that contains the ARN of the Amazon Web Services resource that will receive the logs.
@@ -56,6 +52,10 @@ namespace Com.Amazonaws.Cloudwatchlogs;
 /// delivery.
 /// </para>
 /// </param>
+/// <param name="Name">
+/// A name for this delivery destination. This name must be unique for all delivery destinations in your
+/// account.
+/// </param>
 /// <param name="OutputFormat">
 /// The format for the logs that this delivery destination will receive.
 /// </param>
@@ -75,10 +75,10 @@ namespace Com.Amazonaws.Cloudwatchlogs;
 /// </para>
 /// </param>
 public sealed record class PutDeliveryDestinationInput(
-    string Name,
     global::Com.Amazonaws.Cloudwatchlogs.DeliveryDestinationConfiguration? DeliveryDestinationConfiguration =
         null,
     global::Com.Amazonaws.Cloudwatchlogs.DeliveryDestinationType? DeliveryDestinationType = null,
+    string? Name = null,
     global::Com.Amazonaws.Cloudwatchlogs.OutputFormat? OutputFormat = null,
     string? RoleArn = null,
     IReadOnlyDictionary<string, string>? Tags = null

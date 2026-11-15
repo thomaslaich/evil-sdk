@@ -9,7 +9,7 @@ namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class ObjectLockConfigurationSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public global::Com.Amazonaws.S3.ObjectLockEnabled? ObjectLockEnabled { get; set; }
         public global::Com.Amazonaws.S3.ObjectLockRule? Rule { get; set; }
@@ -65,7 +65,7 @@ public static partial class ObjectLockConfigurationSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

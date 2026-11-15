@@ -17,4 +17,8 @@ namespace Com.Amazonaws.Route53;
 /// <param name="Version">
 /// The value of <c>Version</c> for the traffic policy that you want to update the comment for.
 /// </param>
-public sealed record class UpdateTrafficPolicyCommentInput(string Comment, string Id, int Version);
+public sealed record class UpdateTrafficPolicyCommentInput(
+    string? Comment = null,
+    string? Id = null,
+    int? Version = null
+);

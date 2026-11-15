@@ -8,6 +8,9 @@ namespace Com.Amazonaws.Route53;
 /// A complex type that contains information about the VPC that you want to disassociate from a
 /// specified private hosted zone.
 /// </summary>
+/// <param name="Comment">
+/// <i>Optional:</i> A comment about the disassociation request.
+/// </param>
 /// <param name="HostedZoneId">
 /// The ID of the private hosted zone that you want to disassociate a VPC from.
 /// </param>
@@ -15,11 +18,8 @@ namespace Com.Amazonaws.Route53;
 /// A complex type that contains information about the VPC that you're disassociating from the specified
 /// hosted zone.
 /// </param>
-/// <param name="Comment">
-/// <i>Optional:</i> A comment about the disassociation request.
-/// </param>
 public sealed record class DisassociateVPCFromHostedZoneInput(
-    string HostedZoneId,
-    global::Com.Amazonaws.Route53.VPC VPC,
-    string? Comment = null
+    string? Comment = null,
+    string? HostedZoneId = null,
+    global::Com.Amazonaws.Route53.VPC? VPC = null
 );

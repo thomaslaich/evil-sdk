@@ -9,6 +9,11 @@ namespace Com.Amazonaws.Iam;
 /// <summary>
 /// Represents the Smithy structure com.amazonaws.iam#AcquireRoleInput.
 /// </summary>
+/// <param name="ReplacementValues">
+/// A map of values to substitute for the parameters that are defined in the role template version. Each
+/// key is a parameter name from the template, and each value is a structure that contains the
+/// replacement values for that parameter.
+/// </param>
 /// <param name="TemplateArn">
 /// <para>
 /// The Amazon Resource Name (ARN) of the role template to create the role from.
@@ -19,17 +24,12 @@ namespace Com.Amazonaws.Iam;
 /// Resource Names (ARNs)</see> in the <i>Amazon Web Services General Reference</i>.
 /// </para>
 /// </param>
-/// <param name="ReplacementValues">
-/// A map of values to substitute for the parameters that are defined in the role template version. Each
-/// key is a parameter name from the template, and each value is a structure that contains the
-/// replacement values for that parameter.
-/// </param>
 /// <param name="TemplateMinorVersion">
 /// The minor version of the role template to use. If you do not specify a minor version, the service
 /// uses the template's default minor version.
 /// </param>
 public sealed record class AcquireRoleInput(
-    string TemplateArn,
     IReadOnlyDictionary<string, ReplacementValueEntry>? ReplacementValues = null,
+    string? TemplateArn = null,
     int? TemplateMinorVersion = null
 );

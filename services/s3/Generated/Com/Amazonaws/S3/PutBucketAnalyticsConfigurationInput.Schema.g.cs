@@ -10,7 +10,7 @@ namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class PutBucketAnalyticsConfigurationInputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? Bucket { get; set; }
         public string? Id { get; set; }
@@ -30,15 +30,10 @@ public static partial class PutBucketAnalyticsConfigurationInputSchema
                 new(
                     "Bucket",
                     Target0,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
                             ShapeId.Parse("smithy.api#httpLabel"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
                             Document.From(new Dictionary<string, Document> { })
                         ),
                         new Trait(
@@ -55,28 +50,15 @@ public static partial class PutBucketAnalyticsConfigurationInputSchema
                 new(
                     "Id",
                     Target1,
-                    isRequired: true,
-                    traits:
-                    [
-                        new Trait(ShapeId.Parse("smithy.api#httpQuery"), Document.From("id")),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
-                    ]
+                    traits: [new Trait(ShapeId.Parse("smithy.api#httpQuery"), Document.From("id"))]
                 ),
                 new(
                     "AnalyticsConfiguration",
                     Target2,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
                             ShapeId.Parse("smithy.api#httpPayload"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
                             Document.From(new Dictionary<string, Document> { })
                         ),
                         new Trait(
@@ -132,11 +114,10 @@ public static partial class PutBucketAnalyticsConfigurationInputSchema
             Builder builder
         ) =>
             new global::Com.Amazonaws.S3.PutBucketAnalyticsConfigurationInput(
-                builder.AnalyticsConfiguration
-                    ?? throw new MissingRequiredMemberException("AnalyticsConfiguration"),
-                builder.Bucket ?? throw new MissingRequiredMemberException("Bucket"),
-                builder.Id ?? throw new MissingRequiredMemberException("Id"),
-                builder.ExpectedBucketOwner
+                builder.AnalyticsConfiguration,
+                builder.Bucket,
+                builder.ExpectedBucketOwner,
+                builder.Id
             );
 
         public override void SerializeMembers<TSerializer>(
@@ -178,7 +159,7 @@ public static partial class PutBucketAnalyticsConfigurationInputSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

@@ -41,6 +41,6 @@ namespace Com.Amazonaws.Lambda;
 /// value is specified, the configuration for the <c>$LATEST</c> version is returned.
 /// </param>
 public sealed record class GetRuntimeManagementConfigInput(
-    string FunctionName,
+    string? FunctionName = null,
     string? Qualifier = null
 );

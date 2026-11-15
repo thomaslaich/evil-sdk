@@ -13,4 +13,4 @@ namespace Com.Amazonaws.Iam;
 /// operation in the format
 /// <c>task/aws-service-role/&lt;service-principal-name&gt;/&lt;role-name&gt;/&lt;task-uuid&gt;</c>.
 /// </param>
-public sealed record class GetServiceLinkedRoleDeletionStatusInput(string DeletionTaskId);
+public sealed record class GetServiceLinkedRoleDeletionStatusInput(string? DeletionTaskId = null);

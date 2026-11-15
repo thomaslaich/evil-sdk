@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Sns.Schemas;
 
 public static partial class GetDataProtectionPolicyInputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? ResourceArn { get; set; }
     }
@@ -23,20 +23,7 @@ public static partial class GetDataProtectionPolicyInputSchema
     private sealed class GeneratedSchema()
         : StructSchema<global::Com.Amazonaws.Sns.GetDataProtectionPolicyInput, Builder>(
             ShapeId.Parse("com.amazonaws.sns#GetDataProtectionPolicyInput"),
-            [
-                new(
-                    "ResourceArn",
-                    Target0,
-                    isRequired: true,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
-                    ]
-                ),
-            ],
+            [new("ResourceArn", Target0)],
             [
                 new Trait(
                     ShapeId.Parse("smithy.api#input"),
@@ -54,10 +41,7 @@ public static partial class GetDataProtectionPolicyInputSchema
 
         public override global::Com.Amazonaws.Sns.GetDataProtectionPolicyInput Build(
             Builder builder
-        ) =>
-            new global::Com.Amazonaws.Sns.GetDataProtectionPolicyInput(
-                builder.ResourceArn ?? throw new MissingRequiredMemberException("ResourceArn")
-            );
+        ) => new global::Com.Amazonaws.Sns.GetDataProtectionPolicyInput(builder.ResourceArn);
 
         public override void SerializeMembers<TSerializer>(
             global::Com.Amazonaws.Sns.GetDataProtectionPolicyInput value,
@@ -74,7 +58,7 @@ public static partial class GetDataProtectionPolicyInputSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

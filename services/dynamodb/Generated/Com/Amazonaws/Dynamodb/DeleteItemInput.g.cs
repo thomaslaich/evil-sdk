@@ -9,21 +9,6 @@ namespace Com.Amazonaws.Dynamodb;
 /// <summary>
 /// Represents the input of a <c>DeleteItem</c> operation.
 /// </summary>
-/// <param name="Key">
-/// <para>
-/// A map of attribute names to <c>AttributeValue</c> objects, representing the primary key of the item
-/// to delete.
-/// </para>
-/// <para>
-/// For the primary key, you must provide all of the key attributes. For example, with a simple primary
-/// key, you only need to provide a value for the partition key. For a composite primary key, you must
-/// provide values for both the partition key and the sort key.
-/// </para>
-/// </param>
-/// <param name="TableName">
-/// The name of the table from which to delete the item. You can also provide the Amazon Resource Name
-/// (ARN) of the table in this parameter.
-/// </param>
 /// <param name="ConditionExpression">
 /// <para>
 /// A condition that must be satisfied in order for a conditional <c>DeleteItem</c> to succeed.
@@ -167,6 +152,17 @@ namespace Com.Amazonaws.Dynamodb;
 /// Expressions</see> in the <i>Amazon DynamoDB Developer Guide</i>.
 /// </para>
 /// </param>
+/// <param name="Key">
+/// <para>
+/// A map of attribute names to <c>AttributeValue</c> objects, representing the primary key of the item
+/// to delete.
+/// </para>
+/// <para>
+/// For the primary key, you must provide all of the key attributes. For example, with a simple primary
+/// key, you only need to provide a value for the partition key. For a composite primary key, you must
+/// provide values for both the partition key and the sort key.
+/// </para>
+/// </param>
 /// <param name="ReturnItemCollectionMetrics">
 /// Determines whether item collection metrics are returned. If set to <c>SIZE</c>, the response
 /// includes statistics about item collections, if any, that were modified during the operation are
@@ -209,17 +205,21 @@ namespace Com.Amazonaws.Dynamodb;
 /// and processing overhead of receiving a larger response. No read capacity units are consumed.
 /// </para>
 /// </param>
+/// <param name="TableName">
+/// The name of the table from which to delete the item. You can also provide the Amazon Resource Name
+/// (ARN) of the table in this parameter.
+/// </param>
 public sealed record class DeleteItemInput(
-    IReadOnlyDictionary<string, AttributeValue> Key,
-    string TableName,
     string? ConditionExpression = null,
     global::Com.Amazonaws.Dynamodb.ConditionalOperator? ConditionalOperator = null,
     IReadOnlyDictionary<string, ExpectedAttributeValue>? Expected = null,
     IReadOnlyDictionary<string, string>? ExpressionAttributeNames = null,
     IReadOnlyDictionary<string, AttributeValue>? ExpressionAttributeValues = null,
+    IReadOnlyDictionary<string, AttributeValue>? Key = null,
     global::Com.Amazonaws.Dynamodb.ReturnConsumedCapacity? ReturnConsumedCapacity = null,
     global::Com.Amazonaws.Dynamodb.ReturnItemCollectionMetrics? ReturnItemCollectionMetrics = null,
     ReturnValue? ReturnValues = null,
     global::Com.Amazonaws.Dynamodb.ReturnValuesOnConditionCheckFailure? ReturnValuesOnConditionCheckFailure =
-        null
+        null,
+    string? TableName = null
 );

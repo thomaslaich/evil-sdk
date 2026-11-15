@@ -49,7 +49,7 @@ namespace Com.Amazonaws.Iam;
 /// </para>
 /// </param>
 public sealed record class ListAttachedGroupPoliciesInput(
-    string GroupName,
+    string? GroupName = null,
     string? Marker = null,
     int? MaxItems = null,
     string? PathPrefix = null

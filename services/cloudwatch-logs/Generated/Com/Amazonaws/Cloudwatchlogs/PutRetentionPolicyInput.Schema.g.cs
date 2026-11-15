@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Cloudwatchlogs.Schemas;
 
 public static partial class PutRetentionPolicyInputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? LogGroupName { get; set; }
         public int? RetentionInDays { get; set; }
@@ -28,7 +28,6 @@ public static partial class PutRetentionPolicyInputSchema
                 new(
                     "logGroupName",
                     Target0,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
@@ -45,24 +44,15 @@ public static partial class PutRetentionPolicyInputSchema
                             ShapeId.Parse("smithy.api#pattern"),
                             Document.From("^[\\.\\-_/#A-Za-z0-9]+$")
                         ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
                     ]
                 ),
                 new(
                     "retentionInDays",
                     Target1,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
                             ShapeId.Parse("smithy.api#box"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
                             Document.From(new Dictionary<string, Document> { })
                         ),
                     ]
@@ -93,8 +83,8 @@ public static partial class PutRetentionPolicyInputSchema
             Builder builder
         ) =>
             new global::Com.Amazonaws.Cloudwatchlogs.PutRetentionPolicyInput(
-                builder.LogGroupName ?? throw new MissingRequiredMemberException("logGroupName"),
-                builder.RetentionInDays.GetValueOrDefault()
+                builder.LogGroupName,
+                builder.RetentionInDays
             );
 
         public override void SerializeMembers<TSerializer>(
@@ -110,10 +100,17 @@ public static partial class PutRetentionPolicyInputSchema
             {
                 serializer.WriteNull(0);
             }
-            serializer.WriteInteger(1, value.RetentionInDays);
+            if (value.RetentionInDays is { } value1)
+            {
+                serializer.WriteInteger(1, value1);
+            }
+            else
+            {
+                serializer.WriteNull(1);
+            }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

@@ -50,9 +50,6 @@ namespace Com.Amazonaws.S3;
 /// Outposts?</see> in the <i>Amazon S3 User Guide</i>.
 /// </para>
 /// </param>
-/// <param name="Key">
-/// The object key.
-/// </param>
 /// <param name="ChecksumMode">
 /// <para>
 /// To retrieve the checksum, this parameter must be enabled.
@@ -191,6 +188,9 @@ namespace Com.Amazonaws.S3;
 /// <see href="https://tools.ietf.org/html/rfc7232">RFC 7232</see>.
 /// </para>
 /// </param>
+/// <param name="Key">
+/// The object key.
+/// </param>
 /// <param name="PartNumber">
 /// Part number of the object being read. This is a positive integer between 1 and 10,000. Effectively
 /// performs a 'ranged' HEAD request for the part specified. Useful querying about the size of the part
@@ -258,14 +258,14 @@ namespace Com.Amazonaws.S3;
 /// </para>
 /// </param>
 public sealed record class HeadObjectInput(
-    string Bucket,
-    string Key,
+    string? Bucket = null,
     global::Com.Amazonaws.S3.ChecksumMode? ChecksumMode = null,
     string? ExpectedBucketOwner = null,
     string? IfMatch = null,
     DateTimeOffset? IfModifiedSince = null,
     string? IfNoneMatch = null,
     DateTimeOffset? IfUnmodifiedSince = null,
+    string? Key = null,
     int? PartNumber = null,
     string? Range = null,
     global::Com.Amazonaws.S3.RequestPayer? RequestPayer = null,

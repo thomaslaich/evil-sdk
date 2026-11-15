@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Dynamodb.Schemas;
 
 public static partial class DescribeContributorInsightsInputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? TableName { get; set; }
         public string? IndexName { get; set; }
@@ -28,7 +28,6 @@ public static partial class DescribeContributorInsightsInputSchema
                 new(
                     "TableName",
                     Target0,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
@@ -40,10 +39,6 @@ public static partial class DescribeContributorInsightsInputSchema
                                     { "max", Document.From(1024m) },
                                 }
                             )
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
                         ),
                         new Trait(
                             ShapeId.Parse("smithy.rules#contextParam"),
@@ -101,8 +96,8 @@ public static partial class DescribeContributorInsightsInputSchema
             Builder builder
         ) =>
             new global::Com.Amazonaws.Dynamodb.DescribeContributorInsightsInput(
-                builder.TableName ?? throw new MissingRequiredMemberException("TableName"),
-                builder.IndexName
+                builder.IndexName,
+                builder.TableName
             );
 
         public override void SerializeMembers<TSerializer>(
@@ -128,7 +123,7 @@ public static partial class DescribeContributorInsightsInputSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

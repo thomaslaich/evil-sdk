@@ -11,7 +11,7 @@ namespace Com.Amazonaws.Iam.Schemas;
 
 public static partial class AccessDetailSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? ServiceName { get; set; }
         public string? ServiceNamespace { get; set; }
@@ -192,7 +192,7 @@ public static partial class AccessDetailSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

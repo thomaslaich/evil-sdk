@@ -10,4 +10,4 @@ namespace Com.Amazonaws.Dynamodb;
 /// <param name="BackupArn">
 /// The Amazon Resource Name (ARN) associated with the backup.
 /// </param>
-public sealed record class DescribeBackupInput(string BackupArn);
+public sealed record class DescribeBackupInput(string? BackupArn = null);

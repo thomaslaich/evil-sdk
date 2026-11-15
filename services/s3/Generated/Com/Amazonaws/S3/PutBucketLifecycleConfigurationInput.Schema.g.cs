@@ -10,7 +10,7 @@ namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class PutBucketLifecycleConfigurationInputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? Bucket { get; set; }
         public global::Com.Amazonaws.S3.ChecksumAlgorithm? ChecksumAlgorithm { get; set; }
@@ -31,15 +31,10 @@ public static partial class PutBucketLifecycleConfigurationInputSchema
                 new(
                     "Bucket",
                     Target0,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
                             ShapeId.Parse("smithy.api#httpLabel"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
                             Document.From(new Dictionary<string, Document> { })
                         ),
                         new Trait(
@@ -141,7 +136,7 @@ public static partial class PutBucketLifecycleConfigurationInputSchema
             Builder builder
         ) =>
             new global::Com.Amazonaws.S3.PutBucketLifecycleConfigurationInput(
-                builder.Bucket ?? throw new MissingRequiredMemberException("Bucket"),
+                builder.Bucket,
                 builder.ChecksumAlgorithm,
                 builder.ExpectedBucketOwner,
                 builder.LifecycleConfiguration,
@@ -195,7 +190,7 @@ public static partial class PutBucketLifecycleConfigurationInputSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

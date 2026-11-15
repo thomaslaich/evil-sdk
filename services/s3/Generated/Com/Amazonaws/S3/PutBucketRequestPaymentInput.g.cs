@@ -10,9 +10,6 @@ namespace Com.Amazonaws.S3;
 /// <param name="Bucket">
 /// The bucket name.
 /// </param>
-/// <param name="RequestPaymentConfiguration">
-/// Container for Payer.
-/// </param>
 /// <param name="ChecksumAlgorithm">
 /// <para>
 /// Indicates the algorithm used to create the checksum for the request when you use the SDK. This
@@ -44,10 +41,13 @@ namespace Com.Amazonaws.S3;
 /// actual owner of the bucket, the request fails with the HTTP status code <c>403 Forbidden</c> (access
 /// denied).
 /// </param>
+/// <param name="RequestPaymentConfiguration">
+/// Container for Payer.
+/// </param>
 public sealed record class PutBucketRequestPaymentInput(
-    string Bucket,
-    global::Com.Amazonaws.S3.RequestPaymentConfiguration RequestPaymentConfiguration,
+    string? Bucket = null,
     global::Com.Amazonaws.S3.ChecksumAlgorithm? ChecksumAlgorithm = null,
     string? ContentMD5 = null,
-    string? ExpectedBucketOwner = null
+    string? ExpectedBucketOwner = null,
+    global::Com.Amazonaws.S3.RequestPaymentConfiguration? RequestPaymentConfiguration = null
 );

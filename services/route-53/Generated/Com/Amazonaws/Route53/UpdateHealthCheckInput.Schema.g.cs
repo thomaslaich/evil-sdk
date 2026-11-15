@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Route53.Schemas;
 
 public static partial class UpdateHealthCheckInputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? HealthCheckId { get; set; }
         public long? HealthCheckVersion { get; set; }
@@ -43,7 +43,6 @@ public static partial class UpdateHealthCheckInputSchema
                 new(
                     "HealthCheckId",
                     Target0,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
@@ -59,10 +58,6 @@ public static partial class UpdateHealthCheckInputSchema
                                     { "max", Document.From(64m) },
                                 }
                             )
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
                         ),
                     ]
                 ),
@@ -332,13 +327,13 @@ public static partial class UpdateHealthCheckInputSchema
             Builder builder
         ) =>
             new global::Com.Amazonaws.Route53.UpdateHealthCheckInput(
-                builder.HealthCheckId ?? throw new MissingRequiredMemberException("HealthCheckId"),
                 builder.AlarmIdentifier,
                 builder.ChildHealthChecks,
                 builder.Disabled,
                 builder.EnableSNI,
                 builder.FailureThreshold,
                 builder.FullyQualifiedDomainName,
+                builder.HealthCheckId,
                 builder.HealthCheckVersion,
                 builder.HealthThreshold,
                 builder.IPAddress,
@@ -494,7 +489,7 @@ public static partial class UpdateHealthCheckInputSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

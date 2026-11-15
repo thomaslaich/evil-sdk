@@ -10,7 +10,7 @@ namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class GetObjectAttributesInputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? Bucket { get; set; }
         public string? Key { get; set; }
@@ -37,15 +37,10 @@ public static partial class GetObjectAttributesInputSchema
                 new(
                     "Bucket",
                     Target0,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
                             ShapeId.Parse("smithy.api#httpLabel"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
                             Document.From(new Dictionary<string, Document> { })
                         ),
                         new Trait(
@@ -62,7 +57,6 @@ public static partial class GetObjectAttributesInputSchema
                 new(
                     "Key",
                     Target1,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
@@ -74,10 +68,6 @@ public static partial class GetObjectAttributesInputSchema
                             Document.From(
                                 new Dictionary<string, Document> { { "min", Document.From(1m) } }
                             )
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
                         ),
                     ]
                 ),
@@ -180,16 +170,11 @@ public static partial class GetObjectAttributesInputSchema
                 new(
                     "ObjectAttributes",
                     Target10,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
                             ShapeId.Parse("smithy.api#httpHeader"),
                             Document.From("x-amz-object-attributes")
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
                         ),
                     ]
                 ),
@@ -251,12 +236,11 @@ public static partial class GetObjectAttributesInputSchema
 
         public override global::Com.Amazonaws.S3.GetObjectAttributesInput Build(Builder builder) =>
             new global::Com.Amazonaws.S3.GetObjectAttributesInput(
-                builder.Bucket ?? throw new MissingRequiredMemberException("Bucket"),
-                builder.Key ?? throw new MissingRequiredMemberException("Key"),
-                builder.ObjectAttributes
-                    ?? throw new MissingRequiredMemberException("ObjectAttributes"),
+                builder.Bucket,
                 builder.ExpectedBucketOwner,
+                builder.Key,
                 builder.MaxParts,
+                builder.ObjectAttributes,
                 builder.PartNumberMarker,
                 builder.RequestPayer,
                 builder.SSECustomerAlgorithm,
@@ -360,7 +344,7 @@ public static partial class GetObjectAttributesInputSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

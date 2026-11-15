@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Eventbridge.Schemas;
 
 public static partial class CreateConnectionInputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? Name { get; set; }
         public string? Description { get; set; }
@@ -32,7 +32,6 @@ public static partial class CreateConnectionInputSchema
                 new(
                     "Name",
                     Target0,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
@@ -48,10 +47,6 @@ public static partial class CreateConnectionInputSchema
                         new Trait(
                             ShapeId.Parse("smithy.api#pattern"),
                             Document.From("^[\\.\\-_A-Za-z0-9]+$")
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
                         ),
                     ]
                 ),
@@ -73,30 +68,8 @@ public static partial class CreateConnectionInputSchema
                         new Trait(ShapeId.Parse("smithy.api#pattern"), Document.From(".*")),
                     ]
                 ),
-                new(
-                    "AuthorizationType",
-                    Target2,
-                    isRequired: true,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
-                    ]
-                ),
-                new(
-                    "AuthParameters",
-                    Target3,
-                    isRequired: true,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
-                    ]
-                ),
+                new("AuthorizationType", Target2),
+                new("AuthParameters", Target3),
                 new("InvocationConnectivityParameters", Target4),
                 new(
                     "KmsKeyIdentifier",
@@ -165,14 +138,12 @@ public static partial class CreateConnectionInputSchema
             Builder builder
         ) =>
             new global::Com.Amazonaws.Eventbridge.CreateConnectionInput(
-                builder.AuthParameters
-                    ?? throw new MissingRequiredMemberException("AuthParameters"),
-                builder.AuthorizationType
-                    ?? throw new MissingRequiredMemberException("AuthorizationType"),
-                builder.Name ?? throw new MissingRequiredMemberException("Name"),
+                builder.AuthParameters,
+                builder.AuthorizationType,
                 builder.Description,
                 builder.InvocationConnectivityParameters,
-                builder.KmsKeyIdentifier
+                builder.KmsKeyIdentifier,
+                builder.Name
             );
 
         public override void SerializeMembers<TSerializer>(
@@ -196,7 +167,14 @@ public static partial class CreateConnectionInputSchema
             {
                 serializer.WriteNull(1);
             }
-            serializer.WriteStringEnum(2, value.AuthorizationType.Value);
+            if (value.AuthorizationType is { } value2)
+            {
+                serializer.WriteStringEnum(2, value2.Value);
+            }
+            else
+            {
+                serializer.WriteNull(2);
+            }
             if (value.AuthParameters is { } value3)
             {
                 serializer.WriteStruct(
@@ -227,7 +205,7 @@ public static partial class CreateConnectionInputSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

@@ -10,7 +10,7 @@ namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class PutBucketAccelerateConfigurationInputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? Bucket { get; set; }
         public global::Com.Amazonaws.S3.AccelerateConfiguration? AccelerateConfiguration { get; set; }
@@ -30,15 +30,10 @@ public static partial class PutBucketAccelerateConfigurationInputSchema
                 new(
                     "Bucket",
                     Target0,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
                             ShapeId.Parse("smithy.api#httpLabel"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
                             Document.From(new Dictionary<string, Document> { })
                         ),
                         new Trait(
@@ -55,15 +50,10 @@ public static partial class PutBucketAccelerateConfigurationInputSchema
                 new(
                     "AccelerateConfiguration",
                     Target1,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
                             ShapeId.Parse("smithy.api#httpPayload"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
                             Document.From(new Dictionary<string, Document> { })
                         ),
                         new Trait(
@@ -128,9 +118,8 @@ public static partial class PutBucketAccelerateConfigurationInputSchema
             Builder builder
         ) =>
             new global::Com.Amazonaws.S3.PutBucketAccelerateConfigurationInput(
-                builder.AccelerateConfiguration
-                    ?? throw new MissingRequiredMemberException("AccelerateConfiguration"),
-                builder.Bucket ?? throw new MissingRequiredMemberException("Bucket"),
+                builder.AccelerateConfiguration,
+                builder.Bucket,
                 builder.ChecksumAlgorithm,
                 builder.ExpectedBucketOwner
             );
@@ -174,7 +163,7 @@ public static partial class PutBucketAccelerateConfigurationInputSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

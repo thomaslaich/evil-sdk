@@ -36,6 +36,6 @@ namespace Com.Amazonaws.S3;
 /// </para>
 /// </param>
 public sealed record class GetBucketEncryptionInput(
-    string Bucket,
+    string? Bucket = null,
     string? ExpectedBucketOwner = null
 );

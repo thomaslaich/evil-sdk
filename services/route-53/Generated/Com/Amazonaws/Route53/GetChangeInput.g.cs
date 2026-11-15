@@ -11,4 +11,4 @@ namespace Com.Amazonaws.Route53;
 /// The ID of the change batch request. The value that you specify here is the value that
 /// <c>ChangeResourceRecordSets</c> returned in the <c>Id</c> element when you submitted the request.
 /// </param>
-public sealed record class GetChangeInput(string Id);
+public sealed record class GetChangeInput(string? Id = null);

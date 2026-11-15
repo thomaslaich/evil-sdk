@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Kinesis.Schemas;
 
 public static partial class ChannelStreamConfigurationSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? StreamARN { get; set; }
         public global::Com.Amazonaws.Kinesis.RecordConfiguration? RecordConfiguration { get; set; }
@@ -110,7 +110,7 @@ public static partial class ChannelStreamConfigurationSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

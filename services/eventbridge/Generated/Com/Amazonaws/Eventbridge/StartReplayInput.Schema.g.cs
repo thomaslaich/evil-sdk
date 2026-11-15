@@ -11,7 +11,7 @@ namespace Com.Amazonaws.Eventbridge.Schemas;
 
 public static partial class StartReplayInputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? ReplayName { get; set; }
         public string? Description { get; set; }
@@ -33,7 +33,6 @@ public static partial class StartReplayInputSchema
                 new(
                     "ReplayName",
                     Target0,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
@@ -49,10 +48,6 @@ public static partial class StartReplayInputSchema
                         new Trait(
                             ShapeId.Parse("smithy.api#pattern"),
                             Document.From("^[\\.\\-_A-Za-z0-9]+$")
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
                         ),
                     ]
                 ),
@@ -77,7 +72,6 @@ public static partial class StartReplayInputSchema
                 new(
                     "EventSourceArn",
                     Target2,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
@@ -96,48 +90,11 @@ public static partial class StartReplayInputSchema
                                 "^arn:aws([a-z]|\\-)*:events:([a-z]|\\d|\\-)*:([0-9]{12})?:.+\\/.+$"
                             )
                         ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
                     ]
                 ),
-                new(
-                    "EventStartTime",
-                    Target3,
-                    isRequired: true,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
-                    ]
-                ),
-                new(
-                    "EventEndTime",
-                    Target4,
-                    isRequired: true,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
-                    ]
-                ),
-                new(
-                    "Destination",
-                    Target5,
-                    isRequired: true,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
-                    ]
-                ),
+                new("EventStartTime", Target3),
+                new("EventEndTime", Target4),
+                new("Destination", Target5),
             ],
             [
                 new Trait(
@@ -180,13 +137,12 @@ public static partial class StartReplayInputSchema
 
         public override global::Com.Amazonaws.Eventbridge.StartReplayInput Build(Builder builder) =>
             new global::Com.Amazonaws.Eventbridge.StartReplayInput(
-                builder.Destination ?? throw new MissingRequiredMemberException("Destination"),
-                builder.EventEndTime.GetValueOrDefault(),
-                builder.EventSourceArn
-                    ?? throw new MissingRequiredMemberException("EventSourceArn"),
-                builder.EventStartTime.GetValueOrDefault(),
-                builder.ReplayName ?? throw new MissingRequiredMemberException("ReplayName"),
-                builder.Description
+                builder.Description,
+                builder.Destination,
+                builder.EventEndTime,
+                builder.EventSourceArn,
+                builder.EventStartTime,
+                builder.ReplayName
             );
 
         public override void SerializeMembers<TSerializer>(
@@ -218,8 +174,22 @@ public static partial class StartReplayInputSchema
             {
                 serializer.WriteNull(2);
             }
-            serializer.WriteTimestamp(3, value.EventStartTime);
-            serializer.WriteTimestamp(4, value.EventEndTime);
+            if (value.EventStartTime is { } value3)
+            {
+                serializer.WriteTimestamp(3, value3);
+            }
+            else
+            {
+                serializer.WriteNull(3);
+            }
+            if (value.EventEndTime is { } value4)
+            {
+                serializer.WriteTimestamp(4, value4);
+            }
+            else
+            {
+                serializer.WriteNull(4);
+            }
             if (value.Destination is { } value5)
             {
                 serializer.WriteStruct(5, value5, ReplayDestinationSchema.Schema);
@@ -230,7 +200,7 @@ public static partial class StartReplayInputSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

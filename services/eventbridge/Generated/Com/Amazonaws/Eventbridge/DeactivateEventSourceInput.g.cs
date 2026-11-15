@@ -10,4 +10,4 @@ namespace Com.Amazonaws.Eventbridge;
 /// <param name="Name">
 /// The name of the partner event source to deactivate.
 /// </param>
-public sealed record class DeactivateEventSourceInput(string Name);
+public sealed record class DeactivateEventSourceInput(string? Name = null);

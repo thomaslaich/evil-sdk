@@ -9,9 +9,6 @@ namespace Com.Amazonaws.Cloudwatchlogs;
 /// <summary>
 /// Represents the Smithy structure com.amazonaws.cloudwatchlogs#CreateLogGroupInput.
 /// </summary>
-/// <param name="LogGroupName">
-/// A name for the log group.
-/// </param>
 /// <param name="DeletionProtectionEnabled">
 /// Use this parameter to enable deletion protection for the new log group. When enabled on a log group,
 /// deletion protection blocks all deletion operations until it is explicitly disabled. By default log
@@ -60,6 +57,9 @@ namespace Com.Amazonaws.Cloudwatchlogs;
 /// classes</see>
 /// </para>
 /// </param>
+/// <param name="LogGroupName">
+/// A name for the log group.
+/// </param>
 /// <param name="Tags">
 /// <para>
 /// The key-value pairs to use for the tags.
@@ -76,9 +76,9 @@ namespace Com.Amazonaws.Cloudwatchlogs;
 /// </para>
 /// </param>
 public sealed record class CreateLogGroupInput(
-    string LogGroupName,
     bool? DeletionProtectionEnabled = null,
     string? KmsKeyId = null,
     global::Com.Amazonaws.Cloudwatchlogs.LogGroupClass? LogGroupClass = null,
+    string? LogGroupName = null,
     IReadOnlyDictionary<string, string>? Tags = null
 );

@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Kinesis.Schemas;
 
 public static partial class CreateChannelInputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? ChannelName { get; set; }
         public string? ServiceExecutionRoleARN { get; set; }
@@ -34,7 +34,6 @@ public static partial class CreateChannelInputSchema
                 new(
                     "ChannelName",
                     Target0,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
@@ -51,16 +50,11 @@ public static partial class CreateChannelInputSchema
                             ShapeId.Parse("smithy.api#pattern"),
                             Document.From("^[a-zA-Z0-9_.-]+$")
                         ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
                     ]
                 ),
                 new(
                     "ServiceExecutionRoleARN",
                     Target1,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
@@ -79,24 +73,9 @@ public static partial class CreateChannelInputSchema
                                 "^arn:aws[-a-z0-9]*:iam::\\d{12}:role/[a-zA-Z_0-9+=,.@\\-_/]+$"
                             )
                         ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
                     ]
                 ),
-                new(
-                    "StreamConfigurationList",
-                    Target2,
-                    isRequired: true,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
-                    ]
-                ),
+                new("StreamConfigurationList", Target2),
                 new("S3DestinationConfiguration", Target3),
                 new("S3TablesDestinationConfiguration", Target4),
                 new("EncryptionConfiguration", Target5),
@@ -160,15 +139,13 @@ public static partial class CreateChannelInputSchema
 
         public override global::Com.Amazonaws.Kinesis.CreateChannelInput Build(Builder builder) =>
             new global::Com.Amazonaws.Kinesis.CreateChannelInput(
-                builder.ChannelName ?? throw new MissingRequiredMemberException("ChannelName"),
-                builder.ServiceExecutionRoleARN
-                    ?? throw new MissingRequiredMemberException("ServiceExecutionRoleARN"),
-                builder.StreamConfigurationList
-                    ?? throw new MissingRequiredMemberException("StreamConfigurationList"),
+                builder.ChannelName,
                 builder.EncryptionConfiguration,
                 builder.LoggingConfiguration,
                 builder.S3DestinationConfiguration,
                 builder.S3TablesDestinationConfiguration,
+                builder.ServiceExecutionRoleARN,
+                builder.StreamConfigurationList,
                 builder.Tags
             );
 
@@ -243,7 +220,7 @@ public static partial class CreateChannelInputSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

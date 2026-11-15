@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Cloudwatchlogs.Schemas;
 
 public static partial class GetLogFieldsInputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? DataSourceName { get; set; }
         public string? DataSourceType { get; set; }
@@ -24,32 +24,7 @@ public static partial class GetLogFieldsInputSchema
     private sealed class GeneratedSchema()
         : StructSchema<global::Com.Amazonaws.Cloudwatchlogs.GetLogFieldsInput, Builder>(
             ShapeId.Parse("com.amazonaws.cloudwatchlogs#GetLogFieldsInput"),
-            [
-                new(
-                    "dataSourceName",
-                    Target0,
-                    isRequired: true,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
-                    ]
-                ),
-                new(
-                    "dataSourceType",
-                    Target1,
-                    isRequired: true,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
-                    ]
-                ),
-            ],
+            [new("dataSourceName", Target0), new("dataSourceType", Target1)],
             [
                 new Trait(
                     ShapeId.Parse("smithy.api#input"),
@@ -77,9 +52,8 @@ public static partial class GetLogFieldsInputSchema
             Builder builder
         ) =>
             new global::Com.Amazonaws.Cloudwatchlogs.GetLogFieldsInput(
-                builder.DataSourceName
-                    ?? throw new MissingRequiredMemberException("dataSourceName"),
-                builder.DataSourceType ?? throw new MissingRequiredMemberException("dataSourceType")
+                builder.DataSourceName,
+                builder.DataSourceType
             );
 
         public override void SerializeMembers<TSerializer>(
@@ -105,7 +79,7 @@ public static partial class GetLogFieldsInputSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

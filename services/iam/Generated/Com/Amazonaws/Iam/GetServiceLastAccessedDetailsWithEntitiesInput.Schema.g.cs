@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Iam.Schemas;
 
 public static partial class GetServiceLastAccessedDetailsWithEntitiesInputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? JobId { get; set; }
         public string? ServiceNamespace { get; set; }
@@ -33,7 +33,6 @@ public static partial class GetServiceLastAccessedDetailsWithEntitiesInputSchema
                 new(
                     "JobId",
                     Target0,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
@@ -46,16 +45,11 @@ public static partial class GetServiceLastAccessedDetailsWithEntitiesInputSchema
                                 }
                             )
                         ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
                     ]
                 ),
                 new(
                     "ServiceNamespace",
                     Target1,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
@@ -69,10 +63,6 @@ public static partial class GetServiceLastAccessedDetailsWithEntitiesInputSchema
                             )
                         ),
                         new Trait(ShapeId.Parse("smithy.api#pattern"), Document.From("^[\\w-]*$")),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
                     ]
                 ),
                 new(
@@ -153,11 +143,10 @@ public static partial class GetServiceLastAccessedDetailsWithEntitiesInputSchema
             Builder builder
         ) =>
             new global::Com.Amazonaws.Iam.GetServiceLastAccessedDetailsWithEntitiesInput(
-                builder.JobId ?? throw new MissingRequiredMemberException("JobId"),
-                builder.ServiceNamespace
-                    ?? throw new MissingRequiredMemberException("ServiceNamespace"),
+                builder.JobId,
                 builder.Marker,
-                builder.MaxItems
+                builder.MaxItems,
+                builder.ServiceNamespace
             );
 
         public override void SerializeMembers<TSerializer>(
@@ -199,7 +188,7 @@ public static partial class GetServiceLastAccessedDetailsWithEntitiesInputSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

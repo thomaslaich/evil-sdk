@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Route53.Schemas;
 
 public static partial class CreateHostedZoneInputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? Name { get; set; }
         public global::Com.Amazonaws.Route53.VPC? VPC { get; set; }
@@ -31,7 +31,6 @@ public static partial class CreateHostedZoneInputSchema
                 new(
                     "Name",
                     Target0,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
@@ -44,17 +43,12 @@ public static partial class CreateHostedZoneInputSchema
                                 }
                             )
                         ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
                     ]
                 ),
                 new("VPC", Target1),
                 new(
                     "CallerReference",
                     Target2,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
@@ -66,10 +60,6 @@ public static partial class CreateHostedZoneInputSchema
                                     { "max", Document.From(128m) },
                                 }
                             )
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
                         ),
                     ]
                 ),
@@ -131,11 +121,10 @@ public static partial class CreateHostedZoneInputSchema
             Builder builder
         ) =>
             new global::Com.Amazonaws.Route53.CreateHostedZoneInput(
-                builder.CallerReference
-                    ?? throw new MissingRequiredMemberException("CallerReference"),
-                builder.Name ?? throw new MissingRequiredMemberException("Name"),
+                builder.CallerReference,
                 builder.DelegationSetId,
                 builder.HostedZoneConfig,
+                builder.Name,
                 builder.VPC
             );
 
@@ -186,7 +175,7 @@ public static partial class CreateHostedZoneInputSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

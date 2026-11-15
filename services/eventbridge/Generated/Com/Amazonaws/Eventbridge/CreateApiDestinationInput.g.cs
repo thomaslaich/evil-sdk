@@ -11,26 +11,26 @@ namespace Com.Amazonaws.Eventbridge;
 /// The ARN of the connection to use for the API destination. The destination endpoint must support the
 /// authorization type specified for the connection.
 /// </param>
+/// <param name="Description">
+/// A description for the API destination to create.
+/// </param>
 /// <param name="HttpMethod">
 /// The method to use for the request to the HTTP invocation endpoint.
 /// </param>
 /// <param name="InvocationEndpoint">
 /// The URL to the HTTP invocation endpoint for the API destination.
 /// </param>
-/// <param name="Name">
-/// The name for the API destination to create.
-/// </param>
-/// <param name="Description">
-/// A description for the API destination to create.
-/// </param>
 /// <param name="InvocationRateLimitPerSecond">
 /// The maximum number of requests per second to send to the HTTP invocation endpoint.
 /// </param>
+/// <param name="Name">
+/// The name for the API destination to create.
+/// </param>
 public sealed record class CreateApiDestinationInput(
-    string ConnectionArn,
-    ApiDestinationHttpMethod HttpMethod,
-    string InvocationEndpoint,
-    string Name,
+    string? ConnectionArn = null,
     string? Description = null,
-    int? InvocationRateLimitPerSecond = null
+    ApiDestinationHttpMethod? HttpMethod = null,
+    string? InvocationEndpoint = null,
+    int? InvocationRateLimitPerSecond = null,
+    string? Name = null
 );

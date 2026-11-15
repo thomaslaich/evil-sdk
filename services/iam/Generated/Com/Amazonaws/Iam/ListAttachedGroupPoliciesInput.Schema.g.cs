@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Iam.Schemas;
 
 public static partial class ListAttachedGroupPoliciesInputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? GroupName { get; set; }
         public string? PathPrefix { get; set; }
@@ -30,7 +30,6 @@ public static partial class ListAttachedGroupPoliciesInputSchema
                 new(
                     "GroupName",
                     Target0,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
@@ -46,10 +45,6 @@ public static partial class ListAttachedGroupPoliciesInputSchema
                         new Trait(
                             ShapeId.Parse("smithy.api#pattern"),
                             Document.From("^[\\w+=,.@-]+$")
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
                         ),
                     ]
                 ),
@@ -150,7 +145,7 @@ public static partial class ListAttachedGroupPoliciesInputSchema
             Builder builder
         ) =>
             new global::Com.Amazonaws.Iam.ListAttachedGroupPoliciesInput(
-                builder.GroupName ?? throw new MissingRequiredMemberException("GroupName"),
+                builder.GroupName,
                 builder.Marker,
                 builder.MaxItems,
                 builder.PathPrefix
@@ -195,7 +190,7 @@ public static partial class ListAttachedGroupPoliciesInputSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

@@ -12,4 +12,4 @@ namespace Com.Amazonaws.Route53;
 /// or update a resource record set, you use this value to specify which health check to use. The value
 /// can be up to 64 characters long.
 /// </param>
-public sealed record class GetHealthCheckInput(string HealthCheckId);
+public sealed record class GetHealthCheckInput(string? HealthCheckId = null);

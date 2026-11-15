@@ -38,7 +38,7 @@ namespace Com.Amazonaws.Iam;
 /// The description of the role.
 /// </param>
 public sealed record class CreateServiceLinkedRoleInput(
-    string AWSServiceName,
+    string? AWSServiceName = null,
     string? CustomSuffix = null,
     string? Description = null
 );

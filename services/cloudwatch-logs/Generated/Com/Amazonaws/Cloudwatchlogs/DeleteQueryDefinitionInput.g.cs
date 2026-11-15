@@ -12,4 +12,4 @@ namespace Com.Amazonaws.Cloudwatchlogs;
 /// <see href="https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_DescribeQueryDefinitions.html">DescribeQueryDefinitions</see>
 /// to retrieve the IDs of your saved query definitions.
 /// </param>
-public sealed record class DeleteQueryDefinitionInput(string QueryDefinitionId);
+public sealed record class DeleteQueryDefinitionInput(string? QueryDefinitionId = null);

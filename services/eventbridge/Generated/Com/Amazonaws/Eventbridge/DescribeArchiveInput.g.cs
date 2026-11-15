@@ -10,4 +10,4 @@ namespace Com.Amazonaws.Eventbridge;
 /// <param name="ArchiveName">
 /// The name of the archive to retrieve.
 /// </param>
-public sealed record class DescribeArchiveInput(string ArchiveName);
+public sealed record class DescribeArchiveInput(string? ArchiveName = null);

@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Cloudwatchlogs.Schemas;
 
 public static partial class ExportTaskExecutionInfoSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public long? CreationTime { get; set; }
         public long? CompletionTime { get; set; }
@@ -101,7 +101,7 @@ public static partial class ExportTaskExecutionInfoSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

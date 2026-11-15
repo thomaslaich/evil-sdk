@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Kinesis.Schemas;
 
 public static partial class TagResourceInputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public IReadOnlyDictionary<string, string>? Tags { get; set; }
         public string? ResourceARN { get; set; }
@@ -26,22 +26,10 @@ public static partial class TagResourceInputSchema
         : StructSchema<global::Com.Amazonaws.Kinesis.TagResourceInput, Builder>(
             ShapeId.Parse("com.amazonaws.kinesis#TagResourceInput"),
             [
-                new(
-                    "Tags",
-                    Target0,
-                    isRequired: true,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
-                    ]
-                ),
+                new("Tags", Target0),
                 new(
                     "ResourceARN",
                     Target1,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
@@ -57,10 +45,6 @@ public static partial class TagResourceInputSchema
                         new Trait(
                             ShapeId.Parse("smithy.api#pattern"),
                             Document.From("^arn:aws.*:kinesis:.*:\\d{12}:.*(stream|channel)/\\S+$")
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
                         ),
                         new Trait(
                             ShapeId.Parse("smithy.rules#contextParam"),
@@ -131,9 +115,9 @@ public static partial class TagResourceInputSchema
 
         public override global::Com.Amazonaws.Kinesis.TagResourceInput Build(Builder builder) =>
             new global::Com.Amazonaws.Kinesis.TagResourceInput(
-                builder.ResourceARN ?? throw new MissingRequiredMemberException("ResourceARN"),
-                builder.Tags ?? throw new MissingRequiredMemberException("Tags"),
-                builder.StreamId
+                builder.ResourceARN,
+                builder.StreamId,
+                builder.Tags
             );
 
         public override void SerializeMembers<TSerializer>(
@@ -167,7 +151,7 @@ public static partial class TagResourceInputSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

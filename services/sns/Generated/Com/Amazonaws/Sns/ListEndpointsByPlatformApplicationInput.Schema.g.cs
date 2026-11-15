@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Sns.Schemas;
 
 public static partial class ListEndpointsByPlatformApplicationInputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? PlatformApplicationArn { get; set; }
         public string? NextToken { get; set; }
@@ -24,21 +24,7 @@ public static partial class ListEndpointsByPlatformApplicationInputSchema
     private sealed class GeneratedSchema()
         : StructSchema<global::Com.Amazonaws.Sns.ListEndpointsByPlatformApplicationInput, Builder>(
             ShapeId.Parse("com.amazonaws.sns#ListEndpointsByPlatformApplicationInput"),
-            [
-                new(
-                    "PlatformApplicationArn",
-                    Target0,
-                    isRequired: true,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
-                    ]
-                ),
-                new("NextToken", Target1),
-            ],
+            [new("PlatformApplicationArn", Target0), new("NextToken", Target1)],
             [
                 new Trait(
                     ShapeId.Parse("smithy.api#input"),
@@ -62,9 +48,8 @@ public static partial class ListEndpointsByPlatformApplicationInputSchema
             Builder builder
         ) =>
             new global::Com.Amazonaws.Sns.ListEndpointsByPlatformApplicationInput(
+                builder.NextToken,
                 builder.PlatformApplicationArn
-                    ?? throw new MissingRequiredMemberException("PlatformApplicationArn"),
-                builder.NextToken
             );
 
         public override void SerializeMembers<TSerializer>(
@@ -90,7 +75,7 @@ public static partial class ListEndpointsByPlatformApplicationInputSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

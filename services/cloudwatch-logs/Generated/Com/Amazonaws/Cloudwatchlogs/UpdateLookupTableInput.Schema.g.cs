@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Cloudwatchlogs.Schemas;
 
 public static partial class UpdateLookupTableInputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? LookupTableArn { get; set; }
         public string? Description { get; set; }
@@ -28,18 +28,7 @@ public static partial class UpdateLookupTableInputSchema
         : StructSchema<global::Com.Amazonaws.Cloudwatchlogs.UpdateLookupTableInput, Builder>(
             ShapeId.Parse("com.amazonaws.cloudwatchlogs#UpdateLookupTableInput"),
             [
-                new(
-                    "lookupTableArn",
-                    Target0,
-                    isRequired: true,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
-                    ]
-                ),
+                new("lookupTableArn", Target0),
                 new(
                     "description",
                     Target1,
@@ -148,10 +137,9 @@ public static partial class UpdateLookupTableInputSchema
             Builder builder
         ) =>
             new global::Com.Amazonaws.Cloudwatchlogs.UpdateLookupTableInput(
-                builder.LookupTableArn
-                    ?? throw new MissingRequiredMemberException("lookupTableArn"),
                 builder.Description,
                 builder.KmsKeyId,
+                builder.LookupTableArn,
                 builder.QueryId,
                 builder.TableBody
             );
@@ -203,7 +191,7 @@ public static partial class UpdateLookupTableInputSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

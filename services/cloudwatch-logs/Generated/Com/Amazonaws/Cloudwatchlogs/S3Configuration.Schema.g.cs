@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Cloudwatchlogs.Schemas;
 
 public static partial class S3ConfigurationSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? DestinationIdentifier { get; set; }
         public string? RoleArn { get; set; }
@@ -179,7 +179,7 @@ public static partial class S3ConfigurationSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

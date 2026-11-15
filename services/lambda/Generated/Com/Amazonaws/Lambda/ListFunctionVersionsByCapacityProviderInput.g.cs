@@ -18,7 +18,7 @@ namespace Com.Amazonaws.Lambda;
 /// The maximum number of function versions to return in the response.
 /// </param>
 public sealed record class ListFunctionVersionsByCapacityProviderInput(
-    string CapacityProviderName,
+    string? CapacityProviderName = null,
     string? Marker = null,
     int? MaxItems = null
 );

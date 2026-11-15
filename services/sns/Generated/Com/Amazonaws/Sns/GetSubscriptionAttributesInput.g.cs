@@ -10,4 +10,4 @@ namespace Com.Amazonaws.Sns;
 /// <param name="SubscriptionArn">
 /// The ARN of the subscription whose properties you want to get.
 /// </param>
-public sealed record class GetSubscriptionAttributesInput(string SubscriptionArn);
+public sealed record class GetSubscriptionAttributesInput(string? SubscriptionArn = null);

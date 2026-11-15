@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Dynamodb.Schemas;
 
 public static partial class ReplicaGlobalSecondaryIndexDescriptionSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? IndexName { get; set; }
         public global::Com.Amazonaws.Dynamodb.ProvisionedThroughputOverride? ProvisionedThroughputOverride { get; set; }
@@ -136,7 +136,7 @@ public static partial class ReplicaGlobalSecondaryIndexDescriptionSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

@@ -10,7 +10,7 @@ namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class CreateBucketMetadataConfigurationInputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? Bucket { get; set; }
         public string? ContentMD5 { get; set; }
@@ -31,15 +31,10 @@ public static partial class CreateBucketMetadataConfigurationInputSchema
                 new(
                     "Bucket",
                     Target0,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
                             ShapeId.Parse("smithy.api#httpLabel"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
                             Document.From(new Dictionary<string, Document> { })
                         ),
                         new Trait(
@@ -78,15 +73,10 @@ public static partial class CreateBucketMetadataConfigurationInputSchema
                 new(
                     "MetadataConfiguration",
                     Target3,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
                             ShapeId.Parse("smithy.api#httpPayload"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
                             Document.From(new Dictionary<string, Document> { })
                         ),
                         new Trait(
@@ -144,12 +134,11 @@ public static partial class CreateBucketMetadataConfigurationInputSchema
             Builder builder
         ) =>
             new global::Com.Amazonaws.S3.CreateBucketMetadataConfigurationInput(
-                builder.Bucket ?? throw new MissingRequiredMemberException("Bucket"),
-                builder.MetadataConfiguration
-                    ?? throw new MissingRequiredMemberException("MetadataConfiguration"),
+                builder.Bucket,
                 builder.ChecksumAlgorithm,
                 builder.ContentMD5,
-                builder.ExpectedBucketOwner
+                builder.ExpectedBucketOwner,
+                builder.MetadataConfiguration
             );
 
         public override void SerializeMembers<TSerializer>(
@@ -199,7 +188,7 @@ public static partial class CreateBucketMetadataConfigurationInputSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

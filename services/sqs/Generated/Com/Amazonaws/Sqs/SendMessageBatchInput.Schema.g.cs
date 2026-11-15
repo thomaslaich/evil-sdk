@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Sqs.Schemas;
 
 public static partial class SendMessageBatchInputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? QueueUrl { get; set; }
         public IReadOnlyList<global::Com.Amazonaws.Sqs.SendMessageBatchRequestEntry>? Entries { get; set; }
@@ -25,28 +25,12 @@ public static partial class SendMessageBatchInputSchema
         : StructSchema<global::Com.Amazonaws.Sqs.SendMessageBatchInput, Builder>(
             ShapeId.Parse("com.amazonaws.sqs#SendMessageBatchInput"),
             [
-                new(
-                    "QueueUrl",
-                    Target0,
-                    isRequired: true,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
-                    ]
-                ),
+                new("QueueUrl", Target0),
                 new(
                     "Entries",
                     Target1,
-                    isRequired: true,
                     traits:
                     [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
                         new Trait(
                             ShapeId.Parse("smithy.api#xmlFlattened"),
                             Document.From(new Dictionary<string, Document> { })
@@ -84,10 +68,7 @@ public static partial class SendMessageBatchInputSchema
         public override Builder CreateTypedBuilder() => new();
 
         public override global::Com.Amazonaws.Sqs.SendMessageBatchInput Build(Builder builder) =>
-            new global::Com.Amazonaws.Sqs.SendMessageBatchInput(
-                builder.Entries ?? throw new MissingRequiredMemberException("Entries"),
-                builder.QueueUrl ?? throw new MissingRequiredMemberException("QueueUrl")
-            );
+            new global::Com.Amazonaws.Sqs.SendMessageBatchInput(builder.Entries, builder.QueueUrl);
 
         public override void SerializeMembers<TSerializer>(
             global::Com.Amazonaws.Sqs.SendMessageBatchInput value,
@@ -112,7 +93,7 @@ public static partial class SendMessageBatchInputSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

@@ -44,7 +44,7 @@ namespace Com.Amazonaws.Lambda;
 /// Specify a number to limit the number of configurations returned.
 /// </param>
 public sealed record class ListProvisionedConcurrencyConfigsInput(
-    string FunctionName,
+    string? FunctionName = null,
     string? Marker = null,
     int? MaxItems = null
 );

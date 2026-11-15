@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Eventbridge.Schemas;
 
 public static partial class PutTargetsInputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? Rule { get; set; }
         public string? EventBusName { get; set; }
@@ -29,7 +29,6 @@ public static partial class PutTargetsInputSchema
                 new(
                     "Rule",
                     Target0,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
@@ -45,10 +44,6 @@ public static partial class PutTargetsInputSchema
                         new Trait(
                             ShapeId.Parse("smithy.api#pattern"),
                             Document.From("^[\\.\\-_A-Za-z0-9]+$")
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
                         ),
                     ]
                 ),
@@ -75,18 +70,7 @@ public static partial class PutTargetsInputSchema
                         ),
                     ]
                 ),
-                new(
-                    "Targets",
-                    Target2,
-                    isRequired: true,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
-                    ]
-                ),
+                new("Targets", Target2),
             ],
             [
                 new Trait(
@@ -117,9 +101,9 @@ public static partial class PutTargetsInputSchema
 
         public override global::Com.Amazonaws.Eventbridge.PutTargetsInput Build(Builder builder) =>
             new global::Com.Amazonaws.Eventbridge.PutTargetsInput(
-                builder.Rule ?? throw new MissingRequiredMemberException("Rule"),
-                builder.Targets ?? throw new MissingRequiredMemberException("Targets"),
-                builder.EventBusName
+                builder.EventBusName,
+                builder.Rule,
+                builder.Targets
             );
 
         public override void SerializeMembers<TSerializer>(
@@ -153,7 +137,7 @@ public static partial class PutTargetsInputSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Cloudwatchlogs.Schemas;
 
 public static partial class TestTransformerInputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public IReadOnlyList<global::Com.Amazonaws.Cloudwatchlogs.Processor>? TransformerConfig { get; set; }
         public IReadOnlyList<string>? LogEventMessages { get; set; }
@@ -24,32 +24,7 @@ public static partial class TestTransformerInputSchema
     private sealed class GeneratedSchema()
         : StructSchema<global::Com.Amazonaws.Cloudwatchlogs.TestTransformerInput, Builder>(
             ShapeId.Parse("com.amazonaws.cloudwatchlogs#TestTransformerInput"),
-            [
-                new(
-                    "transformerConfig",
-                    Target0,
-                    isRequired: true,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
-                    ]
-                ),
-                new(
-                    "logEventMessages",
-                    Target1,
-                    isRequired: true,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
-                    ]
-                ),
-            ],
+            [new("transformerConfig", Target0), new("logEventMessages", Target1)],
             [
                 new Trait(
                     ShapeId.Parse("smithy.api#input"),
@@ -77,10 +52,8 @@ public static partial class TestTransformerInputSchema
             Builder builder
         ) =>
             new global::Com.Amazonaws.Cloudwatchlogs.TestTransformerInput(
-                builder.LogEventMessages
-                    ?? throw new MissingRequiredMemberException("logEventMessages"),
+                builder.LogEventMessages,
                 builder.TransformerConfig
-                    ?? throw new MissingRequiredMemberException("transformerConfig")
             );
 
         public override void SerializeMembers<TSerializer>(
@@ -106,7 +79,7 @@ public static partial class TestTransformerInputSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

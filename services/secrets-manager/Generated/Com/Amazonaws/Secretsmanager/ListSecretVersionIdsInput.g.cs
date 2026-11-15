@@ -7,16 +7,6 @@ namespace Com.Amazonaws.Secretsmanager;
 /// <summary>
 /// Represents the Smithy structure com.amazonaws.secretsmanager#ListSecretVersionIdsInput.
 /// </summary>
-/// <param name="SecretId">
-/// <para>
-/// The ARN or name of the secret whose versions you want to list.
-/// </para>
-/// <para>
-/// For an ARN, we recommend that you specify a complete ARN rather than a partial ARN. See
-/// <see href="https://docs.aws.amazon.com/secretsmanager/latest/userguide/troubleshoot.html#ARN_secretnamehyphen">Finding
-/// a secret from a partial ARN</see>.
-/// </para>
-/// </param>
 /// <param name="IncludeDeprecated">
 /// Specifies whether to include versions of secrets that don't have any staging labels attached to
 /// them. Versions without staging labels are considered deprecated and are subject to deletion by
@@ -35,9 +25,19 @@ namespace Com.Amazonaws.Secretsmanager;
 /// A token that indicates where the output should continue from, if a previous call did not show all
 /// results. To get the next results, call <c>ListSecretVersionIds</c> again with this value.
 /// </param>
+/// <param name="SecretId">
+/// <para>
+/// The ARN or name of the secret whose versions you want to list.
+/// </para>
+/// <para>
+/// For an ARN, we recommend that you specify a complete ARN rather than a partial ARN. See
+/// <see href="https://docs.aws.amazon.com/secretsmanager/latest/userguide/troubleshoot.html#ARN_secretnamehyphen">Finding
+/// a secret from a partial ARN</see>.
+/// </para>
+/// </param>
 public sealed record class ListSecretVersionIdsInput(
-    string SecretId,
     bool? IncludeDeprecated = null,
     int? MaxResults = null,
-    string? NextToken = null
+    string? NextToken = null,
+    string? SecretId = null
 );

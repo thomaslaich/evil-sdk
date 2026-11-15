@@ -10,4 +10,4 @@ namespace Com.Amazonaws.Cloudwatchlogs;
 /// <param name="ImportId">
 /// The ID of the import task to cancel.
 /// </param>
-public sealed record class CancelImportTaskInput(string ImportId);
+public sealed record class CancelImportTaskInput(string? ImportId = null);

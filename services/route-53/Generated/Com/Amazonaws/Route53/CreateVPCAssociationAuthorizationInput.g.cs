@@ -17,6 +17,6 @@ namespace Com.Amazonaws.Route53;
 /// associating with your hosted zone.
 /// </param>
 public sealed record class CreateVPCAssociationAuthorizationInput(
-    string HostedZoneId,
-    global::Com.Amazonaws.Route53.VPC VPC
+    string? HostedZoneId = null,
+    global::Com.Amazonaws.Route53.VPC? VPC = null
 );

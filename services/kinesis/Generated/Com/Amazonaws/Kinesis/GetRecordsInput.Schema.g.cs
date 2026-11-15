@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Kinesis.Schemas;
 
 public static partial class GetRecordsInputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? ShardIterator { get; set; }
         public int? Limit { get; set; }
@@ -31,7 +31,6 @@ public static partial class GetRecordsInputSchema
                 new(
                     "ShardIterator",
                     Target0,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
@@ -43,10 +42,6 @@ public static partial class GetRecordsInputSchema
                                     { "max", Document.From(512m) },
                                 }
                             )
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
                         ),
                     ]
                 ),
@@ -172,9 +167,9 @@ public static partial class GetRecordsInputSchema
 
         public override global::Com.Amazonaws.Kinesis.GetRecordsInput Build(Builder builder) =>
             new global::Com.Amazonaws.Kinesis.GetRecordsInput(
-                builder.ShardIterator ?? throw new MissingRequiredMemberException("ShardIterator"),
                 builder.DryRun,
                 builder.Limit,
+                builder.ShardIterator,
                 builder.StreamARN,
                 builder.StreamId
             );
@@ -226,7 +221,7 @@ public static partial class GetRecordsInputSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

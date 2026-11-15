@@ -11,4 +11,4 @@ namespace Com.Amazonaws.Dynamodb;
 /// The Amazon Resource Name (ARN) of the DynamoDB resource to which the policy is attached. The
 /// resources you can specify include tables and streams.
 /// </param>
-public sealed record class GetResourcePolicyInput(string ResourceArn);
+public sealed record class GetResourcePolicyInput(string? ResourceArn = null);

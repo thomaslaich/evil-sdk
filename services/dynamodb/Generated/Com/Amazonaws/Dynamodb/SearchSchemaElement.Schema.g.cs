@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Dynamodb.Schemas;
 
 public static partial class SearchSchemaElementSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? AttributeName { get; set; }
         public global::Com.Amazonaws.Dynamodb.SearchSchemaElementType? SearchSchemaElementType { get; set; }
@@ -95,7 +95,7 @@ public static partial class SearchSchemaElementSchema
             serializer.WriteStringEnum(1, value.SearchSchemaElementType.Value);
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

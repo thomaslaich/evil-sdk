@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Dynamodb.Schemas;
 
 public static partial class AutoScalingTargetTrackingScalingPolicyConfigurationDescriptionSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public bool? DisableScaleIn { get; set; }
         public int? ScaleInCooldown { get; set; }
@@ -138,7 +138,7 @@ public static partial class AutoScalingTargetTrackingScalingPolicyConfigurationD
             serializer.WriteDouble(3, value.TargetValue);
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

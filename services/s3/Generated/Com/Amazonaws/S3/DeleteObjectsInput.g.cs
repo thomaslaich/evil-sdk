@@ -48,9 +48,6 @@ namespace Com.Amazonaws.S3;
 /// Outposts?</see> in the <i>Amazon S3 User Guide</i>.
 /// </para>
 /// </param>
-/// <param name="Delete">
-/// Container for the request.
-/// </param>
 /// <param name="BypassGovernanceRetention">
 /// <para>
 /// Specifies whether you want to delete this object even if it has a Governance-type Object Lock in
@@ -138,6 +135,9 @@ namespace Com.Amazonaws.S3;
 /// parameter.
 /// </para>
 /// </param>
+/// <param name="Delete">
+/// Container for the request.
+/// </param>
 /// <param name="ExpectedBucketOwner">
 /// The account ID of the expected bucket owner. If the account ID that you provide does not match the
 /// actual owner of the bucket, the request fails with the HTTP status code <c>403 Forbidden</c> (access
@@ -163,10 +163,10 @@ namespace Com.Amazonaws.S3;
 /// </para>
 /// </param>
 public sealed record class DeleteObjectsInput(
-    string Bucket,
-    global::Com.Amazonaws.S3.Delete Delete,
+    string? Bucket = null,
     bool? BypassGovernanceRetention = null,
     global::Com.Amazonaws.S3.ChecksumAlgorithm? ChecksumAlgorithm = null,
+    global::Com.Amazonaws.S3.Delete? Delete = null,
     string? ExpectedBucketOwner = null,
     string? MFA = null,
     global::Com.Amazonaws.S3.RequestPayer? RequestPayer = null

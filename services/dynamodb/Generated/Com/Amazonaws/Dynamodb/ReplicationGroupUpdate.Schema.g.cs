@@ -9,7 +9,7 @@ namespace Com.Amazonaws.Dynamodb.Schemas;
 
 public static partial class ReplicationGroupUpdateSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public global::Com.Amazonaws.Dynamodb.CreateReplicationGroupMemberAction? Create { get; set; }
         public global::Com.Amazonaws.Dynamodb.UpdateReplicationGroupMemberAction? Update { get; set; }
@@ -89,7 +89,7 @@ public static partial class ReplicationGroupUpdateSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

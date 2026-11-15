@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Kinesis.Schemas;
 
 public static partial class ListTagsForStreamOutputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public IReadOnlyList<global::Com.Amazonaws.Kinesis.Tag>? Tags { get; set; }
         public bool? HasMoreTags { get; set; }
@@ -95,7 +95,7 @@ public static partial class ListTagsForStreamOutputSchema
             serializer.WriteBoolean(1, value.HasMoreTags);
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

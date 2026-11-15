@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Lambda.Schemas;
 
 public static partial class TagResourceInputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? Resource { get; set; }
         public IReadOnlyDictionary<string, string>? Tags { get; set; }
@@ -28,7 +28,6 @@ public static partial class TagResourceInputSchema
                 new(
                     "Resource",
                     Target0,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
@@ -51,24 +50,9 @@ public static partial class TagResourceInputSchema
                                 "^arn:(aws[a-zA-Z-]*):lambda:(eusc-)?[a-z]{2}((-gov)|(-iso([a-z]?)))?-[a-z]+-\\d{1}:\\d{12}:(function:[a-zA-Z0-9-_]+(:(\\$LATEST|[a-zA-Z0-9-_]+))?|code-signing-config:csc-[a-z0-9]{17}|event-source-mapping:[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}|(capacity-provider|network-connector):[a-zA-Z0-9-_]{1,64})$"
                             )
                         ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
                     ]
                 ),
-                new(
-                    "Tags",
-                    Target1,
-                    isRequired: true,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
-                    ]
-                ),
+                new("Tags", Target1),
             ],
             [
                 new Trait(
@@ -96,10 +80,7 @@ public static partial class TagResourceInputSchema
         public override Builder CreateTypedBuilder() => new();
 
         public override global::Com.Amazonaws.Lambda.TagResourceInput Build(Builder builder) =>
-            new global::Com.Amazonaws.Lambda.TagResourceInput(
-                builder.Resource ?? throw new MissingRequiredMemberException("Resource"),
-                builder.Tags ?? throw new MissingRequiredMemberException("Tags")
-            );
+            new global::Com.Amazonaws.Lambda.TagResourceInput(builder.Resource, builder.Tags);
 
         public override void SerializeMembers<TSerializer>(
             global::Com.Amazonaws.Lambda.TagResourceInput value,
@@ -124,7 +105,7 @@ public static partial class TagResourceInputSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

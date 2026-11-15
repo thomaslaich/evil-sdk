@@ -11,7 +11,7 @@ namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class RestoreStatusSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public bool? IsRestoreInProgress { get; set; }
         public DateTimeOffset? RestoreExpiryDate { get; set; }
@@ -78,7 +78,7 @@ public static partial class RestoreStatusSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

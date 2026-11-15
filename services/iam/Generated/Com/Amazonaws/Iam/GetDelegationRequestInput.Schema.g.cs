@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Iam.Schemas;
 
 public static partial class GetDelegationRequestInputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? DelegationRequestId { get; set; }
         public bool? DelegationPermissionCheck { get; set; }
@@ -28,7 +28,6 @@ public static partial class GetDelegationRequestInputSchema
                 new(
                     "DelegationRequestId",
                     Target0,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
@@ -42,10 +41,6 @@ public static partial class GetDelegationRequestInputSchema
                             )
                         ),
                         new Trait(ShapeId.Parse("smithy.api#pattern"), Document.From("^[\\w-]+$")),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
                     ]
                 ),
                 new(
@@ -79,9 +74,8 @@ public static partial class GetDelegationRequestInputSchema
             Builder builder
         ) =>
             new global::Com.Amazonaws.Iam.GetDelegationRequestInput(
+                builder.DelegationPermissionCheck,
                 builder.DelegationRequestId
-                    ?? throw new MissingRequiredMemberException("DelegationRequestId"),
-                builder.DelegationPermissionCheck
             );
 
         public override void SerializeMembers<TSerializer>(
@@ -111,7 +105,7 @@ public static partial class GetDelegationRequestInputSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

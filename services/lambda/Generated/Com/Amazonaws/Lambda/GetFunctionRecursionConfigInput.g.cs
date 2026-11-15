@@ -10,4 +10,4 @@ namespace Com.Amazonaws.Lambda;
 /// <param name="FunctionName">
 /// The name of the function.
 /// </param>
-public sealed record class GetFunctionRecursionConfigInput(string FunctionName);
+public sealed record class GetFunctionRecursionConfigInput(string? FunctionName = null);

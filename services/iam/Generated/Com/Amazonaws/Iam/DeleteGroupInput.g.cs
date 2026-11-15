@@ -17,4 +17,4 @@ namespace Com.Amazonaws.Iam;
 /// can also include any of the following characters: _+=,.@-
 /// </para>
 /// </param>
-public sealed record class DeleteGroupInput(string GroupName);
+public sealed record class DeleteGroupInput(string? GroupName = null);

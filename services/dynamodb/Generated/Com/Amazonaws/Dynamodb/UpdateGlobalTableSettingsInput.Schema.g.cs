@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Dynamodb.Schemas;
 
 public static partial class UpdateGlobalTableSettingsInputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? GlobalTableName { get; set; }
         public global::Com.Amazonaws.Dynamodb.BillingMode? GlobalTableBillingMode { get; set; }
@@ -32,7 +32,6 @@ public static partial class UpdateGlobalTableSettingsInputSchema
                 new(
                     "GlobalTableName",
                     Target0,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
@@ -48,10 +47,6 @@ public static partial class UpdateGlobalTableSettingsInputSchema
                         new Trait(
                             ShapeId.Parse("smithy.api#pattern"),
                             Document.From("^[a-zA-Z0-9_.-]+$")
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
                         ),
                         new Trait(
                             ShapeId.Parse("smithy.rules#contextParam"),
@@ -127,10 +122,9 @@ public static partial class UpdateGlobalTableSettingsInputSchema
             Builder builder
         ) =>
             new global::Com.Amazonaws.Dynamodb.UpdateGlobalTableSettingsInput(
-                builder.GlobalTableName
-                    ?? throw new MissingRequiredMemberException("GlobalTableName"),
                 builder.GlobalTableBillingMode,
                 builder.GlobalTableGlobalSecondaryIndexSettingsUpdate,
+                builder.GlobalTableName,
                 builder.GlobalTableProvisionedWriteCapacityAutoScalingSettingsUpdate,
                 builder.GlobalTableProvisionedWriteCapacityUnits,
                 builder.ReplicaSettingsUpdate
@@ -195,7 +189,7 @@ public static partial class UpdateGlobalTableSettingsInputSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

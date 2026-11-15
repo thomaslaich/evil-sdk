@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Lambda.Schemas;
 
 public static partial class SendDurableExecutionCallbackHeartbeatInputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? CallbackId { get; set; }
     }
@@ -30,7 +30,6 @@ public static partial class SendDurableExecutionCallbackHeartbeatInputSchema
                 new(
                     "CallbackId",
                     Target0,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
@@ -50,10 +49,6 @@ public static partial class SendDurableExecutionCallbackHeartbeatInputSchema
                         new Trait(
                             ShapeId.Parse("smithy.api#pattern"),
                             Document.From("^[A-Za-z0-9+/]+={0,2}$")
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
                         ),
                     ]
                 ),
@@ -83,7 +78,7 @@ public static partial class SendDurableExecutionCallbackHeartbeatInputSchema
             Builder builder
         ) =>
             new global::Com.Amazonaws.Lambda.SendDurableExecutionCallbackHeartbeatInput(
-                builder.CallbackId ?? throw new MissingRequiredMemberException("CallbackId")
+                builder.CallbackId
             );
 
         public override void SerializeMembers<TSerializer>(
@@ -101,7 +96,7 @@ public static partial class SendDurableExecutionCallbackHeartbeatInputSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

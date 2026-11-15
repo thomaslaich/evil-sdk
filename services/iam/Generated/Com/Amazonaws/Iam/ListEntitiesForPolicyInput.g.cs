@@ -7,16 +7,6 @@ namespace Com.Amazonaws.Iam;
 /// <summary>
 /// Represents the Smithy structure com.amazonaws.iam#ListEntitiesForPolicyInput.
 /// </summary>
-/// <param name="PolicyArn">
-/// <para>
-/// The Amazon Resource Name (ARN) of the IAM policy for which you want the versions.
-/// </para>
-/// <para>
-/// For more information about ARNs, see
-/// <see href="https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html">Amazon
-/// Resource Names (ARNs)</see> in the <i>Amazon Web Services General Reference</i>.
-/// </para>
-/// </param>
 /// <param name="EntityFilter">
 /// <para>
 /// The entity type to use for filtering the results.
@@ -59,6 +49,16 @@ namespace Com.Amazonaws.Iam;
 /// digits, and upper and lowercased letters.
 /// </para>
 /// </param>
+/// <param name="PolicyArn">
+/// <para>
+/// The Amazon Resource Name (ARN) of the IAM policy for which you want the versions.
+/// </para>
+/// <para>
+/// For more information about ARNs, see
+/// <see href="https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html">Amazon
+/// Resource Names (ARNs)</see> in the <i>Amazon Web Services General Reference</i>.
+/// </para>
+/// </param>
 /// <param name="PolicyUsageFilter">
 /// <para>
 /// The policy usage method to use for filtering the results.
@@ -72,10 +72,10 @@ namespace Com.Amazonaws.Iam;
 /// </para>
 /// </param>
 public sealed record class ListEntitiesForPolicyInput(
-    string PolicyArn,
     EntityType? EntityFilter = null,
     string? Marker = null,
     int? MaxItems = null,
     string? PathPrefix = null,
+    string? PolicyArn = null,
     PolicyUsageType? PolicyUsageFilter = null
 );

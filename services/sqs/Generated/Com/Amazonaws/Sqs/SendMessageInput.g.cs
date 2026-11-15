@@ -8,6 +8,24 @@ namespace Com.Amazonaws.Sqs;
 
 /// <summary>
 /// </summary>
+/// <param name="DelaySeconds">
+/// <para>
+/// The length of time, in seconds, for which to delay a specific message. Valid values: 0 to 900.
+/// Maximum: 15 minutes. Messages with a positive <c>DelaySeconds</c> value become available for
+/// processing after the delay period is finished. If you don't specify a value, the default value for
+/// the queue applies.
+/// </para>
+/// <para>
+/// <b>Note:</b> When you set <c>FifoQueue</c>, you can't set <c>DelaySeconds</c> per message. You can
+/// set this parameter only on a queue level.
+/// </para>
+/// </param>
+/// <param name="MessageAttributes">
+/// Each message attribute consists of a <c>Name</c>, <c>Type</c>, and <c>Value</c>. For more
+/// information, see
+/// <see href="https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-message-metadata.html#sqs-message-attributes">Amazon
+/// SQS message attributes</see> in the <i>Amazon SQS Developer Guide</i>.
+/// </param>
 /// <param name="MessageBody">
 /// <para>
 /// The message to send. The minimum size is one character. The maximum size is 1 MiB or 1,048,576 bytes
@@ -26,32 +44,6 @@ namespace Com.Amazonaws.Sqs;
 /// an InvalidMessageContents error. Ensure that your message body includes only valid characters to
 /// avoid this exception.
 /// </para>
-/// </param>
-/// <param name="QueueUrl">
-/// <para>
-/// The URL of the Amazon SQS queue to which a message is sent.
-/// </para>
-/// <para>
-/// Queue URLs and names are case-sensitive.
-/// </para>
-/// </param>
-/// <param name="DelaySeconds">
-/// <para>
-/// The length of time, in seconds, for which to delay a specific message. Valid values: 0 to 900.
-/// Maximum: 15 minutes. Messages with a positive <c>DelaySeconds</c> value become available for
-/// processing after the delay period is finished. If you don't specify a value, the default value for
-/// the queue applies.
-/// </para>
-/// <para>
-/// <b>Note:</b> When you set <c>FifoQueue</c>, you can't set <c>DelaySeconds</c> per message. You can
-/// set this parameter only on a queue level.
-/// </para>
-/// </param>
-/// <param name="MessageAttributes">
-/// Each message attribute consists of a <c>Name</c>, <c>Type</c>, and <c>Value</c>. For more
-/// information, see
-/// <see href="https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-message-metadata.html#sqs-message-attributes">Amazon
-/// SQS message attributes</see> in the <i>Amazon SQS Developer Guide</i>.
 /// </param>
 /// <param name="MessageDeduplicationId">
 /// <para>
@@ -213,12 +205,20 @@ namespace Com.Amazonaws.Sqs;
 /// </item>
 /// </list>
 /// </param>
+/// <param name="QueueUrl">
+/// <para>
+/// The URL of the Amazon SQS queue to which a message is sent.
+/// </para>
+/// <para>
+/// Queue URLs and names are case-sensitive.
+/// </para>
+/// </param>
 public sealed record class SendMessageInput(
-    string MessageBody,
-    string QueueUrl,
     int? DelaySeconds = null,
     IReadOnlyDictionary<string, MessageAttributeValue>? MessageAttributes = null,
+    string? MessageBody = null,
     string? MessageDeduplicationId = null,
     string? MessageGroupId = null,
-    IReadOnlyDictionary<string, MessageSystemAttributeValue>? MessageSystemAttributes = null
+    IReadOnlyDictionary<string, MessageSystemAttributeValue>? MessageSystemAttributes = null,
+    string? QueueUrl = null
 );

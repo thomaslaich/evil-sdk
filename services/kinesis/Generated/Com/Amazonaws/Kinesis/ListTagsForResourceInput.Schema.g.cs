@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Kinesis.Schemas;
 
 public static partial class ListTagsForResourceInputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? ResourceARN { get; set; }
         public string? StreamId { get; set; }
@@ -28,7 +28,6 @@ public static partial class ListTagsForResourceInputSchema
                 new(
                     "ResourceARN",
                     Target0,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
@@ -44,10 +43,6 @@ public static partial class ListTagsForResourceInputSchema
                         new Trait(
                             ShapeId.Parse("smithy.api#pattern"),
                             Document.From("^arn:aws.*:kinesis:.*:\\d{12}:.*(stream|channel)/\\S+$")
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
                         ),
                         new Trait(
                             ShapeId.Parse("smithy.rules#contextParam"),
@@ -114,7 +109,7 @@ public static partial class ListTagsForResourceInputSchema
             Builder builder
         ) =>
             new global::Com.Amazonaws.Kinesis.ListTagsForResourceInput(
-                builder.ResourceARN ?? throw new MissingRequiredMemberException("ResourceARN"),
+                builder.ResourceARN,
                 builder.StreamId
             );
 
@@ -141,7 +136,7 @@ public static partial class ListTagsForResourceInputSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

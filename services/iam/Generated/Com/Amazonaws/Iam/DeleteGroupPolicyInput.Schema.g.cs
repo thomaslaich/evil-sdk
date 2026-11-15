@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Iam.Schemas;
 
 public static partial class DeleteGroupPolicyInputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? GroupName { get; set; }
         public string? PolicyName { get; set; }
@@ -28,7 +28,6 @@ public static partial class DeleteGroupPolicyInputSchema
                 new(
                     "GroupName",
                     Target0,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
@@ -44,17 +43,12 @@ public static partial class DeleteGroupPolicyInputSchema
                         new Trait(
                             ShapeId.Parse("smithy.api#pattern"),
                             Document.From("^[\\w+=,.@-]+$")
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
                         ),
                     ]
                 ),
                 new(
                     "PolicyName",
                     Target1,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
@@ -70,10 +64,6 @@ public static partial class DeleteGroupPolicyInputSchema
                         new Trait(
                             ShapeId.Parse("smithy.api#pattern"),
                             Document.From("^[\\w+=,.@-]+$")
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
                         ),
                     ]
                 ),
@@ -103,8 +93,8 @@ public static partial class DeleteGroupPolicyInputSchema
 
         public override global::Com.Amazonaws.Iam.DeleteGroupPolicyInput Build(Builder builder) =>
             new global::Com.Amazonaws.Iam.DeleteGroupPolicyInput(
-                builder.GroupName ?? throw new MissingRequiredMemberException("GroupName"),
-                builder.PolicyName ?? throw new MissingRequiredMemberException("PolicyName")
+                builder.GroupName,
+                builder.PolicyName
             );
 
         public override void SerializeMembers<TSerializer>(
@@ -130,7 +120,7 @@ public static partial class DeleteGroupPolicyInputSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

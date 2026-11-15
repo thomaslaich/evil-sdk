@@ -9,6 +9,9 @@ namespace Com.Amazonaws.Eventbridge;
 /// <summary>
 /// Represents the Smithy structure com.amazonaws.eventbridge#StartReplayInput.
 /// </summary>
+/// <param name="Description">
+/// A description for the replay to start.
+/// </param>
 /// <param name="Destination">
 /// A <c>ReplayDestination</c> object that includes details about the destination for the replay.
 /// </param>
@@ -26,14 +29,11 @@ namespace Com.Amazonaws.Eventbridge;
 /// <param name="ReplayName">
 /// The name of the replay to start.
 /// </param>
-/// <param name="Description">
-/// A description for the replay to start.
-/// </param>
 public sealed record class StartReplayInput(
-    ReplayDestination Destination,
-    DateTimeOffset EventEndTime,
-    string EventSourceArn,
-    DateTimeOffset EventStartTime,
-    string ReplayName,
-    string? Description = null
+    string? Description = null,
+    ReplayDestination? Destination = null,
+    DateTimeOffset? EventEndTime = null,
+    string? EventSourceArn = null,
+    DateTimeOffset? EventStartTime = null,
+    string? ReplayName = null
 );

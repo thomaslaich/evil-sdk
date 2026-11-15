@@ -7,6 +7,14 @@ namespace Com.Amazonaws.S3;
 /// <summary>
 /// Represents the Smithy structure com.amazonaws.s3#PutObjectAclInput.
 /// </summary>
+/// <param name="ACL">
+/// The canned ACL to apply to the object. For more information, see
+/// <see href="https://docs.aws.amazon.com/AmazonS3/latest/dev/acl-overview.html#CannedACL">Canned
+/// ACL</see>.
+/// </param>
+/// <param name="AccessControlPolicy">
+/// Contains the elements that set the ACL permissions for an object per grantee.
+/// </param>
 /// <param name="Bucket">
 /// <para>
 /// The bucket name that contains the object to which you want to attach the ACL.
@@ -32,17 +40,6 @@ namespace Com.Amazonaws.S3;
 /// <see href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/S3onOutposts.html">What is S3 on
 /// Outposts?</see> in the <i>Amazon S3 User Guide</i>.
 /// </para>
-/// </param>
-/// <param name="Key">
-/// Key for which the PUT action was initiated.
-/// </param>
-/// <param name="ACL">
-/// The canned ACL to apply to the object. For more information, see
-/// <see href="https://docs.aws.amazon.com/AmazonS3/latest/dev/acl-overview.html#CannedACL">Canned
-/// ACL</see>.
-/// </param>
-/// <param name="AccessControlPolicy">
-/// Contains the elements that set the ACL permissions for an object per grantee.
 /// </param>
 /// <param name="ChecksumAlgorithm">
 /// <para>
@@ -116,6 +113,9 @@ namespace Com.Amazonaws.S3;
 /// This functionality is not supported for Amazon S3 on Outposts.
 /// </para>
 /// </param>
+/// <param name="Key">
+/// Key for which the PUT action was initiated.
+/// </param>
 /// <param name="VersionId">
 /// <para>
 /// Version ID used to reference a specific version of the object.
@@ -125,10 +125,9 @@ namespace Com.Amazonaws.S3;
 /// </para>
 /// </param>
 public sealed record class PutObjectAclInput(
-    string Bucket,
-    string Key,
     ObjectCannedACL? ACL = null,
     global::Com.Amazonaws.S3.AccessControlPolicy? AccessControlPolicy = null,
+    string? Bucket = null,
     global::Com.Amazonaws.S3.ChecksumAlgorithm? ChecksumAlgorithm = null,
     string? ContentMD5 = null,
     string? ExpectedBucketOwner = null,
@@ -137,6 +136,7 @@ public sealed record class PutObjectAclInput(
     string? GrantReadACP = null,
     string? GrantWrite = null,
     string? GrantWriteACP = null,
+    string? Key = null,
     global::Com.Amazonaws.S3.RequestPayer? RequestPayer = null,
     string? VersionId = null
 );

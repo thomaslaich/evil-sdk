@@ -9,7 +9,7 @@ namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class OutputSerializationSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public global::Com.Amazonaws.S3.CSVOutput? CSV { get; set; }
         public global::Com.Amazonaws.S3.JSONOutput? JSON { get; set; }
@@ -64,7 +64,7 @@ public static partial class OutputSerializationSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

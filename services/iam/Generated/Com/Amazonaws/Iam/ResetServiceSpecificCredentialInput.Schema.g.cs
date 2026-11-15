@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Iam.Schemas;
 
 public static partial class ResetServiceSpecificCredentialInputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? UserName { get; set; }
         public string? ServiceSpecificCredentialId { get; set; }
@@ -49,7 +49,6 @@ public static partial class ResetServiceSpecificCredentialInputSchema
                 new(
                     "ServiceSpecificCredentialId",
                     Target1,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
@@ -63,10 +62,6 @@ public static partial class ResetServiceSpecificCredentialInputSchema
                             )
                         ),
                         new Trait(ShapeId.Parse("smithy.api#pattern"), Document.From("^[\\w]+$")),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
                     ]
                 ),
             ],
@@ -97,8 +92,7 @@ public static partial class ResetServiceSpecificCredentialInputSchema
             Builder builder
         ) =>
             new global::Com.Amazonaws.Iam.ResetServiceSpecificCredentialInput(
-                builder.ServiceSpecificCredentialId
-                    ?? throw new MissingRequiredMemberException("ServiceSpecificCredentialId"),
+                builder.ServiceSpecificCredentialId,
                 builder.UserName
             );
 
@@ -125,7 +119,7 @@ public static partial class ResetServiceSpecificCredentialInputSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

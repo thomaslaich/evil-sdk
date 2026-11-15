@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Secretsmanager.Schemas;
 
 public static partial class ValidationErrorsEntrySchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? CheckName { get; set; }
         public string? ErrorMessage { get; set; }
@@ -89,7 +89,7 @@ public static partial class ValidationErrorsEntrySchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

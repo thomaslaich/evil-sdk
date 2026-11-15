@@ -10,7 +10,7 @@ namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class RequestPaymentConfigurationSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public global::Com.Amazonaws.S3.Payer? Payer { get; set; }
     }
@@ -60,7 +60,7 @@ public static partial class RequestPaymentConfigurationSchema
             serializer.WriteStringEnum(0, value.Payer.Value);
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

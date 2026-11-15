@@ -49,7 +49,7 @@ namespace Com.Amazonaws.Iam;
 /// </para>
 /// </param>
 public sealed record class CreateInstanceProfileInput(
-    string InstanceProfileName,
+    string? InstanceProfileName = null,
     string? Path = null,
     IReadOnlyList<global::Com.Amazonaws.Iam.Tag>? Tags = null
 );

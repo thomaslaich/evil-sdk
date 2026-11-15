@@ -10,7 +10,7 @@ namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class TieringSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public int? Days { get; set; }
         public global::Com.Amazonaws.S3.IntelligentTieringAccessTier? AccessTier { get; set; }
@@ -77,7 +77,7 @@ public static partial class TieringSchema
             serializer.WriteStringEnum(1, value.AccessTier.Value);
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

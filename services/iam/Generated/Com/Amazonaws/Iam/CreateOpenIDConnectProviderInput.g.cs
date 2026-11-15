@@ -9,20 +9,6 @@ namespace Com.Amazonaws.Iam;
 /// <summary>
 /// Represents the Smithy structure com.amazonaws.iam#CreateOpenIDConnectProviderInput.
 /// </summary>
-/// <param name="Url">
-/// <para>
-/// The URL of the identity provider. The URL must begin with <c>https://</c> and should correspond to
-/// the <c>iss</c> claim in the provider's OpenID Connect ID tokens. Per the OIDC standard, path
-/// components are allowed but query parameters are not. Typically the URL consists of only a hostname,
-/// like <c>https://server.example.org</c> or <c>https://example.com</c>. The URL should not contain a
-/// port number.
-/// </para>
-/// <para>
-/// You cannot register the same provider multiple times in a single Amazon Web Services account. If you
-/// try to submit a URL that has already been used for an OpenID Connect provider in the Amazon Web
-/// Services account, you will get an error.
-/// </para>
-/// </param>
 /// <param name="ClientIDList">
 /// <para>
 /// Provides a list of client IDs, also known as audiences. When a mobile or web app registers with an
@@ -82,9 +68,23 @@ namespace Com.Amazonaws.Iam;
 /// different certificates or hosts, include the thumbprints for both endpoints in this list.
 /// </para>
 /// </param>
+/// <param name="Url">
+/// <para>
+/// The URL of the identity provider. The URL must begin with <c>https://</c> and should correspond to
+/// the <c>iss</c> claim in the provider's OpenID Connect ID tokens. Per the OIDC standard, path
+/// components are allowed but query parameters are not. Typically the URL consists of only a hostname,
+/// like <c>https://server.example.org</c> or <c>https://example.com</c>. The URL should not contain a
+/// port number.
+/// </para>
+/// <para>
+/// You cannot register the same provider multiple times in a single Amazon Web Services account. If you
+/// try to submit a URL that has already been used for an OpenID Connect provider in the Amazon Web
+/// Services account, you will get an error.
+/// </para>
+/// </param>
 public sealed record class CreateOpenIDConnectProviderInput(
-    string Url,
     IReadOnlyList<string>? ClientIDList = null,
     IReadOnlyList<global::Com.Amazonaws.Iam.Tag>? Tags = null,
-    IReadOnlyList<string>? ThumbprintList = null
+    IReadOnlyList<string>? ThumbprintList = null,
+    string? Url = null
 );

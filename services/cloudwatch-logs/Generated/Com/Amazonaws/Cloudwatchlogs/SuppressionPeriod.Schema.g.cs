@@ -9,7 +9,7 @@ namespace Com.Amazonaws.Cloudwatchlogs.Schemas;
 
 public static partial class SuppressionPeriodSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public int? Value { get; set; }
         public global::Com.Amazonaws.Cloudwatchlogs.SuppressionUnit? SuppressionUnit { get; set; }
@@ -76,7 +76,7 @@ public static partial class SuppressionPeriodSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

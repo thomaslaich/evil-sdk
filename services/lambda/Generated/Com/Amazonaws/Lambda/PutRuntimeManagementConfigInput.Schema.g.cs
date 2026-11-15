@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Lambda.Schemas;
 
 public static partial class PutRuntimeManagementConfigInputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? FunctionName { get; set; }
         public string? Qualifier { get; set; }
@@ -30,7 +30,6 @@ public static partial class PutRuntimeManagementConfigInputSchema
                 new(
                     "FunctionName",
                     Target0,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
@@ -52,10 +51,6 @@ public static partial class PutRuntimeManagementConfigInputSchema
                             Document.From(
                                 "^(arn:(aws[a-zA-Z-]*)?:lambda:)?((eusc-)?[a-z]{2}((-gov)|(-iso([a-z]?)))?-[a-z]+-\\d{1}:)?(\\d{12}:)?(function:)?([a-zA-Z0-9-_\\.]+)(:(\\$LATEST(\\.PUBLISHED)?|[a-zA-Z0-9-_]+))?$"
                             )
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
                         ),
                     ]
                 ),
@@ -84,18 +79,7 @@ public static partial class PutRuntimeManagementConfigInputSchema
                         ),
                     ]
                 ),
-                new(
-                    "UpdateRuntimeOn",
-                    Target2,
-                    isRequired: true,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
-                    ]
-                ),
+                new("UpdateRuntimeOn", Target2),
                 new(
                     "RuntimeVersionArn",
                     Target3,
@@ -153,11 +137,10 @@ public static partial class PutRuntimeManagementConfigInputSchema
             Builder builder
         ) =>
             new global::Com.Amazonaws.Lambda.PutRuntimeManagementConfigInput(
-                builder.FunctionName ?? throw new MissingRequiredMemberException("FunctionName"),
-                builder.UpdateRuntimeOn
-                    ?? throw new MissingRequiredMemberException("UpdateRuntimeOn"),
+                builder.FunctionName,
                 builder.Qualifier,
-                builder.RuntimeVersionArn
+                builder.RuntimeVersionArn,
+                builder.UpdateRuntimeOn
             );
 
         public override void SerializeMembers<TSerializer>(
@@ -181,7 +164,14 @@ public static partial class PutRuntimeManagementConfigInputSchema
             {
                 serializer.WriteNull(1);
             }
-            serializer.WriteStringEnum(2, value.UpdateRuntimeOn.Value);
+            if (value.UpdateRuntimeOn is { } value2)
+            {
+                serializer.WriteStringEnum(2, value2.Value);
+            }
+            else
+            {
+                serializer.WriteNull(2);
+            }
             if (value.RuntimeVersionArn is { } value3)
             {
                 serializer.WriteString(3, value3);
@@ -192,7 +182,7 @@ public static partial class PutRuntimeManagementConfigInputSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

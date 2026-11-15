@@ -28,6 +28,6 @@ namespace Com.Amazonaws.Iam;
 /// </para>
 /// </param>
 public sealed record class DeleteSigningCertificateInput(
-    string CertificateId,
+    string? CertificateId = null,
     string? UserName = null
 );

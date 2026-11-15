@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Cloudwatchlogs.Schemas;
 
 public static partial class PutMetricFilterInputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? LogGroupName { get; set; }
         public string? FilterName { get; set; }
@@ -33,7 +33,6 @@ public static partial class PutMetricFilterInputSchema
                 new(
                     "logGroupName",
                     Target0,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
@@ -50,16 +49,11 @@ public static partial class PutMetricFilterInputSchema
                             ShapeId.Parse("smithy.api#pattern"),
                             Document.From("^[\\.\\-_/#A-Za-z0-9]+$")
                         ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
                     ]
                 ),
                 new(
                     "filterName",
                     Target1,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
@@ -73,16 +67,11 @@ public static partial class PutMetricFilterInputSchema
                             )
                         ),
                         new Trait(ShapeId.Parse("smithy.api#pattern"), Document.From("^[^:*]*$")),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
                     ]
                 ),
                 new(
                     "filterPattern",
                     Target2,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
@@ -95,24 +84,9 @@ public static partial class PutMetricFilterInputSchema
                                 }
                             )
                         ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
                     ]
                 ),
-                new(
-                    "metricTransformations",
-                    Target3,
-                    isRequired: true,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
-                    ]
-                ),
+                new("metricTransformations", Target3),
                 new(
                     "applyOnTransformedLogs",
                     Target4,
@@ -182,14 +156,13 @@ public static partial class PutMetricFilterInputSchema
             Builder builder
         ) =>
             new global::Com.Amazonaws.Cloudwatchlogs.PutMetricFilterInput(
-                builder.FilterName ?? throw new MissingRequiredMemberException("filterName"),
-                builder.FilterPattern ?? throw new MissingRequiredMemberException("filterPattern"),
-                builder.LogGroupName ?? throw new MissingRequiredMemberException("logGroupName"),
-                builder.MetricTransformations
-                    ?? throw new MissingRequiredMemberException("metricTransformations"),
                 builder.ApplyOnTransformedLogs,
                 builder.EmitSystemFieldDimensions,
-                builder.FieldSelectionCriteria
+                builder.FieldSelectionCriteria,
+                builder.FilterName,
+                builder.FilterPattern,
+                builder.LogGroupName,
+                builder.MetricTransformations
             );
 
         public override void SerializeMembers<TSerializer>(
@@ -259,7 +232,7 @@ public static partial class PutMetricFilterInputSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

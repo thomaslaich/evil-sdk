@@ -46,7 +46,7 @@ namespace Com.Amazonaws.S3;
 /// A token to allow Object Lock to be enabled for an existing bucket.
 /// </param>
 public sealed record class PutObjectLockConfigurationInput(
-    string Bucket,
+    string? Bucket = null,
     global::Com.Amazonaws.S3.ChecksumAlgorithm? ChecksumAlgorithm = null,
     string? ContentMD5 = null,
     string? ExpectedBucketOwner = null,

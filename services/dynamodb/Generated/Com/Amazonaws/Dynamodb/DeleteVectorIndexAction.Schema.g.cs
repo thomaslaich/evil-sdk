@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Dynamodb.Schemas;
 
 public static partial class DeleteVectorIndexActionSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? IndexName { get; set; }
     }
@@ -83,7 +83,7 @@ public static partial class DeleteVectorIndexActionSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

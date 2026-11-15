@@ -10,4 +10,4 @@ namespace Com.Amazonaws.Route53;
 /// <param name="HostedZoneId">
 /// A unique string used to identify a hosted zone.
 /// </param>
-public sealed record class EnableHostedZoneDNSSECInput(string HostedZoneId);
+public sealed record class EnableHostedZoneDNSSECInput(string? HostedZoneId = null);

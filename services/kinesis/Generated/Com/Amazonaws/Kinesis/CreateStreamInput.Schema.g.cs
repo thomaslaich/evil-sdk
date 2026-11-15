@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Kinesis.Schemas;
 
 public static partial class CreateStreamInputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? StreamName { get; set; }
         public int? ShardCount { get; set; }
@@ -33,7 +33,6 @@ public static partial class CreateStreamInputSchema
                 new(
                     "StreamName",
                     Target0,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
@@ -49,10 +48,6 @@ public static partial class CreateStreamInputSchema
                         new Trait(
                             ShapeId.Parse("smithy.api#pattern"),
                             Document.From("^[a-zA-Z0-9_.-]+$")
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
                         ),
                     ]
                 ),
@@ -150,11 +145,11 @@ public static partial class CreateStreamInputSchema
 
         public override global::Com.Amazonaws.Kinesis.CreateStreamInput Build(Builder builder) =>
             new global::Com.Amazonaws.Kinesis.CreateStreamInput(
-                builder.StreamName ?? throw new MissingRequiredMemberException("StreamName"),
                 builder.MaxRecordSizeInKiB,
                 builder.RecordDistributionStrategy,
                 builder.ShardCount,
                 builder.StreamModeDetails,
+                builder.StreamName,
                 builder.Tags,
                 builder.WarmThroughputMiBps
             );
@@ -222,7 +217,7 @@ public static partial class CreateStreamInputSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

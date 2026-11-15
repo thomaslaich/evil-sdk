@@ -10,4 +10,4 @@ namespace Com.Amazonaws.Sts;
 /// <param name="EncodedMessage">
 /// The encoded message that was returned with the response.
 /// </param>
-public sealed record class DecodeAuthorizationMessageInput(string EncodedMessage);
+public sealed record class DecodeAuthorizationMessageInput(string? EncodedMessage = null);

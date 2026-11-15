@@ -16,6 +16,6 @@ namespace Com.Amazonaws.Dynamodb;
 /// A list of Regions that should be added or removed from the global table.
 /// </param>
 public sealed record class UpdateGlobalTableInput(
-    string GlobalTableName,
-    IReadOnlyList<ReplicaUpdate> ReplicaUpdates
+    string? GlobalTableName = null,
+    IReadOnlyList<ReplicaUpdate>? ReplicaUpdates = null
 );

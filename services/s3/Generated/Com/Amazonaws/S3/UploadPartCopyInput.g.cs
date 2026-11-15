@@ -129,15 +129,6 @@ namespace Com.Amazonaws.S3;
 /// buckets.
 /// </para>
 /// </param>
-/// <param name="Key">
-/// Object key for which the multipart upload was initiated.
-/// </param>
-/// <param name="PartNumber">
-/// Part number of part being copied. This is a positive integer between 1 and 10,000.
-/// </param>
-/// <param name="UploadId">
-/// Upload ID identifying the multipart upload whose part is being copied.
-/// </param>
 /// <param name="CopySourceIfMatch">
 /// <para>
 /// Copies the object if its entity tag (ETag) matches the specified tag.
@@ -254,6 +245,12 @@ namespace Com.Amazonaws.S3;
 /// match the actual owner of the source bucket, the request fails with the HTTP status code <c>403
 /// Forbidden</c> (access denied).
 /// </param>
+/// <param name="Key">
+/// Object key for which the multipart upload was initiated.
+/// </param>
+/// <param name="PartNumber">
+/// Part number of part being copied. This is a positive integer between 1 and 10,000.
+/// </param>
 /// <param name="SSECustomerAlgorithm">
 /// <para>
 /// Specifies the algorithm to use when encrypting the object (for example, AES256).
@@ -284,12 +281,12 @@ namespace Com.Amazonaws.S3;
 /// <b>Note:</b> This functionality is not supported when the destination bucket is a directory bucket.
 /// </para>
 /// </param>
+/// <param name="UploadId">
+/// Upload ID identifying the multipart upload whose part is being copied.
+/// </param>
 public sealed record class UploadPartCopyInput(
-    string Bucket,
-    string CopySource,
-    string Key,
-    int PartNumber,
-    string UploadId,
+    string? Bucket = null,
+    string? CopySource = null,
     string? CopySourceIfMatch = null,
     DateTimeOffset? CopySourceIfModifiedSince = null,
     string? CopySourceIfNoneMatch = null,
@@ -300,8 +297,11 @@ public sealed record class UploadPartCopyInput(
     string? CopySourceSSECustomerKeyMD5 = null,
     string? ExpectedBucketOwner = null,
     string? ExpectedSourceBucketOwner = null,
+    string? Key = null,
+    int? PartNumber = null,
     global::Com.Amazonaws.S3.RequestPayer? RequestPayer = null,
     string? SSECustomerAlgorithm = null,
     string? SSECustomerKey = null,
-    string? SSECustomerKeyMD5 = null
+    string? SSECustomerKeyMD5 = null,
+    string? UploadId = null
 );

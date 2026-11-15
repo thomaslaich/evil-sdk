@@ -10,7 +10,7 @@ namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class ScanRangeSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public long? Start { get; set; }
         public long? End { get; set; }
@@ -82,7 +82,7 @@ public static partial class ScanRangeSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

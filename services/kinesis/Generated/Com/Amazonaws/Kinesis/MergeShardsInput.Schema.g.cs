@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Kinesis.Schemas;
 
 public static partial class MergeShardsInputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? StreamName { get; set; }
         public string? ShardToMerge { get; set; }
@@ -52,7 +52,6 @@ public static partial class MergeShardsInputSchema
                 new(
                     "ShardToMerge",
                     Target1,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
@@ -68,17 +67,12 @@ public static partial class MergeShardsInputSchema
                         new Trait(
                             ShapeId.Parse("smithy.api#pattern"),
                             Document.From("^[a-zA-Z0-9_.-]+$")
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
                         ),
                     ]
                 ),
                 new(
                     "AdjacentShardToMerge",
                     Target2,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
@@ -94,10 +88,6 @@ public static partial class MergeShardsInputSchema
                         new Trait(
                             ShapeId.Parse("smithy.api#pattern"),
                             Document.From("^[a-zA-Z0-9_.-]+$")
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
                         ),
                     ]
                 ),
@@ -195,9 +185,8 @@ public static partial class MergeShardsInputSchema
 
         public override global::Com.Amazonaws.Kinesis.MergeShardsInput Build(Builder builder) =>
             new global::Com.Amazonaws.Kinesis.MergeShardsInput(
-                builder.AdjacentShardToMerge
-                    ?? throw new MissingRequiredMemberException("AdjacentShardToMerge"),
-                builder.ShardToMerge ?? throw new MissingRequiredMemberException("ShardToMerge"),
+                builder.AdjacentShardToMerge,
+                builder.ShardToMerge,
                 builder.StreamARN,
                 builder.StreamId,
                 builder.StreamName
@@ -250,7 +239,7 @@ public static partial class MergeShardsInputSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

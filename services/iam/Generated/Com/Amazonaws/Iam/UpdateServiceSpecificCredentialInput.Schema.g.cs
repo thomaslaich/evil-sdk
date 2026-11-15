@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Iam.Schemas;
 
 public static partial class UpdateServiceSpecificCredentialInputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? UserName { get; set; }
         public string? ServiceSpecificCredentialId { get; set; }
@@ -50,7 +50,6 @@ public static partial class UpdateServiceSpecificCredentialInputSchema
                 new(
                     "ServiceSpecificCredentialId",
                     Target1,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
@@ -64,24 +63,9 @@ public static partial class UpdateServiceSpecificCredentialInputSchema
                             )
                         ),
                         new Trait(ShapeId.Parse("smithy.api#pattern"), Document.From("^[\\w]+$")),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
                     ]
                 ),
-                new(
-                    "Status",
-                    Target2,
-                    isRequired: true,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
-                    ]
-                ),
+                new("Status", Target2),
             ],
             [
                 new Trait(
@@ -112,9 +96,8 @@ public static partial class UpdateServiceSpecificCredentialInputSchema
             Builder builder
         ) =>
             new global::Com.Amazonaws.Iam.UpdateServiceSpecificCredentialInput(
-                builder.ServiceSpecificCredentialId
-                    ?? throw new MissingRequiredMemberException("ServiceSpecificCredentialId"),
-                builder.Status ?? throw new MissingRequiredMemberException("Status"),
+                builder.ServiceSpecificCredentialId,
+                builder.Status,
                 builder.UserName
             );
 
@@ -139,10 +122,17 @@ public static partial class UpdateServiceSpecificCredentialInputSchema
             {
                 serializer.WriteNull(1);
             }
-            serializer.WriteStringEnum(2, value.Status.Value);
+            if (value.Status is { } value2)
+            {
+                serializer.WriteStringEnum(2, value2.Value);
+            }
+            else
+            {
+                serializer.WriteNull(2);
+            }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

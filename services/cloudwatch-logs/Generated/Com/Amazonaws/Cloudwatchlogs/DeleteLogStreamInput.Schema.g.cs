@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Cloudwatchlogs.Schemas;
 
 public static partial class DeleteLogStreamInputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? LogGroupName { get; set; }
         public string? LogStreamName { get; set; }
@@ -28,7 +28,6 @@ public static partial class DeleteLogStreamInputSchema
                 new(
                     "logGroupName",
                     Target0,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
@@ -45,16 +44,11 @@ public static partial class DeleteLogStreamInputSchema
                             ShapeId.Parse("smithy.api#pattern"),
                             Document.From("^[\\.\\-_/#A-Za-z0-9]+$")
                         ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
                     ]
                 ),
                 new(
                     "logStreamName",
                     Target1,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
@@ -68,10 +62,6 @@ public static partial class DeleteLogStreamInputSchema
                             )
                         ),
                         new Trait(ShapeId.Parse("smithy.api#pattern"), Document.From("^[^:*]*$")),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
                     ]
                 ),
             ],
@@ -102,8 +92,8 @@ public static partial class DeleteLogStreamInputSchema
             Builder builder
         ) =>
             new global::Com.Amazonaws.Cloudwatchlogs.DeleteLogStreamInput(
-                builder.LogGroupName ?? throw new MissingRequiredMemberException("logGroupName"),
-                builder.LogStreamName ?? throw new MissingRequiredMemberException("logStreamName")
+                builder.LogGroupName,
+                builder.LogStreamName
             );
 
         public override void SerializeMembers<TSerializer>(
@@ -129,7 +119,7 @@ public static partial class DeleteLogStreamInputSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

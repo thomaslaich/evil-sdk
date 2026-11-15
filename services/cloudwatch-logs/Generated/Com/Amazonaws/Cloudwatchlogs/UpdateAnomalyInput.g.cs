@@ -42,7 +42,7 @@ namespace Com.Amazonaws.Cloudwatchlogs;
 /// any value for <c>suppressionPeriod</c> is ignored.
 /// </param>
 public sealed record class UpdateAnomalyInput(
-    string AnomalyDetectorArn,
+    string? AnomalyDetectorArn = null,
     string? AnomalyId = null,
     bool? Baseline = null,
     string? PatternId = null,

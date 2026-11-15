@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Cloudwatchlogs.Schemas;
 
 public static partial class DeleteDeliverySourceInputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? Name { get; set; }
     }
@@ -27,7 +27,6 @@ public static partial class DeleteDeliverySourceInputSchema
                 new(
                     "name",
                     Target0,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
@@ -41,10 +40,6 @@ public static partial class DeleteDeliverySourceInputSchema
                             )
                         ),
                         new Trait(ShapeId.Parse("smithy.api#pattern"), Document.From("^[\\w-]*$")),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
                     ]
                 ),
             ],
@@ -69,10 +64,7 @@ public static partial class DeleteDeliverySourceInputSchema
 
         public override global::Com.Amazonaws.Cloudwatchlogs.DeleteDeliverySourceInput Build(
             Builder builder
-        ) =>
-            new global::Com.Amazonaws.Cloudwatchlogs.DeleteDeliverySourceInput(
-                builder.Name ?? throw new MissingRequiredMemberException("name")
-            );
+        ) => new global::Com.Amazonaws.Cloudwatchlogs.DeleteDeliverySourceInput(builder.Name);
 
         public override void SerializeMembers<TSerializer>(
             global::Com.Amazonaws.Cloudwatchlogs.DeleteDeliverySourceInput value,
@@ -89,7 +81,7 @@ public static partial class DeleteDeliverySourceInputSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

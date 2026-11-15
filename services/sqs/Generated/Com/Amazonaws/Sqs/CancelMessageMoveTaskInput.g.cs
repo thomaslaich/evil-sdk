@@ -10,4 +10,4 @@ namespace Com.Amazonaws.Sqs;
 /// <param name="TaskHandle">
 /// An identifier associated with a message movement task.
 /// </param>
-public sealed record class CancelMessageMoveTaskInput(string TaskHandle);
+public sealed record class CancelMessageMoveTaskInput(string? TaskHandle = null);

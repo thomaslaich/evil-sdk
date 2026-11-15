@@ -7,14 +7,14 @@ namespace Com.Amazonaws.S3;
 /// <summary>
 /// Represents the Smithy structure com.amazonaws.s3#PutBucketAclInput.
 /// </summary>
-/// <param name="Bucket">
-/// The bucket to which to apply the ACL.
-/// </param>
 /// <param name="ACL">
 /// The canned ACL to apply to the bucket.
 /// </param>
 /// <param name="AccessControlPolicy">
 /// Contains the elements that set the ACL permissions for an object per grantee.
+/// </param>
+/// <param name="Bucket">
+/// The bucket to which to apply the ACL.
 /// </param>
 /// <param name="ChecksumAlgorithm">
 /// <para>
@@ -69,9 +69,9 @@ namespace Com.Amazonaws.S3;
 /// Allows grantee to write the ACL for the applicable bucket.
 /// </param>
 public sealed record class PutBucketAclInput(
-    string Bucket,
     BucketCannedACL? ACL = null,
     global::Com.Amazonaws.S3.AccessControlPolicy? AccessControlPolicy = null,
+    string? Bucket = null,
     global::Com.Amazonaws.S3.ChecksumAlgorithm? ChecksumAlgorithm = null,
     string? ContentMD5 = null,
     string? ExpectedBucketOwner = null,

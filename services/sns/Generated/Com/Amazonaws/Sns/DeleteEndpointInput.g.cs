@@ -10,4 +10,4 @@ namespace Com.Amazonaws.Sns;
 /// <param name="EndpointArn">
 /// <c>EndpointArn</c> of endpoint to delete.
 /// </param>
-public sealed record class DeleteEndpointInput(string EndpointArn);
+public sealed record class DeleteEndpointInput(string? EndpointArn = null);

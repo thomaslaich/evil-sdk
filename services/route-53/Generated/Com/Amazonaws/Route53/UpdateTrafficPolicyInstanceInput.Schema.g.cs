@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Route53.Schemas;
 
 public static partial class UpdateTrafficPolicyInstanceInputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? Id { get; set; }
         public long? TTL { get; set; }
@@ -30,7 +30,6 @@ public static partial class UpdateTrafficPolicyInstanceInputSchema
                 new(
                     "Id",
                     Target0,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
@@ -47,16 +46,11 @@ public static partial class UpdateTrafficPolicyInstanceInputSchema
                                 }
                             )
                         ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
                     ]
                 ),
                 new(
                     "TTL",
                     Target1,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
@@ -73,16 +67,11 @@ public static partial class UpdateTrafficPolicyInstanceInputSchema
                                 }
                             )
                         ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
                     ]
                 ),
                 new(
                     "TrafficPolicyId",
                     Target2,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
@@ -95,16 +84,11 @@ public static partial class UpdateTrafficPolicyInstanceInputSchema
                                 }
                             )
                         ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
                     ]
                 ),
                 new(
                     "TrafficPolicyVersion",
                     Target3,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
@@ -120,10 +104,6 @@ public static partial class UpdateTrafficPolicyInstanceInputSchema
                                     { "max", Document.From(1000m) },
                                 }
                             )
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
                         ),
                     ]
                 ),
@@ -159,11 +139,10 @@ public static partial class UpdateTrafficPolicyInstanceInputSchema
             Builder builder
         ) =>
             new global::Com.Amazonaws.Route53.UpdateTrafficPolicyInstanceInput(
-                builder.Id ?? throw new MissingRequiredMemberException("Id"),
-                builder.TTL.GetValueOrDefault(),
-                builder.TrafficPolicyId
-                    ?? throw new MissingRequiredMemberException("TrafficPolicyId"),
-                builder.TrafficPolicyVersion.GetValueOrDefault()
+                builder.Id,
+                builder.TTL,
+                builder.TrafficPolicyId,
+                builder.TrafficPolicyVersion
             );
 
         public override void SerializeMembers<TSerializer>(
@@ -179,7 +158,14 @@ public static partial class UpdateTrafficPolicyInstanceInputSchema
             {
                 serializer.WriteNull(0);
             }
-            serializer.WriteLong(1, value.TTL);
+            if (value.TTL is { } value1)
+            {
+                serializer.WriteLong(1, value1);
+            }
+            else
+            {
+                serializer.WriteNull(1);
+            }
             if (value.TrafficPolicyId is { } value2)
             {
                 serializer.WriteString(2, value2);
@@ -188,10 +174,17 @@ public static partial class UpdateTrafficPolicyInstanceInputSchema
             {
                 serializer.WriteNull(2);
             }
-            serializer.WriteInteger(3, value.TrafficPolicyVersion);
+            if (value.TrafficPolicyVersion is { } value3)
+            {
+                serializer.WriteInteger(3, value3);
+            }
+            else
+            {
+                serializer.WriteNull(3);
+            }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

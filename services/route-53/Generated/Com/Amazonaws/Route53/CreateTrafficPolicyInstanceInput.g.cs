@@ -30,9 +30,9 @@ namespace Com.Amazonaws.Route53;
 /// specified hosted zone.
 /// </param>
 public sealed record class CreateTrafficPolicyInstanceInput(
-    string HostedZoneId,
-    string Name,
-    long TTL,
-    string TrafficPolicyId,
-    int TrafficPolicyVersion
+    string? HostedZoneId = null,
+    string? Name = null,
+    long? TTL = null,
+    string? TrafficPolicyId = null,
+    int? TrafficPolicyVersion = null
 );

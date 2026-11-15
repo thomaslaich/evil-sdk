@@ -10,4 +10,4 @@ namespace Com.Amazonaws.Lambda;
 /// <param name="CapacityProviderName">
 /// The name of the capacity provider to retrieve.
 /// </param>
-public sealed record class GetCapacityProviderInput(string CapacityProviderName);
+public sealed record class GetCapacityProviderInput(string? CapacityProviderName = null);

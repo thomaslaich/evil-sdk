@@ -46,7 +46,7 @@ namespace Com.Amazonaws.Lambda;
 /// number higher.
 /// </param>
 public sealed record class ListFunctionUrlConfigsInput(
-    string FunctionName,
+    string? FunctionName = null,
     string? Marker = null,
     int? MaxItems = null
 );

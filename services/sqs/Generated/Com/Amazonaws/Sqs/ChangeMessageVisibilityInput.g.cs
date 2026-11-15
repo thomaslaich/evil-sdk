@@ -24,7 +24,7 @@ namespace Com.Amazonaws.Sqs;
 /// <c>43200</c>. Maximum: 12 hours.
 /// </param>
 public sealed record class ChangeMessageVisibilityInput(
-    string QueueUrl,
-    string ReceiptHandle,
-    int VisibilityTimeout
+    string? QueueUrl = null,
+    string? ReceiptHandle = null,
+    int? VisibilityTimeout = null
 );

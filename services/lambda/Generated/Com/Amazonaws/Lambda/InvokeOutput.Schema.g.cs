@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Lambda.Schemas;
 
 public static partial class InvokeOutputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public int? StatusCode { get; set; }
         public string? FunctionError { get; set; }
@@ -235,7 +235,7 @@ public static partial class InvokeOutputSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

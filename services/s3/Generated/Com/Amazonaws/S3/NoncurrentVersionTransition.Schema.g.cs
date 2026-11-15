@@ -10,7 +10,7 @@ namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class NoncurrentVersionTransitionSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public int? NoncurrentDays { get; set; }
         public global::Com.Amazonaws.S3.TransitionStorageClass? StorageClass { get; set; }
@@ -102,7 +102,7 @@ public static partial class NoncurrentVersionTransitionSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

@@ -73,7 +73,7 @@ namespace Com.Amazonaws.Iam;
 /// </para>
 /// </param>
 public sealed record class CreatePolicyVersionInput(
-    string PolicyArn,
-    string PolicyDocument,
+    string? PolicyArn = null,
+    string? PolicyDocument = null,
     bool? SetAsDefault = null
 );

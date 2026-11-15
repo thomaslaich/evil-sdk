@@ -10,7 +10,7 @@ namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class PutBucketCorsInputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? Bucket { get; set; }
         public global::Com.Amazonaws.S3.CORSConfiguration? CORSConfiguration { get; set; }
@@ -31,15 +31,10 @@ public static partial class PutBucketCorsInputSchema
                 new(
                     "Bucket",
                     Target0,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
                             ShapeId.Parse("smithy.api#httpLabel"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
                             Document.From(new Dictionary<string, Document> { })
                         ),
                         new Trait(
@@ -56,15 +51,10 @@ public static partial class PutBucketCorsInputSchema
                 new(
                     "CORSConfiguration",
                     Target1,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
                             ShapeId.Parse("smithy.api#httpPayload"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
                             Document.From(new Dictionary<string, Document> { })
                         ),
                         new Trait(
@@ -142,9 +132,8 @@ public static partial class PutBucketCorsInputSchema
 
         public override global::Com.Amazonaws.S3.PutBucketCorsInput Build(Builder builder) =>
             new global::Com.Amazonaws.S3.PutBucketCorsInput(
-                builder.Bucket ?? throw new MissingRequiredMemberException("Bucket"),
-                builder.CORSConfiguration
-                    ?? throw new MissingRequiredMemberException("CORSConfiguration"),
+                builder.Bucket,
+                builder.CORSConfiguration,
                 builder.ChecksumAlgorithm,
                 builder.ContentMD5,
                 builder.ExpectedBucketOwner
@@ -197,7 +186,7 @@ public static partial class PutBucketCorsInputSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

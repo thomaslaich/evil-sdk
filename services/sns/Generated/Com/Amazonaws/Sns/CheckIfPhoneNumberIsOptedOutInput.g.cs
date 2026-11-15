@@ -10,4 +10,4 @@ namespace Com.Amazonaws.Sns;
 /// <param name="PhoneNumber">
 /// The phone number for which you want to check the opt out status.
 /// </param>
-public sealed record class CheckIfPhoneNumberIsOptedOutInput(string PhoneNumber);
+public sealed record class CheckIfPhoneNumberIsOptedOutInput(string? PhoneNumber = null);

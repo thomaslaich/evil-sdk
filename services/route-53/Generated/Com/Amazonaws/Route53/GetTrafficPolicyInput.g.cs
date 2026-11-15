@@ -13,4 +13,4 @@ namespace Com.Amazonaws.Route53;
 /// <param name="Version">
 /// The version number of the traffic policy that you want to get information about.
 /// </param>
-public sealed record class GetTrafficPolicyInput(string Id, int Version);
+public sealed record class GetTrafficPolicyInput(string? Id = null, int? Version = null);

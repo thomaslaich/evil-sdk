@@ -17,4 +17,4 @@ namespace Com.Amazonaws.Iam;
 /// can also include any of the following characters: _+=,.@-
 /// </para>
 /// </param>
-public sealed record class GetServerCertificateInput(string ServerCertificateName);
+public sealed record class GetServerCertificateInput(string? ServerCertificateName = null);

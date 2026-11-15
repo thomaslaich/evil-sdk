@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Eventbridge.Schemas;
 
 public static partial class DeletePartnerEventSourceInputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? Name { get; set; }
         public string? Account { get; set; }
@@ -28,7 +28,6 @@ public static partial class DeletePartnerEventSourceInputSchema
                 new(
                     "Name",
                     Target0,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
@@ -45,16 +44,11 @@ public static partial class DeletePartnerEventSourceInputSchema
                             ShapeId.Parse("smithy.api#pattern"),
                             Document.From("^aws\\.partner(/[\\.\\-_A-Za-z0-9]+){2,}$")
                         ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
                     ]
                 ),
                 new(
                     "Account",
                     Target1,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
@@ -68,10 +62,6 @@ public static partial class DeletePartnerEventSourceInputSchema
                             )
                         ),
                         new Trait(ShapeId.Parse("smithy.api#pattern"), Document.From("^\\d{12}$")),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
                     ]
                 ),
             ],
@@ -102,8 +92,8 @@ public static partial class DeletePartnerEventSourceInputSchema
             Builder builder
         ) =>
             new global::Com.Amazonaws.Eventbridge.DeletePartnerEventSourceInput(
-                builder.Account ?? throw new MissingRequiredMemberException("Account"),
-                builder.Name ?? throw new MissingRequiredMemberException("Name")
+                builder.Account,
+                builder.Name
             );
 
         public override void SerializeMembers<TSerializer>(
@@ -129,7 +119,7 @@ public static partial class DeletePartnerEventSourceInputSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

@@ -23,9 +23,6 @@ namespace Com.Amazonaws.Eventbridge;
 /// <b>Note:</b> OAUTH tokens are refreshed when a 401 or 407 response is returned.
 /// </para>
 /// </param>
-/// <param name="Name">
-/// The name for the connection to create.
-/// </param>
 /// <param name="Description">
 /// A description for the connection to create.
 /// </param>
@@ -55,11 +52,14 @@ namespace Com.Amazonaws.Eventbridge;
 /// view keys</see> in the <i>Key Management Service Developer Guide</i>.
 /// </para>
 /// </param>
+/// <param name="Name">
+/// The name for the connection to create.
+/// </param>
 public sealed record class CreateConnectionInput(
-    CreateConnectionAuthRequestParameters AuthParameters,
-    ConnectionAuthorizationType AuthorizationType,
-    string Name,
+    CreateConnectionAuthRequestParameters? AuthParameters = null,
+    ConnectionAuthorizationType? AuthorizationType = null,
     string? Description = null,
     ConnectivityResourceParameters? InvocationConnectivityParameters = null,
-    string? KmsKeyIdentifier = null
+    string? KmsKeyIdentifier = null,
+    string? Name = null
 );

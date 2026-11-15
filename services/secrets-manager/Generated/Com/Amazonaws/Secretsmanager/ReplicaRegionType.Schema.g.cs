@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Secretsmanager.Schemas;
 
 public static partial class ReplicaRegionTypeSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? Region { get; set; }
         public string? KmsKeyId { get; set; }
@@ -109,7 +109,7 @@ public static partial class ReplicaRegionTypeSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

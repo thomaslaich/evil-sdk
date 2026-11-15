@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Route53.Schemas;
 
 public static partial class ListTrafficPolicyInstancesByHostedZoneInputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? HostedZoneId { get; set; }
         public string? TrafficPolicyInstanceNameMarker { get; set; }
@@ -33,7 +33,6 @@ public static partial class ListTrafficPolicyInstancesByHostedZoneInputSchema
                 new(
                     "HostedZoneId",
                     Target0,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(ShapeId.Parse("smithy.api#httpQuery"), Document.From("id")),
@@ -46,10 +45,6 @@ public static partial class ListTrafficPolicyInstancesByHostedZoneInputSchema
                                     { "max", Document.From(32m) },
                                 }
                             )
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
                         ),
                     ]
                 ),
@@ -127,7 +122,7 @@ public static partial class ListTrafficPolicyInstancesByHostedZoneInputSchema
             Builder builder
         ) =>
             new global::Com.Amazonaws.Route53.ListTrafficPolicyInstancesByHostedZoneInput(
-                builder.HostedZoneId ?? throw new MissingRequiredMemberException("HostedZoneId"),
+                builder.HostedZoneId,
                 builder.MaxItems,
                 builder.TrafficPolicyInstanceNameMarker,
                 builder.TrafficPolicyInstanceTypeMarker
@@ -172,7 +167,7 @@ public static partial class ListTrafficPolicyInstancesByHostedZoneInputSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

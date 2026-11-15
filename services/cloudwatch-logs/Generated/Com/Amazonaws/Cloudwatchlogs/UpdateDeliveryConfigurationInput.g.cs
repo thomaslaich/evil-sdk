@@ -9,12 +9,12 @@ namespace Com.Amazonaws.Cloudwatchlogs;
 /// <summary>
 /// Represents the Smithy structure com.amazonaws.cloudwatchlogs#UpdateDeliveryConfigurationInput.
 /// </summary>
-/// <param name="Id">
-/// The ID of the delivery to be updated by this request.
-/// </param>
 /// <param name="FieldDelimiter">
 /// The field delimiter to use between record fields when the final output format of a delivery is in
 /// <c>Plain</c>, <c>W3C</c>, or <c>Raw</c> format.
+/// </param>
+/// <param name="Id">
+/// The ID of the delivery to be updated by this request.
 /// </param>
 /// <param name="RecordFields">
 /// The list of record fields to be delivered to the destination, in order. If the delivery's log source
@@ -25,8 +25,8 @@ namespace Com.Amazonaws.Cloudwatchlogs;
 /// an S3 bucket.
 /// </param>
 public sealed record class UpdateDeliveryConfigurationInput(
-    string Id,
     string? FieldDelimiter = null,
+    string? Id = null,
     IReadOnlyList<string>? RecordFields = null,
     global::Com.Amazonaws.Cloudwatchlogs.S3DeliveryConfiguration? S3DeliveryConfiguration = null
 );

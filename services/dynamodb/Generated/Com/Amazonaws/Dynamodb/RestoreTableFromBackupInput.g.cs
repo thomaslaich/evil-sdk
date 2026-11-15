@@ -12,9 +12,6 @@ namespace Com.Amazonaws.Dynamodb;
 /// <param name="BackupArn">
 /// The Amazon Resource Name (ARN) associated with the backup.
 /// </param>
-/// <param name="TargetTableName">
-/// The name of the new table to which the backup must be restored.
-/// </param>
 /// <param name="BillingModeOverride">
 /// The billing mode of the restored table.
 /// </param>
@@ -32,19 +29,22 @@ namespace Com.Amazonaws.Dynamodb;
 /// <param name="SSESpecificationOverride">
 /// The new server-side encryption settings for the restored table.
 /// </param>
+/// <param name="TargetTableName">
+/// The name of the new table to which the backup must be restored.
+/// </param>
 /// <param name="VectorIndexOverride">
 /// The vector indexes for the restored table. If not specified, all vector indexes from the backup are
 /// restored. The indexes provided must match existing vector indexes from the backup. You can choose to
 /// exclude some or all of the vector indexes at the time of restore.
 /// </param>
 public sealed record class RestoreTableFromBackupInput(
-    string BackupArn,
-    string TargetTableName,
+    string? BackupArn = null,
     BillingMode? BillingModeOverride = null,
     IReadOnlyList<GlobalSecondaryIndex>? GlobalSecondaryIndexOverride = null,
     IReadOnlyList<LocalSecondaryIndex>? LocalSecondaryIndexOverride = null,
     OnDemandThroughput? OnDemandThroughputOverride = null,
     ProvisionedThroughput? ProvisionedThroughputOverride = null,
     SSESpecification? SSESpecificationOverride = null,
+    string? TargetTableName = null,
     IReadOnlyList<VectorIndex>? VectorIndexOverride = null
 );

@@ -9,16 +9,6 @@ namespace Com.Amazonaws.Iam;
 /// <summary>
 /// Represents the Smithy structure com.amazonaws.iam#CreateUserInput.
 /// </summary>
-/// <param name="UserName">
-/// <para>
-/// The name of the user to create.
-/// </para>
-/// <para>
-/// IAM user, group, role, and policy names must be unique within the account. Names are not
-/// distinguished by case. For example, you cannot create resources named both "MyResource" and
-/// "myresource".
-/// </para>
-/// </param>
 /// <param name="Path">
 /// <para>
 /// The path for the user name. For more information about paths, see
@@ -65,9 +55,19 @@ namespace Com.Amazonaws.Iam;
 /// then the entire request fails and the resource is not created.
 /// </para>
 /// </param>
+/// <param name="UserName">
+/// <para>
+/// The name of the user to create.
+/// </para>
+/// <para>
+/// IAM user, group, role, and policy names must be unique within the account. Names are not
+/// distinguished by case. For example, you cannot create resources named both "MyResource" and
+/// "myresource".
+/// </para>
+/// </param>
 public sealed record class CreateUserInput(
-    string UserName,
     string? Path = null,
     string? PermissionsBoundary = null,
-    IReadOnlyList<global::Com.Amazonaws.Iam.Tag>? Tags = null
+    IReadOnlyList<global::Com.Amazonaws.Iam.Tag>? Tags = null,
+    string? UserName = null
 );

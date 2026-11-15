@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Lambda.Schemas;
 
 public static partial class PutFunctionRecursionConfigInputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? FunctionName { get; set; }
         public global::Com.Amazonaws.Lambda.RecursiveLoop? RecursiveLoop { get; set; }
@@ -28,7 +28,6 @@ public static partial class PutFunctionRecursionConfigInputSchema
                 new(
                     "FunctionName",
                     Target0,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
@@ -51,24 +50,9 @@ public static partial class PutFunctionRecursionConfigInputSchema
                                 "^(arn:(aws[a-zA-Z-]*)?:lambda:)?((eusc-)?[a-z]{2}((-gov)|(-iso([a-z]?)))?-[a-z]+-\\d{1}:)?(\\d{12}:)?(function:)?([a-zA-Z0-9-_]+)$"
                             )
                         ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
                     ]
                 ),
-                new(
-                    "RecursiveLoop",
-                    Target1,
-                    isRequired: true,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
-                    ]
-                ),
+                new("RecursiveLoop", Target1),
             ],
             [
                 new Trait(
@@ -95,8 +79,8 @@ public static partial class PutFunctionRecursionConfigInputSchema
             Builder builder
         ) =>
             new global::Com.Amazonaws.Lambda.PutFunctionRecursionConfigInput(
-                builder.FunctionName ?? throw new MissingRequiredMemberException("FunctionName"),
-                builder.RecursiveLoop ?? throw new MissingRequiredMemberException("RecursiveLoop")
+                builder.FunctionName,
+                builder.RecursiveLoop
             );
 
         public override void SerializeMembers<TSerializer>(
@@ -112,10 +96,17 @@ public static partial class PutFunctionRecursionConfigInputSchema
             {
                 serializer.WriteNull(0);
             }
-            serializer.WriteStringEnum(1, value.RecursiveLoop.Value);
+            if (value.RecursiveLoop is { } value1)
+            {
+                serializer.WriteStringEnum(1, value1.Value);
+            }
+            else
+            {
+                serializer.WriteNull(1);
+            }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

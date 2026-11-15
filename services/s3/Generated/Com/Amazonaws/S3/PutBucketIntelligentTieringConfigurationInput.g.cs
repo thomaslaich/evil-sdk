@@ -10,20 +10,20 @@ namespace Com.Amazonaws.S3;
 /// <param name="Bucket">
 /// The name of the Amazon S3 bucket whose configuration you want to modify or retrieve.
 /// </param>
+/// <param name="ExpectedBucketOwner">
+/// The account ID of the expected bucket owner. If the account ID that you provide does not match the
+/// actual owner of the bucket, the request fails with the HTTP status code <c>403 Forbidden</c> (access
+/// denied).
+/// </param>
 /// <param name="Id">
 /// The ID used to identify the S3 Intelligent-Tiering configuration.
 /// </param>
 /// <param name="IntelligentTieringConfiguration">
 /// Container for S3 Intelligent-Tiering configuration.
 /// </param>
-/// <param name="ExpectedBucketOwner">
-/// The account ID of the expected bucket owner. If the account ID that you provide does not match the
-/// actual owner of the bucket, the request fails with the HTTP status code <c>403 Forbidden</c> (access
-/// denied).
-/// </param>
 public sealed record class PutBucketIntelligentTieringConfigurationInput(
-    string Bucket,
-    string Id,
-    global::Com.Amazonaws.S3.IntelligentTieringConfiguration IntelligentTieringConfiguration,
-    string? ExpectedBucketOwner = null
+    string? Bucket = null,
+    string? ExpectedBucketOwner = null,
+    string? Id = null,
+    global::Com.Amazonaws.S3.IntelligentTieringConfiguration? IntelligentTieringConfiguration = null
 );

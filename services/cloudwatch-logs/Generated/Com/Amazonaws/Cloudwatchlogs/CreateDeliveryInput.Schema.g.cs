@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Cloudwatchlogs.Schemas;
 
 public static partial class CreateDeliveryInputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? DeliverySourceName { get; set; }
         public string? DeliveryDestinationArn { get; set; }
@@ -32,7 +32,6 @@ public static partial class CreateDeliveryInputSchema
                 new(
                     "deliverySourceName",
                     Target0,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
@@ -46,24 +45,9 @@ public static partial class CreateDeliveryInputSchema
                             )
                         ),
                         new Trait(ShapeId.Parse("smithy.api#pattern"), Document.From("^[\\w-]*$")),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
                     ]
                 ),
-                new(
-                    "deliveryDestinationArn",
-                    Target1,
-                    isRequired: true,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
-                    ]
-                ),
+                new("deliveryDestinationArn", Target1),
                 new("recordFields", Target2),
                 new(
                     "fieldDelimiter",
@@ -130,10 +114,8 @@ public static partial class CreateDeliveryInputSchema
             Builder builder
         ) =>
             new global::Com.Amazonaws.Cloudwatchlogs.CreateDeliveryInput(
-                builder.DeliveryDestinationArn
-                    ?? throw new MissingRequiredMemberException("deliveryDestinationArn"),
-                builder.DeliverySourceName
-                    ?? throw new MissingRequiredMemberException("deliverySourceName"),
+                builder.DeliveryDestinationArn,
+                builder.DeliverySourceName,
                 builder.FieldDelimiter,
                 builder.RecordFields,
                 builder.S3DeliveryConfiguration,
@@ -195,7 +177,7 @@ public static partial class CreateDeliveryInputSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

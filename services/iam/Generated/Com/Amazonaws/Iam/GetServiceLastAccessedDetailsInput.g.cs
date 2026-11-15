@@ -33,7 +33,7 @@ namespace Com.Amazonaws.Iam;
 /// </para>
 /// </param>
 public sealed record class GetServiceLastAccessedDetailsInput(
-    string JobId,
+    string? JobId = null,
     string? Marker = null,
     int? MaxItems = null
 );

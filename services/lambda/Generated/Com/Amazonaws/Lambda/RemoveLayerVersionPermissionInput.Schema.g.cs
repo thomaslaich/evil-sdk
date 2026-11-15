@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Lambda.Schemas;
 
 public static partial class RemoveLayerVersionPermissionInputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? LayerName { get; set; }
         public long? VersionNumber { get; set; }
@@ -30,7 +30,6 @@ public static partial class RemoveLayerVersionPermissionInputSchema
                 new(
                     "LayerName",
                     Target0,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
@@ -53,16 +52,11 @@ public static partial class RemoveLayerVersionPermissionInputSchema
                                 "^(arn:(aws[a-zA-Z-]*)?:lambda:(eusc-)?[a-z]{2}((-gov)|(-iso([a-z]?)))?-[a-z]+-\\d{1}:\\d{12}:layer:[a-zA-Z0-9-_]+)|[a-zA-Z0-9-_]+$"
                             )
                         ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
                     ]
                 ),
                 new(
                     "VersionNumber",
                     Target1,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
@@ -74,16 +68,11 @@ public static partial class RemoveLayerVersionPermissionInputSchema
                             ShapeId.Parse("smithy.api#httpLabel"),
                             Document.From(new Dictionary<string, Document> { })
                         ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
                     ]
                 ),
                 new(
                     "StatementId",
                     Target2,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
@@ -103,10 +92,6 @@ public static partial class RemoveLayerVersionPermissionInputSchema
                         new Trait(
                             ShapeId.Parse("smithy.api#pattern"),
                             Document.From("^([a-zA-Z0-9-_]+)$")
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
                         ),
                     ]
                 ),
@@ -156,10 +141,10 @@ public static partial class RemoveLayerVersionPermissionInputSchema
             Builder builder
         ) =>
             new global::Com.Amazonaws.Lambda.RemoveLayerVersionPermissionInput(
-                builder.LayerName ?? throw new MissingRequiredMemberException("LayerName"),
-                builder.StatementId ?? throw new MissingRequiredMemberException("StatementId"),
+                builder.LayerName,
                 builder.RevisionId,
-                builder.VersionNumber.GetValueOrDefault()
+                builder.StatementId,
+                builder.VersionNumber
             );
 
         public override void SerializeMembers<TSerializer>(
@@ -201,7 +186,7 @@ public static partial class RemoveLayerVersionPermissionInputSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

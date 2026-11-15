@@ -10,4 +10,4 @@ namespace Com.Amazonaws.Dynamodb;
 /// <param name="ImportArn">
 /// The Amazon Resource Name (ARN) associated with the table you're importing to.
 /// </param>
-public sealed record class DescribeImportInput(string ImportArn);
+public sealed record class DescribeImportInput(string? ImportArn = null);

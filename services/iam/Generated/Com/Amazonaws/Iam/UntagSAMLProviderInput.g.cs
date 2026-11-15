@@ -24,6 +24,6 @@ namespace Com.Amazonaws.Iam;
 /// specified SAML identity provider.
 /// </param>
 public sealed record class UntagSAMLProviderInput(
-    string SAMLProviderArn,
-    IReadOnlyList<string> TagKeys
+    string? SAMLProviderArn = null,
+    IReadOnlyList<string>? TagKeys = null
 );

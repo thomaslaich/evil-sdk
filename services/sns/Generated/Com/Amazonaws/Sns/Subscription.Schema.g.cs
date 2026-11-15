@@ -9,7 +9,7 @@ namespace Com.Amazonaws.Sns.Schemas;
 
 public static partial class SubscriptionSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? SubscriptionArn { get; set; }
         public string? Owner { get; set; }
@@ -113,7 +113,7 @@ public static partial class SubscriptionSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

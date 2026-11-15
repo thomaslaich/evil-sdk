@@ -29,6 +29,6 @@ namespace Com.Amazonaws.Iam;
 /// </para>
 /// </param>
 public sealed record class DeleteServiceSpecificCredentialInput(
-    string ServiceSpecificCredentialId,
+    string? ServiceSpecificCredentialId = null,
     string? UserName = null
 );

@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Iam.Schemas;
 
 public static partial class GetMFADeviceInputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? SerialNumber { get; set; }
         public string? UserName { get; set; }
@@ -28,7 +28,6 @@ public static partial class GetMFADeviceInputSchema
                 new(
                     "SerialNumber",
                     Target0,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
@@ -44,10 +43,6 @@ public static partial class GetMFADeviceInputSchema
                         new Trait(
                             ShapeId.Parse("smithy.api#pattern"),
                             Document.From("^[\\w+=/:,.@-]+$")
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
                         ),
                     ]
                 ),
@@ -97,10 +92,7 @@ public static partial class GetMFADeviceInputSchema
         public override Builder CreateTypedBuilder() => new();
 
         public override global::Com.Amazonaws.Iam.GetMFADeviceInput Build(Builder builder) =>
-            new global::Com.Amazonaws.Iam.GetMFADeviceInput(
-                builder.SerialNumber ?? throw new MissingRequiredMemberException("SerialNumber"),
-                builder.UserName
-            );
+            new global::Com.Amazonaws.Iam.GetMFADeviceInput(builder.SerialNumber, builder.UserName);
 
         public override void SerializeMembers<TSerializer>(
             global::Com.Amazonaws.Iam.GetMFADeviceInput value,
@@ -125,7 +117,7 @@ public static partial class GetMFADeviceInputSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

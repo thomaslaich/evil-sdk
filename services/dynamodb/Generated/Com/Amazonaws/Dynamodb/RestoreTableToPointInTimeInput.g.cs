@@ -10,9 +10,6 @@ namespace Com.Amazonaws.Dynamodb;
 /// <summary>
 /// Represents the Smithy structure com.amazonaws.dynamodb#RestoreTableToPointInTimeInput.
 /// </summary>
-/// <param name="TargetTableName">
-/// The name of the new table to which it must be restored to.
-/// </param>
 /// <param name="BillingModeOverride">
 /// The billing mode of the restored table.
 /// </param>
@@ -47,6 +44,9 @@ namespace Com.Amazonaws.Dynamodb;
 /// <param name="SourceTableName">
 /// Name of the source table that is being restored.
 /// </param>
+/// <param name="TargetTableName">
+/// The name of the new table to which it must be restored to.
+/// </param>
 /// <param name="UseLatestRestorableTime">
 /// Restore the table to the latest possible time. <c>LatestRestorableDateTime</c> is typically 5
 /// minutes before the current time.
@@ -57,7 +57,6 @@ namespace Com.Amazonaws.Dynamodb;
 /// You can choose to exclude some or all of the vector indexes at the time of restore.
 /// </param>
 public sealed record class RestoreTableToPointInTimeInput(
-    string TargetTableName,
     BillingMode? BillingModeOverride = null,
     IReadOnlyList<GlobalSecondaryIndex>? GlobalSecondaryIndexOverride = null,
     IReadOnlyList<LocalSecondaryIndex>? LocalSecondaryIndexOverride = null,
@@ -67,6 +66,7 @@ public sealed record class RestoreTableToPointInTimeInput(
     SSESpecification? SSESpecificationOverride = null,
     string? SourceTableArn = null,
     string? SourceTableName = null,
+    string? TargetTableName = null,
     bool? UseLatestRestorableTime = null,
     IReadOnlyList<VectorIndex>? VectorIndexOverride = null
 );

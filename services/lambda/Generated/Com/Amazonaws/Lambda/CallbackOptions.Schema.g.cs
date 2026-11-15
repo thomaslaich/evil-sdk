@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Lambda.Schemas;
 
 public static partial class CallbackOptionsSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public int? TimeoutSeconds { get; set; }
         public int? HeartbeatTimeoutSeconds { get; set; }
@@ -118,7 +118,7 @@ public static partial class CallbackOptionsSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

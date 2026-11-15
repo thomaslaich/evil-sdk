@@ -40,6 +40,6 @@ namespace Com.Amazonaws.Lambda;
 /// </para>
 /// </param>
 public sealed record class PutFunctionCodeSigningConfigInput(
-    string CodeSigningConfigArn,
-    string FunctionName
+    string? CodeSigningConfigArn = null,
+    string? FunctionName = null
 );

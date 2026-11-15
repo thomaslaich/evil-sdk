@@ -12,15 +12,15 @@ namespace Com.Amazonaws.Secretsmanager;
 /// <param name="AddReplicaRegions">
 /// A list of Regions in which to replicate the secret.
 /// </param>
-/// <param name="SecretId">
-/// The ARN or name of the secret to replicate.
-/// </param>
 /// <param name="ForceOverwriteReplicaSecret">
 /// Specifies whether to overwrite a secret with the same name in the destination Region. By default,
 /// secrets aren't overwritten.
 /// </param>
+/// <param name="SecretId">
+/// The ARN or name of the secret to replicate.
+/// </param>
 public sealed record class ReplicateSecretToRegionsInput(
-    IReadOnlyList<ReplicaRegionType> AddReplicaRegions,
-    string SecretId,
-    bool? ForceOverwriteReplicaSecret = null
+    IReadOnlyList<ReplicaRegionType>? AddReplicaRegions = null,
+    bool? ForceOverwriteReplicaSecret = null,
+    string? SecretId = null
 );

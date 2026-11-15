@@ -11,7 +11,7 @@ namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class CreateMultipartUploadInputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public global::Com.Amazonaws.S3.ObjectCannedACL? ACL { get; set; }
         public string? Bucket { get; set; }
@@ -72,15 +72,10 @@ public static partial class CreateMultipartUploadInputSchema
                 new(
                     "Bucket",
                     Target1,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
                             ShapeId.Parse("smithy.api#httpLabel"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
                             Document.From(new Dictionary<string, Document> { })
                         ),
                         new Trait(
@@ -204,7 +199,6 @@ public static partial class CreateMultipartUploadInputSchema
                 new(
                     "Key",
                     Target12,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
@@ -216,10 +210,6 @@ public static partial class CreateMultipartUploadInputSchema
                             Document.From(
                                 new Dictionary<string, Document> { { "min", Document.From(1m) } }
                             )
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
                         ),
                         new Trait(
                             ShapeId.Parse("smithy.rules#contextParam"),
@@ -630,9 +620,8 @@ public static partial class CreateMultipartUploadInputSchema
             Builder builder
         ) =>
             new global::Com.Amazonaws.S3.CreateMultipartUploadInput(
-                builder.Bucket ?? throw new MissingRequiredMemberException("Bucket"),
-                builder.Key ?? throw new MissingRequiredMemberException("Key"),
                 builder.ACL,
+                builder.Bucket,
                 builder.BucketKeyEnabled,
                 builder.CacheControl,
                 builder.ChecksumAlgorithm,
@@ -647,6 +636,7 @@ public static partial class CreateMultipartUploadInputSchema
                 builder.GrantRead,
                 builder.GrantReadACP,
                 builder.GrantWriteACP,
+                builder.Key,
                 builder.Metadata,
                 builder.ObjectLockEventHold,
                 builder.ObjectLockEventHoldDurationDays,
@@ -945,7 +935,7 @@ public static partial class CreateMultipartUploadInputSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

@@ -10,16 +10,16 @@ namespace Com.Amazonaws.S3;
 /// <param name="Bucket">
 /// The name of the bucket from which an analytics configuration is deleted.
 /// </param>
-/// <param name="Id">
-/// The ID that identifies the analytics configuration.
-/// </param>
 /// <param name="ExpectedBucketOwner">
 /// The account ID of the expected bucket owner. If the account ID that you provide does not match the
 /// actual owner of the bucket, the request fails with the HTTP status code <c>403 Forbidden</c> (access
 /// denied).
 /// </param>
+/// <param name="Id">
+/// The ID that identifies the analytics configuration.
+/// </param>
 public sealed record class DeleteBucketAnalyticsConfigurationInput(
-    string Bucket,
-    string Id,
-    string? ExpectedBucketOwner = null
+    string? Bucket = null,
+    string? ExpectedBucketOwner = null,
+    string? Id = null
 );

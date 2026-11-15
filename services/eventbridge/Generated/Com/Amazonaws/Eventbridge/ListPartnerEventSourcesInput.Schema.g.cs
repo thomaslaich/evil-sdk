@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Eventbridge.Schemas;
 
 public static partial class ListPartnerEventSourcesInputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? NamePrefix { get; set; }
         public string? NextToken { get; set; }
@@ -29,7 +29,6 @@ public static partial class ListPartnerEventSourcesInputSchema
                 new(
                     "NamePrefix",
                     Target0,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
@@ -47,10 +46,6 @@ public static partial class ListPartnerEventSourcesInputSchema
                             Document.From(
                                 "^aws\\.partner/[\\.\\-_A-Za-z0-9]+/[/\\.\\-_A-Za-z0-9]*$"
                             )
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
                         ),
                     ]
                 ),
@@ -122,8 +117,8 @@ public static partial class ListPartnerEventSourcesInputSchema
             Builder builder
         ) =>
             new global::Com.Amazonaws.Eventbridge.ListPartnerEventSourcesInput(
-                builder.NamePrefix ?? throw new MissingRequiredMemberException("NamePrefix"),
                 builder.Limit,
+                builder.NamePrefix,
                 builder.NextToken
             );
 
@@ -158,7 +153,7 @@ public static partial class ListPartnerEventSourcesInputSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

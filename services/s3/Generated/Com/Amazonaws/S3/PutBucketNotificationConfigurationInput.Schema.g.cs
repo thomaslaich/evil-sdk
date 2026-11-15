@@ -10,7 +10,7 @@ namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class PutBucketNotificationConfigurationInputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? Bucket { get; set; }
         public global::Com.Amazonaws.S3.NotificationConfiguration? NotificationConfiguration { get; set; }
@@ -30,15 +30,10 @@ public static partial class PutBucketNotificationConfigurationInputSchema
                 new(
                     "Bucket",
                     Target0,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
                             ShapeId.Parse("smithy.api#httpLabel"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
                             Document.From(new Dictionary<string, Document> { })
                         ),
                         new Trait(
@@ -55,15 +50,10 @@ public static partial class PutBucketNotificationConfigurationInputSchema
                 new(
                     "NotificationConfiguration",
                     Target1,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
                             ShapeId.Parse("smithy.api#httpPayload"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
                             Document.From(new Dictionary<string, Document> { })
                         ),
                         new Trait(
@@ -134,10 +124,9 @@ public static partial class PutBucketNotificationConfigurationInputSchema
             Builder builder
         ) =>
             new global::Com.Amazonaws.S3.PutBucketNotificationConfigurationInput(
-                builder.Bucket ?? throw new MissingRequiredMemberException("Bucket"),
-                builder.NotificationConfiguration
-                    ?? throw new MissingRequiredMemberException("NotificationConfiguration"),
+                builder.Bucket,
                 builder.ExpectedBucketOwner,
+                builder.NotificationConfiguration,
                 builder.SkipDestinationValidation
             );
 
@@ -180,7 +169,7 @@ public static partial class PutBucketNotificationConfigurationInputSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

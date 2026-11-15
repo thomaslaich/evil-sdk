@@ -10,7 +10,7 @@ namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class GetObjectAnnotationInputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? Bucket { get; set; }
         public string? Key { get; set; }
@@ -33,15 +33,10 @@ public static partial class GetObjectAnnotationInputSchema
                 new(
                     "Bucket",
                     Target0,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
                             ShapeId.Parse("smithy.api#httpLabel"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
                             Document.From(new Dictionary<string, Document> { })
                         ),
                         new Trait(
@@ -58,7 +53,6 @@ public static partial class GetObjectAnnotationInputSchema
                 new(
                     "Key",
                     Target1,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
@@ -70,10 +64,6 @@ public static partial class GetObjectAnnotationInputSchema
                             Document.From(
                                 new Dictionary<string, Document> { { "min", Document.From(1m) } }
                             )
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
                         ),
                         new Trait(
                             ShapeId.Parse("smithy.rules#contextParam"),
@@ -89,16 +79,11 @@ public static partial class GetObjectAnnotationInputSchema
                 new(
                     "AnnotationName",
                     Target2,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
                             ShapeId.Parse("smithy.api#httpQuery"),
                             Document.From("annotationName")
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
                         ),
                     ]
                 ),
@@ -188,12 +173,11 @@ public static partial class GetObjectAnnotationInputSchema
 
         public override global::Com.Amazonaws.S3.GetObjectAnnotationInput Build(Builder builder) =>
             new global::Com.Amazonaws.S3.GetObjectAnnotationInput(
-                builder.AnnotationName
-                    ?? throw new MissingRequiredMemberException("AnnotationName"),
-                builder.Bucket ?? throw new MissingRequiredMemberException("Bucket"),
-                builder.Key ?? throw new MissingRequiredMemberException("Key"),
+                builder.AnnotationName,
+                builder.Bucket,
                 builder.ChecksumMode,
                 builder.ExpectedBucketOwner,
+                builder.Key,
                 builder.RequestPayer,
                 builder.VersionId
             );
@@ -261,7 +245,7 @@ public static partial class GetObjectAnnotationInputSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

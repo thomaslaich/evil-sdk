@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Cloudwatchlogs.Schemas;
 
 public static partial class PutLogGroupDeletionProtectionInputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? LogGroupIdentifier { get; set; }
         public bool? DeletionProtectionEnabled { get; set; }
@@ -31,7 +31,6 @@ public static partial class PutLogGroupDeletionProtectionInputSchema
                 new(
                     "logGroupIdentifier",
                     Target0,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
@@ -48,24 +47,15 @@ public static partial class PutLogGroupDeletionProtectionInputSchema
                             ShapeId.Parse("smithy.api#pattern"),
                             Document.From("^[\\w#+=/:,.@-]*$")
                         ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
                     ]
                 ),
                 new(
                     "deletionProtectionEnabled",
                     Target1,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
                             ShapeId.Parse("smithy.api#box"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
                             Document.From(new Dictionary<string, Document> { })
                         ),
                     ]
@@ -98,9 +88,8 @@ public static partial class PutLogGroupDeletionProtectionInputSchema
             Builder builder
         ) =>
             new global::Com.Amazonaws.Cloudwatchlogs.PutLogGroupDeletionProtectionInput(
-                builder.DeletionProtectionEnabled.GetValueOrDefault(),
+                builder.DeletionProtectionEnabled,
                 builder.LogGroupIdentifier
-                    ?? throw new MissingRequiredMemberException("logGroupIdentifier")
             );
 
         public override void SerializeMembers<TSerializer>(
@@ -116,10 +105,17 @@ public static partial class PutLogGroupDeletionProtectionInputSchema
             {
                 serializer.WriteNull(0);
             }
-            serializer.WriteBoolean(1, value.DeletionProtectionEnabled);
+            if (value.DeletionProtectionEnabled is { } value1)
+            {
+                serializer.WriteBoolean(1, value1);
+            }
+            else
+            {
+                serializer.WriteNull(1);
+            }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

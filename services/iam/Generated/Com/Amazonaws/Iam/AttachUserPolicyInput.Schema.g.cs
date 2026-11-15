@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Iam.Schemas;
 
 public static partial class AttachUserPolicyInputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? UserName { get; set; }
         public string? PolicyArn { get; set; }
@@ -28,7 +28,6 @@ public static partial class AttachUserPolicyInputSchema
                 new(
                     "UserName",
                     Target0,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
@@ -45,16 +44,11 @@ public static partial class AttachUserPolicyInputSchema
                             ShapeId.Parse("smithy.api#pattern"),
                             Document.From("^[\\w+=,.@-]+$")
                         ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
                     ]
                 ),
                 new(
                     "PolicyArn",
                     Target1,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
@@ -66,10 +60,6 @@ public static partial class AttachUserPolicyInputSchema
                                     { "max", Document.From(2048m) },
                                 }
                             )
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
                         ),
                     ]
                 ),
@@ -99,8 +89,8 @@ public static partial class AttachUserPolicyInputSchema
 
         public override global::Com.Amazonaws.Iam.AttachUserPolicyInput Build(Builder builder) =>
             new global::Com.Amazonaws.Iam.AttachUserPolicyInput(
-                builder.PolicyArn ?? throw new MissingRequiredMemberException("PolicyArn"),
-                builder.UserName ?? throw new MissingRequiredMemberException("UserName")
+                builder.PolicyArn,
+                builder.UserName
             );
 
         public override void SerializeMembers<TSerializer>(
@@ -126,7 +116,7 @@ public static partial class AttachUserPolicyInputSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

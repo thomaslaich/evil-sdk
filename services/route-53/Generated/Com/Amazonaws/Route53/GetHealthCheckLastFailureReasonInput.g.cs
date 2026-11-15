@@ -19,4 +19,4 @@ namespace Com.Amazonaws.Route53;
 /// <c>GetHealthCheckLastFailureReason</c> for a calculated health check.
 /// </para>
 /// </param>
-public sealed record class GetHealthCheckLastFailureReasonInput(string HealthCheckId);
+public sealed record class GetHealthCheckLastFailureReasonInput(string? HealthCheckId = null);

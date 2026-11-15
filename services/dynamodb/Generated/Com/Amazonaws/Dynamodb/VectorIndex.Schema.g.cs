@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Dynamodb.Schemas;
 
 public static partial class VectorIndexSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? IndexName { get; set; }
         public global::Com.Amazonaws.Dynamodb.VectorAttributeDefinition? VectorAttribute { get; set; }
@@ -196,7 +196,7 @@ public static partial class VectorIndexSchema
             serializer.WriteStringEnum(5, value.DistanceFunction.Value);
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

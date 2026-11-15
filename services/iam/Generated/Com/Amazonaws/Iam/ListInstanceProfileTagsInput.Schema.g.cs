@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Iam.Schemas;
 
 public static partial class ListInstanceProfileTagsInputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? InstanceProfileName { get; set; }
         public string? Marker { get; set; }
@@ -29,7 +29,6 @@ public static partial class ListInstanceProfileTagsInputSchema
                 new(
                     "InstanceProfileName",
                     Target0,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
@@ -45,10 +44,6 @@ public static partial class ListInstanceProfileTagsInputSchema
                         new Trait(
                             ShapeId.Parse("smithy.api#pattern"),
                             Document.From("^[\\w+=,.@-]+$")
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
                         ),
                     ]
                 ),
@@ -124,8 +119,7 @@ public static partial class ListInstanceProfileTagsInputSchema
             Builder builder
         ) =>
             new global::Com.Amazonaws.Iam.ListInstanceProfileTagsInput(
-                builder.InstanceProfileName
-                    ?? throw new MissingRequiredMemberException("InstanceProfileName"),
+                builder.InstanceProfileName,
                 builder.Marker,
                 builder.MaxItems
             );
@@ -161,7 +155,7 @@ public static partial class ListInstanceProfileTagsInputSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

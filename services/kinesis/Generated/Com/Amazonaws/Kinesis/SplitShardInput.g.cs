@@ -28,8 +28,8 @@ namespace Com.Amazonaws.Kinesis;
 /// The name of the stream for the shard split.
 /// </param>
 public sealed record class SplitShardInput(
-    string NewStartingHashKey,
-    string ShardToSplit,
+    string? NewStartingHashKey = null,
+    string? ShardToSplit = null,
     string? StreamARN = null,
     string? StreamId = null,
     string? StreamName = null

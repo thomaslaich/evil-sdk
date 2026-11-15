@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Sts.Schemas;
 
 public static partial class GetFederationTokenInputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? Name { get; set; }
         public string? Policy { get; set; }
@@ -32,7 +32,6 @@ public static partial class GetFederationTokenInputSchema
                 new(
                     "Name",
                     Target0,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
@@ -48,10 +47,6 @@ public static partial class GetFederationTokenInputSchema
                         new Trait(
                             ShapeId.Parse("smithy.api#pattern"),
                             Document.From("^[\\w+=,.@-]*$")
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
                         ),
                     ]
                 ),
@@ -160,9 +155,9 @@ public static partial class GetFederationTokenInputSchema
 
         public override global::Com.Amazonaws.Sts.GetFederationTokenInput Build(Builder builder) =>
             new global::Com.Amazonaws.Sts.GetFederationTokenInput(
-                builder.Name ?? throw new MissingRequiredMemberException("Name"),
                 builder.DurationSeconds,
                 builder.MinimumSessionTokenSize,
+                builder.Name,
                 builder.Policy,
                 builder.PolicyArns,
                 builder.Tags
@@ -223,7 +218,7 @@ public static partial class GetFederationTokenInputSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

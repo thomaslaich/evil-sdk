@@ -9,17 +9,6 @@ namespace Com.Amazonaws.Iam;
 /// <summary>
 /// Represents the Smithy structure com.amazonaws.iam#CreateVirtualMFADeviceInput.
 /// </summary>
-/// <param name="VirtualMFADeviceName">
-/// <para>
-/// The name of the virtual MFA device, which must be unique. Use with path to uniquely identify a
-/// virtual MFA device.
-/// </para>
-/// <para>
-/// This parameter allows (through its <see href="http://wikipedia.org/wiki/regex">regex pattern</see>)
-/// a string of characters consisting of upper and lowercase alphanumeric characters with no spaces. You
-/// can also include any of the following characters: _+=,.@-
-/// </para>
-/// </param>
 /// <param name="Path">
 /// <para>
 /// The path for the virtual MFA device. For more information about paths, see
@@ -49,8 +38,19 @@ namespace Com.Amazonaws.Iam;
 /// then the entire request fails and the resource is not created.
 /// </para>
 /// </param>
+/// <param name="VirtualMFADeviceName">
+/// <para>
+/// The name of the virtual MFA device, which must be unique. Use with path to uniquely identify a
+/// virtual MFA device.
+/// </para>
+/// <para>
+/// This parameter allows (through its <see href="http://wikipedia.org/wiki/regex">regex pattern</see>)
+/// a string of characters consisting of upper and lowercase alphanumeric characters with no spaces. You
+/// can also include any of the following characters: _+=,.@-
+/// </para>
+/// </param>
 public sealed record class CreateVirtualMFADeviceInput(
-    string VirtualMFADeviceName,
     string? Path = null,
-    IReadOnlyList<global::Com.Amazonaws.Iam.Tag>? Tags = null
+    IReadOnlyList<global::Com.Amazonaws.Iam.Tag>? Tags = null,
+    string? VirtualMFADeviceName = null
 );

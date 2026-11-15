@@ -9,9 +9,6 @@ namespace Com.Amazonaws.Dynamodb;
 /// <summary>
 /// Represents the Smithy structure com.amazonaws.dynamodb#UpdateGlobalTableSettingsInput.
 /// </summary>
-/// <param name="GlobalTableName">
-/// The name of the global table
-/// </param>
 /// <param name="GlobalTableBillingMode">
 /// <para>
 /// The billing mode of the global table. If <c>GlobalTableBillingMode</c> is not specified, the global
@@ -39,6 +36,9 @@ namespace Com.Amazonaws.Dynamodb;
 /// <param name="GlobalTableGlobalSecondaryIndexSettingsUpdate">
 /// Represents the settings of a global secondary index for a global table that will be modified.
 /// </param>
+/// <param name="GlobalTableName">
+/// The name of the global table
+/// </param>
 /// <param name="GlobalTableProvisionedWriteCapacityAutoScalingSettingsUpdate">
 /// Auto scaling settings for managing provisioned write capacity for the global table.
 /// </param>
@@ -50,10 +50,10 @@ namespace Com.Amazonaws.Dynamodb;
 /// Represents the settings for a global table in a Region that will be modified.
 /// </param>
 public sealed record class UpdateGlobalTableSettingsInput(
-    string GlobalTableName,
     BillingMode? GlobalTableBillingMode = null,
     IReadOnlyList<global::Com.Amazonaws.Dynamodb.GlobalTableGlobalSecondaryIndexSettingsUpdate>? GlobalTableGlobalSecondaryIndexSettingsUpdate =
         null,
+    string? GlobalTableName = null,
     AutoScalingSettingsUpdate? GlobalTableProvisionedWriteCapacityAutoScalingSettingsUpdate = null,
     long? GlobalTableProvisionedWriteCapacityUnits = null,
     IReadOnlyList<global::Com.Amazonaws.Dynamodb.ReplicaSettingsUpdate>? ReplicaSettingsUpdate =

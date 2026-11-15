@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Cloudwatchlogs.Schemas;
 
 public static partial class AssociateKmsKeyInputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? LogGroupName { get; set; }
         public string? KmsKeyId { get; set; }
@@ -50,7 +50,6 @@ public static partial class AssociateKmsKeyInputSchema
                 new(
                     "kmsKeyId",
                     Target1,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
@@ -62,10 +61,6 @@ public static partial class AssociateKmsKeyInputSchema
                                     { "max", Document.From(256m) },
                                 }
                             )
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
                         ),
                     ]
                 ),
@@ -122,7 +117,7 @@ public static partial class AssociateKmsKeyInputSchema
             Builder builder
         ) =>
             new global::Com.Amazonaws.Cloudwatchlogs.AssociateKmsKeyInput(
-                builder.KmsKeyId ?? throw new MissingRequiredMemberException("kmsKeyId"),
+                builder.KmsKeyId,
                 builder.LogGroupName,
                 builder.ResourceIdentifier
             );
@@ -158,7 +153,7 @@ public static partial class AssociateKmsKeyInputSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

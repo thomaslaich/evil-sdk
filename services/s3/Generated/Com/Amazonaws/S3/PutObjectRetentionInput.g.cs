@@ -24,9 +24,6 @@ namespace Com.Amazonaws.S3;
 /// access points</see> in the <i>Amazon S3 User Guide</i>.
 /// </para>
 /// </param>
-/// <param name="Key">
-/// The key name for the object that you want to apply this Object Retention configuration to.
-/// </param>
 /// <param name="BypassGovernanceRetention">
 /// Indicates whether this action should bypass Governance-mode restrictions.
 /// </param>
@@ -59,6 +56,9 @@ namespace Com.Amazonaws.S3;
 /// actual owner of the bucket, the request fails with the HTTP status code <c>403 Forbidden</c> (access
 /// denied).
 /// </param>
+/// <param name="Key">
+/// The key name for the object that you want to apply this Object Retention configuration to.
+/// </param>
 /// <param name="Retention">
 /// The container element for the Object Retention configuration.
 /// </param>
@@ -66,12 +66,12 @@ namespace Com.Amazonaws.S3;
 /// The version ID for the object that you want to apply this Object Retention configuration to.
 /// </param>
 public sealed record class PutObjectRetentionInput(
-    string Bucket,
-    string Key,
+    string? Bucket = null,
     bool? BypassGovernanceRetention = null,
     global::Com.Amazonaws.S3.ChecksumAlgorithm? ChecksumAlgorithm = null,
     string? ContentMD5 = null,
     string? ExpectedBucketOwner = null,
+    string? Key = null,
     global::Com.Amazonaws.S3.RequestPayer? RequestPayer = null,
     ObjectLockRetention? Retention = null,
     string? VersionId = null

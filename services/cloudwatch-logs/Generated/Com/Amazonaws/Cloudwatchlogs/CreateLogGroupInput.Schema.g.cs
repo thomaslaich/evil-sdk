@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Cloudwatchlogs.Schemas;
 
 public static partial class CreateLogGroupInputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? LogGroupName { get; set; }
         public string? KmsKeyId { get; set; }
@@ -31,7 +31,6 @@ public static partial class CreateLogGroupInputSchema
                 new(
                     "logGroupName",
                     Target0,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
@@ -47,10 +46,6 @@ public static partial class CreateLogGroupInputSchema
                         new Trait(
                             ShapeId.Parse("smithy.api#pattern"),
                             Document.From("^[\\.\\-_/#A-Za-z0-9]+$")
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
                         ),
                     ]
                 ),
@@ -122,10 +117,10 @@ public static partial class CreateLogGroupInputSchema
             Builder builder
         ) =>
             new global::Com.Amazonaws.Cloudwatchlogs.CreateLogGroupInput(
-                builder.LogGroupName ?? throw new MissingRequiredMemberException("logGroupName"),
                 builder.DeletionProtectionEnabled,
                 builder.KmsKeyId,
                 builder.LogGroupClass,
+                builder.LogGroupName,
                 builder.Tags
             );
 
@@ -176,7 +171,7 @@ public static partial class CreateLogGroupInputSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

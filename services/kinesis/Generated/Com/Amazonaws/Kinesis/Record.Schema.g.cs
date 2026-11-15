@@ -11,7 +11,7 @@ namespace Com.Amazonaws.Kinesis.Schemas;
 
 public static partial class RecordSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? SequenceNumber { get; set; }
         public DateTimeOffset? ApproximateArrivalTimestamp { get; set; }
@@ -166,7 +166,7 @@ public static partial class RecordSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

@@ -15,6 +15,6 @@ namespace Com.Amazonaws.Dynamodb;
 /// Represents the settings used to enable or disable Time to Live for the specified table.
 /// </param>
 public sealed record class UpdateTimeToLiveInput(
-    string TableName,
-    global::Com.Amazonaws.Dynamodb.TimeToLiveSpecification TimeToLiveSpecification
+    string? TableName = null,
+    global::Com.Amazonaws.Dynamodb.TimeToLiveSpecification? TimeToLiveSpecification = null
 );

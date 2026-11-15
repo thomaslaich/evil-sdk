@@ -18,6 +18,6 @@ namespace Com.Amazonaws.Cloudwatchlogs;
 /// ingested.
 /// </param>
 public sealed record class PutTransformerInput(
-    string LogGroupIdentifier,
-    IReadOnlyList<Processor> TransformerConfig
+    string? LogGroupIdentifier = null,
+    IReadOnlyList<Processor>? TransformerConfig = null
 );

@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Lambda.Schemas;
 
 public static partial class ListLayerVersionsInputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public global::Com.Amazonaws.Lambda.Architecture? CompatibleArchitecture { get; set; }
         public global::Com.Amazonaws.Lambda.Runtime? CompatibleRuntime { get; set; }
@@ -53,7 +53,6 @@ public static partial class ListLayerVersionsInputSchema
                 new(
                     "LayerName",
                     Target2,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
@@ -75,10 +74,6 @@ public static partial class ListLayerVersionsInputSchema
                             Document.From(
                                 "^(arn:(aws[a-zA-Z-]*)?:lambda:(eusc-)?[a-z]{2}((-gov)|(-iso([a-z]?)))?-[a-z]+-\\d{1}:\\d{12}:layer:[a-zA-Z0-9-_]+)|[a-zA-Z0-9-_]+$"
                             )
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
                         ),
                     ]
                 ),
@@ -146,9 +141,9 @@ public static partial class ListLayerVersionsInputSchema
             Builder builder
         ) =>
             new global::Com.Amazonaws.Lambda.ListLayerVersionsInput(
-                builder.LayerName ?? throw new MissingRequiredMemberException("LayerName"),
                 builder.CompatibleArchitecture,
                 builder.CompatibleRuntime,
+                builder.LayerName,
                 builder.Marker,
                 builder.MaxItems
             );
@@ -200,7 +195,7 @@ public static partial class ListLayerVersionsInputSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

@@ -16,4 +16,4 @@ namespace Com.Amazonaws.Sts;
 /// upper- or lowercase letter or digit.
 /// </para>
 /// </param>
-public sealed record class GetAccessKeyInfoInput(string AccessKeyId);
+public sealed record class GetAccessKeyInfoInput(string? AccessKeyId = null);

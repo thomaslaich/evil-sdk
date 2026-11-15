@@ -276,7 +276,7 @@ namespace Com.Amazonaws.Sns;
 /// </para>
 /// </param>
 public sealed record class PublishInput(
-    string Message,
+    string? Message = null,
     IReadOnlyDictionary<string, MessageAttributeValue>? MessageAttributes = null,
     string? MessageDeduplicationId = null,
     string? MessageGroupId = null,

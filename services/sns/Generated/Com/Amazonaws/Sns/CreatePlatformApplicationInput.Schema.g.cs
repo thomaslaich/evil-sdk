@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Sns.Schemas;
 
 public static partial class CreatePlatformApplicationInputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? Name { get; set; }
         public string? Platform { get; set; }
@@ -25,44 +25,7 @@ public static partial class CreatePlatformApplicationInputSchema
     private sealed class GeneratedSchema()
         : StructSchema<global::Com.Amazonaws.Sns.CreatePlatformApplicationInput, Builder>(
             ShapeId.Parse("com.amazonaws.sns#CreatePlatformApplicationInput"),
-            [
-                new(
-                    "Name",
-                    Target0,
-                    isRequired: true,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
-                    ]
-                ),
-                new(
-                    "Platform",
-                    Target1,
-                    isRequired: true,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
-                    ]
-                ),
-                new(
-                    "Attributes",
-                    Target2,
-                    isRequired: true,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
-                    ]
-                ),
-            ],
+            [new("Name", Target0), new("Platform", Target1), new("Attributes", Target2)],
             [
                 new Trait(
                     ShapeId.Parse("smithy.api#input"),
@@ -92,9 +55,9 @@ public static partial class CreatePlatformApplicationInputSchema
             Builder builder
         ) =>
             new global::Com.Amazonaws.Sns.CreatePlatformApplicationInput(
-                builder.Attributes ?? throw new MissingRequiredMemberException("Attributes"),
-                builder.Name ?? throw new MissingRequiredMemberException("Name"),
-                builder.Platform ?? throw new MissingRequiredMemberException("Platform")
+                builder.Attributes,
+                builder.Name,
+                builder.Platform
             );
 
         public override void SerializeMembers<TSerializer>(
@@ -128,7 +91,7 @@ public static partial class CreatePlatformApplicationInputSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

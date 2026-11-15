@@ -9,10 +9,6 @@ namespace Com.Amazonaws.Kinesis;
 /// <summary>
 /// Represents the input for <c>AddTagsToStream</c>.
 /// </summary>
-/// <param name="Tags">
-/// A set of up to 50 key-value pairs to use to create the tags. A tag consists of a required key and an
-/// optional value. You can add up to 50 tags per resource.
-/// </param>
 /// <param name="StreamARN">
 /// The ARN of the stream.
 /// </param>
@@ -22,9 +18,13 @@ namespace Com.Amazonaws.Kinesis;
 /// <param name="StreamName">
 /// The name of the stream.
 /// </param>
+/// <param name="Tags">
+/// A set of up to 50 key-value pairs to use to create the tags. A tag consists of a required key and an
+/// optional value. You can add up to 50 tags per resource.
+/// </param>
 public sealed record class AddTagsToStreamInput(
-    IReadOnlyDictionary<string, string> Tags,
     string? StreamARN = null,
     string? StreamId = null,
-    string? StreamName = null
+    string? StreamName = null,
+    IReadOnlyDictionary<string, string>? Tags = null
 );

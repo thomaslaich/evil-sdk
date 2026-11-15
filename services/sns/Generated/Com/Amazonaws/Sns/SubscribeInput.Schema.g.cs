@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Sns.Schemas;
 
 public static partial class SubscribeInputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? TopicArn { get; set; }
         public string? Protocol { get; set; }
@@ -26,30 +26,8 @@ public static partial class SubscribeInputSchema
         : StructSchema<global::Com.Amazonaws.Sns.SubscribeInput, Builder>(
             ShapeId.Parse("com.amazonaws.sns#SubscribeInput"),
             [
-                new(
-                    "TopicArn",
-                    Target0,
-                    isRequired: true,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
-                    ]
-                ),
-                new(
-                    "Protocol",
-                    Target1,
-                    isRequired: true,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
-                    ]
-                ),
+                new("TopicArn", Target0),
+                new("Protocol", Target1),
                 new("Endpoint", Target2),
                 new("Attributes", Target3),
                 new(
@@ -91,11 +69,11 @@ public static partial class SubscribeInputSchema
 
         public override global::Com.Amazonaws.Sns.SubscribeInput Build(Builder builder) =>
             new global::Com.Amazonaws.Sns.SubscribeInput(
-                builder.Protocol ?? throw new MissingRequiredMemberException("Protocol"),
-                builder.TopicArn ?? throw new MissingRequiredMemberException("TopicArn"),
                 builder.Attributes,
                 builder.Endpoint,
-                builder.ReturnSubscriptionArn
+                builder.Protocol,
+                builder.ReturnSubscriptionArn,
+                builder.TopicArn
             );
 
         public override void SerializeMembers<TSerializer>(
@@ -149,7 +127,7 @@ public static partial class SubscribeInputSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Iam.Schemas;
 
 public static partial class UpdateSAMLProviderInputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? SAMLMetadataDocument { get; set; }
         public string? SAMLProviderArn { get; set; }
@@ -48,7 +48,6 @@ public static partial class UpdateSAMLProviderInputSchema
                 new(
                     "SAMLProviderArn",
                     Target1,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
@@ -60,10 +59,6 @@ public static partial class UpdateSAMLProviderInputSchema
                                     { "max", Document.From(2048m) },
                                 }
                             )
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
                         ),
                     ]
                 ),
@@ -150,12 +145,11 @@ public static partial class UpdateSAMLProviderInputSchema
 
         public override global::Com.Amazonaws.Iam.UpdateSAMLProviderInput Build(Builder builder) =>
             new global::Com.Amazonaws.Iam.UpdateSAMLProviderInput(
-                builder.SAMLProviderArn
-                    ?? throw new MissingRequiredMemberException("SAMLProviderArn"),
                 builder.AddPrivateKey,
                 builder.AssertionEncryptionMode,
                 builder.RemovePrivateKey,
-                builder.SAMLMetadataDocument
+                builder.SAMLMetadataDocument,
+                builder.SAMLProviderArn
             );
 
         public override void SerializeMembers<TSerializer>(
@@ -205,7 +199,7 @@ public static partial class UpdateSAMLProviderInputSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

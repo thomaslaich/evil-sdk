@@ -10,4 +10,4 @@ namespace Com.Amazonaws.Lambda;
 /// <param name="UUID">
 /// The identifier of the event source mapping.
 /// </param>
-public sealed record class GetEventSourceMappingInput(string UUID);
+public sealed record class GetEventSourceMappingInput(string? UUID = null);

@@ -11,13 +11,6 @@ namespace Com.Amazonaws.S3;
 /// <summary>
 /// Represents the Smithy structure com.amazonaws.s3#WriteGetObjectResponseInput.
 /// </summary>
-/// <param name="RequestRoute">
-/// Route prefix to the HTTP URL generated.
-/// </param>
-/// <param name="RequestToken">
-/// A single use encrypted token that maps <c>WriteGetObjectResponse</c> to the end user
-/// <c>GetObject</c> request.
-/// </param>
 /// <param name="AcceptRanges">
 /// Indicates that a range of bytes was specified.
 /// </param>
@@ -211,6 +204,13 @@ namespace Com.Amazonaws.S3;
 /// For more information about S3 Replication, see
 /// <see href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/replication.html">Replication</see>.
 /// </param>
+/// <param name="RequestRoute">
+/// Route prefix to the HTTP URL generated.
+/// </param>
+/// <param name="RequestToken">
+/// A single use encrypted token that maps <c>WriteGetObjectResponse</c> to the end user
+/// <c>GetObject</c> request.
+/// </param>
 /// <param name="Restore">
 /// Provides information about object restoration operation and expiration time of the restored object
 /// copy.
@@ -335,8 +335,6 @@ namespace Com.Amazonaws.S3;
 /// An ID used to reference a specific version of the object.
 /// </param>
 public sealed record class WriteGetObjectResponseInput(
-    string RequestRoute,
-    string RequestToken,
     string? AcceptRanges = null,
     Stream? Body = null,
     bool? BucketKeyEnabled = null,
@@ -372,6 +370,8 @@ public sealed record class WriteGetObjectResponseInput(
     int? PartsCount = null,
     global::Com.Amazonaws.S3.ReplicationStatus? ReplicationStatus = null,
     global::Com.Amazonaws.S3.RequestCharged? RequestCharged = null,
+    string? RequestRoute = null,
+    string? RequestToken = null,
     string? Restore = null,
     string? SSECustomerAlgorithm = null,
     string? SSECustomerKeyMD5 = null,

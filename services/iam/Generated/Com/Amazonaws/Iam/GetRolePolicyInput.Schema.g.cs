@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Iam.Schemas;
 
 public static partial class GetRolePolicyInputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? RoleName { get; set; }
         public string? PolicyName { get; set; }
@@ -28,7 +28,6 @@ public static partial class GetRolePolicyInputSchema
                 new(
                     "RoleName",
                     Target0,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
@@ -45,16 +44,11 @@ public static partial class GetRolePolicyInputSchema
                             ShapeId.Parse("smithy.api#pattern"),
                             Document.From("^[\\w+=,.@-]+$")
                         ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
                     ]
                 ),
                 new(
                     "PolicyName",
                     Target1,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
@@ -70,10 +64,6 @@ public static partial class GetRolePolicyInputSchema
                         new Trait(
                             ShapeId.Parse("smithy.api#pattern"),
                             Document.From("^[\\w+=,.@-]+$")
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
                         ),
                     ]
                 ),
@@ -102,10 +92,7 @@ public static partial class GetRolePolicyInputSchema
         public override Builder CreateTypedBuilder() => new();
 
         public override global::Com.Amazonaws.Iam.GetRolePolicyInput Build(Builder builder) =>
-            new global::Com.Amazonaws.Iam.GetRolePolicyInput(
-                builder.PolicyName ?? throw new MissingRequiredMemberException("PolicyName"),
-                builder.RoleName ?? throw new MissingRequiredMemberException("RoleName")
-            );
+            new global::Com.Amazonaws.Iam.GetRolePolicyInput(builder.PolicyName, builder.RoleName);
 
         public override void SerializeMembers<TSerializer>(
             global::Com.Amazonaws.Iam.GetRolePolicyInput value,
@@ -130,7 +117,7 @@ public static partial class GetRolePolicyInputSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

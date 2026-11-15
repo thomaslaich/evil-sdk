@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Iam.Schemas;
 
 public static partial class AttachedPermissionsBoundarySchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public global::Com.Amazonaws.Iam.PermissionsBoundaryAttachmentType? PermissionsBoundaryType { get; set; }
         public string? PermissionsBoundaryArn { get; set; }
@@ -89,7 +89,7 @@ public static partial class AttachedPermissionsBoundarySchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

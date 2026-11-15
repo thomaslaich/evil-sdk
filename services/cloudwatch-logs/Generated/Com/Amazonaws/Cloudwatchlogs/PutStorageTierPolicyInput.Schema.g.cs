@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Cloudwatchlogs.Schemas;
 
 public static partial class PutStorageTierPolicyInputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public global::Com.Amazonaws.Cloudwatchlogs.StorageTier? StorageTier { get; set; }
     }
@@ -23,20 +23,7 @@ public static partial class PutStorageTierPolicyInputSchema
     private sealed class GeneratedSchema()
         : StructSchema<global::Com.Amazonaws.Cloudwatchlogs.PutStorageTierPolicyInput, Builder>(
             ShapeId.Parse("com.amazonaws.cloudwatchlogs#PutStorageTierPolicyInput"),
-            [
-                new(
-                    "storageTier",
-                    Target0,
-                    isRequired: true,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
-                    ]
-                ),
-            ],
+            [new("storageTier", Target0)],
             [
                 new Trait(
                     ShapeId.Parse("smithy.api#input"),
@@ -57,19 +44,24 @@ public static partial class PutStorageTierPolicyInputSchema
         public override global::Com.Amazonaws.Cloudwatchlogs.PutStorageTierPolicyInput Build(
             Builder builder
         ) =>
-            new global::Com.Amazonaws.Cloudwatchlogs.PutStorageTierPolicyInput(
-                builder.StorageTier ?? throw new MissingRequiredMemberException("storageTier")
-            );
+            new global::Com.Amazonaws.Cloudwatchlogs.PutStorageTierPolicyInput(builder.StorageTier);
 
         public override void SerializeMembers<TSerializer>(
             global::Com.Amazonaws.Cloudwatchlogs.PutStorageTierPolicyInput value,
             ref TSerializer serializer
         )
         {
-            serializer.WriteStringEnum(0, value.StorageTier.Value);
+            if (value.StorageTier is { } value0)
+            {
+                serializer.WriteStringEnum(0, value0.Value);
+            }
+            else
+            {
+                serializer.WriteNull(0);
+            }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

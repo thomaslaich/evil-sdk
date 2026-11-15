@@ -55,8 +55,8 @@ namespace Com.Amazonaws.Kinesis;
 /// The name of the stream on which to stop encrypting records.
 /// </param>
 public sealed record class StopStreamEncryptionInput(
-    global::Com.Amazonaws.Kinesis.EncryptionType EncryptionType,
-    string KeyId,
+    global::Com.Amazonaws.Kinesis.EncryptionType? EncryptionType = null,
+    string? KeyId = null,
     string? StreamARN = null,
     string? StreamId = null,
     string? StreamName = null

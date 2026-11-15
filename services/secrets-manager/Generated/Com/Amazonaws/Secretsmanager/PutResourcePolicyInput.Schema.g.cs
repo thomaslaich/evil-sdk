@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Secretsmanager.Schemas;
 
 public static partial class PutResourcePolicyInputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? SecretId { get; set; }
         public string? ResourcePolicy { get; set; }
@@ -29,7 +29,6 @@ public static partial class PutResourcePolicyInputSchema
                 new(
                     "SecretId",
                     Target0,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
@@ -42,16 +41,11 @@ public static partial class PutResourcePolicyInputSchema
                                 }
                             )
                         ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
                     ]
                 ),
                 new(
                     "ResourcePolicy",
                     Target1,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
@@ -63,10 +57,6 @@ public static partial class PutResourcePolicyInputSchema
                                     { "max", Document.From(20480m) },
                                 }
                             )
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
                         ),
                     ]
                 ),
@@ -112,10 +102,9 @@ public static partial class PutResourcePolicyInputSchema
             Builder builder
         ) =>
             new global::Com.Amazonaws.Secretsmanager.PutResourcePolicyInput(
-                builder.ResourcePolicy
-                    ?? throw new MissingRequiredMemberException("ResourcePolicy"),
-                builder.SecretId ?? throw new MissingRequiredMemberException("SecretId"),
-                builder.BlockPublicPolicy
+                builder.BlockPublicPolicy,
+                builder.ResourcePolicy,
+                builder.SecretId
             );
 
         public override void SerializeMembers<TSerializer>(
@@ -149,7 +138,7 @@ public static partial class PutResourcePolicyInputSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

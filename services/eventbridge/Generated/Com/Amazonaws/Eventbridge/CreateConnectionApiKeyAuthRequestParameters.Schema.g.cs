@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Eventbridge.Schemas;
 
 public static partial class CreateConnectionApiKeyAuthRequestParametersSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? ApiKeyName { get; set; }
         public string? ApiKeyValue { get; set; }
@@ -134,7 +134,7 @@ public static partial class CreateConnectionApiKeyAuthRequestParametersSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

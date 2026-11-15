@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Route53.Schemas;
 
 public static partial class LocationSummarySchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? LocationName { get; set; }
     }
@@ -74,7 +74,7 @@ public static partial class LocationSummarySchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

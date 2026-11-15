@@ -13,4 +13,7 @@ namespace Com.Amazonaws.Iam;
 /// <param name="RoleName">
 /// The name of the role that you want to modify.
 /// </param>
-public sealed record class UpdateRoleDescriptionInput(string Description, string RoleName);
+public sealed record class UpdateRoleDescriptionInput(
+    string? Description = null,
+    string? RoleName = null
+);

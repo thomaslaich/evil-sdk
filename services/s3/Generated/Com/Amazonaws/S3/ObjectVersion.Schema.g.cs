@@ -11,7 +11,7 @@ namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class ObjectVersionSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? ETag { get; set; }
         public IReadOnlyList<global::Com.Amazonaws.S3.ChecksumAlgorithm>? ChecksumAlgorithm { get; set; }
@@ -239,7 +239,7 @@ public static partial class ObjectVersionSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

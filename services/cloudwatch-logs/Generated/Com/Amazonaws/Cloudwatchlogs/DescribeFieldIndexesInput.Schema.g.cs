@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Cloudwatchlogs.Schemas;
 
 public static partial class DescribeFieldIndexesInputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public IReadOnlyList<string>? LogGroupIdentifiers { get; set; }
         public IReadOnlyList<global::Com.Amazonaws.Cloudwatchlogs.IndexCategory>? IndexCategories { get; set; }
@@ -26,18 +26,7 @@ public static partial class DescribeFieldIndexesInputSchema
         : StructSchema<global::Com.Amazonaws.Cloudwatchlogs.DescribeFieldIndexesInput, Builder>(
             ShapeId.Parse("com.amazonaws.cloudwatchlogs#DescribeFieldIndexesInput"),
             [
-                new(
-                    "logGroupIdentifiers",
-                    Target0,
-                    isRequired: true,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
-                    ]
-                ),
+                new("logGroupIdentifiers", Target0),
                 new("indexCategories", Target1),
                 new(
                     "nextToken",
@@ -86,9 +75,8 @@ public static partial class DescribeFieldIndexesInputSchema
             Builder builder
         ) =>
             new global::Com.Amazonaws.Cloudwatchlogs.DescribeFieldIndexesInput(
-                builder.LogGroupIdentifiers
-                    ?? throw new MissingRequiredMemberException("logGroupIdentifiers"),
                 builder.IndexCategories,
+                builder.LogGroupIdentifiers,
                 builder.NextToken
             );
 
@@ -127,7 +115,7 @@ public static partial class DescribeFieldIndexesInputSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

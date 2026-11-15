@@ -11,7 +11,7 @@ namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class RenameObjectInputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? Bucket { get; set; }
         public string? Key { get; set; }
@@ -39,15 +39,10 @@ public static partial class RenameObjectInputSchema
                 new(
                     "Bucket",
                     Target0,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
                             ShapeId.Parse("smithy.api#httpLabel"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
                             Document.From(new Dictionary<string, Document> { })
                         ),
                         new Trait(
@@ -64,7 +59,6 @@ public static partial class RenameObjectInputSchema
                 new(
                     "Key",
                     Target1,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
@@ -76,10 +70,6 @@ public static partial class RenameObjectInputSchema
                             Document.From(
                                 new Dictionary<string, Document> { { "min", Document.From(1m) } }
                             )
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
                         ),
                         new Trait(
                             ShapeId.Parse("smithy.rules#contextParam"),
@@ -95,7 +85,6 @@ public static partial class RenameObjectInputSchema
                 new(
                     "RenameSource",
                     Target2,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
@@ -105,10 +94,6 @@ public static partial class RenameObjectInputSchema
                         new Trait(
                             ShapeId.Parse("smithy.api#pattern"),
                             Document.From("^\\/?.+\\/.+$")
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
                         ),
                     ]
                 ),
@@ -299,14 +284,14 @@ public static partial class RenameObjectInputSchema
 
         public override global::Com.Amazonaws.S3.RenameObjectInput Build(Builder builder) =>
             new global::Com.Amazonaws.S3.RenameObjectInput(
-                builder.Bucket ?? throw new MissingRequiredMemberException("Bucket"),
-                builder.Key ?? throw new MissingRequiredMemberException("Key"),
-                builder.RenameSource ?? throw new MissingRequiredMemberException("RenameSource"),
+                builder.Bucket,
                 builder.ClientToken,
                 builder.DestinationIfMatch,
                 builder.DestinationIfModifiedSince,
                 builder.DestinationIfNoneMatch,
                 builder.DestinationIfUnmodifiedSince,
+                builder.Key,
+                builder.RenameSource,
                 builder.SourceIfMatch,
                 builder.SourceIfModifiedSince,
                 builder.SourceIfNoneMatch,
@@ -416,7 +401,7 @@ public static partial class RenameObjectInputSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Secretsmanager.Schemas;
 
 public static partial class RemoveRegionsFromReplicationOutputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? ARN { get; set; }
         public IReadOnlyList<global::Com.Amazonaws.Secretsmanager.ReplicationStatusType>? ReplicationStatus { get; set; }
@@ -105,7 +105,7 @@ public static partial class RemoveRegionsFromReplicationOutputSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

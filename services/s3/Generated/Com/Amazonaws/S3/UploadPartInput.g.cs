@@ -9,6 +9,9 @@ namespace Com.Amazonaws.S3;
 /// <summary>
 /// Represents the Smithy structure com.amazonaws.s3#UploadPartInput.
 /// </summary>
+/// <param name="Body">
+/// Object data.
+/// </param>
 /// <param name="Bucket">
 /// <para>
 /// The name of the bucket to which the multipart upload was initiated.
@@ -49,18 +52,6 @@ namespace Com.Amazonaws.S3;
 /// <see href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/S3onOutposts.html">What is S3 on
 /// Outposts?</see> in the <i>Amazon S3 User Guide</i>.
 /// </para>
-/// </param>
-/// <param name="Key">
-/// Object key for which the multipart upload was initiated.
-/// </param>
-/// <param name="PartNumber">
-/// Part number of part being uploaded. This is a positive integer between 1 and 10,000.
-/// </param>
-/// <param name="UploadId">
-/// Upload ID identifying the multipart upload whose part is being uploaded.
-/// </param>
-/// <param name="Body">
-/// Object data.
 /// </param>
 /// <param name="ChecksumAlgorithm">
 /// <para>
@@ -169,6 +160,12 @@ namespace Com.Amazonaws.S3;
 /// actual owner of the bucket, the request fails with the HTTP status code <c>403 Forbidden</c> (access
 /// denied).
 /// </param>
+/// <param name="Key">
+/// Object key for which the multipart upload was initiated.
+/// </param>
+/// <param name="PartNumber">
+/// Part number of part being uploaded. This is a positive integer between 1 and 10,000.
+/// </param>
 /// <param name="SSECustomerAlgorithm">
 /// <para>
 /// Specifies the algorithm to use when encrypting the object (for example, AES256).
@@ -199,12 +196,12 @@ namespace Com.Amazonaws.S3;
 /// <b>Note:</b> This functionality is not supported for directory buckets.
 /// </para>
 /// </param>
+/// <param name="UploadId">
+/// Upload ID identifying the multipart upload whose part is being uploaded.
+/// </param>
 public sealed record class UploadPartInput(
-    string Bucket,
-    string Key,
-    int PartNumber,
-    string UploadId,
     Stream? Body = null,
+    string? Bucket = null,
     global::Com.Amazonaws.S3.ChecksumAlgorithm? ChecksumAlgorithm = null,
     string? ChecksumCRC32 = null,
     string? ChecksumCRC32C = null,
@@ -219,8 +216,11 @@ public sealed record class UploadPartInput(
     long? ContentLength = null,
     string? ContentMD5 = null,
     string? ExpectedBucketOwner = null,
+    string? Key = null,
+    int? PartNumber = null,
     global::Com.Amazonaws.S3.RequestPayer? RequestPayer = null,
     string? SSECustomerAlgorithm = null,
     string? SSECustomerKey = null,
-    string? SSECustomerKeyMD5 = null
+    string? SSECustomerKeyMD5 = null,
+    string? UploadId = null
 );

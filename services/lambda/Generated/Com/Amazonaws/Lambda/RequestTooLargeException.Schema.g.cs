@@ -9,7 +9,7 @@ namespace Com.Amazonaws.Lambda.Schemas;
 
 public static partial class RequestTooLargeExceptionSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? Type { get; set; }
         public string? Message { get; set; }
@@ -72,7 +72,7 @@ public static partial class RequestTooLargeExceptionSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

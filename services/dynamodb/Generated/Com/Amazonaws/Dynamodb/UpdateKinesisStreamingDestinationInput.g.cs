@@ -18,8 +18,8 @@ namespace Com.Amazonaws.Dynamodb;
 /// The command to update the Kinesis stream configuration.
 /// </param>
 public sealed record class UpdateKinesisStreamingDestinationInput(
-    string StreamArn,
-    string TableName,
+    string? StreamArn = null,
+    string? TableName = null,
     global::Com.Amazonaws.Dynamodb.UpdateKinesisStreamingConfiguration? UpdateKinesisStreamingConfiguration =
         null
 );

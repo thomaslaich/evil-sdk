@@ -23,4 +23,7 @@ namespace Com.Amazonaws.Iam;
 /// can also include any of the following characters: _+=,.@-
 /// </para>
 /// </param>
-public sealed record class UntagUserInput(IReadOnlyList<string> TagKeys, string UserName);
+public sealed record class UntagUserInput(
+    IReadOnlyList<string>? TagKeys = null,
+    string? UserName = null
+);

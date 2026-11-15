@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Iam.Schemas;
 
 public static partial class ListMFADeviceTagsInputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? SerialNumber { get; set; }
         public string? Marker { get; set; }
@@ -29,7 +29,6 @@ public static partial class ListMFADeviceTagsInputSchema
                 new(
                     "SerialNumber",
                     Target0,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
@@ -45,10 +44,6 @@ public static partial class ListMFADeviceTagsInputSchema
                         new Trait(
                             ShapeId.Parse("smithy.api#pattern"),
                             Document.From("^[\\w+=/:,.@-]+$")
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
                         ),
                     ]
                 ),
@@ -122,9 +117,9 @@ public static partial class ListMFADeviceTagsInputSchema
 
         public override global::Com.Amazonaws.Iam.ListMFADeviceTagsInput Build(Builder builder) =>
             new global::Com.Amazonaws.Iam.ListMFADeviceTagsInput(
-                builder.SerialNumber ?? throw new MissingRequiredMemberException("SerialNumber"),
                 builder.Marker,
-                builder.MaxItems
+                builder.MaxItems,
+                builder.SerialNumber
             );
 
         public override void SerializeMembers<TSerializer>(
@@ -158,7 +153,7 @@ public static partial class ListMFADeviceTagsInputSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

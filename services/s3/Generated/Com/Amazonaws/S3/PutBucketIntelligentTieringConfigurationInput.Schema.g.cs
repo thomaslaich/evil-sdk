@@ -10,7 +10,7 @@ namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class PutBucketIntelligentTieringConfigurationInputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? Bucket { get; set; }
         public string? Id { get; set; }
@@ -33,15 +33,10 @@ public static partial class PutBucketIntelligentTieringConfigurationInputSchema
                 new(
                     "Bucket",
                     Target0,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
                             ShapeId.Parse("smithy.api#httpLabel"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
                             Document.From(new Dictionary<string, Document> { })
                         ),
                         new Trait(
@@ -58,15 +53,7 @@ public static partial class PutBucketIntelligentTieringConfigurationInputSchema
                 new(
                     "Id",
                     Target1,
-                    isRequired: true,
-                    traits:
-                    [
-                        new Trait(ShapeId.Parse("smithy.api#httpQuery"), Document.From("id")),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
-                    ]
+                    traits: [new Trait(ShapeId.Parse("smithy.api#httpQuery"), Document.From("id"))]
                 ),
                 new(
                     "ExpectedBucketOwner",
@@ -82,15 +69,10 @@ public static partial class PutBucketIntelligentTieringConfigurationInputSchema
                 new(
                     "IntelligentTieringConfiguration",
                     Target3,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
                             ShapeId.Parse("smithy.api#httpPayload"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
                             Document.From(new Dictionary<string, Document> { })
                         ),
                         new Trait(
@@ -139,11 +121,10 @@ public static partial class PutBucketIntelligentTieringConfigurationInputSchema
             Builder builder
         ) =>
             new global::Com.Amazonaws.S3.PutBucketIntelligentTieringConfigurationInput(
-                builder.Bucket ?? throw new MissingRequiredMemberException("Bucket"),
-                builder.Id ?? throw new MissingRequiredMemberException("Id"),
+                builder.Bucket,
+                builder.ExpectedBucketOwner,
+                builder.Id,
                 builder.IntelligentTieringConfiguration
-                    ?? throw new MissingRequiredMemberException("IntelligentTieringConfiguration"),
-                builder.ExpectedBucketOwner
             );
 
         public override void SerializeMembers<TSerializer>(
@@ -185,7 +166,7 @@ public static partial class PutBucketIntelligentTieringConfigurationInputSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

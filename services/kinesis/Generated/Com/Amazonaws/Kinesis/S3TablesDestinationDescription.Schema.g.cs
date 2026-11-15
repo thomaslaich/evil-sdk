@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Kinesis.Schemas;
 
 public static partial class S3TablesDestinationDescriptionSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public int? DataFreshnessInSeconds { get; set; }
         public global::Com.Amazonaws.Kinesis.DeadLetterQueueS3Configuration? DeadLetterQueueS3Configuration { get; set; }
@@ -122,7 +122,7 @@ public static partial class S3TablesDestinationDescriptionSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

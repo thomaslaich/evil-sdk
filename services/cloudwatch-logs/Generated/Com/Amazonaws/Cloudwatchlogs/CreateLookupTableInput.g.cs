@@ -9,16 +9,16 @@ namespace Com.Amazonaws.Cloudwatchlogs;
 /// <summary>
 /// Represents the Smithy structure com.amazonaws.cloudwatchlogs#CreateLookupTableInput.
 /// </summary>
-/// <param name="LookupTableName">
-/// The name of the lookup table. The name must be unique within your account and Region. The name can
-/// contain only alphanumeric characters and underscores, and can be up to 256 characters long.
-/// </param>
 /// <param name="Description">
 /// A description of the lookup table. The description can be up to 1024 characters long.
 /// </param>
 /// <param name="KmsKeyId">
 /// The ARN of the KMS key to use to encrypt the lookup table data. If you don't specify a key, the data
 /// is encrypted with an Amazon Web Services-owned key.
+/// </param>
+/// <param name="LookupTableName">
+/// The name of the lookup table. The name must be unique within your account and Region. The name can
+/// contain only alphanumeric characters and underscores, and can be up to 256 characters long.
 /// </param>
 /// <param name="QueryId">
 /// <para>
@@ -44,9 +44,9 @@ namespace Com.Amazonaws.Cloudwatchlogs;
 /// with a lookup table. Tags can help you organize and categorize your resources.
 /// </param>
 public sealed record class CreateLookupTableInput(
-    string LookupTableName,
     string? Description = null,
     string? KmsKeyId = null,
+    string? LookupTableName = null,
     string? QueryId = null,
     string? TableBody = null,
     IReadOnlyDictionary<string, string>? Tags = null

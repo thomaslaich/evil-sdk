@@ -45,4 +45,4 @@ namespace Com.Amazonaws.Route53;
 /// </item>
 /// </list>
 /// </param>
-public sealed record class GetAccountLimitInput(AccountLimitType Type);
+public sealed record class GetAccountLimitInput(AccountLimitType? Type = null);

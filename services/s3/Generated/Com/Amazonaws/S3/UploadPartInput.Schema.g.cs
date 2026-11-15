@@ -11,7 +11,7 @@ namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class UploadPartInputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public Stream? Body { get; set; }
         public string? Bucket { get; set; }
@@ -64,15 +64,10 @@ public static partial class UploadPartInputSchema
                 new(
                     "Bucket",
                     Target1,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
                             ShapeId.Parse("smithy.api#httpLabel"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
                             Document.From(new Dictionary<string, Document> { })
                         ),
                         new Trait(
@@ -236,7 +231,6 @@ public static partial class UploadPartInputSchema
                 new(
                     "Key",
                     Target15,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
@@ -248,10 +242,6 @@ public static partial class UploadPartInputSchema
                             Document.From(
                                 new Dictionary<string, Document> { { "min", Document.From(1m) } }
                             )
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
                         ),
                         new Trait(
                             ShapeId.Parse("smithy.rules#contextParam"),
@@ -267,7 +257,6 @@ public static partial class UploadPartInputSchema
                 new(
                     "PartNumber",
                     Target16,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
@@ -278,23 +267,14 @@ public static partial class UploadPartInputSchema
                             ShapeId.Parse("smithy.api#httpQuery"),
                             Document.From("partNumber")
                         ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
                     ]
                 ),
                 new(
                     "UploadId",
                     Target17,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(ShapeId.Parse("smithy.api#httpQuery"), Document.From("uploadId")),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
                     ]
                 ),
                 new(
@@ -458,11 +438,8 @@ public static partial class UploadPartInputSchema
 
         public override global::Com.Amazonaws.S3.UploadPartInput Build(Builder builder) =>
             new global::Com.Amazonaws.S3.UploadPartInput(
-                builder.Bucket ?? throw new MissingRequiredMemberException("Bucket"),
-                builder.Key ?? throw new MissingRequiredMemberException("Key"),
-                builder.PartNumber.GetValueOrDefault(),
-                builder.UploadId ?? throw new MissingRequiredMemberException("UploadId"),
                 builder.Body,
+                builder.Bucket,
                 builder.ChecksumAlgorithm,
                 builder.ChecksumCRC32,
                 builder.ChecksumCRC32C,
@@ -477,10 +454,13 @@ public static partial class UploadPartInputSchema
                 builder.ContentLength,
                 builder.ContentMD5,
                 builder.ExpectedBucketOwner,
+                builder.Key,
+                builder.PartNumber,
                 builder.RequestPayer,
                 builder.SSECustomerAlgorithm,
                 builder.SSECustomerKey,
-                builder.SSECustomerKeyMD5
+                builder.SSECustomerKeyMD5,
+                builder.UploadId
             );
 
         public override void SerializeMembers<TSerializer>(
@@ -620,7 +600,14 @@ public static partial class UploadPartInputSchema
             {
                 serializer.WriteNull(15);
             }
-            serializer.WriteInteger(16, value.PartNumber);
+            if (value.PartNumber is { } value16)
+            {
+                serializer.WriteInteger(16, value16);
+            }
+            else
+            {
+                serializer.WriteNull(16);
+            }
             if (value.UploadId is { } value17)
             {
                 serializer.WriteString(17, value17);
@@ -671,7 +658,7 @@ public static partial class UploadPartInputSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

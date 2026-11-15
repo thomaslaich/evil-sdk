@@ -19,7 +19,7 @@ namespace Com.Amazonaws.Kinesis;
 /// Not Implemented. Reserved for future use.
 /// </param>
 public sealed record class UpdateMaxRecordSizeInput(
-    int MaxRecordSizeInKiB,
+    int? MaxRecordSizeInKiB = null,
     string? StreamARN = null,
     string? StreamId = null
 );

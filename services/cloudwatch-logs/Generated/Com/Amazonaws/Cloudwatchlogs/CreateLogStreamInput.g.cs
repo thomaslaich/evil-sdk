@@ -13,4 +13,7 @@ namespace Com.Amazonaws.Cloudwatchlogs;
 /// <param name="LogStreamName">
 /// The name of the log stream.
 /// </param>
-public sealed record class CreateLogStreamInput(string LogGroupName, string LogStreamName);
+public sealed record class CreateLogStreamInput(
+    string? LogGroupName = null,
+    string? LogStreamName = null
+);

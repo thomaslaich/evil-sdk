@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Sns.Schemas;
 
 public static partial class SetTopicAttributesInputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? TopicArn { get; set; }
         public string? AttributeName { get; set; }
@@ -26,30 +26,8 @@ public static partial class SetTopicAttributesInputSchema
         : StructSchema<global::Com.Amazonaws.Sns.SetTopicAttributesInput, Builder>(
             ShapeId.Parse("com.amazonaws.sns#SetTopicAttributesInput"),
             [
-                new(
-                    "TopicArn",
-                    Target0,
-                    isRequired: true,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
-                    ]
-                ),
-                new(
-                    "AttributeName",
-                    Target1,
-                    isRequired: true,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
-                    ]
-                ),
+                new("TopicArn", Target0),
+                new("AttributeName", Target1),
                 new("AttributeValue", Target2),
             ],
             [
@@ -77,9 +55,9 @@ public static partial class SetTopicAttributesInputSchema
 
         public override global::Com.Amazonaws.Sns.SetTopicAttributesInput Build(Builder builder) =>
             new global::Com.Amazonaws.Sns.SetTopicAttributesInput(
-                builder.AttributeName ?? throw new MissingRequiredMemberException("AttributeName"),
-                builder.TopicArn ?? throw new MissingRequiredMemberException("TopicArn"),
-                builder.AttributeValue
+                builder.AttributeName,
+                builder.AttributeValue,
+                builder.TopicArn
             );
 
         public override void SerializeMembers<TSerializer>(
@@ -113,7 +91,7 @@ public static partial class SetTopicAttributesInputSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

@@ -23,8 +23,8 @@ namespace Com.Amazonaws.Kinesis;
 /// The name of the stream for the merge.
 /// </param>
 public sealed record class MergeShardsInput(
-    string AdjacentShardToMerge,
-    string ShardToMerge,
+    string? AdjacentShardToMerge = null,
+    string? ShardToMerge = null,
     string? StreamARN = null,
     string? StreamId = null,
     string? StreamName = null

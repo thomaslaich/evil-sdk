@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Cloudwatchlogs.Schemas;
 
 public static partial class StartQueryInputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public global::Com.Amazonaws.Cloudwatchlogs.QueryLanguage? QueryLanguage { get; set; }
         public string? LogGroupName { get; set; }
@@ -58,7 +58,6 @@ public static partial class StartQueryInputSchema
                 new(
                     "startTime",
                     Target4,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
@@ -70,17 +69,12 @@ public static partial class StartQueryInputSchema
                             Document.From(
                                 new Dictionary<string, Document> { { "min", Document.From(0m) } }
                             )
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
                         ),
                     ]
                 ),
                 new(
                     "endTime",
                     Target5,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
@@ -93,16 +87,11 @@ public static partial class StartQueryInputSchema
                                 new Dictionary<string, Document> { { "min", Document.From(0m) } }
                             )
                         ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
                     ]
                 ),
                 new(
                     "queryString",
                     Target6,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
@@ -114,10 +103,6 @@ public static partial class StartQueryInputSchema
                                     { "max", Document.From(10000m) },
                                 }
                             )
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
                         ),
                     ]
                 ),
@@ -186,14 +171,14 @@ public static partial class StartQueryInputSchema
             Builder builder
         ) =>
             new global::Com.Amazonaws.Cloudwatchlogs.StartQueryInput(
-                builder.EndTime.GetValueOrDefault(),
-                builder.QueryString ?? throw new MissingRequiredMemberException("queryString"),
-                builder.StartTime.GetValueOrDefault(),
+                builder.EndTime,
                 builder.Limit,
                 builder.LogGroupIdentifiers,
                 builder.LogGroupName,
                 builder.LogGroupNames,
-                builder.QueryLanguage
+                builder.QueryLanguage,
+                builder.QueryString,
+                builder.StartTime
             );
 
         public override void SerializeMembers<TSerializer>(
@@ -233,8 +218,22 @@ public static partial class StartQueryInputSchema
             {
                 serializer.WriteNull(3);
             }
-            serializer.WriteLong(4, value.StartTime);
-            serializer.WriteLong(5, value.EndTime);
+            if (value.StartTime is { } value4)
+            {
+                serializer.WriteLong(4, value4);
+            }
+            else
+            {
+                serializer.WriteNull(4);
+            }
+            if (value.EndTime is { } value5)
+            {
+                serializer.WriteLong(5, value5);
+            }
+            else
+            {
+                serializer.WriteNull(5);
+            }
             if (value.QueryString is { } value6)
             {
                 serializer.WriteString(6, value6);
@@ -253,7 +252,7 @@ public static partial class StartQueryInputSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

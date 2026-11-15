@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Sns.Schemas;
 
 public static partial class ConfirmSubscriptionInputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? TopicArn { get; set; }
         public string? Token { get; set; }
@@ -26,30 +26,8 @@ public static partial class ConfirmSubscriptionInputSchema
         : StructSchema<global::Com.Amazonaws.Sns.ConfirmSubscriptionInput, Builder>(
             ShapeId.Parse("com.amazonaws.sns#ConfirmSubscriptionInput"),
             [
-                new(
-                    "TopicArn",
-                    Target0,
-                    isRequired: true,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
-                    ]
-                ),
-                new(
-                    "Token",
-                    Target1,
-                    isRequired: true,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
-                    ]
-                ),
+                new("TopicArn", Target0),
+                new("Token", Target1),
                 new("AuthenticateOnUnsubscribe", Target2),
             ],
             [
@@ -77,9 +55,9 @@ public static partial class ConfirmSubscriptionInputSchema
 
         public override global::Com.Amazonaws.Sns.ConfirmSubscriptionInput Build(Builder builder) =>
             new global::Com.Amazonaws.Sns.ConfirmSubscriptionInput(
-                builder.Token ?? throw new MissingRequiredMemberException("Token"),
-                builder.TopicArn ?? throw new MissingRequiredMemberException("TopicArn"),
-                builder.AuthenticateOnUnsubscribe
+                builder.AuthenticateOnUnsubscribe,
+                builder.Token,
+                builder.TopicArn
             );
 
         public override void SerializeMembers<TSerializer>(
@@ -113,7 +91,7 @@ public static partial class ConfirmSubscriptionInputSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

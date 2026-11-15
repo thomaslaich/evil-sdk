@@ -10,7 +10,7 @@ namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class GetBucketVersioningOutputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public global::Com.Amazonaws.S3.BucketVersioningStatus? Status { get; set; }
         public global::Com.Amazonaws.S3.MFADeleteStatus? MFADelete { get; set; }
@@ -83,7 +83,7 @@ public static partial class GetBucketVersioningOutputSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

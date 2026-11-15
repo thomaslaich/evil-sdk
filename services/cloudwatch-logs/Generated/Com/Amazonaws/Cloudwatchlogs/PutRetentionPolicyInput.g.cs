@@ -10,4 +10,7 @@ namespace Com.Amazonaws.Cloudwatchlogs;
 /// <param name="LogGroupName">
 /// The name of the log group.
 /// </param>
-public sealed record class PutRetentionPolicyInput(string LogGroupName, int RetentionInDays);
+public sealed record class PutRetentionPolicyInput(
+    string? LogGroupName = null,
+    int? RetentionInDays = null
+);

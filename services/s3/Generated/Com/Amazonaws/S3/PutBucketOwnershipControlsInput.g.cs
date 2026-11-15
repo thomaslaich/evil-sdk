@@ -10,10 +10,6 @@ namespace Com.Amazonaws.S3;
 /// <param name="Bucket">
 /// The name of the Amazon S3 bucket whose <c>OwnershipControls</c> you want to set.
 /// </param>
-/// <param name="OwnershipControls">
-/// The <c>OwnershipControls</c> (BucketOwnerEnforced, BucketOwnerPreferred, or ObjectWriter) that you
-/// want to apply to this Amazon S3 bucket.
-/// </param>
 /// <param name="ChecksumAlgorithm">
 /// <para>
 /// Indicates the algorithm used to create the checksum for the object when you use the SDK. This header
@@ -42,10 +38,14 @@ namespace Com.Amazonaws.S3;
 /// actual owner of the bucket, the request fails with the HTTP status code <c>403 Forbidden</c> (access
 /// denied).
 /// </param>
+/// <param name="OwnershipControls">
+/// The <c>OwnershipControls</c> (BucketOwnerEnforced, BucketOwnerPreferred, or ObjectWriter) that you
+/// want to apply to this Amazon S3 bucket.
+/// </param>
 public sealed record class PutBucketOwnershipControlsInput(
-    string Bucket,
-    global::Com.Amazonaws.S3.OwnershipControls OwnershipControls,
+    string? Bucket = null,
     global::Com.Amazonaws.S3.ChecksumAlgorithm? ChecksumAlgorithm = null,
     string? ContentMD5 = null,
-    string? ExpectedBucketOwner = null
+    string? ExpectedBucketOwner = null,
+    global::Com.Amazonaws.S3.OwnershipControls? OwnershipControls = null
 );

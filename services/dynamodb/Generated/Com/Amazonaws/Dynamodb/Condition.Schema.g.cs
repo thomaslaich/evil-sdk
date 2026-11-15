@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Dynamodb.Schemas;
 
 public static partial class ConditionSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public IReadOnlyList<global::Com.Amazonaws.Dynamodb.AttributeValue>? AttributeValueList { get; set; }
         public global::Com.Amazonaws.Dynamodb.ComparisonOperator? ComparisonOperator { get; set; }
@@ -72,7 +72,7 @@ public static partial class ConditionSchema
             serializer.WriteStringEnum(1, value.ComparisonOperator.Value);
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

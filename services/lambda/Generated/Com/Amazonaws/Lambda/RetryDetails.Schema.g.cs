@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Lambda.Schemas;
 
 public static partial class RetryDetailsSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public int? CurrentAttempt { get; set; }
         public int? NextAttemptDelaySeconds { get; set; }
@@ -98,7 +98,7 @@ public static partial class RetryDetailsSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

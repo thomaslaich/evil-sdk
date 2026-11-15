@@ -50,9 +50,6 @@ namespace Com.Amazonaws.S3;
 /// Outposts?</see> in the <i>Amazon S3 User Guide</i>.
 /// </para>
 /// </param>
-/// <param name="Key">
-/// Key name of the object to delete.
-/// </param>
 /// <param name="BypassGovernanceRetention">
 /// <para>
 /// Indicates whether S3 Object Lock should bypass Governance-mode restrictions to process this
@@ -108,6 +105,9 @@ namespace Com.Amazonaws.S3;
 /// <c>x-amz-if-match-size</c> conditional headers in conjunction with each-other or individually.
 /// </para>
 /// </param>
+/// <param name="Key">
+/// Key name of the object to delete.
+/// </param>
 /// <param name="MFA">
 /// <para>
 /// The concatenation of the authentication device's serial number, a space, and the value that is
@@ -128,13 +128,13 @@ namespace Com.Amazonaws.S3;
 /// </para>
 /// </param>
 public sealed record class DeleteObjectInput(
-    string Bucket,
-    string Key,
+    string? Bucket = null,
     bool? BypassGovernanceRetention = null,
     string? ExpectedBucketOwner = null,
     string? IfMatch = null,
     DateTimeOffset? IfMatchLastModifiedTime = null,
     long? IfMatchSize = null,
+    string? Key = null,
     string? MFA = null,
     global::Com.Amazonaws.S3.RequestPayer? RequestPayer = null,
     string? VersionId = null

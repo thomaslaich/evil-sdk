@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Lambda.Schemas;
 
 public static partial class DeleteAliasInputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? FunctionName { get; set; }
         public string? Name { get; set; }
@@ -28,7 +28,6 @@ public static partial class DeleteAliasInputSchema
                 new(
                     "FunctionName",
                     Target0,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
@@ -51,16 +50,11 @@ public static partial class DeleteAliasInputSchema
                                 "^(arn:(aws[a-zA-Z-]*)?:lambda:)?((eusc-)?[a-z]{2}((-gov)|(-iso([a-z]?)))?-[a-z]+-\\d{1}:)?(\\d{12}:)?(function:)?([a-zA-Z0-9-_]+)(:(\\$LATEST|[a-zA-Z0-9-_]+))?$"
                             )
                         ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
                     ]
                 ),
                 new(
                     "Name",
                     Target1,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
@@ -80,10 +74,6 @@ public static partial class DeleteAliasInputSchema
                         new Trait(
                             ShapeId.Parse("smithy.api#pattern"),
                             Document.From("^(?!^[0-9]+$)([a-zA-Z0-9-_]+)$")
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
                         ),
                         new Trait(
                             ShapeId.Parse("smithy.api#resourceIdentifier"),
@@ -116,10 +106,7 @@ public static partial class DeleteAliasInputSchema
         public override Builder CreateTypedBuilder() => new();
 
         public override global::Com.Amazonaws.Lambda.DeleteAliasInput Build(Builder builder) =>
-            new global::Com.Amazonaws.Lambda.DeleteAliasInput(
-                builder.FunctionName ?? throw new MissingRequiredMemberException("FunctionName"),
-                builder.Name ?? throw new MissingRequiredMemberException("Name")
-            );
+            new global::Com.Amazonaws.Lambda.DeleteAliasInput(builder.FunctionName, builder.Name);
 
         public override void SerializeMembers<TSerializer>(
             global::Com.Amazonaws.Lambda.DeleteAliasInput value,
@@ -144,7 +131,7 @@ public static partial class DeleteAliasInputSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

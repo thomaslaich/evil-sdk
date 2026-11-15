@@ -10,7 +10,7 @@ namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class StorageClassAnalysisDataExportSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public global::Com.Amazonaws.S3.StorageClassAnalysisSchemaVersion? OutputSchemaVersion { get; set; }
         public global::Com.Amazonaws.S3.AnalyticsExportDestination? Destination { get; set; }
@@ -91,7 +91,7 @@ public static partial class StorageClassAnalysisDataExportSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

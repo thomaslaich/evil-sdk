@@ -24,15 +24,6 @@ namespace Com.Amazonaws.S3;
 /// bucket naming rules</see> in the <i>Amazon S3 User Guide</i>
 /// </para>
 /// </param>
-/// <param name="Policy">
-/// <para>
-/// The bucket policy as a JSON document.
-/// </para>
-/// <para>
-/// For directory buckets, the only IAM action supported in the bucket policy is
-/// <c>s3express:CreateSession</c>.
-/// </para>
-/// </param>
 /// <param name="ChecksumAlgorithm">
 /// <para>
 /// Indicates the algorithm used to create the checksum for the request when you use the SDK. This
@@ -144,11 +135,20 @@ namespace Com.Amazonaws.S3;
 /// specify this header, the request fails with the HTTP status code <c>501 Not Implemented</c>.
 /// </para>
 /// </param>
+/// <param name="Policy">
+/// <para>
+/// The bucket policy as a JSON document.
+/// </para>
+/// <para>
+/// For directory buckets, the only IAM action supported in the bucket policy is
+/// <c>s3express:CreateSession</c>.
+/// </para>
+/// </param>
 public sealed record class PutBucketPolicyInput(
-    string Bucket,
-    string Policy,
+    string? Bucket = null,
     global::Com.Amazonaws.S3.ChecksumAlgorithm? ChecksumAlgorithm = null,
     bool? ConfirmRemoveSelfBucketAccess = null,
     string? ContentMD5 = null,
-    string? ExpectedBucketOwner = null
+    string? ExpectedBucketOwner = null,
+    string? Policy = null
 );

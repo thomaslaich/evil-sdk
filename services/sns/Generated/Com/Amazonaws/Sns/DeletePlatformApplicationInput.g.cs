@@ -10,4 +10,4 @@ namespace Com.Amazonaws.Sns;
 /// <param name="PlatformApplicationArn">
 /// <c>PlatformApplicationArn</c> of platform application object to delete.
 /// </param>
-public sealed record class DeletePlatformApplicationInput(string PlatformApplicationArn);
+public sealed record class DeletePlatformApplicationInput(string? PlatformApplicationArn = null);

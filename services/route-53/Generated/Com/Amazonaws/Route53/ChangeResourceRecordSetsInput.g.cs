@@ -14,6 +14,6 @@ namespace Com.Amazonaws.Route53;
 /// The ID of the hosted zone that contains the resource record sets that you want to change.
 /// </param>
 public sealed record class ChangeResourceRecordSetsInput(
-    global::Com.Amazonaws.Route53.ChangeBatch ChangeBatch,
-    string HostedZoneId
+    global::Com.Amazonaws.Route53.ChangeBatch? ChangeBatch = null,
+    string? HostedZoneId = null
 );

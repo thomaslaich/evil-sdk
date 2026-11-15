@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Iam.Schemas;
 
 public static partial class CreatePolicyInputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? PolicyName { get; set; }
         public string? Path { get; set; }
@@ -31,7 +31,6 @@ public static partial class CreatePolicyInputSchema
                 new(
                     "PolicyName",
                     Target0,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
@@ -47,10 +46,6 @@ public static partial class CreatePolicyInputSchema
                         new Trait(
                             ShapeId.Parse("smithy.api#pattern"),
                             Document.From("^[\\w+=,.@-]+$")
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
                         ),
                     ]
                 ),
@@ -78,7 +73,6 @@ public static partial class CreatePolicyInputSchema
                 new(
                     "PolicyDocument",
                     Target2,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
@@ -94,10 +88,6 @@ public static partial class CreatePolicyInputSchema
                         new Trait(
                             ShapeId.Parse("smithy.api#pattern"),
                             Document.From("^[\\u0009\\u000A\\u000D\\u0020-\\u00FF]+$")
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
                         ),
                     ]
                 ),
@@ -157,11 +147,10 @@ public static partial class CreatePolicyInputSchema
 
         public override global::Com.Amazonaws.Iam.CreatePolicyInput Build(Builder builder) =>
             new global::Com.Amazonaws.Iam.CreatePolicyInput(
-                builder.PolicyDocument
-                    ?? throw new MissingRequiredMemberException("PolicyDocument"),
-                builder.PolicyName ?? throw new MissingRequiredMemberException("PolicyName"),
                 builder.Description,
                 builder.Path,
+                builder.PolicyDocument,
+                builder.PolicyName,
                 builder.Tags
             );
 
@@ -212,7 +201,7 @@ public static partial class CreatePolicyInputSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

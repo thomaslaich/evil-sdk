@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Sts.Schemas;
 
 public static partial class GetWebIdentityTokenInputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public IReadOnlyList<string>? Audience { get; set; }
         public int? DurationSeconds { get; set; }
@@ -27,18 +27,7 @@ public static partial class GetWebIdentityTokenInputSchema
         : StructSchema<global::Com.Amazonaws.Sts.GetWebIdentityTokenInput, Builder>(
             ShapeId.Parse("com.amazonaws.sts#GetWebIdentityTokenInput"),
             [
-                new(
-                    "Audience",
-                    Target0,
-                    isRequired: true,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
-                    ]
-                ),
+                new("Audience", Target0),
                 new(
                     "DurationSeconds",
                     Target1,
@@ -63,7 +52,6 @@ public static partial class GetWebIdentityTokenInputSchema
                 new(
                     "SigningAlgorithm",
                     Target2,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
@@ -75,10 +63,6 @@ public static partial class GetWebIdentityTokenInputSchema
                                     { "max", Document.From(5m) },
                                 }
                             )
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
                         ),
                     ]
                 ),
@@ -117,10 +101,9 @@ public static partial class GetWebIdentityTokenInputSchema
 
         public override global::Com.Amazonaws.Sts.GetWebIdentityTokenInput Build(Builder builder) =>
             new global::Com.Amazonaws.Sts.GetWebIdentityTokenInput(
-                builder.Audience ?? throw new MissingRequiredMemberException("Audience"),
-                builder.SigningAlgorithm
-                    ?? throw new MissingRequiredMemberException("SigningAlgorithm"),
+                builder.Audience,
                 builder.DurationSeconds,
+                builder.SigningAlgorithm,
                 builder.Tags
             );
 
@@ -163,7 +146,7 @@ public static partial class GetWebIdentityTokenInputSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

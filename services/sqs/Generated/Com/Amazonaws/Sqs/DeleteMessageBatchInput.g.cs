@@ -20,6 +20,6 @@ namespace Com.Amazonaws.Sqs;
 /// </para>
 /// </param>
 public sealed record class DeleteMessageBatchInput(
-    IReadOnlyList<DeleteMessageBatchRequestEntry> Entries,
-    string QueueUrl
+    IReadOnlyList<DeleteMessageBatchRequestEntry>? Entries = null,
+    string? QueueUrl = null
 );

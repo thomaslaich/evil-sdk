@@ -9,7 +9,7 @@ namespace Com.Amazonaws.Eventbridge.Schemas;
 
 public static partial class BatchArrayPropertiesSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public int? Size { get; set; }
     }
@@ -60,7 +60,7 @@ public static partial class BatchArrayPropertiesSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

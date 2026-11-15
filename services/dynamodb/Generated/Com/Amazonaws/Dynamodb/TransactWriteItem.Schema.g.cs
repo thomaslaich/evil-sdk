@@ -9,7 +9,7 @@ namespace Com.Amazonaws.Dynamodb.Schemas;
 
 public static partial class TransactWriteItemSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public global::Com.Amazonaws.Dynamodb.ConditionCheck? ConditionCheck { get; set; }
         public global::Com.Amazonaws.Dynamodb.Put? Put { get; set; }
@@ -100,7 +100,7 @@ public static partial class TransactWriteItemSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Sts.Schemas;
 
 public static partial class AssumeRoleWithWebIdentityOutputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public global::Com.Amazonaws.Sts.Credentials? Credentials { get; set; }
         public string? SubjectFromWebIdentityToken { get; set; }
@@ -265,7 +265,7 @@ public static partial class AssumeRoleWithWebIdentityOutputSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

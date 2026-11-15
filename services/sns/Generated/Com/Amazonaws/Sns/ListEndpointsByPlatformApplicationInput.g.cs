@@ -7,14 +7,14 @@ namespace Com.Amazonaws.Sns;
 /// <summary>
 /// Input for <c>ListEndpointsByPlatformApplication</c> action.
 /// </summary>
-/// <param name="PlatformApplicationArn">
-/// <c>PlatformApplicationArn</c> for <c>ListEndpointsByPlatformApplicationInput</c> action.
-/// </param>
 /// <param name="NextToken">
 /// <c>NextToken</c> string is used when calling <c>ListEndpointsByPlatformApplication</c> action to
 /// retrieve additional records that are available after the first page results.
 /// </param>
+/// <param name="PlatformApplicationArn">
+/// <c>PlatformApplicationArn</c> for <c>ListEndpointsByPlatformApplicationInput</c> action.
+/// </param>
 public sealed record class ListEndpointsByPlatformApplicationInput(
-    string PlatformApplicationArn,
-    string? NextToken = null
+    string? NextToken = null,
+    string? PlatformApplicationArn = null
 );

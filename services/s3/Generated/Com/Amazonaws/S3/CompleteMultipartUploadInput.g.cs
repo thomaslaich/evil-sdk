@@ -48,12 +48,6 @@ namespace Com.Amazonaws.S3;
 /// Outposts?</see> in the <i>Amazon S3 User Guide</i>.
 /// </para>
 /// </param>
-/// <param name="Key">
-/// Object key for which the multipart upload was initiated.
-/// </param>
-/// <param name="UploadId">
-/// ID for the initiated multipart upload.
-/// </param>
 /// <param name="ChecksumCRC32">
 /// This header can be used as a data integrity check to verify that the data received is the same data
 /// that was originally sent. This header specifies the Base64 encoded, 32-bit <c>CRC32</c> checksum of
@@ -179,6 +173,9 @@ namespace Com.Amazonaws.S3;
 /// requests</see> in the <i>Amazon S3 User Guide</i>.
 /// </para>
 /// </param>
+/// <param name="Key">
+/// Object key for which the multipart upload was initiated.
+/// </param>
 /// <param name="MpuObjectSize">
 /// The expected total object size of the multipart upload request. If there’s a mismatch between the
 /// specified object size value and the actual object size value, it results in an <c>HTTP 400
@@ -221,10 +218,11 @@ namespace Com.Amazonaws.S3;
 /// <b>Note:</b> This functionality is not supported for directory buckets.
 /// </para>
 /// </param>
+/// <param name="UploadId">
+/// ID for the initiated multipart upload.
+/// </param>
 public sealed record class CompleteMultipartUploadInput(
-    string Bucket,
-    string Key,
-    string UploadId,
+    string? Bucket = null,
     string? ChecksumCRC32 = null,
     string? ChecksumCRC32C = null,
     string? ChecksumCRC64NVME = null,
@@ -239,10 +237,12 @@ public sealed record class CompleteMultipartUploadInput(
     string? ExpectedBucketOwner = null,
     string? IfMatch = null,
     string? IfNoneMatch = null,
+    string? Key = null,
     long? MpuObjectSize = null,
     CompletedMultipartUpload? MultipartUpload = null,
     global::Com.Amazonaws.S3.RequestPayer? RequestPayer = null,
     string? SSECustomerAlgorithm = null,
     string? SSECustomerKey = null,
-    string? SSECustomerKeyMD5 = null
+    string? SSECustomerKeyMD5 = null,
+    string? UploadId = null
 );

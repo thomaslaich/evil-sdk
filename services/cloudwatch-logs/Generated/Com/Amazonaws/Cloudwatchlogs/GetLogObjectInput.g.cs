@@ -16,4 +16,4 @@ namespace Com.Amazonaws.Cloudwatchlogs;
 /// A boolean flag that indicates whether to unmask sensitive log data. When set to true, any masked or
 /// redacted data in the log object will be displayed in its original form. Default is false.
 /// </param>
-public sealed record class GetLogObjectInput(string LogObjectPointer, bool? Unmask = null);
+public sealed record class GetLogObjectInput(string? LogObjectPointer = null, bool? Unmask = null);

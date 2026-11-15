@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Eventbridge.Schemas;
 
 public static partial class TestEventPatternInputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? EventPattern { get; set; }
         public string? Event { get; set; }
@@ -28,7 +28,6 @@ public static partial class TestEventPatternInputSchema
                 new(
                     "EventPattern",
                     Target0,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
@@ -41,24 +40,9 @@ public static partial class TestEventPatternInputSchema
                                 }
                             )
                         ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
                     ]
                 ),
-                new(
-                    "Event",
-                    Target1,
-                    isRequired: true,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
-                    ]
-                ),
+                new("Event", Target1),
             ],
             [
                 new Trait(
@@ -87,8 +71,8 @@ public static partial class TestEventPatternInputSchema
             Builder builder
         ) =>
             new global::Com.Amazonaws.Eventbridge.TestEventPatternInput(
-                builder.Event ?? throw new MissingRequiredMemberException("Event"),
-                builder.EventPattern ?? throw new MissingRequiredMemberException("EventPattern")
+                builder.Event,
+                builder.EventPattern
             );
 
         public override void SerializeMembers<TSerializer>(
@@ -114,7 +98,7 @@ public static partial class TestEventPatternInputSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

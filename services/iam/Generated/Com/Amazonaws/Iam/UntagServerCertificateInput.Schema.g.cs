@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Iam.Schemas;
 
 public static partial class UntagServerCertificateInputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? ServerCertificateName { get; set; }
         public IReadOnlyList<string>? TagKeys { get; set; }
@@ -28,7 +28,6 @@ public static partial class UntagServerCertificateInputSchema
                 new(
                     "ServerCertificateName",
                     Target0,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
@@ -45,24 +44,9 @@ public static partial class UntagServerCertificateInputSchema
                             ShapeId.Parse("smithy.api#pattern"),
                             Document.From("^[\\w+=,.@-]+$")
                         ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
                     ]
                 ),
-                new(
-                    "TagKeys",
-                    Target1,
-                    isRequired: true,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
-                    ]
-                ),
+                new("TagKeys", Target1),
             ],
             [
                 new Trait(
@@ -91,9 +75,8 @@ public static partial class UntagServerCertificateInputSchema
             Builder builder
         ) =>
             new global::Com.Amazonaws.Iam.UntagServerCertificateInput(
-                builder.ServerCertificateName
-                    ?? throw new MissingRequiredMemberException("ServerCertificateName"),
-                builder.TagKeys ?? throw new MissingRequiredMemberException("TagKeys")
+                builder.ServerCertificateName,
+                builder.TagKeys
             );
 
         public override void SerializeMembers<TSerializer>(
@@ -119,7 +102,7 @@ public static partial class UntagServerCertificateInputSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

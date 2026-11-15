@@ -34,8 +34,8 @@ namespace Com.Amazonaws.S3;
 /// denied).
 /// </param>
 public sealed record class PutBucketAccelerateConfigurationInput(
-    global::Com.Amazonaws.S3.AccelerateConfiguration AccelerateConfiguration,
-    string Bucket,
+    global::Com.Amazonaws.S3.AccelerateConfiguration? AccelerateConfiguration = null,
+    string? Bucket = null,
     global::Com.Amazonaws.S3.ChecksumAlgorithm? ChecksumAlgorithm = null,
     string? ExpectedBucketOwner = null
 );

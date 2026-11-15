@@ -9,6 +9,14 @@ namespace Com.Amazonaws.Sns;
 /// <summary>
 /// Input for CreatePlatformEndpoint action.
 /// </summary>
+/// <param name="Attributes">
+/// For a list of attributes, see
+/// <see href="https://docs.aws.amazon.com/sns/latest/api/API_SetEndpointAttributes.html"><c>SetEndpointAttributes</c></see>.
+/// </param>
+/// <param name="CustomUserData">
+/// Arbitrary user data to associate with the endpoint. Amazon SNS does not use this data. The data must
+/// be in UTF-8 format and less than 2KB.
+/// </param>
 /// <param name="PlatformApplicationArn">
 /// <c>PlatformApplicationArn</c> returned from CreatePlatformApplication is used to create a an
 /// endpoint.
@@ -19,17 +27,9 @@ namespace Com.Amazonaws.Sns;
 /// as the notification service, you need the device token. Alternatively, when using GCM (Firebase
 /// Cloud Messaging) or ADM, the device token equivalent is called the registration ID.
 /// </param>
-/// <param name="Attributes">
-/// For a list of attributes, see
-/// <see href="https://docs.aws.amazon.com/sns/latest/api/API_SetEndpointAttributes.html"><c>SetEndpointAttributes</c></see>.
-/// </param>
-/// <param name="CustomUserData">
-/// Arbitrary user data to associate with the endpoint. Amazon SNS does not use this data. The data must
-/// be in UTF-8 format and less than 2KB.
-/// </param>
 public sealed record class CreatePlatformEndpointInput(
-    string PlatformApplicationArn,
-    string Token,
     IReadOnlyDictionary<string, string>? Attributes = null,
-    string? CustomUserData = null
+    string? CustomUserData = null,
+    string? PlatformApplicationArn = null,
+    string? Token = null
 );

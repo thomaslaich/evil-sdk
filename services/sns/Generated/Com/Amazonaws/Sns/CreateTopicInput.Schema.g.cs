@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Sns.Schemas;
 
 public static partial class CreateTopicInputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? Name { get; set; }
         public IReadOnlyDictionary<string, string>? Attributes { get; set; }
@@ -27,18 +27,7 @@ public static partial class CreateTopicInputSchema
         : StructSchema<global::Com.Amazonaws.Sns.CreateTopicInput, Builder>(
             ShapeId.Parse("com.amazonaws.sns#CreateTopicInput"),
             [
-                new(
-                    "Name",
-                    Target0,
-                    isRequired: true,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
-                    ]
-                ),
+                new("Name", Target0),
                 new("Attributes", Target1),
                 new("Tags", Target2),
                 new("DataProtectionPolicy", Target3),
@@ -74,9 +63,9 @@ public static partial class CreateTopicInputSchema
 
         public override global::Com.Amazonaws.Sns.CreateTopicInput Build(Builder builder) =>
             new global::Com.Amazonaws.Sns.CreateTopicInput(
-                builder.Name ?? throw new MissingRequiredMemberException("Name"),
                 builder.Attributes,
                 builder.DataProtectionPolicy,
+                builder.Name,
                 builder.Tags
             );
 
@@ -119,7 +108,7 @@ public static partial class CreateTopicInputSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

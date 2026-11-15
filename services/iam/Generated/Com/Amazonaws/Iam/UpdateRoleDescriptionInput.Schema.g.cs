@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Iam.Schemas;
 
 public static partial class UpdateRoleDescriptionInputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? RoleName { get; set; }
         public string? Description { get; set; }
@@ -28,7 +28,6 @@ public static partial class UpdateRoleDescriptionInputSchema
                 new(
                     "RoleName",
                     Target0,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
@@ -45,16 +44,11 @@ public static partial class UpdateRoleDescriptionInputSchema
                             ShapeId.Parse("smithy.api#pattern"),
                             Document.From("^[\\w+=,.@-]+$")
                         ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
                     ]
                 ),
                 new(
                     "Description",
                     Target1,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
@@ -72,10 +66,6 @@ public static partial class UpdateRoleDescriptionInputSchema
                             Document.From(
                                 "^[\\u0009\\u000A\\u000D\\u0020-\\u007E\\u00A1-\\u00FF]*$"
                             )
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
                         ),
                     ]
                 ),
@@ -107,8 +97,8 @@ public static partial class UpdateRoleDescriptionInputSchema
             Builder builder
         ) =>
             new global::Com.Amazonaws.Iam.UpdateRoleDescriptionInput(
-                builder.Description ?? throw new MissingRequiredMemberException("Description"),
-                builder.RoleName ?? throw new MissingRequiredMemberException("RoleName")
+                builder.Description,
+                builder.RoleName
             );
 
         public override void SerializeMembers<TSerializer>(
@@ -134,7 +124,7 @@ public static partial class UpdateRoleDescriptionInputSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

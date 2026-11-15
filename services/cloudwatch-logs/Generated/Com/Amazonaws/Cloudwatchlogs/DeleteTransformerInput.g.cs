@@ -11,4 +11,4 @@ namespace Com.Amazonaws.Cloudwatchlogs;
 /// Specify either the name or ARN of the log group to delete the transformer for. If the log group is
 /// in a source account and you are using a monitoring account, you must use the log group ARN.
 /// </param>
-public sealed record class DeleteTransformerInput(string LogGroupIdentifier);
+public sealed record class DeleteTransformerInput(string? LogGroupIdentifier = null);

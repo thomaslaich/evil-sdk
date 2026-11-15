@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Eventbridge.Schemas;
 
 public static partial class CapacityProviderStrategyItemSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? CapacityProvider { get; set; }
         public int? Weight { get; set; }
@@ -148,7 +148,7 @@ public static partial class CapacityProviderStrategyItemSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

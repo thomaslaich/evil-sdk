@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Iam.Schemas;
 
 public static partial class UntagMFADeviceInputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? SerialNumber { get; set; }
         public IReadOnlyList<string>? TagKeys { get; set; }
@@ -28,7 +28,6 @@ public static partial class UntagMFADeviceInputSchema
                 new(
                     "SerialNumber",
                     Target0,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
@@ -45,24 +44,9 @@ public static partial class UntagMFADeviceInputSchema
                             ShapeId.Parse("smithy.api#pattern"),
                             Document.From("^[\\w+=/:,.@-]+$")
                         ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
                     ]
                 ),
-                new(
-                    "TagKeys",
-                    Target1,
-                    isRequired: true,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
-                    ]
-                ),
+                new("TagKeys", Target1),
             ],
             [
                 new Trait(
@@ -89,8 +73,8 @@ public static partial class UntagMFADeviceInputSchema
 
         public override global::Com.Amazonaws.Iam.UntagMFADeviceInput Build(Builder builder) =>
             new global::Com.Amazonaws.Iam.UntagMFADeviceInput(
-                builder.SerialNumber ?? throw new MissingRequiredMemberException("SerialNumber"),
-                builder.TagKeys ?? throw new MissingRequiredMemberException("TagKeys")
+                builder.SerialNumber,
+                builder.TagKeys
             );
 
         public override void SerializeMembers<TSerializer>(
@@ -116,7 +100,7 @@ public static partial class UntagMFADeviceInputSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

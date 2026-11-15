@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Lambda.Schemas;
 
 public static partial class CreateFunctionInputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? FunctionName { get; set; }
         public global::Com.Amazonaws.Lambda.Runtime? Runtime { get; set; }
@@ -54,7 +54,6 @@ public static partial class CreateFunctionInputSchema
                 new(
                     "FunctionName",
                     Target0,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
@@ -73,17 +72,12 @@ public static partial class CreateFunctionInputSchema
                                 "^(arn:(aws[a-zA-Z-]*)?:lambda:)?((eusc-)?[a-z]{2}((-gov)|(-iso([a-z]?)))?-[a-z]+-\\d{1}:)?(\\d{12}:)?(function:)?([a-zA-Z0-9-_]+)(:(\\$LATEST|[a-zA-Z0-9-_]+))?$"
                             )
                         ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
                     ]
                 ),
                 new("Runtime", Target1),
                 new(
                     "Role",
                     Target2,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
@@ -101,10 +95,6 @@ public static partial class CreateFunctionInputSchema
                             Document.From(
                                 "^arn:(aws[a-zA-Z-]*)?:iam::\\d{12}:role/?[a-zA-Z_0-9+=,.@\\-_/]+$"
                             )
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
                         ),
                     ]
                 ),
@@ -126,18 +116,7 @@ public static partial class CreateFunctionInputSchema
                         new Trait(ShapeId.Parse("smithy.api#pattern"), Document.From("^[^\\s]+$")),
                     ]
                 ),
-                new(
-                    "Code",
-                    Target4,
-                    isRequired: true,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
-                    ]
-                ),
+                new("Code", Target4),
                 new(
                     "Description",
                     Target5,
@@ -385,11 +364,9 @@ public static partial class CreateFunctionInputSchema
 
         public override global::Com.Amazonaws.Lambda.CreateFunctionInput Build(Builder builder) =>
             new global::Com.Amazonaws.Lambda.CreateFunctionInput(
-                builder.Code ?? throw new MissingRequiredMemberException("Code"),
-                builder.FunctionName ?? throw new MissingRequiredMemberException("FunctionName"),
-                builder.Role ?? throw new MissingRequiredMemberException("Role"),
                 builder.Architectures,
                 builder.CapacityProviderConfig,
+                builder.Code,
                 builder.CodeSigningConfigArn,
                 builder.DeadLetterConfig,
                 builder.Description,
@@ -397,6 +374,7 @@ public static partial class CreateFunctionInputSchema
                 builder.Environment,
                 builder.EphemeralStorage,
                 builder.FileSystemConfigs,
+                builder.FunctionName,
                 builder.Handler,
                 builder.ImageConfig,
                 builder.KMSKeyArn,
@@ -406,6 +384,7 @@ public static partial class CreateFunctionInputSchema
                 builder.PackageType,
                 builder.Publish,
                 builder.PublishTo,
+                builder.Role,
                 builder.Runtime,
                 builder.SnapStart,
                 builder.Tags,
@@ -650,7 +629,7 @@ public static partial class CreateFunctionInputSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Sqs.Schemas;
 
 public static partial class UntagQueueInputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? QueueUrl { get; set; }
         public IReadOnlyList<string>? TagKeys { get; set; }
@@ -23,28 +23,12 @@ public static partial class UntagQueueInputSchema
         : StructSchema<global::Com.Amazonaws.Sqs.UntagQueueInput, Builder>(
             ShapeId.Parse("com.amazonaws.sqs#UntagQueueInput"),
             [
-                new(
-                    "QueueUrl",
-                    Target0,
-                    isRequired: true,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
-                    ]
-                ),
+                new("QueueUrl", Target0),
                 new(
                     "TagKeys",
                     Target1,
-                    isRequired: true,
                     traits:
                     [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
                         new Trait(
                             ShapeId.Parse("smithy.api#xmlFlattened"),
                             Document.From(new Dictionary<string, Document> { })
@@ -77,10 +61,7 @@ public static partial class UntagQueueInputSchema
         public override Builder CreateTypedBuilder() => new();
 
         public override global::Com.Amazonaws.Sqs.UntagQueueInput Build(Builder builder) =>
-            new global::Com.Amazonaws.Sqs.UntagQueueInput(
-                builder.QueueUrl ?? throw new MissingRequiredMemberException("QueueUrl"),
-                builder.TagKeys ?? throw new MissingRequiredMemberException("TagKeys")
-            );
+            new global::Com.Amazonaws.Sqs.UntagQueueInput(builder.QueueUrl, builder.TagKeys);
 
         public override void SerializeMembers<TSerializer>(
             global::Com.Amazonaws.Sqs.UntagQueueInput value,
@@ -105,7 +86,7 @@ public static partial class UntagQueueInputSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

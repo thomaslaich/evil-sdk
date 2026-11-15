@@ -9,61 +9,6 @@ namespace Com.Amazonaws.Sns;
 /// <summary>
 /// Input for Subscribe action.
 /// </summary>
-/// <param name="Protocol">
-/// <para>
-/// The protocol that you want to use. Supported protocols include:
-/// </para>
-/// <list type="bullet">
-/// <item>
-/// <description>
-/// <c>http</c> – delivery of JSON-encoded message via HTTP POST
-/// </description>
-/// </item>
-/// <item>
-/// <description>
-/// <c>https</c> – delivery of JSON-encoded message via HTTPS POST
-/// </description>
-/// </item>
-/// <item>
-/// <description>
-/// <c>email</c> – delivery of message via SMTP
-/// </description>
-/// </item>
-/// <item>
-/// <description>
-/// <c>email-json</c> – delivery of JSON-encoded message via SMTP
-/// </description>
-/// </item>
-/// <item>
-/// <description>
-/// <c>sms</c> – delivery of message via SMS
-/// </description>
-/// </item>
-/// <item>
-/// <description>
-/// <c>sqs</c> – delivery of JSON-encoded message to an Amazon SQS queue
-/// </description>
-/// </item>
-/// <item>
-/// <description>
-/// <c>application</c> – delivery of JSON-encoded message to an EndpointArn for a mobile app and device
-/// </description>
-/// </item>
-/// <item>
-/// <description>
-/// <c>lambda</c> – delivery of JSON-encoded message to an Lambda function
-/// </description>
-/// </item>
-/// <item>
-/// <description>
-/// <c>firehose</c> – delivery of JSON-encoded message to an Amazon Data Firehose delivery stream.
-/// </description>
-/// </item>
-/// </list>
-/// </param>
-/// <param name="TopicArn">
-/// The ARN of the topic you want to subscribe to.
-/// </param>
 /// <param name="Attributes">
 /// <para>
 /// A map of attributes with their corresponding values.
@@ -250,6 +195,58 @@ namespace Com.Amazonaws.Sns;
 /// </item>
 /// </list>
 /// </param>
+/// <param name="Protocol">
+/// <para>
+/// The protocol that you want to use. Supported protocols include:
+/// </para>
+/// <list type="bullet">
+/// <item>
+/// <description>
+/// <c>http</c> – delivery of JSON-encoded message via HTTP POST
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <c>https</c> – delivery of JSON-encoded message via HTTPS POST
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <c>email</c> – delivery of message via SMTP
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <c>email-json</c> – delivery of JSON-encoded message via SMTP
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <c>sms</c> – delivery of message via SMS
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <c>sqs</c> – delivery of JSON-encoded message to an Amazon SQS queue
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <c>application</c> – delivery of JSON-encoded message to an EndpointArn for a mobile app and device
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <c>lambda</c> – delivery of JSON-encoded message to an Lambda function
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <c>firehose</c> – delivery of JSON-encoded message to an Amazon Data Firehose delivery stream.
+/// </description>
+/// </item>
+/// </list>
+/// </param>
 /// <param name="ReturnSubscriptionArn">
 /// <para>
 /// Sets whether the response from the <c>Subscribe</c> request includes the subscription ARN, even if
@@ -266,10 +263,13 @@ namespace Com.Amazonaws.Sns;
 /// The default value is <c>false</c>.
 /// </para>
 /// </param>
+/// <param name="TopicArn">
+/// The ARN of the topic you want to subscribe to.
+/// </param>
 public sealed record class SubscribeInput(
-    string Protocol,
-    string TopicArn,
     IReadOnlyDictionary<string, string>? Attributes = null,
     string? Endpoint = null,
-    bool? ReturnSubscriptionArn = null
+    string? Protocol = null,
+    bool? ReturnSubscriptionArn = null,
+    string? TopicArn = null
 );

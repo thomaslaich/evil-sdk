@@ -41,4 +41,4 @@ namespace Com.Amazonaws.Lambda;
 /// <param name="InvokeArgs">
 /// The JSON that you want to provide to your Lambda function as input.
 /// </param>
-public sealed record class InvokeAsyncInput(string FunctionName, Stream InvokeArgs);
+public sealed record class InvokeAsyncInput(string? FunctionName = null, Stream? InvokeArgs = null);

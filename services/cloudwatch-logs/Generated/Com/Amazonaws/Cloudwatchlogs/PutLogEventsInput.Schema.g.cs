@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Cloudwatchlogs.Schemas;
 
 public static partial class PutLogEventsInputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? LogGroupName { get; set; }
         public string? LogStreamName { get; set; }
@@ -31,7 +31,6 @@ public static partial class PutLogEventsInputSchema
                 new(
                     "logGroupName",
                     Target0,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
@@ -48,16 +47,11 @@ public static partial class PutLogEventsInputSchema
                             ShapeId.Parse("smithy.api#pattern"),
                             Document.From("^[\\.\\-_/#A-Za-z0-9]+$")
                         ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
                     ]
                 ),
                 new(
                     "logStreamName",
                     Target1,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
@@ -71,24 +65,9 @@ public static partial class PutLogEventsInputSchema
                             )
                         ),
                         new Trait(ShapeId.Parse("smithy.api#pattern"), Document.From("^[^:*]*$")),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
                     ]
                 ),
-                new(
-                    "logEvents",
-                    Target2,
-                    isRequired: true,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
-                    ]
-                ),
+                new("logEvents", Target2),
                 new(
                     "sequenceToken",
                     Target3,
@@ -143,10 +122,10 @@ public static partial class PutLogEventsInputSchema
             Builder builder
         ) =>
             new global::Com.Amazonaws.Cloudwatchlogs.PutLogEventsInput(
-                builder.LogEvents ?? throw new MissingRequiredMemberException("logEvents"),
-                builder.LogGroupName ?? throw new MissingRequiredMemberException("logGroupName"),
-                builder.LogStreamName ?? throw new MissingRequiredMemberException("logStreamName"),
                 builder.Entity,
+                builder.LogEvents,
+                builder.LogGroupName,
+                builder.LogStreamName,
                 builder.SequenceToken
             );
 
@@ -197,7 +176,7 @@ public static partial class PutLogEventsInputSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

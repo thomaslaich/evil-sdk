@@ -11,50 +11,6 @@ namespace Com.Amazonaws.S3;
 /// <summary>
 /// Represents the Smithy structure com.amazonaws.s3#PutObjectInput.
 /// </summary>
-/// <param name="Bucket">
-/// <para>
-/// The bucket name to which the PUT action was initiated.
-/// </para>
-/// <para>
-/// <b>Directory buckets</b> - When you use this operation with a directory bucket, you must use
-/// virtual-hosted-style requests in the format <c>
-/// <i>Bucket-name</i>.s3express-<i>zone-id</i>.<i>region-code</i>.amazonaws.com</c>. Path-style
-/// requests are not supported. Directory bucket names must be unique in the chosen Zone (Availability
-/// Zone or Local Zone). Bucket names must follow the format <c>
-/// <i>bucket-base-name</i>--<i>zone-id</i>--x-s3</c> (for example, <c>
-/// <i>amzn-s3-demo-bucket</i>--<i>usw2-az1</i>--x-s3</c>). For information about bucket naming
-/// restrictions, see
-/// <see href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/directory-bucket-naming-rules.html">Directory
-/// bucket naming rules</see> in the <i>Amazon S3 User Guide</i>.
-/// </para>
-/// <para>
-/// <b>Access points</b> - When you use this action with an access point for general purpose buckets,
-/// you must provide the alias of the access point in place of the bucket name or specify the access
-/// point ARN. When you use this action with an access point for directory buckets, you must provide the
-/// access point name in place of the bucket name. When using the access point ARN, you must direct
-/// requests to the access point hostname. The access point hostname takes the form
-/// <i>AccessPointName</i>-<i>AccountId</i>.s3-accesspoint.<i>Region</i>.amazonaws.com. When using this
-/// action with an access point through the Amazon Web Services SDKs, you provide the access point ARN
-/// in place of the bucket name. For more information about access point ARNs, see
-/// <see href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/using-access-points.html">Using
-/// access points</see> in the <i>Amazon S3 User Guide</i>.
-/// </para>
-/// <para>
-/// <b>Note:</b> Object Lambda access points are not supported by directory buckets.
-/// </para>
-/// <para>
-/// <b>S3 on Outposts</b> - When you use this action with S3 on Outposts, you must direct requests to
-/// the S3 on Outposts hostname. The S3 on Outposts hostname takes the form <c>
-/// <i>AccessPointName</i>-<i>AccountId</i>.<i>outpostID</i>.s3-outposts.<i>Region</i>.amazonaws.com</c>.
-/// When you use this action with S3 on Outposts, the destination bucket must be the Outposts access
-/// point ARN or the access point alias. For more information about S3 on Outposts, see
-/// <see href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/S3onOutposts.html">What is S3 on
-/// Outposts?</see> in the <i>Amazon S3 User Guide</i>.
-/// </para>
-/// </param>
-/// <param name="Key">
-/// Object key for which the PUT action was initiated.
-/// </param>
 /// <param name="ACL">
 /// <para>
 /// The canned ACL to apply to the object. For more information, see
@@ -98,6 +54,47 @@ namespace Com.Amazonaws.S3;
 /// </param>
 /// <param name="Body">
 /// Object data.
+/// </param>
+/// <param name="Bucket">
+/// <para>
+/// The bucket name to which the PUT action was initiated.
+/// </para>
+/// <para>
+/// <b>Directory buckets</b> - When you use this operation with a directory bucket, you must use
+/// virtual-hosted-style requests in the format <c>
+/// <i>Bucket-name</i>.s3express-<i>zone-id</i>.<i>region-code</i>.amazonaws.com</c>. Path-style
+/// requests are not supported. Directory bucket names must be unique in the chosen Zone (Availability
+/// Zone or Local Zone). Bucket names must follow the format <c>
+/// <i>bucket-base-name</i>--<i>zone-id</i>--x-s3</c> (for example, <c>
+/// <i>amzn-s3-demo-bucket</i>--<i>usw2-az1</i>--x-s3</c>). For information about bucket naming
+/// restrictions, see
+/// <see href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/directory-bucket-naming-rules.html">Directory
+/// bucket naming rules</see> in the <i>Amazon S3 User Guide</i>.
+/// </para>
+/// <para>
+/// <b>Access points</b> - When you use this action with an access point for general purpose buckets,
+/// you must provide the alias of the access point in place of the bucket name or specify the access
+/// point ARN. When you use this action with an access point for directory buckets, you must provide the
+/// access point name in place of the bucket name. When using the access point ARN, you must direct
+/// requests to the access point hostname. The access point hostname takes the form
+/// <i>AccessPointName</i>-<i>AccountId</i>.s3-accesspoint.<i>Region</i>.amazonaws.com. When using this
+/// action with an access point through the Amazon Web Services SDKs, you provide the access point ARN
+/// in place of the bucket name. For more information about access point ARNs, see
+/// <see href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/using-access-points.html">Using
+/// access points</see> in the <i>Amazon S3 User Guide</i>.
+/// </para>
+/// <para>
+/// <b>Note:</b> Object Lambda access points are not supported by directory buckets.
+/// </para>
+/// <para>
+/// <b>S3 on Outposts</b> - When you use this action with S3 on Outposts, you must direct requests to
+/// the S3 on Outposts hostname. The S3 on Outposts hostname takes the form <c>
+/// <i>AccessPointName</i>-<i>AccountId</i>.<i>outpostID</i>.s3-outposts.<i>Region</i>.amazonaws.com</c>.
+/// When you use this action with S3 on Outposts, the destination bucket must be the Outposts access
+/// point ARN or the access point alias. For more information about S3 on Outposts, see
+/// <see href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/S3onOutposts.html">What is S3 on
+/// Outposts?</see> in the <i>Amazon S3 User Guide</i>.
+/// </para>
 /// </param>
 /// <param name="BucketKeyEnabled">
 /// <para>
@@ -446,6 +443,9 @@ namespace Com.Amazonaws.S3;
 /// requests</see> in the <i>Amazon S3 User Guide</i>.
 /// </para>
 /// </param>
+/// <param name="Key">
+/// Object key for which the PUT action was initiated.
+/// </param>
 /// <param name="Metadata">
 /// A map of metadata to store with the object in S3.
 /// </param>
@@ -728,10 +728,9 @@ namespace Com.Amazonaws.S3;
 /// </para>
 /// </param>
 public sealed record class PutObjectInput(
-    string Bucket,
-    string Key,
     ObjectCannedACL? ACL = null,
     Stream? Body = null,
+    string? Bucket = null,
     bool? BucketKeyEnabled = null,
     string? CacheControl = null,
     global::Com.Amazonaws.S3.ChecksumAlgorithm? ChecksumAlgorithm = null,
@@ -759,6 +758,7 @@ public sealed record class PutObjectInput(
     string? GrantWriteACP = null,
     string? IfMatch = null,
     string? IfNoneMatch = null,
+    string? Key = null,
     IReadOnlyDictionary<string, string>? Metadata = null,
     global::Com.Amazonaws.S3.ObjectLockEventHold? ObjectLockEventHold = null,
     int? ObjectLockEventHoldDurationDays = null,

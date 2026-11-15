@@ -39,4 +39,7 @@ namespace Com.Amazonaws.Lambda;
 /// <param name="Qualifier">
 /// Specify a version to delete. You can't delete a version that an alias references.
 /// </param>
-public sealed record class DeleteFunctionInput(string FunctionName, string? Qualifier = null);
+public sealed record class DeleteFunctionInput(
+    string? FunctionName = null,
+    string? Qualifier = null
+);

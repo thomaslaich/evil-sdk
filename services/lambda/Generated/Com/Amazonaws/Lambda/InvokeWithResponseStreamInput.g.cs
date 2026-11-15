@@ -7,6 +7,10 @@ namespace Com.Amazonaws.Lambda;
 /// <summary>
 /// Represents the Smithy structure com.amazonaws.lambda#InvokeWithResponseStreamInput.
 /// </summary>
+/// <param name="ClientContext">
+/// Up to 3,583 bytes of base64-encoded data about the invoking client to pass to the function in the
+/// context object.
+/// </param>
 /// <param name="FunctionName">
 /// <para>
 /// The name or ARN of the Lambda function.
@@ -35,10 +39,6 @@ namespace Com.Amazonaws.Lambda;
 /// The length constraint applies only to the full ARN. If you specify only the function name, it is
 /// limited to 64 characters in length.
 /// </para>
-/// </param>
-/// <param name="ClientContext">
-/// Up to 3,583 bytes of base64-encoded data about the invoking client to pass to the function in the
-/// context object.
 /// </param>
 /// <param name="InvocationType">
 /// <para>
@@ -80,8 +80,8 @@ namespace Com.Amazonaws.Lambda;
 /// The identifier of the tenant in a multi-tenant Lambda function.
 /// </param>
 public sealed record class InvokeWithResponseStreamInput(
-    string FunctionName,
     string? ClientContext = null,
+    string? FunctionName = null,
     ResponseStreamingInvocationType? InvocationType = null,
     global::Com.Amazonaws.Lambda.LogType? LogType = null,
     byte[]? Payload = null,

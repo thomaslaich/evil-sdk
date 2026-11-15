@@ -84,7 +84,7 @@ namespace Com.Amazonaws.S3;
 /// Bucket owners need not specify this parameter in their requests.
 /// </param>
 public sealed record class ListObjectsInput(
-    string Bucket,
+    string? Bucket = null,
     string? Delimiter = null,
     global::Com.Amazonaws.S3.EncodingType? EncodingType = null,
     string? ExpectedBucketOwner = null,

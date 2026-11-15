@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Route53.Schemas;
 
 public static partial class TrafficPolicyInstanceSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? Id { get; set; }
         public string? HostedZoneId { get; set; }
@@ -330,7 +330,7 @@ public static partial class TrafficPolicyInstanceSchema
             serializer.WriteStringEnum(8, value.TrafficPolicyType.Value);
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

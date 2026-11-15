@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Iam.Schemas;
 
 public static partial class AcceptDelegationRequestInputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? DelegationRequestId { get; set; }
     }
@@ -27,7 +27,6 @@ public static partial class AcceptDelegationRequestInputSchema
                 new(
                     "DelegationRequestId",
                     Target0,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
@@ -41,10 +40,6 @@ public static partial class AcceptDelegationRequestInputSchema
                             )
                         ),
                         new Trait(ShapeId.Parse("smithy.api#pattern"), Document.From("^[\\w-]+$")),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
                     ]
                 ),
             ],
@@ -70,10 +65,7 @@ public static partial class AcceptDelegationRequestInputSchema
         public override global::Com.Amazonaws.Iam.AcceptDelegationRequestInput Build(
             Builder builder
         ) =>
-            new global::Com.Amazonaws.Iam.AcceptDelegationRequestInput(
-                builder.DelegationRequestId
-                    ?? throw new MissingRequiredMemberException("DelegationRequestId")
-            );
+            new global::Com.Amazonaws.Iam.AcceptDelegationRequestInput(builder.DelegationRequestId);
 
         public override void SerializeMembers<TSerializer>(
             global::Com.Amazonaws.Iam.AcceptDelegationRequestInput value,
@@ -90,7 +82,7 @@ public static partial class AcceptDelegationRequestInputSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

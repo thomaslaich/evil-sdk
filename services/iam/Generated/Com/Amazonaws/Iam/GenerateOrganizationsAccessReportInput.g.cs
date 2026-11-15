@@ -24,6 +24,6 @@ namespace Com.Amazonaws.Iam;
 /// </para>
 /// </param>
 public sealed record class GenerateOrganizationsAccessReportInput(
-    string EntityPath,
+    string? EntityPath = null,
     string? OrganizationsPolicyId = null
 );

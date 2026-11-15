@@ -11,7 +11,7 @@ namespace Com.Amazonaws.Iam.Schemas;
 
 public static partial class DelegationRequestSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? DelegationRequestId { get; set; }
         public string? OwnerAccountId { get; set; }
@@ -565,7 +565,7 @@ public static partial class DelegationRequestSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

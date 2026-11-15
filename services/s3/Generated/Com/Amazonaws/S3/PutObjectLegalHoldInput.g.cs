@@ -24,9 +24,6 @@ namespace Com.Amazonaws.S3;
 /// access points</see> in the <i>Amazon S3 User Guide</i>.
 /// </para>
 /// </param>
-/// <param name="Key">
-/// The key name for the object that you want to place a legal hold on.
-/// </param>
 /// <param name="ChecksumAlgorithm">
 /// <para>
 /// Indicates the algorithm used to create the checksum for the object when you use the SDK. This header
@@ -56,6 +53,9 @@ namespace Com.Amazonaws.S3;
 /// actual owner of the bucket, the request fails with the HTTP status code <c>403 Forbidden</c> (access
 /// denied).
 /// </param>
+/// <param name="Key">
+/// The key name for the object that you want to place a legal hold on.
+/// </param>
 /// <param name="LegalHold">
 /// Container element for the legal hold configuration you want to apply to the specified object.
 /// </param>
@@ -63,11 +63,11 @@ namespace Com.Amazonaws.S3;
 /// The version ID of the object that you want to place a legal hold on.
 /// </param>
 public sealed record class PutObjectLegalHoldInput(
-    string Bucket,
-    string Key,
+    string? Bucket = null,
     global::Com.Amazonaws.S3.ChecksumAlgorithm? ChecksumAlgorithm = null,
     string? ContentMD5 = null,
     string? ExpectedBucketOwner = null,
+    string? Key = null,
     ObjectLockLegalHold? LegalHold = null,
     global::Com.Amazonaws.S3.RequestPayer? RequestPayer = null,
     string? VersionId = null

@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Route53.Schemas;
 
 public static partial class GetHostedZoneCountOutputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public long? HostedZoneCount { get; set; }
     }
@@ -73,7 +73,7 @@ public static partial class GetHostedZoneCountOutputSchema
             serializer.WriteLong(0, value.HostedZoneCount);
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

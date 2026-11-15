@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Cloudwatchlogs.Schemas;
 
 public static partial class PutAccountPolicyInputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? PolicyName { get; set; }
         public string? PolicyDocument { get; set; }
@@ -28,42 +28,9 @@ public static partial class PutAccountPolicyInputSchema
         : StructSchema<global::Com.Amazonaws.Cloudwatchlogs.PutAccountPolicyInput, Builder>(
             ShapeId.Parse("com.amazonaws.cloudwatchlogs#PutAccountPolicyInput"),
             [
-                new(
-                    "policyName",
-                    Target0,
-                    isRequired: true,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
-                    ]
-                ),
-                new(
-                    "policyDocument",
-                    Target1,
-                    isRequired: true,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
-                    ]
-                ),
-                new(
-                    "policyType",
-                    Target2,
-                    isRequired: true,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
-                    ]
-                ),
+                new("policyName", Target0),
+                new("policyDocument", Target1),
+                new("policyType", Target2),
                 new("scope", Target3),
                 new("selectionCriteria", Target4),
             ],
@@ -102,10 +69,9 @@ public static partial class PutAccountPolicyInputSchema
             Builder builder
         ) =>
             new global::Com.Amazonaws.Cloudwatchlogs.PutAccountPolicyInput(
-                builder.PolicyDocument
-                    ?? throw new MissingRequiredMemberException("policyDocument"),
-                builder.PolicyName ?? throw new MissingRequiredMemberException("policyName"),
-                builder.PolicyType ?? throw new MissingRequiredMemberException("policyType"),
+                builder.PolicyDocument,
+                builder.PolicyName,
+                builder.PolicyType,
                 builder.Scope,
                 builder.SelectionCriteria
             );
@@ -131,7 +97,14 @@ public static partial class PutAccountPolicyInputSchema
             {
                 serializer.WriteNull(1);
             }
-            serializer.WriteStringEnum(2, value.PolicyType.Value);
+            if (value.PolicyType is { } value2)
+            {
+                serializer.WriteStringEnum(2, value2.Value);
+            }
+            else
+            {
+                serializer.WriteNull(2);
+            }
             if (value.Scope is { } value3)
             {
                 serializer.WriteStringEnum(3, value3.Value);
@@ -150,7 +123,7 @@ public static partial class PutAccountPolicyInputSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

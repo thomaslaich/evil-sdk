@@ -10,4 +10,4 @@ namespace Com.Amazonaws.Eventbridge;
 /// <param name="Name">
 /// The name of the connection to retrieve.
 /// </param>
-public sealed record class DescribeConnectionInput(string Name);
+public sealed record class DescribeConnectionInput(string? Name = null);

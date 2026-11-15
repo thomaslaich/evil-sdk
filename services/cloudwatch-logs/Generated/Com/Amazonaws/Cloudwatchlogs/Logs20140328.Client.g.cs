@@ -3983,6 +3983,859 @@ public interface ILogs20140328Client : IDisposable
 public static class Logs20140328ClientExtensions
 {
     /// <summary>
+    /// <para>
+    /// Associates the specified KMS key with either one log group in the account, or with all stored
+    /// CloudWatch Logs query insights results in the account.
+    /// </para>
+    /// <para>
+    /// When you use <c>AssociateKmsKey</c>, you specify either the <c>logGroupName</c> parameter or the
+    /// <c>resourceIdentifier</c> parameter. You can't specify both of those parameters in the same
+    /// operation.
+    /// </para>
+    /// <list type="bullet">
+    /// <item>
+    /// <description>
+    /// <para>
+    /// Specify the <c>logGroupName</c> parameter to cause log events ingested into that log group to be
+    /// encrypted with that key. Only the log events ingested after the key is associated are encrypted with
+    /// that key.
+    /// </para>
+    /// <para>
+    /// Associating a KMS key with a log group overrides any existing associations between the log group and
+    /// a KMS key. After a KMS key is associated with a log group, all newly ingested data for the log group
+    /// is encrypted using the KMS key. This association is stored as long as the data encrypted with the
+    /// KMS key is still within CloudWatch Logs. This enables CloudWatch Logs to decrypt this data whenever
+    /// it is requested.
+    /// </para>
+    /// <para>
+    /// Associating a key with a log group does not cause the results of queries of that log group to be
+    /// encrypted with that key. To have query results encrypted with a KMS key, you must use an
+    /// <c>AssociateKmsKey</c> operation with the <c>resourceIdentifier</c> parameter that specifies a
+    /// <c>query-result</c> resource.
+    /// </para>
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <description>
+    /// <para>
+    /// Specify the <c>resourceIdentifier</c> parameter with a <c>query-result</c> resource, to use that key
+    /// to encrypt the stored results of all future
+    /// <see href="https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_StartQuery.html">StartQuery</see>
+    /// operations in the account. The response from a
+    /// <see href="https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_GetQueryResults.html">GetQueryResults</see>
+    /// operation will still return the query results in plain text.
+    /// </para>
+    /// <para>
+    /// Even if you have not associated a key with your query results, the query results are encrypted when
+    /// stored, using the default CloudWatch Logs method.
+    /// </para>
+    /// <para>
+    /// If you run a query from a monitoring account that queries logs in a source account, the query
+    /// results key from the monitoring account, if any, is used.
+    /// </para>
+    /// </description>
+    /// </item>
+    /// </list>
+    /// <para>
+    /// <b>Important:</b> If you delete the key that is used to encrypt log events or log group query
+    /// results, then all the associated stored log events or query results that were encrypted with that
+    /// key will be unencryptable and unusable.
+    /// </para>
+    /// <para>
+    /// <b>Note:</b> CloudWatch Logs supports only symmetric KMS keys. Do not associate an asymmetric KMS
+    /// key with your log group or query results. For more information, see
+    /// <see href="https://docs.aws.amazon.com/kms/latest/developerguide/symmetric-asymmetric.html">Using
+    /// Symmetric and Asymmetric Keys</see>.
+    /// </para>
+    /// <para>
+    /// It can take up to 5 minutes for this operation to take effect.
+    /// </para>
+    /// <para>
+    /// If you attempt to associate a KMS key with a log group but the KMS key does not exist or the KMS key
+    /// is disabled, you receive an <c>InvalidParameterException</c> error.
+    /// </para>
+    /// </summary>
+    public static Task<AssociateKmsKeyOutput> AssociateKmsKeyAsync(
+        this ILogs20140328Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.AssociateKmsKeyAsync(new AssociateKmsKeyInput(), cancellationToken);
+    }
+
+    /// <summary>
+    /// Associates a data source with an S3 Table Integration for query access in the 'logs' namespace. This
+    /// enables querying log data using analytics engines that support Iceberg such as Amazon Athena, Amazon
+    /// Redshift, and Apache Spark.
+    /// </summary>
+    public static Task<AssociateSourceToS3TableIntegrationOutput> AssociateSourceToS3TableIntegrationAsync(
+        this ILogs20140328Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.AssociateSourceToS3TableIntegrationAsync(
+            new AssociateSourceToS3TableIntegrationInput(),
+            cancellationToken
+        );
+    }
+
+    /// <summary>
+    /// <para>
+    /// Cancels the specified export task.
+    /// </para>
+    /// <para>
+    /// The task must be in the <c>PENDING</c> or <c>RUNNING</c> state.
+    /// </para>
+    /// </summary>
+    public static Task<CancelExportTaskOutput> CancelExportTaskAsync(
+        this ILogs20140328Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.CancelExportTaskAsync(new CancelExportTaskInput(), cancellationToken);
+    }
+
+    /// <summary>
+    /// Cancels an active import task and stops importing data from the CloudTrail Lake Event Data Store.
+    /// </summary>
+    public static Task<CancelImportTaskOutput> CancelImportTaskAsync(
+        this ILogs20140328Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.CancelImportTaskAsync(new CancelImportTaskInput(), cancellationToken);
+    }
+
+    /// <summary>
+    /// <para>
+    /// Creates a <i>delivery</i>. A delivery is a connection between a logical <i>delivery source</i> and a
+    /// logical <i>delivery destination</i> that you have already created.
+    /// </para>
+    /// <para>
+    /// Only some Amazon Web Services services support being configured as a delivery source using this
+    /// operation. These services are listed as <b>Supported [V2 Permissions]</b> in the table at
+    /// <see href="https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/AWS-logs-and-resource-policy.html">Enabling
+    /// logging from Amazon Web Services services.</see>
+    /// </para>
+    /// <para>
+    /// A delivery destination can represent a log group in CloudWatch Logs, an Amazon S3 bucket, a delivery
+    /// stream in Firehose, or X-Ray.
+    /// </para>
+    /// <para>
+    /// To configure logs delivery between a supported Amazon Web Services service and a destination, you
+    /// must do the following:
+    /// </para>
+    /// <list type="bullet">
+    /// <item>
+    /// <description>
+    /// Create a delivery source, which is a logical object that represents the resource that is actually
+    /// sending the logs. For more information, see
+    /// <see href="https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_PutDeliverySource.html">PutDeliverySource</see>.
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <description>
+    /// Create a <i>delivery destination</i>, which is a logical object that represents the actual delivery
+    /// destination. For more information, see
+    /// <see href="https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_PutDeliveryDestination.html">PutDeliveryDestination</see>.
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <description>
+    /// If you are delivering logs cross-account, you must use
+    /// <see href="https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_PutDeliveryDestinationPolicy.html">PutDeliveryDestinationPolicy</see>
+    /// in the destination account to assign an IAM policy to the destination. This policy allows delivery
+    /// to that destination.
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <description>
+    /// Use <c>CreateDelivery</c> to create a <i>delivery</i> by pairing exactly one delivery source and one
+    /// delivery destination.
+    /// </description>
+    /// </item>
+    /// </list>
+    /// <para>
+    /// You can configure a single delivery source to send logs to multiple destinations by creating
+    /// multiple deliveries. You can also create multiple deliveries to configure multiple delivery sources
+    /// to send logs to the same delivery destination.
+    /// </para>
+    /// <para>
+    /// To update an existing delivery configuration, use
+    /// <see href="https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_UpdateDeliveryConfiguration.html">UpdateDeliveryConfiguration</see>.
+    /// </para>
+    /// </summary>
+    public static Task<CreateDeliveryOutput> CreateDeliveryAsync(
+        this ILogs20140328Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.CreateDeliveryAsync(new CreateDeliveryInput(), cancellationToken);
+    }
+
+    /// <summary>
+    /// <para>
+    /// Creates an export task so that you can efficiently export data from a log group to an Amazon S3
+    /// bucket. When you perform a <c>CreateExportTask</c> operation, you must use credentials that have
+    /// permission to write to the S3 bucket that you specify as the destination.
+    /// </para>
+    /// <para>
+    /// Exporting log data to S3 buckets that are encrypted by KMS is supported. Exporting log data to
+    /// Amazon S3 buckets that have S3 Object Lock enabled with a retention period is also supported.
+    /// </para>
+    /// <para>
+    /// Exporting to S3 buckets that are encrypted with AES-256 is supported.
+    /// </para>
+    /// <para>
+    /// This is an asynchronous call. If all the required information is provided, this operation initiates
+    /// an export task and responds with the ID of the task. After the task has started, you can use
+    /// <see href="https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_DescribeExportTasks.html">DescribeExportTasks</see>
+    /// to get the status of the export task. Each account can only have one active (<c>RUNNING</c> or
+    /// <c>PENDING</c>) export task at a time. To cancel an export task, use
+    /// <see href="https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_CancelExportTask.html">CancelExportTask</see>.
+    /// </para>
+    /// <para>
+    /// You can export logs from multiple log groups or multiple time ranges to the same S3 bucket. To
+    /// separate log data for each export task, specify a prefix to be used as the Amazon S3 key prefix for
+    /// all exported objects.
+    /// </para>
+    /// <para>
+    /// <b>Note:</b> We recommend that you don't regularly export to Amazon S3 as a way to continuously
+    /// archive your logs. For that use case, we instead recommend that you use subscriptions. For more
+    /// information about subscriptions, see
+    /// <see href="https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/Subscriptions.html">Real-time
+    /// processing of log data with subscriptions</see>.
+    /// </para>
+    /// <para>
+    /// <b>Note:</b> Time-based sorting on chunks of log data inside an exported file is not guaranteed. You
+    /// can sort the exported log field data by using Linux utilities.
+    /// </para>
+    /// </summary>
+    public static Task<CreateExportTaskOutput> CreateExportTaskAsync(
+        this ILogs20140328Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.CreateExportTaskAsync(new CreateExportTaskInput(), cancellationToken);
+    }
+
+    /// <summary>
+    /// <para>
+    /// Starts an import from a data source to CloudWatch Log and creates a managed log group as the
+    /// destination for the imported data. Currently,
+    /// <see href="https://docs.aws.amazon.com/awscloudtrail/latest/userguide/query-event-data-store.html">CloudTrail
+    /// Event Data Store</see> is the only supported data source.
+    /// </para>
+    /// <para>
+    /// The import task must satisfy the following constraints:
+    /// </para>
+    /// <list type="bullet">
+    /// <item>
+    /// <description>
+    /// The specified source must be in an ACTIVE state.
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <description>
+    /// The API caller must have permissions to access the data in the provided source and to perform
+    /// iam:PassRole on the provided import role which has the same permissions, as described below.
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <description>
+    /// <para>
+    /// The provided IAM role must trust the "cloudtrail.amazonaws.com" principal and have the following
+    /// permissions:
+    /// </para>
+    /// <list type="bullet">
+    /// <item>
+    /// <description>
+    /// cloudtrail:GetEventDataStoreData
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <description>
+    /// logs:CreateLogGroup
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <description>
+    /// logs:CreateLogStream
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <description>
+    /// logs:PutResourcePolicy
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <description>
+    /// (If source has an associated Amazon Web Services KMS Key) kms:Decrypt
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <description>
+    /// (If source has an associated Amazon Web Services KMS Key) kms:GenerateDataKey
+    /// </description>
+    /// </item>
+    /// </list>
+    /// <para>
+    /// Example IAM policy for provided import role:
+    /// </para>
+    /// <para>
+    /// <c>[ { "Effect": "Allow", "Action": "iam:PassRole", "Resource":
+    /// "arn:aws:iam::123456789012:role/apiCallerCredentials", "Condition": { "StringLike": {
+    /// "iam:AssociatedResourceARN":
+    /// "arn:aws:logs:us-east-1:123456789012:log-group:aws/cloudtrail/f1d45bff-d0e3-4868-b5d9-2eb678aa32fb:*"
+    /// } } }, { "Effect": "Allow", "Action": [ "cloudtrail:GetEventDataStoreData" ], "Resource": [
+    /// "arn:aws:cloudtrail:us-east-1:123456789012:eventdatastore/f1d45bff-d0e3-4868-b5d9-2eb678aa32fb" ] },
+    /// { "Effect": "Allow", "Action": [ "logs:CreateImportTask", "logs:CreateLogGroup",
+    /// "logs:CreateLogStream", "logs:PutResourcePolicy" ], "Resource": [
+    /// "arn:aws:logs:us-east-1:123456789012:log-group:/aws/cloudtrail/*" ] }, { "Effect": "Allow",
+    /// "Action": [ "kms:Decrypt", "kms:GenerateDataKey" ], "Resource": [
+    /// "arn:aws:kms:us-east-1:123456789012:key/12345678-1234-1234-1234-123456789012" ] } ]</c>
+    /// </para>
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <description>
+    /// If the import source has a customer managed key, the "cloudtrail.amazonaws.com" principal needs
+    /// permissions to perform kms:Decrypt and kms:GenerateDataKey.
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <description>
+    /// There can be no more than 3 active imports per account at a given time.
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <description>
+    /// The startEventTime must be less than or equal to endEventTime.
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <description>
+    /// The data being imported must be within the specified source's retention period.
+    /// </description>
+    /// </item>
+    /// </list>
+    /// </summary>
+    public static Task<CreateImportTaskOutput> CreateImportTaskAsync(
+        this ILogs20140328Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.CreateImportTaskAsync(new CreateImportTaskInput(), cancellationToken);
+    }
+
+    /// <summary>
+    /// <para>
+    /// Creates an <i>anomaly detector</i> that regularly scans one or more log groups and look for patterns
+    /// and anomalies in the logs.
+    /// </para>
+    /// <para>
+    /// An anomaly detector can help surface issues by automatically discovering anomalies in your log event
+    /// traffic. An anomaly detector uses machine learning algorithms to scan log events and find
+    /// <i>patterns</i>. A pattern is a shared text structure that recurs among your log fields. Patterns
+    /// provide a useful tool for analyzing large sets of logs because a large number of log events can
+    /// often be compressed into a few patterns.
+    /// </para>
+    /// <para>
+    /// The anomaly detector uses pattern recognition to find <c>anomalies</c>, which are unusual log
+    /// events. It uses the <c>evaluationFrequency</c> to compare current log events and patterns with
+    /// trained baselines.
+    /// </para>
+    /// <para>
+    /// Fields within a pattern are called <i>tokens</i>. Fields that vary within a pattern, such as a
+    /// request ID or timestamp, are referred to as <i>dynamic tokens</i> and represented by
+    /// <c>&lt;*&gt;</c>.
+    /// </para>
+    /// <para>
+    /// The following is an example of a pattern:
+    /// </para>
+    /// <para>
+    /// <c>[INFO] Request time: &lt;*&gt; ms</c>
+    /// </para>
+    /// <para>
+    /// This pattern represents log events like <c>[INFO] Request time: 327 ms</c> and other similar log
+    /// events that differ only by the number, in this csse 327. When the pattern is displayed, the
+    /// different numbers are replaced by <c>&lt;*&gt;</c>
+    /// </para>
+    /// <para>
+    /// <b>Note:</b> Any parts of log events that are masked as sensitive data are not scanned for
+    /// anomalies. For more information about masking sensitive data, see
+    /// <see href="https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/mask-sensitive-log-data.html">Help
+    /// protect sensitive log data with masking</see>.
+    /// </para>
+    /// </summary>
+    public static Task<CreateLogAnomalyDetectorOutput> CreateLogAnomalyDetectorAsync(
+        this ILogs20140328Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.CreateLogAnomalyDetectorAsync(
+            new CreateLogAnomalyDetectorInput(),
+            cancellationToken
+        );
+    }
+
+    /// <summary>
+    /// <para>
+    /// Creates a log group with the specified name. You can create up to 1,000,000 log groups per Region
+    /// per account.
+    /// </para>
+    /// <para>
+    /// You must use the following guidelines when naming a log group:
+    /// </para>
+    /// <list type="bullet">
+    /// <item>
+    /// <description>
+    /// Log group names must be unique within a Region for an Amazon Web Services account.
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <description>
+    /// Log group names can be between 1 and 512 characters long.
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <description>
+    /// Log group names consist of the following characters: a-z, A-Z, 0-9, '_' (underscore), '-' (hyphen),
+    /// '/' (forward slash), '.' (period), and '#' (number sign)
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <description>
+    /// Log group names can't start with the string <c>aws/</c>
+    /// </description>
+    /// </item>
+    /// </list>
+    /// <para>
+    /// When you create a log group, by default the log events in the log group do not expire. To set a
+    /// retention policy so that events expire and are deleted after a specified time, use
+    /// <see href="https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_PutRetentionPolicy.html">PutRetentionPolicy</see>.
+    /// </para>
+    /// <para>
+    /// If you associate an KMS key with the log group, ingested data is encrypted using the KMS key. This
+    /// association is stored as long as the data encrypted with the KMS key is still within CloudWatch
+    /// Logs. This enables CloudWatch Logs to decrypt this data whenever it is requested.
+    /// </para>
+    /// <para>
+    /// If you attempt to associate a KMS key with the log group but the KMS key does not exist or the KMS
+    /// key is disabled, you receive an <c>InvalidParameterException</c> error.
+    /// </para>
+    /// <para>
+    /// <b>Important:</b> CloudWatch Logs supports only symmetric KMS keys. Do not associate an asymmetric
+    /// KMS key with your log group. For more information, see
+    /// <see href="https://docs.aws.amazon.com/kms/latest/developerguide/symmetric-asymmetric.html">Using
+    /// Symmetric and Asymmetric Keys</see>.
+    /// </para>
+    /// </summary>
+    public static Task<CreateLogGroupOutput> CreateLogGroupAsync(
+        this ILogs20140328Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.CreateLogGroupAsync(new CreateLogGroupInput(), cancellationToken);
+    }
+
+    /// <summary>
+    /// <para>
+    /// Creates a log stream for the specified log group. A log stream is a sequence of log events that
+    /// originate from a single source, such as an application instance or a resource that is being
+    /// monitored.
+    /// </para>
+    /// <para>
+    /// There is no limit on the number of log streams that you can create for a log group. There is a limit
+    /// of 50 TPS on <c>CreateLogStream</c> operations, after which transactions are throttled.
+    /// </para>
+    /// <para>
+    /// You must use the following guidelines when naming a log stream:
+    /// </para>
+    /// <list type="bullet">
+    /// <item>
+    /// <description>
+    /// Log stream names must be unique within the log group.
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <description>
+    /// Log stream names can be between 1 and 512 characters long.
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <description>
+    /// Don't use ':' (colon) or '*' (asterisk) characters.
+    /// </description>
+    /// </item>
+    /// </list>
+    /// </summary>
+    public static Task<CreateLogStreamOutput> CreateLogStreamAsync(
+        this ILogs20140328Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.CreateLogStreamAsync(new CreateLogStreamInput(), cancellationToken);
+    }
+
+    /// <summary>
+    /// <para>
+    /// Creates a lookup table by uploading CSV data or from CloudWatch Logs query results. You can use
+    /// lookup tables to enrich log data in CloudWatch Logs queries with reference data such as user
+    /// details, application names, or error descriptions.
+    /// </para>
+    /// <para>
+    /// The table name must be unique within your account and Region. You must specify either
+    /// <c>tableBody</c> or <c>queryId</c>, but not both. If you use <c>tableBody</c>, the CSV content must
+    /// include a header row with column names, use UTF-8 encoding, and not exceed 10 MB.
+    /// </para>
+    /// </summary>
+    public static Task<CreateLookupTableOutput> CreateLookupTableAsync(
+        this ILogs20140328Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.CreateLookupTableAsync(new CreateLookupTableInput(), cancellationToken);
+    }
+
+    /// <summary>
+    /// Creates a scheduled query that runs CloudWatch Logs Insights queries at regular intervals. Scheduled
+    /// queries enable proactive monitoring by automatically executing queries to detect patterns and
+    /// anomalies in your log data. Query results can be delivered to Amazon S3 for analysis or further
+    /// processing.
+    /// </summary>
+    public static Task<CreateScheduledQueryOutput> CreateScheduledQueryAsync(
+        this ILogs20140328Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.CreateScheduledQueryAsync(new CreateScheduledQueryInput(), cancellationToken);
+    }
+
+    /// <summary>
+    /// <para>
+    /// Deletes a CloudWatch Logs account policy. This stops the account-wide policy from applying to log
+    /// groups or data sources in the account. If you delete a data protection policy or subscription filter
+    /// policy, any log-group level policies of those types remain in effect. This operation supports
+    /// deletion of data source-based field index policies, including facet configurations, in addition to
+    /// log group-based policies.
+    /// </para>
+    /// <para>
+    /// To use this operation, you must be signed on with the correct permissions depending on the type of
+    /// policy that you are deleting.
+    /// </para>
+    /// <list type="bullet">
+    /// <item>
+    /// <description>
+    /// To delete a data protection policy, you must have the <c>logs:DeleteDataProtectionPolicy</c> and
+    /// <c>logs:DeleteAccountPolicy</c> permissions.
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <description>
+    /// To delete a subscription filter policy, you must have the <c>logs:DeleteSubscriptionFilter</c> and
+    /// <c>logs:DeleteAccountPolicy</c> permissions.
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <description>
+    /// To delete a transformer policy, you must have the <c>logs:DeleteTransformer</c> and
+    /// <c>logs:DeleteAccountPolicy</c> permissions.
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <description>
+    /// <para>
+    /// To delete a field index policy, you must have the <c>logs:DeleteIndexPolicy</c> and
+    /// <c>logs:DeleteAccountPolicy</c> permissions.
+    /// </para>
+    /// <para>
+    /// If you delete a field index policy that included facet configurations, those facets will no longer
+    /// be available for interactive exploration in the CloudWatch Logs Insights console. However, facet
+    /// data is retained for up to 30 days.
+    /// </para>
+    /// </description>
+    /// </item>
+    /// </list>
+    /// <para>
+    /// If you delete a field index policy, the indexing of the log events that happened before you deleted
+    /// the policy will still be used for up to 30 days to improve CloudWatch Logs Insights queries.
+    /// </para>
+    /// </summary>
+    public static Task<DeleteAccountPolicyOutput> DeleteAccountPolicyAsync(
+        this ILogs20140328Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.DeleteAccountPolicyAsync(new DeleteAccountPolicyInput(), cancellationToken);
+    }
+
+    /// <summary>
+    /// <para>
+    /// Deletes the data protection policy from the specified log group.
+    /// </para>
+    /// <para>
+    /// For more information about data protection policies, see
+    /// <see href="https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_PutDataProtectionPolicy.html">PutDataProtectionPolicy</see>.
+    /// </para>
+    /// </summary>
+    public static Task<DeleteDataProtectionPolicyOutput> DeleteDataProtectionPolicyAsync(
+        this ILogs20140328Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.DeleteDataProtectionPolicyAsync(
+            new DeleteDataProtectionPolicyInput(),
+            cancellationToken
+        );
+    }
+
+    /// <summary>
+    /// Deletes a <i>delivery</i>. A delivery is a connection between a logical <i>delivery source</i> and a
+    /// logical <i>delivery destination</i>. Deleting a delivery only deletes the connection between the
+    /// delivery source and delivery destination. It does not delete the delivery destination or the
+    /// delivery source.
+    /// </summary>
+    public static Task<DeleteDeliveryOutput> DeleteDeliveryAsync(
+        this ILogs20140328Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.DeleteDeliveryAsync(new DeleteDeliveryInput(), cancellationToken);
+    }
+
+    /// <summary>
+    /// <para>
+    /// Deletes a <i>delivery destination</i>. A delivery is a connection between a logical <i>delivery
+    /// source</i> and a logical <i>delivery destination</i>.
+    /// </para>
+    /// <para>
+    /// You can't delete a delivery destination if any current deliveries are associated with it. To find
+    /// whether any deliveries are associated with this delivery destination, use the
+    /// <see href="https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_DescribeDeliveries.html">DescribeDeliveries</see>
+    /// operation and check the <c>deliveryDestinationArn</c> field in the results.
+    /// </para>
+    /// </summary>
+    public static Task<DeleteDeliveryDestinationOutput> DeleteDeliveryDestinationAsync(
+        this ILogs20140328Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.DeleteDeliveryDestinationAsync(
+            new DeleteDeliveryDestinationInput(),
+            cancellationToken
+        );
+    }
+
+    /// <summary>
+    /// Deletes a delivery destination policy. For more information about these policies, see
+    /// <see href="https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_PutDeliveryDestinationPolicy.html">PutDeliveryDestinationPolicy</see>.
+    /// </summary>
+    public static Task<DeleteDeliveryDestinationPolicyOutput> DeleteDeliveryDestinationPolicyAsync(
+        this ILogs20140328Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.DeleteDeliveryDestinationPolicyAsync(
+            new DeleteDeliveryDestinationPolicyInput(),
+            cancellationToken
+        );
+    }
+
+    /// <summary>
+    /// <para>
+    /// Deletes a <i>delivery source</i>. A delivery is a connection between a logical <i>delivery
+    /// source</i> and a logical <i>delivery destination</i>.
+    /// </para>
+    /// <para>
+    /// You can't delete a delivery source if any current deliveries are associated with it. To find whether
+    /// any deliveries are associated with this delivery source, use the
+    /// <see href="https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_DescribeDeliveries.html">DescribeDeliveries</see>
+    /// operation and check the <c>deliverySourceName</c> field in the results.
+    /// </para>
+    /// </summary>
+    public static Task<DeleteDeliverySourceOutput> DeleteDeliverySourceAsync(
+        this ILogs20140328Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.DeleteDeliverySourceAsync(new DeleteDeliverySourceInput(), cancellationToken);
+    }
+
+    /// <summary>
+    /// Deletes the specified destination, and eventually disables all the subscription filters that publish
+    /// to it. This operation does not delete the physical resource encapsulated by the destination.
+    /// </summary>
+    public static Task<DeleteDestinationOutput> DeleteDestinationAsync(
+        this ILogs20140328Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.DeleteDestinationAsync(new DeleteDestinationInput(), cancellationToken);
+    }
+
+    /// <summary>
+    /// <para>
+    /// Deletes a log-group level field index policy that was applied to a single log group. The indexing of
+    /// the log events that happened before you delete the policy will still be used for as many as 30 days
+    /// to improve CloudWatch Logs Insights queries.
+    /// </para>
+    /// <para>
+    /// If the deleted policy included facet configurations, those facets will no longer be available for
+    /// interactive exploration in the CloudWatch Logs Insights console for this log group. However, facet
+    /// data is retained for up to 30 days.
+    /// </para>
+    /// <para>
+    /// You can't use this operation to delete an account-level index policy. Instead, use
+    /// <see href="https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_DeleteAccountPolicy.html">DeleteAccountPolicy</see>.
+    /// </para>
+    /// <para>
+    /// If you delete a log-group level field index policy and there is an account-level field index policy,
+    /// in a few minutes the log group begins using that account-wide policy to index new incoming log
+    /// events. This operation only affects log group-level policies, including any facet configurations,
+    /// and preserves any data source-based account policies that may apply to the log group.
+    /// </para>
+    /// </summary>
+    public static Task<DeleteIndexPolicyOutput> DeleteIndexPolicyAsync(
+        this ILogs20140328Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.DeleteIndexPolicyAsync(new DeleteIndexPolicyInput(), cancellationToken);
+    }
+
+    /// <summary>
+    /// Deletes the integration between CloudWatch Logs and OpenSearch Service. If your integration has
+    /// active vended logs dashboards, you must specify <c>true</c> for the <c>force</c> parameter,
+    /// otherwise the operation will fail. If you delete the integration by setting <c>force</c> to
+    /// <c>true</c>, all your vended logs dashboards powered by OpenSearch Service will be deleted and the
+    /// data that was on them will no longer be accessible.
+    /// </summary>
+    public static Task<DeleteIntegrationOutput> DeleteIntegrationAsync(
+        this ILogs20140328Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.DeleteIntegrationAsync(new DeleteIntegrationInput(), cancellationToken);
+    }
+
+    /// <summary>
+    /// Deletes the specified CloudWatch Logs anomaly detector.
+    /// </summary>
+    public static Task<DeleteLogAnomalyDetectorOutput> DeleteLogAnomalyDetectorAsync(
+        this ILogs20140328Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.DeleteLogAnomalyDetectorAsync(
+            new DeleteLogAnomalyDetectorInput(),
+            cancellationToken
+        );
+    }
+
+    /// <summary>
+    /// Deletes the specified log group and permanently deletes all the archived log events associated with
+    /// the log group.
+    /// </summary>
+    public static Task<DeleteLogGroupOutput> DeleteLogGroupAsync(
+        this ILogs20140328Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.DeleteLogGroupAsync(new DeleteLogGroupInput(), cancellationToken);
+    }
+
+    /// <summary>
+    /// Deletes the specified log stream and permanently deletes all the archived log events associated with
+    /// the log stream.
+    /// </summary>
+    public static Task<DeleteLogStreamOutput> DeleteLogStreamAsync(
+        this ILogs20140328Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.DeleteLogStreamAsync(new DeleteLogStreamInput(), cancellationToken);
+    }
+
+    /// <summary>
+    /// <para>
+    /// Deletes a lookup table permanently. This operation cannot be undone.
+    /// </para>
+    /// <para>
+    /// Queries that reference a deleted table will return an error. Before deleting a lookup table, review
+    /// any saved queries or dashboards that may reference it.
+    /// </para>
+    /// </summary>
+    public static Task<DeleteLookupTableOutput> DeleteLookupTableAsync(
+        this ILogs20140328Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.DeleteLookupTableAsync(new DeleteLookupTableInput(), cancellationToken);
+    }
+
+    /// <summary>
+    /// Deletes the specified metric filter.
+    /// </summary>
+    public static Task<DeleteMetricFilterOutput> DeleteMetricFilterAsync(
+        this ILogs20140328Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.DeleteMetricFilterAsync(new DeleteMetricFilterInput(), cancellationToken);
+    }
+
+    /// <summary>
+    /// <para>
+    /// Deletes a saved CloudWatch Logs Insights query definition. A query definition contains details about
+    /// a saved CloudWatch Logs Insights query.
+    /// </para>
+    /// <para>
+    /// Each <c>DeleteQueryDefinition</c> operation can delete one query definition.
+    /// </para>
+    /// <para>
+    /// You must have the <c>logs:DeleteQueryDefinition</c> permission to be able to perform this operation.
+    /// </para>
+    /// </summary>
+    public static Task<DeleteQueryDefinitionOutput> DeleteQueryDefinitionAsync(
+        this ILogs20140328Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.DeleteQueryDefinitionAsync(
+            new DeleteQueryDefinitionInput(),
+            cancellationToken
+        );
+    }
+
+    /// <summary>
     /// Deletes a resource policy from this account. This revokes the access of the identities in that
     /// policy to put log events to this account.
     /// </summary>
@@ -3993,6 +4846,138 @@ public static class Logs20140328ClientExtensions
     {
         ArgumentNullException.ThrowIfNull(client);
         return client.DeleteResourcePolicyAsync(new DeleteResourcePolicyInput(), cancellationToken);
+    }
+
+    /// <summary>
+    /// <para>
+    /// Deletes the specified retention policy.
+    /// </para>
+    /// <para>
+    /// Log events do not expire if they belong to log groups without a retention policy.
+    /// </para>
+    /// </summary>
+    public static Task<DeleteRetentionPolicyOutput> DeleteRetentionPolicyAsync(
+        this ILogs20140328Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.DeleteRetentionPolicyAsync(
+            new DeleteRetentionPolicyInput(),
+            cancellationToken
+        );
+    }
+
+    /// <summary>
+    /// Deletes a scheduled query and stops all future executions. This operation also removes any
+    /// configured actions and associated resources.
+    /// </summary>
+    public static Task<DeleteScheduledQueryOutput> DeleteScheduledQueryAsync(
+        this ILogs20140328Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.DeleteScheduledQueryAsync(new DeleteScheduledQueryInput(), cancellationToken);
+    }
+
+    /// <summary>
+    /// Deletes the specified subscription filter.
+    /// </summary>
+    public static Task<DeleteSubscriptionFilterOutput> DeleteSubscriptionFilterAsync(
+        this ILogs20140328Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.DeleteSubscriptionFilterAsync(
+            new DeleteSubscriptionFilterInput(),
+            cancellationToken
+        );
+    }
+
+    /// <summary>
+    /// Deletes a syslog configuration for a log group. After deletion, syslog data is no longer ingested
+    /// through the specified VPC endpoint.
+    /// </summary>
+    public static Task<DeleteSyslogConfigurationOutput> DeleteSyslogConfigurationAsync(
+        this ILogs20140328Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.DeleteSyslogConfigurationAsync(
+            new DeleteSyslogConfigurationInput(),
+            cancellationToken
+        );
+    }
+
+    /// <summary>
+    /// <para>
+    /// Deletes the log transformer for the specified log group. As soon as you do this, the transformation
+    /// of incoming log events according to that transformer stops. If this account has an account-level
+    /// transformer that applies to this log group, the log group begins using that account-level
+    /// transformer when this log-group level transformer is deleted.
+    /// </para>
+    /// <para>
+    /// After you delete a transformer, be sure to edit any metric filters or subscription filters that
+    /// relied on the transformed versions of the log events.
+    /// </para>
+    /// </summary>
+    public static Task<DeleteTransformerOutput> DeleteTransformerAsync(
+        this ILogs20140328Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.DeleteTransformerAsync(new DeleteTransformerInput(), cancellationToken);
+    }
+
+    /// <summary>
+    /// <para>
+    /// Returns a list of all CloudWatch Logs account policies in the account.
+    /// </para>
+    /// <para>
+    /// To use this operation, you must be signed on with the correct permissions depending on the type of
+    /// policy that you are retrieving information for.
+    /// </para>
+    /// <list type="bullet">
+    /// <item>
+    /// <description>
+    /// To see data protection policies, you must have the <c>logs:GetDataProtectionPolicy</c> and
+    /// <c>logs:DescribeAccountPolicies</c> permissions.
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <description>
+    /// To see subscription filter policies, you must have the <c>logs:DescribeSubscriptionFilters</c> and
+    /// <c>logs:DescribeAccountPolicies</c> permissions.
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <description>
+    /// To see transformer policies, you must have the <c>logs:GetTransformer</c> and
+    /// <c>logs:DescribeAccountPolicies</c> permissions.
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <description>
+    /// To see field index policies, you must have the <c>logs:DescribeIndexPolicies</c> and
+    /// <c>logs:DescribeAccountPolicies</c> permissions.
+    /// </description>
+    /// </item>
+    /// </list>
+    /// </summary>
+    public static Task<DescribeAccountPoliciesOutput> DescribeAccountPoliciesAsync(
+        this ILogs20140328Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.DescribeAccountPoliciesAsync(
+            new DescribeAccountPoliciesInput(),
+            cancellationToken
+        );
     }
 
     /// <summary>
@@ -4282,6 +5267,43 @@ public static class Logs20140328ClientExtensions
     }
 
     /// <summary>
+    /// <para>
+    /// Returns a list of field indexes discovered in log data. By default, the response includes the
+    /// <c>DEFAULT</c>, <c>CUSTOM</c>, and <c>INACTIVE</c> index categories. To return indexes from other
+    /// categories, use the <c>indexCategories</c> parameter.
+    /// </para>
+    /// <para>
+    /// For more information about field index policies, see
+    /// <see href="https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_PutIndexPolicy.html">PutIndexPolicy</see>.
+    /// </para>
+    /// </summary>
+    public static Task<DescribeFieldIndexesOutput> DescribeFieldIndexesAsync(
+        this ILogs20140328Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.DescribeFieldIndexesAsync(new DescribeFieldIndexesInput(), cancellationToken);
+    }
+
+    /// <summary>
+    /// Gets detailed information about the individual batches within an import task, including their status
+    /// and any error messages. For CloudTrail Event Data Store sources, a batch refers to a subset of
+    /// stored events grouped by their eventTime.
+    /// </summary>
+    public static Task<DescribeImportTaskBatchesOutput> DescribeImportTaskBatchesAsync(
+        this ILogs20140328Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.DescribeImportTaskBatchesAsync(
+            new DescribeImportTaskBatchesInput(),
+            cancellationToken
+        );
+    }
+
+    /// <summary>
     /// Lists and describes import tasks, with optional filtering by import status and source ARN.
     /// </summary>
     public static Task<DescribeImportTasksOutput> DescribeImportTasksAsync(
@@ -4291,6 +5313,38 @@ public static class Logs20140328ClientExtensions
     {
         ArgumentNullException.ThrowIfNull(client);
         return client.DescribeImportTasksAsync(new DescribeImportTasksInput(), cancellationToken);
+    }
+
+    /// <summary>
+    /// <para>
+    /// Returns the field index policies of the specified log group. For more information about field index
+    /// policies, see
+    /// <see href="https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_PutIndexPolicy.html">PutIndexPolicy</see>.
+    /// </para>
+    /// <para>
+    /// If a specified log group has a log-group level index policy, that policy is returned by this
+    /// operation.
+    /// </para>
+    /// <para>
+    /// If a specified log group doesn't have a log-group level index policy, but an account-wide index
+    /// policy applies to it, that account-wide policy is returned by this operation.
+    /// </para>
+    /// <para>
+    /// To find information about only account-level policies, use
+    /// <see href="https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_DescribeAccountPolicies.html">DescribeAccountPolicies</see>
+    /// instead.
+    /// </para>
+    /// </summary>
+    public static Task<DescribeIndexPoliciesOutput> DescribeIndexPoliciesAsync(
+        this ILogs20140328Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.DescribeIndexPoliciesAsync(
+            new DescribeIndexPoliciesInput(),
+            cancellationToken
+        );
     }
 
     /// <summary>
@@ -4594,6 +5648,54 @@ public static class Logs20140328ClientExtensions
     }
 
     /// <summary>
+    /// Lists the subscription filters for the specified log group. You can list all the subscription
+    /// filters or filter the results by prefix. The results are ASCII-sorted by filter name.
+    /// </summary>
+    public static Task<DescribeSubscriptionFiltersOutput> DescribeSubscriptionFiltersAsync(
+        this ILogs20140328Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.DescribeSubscriptionFiltersAsync(
+            new DescribeSubscriptionFiltersInput(),
+            cancellationToken
+        );
+    }
+
+    /// <summary>
+    /// Lists the subscription filters for the specified log group. You can list all the subscription
+    /// filters or filter the results by prefix. The results are ASCII-sorted by filter name.
+    /// </summary>
+    public static IAsyncEnumerable<DescribeSubscriptionFiltersOutput> DescribeSubscriptionFiltersPagesAsync(
+        this ILogs20140328Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.DescribeSubscriptionFiltersPagesAsync(
+            new DescribeSubscriptionFiltersInput(),
+            cancellationToken
+        );
+    }
+
+    /// <summary>
+    /// Lists the subscription filters for the specified log group. You can list all the subscription
+    /// filters or filter the results by prefix. The results are ASCII-sorted by filter name.
+    /// </summary>
+    public static IAsyncEnumerable<SubscriptionFilter> DescribeSubscriptionFiltersItemsAsync(
+        this ILogs20140328Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.DescribeSubscriptionFiltersItemsAsync(
+            new DescribeSubscriptionFiltersInput(),
+            cancellationToken
+        );
+    }
+
+    /// <summary>
     /// <para>
     /// Disassociates the specified KMS key from the specified log group or from all CloudWatch Logs
     /// Insights query results in the account.
@@ -4636,6 +5738,22 @@ public static class Logs20140328ClientExtensions
     {
         ArgumentNullException.ThrowIfNull(client);
         return client.DisassociateKmsKeyAsync(new DisassociateKmsKeyInput(), cancellationToken);
+    }
+
+    /// <summary>
+    /// Disassociates a data source from an S3 Table Integration, removing query access and deleting all
+    /// associated data from the integration.
+    /// </summary>
+    public static Task<DisassociateSourceFromS3TableIntegrationOutput> DisassociateSourceFromS3TableIntegrationAsync(
+        this ILogs20140328Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.DisassociateSourceFromS3TableIntegrationAsync(
+            new DisassociateSourceFromS3TableIntegrationInput(),
+            cancellationToken
+        );
     }
 
     /// <summary>
@@ -4791,6 +5909,299 @@ public static class Logs20140328ClientExtensions
     }
 
     /// <summary>
+    /// Returns information about a log group data protection policy.
+    /// </summary>
+    public static Task<GetDataProtectionPolicyOutput> GetDataProtectionPolicyAsync(
+        this ILogs20140328Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.GetDataProtectionPolicyAsync(
+            new GetDataProtectionPolicyInput(),
+            cancellationToken
+        );
+    }
+
+    /// <summary>
+    /// <para>
+    /// Returns complete information about one logical <i>delivery</i>. A delivery is a connection between a
+    /// <see href="https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_PutDeliverySource.html"><i>delivery
+    /// source</i></see> and a
+    /// <see href="https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_PutDeliveryDestination.html"><i>delivery
+    /// destination</i></see>.
+    /// </para>
+    /// <para>
+    /// A delivery source represents an Amazon Web Services resource that sends logs to an logs delivery
+    /// destination. The destination can be CloudWatch Logs, Amazon S3, or Firehose. Only some Amazon Web
+    /// Services services support being configured as a delivery source. These services are listed in
+    /// <see href="https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/AWS-logs-and-resource-policy.html">Enable
+    /// logging from Amazon Web Services services.</see>
+    /// </para>
+    /// <para>
+    /// You need to specify the delivery <c>id</c> in this operation. You can find the IDs of the deliveries
+    /// in your account with the
+    /// <see href="https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_DescribeDeliveries.html">DescribeDeliveries</see>
+    /// operation.
+    /// </para>
+    /// </summary>
+    public static Task<GetDeliveryOutput> GetDeliveryAsync(
+        this ILogs20140328Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.GetDeliveryAsync(new GetDeliveryInput(), cancellationToken);
+    }
+
+    /// <summary>
+    /// Retrieves complete information about one delivery destination.
+    /// </summary>
+    public static Task<GetDeliveryDestinationOutput> GetDeliveryDestinationAsync(
+        this ILogs20140328Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.GetDeliveryDestinationAsync(
+            new GetDeliveryDestinationInput(),
+            cancellationToken
+        );
+    }
+
+    /// <summary>
+    /// Retrieves the delivery destination policy assigned to the delivery destination that you specify. For
+    /// more information about delivery destinations and their policies, see
+    /// <see href="https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_PutDeliveryDestinationPolicy.html">PutDeliveryDestinationPolicy</see>.
+    /// </summary>
+    public static Task<GetDeliveryDestinationPolicyOutput> GetDeliveryDestinationPolicyAsync(
+        this ILogs20140328Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.GetDeliveryDestinationPolicyAsync(
+            new GetDeliveryDestinationPolicyInput(),
+            cancellationToken
+        );
+    }
+
+    /// <summary>
+    /// Retrieves complete information about one delivery source.
+    /// </summary>
+    public static Task<GetDeliverySourceOutput> GetDeliverySourceAsync(
+        this ILogs20140328Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.GetDeliverySourceAsync(new GetDeliverySourceInput(), cancellationToken);
+    }
+
+    /// <summary>
+    /// Returns information about one integration between CloudWatch Logs and OpenSearch Service.
+    /// </summary>
+    public static Task<GetIntegrationOutput> GetIntegrationAsync(
+        this ILogs20140328Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.GetIntegrationAsync(new GetIntegrationInput(), cancellationToken);
+    }
+
+    /// <summary>
+    /// Retrieves information about the log anomaly detector that you specify. The KMS key ARN detected is
+    /// valid.
+    /// </summary>
+    public static Task<GetLogAnomalyDetectorOutput> GetLogAnomalyDetectorAsync(
+        this ILogs20140328Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.GetLogAnomalyDetectorAsync(
+            new GetLogAnomalyDetectorInput(),
+            cancellationToken
+        );
+    }
+
+    /// <summary>
+    /// <para>
+    /// Lists log events from the specified log stream. You can list all of the log events or filter using a
+    /// time range.
+    /// </para>
+    /// <para>
+    /// <c>GetLogEvents</c> is a paginated operation. Each page returned can contain up to 1 MB of log
+    /// events or up to 10,000 log events. A returned page might only be partially full, or even empty. For
+    /// example, if the result of a query would return 15,000 log events, the first page isn't guaranteed to
+    /// have 10,000 log events even if they all fit into 1 MB.
+    /// </para>
+    /// <para>
+    /// Partially full or empty pages don't necessarily mean that pagination is finished. As long as the
+    /// <c>nextBackwardToken</c> or <c>nextForwardToken</c> returned is NOT equal to the <c>nextToken</c>
+    /// that you passed into the API call, there might be more log events available. The token that you use
+    /// depends on the direction you want to move in along the log stream. The returned tokens are never
+    /// null.
+    /// </para>
+    /// <para>
+    /// <b>Note:</b> If you set <c>startFromHead</c> to <c>true</c> and you don’t include <c>endTime</c> in
+    /// your request, you can end up in a situation where the pagination doesn't terminate. This can happen
+    /// when the new log events are being added to the target log streams faster than they are being read.
+    /// This situation is a good use case for the CloudWatch Logs
+    /// <see href="https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/CloudWatchLogs_LiveTail.html">Live
+    /// Tail</see> feature.
+    /// </para>
+    /// <para>
+    /// If you are using CloudWatch cross-account observability, you can use this operation in a monitoring
+    /// account and view data from the linked source accounts. For more information, see
+    /// <see href="https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/CloudWatch-Unified-Cross-Account.html">CloudWatch
+    /// cross-account observability</see>.
+    /// </para>
+    /// <para>
+    /// You can specify the log group to search by using either <c>logGroupIdentifier</c> or
+    /// <c>logGroupName</c>. You must include one of these two parameters, but you can't include both.
+    /// </para>
+    /// <para>
+    /// <b>Note:</b> If you are using
+    /// <see href="https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/CloudWatch-Logs-Transformation.html">log
+    /// transformation</see>, the <c>GetLogEvents</c> operation returns only the original versions of log
+    /// events, before they were transformed. To view the transformed versions, you must use a
+    /// <see href="https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/AnalyzingLogData.html">CloudWatch
+    /// Logs query.</see>
+    /// </para>
+    /// </summary>
+    public static Task<GetLogEventsOutput> GetLogEventsAsync(
+        this ILogs20140328Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.GetLogEventsAsync(new GetLogEventsInput(), cancellationToken);
+    }
+
+    /// <summary>
+    /// <para>
+    /// Lists log events from the specified log stream. You can list all of the log events or filter using a
+    /// time range.
+    /// </para>
+    /// <para>
+    /// <c>GetLogEvents</c> is a paginated operation. Each page returned can contain up to 1 MB of log
+    /// events or up to 10,000 log events. A returned page might only be partially full, or even empty. For
+    /// example, if the result of a query would return 15,000 log events, the first page isn't guaranteed to
+    /// have 10,000 log events even if they all fit into 1 MB.
+    /// </para>
+    /// <para>
+    /// Partially full or empty pages don't necessarily mean that pagination is finished. As long as the
+    /// <c>nextBackwardToken</c> or <c>nextForwardToken</c> returned is NOT equal to the <c>nextToken</c>
+    /// that you passed into the API call, there might be more log events available. The token that you use
+    /// depends on the direction you want to move in along the log stream. The returned tokens are never
+    /// null.
+    /// </para>
+    /// <para>
+    /// <b>Note:</b> If you set <c>startFromHead</c> to <c>true</c> and you don’t include <c>endTime</c> in
+    /// your request, you can end up in a situation where the pagination doesn't terminate. This can happen
+    /// when the new log events are being added to the target log streams faster than they are being read.
+    /// This situation is a good use case for the CloudWatch Logs
+    /// <see href="https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/CloudWatchLogs_LiveTail.html">Live
+    /// Tail</see> feature.
+    /// </para>
+    /// <para>
+    /// If you are using CloudWatch cross-account observability, you can use this operation in a monitoring
+    /// account and view data from the linked source accounts. For more information, see
+    /// <see href="https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/CloudWatch-Unified-Cross-Account.html">CloudWatch
+    /// cross-account observability</see>.
+    /// </para>
+    /// <para>
+    /// You can specify the log group to search by using either <c>logGroupIdentifier</c> or
+    /// <c>logGroupName</c>. You must include one of these two parameters, but you can't include both.
+    /// </para>
+    /// <para>
+    /// <b>Note:</b> If you are using
+    /// <see href="https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/CloudWatch-Logs-Transformation.html">log
+    /// transformation</see>, the <c>GetLogEvents</c> operation returns only the original versions of log
+    /// events, before they were transformed. To view the transformed versions, you must use a
+    /// <see href="https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/AnalyzingLogData.html">CloudWatch
+    /// Logs query.</see>
+    /// </para>
+    /// </summary>
+    public static IAsyncEnumerable<GetLogEventsOutput> GetLogEventsPagesAsync(
+        this ILogs20140328Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.GetLogEventsPagesAsync(new GetLogEventsInput(), cancellationToken);
+    }
+
+    /// <summary>
+    /// <para>
+    /// Lists log events from the specified log stream. You can list all of the log events or filter using a
+    /// time range.
+    /// </para>
+    /// <para>
+    /// <c>GetLogEvents</c> is a paginated operation. Each page returned can contain up to 1 MB of log
+    /// events or up to 10,000 log events. A returned page might only be partially full, or even empty. For
+    /// example, if the result of a query would return 15,000 log events, the first page isn't guaranteed to
+    /// have 10,000 log events even if they all fit into 1 MB.
+    /// </para>
+    /// <para>
+    /// Partially full or empty pages don't necessarily mean that pagination is finished. As long as the
+    /// <c>nextBackwardToken</c> or <c>nextForwardToken</c> returned is NOT equal to the <c>nextToken</c>
+    /// that you passed into the API call, there might be more log events available. The token that you use
+    /// depends on the direction you want to move in along the log stream. The returned tokens are never
+    /// null.
+    /// </para>
+    /// <para>
+    /// <b>Note:</b> If you set <c>startFromHead</c> to <c>true</c> and you don’t include <c>endTime</c> in
+    /// your request, you can end up in a situation where the pagination doesn't terminate. This can happen
+    /// when the new log events are being added to the target log streams faster than they are being read.
+    /// This situation is a good use case for the CloudWatch Logs
+    /// <see href="https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/CloudWatchLogs_LiveTail.html">Live
+    /// Tail</see> feature.
+    /// </para>
+    /// <para>
+    /// If you are using CloudWatch cross-account observability, you can use this operation in a monitoring
+    /// account and view data from the linked source accounts. For more information, see
+    /// <see href="https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/CloudWatch-Unified-Cross-Account.html">CloudWatch
+    /// cross-account observability</see>.
+    /// </para>
+    /// <para>
+    /// You can specify the log group to search by using either <c>logGroupIdentifier</c> or
+    /// <c>logGroupName</c>. You must include one of these two parameters, but you can't include both.
+    /// </para>
+    /// <para>
+    /// <b>Note:</b> If you are using
+    /// <see href="https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/CloudWatch-Logs-Transformation.html">log
+    /// transformation</see>, the <c>GetLogEvents</c> operation returns only the original versions of log
+    /// events, before they were transformed. To view the transformed versions, you must use a
+    /// <see href="https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/AnalyzingLogData.html">CloudWatch
+    /// Logs query.</see>
+    /// </para>
+    /// </summary>
+    public static IAsyncEnumerable<OutputLogEvent> GetLogEventsItemsAsync(
+        this ILogs20140328Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.GetLogEventsItemsAsync(new GetLogEventsInput(), cancellationToken);
+    }
+
+    /// <summary>
+    /// Discovers available fields for a specific data source and type. The response includes any field
+    /// modifications introduced through pipelines, such as new fields or changed field types.
+    /// </summary>
+    public static Task<GetLogFieldsOutput> GetLogFieldsAsync(
+        this ILogs20140328Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.GetLogFieldsAsync(new GetLogFieldsInput(), cancellationToken);
+    }
+
+    /// <summary>
     /// <para>
     /// Returns a list of the fields that are included in log events in the specified log group. Includes
     /// the percentage of log events that contain each field. The search is limited to a time period that
@@ -4831,6 +6242,179 @@ public static class Logs20140328ClientExtensions
     }
 
     /// <summary>
+    /// <para>
+    /// Retrieves a large logging object (LLO) and streams it back. This API is used to fetch the content of
+    /// large portions of log events that have been ingested through the PutOpenTelemetryLogs API. When log
+    /// events contain fields that would cause the total event size to exceed 1MB, CloudWatch Logs
+    /// automatically processes up to 10 fields, starting with the largest fields. Each field is truncated
+    /// as needed to keep the total event size as close to 1MB as possible. The excess portions are stored
+    /// as Large Log Objects (LLOs) and these fields are processed separately and LLO reference system
+    /// fields (in the format <c>@ptr.$[path.to.field]</c>) are added. The path in the reference field
+    /// reflects the original JSON structure where the large field was located. For example, this could be
+    /// <c>@ptr.$['input']['message']</c>, <c>@ptr.$['AAA']['BBB']['CCC']['DDD']</c>, <c>@ptr.$['AAA']</c>,
+    /// or any other path matching your log structure.
+    /// </para>
+    /// <para>
+    /// <b>Note:</b> The <c>GetLogObject</c> API routes requests using SDK host prefix injection. SDK
+    /// versions released before April 1, 2026 route to <c>streaming-logs.<i>Region</i>.amazonaws.com</c>,
+    /// which does not support VPC endpoints. SDK versions released on or after April 1, 2026 route to
+    /// <c>stream-logs.<i>Region</i>.amazonaws.com</c>, which supports VPC endpoints. To set up a VPC
+    /// endpoint for this API, see
+    /// <see href="https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/cloudwatch-logs-and-interface-VPC.html#create-VPC-endpoint-for-CloudWatchLogs">Creating
+    /// a VPC endpoint for CloudWatch Logs</see>.
+    /// </para>
+    /// </summary>
+    public static Task<GetLogObjectOutput> GetLogObjectAsync(
+        this ILogs20140328Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.GetLogObjectAsync(new GetLogObjectInput(), cancellationToken);
+    }
+
+    /// <summary>
+    /// <para>
+    /// Retrieves all of the fields and values of a single log event. All fields are retrieved, even if the
+    /// original query that produced the <c>logRecordPointer</c> retrieved only a subset of fields. Fields
+    /// are returned as field name/field value pairs.
+    /// </para>
+    /// <para>
+    /// The full unparsed log event is returned within <c>@message</c>.
+    /// </para>
+    /// </summary>
+    public static Task<GetLogRecordOutput> GetLogRecordAsync(
+        this ILogs20140328Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.GetLogRecordAsync(new GetLogRecordInput(), cancellationToken);
+    }
+
+    /// <summary>
+    /// Retrieves the full content of a lookup table, including the CSV data.
+    /// </summary>
+    public static Task<GetLookupTableOutput> GetLookupTableAsync(
+        this ILogs20140328Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.GetLookupTableAsync(new GetLookupTableInput(), cancellationToken);
+    }
+
+    /// <summary>
+    /// <para>
+    /// Returns the results from the specified query.
+    /// </para>
+    /// <para>
+    /// Only the fields requested in the query are returned, along with a <c>@ptr</c> field, which is the
+    /// identifier for the log record. You can use the value of <c>@ptr</c> in a
+    /// <see href="https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_GetLogRecord.html">GetLogRecord</see>
+    /// operation to get the full log record.
+    /// </para>
+    /// <para>
+    /// <c>GetQueryResults</c> does not start running a query. To run a query, use
+    /// <see href="https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_StartQuery.html">StartQuery</see>.
+    /// For more information about how long results of previous queries are available, see
+    /// <see href="https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/cloudwatch_limits_cwl.html">CloudWatch
+    /// Logs quotas</see>.
+    /// </para>
+    /// <para>
+    /// If the value of the <c>Status</c> field in the output is <c>Running</c>, this operation returns only
+    /// partial results. If you see a value of <c>Scheduled</c> or <c>Running</c> for the status, you can
+    /// retry the operation later to see the final results.
+    /// </para>
+    /// <para>
+    /// This operation is used both for retrieving results from interactive queries and from automated
+    /// scheduled query executions. Scheduled queries use <c>GetQueryResults</c> internally to retrieve
+    /// query results for processing and delivery to configured destinations.
+    /// </para>
+    /// <para>
+    /// You can retrieve up to 100,000 log event results from a query, if available, by using pagination.
+    /// Use the <c>nextToken</c> returned in the response to request additional pages of results, with each
+    /// page returning up to 10,000 log events. This is only supported for Logs Insights QL and is currently
+    /// not supported for PPL and SQL query languages.
+    /// </para>
+    /// <para>
+    /// If you are using CloudWatch cross-account observability, you can use this operation in a monitoring
+    /// account to start queries in linked source accounts. For more information, see
+    /// <see href="https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/CloudWatch-Unified-Cross-Account.html">CloudWatch
+    /// cross-account observability</see>.
+    /// </para>
+    /// </summary>
+    public static Task<GetQueryResultsOutput> GetQueryResultsAsync(
+        this ILogs20140328Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.GetQueryResultsAsync(new GetQueryResultsInput(), cancellationToken);
+    }
+
+    /// <summary>
+    /// Retrieves details about a specific scheduled query, including its configuration, execution status,
+    /// and metadata.
+    /// </summary>
+    public static Task<GetScheduledQueryOutput> GetScheduledQueryAsync(
+        this ILogs20140328Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.GetScheduledQueryAsync(new GetScheduledQueryInput(), cancellationToken);
+    }
+
+    /// <summary>
+    /// Retrieves the execution history of a scheduled query within a specified time range, including query
+    /// results and destination processing status.
+    /// </summary>
+    public static Task<GetScheduledQueryHistoryOutput> GetScheduledQueryHistoryAsync(
+        this ILogs20140328Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.GetScheduledQueryHistoryAsync(
+            new GetScheduledQueryHistoryInput(),
+            cancellationToken
+        );
+    }
+
+    /// <summary>
+    /// Retrieves the execution history of a scheduled query within a specified time range, including query
+    /// results and destination processing status.
+    /// </summary>
+    public static IAsyncEnumerable<GetScheduledQueryHistoryOutput> GetScheduledQueryHistoryPagesAsync(
+        this ILogs20140328Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.GetScheduledQueryHistoryPagesAsync(
+            new GetScheduledQueryHistoryInput(),
+            cancellationToken
+        );
+    }
+
+    /// <summary>
+    /// Retrieves the execution history of a scheduled query within a specified time range, including query
+    /// results and destination processing status.
+    /// </summary>
+    public static IAsyncEnumerable<TriggerHistoryRecord> GetScheduledQueryHistoryItemsAsync(
+        this ILogs20140328Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.GetScheduledQueryHistoryItemsAsync(
+            new GetScheduledQueryHistoryInput(),
+            cancellationToken
+        );
+    }
+
+    /// <summary>
     /// Returns the storage tier policy for the account.
     /// </summary>
     public static Task<GetStorageTierPolicyOutput> GetStorageTierPolicyAsync(
@@ -4840,6 +6424,109 @@ public static class Logs20140328ClientExtensions
     {
         ArgumentNullException.ThrowIfNull(client);
         return client.GetStorageTierPolicyAsync(new GetStorageTierPolicyInput(), cancellationToken);
+    }
+
+    /// <summary>
+    /// <para>
+    /// Returns the information about the log transformer associated with this log group.
+    /// </para>
+    /// <para>
+    /// This operation returns data only for transformers created at the log group level. To get information
+    /// for an account-level transformer, use
+    /// <see href="https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_DescribeAccountPolicies.html">DescribeAccountPolicies</see>.
+    /// </para>
+    /// </summary>
+    public static Task<GetTransformerOutput> GetTransformerAsync(
+        this ILogs20140328Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.GetTransformerAsync(new GetTransformerInput(), cancellationToken);
+    }
+
+    /// <summary>
+    /// <para>
+    /// Returns an aggregate summary of all log groups in the Region grouped by specified data source
+    /// characteristics. Supports optional filtering by log group class, name patterns, and data sources. If
+    /// you perform this action in a monitoring account, you can also return aggregated summaries of log
+    /// groups from source accounts that are linked to the monitoring account. For more information about
+    /// using cross-account observability to set up monitoring accounts and source accounts, see
+    /// <see href="https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/CloudWatch-Unified-Cross-Account.html">CloudWatch
+    /// cross-account observability</see>.
+    /// </para>
+    /// <para>
+    /// The operation aggregates log groups by data source name and type and optionally format, providing
+    /// counts of log groups that share these characteristics. The operation paginates results. By default,
+    /// it returns up to 50 results and includes a token to retrieve more results.
+    /// </para>
+    /// </summary>
+    public static Task<ListAggregateLogGroupSummariesOutput> ListAggregateLogGroupSummariesAsync(
+        this ILogs20140328Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.ListAggregateLogGroupSummariesAsync(
+            new ListAggregateLogGroupSummariesInput(),
+            cancellationToken
+        );
+    }
+
+    /// <summary>
+    /// <para>
+    /// Returns an aggregate summary of all log groups in the Region grouped by specified data source
+    /// characteristics. Supports optional filtering by log group class, name patterns, and data sources. If
+    /// you perform this action in a monitoring account, you can also return aggregated summaries of log
+    /// groups from source accounts that are linked to the monitoring account. For more information about
+    /// using cross-account observability to set up monitoring accounts and source accounts, see
+    /// <see href="https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/CloudWatch-Unified-Cross-Account.html">CloudWatch
+    /// cross-account observability</see>.
+    /// </para>
+    /// <para>
+    /// The operation aggregates log groups by data source name and type and optionally format, providing
+    /// counts of log groups that share these characteristics. The operation paginates results. By default,
+    /// it returns up to 50 results and includes a token to retrieve more results.
+    /// </para>
+    /// </summary>
+    public static IAsyncEnumerable<ListAggregateLogGroupSummariesOutput> ListAggregateLogGroupSummariesPagesAsync(
+        this ILogs20140328Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.ListAggregateLogGroupSummariesPagesAsync(
+            new ListAggregateLogGroupSummariesInput(),
+            cancellationToken
+        );
+    }
+
+    /// <summary>
+    /// <para>
+    /// Returns an aggregate summary of all log groups in the Region grouped by specified data source
+    /// characteristics. Supports optional filtering by log group class, name patterns, and data sources. If
+    /// you perform this action in a monitoring account, you can also return aggregated summaries of log
+    /// groups from source accounts that are linked to the monitoring account. For more information about
+    /// using cross-account observability to set up monitoring accounts and source accounts, see
+    /// <see href="https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/CloudWatch-Unified-Cross-Account.html">CloudWatch
+    /// cross-account observability</see>.
+    /// </para>
+    /// <para>
+    /// The operation aggregates log groups by data source name and type and optionally format, providing
+    /// counts of log groups that share these characteristics. The operation paginates results. By default,
+    /// it returns up to 50 results and includes a token to retrieve more results.
+    /// </para>
+    /// </summary>
+    public static IAsyncEnumerable<AggregateLogGroupSummary> ListAggregateLogGroupSummariesItemsAsync(
+        this ILogs20140328Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.ListAggregateLogGroupSummariesItemsAsync(
+            new ListAggregateLogGroupSummariesInput(),
+            cancellationToken
+        );
     }
 
     /// <summary>
@@ -4969,6 +6656,78 @@ public static class Logs20140328ClientExtensions
     }
 
     /// <summary>
+    /// <para>
+    /// Returns a list of the log groups that were analyzed during a single CloudWatch Logs Insights query.
+    /// This can be useful for queries that use log group name prefixes or the <c>filterIndex</c> command,
+    /// because the log groups are dynamically selected in these cases.
+    /// </para>
+    /// <para>
+    /// For more information about field indexes, see
+    /// <see href="https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/CloudWatchLogs-Field-Indexing.html">Create
+    /// field indexes to improve query performance and reduce costs</see>.
+    /// </para>
+    /// </summary>
+    public static Task<ListLogGroupsForQueryOutput> ListLogGroupsForQueryAsync(
+        this ILogs20140328Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.ListLogGroupsForQueryAsync(
+            new ListLogGroupsForQueryInput(),
+            cancellationToken
+        );
+    }
+
+    /// <summary>
+    /// <para>
+    /// Returns a list of the log groups that were analyzed during a single CloudWatch Logs Insights query.
+    /// This can be useful for queries that use log group name prefixes or the <c>filterIndex</c> command,
+    /// because the log groups are dynamically selected in these cases.
+    /// </para>
+    /// <para>
+    /// For more information about field indexes, see
+    /// <see href="https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/CloudWatchLogs-Field-Indexing.html">Create
+    /// field indexes to improve query performance and reduce costs</see>.
+    /// </para>
+    /// </summary>
+    public static IAsyncEnumerable<ListLogGroupsForQueryOutput> ListLogGroupsForQueryPagesAsync(
+        this ILogs20140328Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.ListLogGroupsForQueryPagesAsync(
+            new ListLogGroupsForQueryInput(),
+            cancellationToken
+        );
+    }
+
+    /// <summary>
+    /// <para>
+    /// Returns a list of the log groups that were analyzed during a single CloudWatch Logs Insights query.
+    /// This can be useful for queries that use log group name prefixes or the <c>filterIndex</c> command,
+    /// because the log groups are dynamically selected in these cases.
+    /// </para>
+    /// <para>
+    /// For more information about field indexes, see
+    /// <see href="https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/CloudWatchLogs-Field-Indexing.html">Create
+    /// field indexes to improve query performance and reduce costs</see>.
+    /// </para>
+    /// </summary>
+    public static IAsyncEnumerable<string> ListLogGroupsForQueryItemsAsync(
+        this ILogs20140328Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.ListLogGroupsForQueryItemsAsync(
+            new ListLogGroupsForQueryInput(),
+            cancellationToken
+        );
+    }
+
+    /// <summary>
     /// Lists all scheduled queries in your account and region. You can filter results by state to show only
     /// enabled or disabled queries.
     /// </summary>
@@ -5014,6 +6773,54 @@ public static class Logs20140328ClientExtensions
     }
 
     /// <summary>
+    /// Returns a list of data source associations for a specified S3 Table Integration, showing which data
+    /// sources are currently associated for query access.
+    /// </summary>
+    public static Task<ListSourcesForS3TableIntegrationOutput> ListSourcesForS3TableIntegrationAsync(
+        this ILogs20140328Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.ListSourcesForS3TableIntegrationAsync(
+            new ListSourcesForS3TableIntegrationInput(),
+            cancellationToken
+        );
+    }
+
+    /// <summary>
+    /// Returns a list of data source associations for a specified S3 Table Integration, showing which data
+    /// sources are currently associated for query access.
+    /// </summary>
+    public static IAsyncEnumerable<ListSourcesForS3TableIntegrationOutput> ListSourcesForS3TableIntegrationPagesAsync(
+        this ILogs20140328Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.ListSourcesForS3TableIntegrationPagesAsync(
+            new ListSourcesForS3TableIntegrationInput(),
+            cancellationToken
+        );
+    }
+
+    /// <summary>
+    /// Returns a list of data source associations for a specified S3 Table Integration, showing which data
+    /// sources are currently associated for query access.
+    /// </summary>
+    public static IAsyncEnumerable<S3TableIntegrationSource> ListSourcesForS3TableIntegrationItemsAsync(
+        this ILogs20140328Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.ListSourcesForS3TableIntegrationItemsAsync(
+            new ListSourcesForS3TableIntegrationInput(),
+            cancellationToken
+        );
+    }
+
+    /// <summary>
     /// Returns a list of syslog configurations. You can optionally filter the results by log group or VPC
     /// endpoint.
     /// </summary>
@@ -5027,6 +6834,1229 @@ public static class Logs20140328ClientExtensions
             new ListSyslogConfigurationsInput(),
             cancellationToken
         );
+    }
+
+    /// <summary>
+    /// Displays the tags associated with a CloudWatch Logs resource. Currently, log groups and destinations
+    /// support tagging.
+    /// </summary>
+    public static Task<ListTagsForResourceOutput> ListTagsForResourceAsync(
+        this ILogs20140328Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.ListTagsForResourceAsync(new ListTagsForResourceInput(), cancellationToken);
+    }
+
+    /// <summary>
+    /// <para>
+    /// <b>Important:</b> The ListTagsLogGroup operation is on the path to deprecation. We recommend that
+    /// you use
+    /// <see href="https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_ListTagsForResource.html">ListTagsForResource</see>
+    /// instead.
+    /// </para>
+    /// <para>
+    /// Lists the tags for the specified log group.
+    /// </para>
+    /// </summary>
+    public static Task<ListTagsLogGroupOutput> ListTagsLogGroupAsync(
+        this ILogs20140328Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.ListTagsLogGroupAsync(new ListTagsLogGroupInput(), cancellationToken);
+    }
+
+    /// <summary>
+    /// <para>
+    /// Creates an account-level data protection policy, subscription filter policy, field index policy,
+    /// transformer policy, or metric extraction policy that applies to all log groups, a subset of log
+    /// groups, or a data source name and type combination in the account. Account-level policies are
+    /// Region-specific: a policy applies only to log groups in the Region where you create it. To apply a
+    /// policy across multiple Regions, create the policy separately in each Region.
+    /// </para>
+    /// <para>
+    /// <b>Important:</b> <c>PutAccountPolicy</c> is an account-wide administrative operation intended for
+    /// CloudWatch Logs administrators. Because it affects all log groups (or a broad subset) in the
+    /// account, you should grant <c>logs:PutAccountPolicy</c> permissions only to administrators who manage
+    /// logging configuration across the account, not to application teams or individual log group owners.
+    /// </para>
+    /// <para>
+    /// <b>Conflict resolution between account-level and log-group-level policies</b>
+    /// </para>
+    /// <para>
+    /// When both an account-level policy and a log-group-level policy of the same type apply to a log
+    /// group, the resolution depends on the policy type:
+    /// </para>
+    /// <list type="bullet">
+    /// <item>
+    /// <description>
+    /// <i>Data protection</i> — The two policies are cumulative. Any sensitive term specified in either the
+    /// account-level or the log-group-level policy is masked.
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <description>
+    /// <i>Subscription filters</i> — Account-level and log-group-level subscription filters are additive. A
+    /// log group can have up to 1 account-level and up to 2 log-group-level subscription filters.
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <description>
+    /// <i>Transformers</i> — A log-group-level transformer overrides the account-level transformer. If a
+    /// log group has its own transformer, it ignores the account-level transformer policy.
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <description>
+    /// <i>Field index policies</i> — If a log group has its own field index policy (created with
+    /// <c>PutIndexPolicy</c>), any account-level policy that uses <c>LogGroupNamePrefix</c> selection
+    /// criteria or has no selection criteria is ignored for that log group. However, account-level policies
+    /// that use <c>DataSourceName</c> and <c>DataSourceType</c> selection criteria still apply alongside
+    /// the log-group-level policy.
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <description>
+    /// <i>Metric extraction policies</i> — Metric extraction policies are account-level only and have no
+    /// log-group-level equivalent, so no conflict resolution applies.
+    /// </description>
+    /// </item>
+    /// </list>
+    /// <para>
+    /// For field index policies, you can configure indexed fields as <i>facets</i> to enable interactive
+    /// exploration of your logs. Facets provide value distributions and counts for indexed fields in the
+    /// CloudWatch Logs Insights console without requiring query execution. For more information, see
+    /// <see href="https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/CloudWatchLogs-Facets.html">Use
+    /// facets to group and explore logs</see>.
+    /// </para>
+    /// <para>
+    /// To use this operation, you must be signed on with the correct permissions depending on the type of
+    /// policy that you are creating.
+    /// </para>
+    /// <list type="bullet">
+    /// <item>
+    /// <description>
+    /// To create a data protection policy, you must have the <c>logs:PutDataProtectionPolicy</c> and
+    /// <c>logs:PutAccountPolicy</c> permissions.
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <description>
+    /// To create a subscription filter policy, you must have the <c>logs:PutSubscriptionFilter</c> and
+    /// <c>logs:PutAccountPolicy</c> permissions.
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <description>
+    /// To create a transformer policy, you must have the <c>logs:PutTransformer</c> and
+    /// <c>logs:PutAccountPolicy</c> permissions.
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <description>
+    /// To create a field index policy, you must have the <c>logs:PutIndexPolicy</c> and
+    /// <c>logs:PutAccountPolicy</c> permissions.
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <description>
+    /// To configure facets for field index policies, you must have the <c>logs:PutIndexPolicy</c> and
+    /// <c>logs:PutAccountPolicy</c> permissions.
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <description>
+    /// To create a metric extraction policy, you must have the <c>logs:PutMetricExtractionPolicy</c> and
+    /// <c>logs:PutAccountPolicy</c> permissions.
+    /// </description>
+    /// </item>
+    /// </list>
+    /// <para>
+    /// <b>Data protection policy</b>
+    /// </para>
+    /// <para>
+    /// A data protection policy can help safeguard sensitive data that's ingested by your log groups by
+    /// auditing and masking the sensitive log data. Each account can have only one account-level data
+    /// protection policy.
+    /// </para>
+    /// <para>
+    /// <b>Important:</b> Sensitive data is detected and masked when it is ingested into a log group. When
+    /// you set a data protection policy, log events ingested into the log groups before that time are not
+    /// masked.
+    /// </para>
+    /// <para>
+    /// If you use <c>PutAccountPolicy</c> to create a data protection policy for your whole account, it
+    /// applies to both existing log groups and all log groups that are created later in this account. The
+    /// account-level policy is applied to existing log groups with eventual consistency. It might take up
+    /// to 5 minutes before sensitive data in existing log groups begins to be masked.
+    /// </para>
+    /// <para>
+    /// By default, when a user views a log event that includes masked data, the sensitive data is replaced
+    /// by asterisks. A user who has the <c>logs:Unmask</c> permission can use a
+    /// <see href="https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_GetLogEvents.html">GetLogEvents</see>
+    /// or
+    /// <see href="https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_FilterLogEvents.html">FilterLogEvents</see>
+    /// operation with the <c>unmask</c> parameter set to <c>true</c> to view the unmasked log events. Users
+    /// with the <c>logs:Unmask</c> can also view unmasked data in the CloudWatch Logs console by running a
+    /// CloudWatch Logs Insights query with the <c>unmask</c> query command.
+    /// </para>
+    /// <para>
+    /// For more information, including a list of types of data that can be audited and masked, see
+    /// <see href="https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/mask-sensitive-log-data.html">Protect
+    /// sensitive log data with masking</see>.
+    /// </para>
+    /// <para>
+    /// To use the <c>PutAccountPolicy</c> operation for a data protection policy, you must be signed on
+    /// with the <c>logs:PutDataProtectionPolicy</c> and <c>logs:PutAccountPolicy</c> permissions.
+    /// </para>
+    /// <para>
+    /// The <c>PutAccountPolicy</c> operation applies to all log groups in the account. You can use
+    /// <see href="https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_PutDataProtectionPolicy.html">PutDataProtectionPolicy</see>
+    /// to create a data protection policy that applies to just one log group. If a log group has its own
+    /// data protection policy and the account also has an account-level data protection policy, then the
+    /// two policies are cumulative. Any sensitive term specified in either policy is masked.
+    /// </para>
+    /// <para>
+    /// <b>Subscription filter policy</b>
+    /// </para>
+    /// <para>
+    /// A subscription filter policy sets up a real-time feed of log events from CloudWatch Logs to other
+    /// Amazon Web Services services. Account-level subscription filter policies apply to both existing log
+    /// groups and log groups that are created later in this account. Supported destinations are Kinesis
+    /// Data Streams, Firehose, and Lambda. When log events are sent to the receiving service, they are
+    /// Base64 encoded and compressed with the GZIP format.
+    /// </para>
+    /// <para>
+    /// The following destinations are supported for subscription filters:
+    /// </para>
+    /// <list type="bullet">
+    /// <item>
+    /// <description>
+    /// An Kinesis Data Streams data stream in the same account as the subscription policy, for same-account
+    /// delivery.
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <description>
+    /// An Firehose data stream in the same account as the subscription policy, for same-account delivery.
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <description>
+    /// A Lambda function in the same account as the subscription policy, for same-account delivery.
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <description>
+    /// A logical destination in a different account created with
+    /// <see href="https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_PutDestination.html">PutDestination</see>,
+    /// for cross-account delivery. Kinesis Data Streams and Firehose are supported as logical destinations.
+    /// </description>
+    /// </item>
+    /// </list>
+    /// <para>
+    /// Each account can have one account-level subscription filter policy per Region. If you are updating
+    /// an existing filter, you must specify the correct name in <c>PolicyName</c>. To perform a
+    /// <c>PutAccountPolicy</c> subscription filter operation for any destination except a Lambda function,
+    /// you must also have the <c>iam:PassRole</c> permission.
+    /// </para>
+    /// <para>
+    /// <b>Transformer policy</b>
+    /// </para>
+    /// <para>
+    /// Creates or updates a <i>log transformer policy</i> for your account. You use log transformers to
+    /// transform log events into a different format, making them easier for you to process and analyze. You
+    /// can also transform logs from different sources into standardized formats that contain relevant,
+    /// source-specific information. After you have created a transformer, CloudWatch Logs performs this
+    /// transformation at the time of log ingestion. You can then refer to the transformed versions of the
+    /// logs during operations such as querying with CloudWatch Logs Insights or creating metric filters or
+    /// subscription filters.
+    /// </para>
+    /// <para>
+    /// You can also use a transformer to copy metadata from metadata keys into the log events themselves.
+    /// This metadata can include log group name, log stream name, account ID and Region.
+    /// </para>
+    /// <para>
+    /// A transformer for a log group is a series of processors, where each processor applies one type of
+    /// transformation to the log events ingested into this log group. For more information about the
+    /// available processors to use in a transformer, see
+    /// <see href="https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/CloudWatch-Logs-Transformation.html#CloudWatch-Logs-Transformation-Processors">Processors
+    /// that you can use</see>.
+    /// </para>
+    /// <para>
+    /// Having log events in standardized format enables visibility across your applications for your log
+    /// analysis, reporting, and alarming needs. CloudWatch Logs provides transformation for common log
+    /// types with out-of-the-box transformation templates for major Amazon Web Services log sources such as
+    /// VPC flow logs, Lambda, and Amazon RDS. You can use pre-built transformation templates or create
+    /// custom transformation policies.
+    /// </para>
+    /// <para>
+    /// You can create transformers only for the log groups in the Standard log class.
+    /// </para>
+    /// <para>
+    /// You can have one account-level transformer policy that applies to all log groups in the account. Or
+    /// you can create as many as 20 account-level transformer policies that are each scoped to a subset of
+    /// log groups with the <c>selectionCriteria</c> parameter. If you have multiple account-level
+    /// transformer policies with selection criteria, no two of them can use the same or overlapping log
+    /// group name prefixes. For example, if you have one policy filtered to log groups that start with
+    /// <c>my-log</c>, you can't have another transformer policy filtered to <c>my-logpprod</c> or
+    /// <c>my-logging</c>.
+    /// </para>
+    /// <para>
+    /// You can also set up a transformer at the log-group level. For more information, see
+    /// <see href="https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_PutTransformer.html">PutTransformer</see>.
+    /// If there is both a log-group level transformer created with <c>PutTransformer</c> and an
+    /// account-level transformer that could apply to the same log group, the log group uses only the
+    /// log-group level transformer. It ignores the account-level transformer.
+    /// </para>
+    /// <para>
+    /// <b>Field index policy</b>
+    /// </para>
+    /// <para>
+    /// You can use field index policies to create indexes on fields found in log events for a log group or
+    /// data source name and type combination. Creating field indexes can help lower the scan volume for
+    /// CloudWatch Logs Insights queries that reference those fields, because these queries attempt to skip
+    /// the processing of log events that are known to not match the indexed field. Good fields to index are
+    /// fields that you often need to query for and fields or values that match only a small fraction of the
+    /// total log events. Common examples of indexes include request ID, session ID, user IDs, or instance
+    /// IDs. For more information, see
+    /// <see href="https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/CloudWatchLogs-Field-Indexing.html">Create
+    /// field indexes to improve query performance and reduce costs</see>
+    /// </para>
+    /// <para>
+    /// To find the fields that are in your log group events, use the
+    /// <see href="https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_GetLogGroupFields.html">GetLogGroupFields</see>
+    /// operation. To find the fields for a data source use the
+    /// <see href="https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_GetLogFields.html">GetLogFields</see>
+    /// operation.
+    /// </para>
+    /// <para>
+    /// For example, suppose you have created a field index for <c>requestId</c>. Then, any CloudWatch Logs
+    /// Insights query on that log group that includes <c>requestId = <i>value</i> </c> or <c>requestId in
+    /// [<i>value</i>, <i>value</i>, ...]</c> will attempt to process only the log events where the indexed
+    /// field matches the specified value.
+    /// </para>
+    /// <para>
+    /// Matches of log events to the names of indexed fields are case-sensitive. For example, an indexed
+    /// field of <c>RequestId</c> won't match a log event containing <c>requestId</c>.
+    /// </para>
+    /// <para>
+    /// You can have one account-level field index policy that applies to all log groups in the account. Or
+    /// you can create as many as 20 account-level field index policies that are each scoped to a subset of
+    /// log groups using <c>LogGroupNamePrefix</c> with the <c>selectionCriteria</c> parameter. You can have
+    /// another 20 account-level field index policies using <c>DataSourceName</c> and <c>DataSourceType</c>
+    /// for the <c>selectionCriteria</c> parameter. If you have multiple account-level index policies with
+    /// <c>LogGroupNamePrefix</c> selection criteria, no two of them can use the same or overlapping log
+    /// group name prefixes. For example, if you have one policy filtered to log groups that start with
+    /// <i>my-log</i>, you can't have another field index policy filtered to <i>my-logpprod</i> or
+    /// <i>my-logging</i>. Similarly, if you have multiple account-level index policies with
+    /// <c>DataSourceName</c> and <c>DataSourceType</c> selection criteria, no two of them can use the same
+    /// data source name and type combination. For example, if you have one policy filtered to the data
+    /// source name <c>amazon_vpc</c> and data source type <c>flow</c> you cannot create another policy with
+    /// this combination.
+    /// </para>
+    /// <para>
+    /// If you create an account-level field index policy in a monitoring account in cross-account
+    /// observability, the policy is applied only to the monitoring account and not to any source accounts.
+    /// </para>
+    /// <para>
+    /// CloudWatch Logs provides default field indexes for all log groups in the Standard log class. Default
+    /// field indexes are automatically available for the following fields:
+    /// </para>
+    /// <list type="bullet">
+    /// <item>
+    /// <description>
+    /// <c>@logStream</c>
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <description>
+    /// <c>@aws.region</c>
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <description>
+    /// <c>@aws.account</c>
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <description>
+    /// <c>@source.log</c>
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <description>
+    /// <c>@data_source_name</c>
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <description>
+    /// <c>@data_source_type</c>
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <description>
+    /// <c>@data_format</c>
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <description>
+    /// <c>traceId</c>
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <description>
+    /// <c>severityText</c>
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <description>
+    /// <c>attributes.session.id</c>
+    /// </description>
+    /// </item>
+    /// </list>
+    /// <para>
+    /// CloudWatch Logs provides default field indexes for certain data source name and type combinations as
+    /// well. Default field indexes are automatically available for the following data source name and type
+    /// combinations as identified in the following list:
+    /// </para>
+    /// <para>
+    /// <c>amazon_vpc.flow</c>
+    /// </para>
+    /// <list type="bullet">
+    /// <item>
+    /// <description>
+    /// <c>action</c>
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <description>
+    /// <c>logStatus</c>
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <description>
+    /// <c>region</c>
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <description>
+    /// <c>flowDirection</c>
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <description>
+    /// <c>type</c>
+    /// </description>
+    /// </item>
+    /// </list>
+    /// <para>
+    /// <c>amazon_route53.resolver_query</c>
+    /// </para>
+    /// <list type="bullet">
+    /// <item>
+    /// <description>
+    /// <c>transport</c>
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <description>
+    /// <c>rcode</c>
+    /// </description>
+    /// </item>
+    /// </list>
+    /// <para>
+    /// <c>aws_waf.access</c>
+    /// </para>
+    /// <list type="bullet">
+    /// <item>
+    /// <description>
+    /// <c>action</c>
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <description>
+    /// <c>httpRequest.country</c>
+    /// </description>
+    /// </item>
+    /// </list>
+    /// <para>
+    /// <c>aws_cloudtrail.data</c>, <c>aws_cloudtrail.management</c>
+    /// </para>
+    /// <list type="bullet">
+    /// <item>
+    /// <description>
+    /// <c>eventSource</c>
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <description>
+    /// <c>eventName</c>
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <description>
+    /// <c>awsRegion</c>
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <description>
+    /// <c>userAgent</c>
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <description>
+    /// <c>errorCode</c>
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <description>
+    /// <c>eventType</c>
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <description>
+    /// <c>managementEvent</c>
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <description>
+    /// <c>readOnly</c>
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <description>
+    /// <c>eventCategory</c>
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <description>
+    /// <c>requestId</c>
+    /// </description>
+    /// </item>
+    /// </list>
+    /// <para>
+    /// Default field indexes are in addition to any custom field indexes you define within your policy.
+    /// Default field indexes are not counted towards your
+    /// <see href="https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/CloudWatchLogs-Field-Indexing-Syntax">field
+    /// index quota</see>.
+    /// </para>
+    /// <para>
+    /// If you want to create a field index policy for a single log group, you can use
+    /// <see href="https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_PutIndexPolicy.html">PutIndexPolicy</see>
+    /// instead of <c>PutAccountPolicy</c>. If you do so, that log group will use that log-group level
+    /// policy and any account-level policies that match at the data source level; any account-level policy
+    /// that matches at the log group level (for example, no selection criteria or log group name prefix
+    /// selection criteria) will be ignored.
+    /// </para>
+    /// <para>
+    /// <b>Metric extraction policy</b>
+    /// </para>
+    /// <para>
+    /// A metric extraction policy controls whether CloudWatch Metrics can be created through the Embedded
+    /// Metrics Format (EMF) for log groups in your account. By default, EMF metric creation is enabled for
+    /// all log groups. You can use metric extraction policies to disable EMF metric creation for your
+    /// entire account or specific log groups.
+    /// </para>
+    /// <para>
+    /// When a policy disables EMF metric creation for a log group, log events in the EMF format are still
+    /// ingested, but no CloudWatch Metrics are created from them.
+    /// </para>
+    /// <para>
+    /// <b>Important:</b> Creating a policy disables metrics for Amazon Web Services features that use EMF
+    /// to create metrics, such as CloudWatch Container Insights and CloudWatch Application Signals. To
+    /// prevent turning off those features by accident, we recommend that you exclude the underlying
+    /// log-groups through a selection-criteria such as <c>LogGroupNamePrefix NOT IN
+    /// ["/aws/containerinsights", "/aws/ecs/containerinsights", "/aws/application-signals/data"]</c>.
+    /// </para>
+    /// <para>
+    /// Each account can have either one account-level metric extraction policy that applies to all log
+    /// groups, or up to 5 policies that are each scoped to a subset of log groups with the
+    /// <c>selectionCriteria</c> parameter. The selection criteria supports filtering by <c>LogGroupName</c>
+    /// and <c>LogGroupNamePrefix</c> using the operators <c>IN</c> and <c>NOT IN</c>. You can specify up to
+    /// 50 values in each <c>IN</c> or <c>NOT IN</c> list.
+    /// </para>
+    /// <para>
+    /// The selection criteria can be specified in these formats:
+    /// </para>
+    /// <para>
+    /// <c>LogGroupName IN ["log-group-1", "log-group-2"]</c>
+    /// </para>
+    /// <para>
+    /// <c>LogGroupNamePrefix NOT IN ["/aws/prefix1", "/aws/prefix2"]</c>
+    /// </para>
+    /// <para>
+    /// If you have multiple account-level metric extraction policies with selection criteria, no two of
+    /// them can have overlapping criteria. For example, if you have one policy with selection criteria
+    /// <c>LogGroupNamePrefix IN ["my-log"]</c>, you can't have another metric extraction policy with
+    /// selection criteria <c>LogGroupNamePrefix IN ["/my-log-prod"]</c> or <c>LogGroupNamePrefix IN
+    /// ["/my-logging"]</c>, as the set of log groups matching these prefixes would be a subset of the log
+    /// groups matching the first policy's prefix, creating an overlap.
+    /// </para>
+    /// <para>
+    /// When using <c>NOT IN</c>, only one policy with this operator is allowed per account.
+    /// </para>
+    /// <para>
+    /// When combining policies with <c>IN</c> and <c>NOT IN</c> operators, the overlap check ensures that
+    /// policies don't have conflicting effects. Two policies with <c>IN</c> and <c>NOT IN</c> operators do
+    /// not overlap if and only if every value in the <c>IN </c>policy is completely contained within some
+    /// value in the <c>NOT IN</c> policy. For example:
+    /// </para>
+    /// <list type="bullet">
+    /// <item>
+    /// <description>
+    /// If you have a <c>NOT IN</c> policy for prefix <c>"/aws/lambda"</c>, you can create an <c>IN</c>
+    /// policy for the exact log group name <c>"/aws/lambda/function1"</c> because the set of log groups
+    /// matching <c>"/aws/lambda/function1"</c> is a subset of the log groups matching <c>"/aws/lambda"</c>.
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <description>
+    /// If you have a <c>NOT IN</c> policy for prefix <c>"/aws/lambda"</c>, you cannot create an <c>IN</c>
+    /// policy for prefix <c>"/aws"</c> because the set of log groups matching <c>"/aws"</c> is not a subset
+    /// of the log groups matching <c>"/aws/lambda"</c>.
+    /// </description>
+    /// </item>
+    /// </list>
+    /// </summary>
+    public static Task<PutAccountPolicyOutput> PutAccountPolicyAsync(
+        this ILogs20140328Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.PutAccountPolicyAsync(new PutAccountPolicyInput(), cancellationToken);
+    }
+
+    /// <summary>
+    /// <para>
+    /// Enables or disables bearer token authentication for the specified log group. When enabled on a log
+    /// group, bearer token authentication is enabled on operations until it is explicitly disabled.
+    /// </para>
+    /// <para>
+    /// For information about the parameters that are common to all actions, see
+    /// <see href="https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/CommonParameters.html">Common
+    /// Parameters</see>.
+    /// </para>
+    /// </summary>
+    public static Task<PutBearerTokenAuthenticationOutput> PutBearerTokenAuthenticationAsync(
+        this ILogs20140328Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.PutBearerTokenAuthenticationAsync(
+            new PutBearerTokenAuthenticationInput(),
+            cancellationToken
+        );
+    }
+
+    /// <summary>
+    /// <para>
+    /// Creates a data protection policy for the specified log group. A data protection policy can help
+    /// safeguard sensitive data that's ingested by the log group by auditing and masking the sensitive log
+    /// data.
+    /// </para>
+    /// <para>
+    /// <b>Important:</b> Sensitive data is detected and masked when it is ingested into the log group. When
+    /// you set a data protection policy, log events ingested into the log group before that time are not
+    /// masked.
+    /// </para>
+    /// <para>
+    /// By default, when a user views a log event that includes masked data, the sensitive data is replaced
+    /// by asterisks. A user who has the <c>logs:Unmask</c> permission can use a
+    /// <see href="https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_GetLogEvents.html">GetLogEvents</see>
+    /// or
+    /// <see href="https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_FilterLogEvents.html">FilterLogEvents</see>
+    /// operation with the <c>unmask</c> parameter set to <c>true</c> to view the unmasked log events. Users
+    /// with the <c>logs:Unmask</c> can also view unmasked data in the CloudWatch Logs console by running a
+    /// CloudWatch Logs Insights query with the <c>unmask</c> query command.
+    /// </para>
+    /// <para>
+    /// For more information, including a list of types of data that can be audited and masked, see
+    /// <see href="https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/mask-sensitive-log-data.html">Protect
+    /// sensitive log data with masking</see>.
+    /// </para>
+    /// <para>
+    /// The <c>PutDataProtectionPolicy</c> operation applies to only the specified log group. You can also
+    /// use
+    /// <see href="https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_PutAccountPolicy.html">PutAccountPolicy</see>
+    /// to create an account-level data protection policy that applies to all log groups in the account,
+    /// including both existing log groups and log groups that are created level. If a log group has its own
+    /// data protection policy and the account also has an account-level data protection policy, then the
+    /// two policies are cumulative. Any sensitive term specified in either policy is masked.
+    /// </para>
+    /// </summary>
+    public static Task<PutDataProtectionPolicyOutput> PutDataProtectionPolicyAsync(
+        this ILogs20140328Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.PutDataProtectionPolicyAsync(
+            new PutDataProtectionPolicyInput(),
+            cancellationToken
+        );
+    }
+
+    /// <summary>
+    /// <para>
+    /// Creates or updates a logical <i>delivery destination</i>. A delivery destination is an Amazon Web
+    /// Services resource that represents an Amazon Web Services service that logs can be sent to.
+    /// CloudWatch Logs, Amazon S3, and Firehose are supported as logs delivery destinations and X-Ray as
+    /// the trace delivery destination.
+    /// </para>
+    /// <para>
+    /// To configure logs delivery between a supported Amazon Web Services service and a destination, you
+    /// must do the following:
+    /// </para>
+    /// <list type="bullet">
+    /// <item>
+    /// <description>
+    /// Create a delivery source, which is a logical object that represents the resource that is actually
+    /// sending the logs. For more information, see
+    /// <see href="https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_PutDeliverySource.html">PutDeliverySource</see>.
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <description>
+    /// Use <c>PutDeliveryDestination</c> to create a <i>delivery destination</i> in the same account of the
+    /// actual delivery destination. The delivery destination that you create is a logical object that
+    /// represents the actual delivery destination.
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <description>
+    /// If you are delivering logs cross-account, you must use
+    /// <see href="https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_PutDeliveryDestinationPolicy.html">PutDeliveryDestinationPolicy</see>
+    /// in the destination account to assign an IAM policy to the destination. This policy allows delivery
+    /// to that destination.
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <description>
+    /// Use <c>CreateDelivery</c> to create a <i>delivery</i> by pairing exactly one delivery source and one
+    /// delivery destination. For more information, see
+    /// <see href="https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_CreateDelivery.html">CreateDelivery</see>.
+    /// </description>
+    /// </item>
+    /// </list>
+    /// <para>
+    /// You can configure a single delivery source to send logs to multiple destinations by creating
+    /// multiple deliveries. You can also create multiple deliveries to configure multiple delivery sources
+    /// to send logs to the same delivery destination.
+    /// </para>
+    /// <para>
+    /// Only some Amazon Web Services services support being configured as a delivery source. These services
+    /// are listed as <b>Supported [V2 Permissions]</b> in the table at
+    /// <see href="https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/AWS-logs-and-resource-policy.html">Enabling
+    /// logging from Amazon Web Services services.</see>
+    /// </para>
+    /// <para>
+    /// If you use this operation to update an existing delivery destination, all the current delivery
+    /// destination parameters are overwritten with the new parameter values that you specify.
+    /// </para>
+    /// </summary>
+    public static Task<PutDeliveryDestinationOutput> PutDeliveryDestinationAsync(
+        this ILogs20140328Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.PutDeliveryDestinationAsync(
+            new PutDeliveryDestinationInput(),
+            cancellationToken
+        );
+    }
+
+    /// <summary>
+    /// <para>
+    /// Creates and assigns an IAM policy that grants permissions to CloudWatch Logs to deliver logs
+    /// cross-account to a specified destination in this account. To configure the delivery of logs from an
+    /// Amazon Web Services service in another account to a logs delivery destination in the current
+    /// account, you must do the following:
+    /// </para>
+    /// <list type="bullet">
+    /// <item>
+    /// <description>
+    /// Create a delivery source, which is a logical object that represents the resource that is actually
+    /// sending the logs. For more information, see
+    /// <see href="https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_PutDeliverySource.html">PutDeliverySource</see>.
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <description>
+    /// Create a <i>delivery destination</i>, which is a logical object that represents the actual delivery
+    /// destination. For more information, see
+    /// <see href="https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_PutDeliveryDestination.html">PutDeliveryDestination</see>.
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <description>
+    /// Use this operation in the destination account to assign an IAM policy to the destination. This
+    /// policy allows delivery to that destination.
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <description>
+    /// Create a <i>delivery</i> by pairing exactly one delivery source and one delivery destination. For
+    /// more information, see
+    /// <see href="https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_CreateDelivery.html">CreateDelivery</see>.
+    /// </description>
+    /// </item>
+    /// </list>
+    /// <para>
+    /// Only some Amazon Web Services services support being configured as a delivery source. These services
+    /// are listed as <b>Supported [V2 Permissions]</b> in the table at
+    /// <see href="https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/AWS-logs-and-resource-policy.html">Enabling
+    /// logging from Amazon Web Services services.</see>
+    /// </para>
+    /// <para>
+    /// The contents of the policy must include two statements. One statement enables general logs delivery,
+    /// and the other allows delivery to the chosen destination. See the examples for the needed policies.
+    /// </para>
+    /// </summary>
+    public static Task<PutDeliveryDestinationPolicyOutput> PutDeliveryDestinationPolicyAsync(
+        this ILogs20140328Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.PutDeliveryDestinationPolicyAsync(
+            new PutDeliveryDestinationPolicyInput(),
+            cancellationToken
+        );
+    }
+
+    /// <summary>
+    /// <para>
+    /// Creates or updates a logical <i>delivery source</i>. A delivery source represents an Amazon Web
+    /// Services resource that sends logs to an logs delivery destination. The destination can be CloudWatch
+    /// Logs, Amazon S3, Firehose or X-Ray for sending traces.
+    /// </para>
+    /// <para>
+    /// To configure logs delivery between a delivery destination and an Amazon Web Services service that is
+    /// supported as a delivery source, you must do the following:
+    /// </para>
+    /// <list type="bullet">
+    /// <item>
+    /// <description>
+    /// Use <c>PutDeliverySource</c> to create a delivery source, which is a logical object that represents
+    /// the resource that is actually sending the logs.
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <description>
+    /// Use <c>PutDeliveryDestination</c> to create a <i>delivery destination</i>, which is a logical object
+    /// that represents the actual delivery destination. For more information, see
+    /// <see href="https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_PutDeliveryDestination.html">PutDeliveryDestination</see>.
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <description>
+    /// If you are delivering logs cross-account, you must use
+    /// <see href="https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_PutDeliveryDestinationPolicy.html">PutDeliveryDestinationPolicy</see>
+    /// in the destination account to assign an IAM policy to the destination. This policy allows delivery
+    /// to that destination.
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <description>
+    /// Use <c>CreateDelivery</c> to create a <i>delivery</i> by pairing exactly one delivery source and one
+    /// delivery destination. For more information, see
+    /// <see href="https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_CreateDelivery.html">CreateDelivery</see>.
+    /// </description>
+    /// </item>
+    /// </list>
+    /// <para>
+    /// You can configure a single delivery source to send logs to multiple destinations by creating
+    /// multiple deliveries. You can also create multiple deliveries to configure multiple delivery sources
+    /// to send logs to the same delivery destination.
+    /// </para>
+    /// <para>
+    /// Only some Amazon Web Services services support being configured as a delivery source. These services
+    /// are listed as <b>Supported [V2 Permissions]</b> in the table at
+    /// <see href="https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/AWS-logs-and-resource-policy.html">Enabling
+    /// logging from Amazon Web Services services.</see>
+    /// </para>
+    /// <para>
+    /// If you use this operation to update an existing delivery source, all the current delivery source
+    /// parameters are overwritten with the new parameter values that you specify.
+    /// </para>
+    /// </summary>
+    public static Task<PutDeliverySourceOutput> PutDeliverySourceAsync(
+        this ILogs20140328Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.PutDeliverySourceAsync(new PutDeliverySourceInput(), cancellationToken);
+    }
+
+    /// <summary>
+    /// <para>
+    /// Creates or updates a destination. This operation is used only to create destinations for
+    /// cross-account subscriptions.
+    /// </para>
+    /// <para>
+    /// A destination encapsulates a physical resource (such as an Amazon Kinesis stream). With a
+    /// destination, you can subscribe to a real-time stream of log events for a different account, ingested
+    /// using
+    /// <see href="https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_PutLogEvents.html">PutLogEvents</see>.
+    /// </para>
+    /// <para>
+    /// Through an access policy, a destination controls what is written to it. By default,
+    /// <c>PutDestination</c> does not set any access policy with the destination, which means a
+    /// cross-account user cannot call
+    /// <see href="https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_PutSubscriptionFilter.html">PutSubscriptionFilter</see>
+    /// against this destination. To enable this, the destination owner must call
+    /// <see href="https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_PutDestinationPolicy.html">PutDestinationPolicy</see>
+    /// after <c>PutDestination</c>.
+    /// </para>
+    /// <para>
+    /// To perform a <c>PutDestination</c> operation, you must also have the <c>iam:PassRole</c> permission.
+    /// </para>
+    /// </summary>
+    public static Task<PutDestinationOutput> PutDestinationAsync(
+        this ILogs20140328Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.PutDestinationAsync(new PutDestinationInput(), cancellationToken);
+    }
+
+    /// <summary>
+    /// Creates or updates an access policy associated with an existing destination. An access policy is an
+    /// <see href="https://docs.aws.amazon.com/IAM/latest/UserGuide/policies_overview.html">IAM policy
+    /// document</see> that is used to authorize claims to register a subscription filter against a given
+    /// destination.
+    /// </summary>
+    public static Task<PutDestinationPolicyOutput> PutDestinationPolicyAsync(
+        this ILogs20140328Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.PutDestinationPolicyAsync(new PutDestinationPolicyInput(), cancellationToken);
+    }
+
+    /// <summary>
+    /// <para>
+    /// Creates or updates a <i>field index policy</i> for the specified log group. Only log groups in the
+    /// Standard log class support field index policies. For more information about log classes, see
+    /// <see href="https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/CloudWatch_Logs_Log_Classes.html">Log
+    /// classes</see>.
+    /// </para>
+    /// <para>
+    /// You can use field index policies to create <i>field indexes</i> on fields found in log events in the
+    /// log group. Creating field indexes speeds up and lowers the costs for CloudWatch Logs Insights
+    /// queries that reference those field indexes, because these queries attempt to skip the processing of
+    /// log events that are known to not match the indexed field. Good fields to index are fields that you
+    /// often need to query for and fields or values that match only a small fraction of the total log
+    /// events. Common examples of indexes include request ID, session ID, userID, and instance IDs. For
+    /// more information, see
+    /// <see href="https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/CloudWatchLogs-Field-Indexing.html">Create
+    /// field indexes to improve query performance and reduce costs</see>.
+    /// </para>
+    /// <para>
+    /// You can configure indexed fields as <i>facets</i> to enable interactive exploration and filtering of
+    /// your logs in the CloudWatch Logs Insights console. Facets allow you to view value distributions and
+    /// counts for indexed fields without running queries. When you create a field index, you can optionally
+    /// set it as a facet to enable this interactive analysis capability. For more information, see
+    /// <see href="https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/CloudWatchLogs-Facets.html">Use
+    /// facets to group and explore logs</see>.
+    /// </para>
+    /// <para>
+    /// To find the fields that are in your log group events, use the
+    /// <see href="https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_GetLogGroupFields.html">GetLogGroupFields</see>
+    /// operation.
+    /// </para>
+    /// <para>
+    /// For example, suppose you have created a field index for <c>requestId</c>. Then, any CloudWatch Logs
+    /// Insights query on that log group that includes <c>requestId = <i>value</i> </c> or <c>requestId IN
+    /// [<i>value</i>, <i>value</i>, ...]</c> will process fewer log events to reduce costs, and have
+    /// improved performance.
+    /// </para>
+    /// <para>
+    /// CloudWatch Logs provides default field indexes for all log groups in the Standard log class. Default
+    /// field indexes are automatically available for the following fields:
+    /// </para>
+    /// <list type="bullet">
+    /// <item>
+    /// <description>
+    /// <c>@logStream</c>
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <description>
+    /// <c>@aws.region</c>
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <description>
+    /// <c>@aws.account</c>
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <description>
+    /// <c>@source.log</c>
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <description>
+    /// <c>traceId</c>
+    /// </description>
+    /// </item>
+    /// </list>
+    /// <para>
+    /// Default field indexes are in addition to any custom field indexes you define within your policy.
+    /// Default field indexes are not counted towards your field index quota.
+    /// </para>
+    /// <para>
+    /// Each index policy has the following quotas and restrictions:
+    /// </para>
+    /// <list type="bullet">
+    /// <item>
+    /// <description>
+    /// As many as 20 fields can be included in the policy.
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <description>
+    /// Each field name can include as many as 100 characters.
+    /// </description>
+    /// </item>
+    /// </list>
+    /// <para>
+    /// Matches of log events to the names of indexed fields are case-sensitive. For example, a field index
+    /// of <c>RequestId</c> won't match a log event containing <c>requestId</c>.
+    /// </para>
+    /// <para>
+    /// Log group-level field index policies created with <c>PutIndexPolicy</c> override account-level field
+    /// index policies created with
+    /// <see href="https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_PutAccountPolicy.html">PutAccountPolicy</see>
+    /// that apply to log groups. If you use <c>PutIndexPolicy</c> to create a field index policy for a log
+    /// group, that log group uses only that policy for log group-level indexing, including any facet
+    /// configurations. The log group ignores any account-wide field index policy that applies to log
+    /// groups, but data source-based account policies may still apply.
+    /// </para>
+    /// </summary>
+    public static Task<PutIndexPolicyOutput> PutIndexPolicyAsync(
+        this ILogs20140328Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.PutIndexPolicyAsync(new PutIndexPolicyInput(), cancellationToken);
+    }
+
+    /// <summary>
+    /// <para>
+    /// Creates an integration between CloudWatch Logs and another service in this account. Currently, only
+    /// integrations with OpenSearch Service are supported, and currently you can have only one integration
+    /// in your account.
+    /// </para>
+    /// <para>
+    /// Integrating with OpenSearch Service makes it possible for you to create curated vended logs
+    /// dashboards, powered by OpenSearch Service analytics. For more information, see
+    /// <see href="https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/CloudWatchLogs-OpenSearch-Dashboards.html">Vended
+    /// log dashboards powered by Amazon OpenSearch Service</see>.
+    /// </para>
+    /// <para>
+    /// You can use this operation only to create a new integration. You can't modify an existing
+    /// integration.
+    /// </para>
+    /// </summary>
+    public static Task<PutIntegrationOutput> PutIntegrationAsync(
+        this ILogs20140328Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.PutIntegrationAsync(new PutIntegrationInput(), cancellationToken);
+    }
+
+    /// <summary>
+    /// <para>
+    /// Uploads a batch of log events to the specified log stream.
+    /// </para>
+    /// <para>
+    /// <b>Important:</b> The sequence token is now ignored in <c>PutLogEvents</c> actions.
+    /// <c>PutLogEvents</c> actions are always accepted and never return
+    /// <c>InvalidSequenceTokenException</c> or <c>DataAlreadyAcceptedException</c> even if the sequence
+    /// token is not valid. You can use parallel <c>PutLogEvents</c> actions on the same log stream.
+    /// </para>
+    /// <para>
+    /// The batch of events must satisfy the following constraints:
+    /// </para>
+    /// <list type="bullet">
+    /// <item>
+    /// <description>
+    /// The maximum batch size is 1,048,576 bytes. This size is calculated as the sum of all event messages
+    /// in UTF-8, plus 26 bytes for each log event.
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <description>
+    /// Events more than 2 hours in the future are rejected while processing remaining valid events.
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <description>
+    /// Events older than 14 days or preceding the log group's retention period are rejected while
+    /// processing remaining valid events.
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <description>
+    /// The log events in the batch must be in chronological order by their timestamp. The timestamp is the
+    /// time that the event occurred, expressed as the number of milliseconds after <c>Jan 1, 1970 00:00:00
+    /// UTC</c>. (In Amazon Web Services Tools for PowerShell and the Amazon Web Services SDK for .NET, the
+    /// timestamp is specified in .NET format: <c>yyyy-mm-ddThh:mm:ss</c>. For example,
+    /// <c>2017-09-15T13:45:30</c>.)
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <description>
+    /// A batch of log events in a single request must be in a chronological order. Otherwise, the operation
+    /// fails.
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <description>
+    /// Each log event can be no larger than 1 MB.
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <description>
+    /// The maximum number of log events in a batch is 10,000.
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <description>
+    /// For valid events (within 14 days in the past to 2 hours in future), the time span in a single batch
+    /// cannot exceed 24 hours. Otherwise, the operation fails.
+    /// </description>
+    /// </item>
+    /// </list>
+    /// <para>
+    /// <b>Important:</b> The quota of five requests per second per log stream has been removed. Instead,
+    /// <c>PutLogEvents</c> actions are throttled based on a per-second per-account quota. You can request
+    /// an increase to the per-second throttling quota by using the Service Quotas service.
+    /// </para>
+    /// <para>
+    /// If a call to <c>PutLogEvents</c> returns "UnrecognizedClientException" the most likely cause is a
+    /// non-valid Amazon Web Services access key ID or secret key.
+    /// </para>
+    /// </summary>
+    public static Task<PutLogEventsOutput> PutLogEventsAsync(
+        this ILogs20140328Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.PutLogEventsAsync(new PutLogEventsInput(), cancellationToken);
+    }
+
+    /// <summary>
+    /// <para>
+    /// Enables or disables deletion protection for the specified log group. When enabled on a log group,
+    /// deletion protection blocks all deletion operations until it is explicitly disabled.
+    /// </para>
+    /// <para>
+    /// For information about the parameters that are common to all actions, see
+    /// <see href="https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/CommonParameters.html">Common
+    /// Parameters</see>.
+    /// </para>
+    /// </summary>
+    public static Task<PutLogGroupDeletionProtectionOutput> PutLogGroupDeletionProtectionAsync(
+        this ILogs20140328Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.PutLogGroupDeletionProtectionAsync(
+            new PutLogGroupDeletionProtectionInput(),
+            cancellationToken
+        );
+    }
+
+    /// <summary>
+    /// <para>
+    /// Creates or updates a metric filter and associates it with the specified log group. With metric
+    /// filters, you can configure rules to extract metric data from log events ingested through
+    /// <see href="https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_PutLogEvents.html">PutLogEvents</see>.
+    /// </para>
+    /// <para>
+    /// The maximum number of metric filters that can be associated with a log group is 100.
+    /// </para>
+    /// <para>
+    /// Using regular expressions in filter patterns is supported. For these filters, there is a quota of
+    /// two regular expression patterns within a single filter pattern. There is also a quota of five
+    /// regular expression patterns per log group. For more information about using regular expressions in
+    /// filter patterns, see
+    /// <see href="https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/FilterAndPatternSyntax.html">Filter
+    /// pattern syntax for metric filters, subscription filters, filter log events, and Live Tail</see>.
+    /// </para>
+    /// <para>
+    /// When you create a metric filter, you can also optionally assign a unit and dimensions to the metric
+    /// that is created.
+    /// </para>
+    /// <para>
+    /// <b>Important:</b> Metrics extracted from log events are charged as custom metrics. To prevent
+    /// unexpected high charges, do not specify high-cardinality fields such as <c>IPAddress</c> or
+    /// <c>requestID</c> as dimensions. Each different value found for a dimension is treated as a separate
+    /// metric and accrues charges as a separate custom metric.
+    /// </para>
+    /// <para>
+    /// CloudWatch Logs might disable a metric filter if it generates 1,000 different name/value pairs for
+    /// your specified dimensions within one hour.
+    /// </para>
+    /// <para>
+    /// You can also set up a billing alarm to alert you if your charges are higher than expected. For more
+    /// information, see
+    /// <see href="https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/monitor_estimated_charges_with_cloudwatch.html">Creating
+    /// a Billing Alarm to Monitor Your Estimated Amazon Web Services Charges</see>.
+    /// </para>
+    /// </summary>
+    public static Task<PutMetricFilterOutput> PutMetricFilterAsync(
+        this ILogs20140328Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.PutMetricFilterAsync(new PutMetricFilterInput(), cancellationToken);
+    }
+
+    /// <summary>
+    /// <para>
+    /// Creates or updates a query definition for CloudWatch Logs Insights. For more information, see
+    /// <see href="https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/AnalyzingLogData.html">Analyzing
+    /// Log Data with CloudWatch Logs Insights</see>.
+    /// </para>
+    /// <para>
+    /// To update a query definition, specify its <c>queryDefinitionId</c> in your request. The values of
+    /// <c>name</c>, <c>queryString</c>, and <c>logGroupNames</c> are changed to the values that you specify
+    /// in your update operation. No current values are retained from the current query definition. For
+    /// example, imagine updating a current query definition that includes log groups. If you don't specify
+    /// the <c>logGroupNames</c> parameter in your update operation, the query definition changes to contain
+    /// no log groups.
+    /// </para>
+    /// <para>
+    /// You must have the <c>logs:PutQueryDefinition</c> permission to be able to perform this operation.
+    /// </para>
+    /// </summary>
+    public static Task<PutQueryDefinitionOutput> PutQueryDefinitionAsync(
+        this ILogs20140328Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.PutQueryDefinitionAsync(new PutQueryDefinitionInput(), cancellationToken);
     }
 
     /// <summary>
@@ -5067,6 +8097,610 @@ public static class Logs20140328ClientExtensions
     {
         ArgumentNullException.ThrowIfNull(client);
         return client.PutResourcePolicyAsync(new PutResourcePolicyInput(), cancellationToken);
+    }
+
+    /// <summary>
+    /// <para>
+    /// Sets the retention of the specified log group. With a retention policy, you can configure the number
+    /// of days for which to retain log events in the specified log group.
+    /// </para>
+    /// <para>
+    /// <b>Note:</b> CloudWatch Logs doesn't immediately delete log events when they reach their retention
+    /// setting. It typically takes up to 72 hours after that before log events are deleted, but in rare
+    /// situations might take longer.
+    /// </para>
+    /// <para>
+    /// To illustrate, imagine that you change a log group to have a longer retention setting when it
+    /// contains log events that are past the expiration date, but haven't been deleted. Those log events
+    /// will take up to 72 hours to be deleted after the new retention date is reached. To make sure that
+    /// log data is deleted permanently, keep a log group at its lower retention setting until 72 hours
+    /// after the previous retention period ends. Alternatively, wait to change the retention setting until
+    /// you confirm that the earlier log events are deleted.
+    /// </para>
+    /// <para>
+    /// When log events reach their retention setting they are marked for deletion. After they are marked
+    /// for deletion, they do not add to your archival storage costs anymore, even if they are not actually
+    /// deleted until later. These log events marked for deletion are also not included when you use an API
+    /// to retrieve the <c>storedBytes</c> value to see how many bytes a log group is storing.
+    /// </para>
+    /// </summary>
+    public static Task<PutRetentionPolicyOutput> PutRetentionPolicyAsync(
+        this ILogs20140328Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.PutRetentionPolicyAsync(new PutRetentionPolicyInput(), cancellationToken);
+    }
+
+    /// <summary>
+    /// Sets the storage tier policy for the account. When you set the storage tier to
+    /// <c>INTELLIGENT_TIERING</c>, the service automatically moves log data to the most cost-effective
+    /// storage tier based on access frequency.
+    /// </summary>
+    public static Task<PutStorageTierPolicyOutput> PutStorageTierPolicyAsync(
+        this ILogs20140328Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.PutStorageTierPolicyAsync(new PutStorageTierPolicyInput(), cancellationToken);
+    }
+
+    /// <summary>
+    /// <para>
+    /// Creates or updates a subscription filter and associates it with the specified log group. With
+    /// subscription filters, you can subscribe to a real-time stream of log events ingested through
+    /// <see href="https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_PutLogEvents.html">PutLogEvents</see>
+    /// and have them delivered to a specific destination. When log events are sent to the receiving
+    /// service, they are Base64 encoded and compressed with the GZIP format.
+    /// </para>
+    /// <para>
+    /// The following destinations are supported for subscription filters:
+    /// </para>
+    /// <list type="bullet">
+    /// <item>
+    /// <description>
+    /// An Amazon Kinesis data stream belonging to the same account as the subscription filter, for
+    /// same-account delivery.
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <description>
+    /// A logical destination created with
+    /// <see href="https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_PutDestination.html">PutDestination</see>
+    /// that belongs to a different account, for cross-account delivery. We currently support Kinesis Data
+    /// Streams and Firehose as logical destinations.
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <description>
+    /// An Amazon Kinesis Data Firehose delivery stream that belongs to the same account as the subscription
+    /// filter, for same-account delivery.
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <description>
+    /// An Lambda function that belongs to the same account as the subscription filter, for same-account
+    /// delivery.
+    /// </description>
+    /// </item>
+    /// </list>
+    /// <para>
+    /// Each log group can have up to two subscription filters associated with it. If you are updating an
+    /// existing filter, you must specify the correct name in <c>filterName</c>.
+    /// </para>
+    /// <para>
+    /// Using regular expressions in filter patterns is supported. For these filters, there is a quotas of
+    /// quota of two regular expression patterns within a single filter pattern. There is also a quota of
+    /// five regular expression patterns per log group. For more information about using regular expressions
+    /// in filter patterns, see
+    /// <see href="https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/FilterAndPatternSyntax.html">Filter
+    /// pattern syntax for metric filters, subscription filters, filter log events, and Live Tail</see>.
+    /// </para>
+    /// <para>
+    /// To perform a <c>PutSubscriptionFilter</c> operation for any destination except a Lambda function,
+    /// you must also have the <c>iam:PassRole</c> permission.
+    /// </para>
+    /// </summary>
+    public static Task<PutSubscriptionFilterOutput> PutSubscriptionFilterAsync(
+        this ILogs20140328Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.PutSubscriptionFilterAsync(
+            new PutSubscriptionFilterInput(),
+            cancellationToken
+        );
+    }
+
+    /// <summary>
+    /// Creates or updates a syslog configuration for a log group. This enables ingestion of syslog data
+    /// through the specified VPC endpoint into the log group.
+    /// </summary>
+    public static Task<PutSyslogConfigurationOutput> PutSyslogConfigurationAsync(
+        this ILogs20140328Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.PutSyslogConfigurationAsync(
+            new PutSyslogConfigurationInput(),
+            cancellationToken
+        );
+    }
+
+    /// <summary>
+    /// <para>
+    /// Creates or updates a <i>log transformer</i> for a single log group. You use log transformers to
+    /// transform log events into a different format, making them easier for you to process and analyze. You
+    /// can also transform logs from different sources into standardized formats that contains relevant,
+    /// source-specific information.
+    /// </para>
+    /// <para>
+    /// After you have created a transformer, CloudWatch Logs performs the transformations at the time of
+    /// log ingestion. You can then refer to the transformed versions of the logs during operations such as
+    /// querying with CloudWatch Logs Insights or creating metric filters or subscription filers.
+    /// </para>
+    /// <para>
+    /// You can also use a transformer to copy metadata from metadata keys into the log events themselves.
+    /// This metadata can include log group name, log stream name, account ID and Region.
+    /// </para>
+    /// <para>
+    /// A transformer for a log group is a series of processors, where each processor applies one type of
+    /// transformation to the log events ingested into this log group. The processors work one after
+    /// another, in the order that you list them, like a pipeline. For more information about the available
+    /// processors to use in a transformer, see
+    /// <see href="https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/CloudWatch-Logs-Transformation.html#CloudWatch-Logs-Transformation-Processors">Processors
+    /// that you can use</see>.
+    /// </para>
+    /// <para>
+    /// Having log events in standardized format enables visibility across your applications for your log
+    /// analysis, reporting, and alarming needs. CloudWatch Logs provides transformation for common log
+    /// types with out-of-the-box transformation templates for major Amazon Web Services log sources such as
+    /// VPC flow logs, Lambda, and Amazon RDS. You can use pre-built transformation templates or create
+    /// custom transformation policies.
+    /// </para>
+    /// <para>
+    /// You can create transformers only for the log groups in the Standard log class.
+    /// </para>
+    /// <para>
+    /// You can also set up a transformer at the account level. For more information, see
+    /// <see href="https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_PutAccountPolicy.html">PutAccountPolicy</see>.
+    /// If there is both a log-group level transformer created with <c>PutTransformer</c> and an
+    /// account-level transformer that could apply to the same log group, the log group uses only the
+    /// log-group level transformer. It ignores the account-level transformer.
+    /// </para>
+    /// </summary>
+    public static Task<PutTransformerOutput> PutTransformerAsync(
+        this ILogs20140328Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.PutTransformerAsync(new PutTransformerInput(), cancellationToken);
+    }
+
+    /// <summary>
+    /// <para>
+    /// Starts a Live Tail streaming session for one or more log groups. A Live Tail session returns a
+    /// stream of log events that have been recently ingested in the log groups. For more information, see
+    /// <see href="https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/CloudWatchLogs_LiveTail.html">Use
+    /// Live Tail to view logs in near real time</see>.
+    /// </para>
+    /// <para>
+    /// The response to this operation is a response stream, over which the server sends live log events and
+    /// the client receives them.
+    /// </para>
+    /// <para>
+    /// The following objects are sent over the stream:
+    /// </para>
+    /// <list type="bullet">
+    /// <item>
+    /// <description>
+    /// A single
+    /// <see href="https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_LiveTailSessionStart.html">LiveTailSessionStart</see>
+    /// object is sent at the start of the session.
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <description>
+    /// <para>
+    /// Every second, a
+    /// <see href="https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_LiveTailSessionUpdate.html">LiveTailSessionUpdate</see>
+    /// object is sent. Each of these objects contains an array of the actual log events.
+    /// </para>
+    /// <para>
+    /// If no new log events were ingested in the past second, the <c>LiveTailSessionUpdate</c> object will
+    /// contain an empty array.
+    /// </para>
+    /// <para>
+    /// The array of log events contained in a <c>LiveTailSessionUpdate</c> can include as many as 500 log
+    /// events. If the number of log events matching the request exceeds 500 per second, the log events are
+    /// sampled down to 500 log events to be included in each <c>LiveTailSessionUpdate</c> object.
+    /// </para>
+    /// <para>
+    /// If your client consumes the log events slower than the server produces them, CloudWatch Logs buffers
+    /// up to 10 <c>LiveTailSessionUpdate</c> events or 5000 log events, after which it starts dropping the
+    /// oldest events.
+    /// </para>
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <description>
+    /// A
+    /// <see href="https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_StartLiveTailResponseStream.html#CWL-Type-StartLiveTailResponseStream-SessionStreamingException">SessionStreamingException</see>
+    /// object is returned if an unknown error occurs on the server side.
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <description>
+    /// A
+    /// <see href="https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_StartLiveTailResponseStream.html#CWL-Type-StartLiveTailResponseStream-SessionTimeoutException">SessionTimeoutException</see>
+    /// object is returned when the session times out, after it has been kept open for three hours.
+    /// </description>
+    /// </item>
+    /// </list>
+    /// <para>
+    /// <b>Note:</b> The <c>StartLiveTail</c> API routes requests using SDK host prefix injection. SDK
+    /// versions released before April 1, 2026 route to <c>streaming-logs.<i>Region</i>.amazonaws.com</c>,
+    /// which does not support VPC endpoints. SDK versions released on or after April 1, 2026 route to
+    /// <c>stream-logs.<i>Region</i>.amazonaws.com</c>, which supports VPC endpoints. To set up a VPC
+    /// endpoint for this API, see
+    /// <see href="https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/cloudwatch-logs-and-interface-VPC.html#create-VPC-endpoint-for-CloudWatchLogs">Creating
+    /// a VPC endpoint for CloudWatch Logs</see>.
+    /// </para>
+    /// <para>
+    /// <b>Important:</b> You can end a session before it times out by closing the session stream or by
+    /// closing the client that is receiving the stream. The session also ends if the established connection
+    /// between the client and the server breaks.
+    /// </para>
+    /// <para>
+    /// For examples of using an SDK to start a Live Tail session, see
+    /// <see href="https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/example_cloudwatch-logs_StartLiveTail_section.html">Start
+    /// a Live Tail session using an Amazon Web Services SDK</see>.
+    /// </para>
+    /// </summary>
+    public static Task<StartLiveTailOutput> StartLiveTailAsync(
+        this ILogs20140328Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.StartLiveTailAsync(new StartLiveTailInput(), cancellationToken);
+    }
+
+    /// <summary>
+    /// <para>
+    /// Starts a query of one or more log groups or data sources using CloudWatch Logs Insights. You specify
+    /// the log groups or data sources and time range to query and the query string to use. You can query up
+    /// to 10 data sources in a single query.
+    /// </para>
+    /// <para>
+    /// For more information, see
+    /// <see href="https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/CWL_QuerySyntax.html">CloudWatch
+    /// Logs Insights Query Syntax</see>.
+    /// </para>
+    /// <para>
+    /// After you run a query using <c>StartQuery</c>, the query results are stored by CloudWatch Logs. You
+    /// can use
+    /// <see href="https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_GetQueryResults.html">GetQueryResults</see>
+    /// to retrieve the results of a query, using the <c>queryId</c> that <c>StartQuery</c> returns.
+    /// </para>
+    /// <para>
+    /// Interactive queries started with <c>StartQuery</c> share concurrency limits with automated scheduled
+    /// query executions. Both types of queries count toward the same regional concurrent query quota, so
+    /// high scheduled query activity may affect the availability of concurrent slots for interactive
+    /// queries.
+    /// </para>
+    /// <para>
+    /// <b>Note:</b> To specify the log groups to query, a <c>StartQuery</c> operation must include one of
+    /// the following:
+    /// </para>
+    /// <list type="bullet">
+    /// <item>
+    /// <description>
+    /// Either exactly one of the following parameters: <c>logGroupName</c>, <c>logGroupNames</c>, or
+    /// <c>logGroupIdentifiers</c>
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <description>
+    /// <para>
+    /// Or the <c>queryString</c> must include a <c>SOURCE</c> command to select log groups for the query.
+    /// The <c>SOURCE</c> command can select log groups based on log group name prefix, account ID, and log
+    /// class, or select data sources using dataSource syntax in LogsQL, PPL, and SQL. In LogsQL, the
+    /// <c>SOURCE</c> command also supports filtering by log group tags.
+    /// </para>
+    /// <para>
+    /// For more information about the <c>SOURCE</c> command, see
+    /// <see href="https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/CWL_QuerySyntax-Source.html">SOURCE</see>.
+    /// </para>
+    /// </description>
+    /// </item>
+    /// </list>
+    /// <para>
+    /// If you have associated a KMS key with the query results in this account, then
+    /// <see href="https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_StartQuery.html">StartQuery</see>
+    /// uses that key to encrypt the results when it stores them. If no key is associated with query
+    /// results, the query results are encrypted with the default CloudWatch Logs encryption method.
+    /// </para>
+    /// <para>
+    /// Queries time out after 60 minutes of runtime. If your queries are timing out, reduce the time range
+    /// being searched or partition your query into a number of queries.
+    /// </para>
+    /// <para>
+    /// If you are using CloudWatch cross-account observability, you can use this operation in a monitoring
+    /// account to start a query in a linked source account. For more information, see
+    /// <see href="https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/CloudWatch-Unified-Cross-Account.html">CloudWatch
+    /// cross-account observability</see>. For a cross-account <c>StartQuery</c> operation, the query
+    /// definition must be defined in the monitoring account.
+    /// </para>
+    /// <para>
+    /// You can have up to 100 concurrent CloudWatch Logs insights queries, including queries that have been
+    /// added to dashboards.
+    /// </para>
+    /// </summary>
+    public static Task<StartQueryOutput> StartQueryAsync(
+        this ILogs20140328Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.StartQueryAsync(new StartQueryInput(), cancellationToken);
+    }
+
+    /// <summary>
+    /// <para>
+    /// Stops a CloudWatch Logs Insights query that is in progress. If the query has already ended, the
+    /// operation returns an error indicating that the specified query is not running.
+    /// </para>
+    /// <para>
+    /// This operation can be used to cancel both interactive queries and individual scheduled query
+    /// executions. When used with scheduled queries, <c>StopQuery</c> cancels only the specific execution
+    /// identified by the query ID, not the scheduled query configuration itself.
+    /// </para>
+    /// </summary>
+    public static Task<StopQueryOutput> StopQueryAsync(
+        this ILogs20140328Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.StopQueryAsync(new StopQueryInput(), cancellationToken);
+    }
+
+    /// <summary>
+    /// <para>
+    /// <b>Important:</b> The TagLogGroup operation is on the path to deprecation. We recommend that you use
+    /// <see href="https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_TagResource.html">TagResource</see>
+    /// instead.
+    /// </para>
+    /// <para>
+    /// Adds or updates the specified tags for the specified log group.
+    /// </para>
+    /// <para>
+    /// To list the tags for a log group, use
+    /// <see href="https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_ListTagsForResource.html">ListTagsForResource</see>.
+    /// To remove tags, use
+    /// <see href="https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_UntagResource.html">UntagResource</see>.
+    /// </para>
+    /// <para>
+    /// For more information about tags, see
+    /// <see href="https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/Working-with-log-groups-and-streams.html#log-group-tagging">Tag
+    /// Log Groups in Amazon CloudWatch Logs</see> in the <i>Amazon CloudWatch Logs User Guide</i>.
+    /// </para>
+    /// <para>
+    /// CloudWatch Logs doesn't support IAM policies that prevent users from assigning specified tags to log
+    /// groups using the <c>aws:Resource/<i>key-name</i> </c> or <c>aws:TagKeys</c> condition keys. For more
+    /// information about using tags to control access, see
+    /// <see href="https://docs.aws.amazon.com/IAM/latest/UserGuide/access_tags.html">Controlling access to
+    /// Amazon Web Services resources using tags</see>.
+    /// </para>
+    /// </summary>
+    public static Task<TagLogGroupOutput> TagLogGroupAsync(
+        this ILogs20140328Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.TagLogGroupAsync(new TagLogGroupInput(), cancellationToken);
+    }
+
+    /// <summary>
+    /// <para>
+    /// Assigns one or more tags (key-value pairs) to the specified CloudWatch Logs resource. Currently, the
+    /// only CloudWatch Logs resources that can be tagged are log groups and destinations.
+    /// </para>
+    /// <para>
+    /// Tags can help you organize and categorize your resources. You can also use them to scope user
+    /// permissions by granting a user permission to access or change only resources with certain tag
+    /// values.
+    /// </para>
+    /// <para>
+    /// Tags don't have any semantic meaning to Amazon Web Services and are interpreted strictly as strings
+    /// of characters.
+    /// </para>
+    /// <para>
+    /// You can use the <c>TagResource</c> action with a resource that already has tags. If you specify a
+    /// new tag key for the alarm, this tag is appended to the list of tags associated with the alarm. If
+    /// you specify a tag key that is already associated with the alarm, the new tag value that you specify
+    /// replaces the previous value for that tag.
+    /// </para>
+    /// <para>
+    /// You can associate as many as 50 tags with a CloudWatch Logs resource.
+    /// </para>
+    /// </summary>
+    public static Task<TagResourceOutput> TagResourceAsync(
+        this ILogs20140328Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.TagResourceAsync(new TagResourceInput(), cancellationToken);
+    }
+
+    /// <summary>
+    /// Tests the filter pattern of a metric filter against a sample of log event messages. You can use this
+    /// operation to validate the correctness of a metric filter pattern.
+    /// </summary>
+    public static Task<TestMetricFilterOutput> TestMetricFilterAsync(
+        this ILogs20140328Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.TestMetricFilterAsync(new TestMetricFilterInput(), cancellationToken);
+    }
+
+    /// <summary>
+    /// Use this operation to test a log transformer. You enter the transformer configuration and a set of
+    /// log events to test with. The operation responds with an array that includes the original log events
+    /// and the transformed versions.
+    /// </summary>
+    public static Task<TestTransformerOutput> TestTransformerAsync(
+        this ILogs20140328Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.TestTransformerAsync(new TestTransformerInput(), cancellationToken);
+    }
+
+    /// <summary>
+    /// <para>
+    /// <b>Important:</b> The UntagLogGroup operation is on the path to deprecation. We recommend that you
+    /// use
+    /// <see href="https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_UntagResource.html">UntagResource</see>
+    /// instead.
+    /// </para>
+    /// <para>
+    /// Removes the specified tags from the specified log group.
+    /// </para>
+    /// <para>
+    /// To list the tags for a log group, use
+    /// <see href="https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_ListTagsForResource.html">ListTagsForResource</see>.
+    /// To add tags, use
+    /// <see href="https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_TagResource.html">TagResource</see>.
+    /// </para>
+    /// <para>
+    /// When using IAM policies to control tag management for CloudWatch Logs log groups, the condition keys
+    /// <c>aws:Resource/key-name</c> and <c>aws:TagKeys</c> cannot be used to restrict which tags users can
+    /// assign.
+    /// </para>
+    /// </summary>
+    public static Task<UntagLogGroupOutput> UntagLogGroupAsync(
+        this ILogs20140328Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.UntagLogGroupAsync(new UntagLogGroupInput(), cancellationToken);
+    }
+
+    /// <summary>
+    /// Removes one or more tags from the specified resource.
+    /// </summary>
+    public static Task<UntagResourceOutput> UntagResourceAsync(
+        this ILogs20140328Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.UntagResourceAsync(new UntagResourceInput(), cancellationToken);
+    }
+
+    /// <summary>
+    /// <para>
+    /// Use this operation to <i>suppress</i> anomaly detection for a specified anomaly or pattern. If you
+    /// suppress an anomaly, CloudWatch Logs won't report new occurrences of that anomaly and won't update
+    /// that anomaly with new data. If you suppress a pattern, CloudWatch Logs won't report any anomalies
+    /// related to that pattern.
+    /// </para>
+    /// <para>
+    /// You must specify either <c>anomalyId</c> or <c>patternId</c>, but you can't specify both parameters
+    /// in the same operation.
+    /// </para>
+    /// <para>
+    /// If you have previously used this operation to suppress detection of a pattern or anomaly, you can
+    /// use it again to cause CloudWatch Logs to end the suppression. To do this, use this operation and
+    /// specify the anomaly or pattern to stop suppressing, and omit the <c>suppressionType</c> and
+    /// <c>suppressionPeriod</c> parameters.
+    /// </para>
+    /// </summary>
+    public static Task<UpdateAnomalyOutput> UpdateAnomalyAsync(
+        this ILogs20140328Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.UpdateAnomalyAsync(new UpdateAnomalyInput(), cancellationToken);
+    }
+
+    /// <summary>
+    /// Use this operation to update the configuration of a
+    /// <see href="https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_Delivery.html">delivery</see>
+    /// to change either the S3 path pattern or the format of the delivered logs. You can't use this
+    /// operation to change the source or destination of the delivery.
+    /// </summary>
+    public static Task<UpdateDeliveryConfigurationOutput> UpdateDeliveryConfigurationAsync(
+        this ILogs20140328Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.UpdateDeliveryConfigurationAsync(
+            new UpdateDeliveryConfigurationInput(),
+            cancellationToken
+        );
+    }
+
+    /// <summary>
+    /// Updates an existing log anomaly detector.
+    /// </summary>
+    public static Task<UpdateLogAnomalyDetectorOutput> UpdateLogAnomalyDetectorAsync(
+        this ILogs20140328Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.UpdateLogAnomalyDetectorAsync(
+            new UpdateLogAnomalyDetectorInput(),
+            cancellationToken
+        );
+    }
+
+    /// <summary>
+    /// <para>
+    /// Updates an existing lookup table by replacing all of its content with new CSV data or CloudWatch
+    /// Logs query results. After the update completes, queries that use this table use the new data.
+    /// </para>
+    /// <para>
+    /// This is a full replacement operation. All existing content is replaced. You must specify either
+    /// <c>tableBody</c> or <c>queryId</c>, but not both.
+    /// </para>
+    /// </summary>
+    public static Task<UpdateLookupTableOutput> UpdateLookupTableAsync(
+        this ILogs20140328Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.UpdateLookupTableAsync(new UpdateLookupTableInput(), cancellationToken);
+    }
+
+    /// <summary>
+    /// Updates an existing scheduled query with new configuration. This operation uses PUT semantics,
+    /// allowing modification of query parameters, schedule, and destinations.
+    /// </summary>
+    public static Task<UpdateScheduledQueryOutput> UpdateScheduledQueryAsync(
+        this ILogs20140328Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.UpdateScheduledQueryAsync(new UpdateScheduledQueryInput(), cancellationToken);
     }
 }
 

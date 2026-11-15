@@ -27,4 +27,7 @@ namespace Com.Amazonaws.Iam;
 /// can also include any of the following characters: _+=,.@-
 /// </para>
 /// </param>
-public sealed record class DeleteRolePolicyInput(string PolicyName, string RoleName);
+public sealed record class DeleteRolePolicyInput(
+    string? PolicyName = null,
+    string? RoleName = null
+);

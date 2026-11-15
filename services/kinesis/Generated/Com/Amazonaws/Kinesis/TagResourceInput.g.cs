@@ -12,6 +12,9 @@ namespace Com.Amazonaws.Kinesis;
 /// <param name="ResourceARN">
 /// The Amazon Resource Name (ARN) of the Kinesis resource to which to add tags.
 /// </param>
+/// <param name="StreamId">
+/// Not Implemented. Reserved for future use.
+/// </param>
 /// <param name="Tags">
 /// <para>
 /// An array of tags to be added to the Kinesis resource. A tag consists of a required key and an
@@ -21,11 +24,8 @@ namespace Com.Amazonaws.Kinesis;
 /// Tags may only contain Unicode letters, digits, white space, or these symbols: _ . : / = + - @.
 /// </para>
 /// </param>
-/// <param name="StreamId">
-/// Not Implemented. Reserved for future use.
-/// </param>
 public sealed record class TagResourceInput(
-    string ResourceARN,
-    IReadOnlyDictionary<string, string> Tags,
-    string? StreamId = null
+    string? ResourceARN = null,
+    string? StreamId = null,
+    IReadOnlyDictionary<string, string>? Tags = null
 );

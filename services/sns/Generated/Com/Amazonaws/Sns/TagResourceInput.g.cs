@@ -16,6 +16,6 @@ namespace Com.Amazonaws.Sns;
 /// The tags to be added to the specified topic. A tag consists of a required key and an optional value.
 /// </param>
 public sealed record class TagResourceInput(
-    string ResourceArn,
-    IReadOnlyList<global::Com.Amazonaws.Sns.Tag> Tags
+    string? ResourceArn = null,
+    IReadOnlyList<global::Com.Amazonaws.Sns.Tag>? Tags = null
 );

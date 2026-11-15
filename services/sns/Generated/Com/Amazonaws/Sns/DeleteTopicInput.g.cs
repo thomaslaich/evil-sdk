@@ -10,4 +10,4 @@ namespace Com.Amazonaws.Sns;
 /// <param name="TopicArn">
 /// The ARN of the topic you want to delete.
 /// </param>
-public sealed record class DeleteTopicInput(string TopicArn);
+public sealed record class DeleteTopicInput(string? TopicArn = null);

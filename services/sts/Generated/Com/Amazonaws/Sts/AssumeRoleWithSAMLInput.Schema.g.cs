@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Sts.Schemas;
 
 public static partial class AssumeRoleWithSAMLInputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? RoleArn { get; set; }
         public string? PrincipalArn { get; set; }
@@ -33,7 +33,6 @@ public static partial class AssumeRoleWithSAMLInputSchema
                 new(
                     "RoleArn",
                     Target0,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
@@ -51,17 +50,12 @@ public static partial class AssumeRoleWithSAMLInputSchema
                             Document.From(
                                 "^[\\u0009\\u000A\\u000D\\u0020-\\u007E\\u0085\\u00A0-\\uD7FF\\uE000-\\uFFFD\\u10000-\\u10FFFF]+$"
                             )
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
                         ),
                     ]
                 ),
                 new(
                     "PrincipalArn",
                     Target1,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
@@ -80,16 +74,11 @@ public static partial class AssumeRoleWithSAMLInputSchema
                                 "^[\\u0009\\u000A\\u000D\\u0020-\\u007E\\u0085\\u00A0-\\uD7FF\\uE000-\\uFFFD\\u10000-\\u10FFFF]+$"
                             )
                         ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
                     ]
                 ),
                 new(
                     "SAMLAssertion",
                     Target2,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
@@ -101,10 +90,6 @@ public static partial class AssumeRoleWithSAMLInputSchema
                                     { "max", Document.From(100000m) },
                                 }
                             )
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
                         ),
                         new Trait(
                             ShapeId.Parse("smithy.api#sensitive"),
@@ -220,13 +205,13 @@ public static partial class AssumeRoleWithSAMLInputSchema
 
         public override global::Com.Amazonaws.Sts.AssumeRoleWithSAMLInput Build(Builder builder) =>
             new global::Com.Amazonaws.Sts.AssumeRoleWithSAMLInput(
-                builder.PrincipalArn ?? throw new MissingRequiredMemberException("PrincipalArn"),
-                builder.RoleArn ?? throw new MissingRequiredMemberException("RoleArn"),
-                builder.SAMLAssertion ?? throw new MissingRequiredMemberException("SAMLAssertion"),
                 builder.DurationSeconds,
                 builder.MinimumSessionTokenSize,
                 builder.Policy,
-                builder.PolicyArns
+                builder.PolicyArns,
+                builder.PrincipalArn,
+                builder.RoleArn,
+                builder.SAMLAssertion
             );
 
         public override void SerializeMembers<TSerializer>(
@@ -292,7 +277,7 @@ public static partial class AssumeRoleWithSAMLInputSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

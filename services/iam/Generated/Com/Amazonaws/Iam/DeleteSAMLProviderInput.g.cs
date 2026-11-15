@@ -10,4 +10,4 @@ namespace Com.Amazonaws.Iam;
 /// <param name="SAMLProviderArn">
 /// The Amazon Resource Name (ARN) of the SAML provider to delete.
 /// </param>
-public sealed record class DeleteSAMLProviderInput(string SAMLProviderArn);
+public sealed record class DeleteSAMLProviderInput(string? SAMLProviderArn = null);

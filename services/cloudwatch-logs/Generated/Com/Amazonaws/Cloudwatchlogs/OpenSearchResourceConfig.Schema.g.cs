@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Cloudwatchlogs.Schemas;
 
 public static partial class OpenSearchResourceConfigSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? KmsKeyArn { get; set; }
         public string? DataSourceRoleArn { get; set; }
@@ -160,7 +160,7 @@ public static partial class OpenSearchResourceConfigSchema
             serializer.WriteInteger(4, value.RetentionDays);
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

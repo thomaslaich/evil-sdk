@@ -36,7 +36,7 @@ namespace Com.Amazonaws.Iam;
 /// and time.
 /// </param>
 public sealed record class GetOrganizationsAccessReportInput(
-    string JobId,
+    string? JobId = null,
     string? Marker = null,
     int? MaxItems = null,
     SortKeyType? SortKey = null

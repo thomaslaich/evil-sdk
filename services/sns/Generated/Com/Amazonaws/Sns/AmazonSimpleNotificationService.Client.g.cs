@@ -1212,6 +1212,358 @@ public static class AmazonSimpleNotificationServiceClientExtensions
 {
     /// <summary>
     /// <para>
+    /// Adds a statement to a topic's access control policy, granting access for the specified Amazon Web
+    /// Services accounts to the specified actions.
+    /// </para>
+    /// <para>
+    /// <b>Note:</b> To remove the ability to change topic permissions, you must deny permissions to the
+    /// <c>AddPermission</c>, <c>RemovePermission</c>, and <c>SetTopicAttributes</c> actions in your IAM
+    /// policy.
+    /// </para>
+    /// </summary>
+    public static Task<AddPermissionOutput> AddPermissionAsync(
+        this IAmazonSimpleNotificationServiceClient client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.AddPermissionAsync(new AddPermissionInput(), cancellationToken);
+    }
+
+    /// <summary>
+    /// <para>
+    /// Accepts a phone number and indicates whether the phone holder has opted out of receiving SMS
+    /// messages from your Amazon Web Services account. You cannot send SMS messages to a number that is
+    /// opted out.
+    /// </para>
+    /// <para>
+    /// To resume sending messages, you can opt in the number by using the <c>OptInPhoneNumber</c> action.
+    /// </para>
+    /// </summary>
+    public static Task<CheckIfPhoneNumberIsOptedOutOutput> CheckIfPhoneNumberIsOptedOutAsync(
+        this IAmazonSimpleNotificationServiceClient client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.CheckIfPhoneNumberIsOptedOutAsync(
+            new CheckIfPhoneNumberIsOptedOutInput(),
+            cancellationToken
+        );
+    }
+
+    /// <summary>
+    /// Verifies an endpoint owner's intent to receive messages by validating the token sent to the endpoint
+    /// by an earlier <c>Subscribe</c> action. If the token is valid, the action creates a new subscription
+    /// and returns its Amazon Resource Name (ARN). This call requires an AWS signature only when the
+    /// <c>AuthenticateOnUnsubscribe</c> flag is set to "true".
+    /// </summary>
+    public static Task<ConfirmSubscriptionOutput> ConfirmSubscriptionAsync(
+        this IAmazonSimpleNotificationServiceClient client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.ConfirmSubscriptionAsync(new ConfirmSubscriptionInput(), cancellationToken);
+    }
+
+    /// <summary>
+    /// <para>
+    /// Creates a platform application object for one of the supported push notification services, such as
+    /// APNS and GCM (Firebase Cloud Messaging), to which devices and mobile apps may register. You must
+    /// specify <c>PlatformPrincipal</c> and <c>PlatformCredential</c> attributes when using the
+    /// <c>CreatePlatformApplication</c> action.
+    /// </para>
+    /// <para>
+    /// <c>PlatformPrincipal</c> and <c>PlatformCredential</c> are received from the notification service.
+    /// </para>
+    /// <list type="bullet">
+    /// <item>
+    /// <description>
+    /// For ADM, <c>PlatformPrincipal</c> is <c>client id</c> and <c>PlatformCredential</c> is <c>client
+    /// secret</c>.
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <description>
+    /// For APNS and <c>APNS_SANDBOX</c> using certificate credentials, <c>PlatformPrincipal</c> is <c>SSL
+    /// certificate</c> and <c>PlatformCredential</c> is <c>private key</c>.
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <description>
+    /// For APNS and <c>APNS_SANDBOX</c> using token credentials, <c>PlatformPrincipal</c> is <c>signing key
+    /// ID</c> and <c>PlatformCredential</c> is <c>signing key</c>.
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <description>
+    /// For Baidu, <c>PlatformPrincipal</c> is <c>API key</c> and <c>PlatformCredential</c> is <c>secret
+    /// key</c>.
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <description>
+    /// For GCM (Firebase Cloud Messaging) using key credentials, there is no <c>PlatformPrincipal</c>. The
+    /// <c>PlatformCredential</c> is <c>API key</c>.
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <description>
+    /// For GCM (Firebase Cloud Messaging) using token credentials, there is no <c>PlatformPrincipal</c>.
+    /// The <c>PlatformCredential</c> is a JSON formatted private key file. When using the Amazon Web
+    /// Services CLI or Amazon Web Services SDKs, the file must be in string format and special characters
+    /// must be ignored. To format the file correctly, Amazon SNS recommends using the following command:
+    /// <c>SERVICE_JSON=$(jq @json &lt; service.json)</c>.
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <description>
+    /// For MPNS, <c>PlatformPrincipal</c> is <c>TLS certificate</c> and <c>PlatformCredential</c> is
+    /// <c>private key</c>.
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <description>
+    /// For WNS, <c>PlatformPrincipal</c> is <c>Package Security Identifier</c> and
+    /// <c>PlatformCredential</c> is <c>secret key</c>.
+    /// </description>
+    /// </item>
+    /// </list>
+    /// <para>
+    /// You can use the returned <c>PlatformApplicationArn</c> as an attribute for the
+    /// <c>CreatePlatformEndpoint</c> action.
+    /// </para>
+    /// </summary>
+    public static Task<CreatePlatformApplicationOutput> CreatePlatformApplicationAsync(
+        this IAmazonSimpleNotificationServiceClient client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.CreatePlatformApplicationAsync(
+            new CreatePlatformApplicationInput(),
+            cancellationToken
+        );
+    }
+
+    /// <summary>
+    /// <para>
+    /// Creates an endpoint for a device and mobile app on one of the supported push notification services,
+    /// such as GCM (Firebase Cloud Messaging) and APNS. <c>CreatePlatformEndpoint</c> requires the
+    /// <c>PlatformApplicationArn</c> that is returned from <c>CreatePlatformApplication</c>. You can use
+    /// the returned <c>EndpointArn</c> to send a message to a mobile app or by the <c>Subscribe</c> action
+    /// for subscription to a topic. The <c>CreatePlatformEndpoint</c> action is idempotent, so if the
+    /// requester already owns an endpoint with the same device token and attributes, that endpoint's ARN is
+    /// returned without creating a new endpoint. For more information, see
+    /// <see href="https://docs.aws.amazon.com/sns/latest/dg/SNSMobilePush.html">Using Amazon SNS Mobile
+    /// Push Notifications</see>.
+    /// </para>
+    /// <para>
+    /// When using <c>CreatePlatformEndpoint</c> with Baidu, two attributes must be provided: ChannelId and
+    /// UserId. The token field must also contain the ChannelId. For more information, see
+    /// <see href="https://docs.aws.amazon.com/sns/latest/dg/SNSMobilePushBaiduEndpoint.html">Creating an
+    /// Amazon SNS Endpoint for Baidu</see>.
+    /// </para>
+    /// </summary>
+    public static Task<CreatePlatformEndpointOutput> CreatePlatformEndpointAsync(
+        this IAmazonSimpleNotificationServiceClient client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.CreatePlatformEndpointAsync(
+            new CreatePlatformEndpointInput(),
+            cancellationToken
+        );
+    }
+
+    /// <summary>
+    /// <para>
+    /// Adds a destination phone number to an Amazon Web Services account in the SMS sandbox and sends a
+    /// one-time password (OTP) to that phone number.
+    /// </para>
+    /// <para>
+    /// When you start using Amazon SNS to send SMS messages, your Amazon Web Services account is in the
+    /// <i>SMS sandbox</i>. The SMS sandbox provides a safe environment for you to try Amazon SNS features
+    /// without risking your reputation as an SMS sender. While your Amazon Web Services account is in the
+    /// SMS sandbox, you can use all of the features of Amazon SNS. However, you can send SMS messages only
+    /// to verified destination phone numbers. For more information, including how to move out of the
+    /// sandbox to send messages without restrictions, see
+    /// <see href="https://docs.aws.amazon.com/sns/latest/dg/sns-sms-sandbox.html">SMS sandbox</see> in the
+    /// <i>Amazon SNS Developer Guide</i>.
+    /// </para>
+    /// </summary>
+    public static Task<CreateSMSSandboxPhoneNumberOutput> CreateSMSSandboxPhoneNumberAsync(
+        this IAmazonSimpleNotificationServiceClient client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.CreateSMSSandboxPhoneNumberAsync(
+            new CreateSMSSandboxPhoneNumberInput(),
+            cancellationToken
+        );
+    }
+
+    /// <summary>
+    /// Creates a topic to which notifications can be published. Users can create at most 100,000 standard
+    /// topics (at most 1,000 FIFO topics). For more information, see
+    /// <see href="https://docs.aws.amazon.com/sns/latest/dg/sns-create-topic.html">Creating an Amazon SNS
+    /// topic</see> in the <i>Amazon SNS Developer Guide</i>. This action is idempotent, so if the requester
+    /// already owns a topic with the specified name, that topic's ARN is returned without creating a new
+    /// topic.
+    /// </summary>
+    public static Task<CreateTopicOutput> CreateTopicAsync(
+        this IAmazonSimpleNotificationServiceClient client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.CreateTopicAsync(new CreateTopicInput(), cancellationToken);
+    }
+
+    /// <summary>
+    /// <para>
+    /// Deletes the endpoint for a device and mobile app from Amazon SNS. This action is idempotent. For
+    /// more information, see <see href="https://docs.aws.amazon.com/sns/latest/dg/SNSMobilePush.html">Using
+    /// Amazon SNS Mobile Push Notifications</see>.
+    /// </para>
+    /// <para>
+    /// When you delete an endpoint that is also subscribed to a topic, then you must also unsubscribe the
+    /// endpoint from the topic.
+    /// </para>
+    /// </summary>
+    public static Task<DeleteEndpointOutput> DeleteEndpointAsync(
+        this IAmazonSimpleNotificationServiceClient client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.DeleteEndpointAsync(new DeleteEndpointInput(), cancellationToken);
+    }
+
+    /// <summary>
+    /// Deletes a platform application object for one of the supported push notification services, such as
+    /// APNS and GCM (Firebase Cloud Messaging). For more information, see
+    /// <see href="https://docs.aws.amazon.com/sns/latest/dg/SNSMobilePush.html">Using Amazon SNS Mobile
+    /// Push Notifications</see>.
+    /// </summary>
+    public static Task<DeletePlatformApplicationOutput> DeletePlatformApplicationAsync(
+        this IAmazonSimpleNotificationServiceClient client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.DeletePlatformApplicationAsync(
+            new DeletePlatformApplicationInput(),
+            cancellationToken
+        );
+    }
+
+    /// <summary>
+    /// <para>
+    /// Deletes an Amazon Web Services account's verified or pending phone number from the SMS sandbox.
+    /// </para>
+    /// <para>
+    /// When you start using Amazon SNS to send SMS messages, your Amazon Web Services account is in the
+    /// <i>SMS sandbox</i>. The SMS sandbox provides a safe environment for you to try Amazon SNS features
+    /// without risking your reputation as an SMS sender. While your Amazon Web Services account is in the
+    /// SMS sandbox, you can use all of the features of Amazon SNS. However, you can send SMS messages only
+    /// to verified destination phone numbers. For more information, including how to move out of the
+    /// sandbox to send messages without restrictions, see
+    /// <see href="https://docs.aws.amazon.com/sns/latest/dg/sns-sms-sandbox.html">SMS sandbox</see> in the
+    /// <i>Amazon SNS Developer Guide</i>.
+    /// </para>
+    /// </summary>
+    public static Task<DeleteSMSSandboxPhoneNumberOutput> DeleteSMSSandboxPhoneNumberAsync(
+        this IAmazonSimpleNotificationServiceClient client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.DeleteSMSSandboxPhoneNumberAsync(
+            new DeleteSMSSandboxPhoneNumberInput(),
+            cancellationToken
+        );
+    }
+
+    /// <summary>
+    /// Deletes a topic and all its subscriptions. Deleting a topic might prevent some messages previously
+    /// sent to the topic from being delivered to subscribers. This action is idempotent, so deleting a
+    /// topic that does not exist does not result in an error.
+    /// </summary>
+    public static Task<DeleteTopicOutput> DeleteTopicAsync(
+        this IAmazonSimpleNotificationServiceClient client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.DeleteTopicAsync(new DeleteTopicInput(), cancellationToken);
+    }
+
+    /// <summary>
+    /// <para>
+    /// <b>Important:</b> Amazon SNS message data protection is no longer available to new customers. For
+    /// more information and guidance on alternatives, see
+    /// <see href="https://docs.aws.amazon.com/sns/latest/dg/sns-message-data-protection-availability-change.html">Amazon
+    /// SNS message data protection availability change</see>.
+    /// </para>
+    /// <para>
+    /// Retrieves the specified inline <c>DataProtectionPolicy</c> document that is stored in the specified
+    /// Amazon SNS topic.
+    /// </para>
+    /// </summary>
+    public static Task<GetDataProtectionPolicyOutput> GetDataProtectionPolicyAsync(
+        this IAmazonSimpleNotificationServiceClient client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.GetDataProtectionPolicyAsync(
+            new GetDataProtectionPolicyInput(),
+            cancellationToken
+        );
+    }
+
+    /// <summary>
+    /// Retrieves the endpoint attributes for a device on one of the supported push notification services,
+    /// such as GCM (Firebase Cloud Messaging) and APNS. For more information, see
+    /// <see href="https://docs.aws.amazon.com/sns/latest/dg/SNSMobilePush.html">Using Amazon SNS Mobile
+    /// Push Notifications</see>.
+    /// </summary>
+    public static Task<GetEndpointAttributesOutput> GetEndpointAttributesAsync(
+        this IAmazonSimpleNotificationServiceClient client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.GetEndpointAttributesAsync(
+            new GetEndpointAttributesInput(),
+            cancellationToken
+        );
+    }
+
+    /// <summary>
+    /// Retrieves the attributes of the platform application object for the supported push notification
+    /// services, such as APNS and GCM (Firebase Cloud Messaging). For more information, see
+    /// <see href="https://docs.aws.amazon.com/sns/latest/dg/SNSMobilePush.html">Using Amazon SNS Mobile
+    /// Push Notifications</see>.
+    /// </summary>
+    public static Task<GetPlatformApplicationAttributesOutput> GetPlatformApplicationAttributesAsync(
+        this IAmazonSimpleNotificationServiceClient client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.GetPlatformApplicationAttributesAsync(
+            new GetPlatformApplicationAttributesInput(),
+            cancellationToken
+        );
+    }
+
+    /// <summary>
+    /// <para>
     /// Returns the settings for sending SMS messages from your Amazon Web Services account.
     /// </para>
     /// <para>
@@ -1251,6 +1603,118 @@ public static class AmazonSimpleNotificationServiceClientExtensions
         ArgumentNullException.ThrowIfNull(client);
         return client.GetSMSSandboxAccountStatusAsync(
             new GetSMSSandboxAccountStatusInput(),
+            cancellationToken
+        );
+    }
+
+    /// <summary>
+    /// Returns all of the properties of a subscription.
+    /// </summary>
+    public static Task<GetSubscriptionAttributesOutput> GetSubscriptionAttributesAsync(
+        this IAmazonSimpleNotificationServiceClient client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.GetSubscriptionAttributesAsync(
+            new GetSubscriptionAttributesInput(),
+            cancellationToken
+        );
+    }
+
+    /// <summary>
+    /// Returns all of the properties of a topic. Topic properties returned might differ based on the
+    /// authorization of the user.
+    /// </summary>
+    public static Task<GetTopicAttributesOutput> GetTopicAttributesAsync(
+        this IAmazonSimpleNotificationServiceClient client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.GetTopicAttributesAsync(new GetTopicAttributesInput(), cancellationToken);
+    }
+
+    /// <summary>
+    /// <para>
+    /// Lists the endpoints and endpoint attributes for devices in a supported push notification service,
+    /// such as GCM (Firebase Cloud Messaging) and APNS. The results for
+    /// <c>ListEndpointsByPlatformApplication</c> are paginated and return a limited list of endpoints, up
+    /// to 100. If additional records are available after the first page results, then a NextToken string
+    /// will be returned. To receive the next page, you call <c>ListEndpointsByPlatformApplication</c> again
+    /// using the NextToken string received from the previous call. When there are no more records to
+    /// return, NextToken will be null. For more information, see
+    /// <see href="https://docs.aws.amazon.com/sns/latest/dg/SNSMobilePush.html">Using Amazon SNS Mobile
+    /// Push Notifications</see>.
+    /// </para>
+    /// <para>
+    /// This action is throttled at 30 transactions per second (TPS).
+    /// </para>
+    /// </summary>
+    public static Task<ListEndpointsByPlatformApplicationOutput> ListEndpointsByPlatformApplicationAsync(
+        this IAmazonSimpleNotificationServiceClient client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.ListEndpointsByPlatformApplicationAsync(
+            new ListEndpointsByPlatformApplicationInput(),
+            cancellationToken
+        );
+    }
+
+    /// <summary>
+    /// <para>
+    /// Lists the endpoints and endpoint attributes for devices in a supported push notification service,
+    /// such as GCM (Firebase Cloud Messaging) and APNS. The results for
+    /// <c>ListEndpointsByPlatformApplication</c> are paginated and return a limited list of endpoints, up
+    /// to 100. If additional records are available after the first page results, then a NextToken string
+    /// will be returned. To receive the next page, you call <c>ListEndpointsByPlatformApplication</c> again
+    /// using the NextToken string received from the previous call. When there are no more records to
+    /// return, NextToken will be null. For more information, see
+    /// <see href="https://docs.aws.amazon.com/sns/latest/dg/SNSMobilePush.html">Using Amazon SNS Mobile
+    /// Push Notifications</see>.
+    /// </para>
+    /// <para>
+    /// This action is throttled at 30 transactions per second (TPS).
+    /// </para>
+    /// </summary>
+    public static IAsyncEnumerable<ListEndpointsByPlatformApplicationOutput> ListEndpointsByPlatformApplicationPagesAsync(
+        this IAmazonSimpleNotificationServiceClient client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.ListEndpointsByPlatformApplicationPagesAsync(
+            new ListEndpointsByPlatformApplicationInput(),
+            cancellationToken
+        );
+    }
+
+    /// <summary>
+    /// <para>
+    /// Lists the endpoints and endpoint attributes for devices in a supported push notification service,
+    /// such as GCM (Firebase Cloud Messaging) and APNS. The results for
+    /// <c>ListEndpointsByPlatformApplication</c> are paginated and return a limited list of endpoints, up
+    /// to 100. If additional records are available after the first page results, then a NextToken string
+    /// will be returned. To receive the next page, you call <c>ListEndpointsByPlatformApplication</c> again
+    /// using the NextToken string received from the previous call. When there are no more records to
+    /// return, NextToken will be null. For more information, see
+    /// <see href="https://docs.aws.amazon.com/sns/latest/dg/SNSMobilePush.html">Using Amazon SNS Mobile
+    /// Push Notifications</see>.
+    /// </para>
+    /// <para>
+    /// This action is throttled at 30 transactions per second (TPS).
+    /// </para>
+    /// </summary>
+    public static IAsyncEnumerable<Endpoint> ListEndpointsByPlatformApplicationItemsAsync(
+        this IAmazonSimpleNotificationServiceClient client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.ListEndpointsByPlatformApplicationItemsAsync(
+            new ListEndpointsByPlatformApplicationInput(),
             cancellationToken
         );
     }
@@ -1605,6 +2069,86 @@ public static class AmazonSimpleNotificationServiceClientExtensions
 
     /// <summary>
     /// <para>
+    /// Returns a list of the subscriptions to a specific topic. Each call returns a limited list of
+    /// subscriptions, up to 100. If there are more subscriptions, a <c>NextToken</c> is also returned. Use
+    /// the <c>NextToken</c> parameter in a new <c>ListSubscriptionsByTopic</c> call to get further results.
+    /// </para>
+    /// <para>
+    /// This action is throttled at 30 transactions per second (TPS).
+    /// </para>
+    /// </summary>
+    public static Task<ListSubscriptionsByTopicOutput> ListSubscriptionsByTopicAsync(
+        this IAmazonSimpleNotificationServiceClient client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.ListSubscriptionsByTopicAsync(
+            new ListSubscriptionsByTopicInput(),
+            cancellationToken
+        );
+    }
+
+    /// <summary>
+    /// <para>
+    /// Returns a list of the subscriptions to a specific topic. Each call returns a limited list of
+    /// subscriptions, up to 100. If there are more subscriptions, a <c>NextToken</c> is also returned. Use
+    /// the <c>NextToken</c> parameter in a new <c>ListSubscriptionsByTopic</c> call to get further results.
+    /// </para>
+    /// <para>
+    /// This action is throttled at 30 transactions per second (TPS).
+    /// </para>
+    /// </summary>
+    public static IAsyncEnumerable<ListSubscriptionsByTopicOutput> ListSubscriptionsByTopicPagesAsync(
+        this IAmazonSimpleNotificationServiceClient client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.ListSubscriptionsByTopicPagesAsync(
+            new ListSubscriptionsByTopicInput(),
+            cancellationToken
+        );
+    }
+
+    /// <summary>
+    /// <para>
+    /// Returns a list of the subscriptions to a specific topic. Each call returns a limited list of
+    /// subscriptions, up to 100. If there are more subscriptions, a <c>NextToken</c> is also returned. Use
+    /// the <c>NextToken</c> parameter in a new <c>ListSubscriptionsByTopic</c> call to get further results.
+    /// </para>
+    /// <para>
+    /// This action is throttled at 30 transactions per second (TPS).
+    /// </para>
+    /// </summary>
+    public static IAsyncEnumerable<Subscription> ListSubscriptionsByTopicItemsAsync(
+        this IAmazonSimpleNotificationServiceClient client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.ListSubscriptionsByTopicItemsAsync(
+            new ListSubscriptionsByTopicInput(),
+            cancellationToken
+        );
+    }
+
+    /// <summary>
+    /// List all tags added to the specified Amazon SNS topic. For an overview, see
+    /// <see href="https://docs.aws.amazon.com/sns/latest/dg/sns-tags.html">Amazon SNS Tags</see> in the
+    /// <i>Amazon Simple Notification Service Developer Guide</i>.
+    /// </summary>
+    public static Task<ListTagsForResourceOutput> ListTagsForResourceAsync(
+        this IAmazonSimpleNotificationServiceClient client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.ListTagsForResourceAsync(new ListTagsForResourceInput(), cancellationToken);
+    }
+
+    /// <summary>
+    /// <para>
     /// Returns a list of the requester's topics. Each call returns a limited list of topics, up to 100. If
     /// there are more topics, a <c>NextToken</c> is also returned. Use the <c>NextToken</c> parameter in a
     /// new <c>ListTopics</c> call to get further results.
@@ -1658,6 +2202,399 @@ public static class AmazonSimpleNotificationServiceClientExtensions
     {
         ArgumentNullException.ThrowIfNull(client);
         return client.ListTopicsItemsAsync(new ListTopicsInput(), cancellationToken);
+    }
+
+    /// <summary>
+    /// <para>
+    /// Use this request to opt in a phone number that is opted out, which enables you to resume sending SMS
+    /// messages to the number.
+    /// </para>
+    /// <para>
+    /// You can opt in a phone number only once every 30 days.
+    /// </para>
+    /// </summary>
+    public static Task<OptInPhoneNumberOutput> OptInPhoneNumberAsync(
+        this IAmazonSimpleNotificationServiceClient client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.OptInPhoneNumberAsync(new OptInPhoneNumberInput(), cancellationToken);
+    }
+
+    /// <summary>
+    /// <para>
+    /// Sends a message to an Amazon SNS topic, a text message (SMS message) directly to a phone number, or
+    /// a message to a mobile platform endpoint (when you specify the <c>TargetArn</c>).
+    /// </para>
+    /// <para>
+    /// If you send a message to a topic, Amazon SNS delivers the message to each endpoint that is
+    /// subscribed to the topic. The format of the message depends on the notification protocol for each
+    /// subscribed endpoint.
+    /// </para>
+    /// <para>
+    /// When a <c>messageId</c> is returned, the message is saved and Amazon SNS immediately delivers it to
+    /// subscribers.
+    /// </para>
+    /// <para>
+    /// To use the <c>Publish</c> action for publishing a message to a mobile endpoint, such as an app on a
+    /// Kindle device or mobile phone, you must specify the EndpointArn for the TargetArn parameter. The
+    /// EndpointArn is returned when making a call with the <c>CreatePlatformEndpoint</c> action.
+    /// </para>
+    /// <para>
+    /// For more information about formatting messages, see
+    /// <see href="https://docs.aws.amazon.com/sns/latest/dg/mobile-push-send-custommessage.html">Send
+    /// Custom Platform-Specific Payloads in Messages to Mobile Devices</see>.
+    /// </para>
+    /// <para>
+    /// <b>Important:</b> You can publish messages only to topics and endpoints in the same Amazon Web
+    /// Services Region.
+    /// </para>
+    /// </summary>
+    public static Task<PublishOutput> PublishAsync(
+        this IAmazonSimpleNotificationServiceClient client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.PublishAsync(new PublishInput(), cancellationToken);
+    }
+
+    /// <summary>
+    /// <para>
+    /// Publishes up to 10 messages to the specified topic in a single batch. This is a batch version of the
+    /// <c>Publish</c> API. If you try to send more than 10 messages in a single batch request, you will
+    /// receive a <c>TooManyEntriesInBatchRequest</c> exception.
+    /// </para>
+    /// <para>
+    /// For FIFO topics, multiple messages within a single batch are published in the order they are sent,
+    /// and messages are deduplicated within the batch and across batches for five minutes.
+    /// </para>
+    /// <para>
+    /// The result of publishing each message is reported individually in the response. Because the batch
+    /// request can result in a combination of successful and unsuccessful actions, you should check for
+    /// batch errors even when the call returns an HTTP status code of 200.
+    /// </para>
+    /// <para>
+    /// By default, the maximum allowed individual message size and the maximum total payload size (the sum
+    /// of the individual lengths of all of the batched messages) are both 256 KiB (262,144 bytes). To
+    /// publish larger batches, set the topic's <c>MaximumMessageSize</c> attribute, which supports values
+    /// up to 1 MiB (1,048,576 bytes). The combined size of all messages in the batch, including each
+    /// message's body and attributes, must not exceed the topic's <c>MaximumMessageSize</c>.
+    /// </para>
+    /// <para>
+    /// For more information, see
+    /// <see href="https://docs.aws.amazon.com/sns/latest/dg/large-message-payloads.html">Large message
+    /// payloads</see> in the <i>Amazon SNS Developer Guide.</i>
+    /// </para>
+    /// <para>
+    /// <b>Important:</b> The <c>PublishBatch</c> API can send up to 10 messages at a time. If you attempt
+    /// to send more than 10 messages in one request, you will encounter a
+    /// <c>TooManyEntriesInBatchRequest</c> exception. In such cases, split your messages into multiple
+    /// requests, each containing no more than 10 messages.
+    /// </para>
+    /// <para>
+    /// Some actions take lists of parameters. These lists are specified using the <c>param.n</c> notation.
+    /// Values of <c>n</c> are integers starting from <b>1</b>. For example, a parameter list with two
+    /// elements looks like this:
+    /// </para>
+    /// <para>
+    /// <c>&amp;AttributeName.1=first</c>
+    /// </para>
+    /// <para>
+    /// <c>&amp;AttributeName.2=second</c>
+    /// </para>
+    /// <para>
+    /// If you send a batch message to a topic, Amazon SNS publishes the batch message to each endpoint that
+    /// is subscribed to the topic. The format of the batch message depends on the notification protocol for
+    /// each subscribed endpoint.
+    /// </para>
+    /// <para>
+    /// When a <c>messageId</c> is returned, the batch message is saved, and Amazon SNS immediately delivers
+    /// the message to subscribers.
+    /// </para>
+    /// </summary>
+    public static Task<PublishBatchOutput> PublishBatchAsync(
+        this IAmazonSimpleNotificationServiceClient client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.PublishBatchAsync(new PublishBatchInput(), cancellationToken);
+    }
+
+    /// <summary>
+    /// <para>
+    /// <b>Important:</b> Amazon SNS message data protection is no longer available to new customers. For
+    /// more information and guidance on alternatives, see
+    /// <see href="https://docs.aws.amazon.com/sns/latest/dg/sns-message-data-protection-availability-change.html">Amazon
+    /// SNS message data protection availability change</see>.
+    /// </para>
+    /// <para>
+    /// Adds or updates an inline policy document that is stored in the specified Amazon SNS topic.
+    /// </para>
+    /// </summary>
+    public static Task<PutDataProtectionPolicyOutput> PutDataProtectionPolicyAsync(
+        this IAmazonSimpleNotificationServiceClient client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.PutDataProtectionPolicyAsync(
+            new PutDataProtectionPolicyInput(),
+            cancellationToken
+        );
+    }
+
+    /// <summary>
+    /// <para>
+    /// Removes a statement from a topic's access control policy.
+    /// </para>
+    /// <para>
+    /// <b>Note:</b> To remove the ability to change topic permissions, you must deny permissions to the
+    /// <c>AddPermission</c>, <c>RemovePermission</c>, and <c>SetTopicAttributes</c> actions in your IAM
+    /// policy.
+    /// </para>
+    /// </summary>
+    public static Task<RemovePermissionOutput> RemovePermissionAsync(
+        this IAmazonSimpleNotificationServiceClient client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.RemovePermissionAsync(new RemovePermissionInput(), cancellationToken);
+    }
+
+    /// <summary>
+    /// Sets the attributes for an endpoint for a device on one of the supported push notification services,
+    /// such as GCM (Firebase Cloud Messaging) and APNS. For more information, see
+    /// <see href="https://docs.aws.amazon.com/sns/latest/dg/SNSMobilePush.html">Using Amazon SNS Mobile
+    /// Push Notifications</see>.
+    /// </summary>
+    public static Task<SetEndpointAttributesOutput> SetEndpointAttributesAsync(
+        this IAmazonSimpleNotificationServiceClient client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.SetEndpointAttributesAsync(
+            new SetEndpointAttributesInput(),
+            cancellationToken
+        );
+    }
+
+    /// <summary>
+    /// Sets the attributes of the platform application object for the supported push notification services,
+    /// such as APNS and GCM (Firebase Cloud Messaging). For more information, see
+    /// <see href="https://docs.aws.amazon.com/sns/latest/dg/SNSMobilePush.html">Using Amazon SNS Mobile
+    /// Push Notifications</see>. For information on configuring attributes for message delivery status, see
+    /// <see href="https://docs.aws.amazon.com/sns/latest/dg/sns-msg-status.html">Using Amazon SNS
+    /// Application Attributes for Message Delivery Status</see>.
+    /// </summary>
+    public static Task<SetPlatformApplicationAttributesOutput> SetPlatformApplicationAttributesAsync(
+        this IAmazonSimpleNotificationServiceClient client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.SetPlatformApplicationAttributesAsync(
+            new SetPlatformApplicationAttributesInput(),
+            cancellationToken
+        );
+    }
+
+    /// <summary>
+    /// <para>
+    /// Use this request to set the default settings for sending SMS messages and receiving daily SMS usage
+    /// reports.
+    /// </para>
+    /// <para>
+    /// You can override some of these settings for a single message when you use the <c>Publish</c> action
+    /// with the <c>MessageAttributes.entry.N</c> parameter. For more information, see
+    /// <see href="https://docs.aws.amazon.com/sns/latest/dg/sms_publish-to-phone.html">Publishing to a
+    /// mobile phone</see> in the <i>Amazon SNS Developer Guide</i>.
+    /// </para>
+    /// <para>
+    /// <b>Note:</b> To use this operation, you must grant the Amazon SNS service principal
+    /// (<c>sns.amazonaws.com</c>) permission to perform the <c>s3:ListBucket</c> action.
+    /// </para>
+    /// </summary>
+    public static Task<SetSMSAttributesOutput> SetSMSAttributesAsync(
+        this IAmazonSimpleNotificationServiceClient client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.SetSMSAttributesAsync(new SetSMSAttributesInput(), cancellationToken);
+    }
+
+    /// <summary>
+    /// Allows a subscription owner to set an attribute of the subscription to a new value.
+    /// </summary>
+    public static Task<SetSubscriptionAttributesOutput> SetSubscriptionAttributesAsync(
+        this IAmazonSimpleNotificationServiceClient client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.SetSubscriptionAttributesAsync(
+            new SetSubscriptionAttributesInput(),
+            cancellationToken
+        );
+    }
+
+    /// <summary>
+    /// <para>
+    /// Allows a topic owner to set an attribute of the topic to a new value.
+    /// </para>
+    /// <para>
+    /// <b>Note:</b> To remove the ability to change topic permissions, you must deny permissions to the
+    /// <c>AddPermission</c>, <c>RemovePermission</c>, and <c>SetTopicAttributes</c> actions in your IAM
+    /// policy.
+    /// </para>
+    /// </summary>
+    public static Task<SetTopicAttributesOutput> SetTopicAttributesAsync(
+        this IAmazonSimpleNotificationServiceClient client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.SetTopicAttributesAsync(new SetTopicAttributesInput(), cancellationToken);
+    }
+
+    /// <summary>
+    /// <para>
+    /// Subscribes an endpoint to an Amazon SNS topic. If the endpoint type is HTTP/S or email, or if the
+    /// endpoint and the topic are not in the same Amazon Web Services account, the endpoint owner must run
+    /// the <c>ConfirmSubscription</c> action to confirm the subscription.
+    /// </para>
+    /// <para>
+    /// You call the <c>ConfirmSubscription</c> action with the token from the subscription response.
+    /// Confirmation tokens are valid for two days.
+    /// </para>
+    /// <para>
+    /// This action is throttled at 100 transactions per second (TPS).
+    /// </para>
+    /// </summary>
+    public static Task<SubscribeOutput> SubscribeAsync(
+        this IAmazonSimpleNotificationServiceClient client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.SubscribeAsync(new SubscribeInput(), cancellationToken);
+    }
+
+    /// <summary>
+    /// <para>
+    /// Add tags to the specified Amazon SNS topic. For an overview, see
+    /// <see href="https://docs.aws.amazon.com/sns/latest/dg/sns-tags.html">Amazon SNS Tags</see> in the
+    /// <i>Amazon SNS Developer Guide</i>.
+    /// </para>
+    /// <para>
+    /// When you use topic tags, keep the following guidelines in mind:
+    /// </para>
+    /// <list type="bullet">
+    /// <item>
+    /// <description>
+    /// Adding more than 50 tags to a topic isn't recommended.
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <description>
+    /// Tags don't have any semantic meaning. Amazon SNS interprets tags as character strings.
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <description>
+    /// Tags are case-sensitive.
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <description>
+    /// A new tag with a key identical to that of an existing tag overwrites the existing tag.
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <description>
+    /// Tagging actions are limited to 10 TPS per Amazon Web Services account, per Amazon Web Services
+    /// Region. If your application requires a higher throughput, file a
+    /// <see href="https://console.aws.amazon.com/support/home#/case/create?issueType=technical">technical
+    /// support request</see>.
+    /// </description>
+    /// </item>
+    /// </list>
+    /// </summary>
+    public static Task<TagResourceOutput> TagResourceAsync(
+        this IAmazonSimpleNotificationServiceClient client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.TagResourceAsync(new TagResourceInput(), cancellationToken);
+    }
+
+    /// <summary>
+    /// <para>
+    /// Deletes a subscription. If the subscription requires authentication for deletion, only the owner of
+    /// the subscription or the topic's owner can unsubscribe, and an Amazon Web Services signature is
+    /// required. If the <c>Unsubscribe</c> call does not require authentication and the requester is not
+    /// the subscription owner, a final cancellation message is delivered to the endpoint, so that the
+    /// endpoint owner can easily resubscribe to the topic if the <c>Unsubscribe</c> request was unintended.
+    /// </para>
+    /// <para>
+    /// This action is throttled at 100 transactions per second (TPS).
+    /// </para>
+    /// </summary>
+    public static Task<UnsubscribeOutput> UnsubscribeAsync(
+        this IAmazonSimpleNotificationServiceClient client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.UnsubscribeAsync(new UnsubscribeInput(), cancellationToken);
+    }
+
+    /// <summary>
+    /// Remove tags from the specified Amazon SNS topic. For an overview, see
+    /// <see href="https://docs.aws.amazon.com/sns/latest/dg/sns-tags.html">Amazon SNS Tags</see> in the
+    /// <i>Amazon SNS Developer Guide</i>.
+    /// </summary>
+    public static Task<UntagResourceOutput> UntagResourceAsync(
+        this IAmazonSimpleNotificationServiceClient client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.UntagResourceAsync(new UntagResourceInput(), cancellationToken);
+    }
+
+    /// <summary>
+    /// <para>
+    /// Verifies a destination phone number with a one-time password (OTP) for the calling Amazon Web
+    /// Services account.
+    /// </para>
+    /// <para>
+    /// When you start using Amazon SNS to send SMS messages, your Amazon Web Services account is in the
+    /// <i>SMS sandbox</i>. The SMS sandbox provides a safe environment for you to try Amazon SNS features
+    /// without risking your reputation as an SMS sender. While your Amazon Web Services account is in the
+    /// SMS sandbox, you can use all of the features of Amazon SNS. However, you can send SMS messages only
+    /// to verified destination phone numbers. For more information, including how to move out of the
+    /// sandbox to send messages without restrictions, see
+    /// <see href="https://docs.aws.amazon.com/sns/latest/dg/sns-sms-sandbox.html">SMS sandbox</see> in the
+    /// <i>Amazon SNS Developer Guide</i>.
+    /// </para>
+    /// </summary>
+    public static Task<VerifySMSSandboxPhoneNumberOutput> VerifySMSSandboxPhoneNumberAsync(
+        this IAmazonSimpleNotificationServiceClient client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.VerifySMSSandboxPhoneNumberAsync(
+            new VerifySMSSandboxPhoneNumberInput(),
+            cancellationToken
+        );
     }
 }
 

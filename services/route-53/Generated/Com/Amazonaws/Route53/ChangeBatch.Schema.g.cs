@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Route53.Schemas;
 
 public static partial class ChangeBatchSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? Comment { get; set; }
         public IReadOnlyList<global::Com.Amazonaws.Route53.Change>? Changes { get; set; }
@@ -96,7 +96,7 @@ public static partial class ChangeBatchSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

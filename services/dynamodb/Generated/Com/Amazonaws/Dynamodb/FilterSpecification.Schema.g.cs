@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Dynamodb.Schemas;
 
 public static partial class FilterSpecificationSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? FilterExpression { get; set; }
         public string? ProjectionExpression { get; set; }
@@ -123,7 +123,7 @@ public static partial class FilterSpecificationSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

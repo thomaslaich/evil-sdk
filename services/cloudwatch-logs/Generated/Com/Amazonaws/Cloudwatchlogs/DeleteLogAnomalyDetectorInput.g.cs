@@ -13,4 +13,4 @@ namespace Com.Amazonaws.Cloudwatchlogs;
 /// <see href="https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_ListLogAnomalyDetectors.html">ListLogAnomalyDetectors</see>
 /// operation.
 /// </param>
-public sealed record class DeleteLogAnomalyDetectorInput(string AnomalyDetectorArn);
+public sealed record class DeleteLogAnomalyDetectorInput(string? AnomalyDetectorArn = null);

@@ -9,6 +9,14 @@ namespace Com.Amazonaws.Lambda;
 /// <summary>
 /// Represents the Smithy structure com.amazonaws.lambda#UpdateFunctionCodeInput.
 /// </summary>
+/// <param name="Architectures">
+/// The instruction set architecture that the function supports. Enter a string array with one of the
+/// valid values (arm64 or x86_64). The default value is <c>x86_64</c>.
+/// </param>
+/// <param name="DryRun">
+/// Set to true to validate the request parameters and access permissions without modifying the function
+/// code.
+/// </param>
 /// <param name="FunctionName">
 /// <para>
 /// The name or ARN of the Lambda function.
@@ -37,14 +45,6 @@ namespace Com.Amazonaws.Lambda;
 /// The length constraint applies only to the full ARN. If you specify only the function name, it is
 /// limited to 64 characters in length.
 /// </para>
-/// </param>
-/// <param name="Architectures">
-/// The instruction set architecture that the function supports. Enter a string array with one of the
-/// valid values (arm64 or x86_64). The default value is <c>x86_64</c>.
-/// </param>
-/// <param name="DryRun">
-/// Set to true to validate the request parameters and access permissions without modifying the function
-/// code.
 /// </param>
 /// <param name="ImageUri">
 /// URI of a container image in the Amazon ECR registry. Do not use for a function defined with a .zip
@@ -101,9 +101,9 @@ namespace Com.Amazonaws.Lambda;
 /// package.
 /// </param>
 public sealed record class UpdateFunctionCodeInput(
-    string FunctionName,
     IReadOnlyList<Architecture>? Architectures = null,
     bool? DryRun = null,
+    string? FunctionName = null,
     string? ImageUri = null,
     bool? Publish = null,
     FunctionVersionLatestPublished? PublishTo = null,

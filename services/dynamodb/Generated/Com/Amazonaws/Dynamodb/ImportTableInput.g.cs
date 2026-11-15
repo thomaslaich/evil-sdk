@@ -7,16 +7,6 @@ namespace Com.Amazonaws.Dynamodb;
 /// <summary>
 /// Represents the Smithy structure com.amazonaws.dynamodb#ImportTableInput.
 /// </summary>
-/// <param name="InputFormat">
-/// The format of the source data. Valid values for <c>ImportFormat</c> are <c>CSV</c>,
-/// <c>DYNAMODB_JSON</c> or <c>ION</c>.
-/// </param>
-/// <param name="S3BucketSource">
-/// The S3 bucket that provides the source for the import.
-/// </param>
-/// <param name="TableCreationParameters">
-/// Parameters for the table to import the data into.
-/// </param>
 /// <param name="ClientToken">
 /// <para>
 /// Providing a <c>ClientToken</c> makes the call to <c>ImportTableInput</c> idempotent, meaning that
@@ -35,14 +25,24 @@ namespace Com.Amazonaws.Dynamodb;
 /// <param name="InputCompressionType">
 /// Type of compression to be used on the input coming from the imported table.
 /// </param>
+/// <param name="InputFormat">
+/// The format of the source data. Valid values for <c>ImportFormat</c> are <c>CSV</c>,
+/// <c>DYNAMODB_JSON</c> or <c>ION</c>.
+/// </param>
 /// <param name="InputFormatOptions">
 /// Additional properties that specify how the input is formatted,
 /// </param>
+/// <param name="S3BucketSource">
+/// The S3 bucket that provides the source for the import.
+/// </param>
+/// <param name="TableCreationParameters">
+/// Parameters for the table to import the data into.
+/// </param>
 public sealed record class ImportTableInput(
-    global::Com.Amazonaws.Dynamodb.InputFormat InputFormat,
-    global::Com.Amazonaws.Dynamodb.S3BucketSource S3BucketSource,
-    global::Com.Amazonaws.Dynamodb.TableCreationParameters TableCreationParameters,
     string? ClientToken = null,
     global::Com.Amazonaws.Dynamodb.InputCompressionType? InputCompressionType = null,
-    global::Com.Amazonaws.Dynamodb.InputFormatOptions? InputFormatOptions = null
+    global::Com.Amazonaws.Dynamodb.InputFormat? InputFormat = null,
+    global::Com.Amazonaws.Dynamodb.InputFormatOptions? InputFormatOptions = null,
+    global::Com.Amazonaws.Dynamodb.S3BucketSource? S3BucketSource = null,
+    global::Com.Amazonaws.Dynamodb.TableCreationParameters? TableCreationParameters = null
 );

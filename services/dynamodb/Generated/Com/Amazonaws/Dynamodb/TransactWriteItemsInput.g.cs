@@ -9,12 +9,6 @@ namespace Com.Amazonaws.Dynamodb;
 /// <summary>
 /// Represents the Smithy structure com.amazonaws.dynamodb#TransactWriteItemsInput.
 /// </summary>
-/// <param name="TransactItems">
-/// An ordered array of up to 100 <c>TransactWriteItem</c> objects, each of which contains a
-/// <c>ConditionCheck</c>, <c>Put</c>, <c>Update</c>, or <c>Delete</c> object. These can operate on
-/// items in different tables, but the tables must reside in the same Amazon Web Services account and
-/// Region, and no two of them can operate on the same item.
-/// </param>
 /// <param name="ClientRequestToken">
 /// <para>
 /// Providing a <c>ClientRequestToken</c> makes the call to <c>TransactWriteItems</c> idempotent,
@@ -44,9 +38,15 @@ namespace Com.Amazonaws.Dynamodb;
 /// includes statistics about item collections (if any), that were modified during the operation and are
 /// returned in the response. If set to <c>NONE</c> (the default), no statistics are returned.
 /// </param>
+/// <param name="TransactItems">
+/// An ordered array of up to 100 <c>TransactWriteItem</c> objects, each of which contains a
+/// <c>ConditionCheck</c>, <c>Put</c>, <c>Update</c>, or <c>Delete</c> object. These can operate on
+/// items in different tables, but the tables must reside in the same Amazon Web Services account and
+/// Region, and no two of them can operate on the same item.
+/// </param>
 public sealed record class TransactWriteItemsInput(
-    IReadOnlyList<TransactWriteItem> TransactItems,
     string? ClientRequestToken = null,
     global::Com.Amazonaws.Dynamodb.ReturnConsumedCapacity? ReturnConsumedCapacity = null,
-    global::Com.Amazonaws.Dynamodb.ReturnItemCollectionMetrics? ReturnItemCollectionMetrics = null
+    global::Com.Amazonaws.Dynamodb.ReturnItemCollectionMetrics? ReturnItemCollectionMetrics = null,
+    IReadOnlyList<TransactWriteItem>? TransactItems = null
 );

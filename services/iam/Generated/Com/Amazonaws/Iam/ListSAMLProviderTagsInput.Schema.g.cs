@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Iam.Schemas;
 
 public static partial class ListSAMLProviderTagsInputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? SAMLProviderArn { get; set; }
         public string? Marker { get; set; }
@@ -29,7 +29,6 @@ public static partial class ListSAMLProviderTagsInputSchema
                 new(
                     "SAMLProviderArn",
                     Target0,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
@@ -41,10 +40,6 @@ public static partial class ListSAMLProviderTagsInputSchema
                                     { "max", Document.From(2048m) },
                                 }
                             )
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
                         ),
                     ]
                 ),
@@ -120,10 +115,9 @@ public static partial class ListSAMLProviderTagsInputSchema
             Builder builder
         ) =>
             new global::Com.Amazonaws.Iam.ListSAMLProviderTagsInput(
-                builder.SAMLProviderArn
-                    ?? throw new MissingRequiredMemberException("SAMLProviderArn"),
                 builder.Marker,
-                builder.MaxItems
+                builder.MaxItems,
+                builder.SAMLProviderArn
             );
 
         public override void SerializeMembers<TSerializer>(
@@ -157,7 +151,7 @@ public static partial class ListSAMLProviderTagsInputSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

@@ -10,4 +10,4 @@ namespace Com.Amazonaws.Route53;
 /// <param name="Id">
 /// The ID of the traffic policy instance that you want to get information about.
 /// </param>
-public sealed record class GetTrafficPolicyInstanceInput(string Id);
+public sealed record class GetTrafficPolicyInstanceInput(string? Id = null);

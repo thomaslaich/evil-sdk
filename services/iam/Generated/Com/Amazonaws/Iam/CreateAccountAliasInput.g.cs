@@ -17,4 +17,4 @@ namespace Com.Amazonaws.Iam;
 /// finish with a dash, nor can you have two dashes in a row.
 /// </para>
 /// </param>
-public sealed record class CreateAccountAliasInput(string AccountAlias);
+public sealed record class CreateAccountAliasInput(string? AccountAlias = null);

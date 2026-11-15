@@ -10,7 +10,7 @@ namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class TargetGrantSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public global::Com.Amazonaws.S3.Grantee? Grantee { get; set; }
         public global::Com.Amazonaws.S3.BucketLogsPermission? Permission { get; set; }
@@ -83,7 +83,7 @@ public static partial class TargetGrantSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

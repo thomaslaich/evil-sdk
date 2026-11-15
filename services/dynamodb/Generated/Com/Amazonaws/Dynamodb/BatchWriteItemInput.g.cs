@@ -67,7 +67,7 @@ namespace Com.Amazonaws.Dynamodb;
 /// returned in the response. If set to <c>NONE</c> (the default), no statistics are returned.
 /// </param>
 public sealed record class BatchWriteItemInput(
-    IReadOnlyDictionary<string, IReadOnlyList<WriteRequest>> RequestItems,
+    IReadOnlyDictionary<string, IReadOnlyList<WriteRequest>>? RequestItems = null,
     global::Com.Amazonaws.Dynamodb.ReturnConsumedCapacity? ReturnConsumedCapacity = null,
     global::Com.Amazonaws.Dynamodb.ReturnItemCollectionMetrics? ReturnItemCollectionMetrics = null
 );

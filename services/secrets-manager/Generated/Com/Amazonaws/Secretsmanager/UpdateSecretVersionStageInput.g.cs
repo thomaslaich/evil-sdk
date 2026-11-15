@@ -7,19 +7,6 @@ namespace Com.Amazonaws.Secretsmanager;
 /// <summary>
 /// Represents the Smithy structure com.amazonaws.secretsmanager#UpdateSecretVersionStageInput.
 /// </summary>
-/// <param name="SecretId">
-/// <para>
-/// The ARN or the name of the secret with the version and staging labelsto modify.
-/// </para>
-/// <para>
-/// For an ARN, we recommend that you specify a complete ARN rather than a partial ARN. See
-/// <see href="https://docs.aws.amazon.com/secretsmanager/latest/userguide/troubleshoot.html#ARN_secretnamehyphen">Finding
-/// a secret from a partial ARN</see>.
-/// </para>
-/// </param>
-/// <param name="VersionStage">
-/// The staging label to add to this version.
-/// </param>
 /// <param name="MoveToVersionId">
 /// <para>
 /// The ID of the version to add the staging label to. To remove a label from a version, then do not
@@ -37,9 +24,22 @@ namespace Com.Amazonaws.Secretsmanager;
 /// attached and you either do not specify this parameter, or the version ID does not match, then the
 /// operation fails.
 /// </param>
+/// <param name="SecretId">
+/// <para>
+/// The ARN or the name of the secret with the version and staging labelsto modify.
+/// </para>
+/// <para>
+/// For an ARN, we recommend that you specify a complete ARN rather than a partial ARN. See
+/// <see href="https://docs.aws.amazon.com/secretsmanager/latest/userguide/troubleshoot.html#ARN_secretnamehyphen">Finding
+/// a secret from a partial ARN</see>.
+/// </para>
+/// </param>
+/// <param name="VersionStage">
+/// The staging label to add to this version.
+/// </param>
 public sealed record class UpdateSecretVersionStageInput(
-    string SecretId,
-    string VersionStage,
     string? MoveToVersionId = null,
-    string? RemoveFromVersionId = null
+    string? RemoveFromVersionId = null,
+    string? SecretId = null,
+    string? VersionStage = null
 );

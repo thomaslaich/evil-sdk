@@ -50,23 +50,23 @@ namespace Com.Amazonaws.S3;
 /// Outposts?</see> in the <i>Amazon S3 User Guide</i>.
 /// </para>
 /// </param>
-/// <param name="Key">
-/// The object key.
-/// </param>
-/// <param name="ObjectAttributes">
-/// Specifies the fields at the root level that you want returned in the response. Fields that you do
-/// not specify are not returned.
-/// </param>
 /// <param name="ExpectedBucketOwner">
 /// The account ID of the expected bucket owner. If the account ID that you provide does not match the
 /// actual owner of the bucket, the request fails with the HTTP status code <c>403 Forbidden</c> (access
 /// denied).
+/// </param>
+/// <param name="Key">
+/// The object key.
 /// </param>
 /// <param name="MaxParts">
 /// Sets the maximum number of parts to return. For more information, see
 /// <see href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/mpuoverview.html">Uploading and
 /// copying objects using multipart upload in Amazon S3</see> in the <i>Amazon Simple Storage Service
 /// user guide</i>.
+/// </param>
+/// <param name="ObjectAttributes">
+/// Specifies the fields at the root level that you want returned in the response. Fields that you do
+/// not specify are not returned.
 /// </param>
 /// <param name="PartNumberMarker">
 /// Specifies the part after which listing should begin. Only parts with higher part numbers will be
@@ -115,11 +115,11 @@ namespace Com.Amazonaws.S3;
 /// </para>
 /// </param>
 public sealed record class GetObjectAttributesInput(
-    string Bucket,
-    string Key,
-    IReadOnlyList<global::Com.Amazonaws.S3.ObjectAttributes> ObjectAttributes,
+    string? Bucket = null,
     string? ExpectedBucketOwner = null,
+    string? Key = null,
     int? MaxParts = null,
+    IReadOnlyList<global::Com.Amazonaws.S3.ObjectAttributes>? ObjectAttributes = null,
     string? PartNumberMarker = null,
     global::Com.Amazonaws.S3.RequestPayer? RequestPayer = null,
     string? SSECustomerAlgorithm = null,

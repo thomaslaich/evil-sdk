@@ -9,9 +9,6 @@ namespace Com.Amazonaws.Lambda;
 /// <summary>
 /// Represents the Smithy structure com.amazonaws.lambda#UpdateEventSourceMappingInput.
 /// </summary>
-/// <param name="UUID">
-/// The identifier of the event source mapping.
-/// </param>
 /// <param name="BatchSize">
 /// <para>
 /// The maximum number of records in each batch that Lambda pulls from your stream or queue and sends to
@@ -180,8 +177,10 @@ namespace Com.Amazonaws.Lambda;
 /// (Kinesis and DynamoDB Streams only) The duration in seconds of a processing window for DynamoDB and
 /// Kinesis Streams event sources. A value of 0 seconds indicates no tumbling window.
 /// </param>
+/// <param name="UUID">
+/// The identifier of the event source mapping.
+/// </param>
 public sealed record class UpdateEventSourceMappingInput(
-    string UUID,
     global::Com.Amazonaws.Lambda.AmazonManagedKafkaEventSourceConfig? AmazonManagedKafkaEventSourceConfig =
         null,
     int? BatchSize = null,
@@ -204,5 +203,6 @@ public sealed record class UpdateEventSourceMappingInput(
     global::Com.Amazonaws.Lambda.SelfManagedKafkaEventSourceConfig? SelfManagedKafkaEventSourceConfig =
         null,
     IReadOnlyList<SourceAccessConfiguration>? SourceAccessConfigurations = null,
-    int? TumblingWindowInSeconds = null
+    int? TumblingWindowInSeconds = null,
+    string? UUID = null
 );

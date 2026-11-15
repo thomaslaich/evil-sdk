@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Iam.Schemas;
 
 public static partial class CreateRoleInputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? Path { get; set; }
         public string? RoleName { get; set; }
@@ -52,7 +52,6 @@ public static partial class CreateRoleInputSchema
                 new(
                     "RoleName",
                     Target1,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
@@ -69,16 +68,11 @@ public static partial class CreateRoleInputSchema
                             ShapeId.Parse("smithy.api#pattern"),
                             Document.From("^[\\w+=,.@-]+$")
                         ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
                     ]
                 ),
                 new(
                     "AssumeRolePolicyDocument",
                     Target2,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
@@ -94,10 +88,6 @@ public static partial class CreateRoleInputSchema
                         new Trait(
                             ShapeId.Parse("smithy.api#pattern"),
                             Document.From("^[\\u0009\\u000A\\u000D\\u0020-\\u00FF]+$")
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
                         ),
                     ]
                 ),
@@ -207,13 +197,12 @@ public static partial class CreateRoleInputSchema
 
         public override global::Com.Amazonaws.Iam.CreateRoleInput Build(Builder builder) =>
             new global::Com.Amazonaws.Iam.CreateRoleInput(
-                builder.AssumeRolePolicyDocument
-                    ?? throw new MissingRequiredMemberException("AssumeRolePolicyDocument"),
-                builder.RoleName ?? throw new MissingRequiredMemberException("RoleName"),
+                builder.AssumeRolePolicyDocument,
                 builder.Description,
                 builder.MaxSessionDuration,
                 builder.Path,
                 builder.PermissionsBoundary,
+                builder.RoleName,
                 builder.Tags
             );
 
@@ -280,7 +269,7 @@ public static partial class CreateRoleInputSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

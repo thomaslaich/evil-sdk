@@ -7,6 +7,9 @@ namespace Com.Amazonaws.Lambda;
 /// <summary>
 /// Represents the Smithy structure com.amazonaws.lambda#CreateAliasInput.
 /// </summary>
+/// <param name="Description">
+/// A description of the alias.
+/// </param>
 /// <param name="FunctionName">
 /// <para>
 /// The name or ARN of the Lambda function.
@@ -42,18 +45,15 @@ namespace Com.Amazonaws.Lambda;
 /// <param name="Name">
 /// The name of the alias.
 /// </param>
-/// <param name="Description">
-/// A description of the alias.
-/// </param>
 /// <param name="RoutingConfig">
 /// The
 /// <see href="https://docs.aws.amazon.com/lambda/latest/dg/configuration-aliases.html#configuring-alias-routing">routing
 /// configuration</see> of the alias.
 /// </param>
 public sealed record class CreateAliasInput(
-    string FunctionName,
-    string FunctionVersion,
-    string Name,
     string? Description = null,
+    string? FunctionName = null,
+    string? FunctionVersion = null,
+    string? Name = null,
     AliasRoutingConfiguration? RoutingConfig = null
 );

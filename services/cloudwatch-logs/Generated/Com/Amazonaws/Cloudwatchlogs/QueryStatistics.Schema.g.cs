@@ -9,7 +9,7 @@ namespace Com.Amazonaws.Cloudwatchlogs.Schemas;
 
 public static partial class QueryStatisticsSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public double? RecordsMatched { get; set; }
         public double? RecordsScanned { get; set; }
@@ -199,7 +199,7 @@ public static partial class QueryStatisticsSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

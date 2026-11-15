@@ -24,4 +24,7 @@ namespace Com.Amazonaws.Iam;
 /// A list of key names as a simple array of strings. The tags with matching keys are removed from the
 /// specified instance profile.
 /// </param>
-public sealed record class UntagMFADeviceInput(string SerialNumber, IReadOnlyList<string> TagKeys);
+public sealed record class UntagMFADeviceInput(
+    string? SerialNumber = null,
+    IReadOnlyList<string>? TagKeys = null
+);

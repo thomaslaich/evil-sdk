@@ -10,4 +10,4 @@ namespace Com.Amazonaws.Eventbridge;
 /// <param name="ReplayName">
 /// The name of the replay to retrieve.
 /// </param>
-public sealed record class DescribeReplayInput(string ReplayName);
+public sealed record class DescribeReplayInput(string? ReplayName = null);

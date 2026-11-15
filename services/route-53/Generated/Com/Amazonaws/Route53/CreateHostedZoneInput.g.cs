@@ -14,20 +14,6 @@ namespace Com.Amazonaws.Route53;
 /// <c>CallerReference</c> string every time you submit a <c>CreateHostedZone</c> request.
 /// <c>CallerReference</c> can be any unique string, for example, a date/time stamp.
 /// </param>
-/// <param name="Name">
-/// <para>
-/// The name of the domain. Specify a fully qualified domain name, for example, <i>www.example.com</i>.
-/// The trailing dot is optional; Amazon Route 53 assumes that the domain name is fully qualified. This
-/// means that Route 53 treats <i>www.example.com</i> (without a trailing dot) and
-/// <i>www.example.com.</i> (with a trailing dot) as identical.
-/// </para>
-/// <para>
-/// If you're creating a public hosted zone, this is the name you have registered with your DNS
-/// registrar. If your domain name is registered with a registrar other than Route 53, change the name
-/// servers for your domain to the set of <c>NameServers</c> that <c>CreateHostedZone</c> returns in
-/// <c>DelegationSet</c>.
-/// </para>
-/// </param>
 /// <param name="DelegationSetId">
 /// <para>
 /// If you want to associate a reusable delegation set with this hosted zone, the ID that Amazon
@@ -62,6 +48,20 @@ namespace Com.Amazonaws.Route53;
 /// the other elements.
 /// </para>
 /// </param>
+/// <param name="Name">
+/// <para>
+/// The name of the domain. Specify a fully qualified domain name, for example, <i>www.example.com</i>.
+/// The trailing dot is optional; Amazon Route 53 assumes that the domain name is fully qualified. This
+/// means that Route 53 treats <i>www.example.com</i> (without a trailing dot) and
+/// <i>www.example.com.</i> (with a trailing dot) as identical.
+/// </para>
+/// <para>
+/// If you're creating a public hosted zone, this is the name you have registered with your DNS
+/// registrar. If your domain name is registered with a registrar other than Route 53, change the name
+/// servers for your domain to the set of <c>NameServers</c> that <c>CreateHostedZone</c> returns in
+/// <c>DelegationSet</c>.
+/// </para>
+/// </param>
 /// <param name="VPC">
 /// <para>
 /// (Private hosted zones only) A complex type that contains information about the Amazon VPC that
@@ -79,9 +79,9 @@ namespace Com.Amazonaws.Route53;
 /// </para>
 /// </param>
 public sealed record class CreateHostedZoneInput(
-    string CallerReference,
-    string Name,
+    string? CallerReference = null,
     string? DelegationSetId = null,
     global::Com.Amazonaws.Route53.HostedZoneConfig? HostedZoneConfig = null,
+    string? Name = null,
     global::Com.Amazonaws.Route53.VPC? VPC = null
 );

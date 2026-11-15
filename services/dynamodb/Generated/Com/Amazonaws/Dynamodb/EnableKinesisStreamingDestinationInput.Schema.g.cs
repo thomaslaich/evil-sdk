@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Dynamodb.Schemas;
 
 public static partial class EnableKinesisStreamingDestinationInputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? TableName { get; set; }
         public string? StreamArn { get; set; }
@@ -32,7 +32,6 @@ public static partial class EnableKinesisStreamingDestinationInputSchema
                 new(
                     "TableName",
                     Target0,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
@@ -44,10 +43,6 @@ public static partial class EnableKinesisStreamingDestinationInputSchema
                                     { "max", Document.From(1024m) },
                                 }
                             )
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
                         ),
                         new Trait(
                             ShapeId.Parse("smithy.rules#contextParam"),
@@ -63,7 +58,6 @@ public static partial class EnableKinesisStreamingDestinationInputSchema
                 new(
                     "StreamArn",
                     Target1,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
@@ -75,10 +69,6 @@ public static partial class EnableKinesisStreamingDestinationInputSchema
                                     { "max", Document.From(1024m) },
                                 }
                             )
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
                         ),
                     ]
                 ),
@@ -117,9 +107,9 @@ public static partial class EnableKinesisStreamingDestinationInputSchema
             Builder builder
         ) =>
             new global::Com.Amazonaws.Dynamodb.EnableKinesisStreamingDestinationInput(
-                builder.StreamArn ?? throw new MissingRequiredMemberException("StreamArn"),
-                builder.TableName ?? throw new MissingRequiredMemberException("TableName"),
-                builder.EnableKinesisStreamingConfiguration
+                builder.EnableKinesisStreamingConfiguration,
+                builder.StreamArn,
+                builder.TableName
             );
 
         public override void SerializeMembers<TSerializer>(
@@ -153,7 +143,7 @@ public static partial class EnableKinesisStreamingDestinationInputSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

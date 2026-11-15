@@ -9,6 +9,41 @@ namespace Com.Amazonaws.Iam;
 /// <summary>
 /// Represents the Smithy structure com.amazonaws.iam#CreatePolicyInput.
 /// </summary>
+/// <param name="Description">
+/// <para>
+/// A friendly description of the policy.
+/// </para>
+/// <para>
+/// Typically used to store information about the permissions defined in the policy. For example,
+/// "Grants access to production DynamoDB tables."
+/// </para>
+/// <para>
+/// The policy description is immutable. After a value is assigned, it cannot be changed.
+/// </para>
+/// </param>
+/// <param name="Path">
+/// <para>
+/// The path for the policy.
+/// </para>
+/// <para>
+/// For more information about paths, see
+/// <see href="https://docs.aws.amazon.com/IAM/latest/UserGuide/Using_Identifiers.html">IAM
+/// identifiers</see> in the <i>IAM User Guide</i>.
+/// </para>
+/// <para>
+/// This parameter is optional. If it is not included, it defaults to a slash (/).
+/// </para>
+/// <para>
+/// This parameter allows (through its <see href="http://wikipedia.org/wiki/regex">regex pattern</see>)
+/// a string of characters consisting of either a forward slash (/) by itself or a string that must
+/// begin and end with forward slashes. In addition, it can contain any ASCII character from the !
+/// (<c>\u0021</c>) through the DEL character (<c>\u007F</c>), including most punctuation characters,
+/// digits, and upper and lowercased letters.
+/// </para>
+/// <para>
+/// <b>Note:</b> You cannot use an asterisk (*) in the path name.
+/// </para>
+/// </param>
 /// <param name="PolicyDocument">
 /// <para>
 /// The JSON policy document that you want to use as the content for the new policy.
@@ -64,41 +99,6 @@ namespace Com.Amazonaws.Iam;
 /// "myresource".
 /// </para>
 /// </param>
-/// <param name="Description">
-/// <para>
-/// A friendly description of the policy.
-/// </para>
-/// <para>
-/// Typically used to store information about the permissions defined in the policy. For example,
-/// "Grants access to production DynamoDB tables."
-/// </para>
-/// <para>
-/// The policy description is immutable. After a value is assigned, it cannot be changed.
-/// </para>
-/// </param>
-/// <param name="Path">
-/// <para>
-/// The path for the policy.
-/// </para>
-/// <para>
-/// For more information about paths, see
-/// <see href="https://docs.aws.amazon.com/IAM/latest/UserGuide/Using_Identifiers.html">IAM
-/// identifiers</see> in the <i>IAM User Guide</i>.
-/// </para>
-/// <para>
-/// This parameter is optional. If it is not included, it defaults to a slash (/).
-/// </para>
-/// <para>
-/// This parameter allows (through its <see href="http://wikipedia.org/wiki/regex">regex pattern</see>)
-/// a string of characters consisting of either a forward slash (/) by itself or a string that must
-/// begin and end with forward slashes. In addition, it can contain any ASCII character from the !
-/// (<c>\u0021</c>) through the DEL character (<c>\u007F</c>), including most punctuation characters,
-/// digits, and upper and lowercased letters.
-/// </para>
-/// <para>
-/// <b>Note:</b> You cannot use an asterisk (*) in the path name.
-/// </para>
-/// </param>
 /// <param name="Tags">
 /// <para>
 /// A list of tags that you want to attach to the new IAM customer managed policy. Each tag consists of
@@ -112,9 +112,9 @@ namespace Com.Amazonaws.Iam;
 /// </para>
 /// </param>
 public sealed record class CreatePolicyInput(
-    string PolicyDocument,
-    string PolicyName,
     string? Description = null,
     string? Path = null,
+    string? PolicyDocument = null,
+    string? PolicyName = null,
     IReadOnlyList<global::Com.Amazonaws.Iam.Tag>? Tags = null
 );

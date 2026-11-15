@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Iam.Schemas;
 
 public static partial class UpdateDelegationRequestInputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? DelegationRequestId { get; set; }
         public string? Notes { get; set; }
@@ -28,7 +28,6 @@ public static partial class UpdateDelegationRequestInputSchema
                 new(
                     "DelegationRequestId",
                     Target0,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
@@ -42,10 +41,6 @@ public static partial class UpdateDelegationRequestInputSchema
                             )
                         ),
                         new Trait(ShapeId.Parse("smithy.api#pattern"), Document.From("^[\\w-]+$")),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
                     ]
                 ),
                 new(
@@ -99,8 +94,7 @@ public static partial class UpdateDelegationRequestInputSchema
             Builder builder
         ) =>
             new global::Com.Amazonaws.Iam.UpdateDelegationRequestInput(
-                builder.DelegationRequestId
-                    ?? throw new MissingRequiredMemberException("DelegationRequestId"),
+                builder.DelegationRequestId,
                 builder.Notes
             );
 
@@ -127,7 +121,7 @@ public static partial class UpdateDelegationRequestInputSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

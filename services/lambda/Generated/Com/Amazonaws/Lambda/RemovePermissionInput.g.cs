@@ -36,9 +36,6 @@ namespace Com.Amazonaws.Lambda;
 /// to the full ARN. If you specify only the function name, it is limited to 64 characters in length.
 /// </para>
 /// </param>
-/// <param name="StatementId">
-/// Statement ID of the permission to remove.
-/// </param>
 /// <param name="Qualifier">
 /// Specify a version or alias to remove permissions from a published version of the function.
 /// </param>
@@ -46,9 +43,12 @@ namespace Com.Amazonaws.Lambda;
 /// Update the policy only if the revision ID matches the ID that's specified. Use this option to avoid
 /// modifying a policy that has changed since you last read it.
 /// </param>
+/// <param name="StatementId">
+/// Statement ID of the permission to remove.
+/// </param>
 public sealed record class RemovePermissionInput(
-    string FunctionName,
-    string StatementId,
+    string? FunctionName = null,
     string? Qualifier = null,
-    string? RevisionId = null
+    string? RevisionId = null,
+    string? StatementId = null
 );

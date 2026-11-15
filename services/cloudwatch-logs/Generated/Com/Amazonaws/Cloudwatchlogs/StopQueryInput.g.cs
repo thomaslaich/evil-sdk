@@ -10,4 +10,4 @@ namespace Com.Amazonaws.Cloudwatchlogs;
 /// <param name="QueryId">
 /// The ID number of the query to stop. To find this ID number, use <c>DescribeQueries</c>.
 /// </param>
-public sealed record class StopQueryInput(string QueryId);
+public sealed record class StopQueryInput(string? QueryId = null);

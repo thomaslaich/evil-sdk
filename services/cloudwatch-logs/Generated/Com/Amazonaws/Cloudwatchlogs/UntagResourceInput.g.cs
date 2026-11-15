@@ -30,4 +30,7 @@ namespace Com.Amazonaws.Cloudwatchlogs;
 /// <param name="TagKeys">
 /// The list of tag keys to remove from the resource.
 /// </param>
-public sealed record class UntagResourceInput(string ResourceArn, IReadOnlyList<string> TagKeys);
+public sealed record class UntagResourceInput(
+    string? ResourceArn = null,
+    IReadOnlyList<string>? TagKeys = null
+);

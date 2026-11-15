@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Kinesis.Schemas;
 
 public static partial class PutRecordsInputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public IReadOnlyList<global::Com.Amazonaws.Kinesis.PutRecordsRequestEntry>? Records { get; set; }
         public string? StreamName { get; set; }
@@ -28,18 +28,7 @@ public static partial class PutRecordsInputSchema
         : StructSchema<global::Com.Amazonaws.Kinesis.PutRecordsInput, Builder>(
             ShapeId.Parse("com.amazonaws.kinesis#PutRecordsInput"),
             [
-                new(
-                    "Records",
-                    Target0,
-                    isRequired: true,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
-                    ]
-                ),
+                new("Records", Target0),
                 new(
                     "StreamName",
                     Target1,
@@ -166,8 +155,8 @@ public static partial class PutRecordsInputSchema
 
         public override global::Com.Amazonaws.Kinesis.PutRecordsInput Build(Builder builder) =>
             new global::Com.Amazonaws.Kinesis.PutRecordsInput(
-                builder.Records ?? throw new MissingRequiredMemberException("Records"),
                 builder.DryRun,
+                builder.Records,
                 builder.StreamARN,
                 builder.StreamId,
                 builder.StreamName
@@ -220,7 +209,7 @@ public static partial class PutRecordsInputSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

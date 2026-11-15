@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Cloudwatchlogs.Schemas;
 
 public static partial class TagLogGroupInputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? LogGroupName { get; set; }
         public IReadOnlyDictionary<string, string>? Tags { get; set; }
@@ -28,7 +28,6 @@ public static partial class TagLogGroupInputSchema
                 new(
                     "logGroupName",
                     Target0,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
@@ -45,24 +44,9 @@ public static partial class TagLogGroupInputSchema
                             ShapeId.Parse("smithy.api#pattern"),
                             Document.From("^[\\.\\-_/#A-Za-z0-9]+$")
                         ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
                     ]
                 ),
-                new(
-                    "tags",
-                    Target1,
-                    isRequired: true,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
-                    ]
-                ),
+                new("tags", Target1),
             ],
             [
                 new Trait(
@@ -93,8 +77,8 @@ public static partial class TagLogGroupInputSchema
             Builder builder
         ) =>
             new global::Com.Amazonaws.Cloudwatchlogs.TagLogGroupInput(
-                builder.LogGroupName ?? throw new MissingRequiredMemberException("logGroupName"),
-                builder.Tags ?? throw new MissingRequiredMemberException("tags")
+                builder.LogGroupName,
+                builder.Tags
             );
 
         public override void SerializeMembers<TSerializer>(
@@ -120,7 +104,7 @@ public static partial class TagLogGroupInputSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

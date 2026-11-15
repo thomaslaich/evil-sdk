@@ -10,4 +10,4 @@ namespace Com.Amazonaws.Lambda;
 /// <param name="CodeSigningConfigArn">
 /// The The Amazon Resource Name (ARN) of the code signing configuration.
 /// </param>
-public sealed record class GetCodeSigningConfigInput(string CodeSigningConfigArn);
+public sealed record class GetCodeSigningConfigInput(string? CodeSigningConfigArn = null);

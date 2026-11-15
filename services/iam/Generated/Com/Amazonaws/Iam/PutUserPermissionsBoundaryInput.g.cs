@@ -29,6 +29,6 @@ namespace Com.Amazonaws.Iam;
 /// boundary.
 /// </param>
 public sealed record class PutUserPermissionsBoundaryInput(
-    string PermissionsBoundary,
-    string UserName
+    string? PermissionsBoundary = null,
+    string? UserName = null
 );

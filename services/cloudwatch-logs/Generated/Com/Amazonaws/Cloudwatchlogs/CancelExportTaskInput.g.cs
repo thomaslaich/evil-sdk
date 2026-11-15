@@ -10,4 +10,4 @@ namespace Com.Amazonaws.Cloudwatchlogs;
 /// <param name="TaskId">
 /// The ID of the export task.
 /// </param>
-public sealed record class CancelExportTaskInput(string TaskId);
+public sealed record class CancelExportTaskInput(string? TaskId = null);

@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Kinesis.Schemas;
 
 public static partial class StreamModeDetailsSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public global::Com.Amazonaws.Kinesis.StreamMode? StreamMode { get; set; }
     }
@@ -58,7 +58,7 @@ public static partial class StreamModeDetailsSchema
             serializer.WriteStringEnum(0, value.StreamMode.Value);
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

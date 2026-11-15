@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Eventbridge.Schemas;
 
 public static partial class BatchParametersSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? JobDefinition { get; set; }
         public string? JobName { get; set; }
@@ -123,7 +123,7 @@ public static partial class BatchParametersSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

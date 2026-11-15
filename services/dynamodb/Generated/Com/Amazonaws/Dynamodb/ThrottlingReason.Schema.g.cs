@@ -9,7 +9,7 @@ namespace Com.Amazonaws.Dynamodb.Schemas;
 
 public static partial class ThrottlingReasonSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? Reason { get; set; }
         public string? Resource { get; set; }
@@ -64,7 +64,7 @@ public static partial class ThrottlingReasonSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

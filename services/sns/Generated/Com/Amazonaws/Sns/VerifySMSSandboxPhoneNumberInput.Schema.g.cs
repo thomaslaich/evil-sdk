@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Sns.Schemas;
 
 public static partial class VerifySMSSandboxPhoneNumberInputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? PhoneNumber { get; set; }
         public string? OneTimePassword { get; set; }
@@ -28,7 +28,6 @@ public static partial class VerifySMSSandboxPhoneNumberInputSchema
                 new(
                     "PhoneNumber",
                     Target0,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
@@ -46,10 +45,6 @@ public static partial class VerifySMSSandboxPhoneNumberInputSchema
                             Document.From("^(\\+[0-9]{8,}|[0-9]{0,9})$")
                         ),
                         new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#sensitive"),
                             Document.From(new Dictionary<string, Document> { })
                         ),
@@ -58,7 +53,6 @@ public static partial class VerifySMSSandboxPhoneNumberInputSchema
                 new(
                     "OneTimePassword",
                     Target1,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
@@ -72,10 +66,6 @@ public static partial class VerifySMSSandboxPhoneNumberInputSchema
                             )
                         ),
                         new Trait(ShapeId.Parse("smithy.api#pattern"), Document.From("^[0-9]+$")),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
                     ]
                 ),
             ],
@@ -102,9 +92,8 @@ public static partial class VerifySMSSandboxPhoneNumberInputSchema
             Builder builder
         ) =>
             new global::Com.Amazonaws.Sns.VerifySMSSandboxPhoneNumberInput(
-                builder.OneTimePassword
-                    ?? throw new MissingRequiredMemberException("OneTimePassword"),
-                builder.PhoneNumber ?? throw new MissingRequiredMemberException("PhoneNumber")
+                builder.OneTimePassword,
+                builder.PhoneNumber
             );
 
         public override void SerializeMembers<TSerializer>(
@@ -130,7 +119,7 @@ public static partial class VerifySMSSandboxPhoneNumberInputSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

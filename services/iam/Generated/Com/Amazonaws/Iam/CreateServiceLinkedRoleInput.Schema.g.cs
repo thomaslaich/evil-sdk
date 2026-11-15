@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Iam.Schemas;
 
 public static partial class CreateServiceLinkedRoleInputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? AWSServiceName { get; set; }
         public string? Description { get; set; }
@@ -29,7 +29,6 @@ public static partial class CreateServiceLinkedRoleInputSchema
                 new(
                     "AWSServiceName",
                     Target0,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
@@ -45,10 +44,6 @@ public static partial class CreateServiceLinkedRoleInputSchema
                         new Trait(
                             ShapeId.Parse("smithy.api#pattern"),
                             Document.From("^[\\w+=,.@-]+$")
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
                         ),
                     ]
                 ),
@@ -128,8 +123,7 @@ public static partial class CreateServiceLinkedRoleInputSchema
             Builder builder
         ) =>
             new global::Com.Amazonaws.Iam.CreateServiceLinkedRoleInput(
-                builder.AWSServiceName
-                    ?? throw new MissingRequiredMemberException("AWSServiceName"),
+                builder.AWSServiceName,
                 builder.CustomSuffix,
                 builder.Description
             );
@@ -165,7 +159,7 @@ public static partial class CreateServiceLinkedRoleInputSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Sns.Schemas;
 
 public static partial class PutDataProtectionPolicyInputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? ResourceArn { get; set; }
         public string? DataProtectionPolicy { get; set; }
@@ -24,32 +24,7 @@ public static partial class PutDataProtectionPolicyInputSchema
     private sealed class GeneratedSchema()
         : StructSchema<global::Com.Amazonaws.Sns.PutDataProtectionPolicyInput, Builder>(
             ShapeId.Parse("com.amazonaws.sns#PutDataProtectionPolicyInput"),
-            [
-                new(
-                    "ResourceArn",
-                    Target0,
-                    isRequired: true,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
-                    ]
-                ),
-                new(
-                    "DataProtectionPolicy",
-                    Target1,
-                    isRequired: true,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
-                    ]
-                ),
-            ],
+            [new("ResourceArn", Target0), new("DataProtectionPolicy", Target1)],
             [
                 new Trait(
                     ShapeId.Parse("smithy.api#input"),
@@ -73,9 +48,8 @@ public static partial class PutDataProtectionPolicyInputSchema
             Builder builder
         ) =>
             new global::Com.Amazonaws.Sns.PutDataProtectionPolicyInput(
-                builder.DataProtectionPolicy
-                    ?? throw new MissingRequiredMemberException("DataProtectionPolicy"),
-                builder.ResourceArn ?? throw new MissingRequiredMemberException("ResourceArn")
+                builder.DataProtectionPolicy,
+                builder.ResourceArn
             );
 
         public override void SerializeMembers<TSerializer>(
@@ -101,7 +75,7 @@ public static partial class PutDataProtectionPolicyInputSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

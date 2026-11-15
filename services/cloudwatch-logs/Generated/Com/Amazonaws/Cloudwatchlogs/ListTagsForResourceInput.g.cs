@@ -25,4 +25,4 @@ namespace Com.Amazonaws.Cloudwatchlogs;
 /// Logs resources and operations</see>.
 /// </para>
 /// </param>
-public sealed record class ListTagsForResourceInput(string ResourceArn);
+public sealed record class ListTagsForResourceInput(string? ResourceArn = null);

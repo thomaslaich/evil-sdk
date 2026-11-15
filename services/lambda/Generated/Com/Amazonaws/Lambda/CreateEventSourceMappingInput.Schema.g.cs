@@ -11,7 +11,7 @@ namespace Com.Amazonaws.Lambda.Schemas;
 
 public static partial class CreateEventSourceMappingInputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? EventSourceArn { get; set; }
         public string? FunctionName { get; set; }
@@ -78,7 +78,6 @@ public static partial class CreateEventSourceMappingInputSchema
                 new(
                     "FunctionName",
                     Target1,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
@@ -96,10 +95,6 @@ public static partial class CreateEventSourceMappingInputSchema
                             Document.From(
                                 "^(arn:(aws[a-zA-Z-]*)?:lambda:)?((eusc-)?[a-z]{2}((-gov)|(-iso([a-z]?)))?-[a-z]+-\\d{1}:)?(\\d{12}:)?(function:)?([a-zA-Z0-9-_\\.]+)(:(\\$LATEST(\\.PUBLISHED)?|[a-zA-Z0-9-_]+))?$"
                             )
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
                         ),
                     ]
                 ),
@@ -419,7 +414,6 @@ public static partial class CreateEventSourceMappingInputSchema
             Builder builder
         ) =>
             new global::Com.Amazonaws.Lambda.CreateEventSourceMappingInput(
-                builder.FunctionName ?? throw new MissingRequiredMemberException("FunctionName"),
                 builder.AmazonManagedKafkaEventSourceConfig,
                 builder.BatchSize,
                 builder.BisectBatchOnFunctionError,
@@ -428,6 +422,7 @@ public static partial class CreateEventSourceMappingInputSchema
                 builder.Enabled,
                 builder.EventSourceArn,
                 builder.FilterCriteria,
+                builder.FunctionName,
                 builder.FunctionResponseTypes,
                 builder.KMSKeyArn,
                 builder.LoggingConfig,
@@ -684,7 +679,7 @@ public static partial class CreateEventSourceMappingInputSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

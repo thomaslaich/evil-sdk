@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Sns.Schemas;
 
 public static partial class SetSubscriptionAttributesInputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? SubscriptionArn { get; set; }
         public string? AttributeName { get; set; }
@@ -26,30 +26,8 @@ public static partial class SetSubscriptionAttributesInputSchema
         : StructSchema<global::Com.Amazonaws.Sns.SetSubscriptionAttributesInput, Builder>(
             ShapeId.Parse("com.amazonaws.sns#SetSubscriptionAttributesInput"),
             [
-                new(
-                    "SubscriptionArn",
-                    Target0,
-                    isRequired: true,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
-                    ]
-                ),
-                new(
-                    "AttributeName",
-                    Target1,
-                    isRequired: true,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
-                    ]
-                ),
+                new("SubscriptionArn", Target0),
+                new("AttributeName", Target1),
                 new("AttributeValue", Target2),
             ],
             [
@@ -79,10 +57,9 @@ public static partial class SetSubscriptionAttributesInputSchema
             Builder builder
         ) =>
             new global::Com.Amazonaws.Sns.SetSubscriptionAttributesInput(
-                builder.AttributeName ?? throw new MissingRequiredMemberException("AttributeName"),
+                builder.AttributeName,
+                builder.AttributeValue,
                 builder.SubscriptionArn
-                    ?? throw new MissingRequiredMemberException("SubscriptionArn"),
-                builder.AttributeValue
             );
 
         public override void SerializeMembers<TSerializer>(
@@ -116,7 +93,7 @@ public static partial class SetSubscriptionAttributesInputSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

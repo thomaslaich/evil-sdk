@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Cloudwatchlogs.Schemas;
 
 public static partial class CreateExportTaskInputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? TaskName { get; set; }
         public string? LogGroupName { get; set; }
@@ -50,7 +50,6 @@ public static partial class CreateExportTaskInputSchema
                 new(
                     "logGroupName",
                     Target1,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
@@ -66,10 +65,6 @@ public static partial class CreateExportTaskInputSchema
                         new Trait(
                             ShapeId.Parse("smithy.api#pattern"),
                             Document.From("^[\\.\\-_/#A-Za-z0-9]+$")
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
                         ),
                     ]
                 ),
@@ -94,7 +89,6 @@ public static partial class CreateExportTaskInputSchema
                 new(
                     "from",
                     Target3,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
@@ -106,17 +100,12 @@ public static partial class CreateExportTaskInputSchema
                             Document.From(
                                 new Dictionary<string, Document> { { "min", Document.From(0m) } }
                             )
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
                         ),
                     ]
                 ),
                 new(
                     "to",
                     Target4,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
@@ -129,16 +118,11 @@ public static partial class CreateExportTaskInputSchema
                                 new Dictionary<string, Document> { { "min", Document.From(0m) } }
                             )
                         ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
                     ]
                 ),
                 new(
                     "destination",
                     Target5,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
@@ -150,10 +134,6 @@ public static partial class CreateExportTaskInputSchema
                                     { "max", Document.From(512m) },
                                 }
                             )
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
                         ),
                     ]
                 ),
@@ -202,13 +182,13 @@ public static partial class CreateExportTaskInputSchema
             Builder builder
         ) =>
             new global::Com.Amazonaws.Cloudwatchlogs.CreateExportTaskInput(
-                builder.Destination ?? throw new MissingRequiredMemberException("destination"),
-                builder.From.GetValueOrDefault(),
-                builder.LogGroupName ?? throw new MissingRequiredMemberException("logGroupName"),
-                builder.To.GetValueOrDefault(),
+                builder.Destination,
                 builder.DestinationPrefix,
+                builder.From,
+                builder.LogGroupName,
                 builder.LogStreamNamePrefix,
-                builder.TaskName
+                builder.TaskName,
+                builder.To
             );
 
         public override void SerializeMembers<TSerializer>(
@@ -240,8 +220,22 @@ public static partial class CreateExportTaskInputSchema
             {
                 serializer.WriteNull(2);
             }
-            serializer.WriteLong(3, value.From);
-            serializer.WriteLong(4, value.To);
+            if (value.From is { } value3)
+            {
+                serializer.WriteLong(3, value3);
+            }
+            else
+            {
+                serializer.WriteNull(3);
+            }
+            if (value.To is { } value4)
+            {
+                serializer.WriteLong(4, value4);
+            }
+            else
+            {
+                serializer.WriteNull(4);
+            }
             if (value.Destination is { } value5)
             {
                 serializer.WriteString(5, value5);
@@ -260,7 +254,7 @@ public static partial class CreateExportTaskInputSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

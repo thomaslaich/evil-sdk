@@ -13,4 +13,7 @@ namespace Com.Amazonaws.Kinesis;
 /// <param name="StreamId">
 /// Not Implemented. Reserved for future use.
 /// </param>
-public sealed record class GetResourcePolicyInput(string ResourceARN, string? StreamId = null);
+public sealed record class GetResourcePolicyInput(
+    string? ResourceARN = null,
+    string? StreamId = null
+);

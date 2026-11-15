@@ -24,6 +24,6 @@ namespace Com.Amazonaws.Iam;
 /// specified OIDC provider.
 /// </param>
 public sealed record class UntagOpenIDConnectProviderInput(
-    string OpenIDConnectProviderArn,
-    IReadOnlyList<string> TagKeys
+    string? OpenIDConnectProviderArn = null,
+    IReadOnlyList<string>? TagKeys = null
 );

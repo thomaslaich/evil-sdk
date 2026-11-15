@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Kinesis.Schemas;
 
 public static partial class StopStreamEncryptionInputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? StreamName { get; set; }
         public global::Com.Amazonaws.Kinesis.EncryptionType? EncryptionType { get; set; }
@@ -49,22 +49,10 @@ public static partial class StopStreamEncryptionInputSchema
                         ),
                     ]
                 ),
-                new(
-                    "EncryptionType",
-                    Target1,
-                    isRequired: true,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
-                    ]
-                ),
+                new("EncryptionType", Target1),
                 new(
                     "KeyId",
                     Target2,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
@@ -76,10 +64,6 @@ public static partial class StopStreamEncryptionInputSchema
                                     { "max", Document.From(2048m) },
                                 }
                             )
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
                         ),
                     ]
                 ),
@@ -177,9 +161,8 @@ public static partial class StopStreamEncryptionInputSchema
             Builder builder
         ) =>
             new global::Com.Amazonaws.Kinesis.StopStreamEncryptionInput(
-                builder.EncryptionType
-                    ?? throw new MissingRequiredMemberException("EncryptionType"),
-                builder.KeyId ?? throw new MissingRequiredMemberException("KeyId"),
+                builder.EncryptionType,
+                builder.KeyId,
                 builder.StreamARN,
                 builder.StreamId,
                 builder.StreamName
@@ -198,7 +181,14 @@ public static partial class StopStreamEncryptionInputSchema
             {
                 serializer.WriteNull(0);
             }
-            serializer.WriteStringEnum(1, value.EncryptionType.Value);
+            if (value.EncryptionType is { } value1)
+            {
+                serializer.WriteStringEnum(1, value1.Value);
+            }
+            else
+            {
+                serializer.WriteNull(1);
+            }
             if (value.KeyId is { } value2)
             {
                 serializer.WriteString(2, value2);
@@ -225,7 +215,7 @@ public static partial class StopStreamEncryptionInputSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

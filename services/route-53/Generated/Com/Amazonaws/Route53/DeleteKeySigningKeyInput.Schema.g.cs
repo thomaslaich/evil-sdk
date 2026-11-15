@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Route53.Schemas;
 
 public static partial class DeleteKeySigningKeyInputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? HostedZoneId { get; set; }
         public string? Name { get; set; }
@@ -28,7 +28,6 @@ public static partial class DeleteKeySigningKeyInputSchema
                 new(
                     "HostedZoneId",
                     Target0,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
@@ -45,16 +44,11 @@ public static partial class DeleteKeySigningKeyInputSchema
                                 }
                             )
                         ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
                     ]
                 ),
                 new(
                     "Name",
                     Target1,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
@@ -70,10 +64,6 @@ public static partial class DeleteKeySigningKeyInputSchema
                                     { "max", Document.From(128m) },
                                 }
                             )
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
                         ),
                     ]
                 ),
@@ -105,8 +95,8 @@ public static partial class DeleteKeySigningKeyInputSchema
             Builder builder
         ) =>
             new global::Com.Amazonaws.Route53.DeleteKeySigningKeyInput(
-                builder.HostedZoneId ?? throw new MissingRequiredMemberException("HostedZoneId"),
-                builder.Name ?? throw new MissingRequiredMemberException("Name")
+                builder.HostedZoneId,
+                builder.Name
             );
 
         public override void SerializeMembers<TSerializer>(
@@ -132,7 +122,7 @@ public static partial class DeleteKeySigningKeyInputSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

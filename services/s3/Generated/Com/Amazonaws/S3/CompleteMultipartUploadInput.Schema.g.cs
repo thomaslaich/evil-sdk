@@ -10,7 +10,7 @@ namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class CompleteMultipartUploadInputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? Bucket { get; set; }
         public string? Key { get; set; }
@@ -49,15 +49,10 @@ public static partial class CompleteMultipartUploadInputSchema
                 new(
                     "Bucket",
                     Target0,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
                             ShapeId.Parse("smithy.api#httpLabel"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
                             Document.From(new Dictionary<string, Document> { })
                         ),
                         new Trait(
@@ -74,7 +69,6 @@ public static partial class CompleteMultipartUploadInputSchema
                 new(
                     "Key",
                     Target1,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
@@ -86,10 +80,6 @@ public static partial class CompleteMultipartUploadInputSchema
                             Document.From(
                                 new Dictionary<string, Document> { { "min", Document.From(1m) } }
                             )
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
                         ),
                         new Trait(
                             ShapeId.Parse("smithy.rules#contextParam"),
@@ -120,14 +110,9 @@ public static partial class CompleteMultipartUploadInputSchema
                 new(
                     "UploadId",
                     Target3,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(ShapeId.Parse("smithy.api#httpQuery"), Document.From("uploadId")),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
                     ]
                 ),
                 new(
@@ -455,9 +440,7 @@ public static partial class CompleteMultipartUploadInputSchema
             Builder builder
         ) =>
             new global::Com.Amazonaws.S3.CompleteMultipartUploadInput(
-                builder.Bucket ?? throw new MissingRequiredMemberException("Bucket"),
-                builder.Key ?? throw new MissingRequiredMemberException("Key"),
-                builder.UploadId ?? throw new MissingRequiredMemberException("UploadId"),
+                builder.Bucket,
                 builder.ChecksumCRC32,
                 builder.ChecksumCRC32C,
                 builder.ChecksumCRC64NVME,
@@ -472,12 +455,14 @@ public static partial class CompleteMultipartUploadInputSchema
                 builder.ExpectedBucketOwner,
                 builder.IfMatch,
                 builder.IfNoneMatch,
+                builder.Key,
                 builder.MpuObjectSize,
                 builder.MultipartUpload,
                 builder.RequestPayer,
                 builder.SSECustomerAlgorithm,
                 builder.SSECustomerKey,
-                builder.SSECustomerKeyMD5
+                builder.SSECustomerKeyMD5,
+                builder.UploadId
             );
 
         public override void SerializeMembers<TSerializer>(
@@ -671,7 +656,7 @@ public static partial class CompleteMultipartUploadInputSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

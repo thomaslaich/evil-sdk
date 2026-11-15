@@ -7,16 +7,6 @@ namespace Com.Amazonaws.Iam;
 /// <summary>
 /// Represents the Smithy structure com.amazonaws.iam#ListAttachedUserPoliciesInput.
 /// </summary>
-/// <param name="UserName">
-/// <para>
-/// The name (friendly name, not ARN) of the user to list attached policies for.
-/// </para>
-/// <para>
-/// This parameter allows (through its <see href="http://wikipedia.org/wiki/regex">regex pattern</see>)
-/// a string of characters consisting of upper and lowercase alphanumeric characters with no spaces. You
-/// can also include any of the following characters: _+=,.@-
-/// </para>
-/// </param>
 /// <param name="Marker">
 /// Use this parameter only when paginating results and only after you receive a response indicating
 /// that the results are truncated. Set it to the value of the <c>Marker</c> element in the response
@@ -48,9 +38,19 @@ namespace Com.Amazonaws.Iam;
 /// digits, and upper and lowercased letters.
 /// </para>
 /// </param>
+/// <param name="UserName">
+/// <para>
+/// The name (friendly name, not ARN) of the user to list attached policies for.
+/// </para>
+/// <para>
+/// This parameter allows (through its <see href="http://wikipedia.org/wiki/regex">regex pattern</see>)
+/// a string of characters consisting of upper and lowercase alphanumeric characters with no spaces. You
+/// can also include any of the following characters: _+=,.@-
+/// </para>
+/// </param>
 public sealed record class ListAttachedUserPoliciesInput(
-    string UserName,
     string? Marker = null,
     int? MaxItems = null,
-    string? PathPrefix = null
+    string? PathPrefix = null,
+    string? UserName = null
 );

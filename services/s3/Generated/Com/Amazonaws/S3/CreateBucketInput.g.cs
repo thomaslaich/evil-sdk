@@ -7,6 +7,14 @@ namespace Com.Amazonaws.S3;
 /// <summary>
 /// Represents the Smithy structure com.amazonaws.s3#CreateBucketInput.
 /// </summary>
+/// <param name="ACL">
+/// <para>
+/// The canned ACL to apply to the bucket.
+/// </para>
+/// <para>
+/// <b>Note:</b> This functionality is not supported for directory buckets.
+/// </para>
+/// </param>
 /// <param name="Bucket">
 /// <para>
 /// The name of the bucket to create.
@@ -27,14 +35,6 @@ namespace Com.Amazonaws.S3;
 /// restrictions, see
 /// <see href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/directory-bucket-naming-rules.html">Directory
 /// bucket naming rules</see> in the <i>Amazon S3 User Guide</i>
-/// </para>
-/// </param>
-/// <param name="ACL">
-/// <para>
-/// The canned ACL to apply to the bucket.
-/// </para>
-/// <para>
-/// <b>Note:</b> This functionality is not supported for directory buckets.
 /// </para>
 /// </param>
 /// <param name="BucketNamespace">
@@ -117,8 +117,8 @@ namespace Com.Amazonaws.S3;
 /// </para>
 /// </param>
 public sealed record class CreateBucketInput(
-    string Bucket,
     BucketCannedACL? ACL = null,
+    string? Bucket = null,
     global::Com.Amazonaws.S3.BucketNamespace? BucketNamespace = null,
     global::Com.Amazonaws.S3.CreateBucketConfiguration? CreateBucketConfiguration = null,
     string? GrantFullControl = null,

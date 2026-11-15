@@ -39,4 +39,7 @@ namespace Com.Amazonaws.Lambda;
 /// <param name="Qualifier">
 /// The alias name.
 /// </param>
-public sealed record class GetFunctionUrlConfigInput(string FunctionName, string? Qualifier = null);
+public sealed record class GetFunctionUrlConfigInput(
+    string? FunctionName = null,
+    string? Qualifier = null
+);

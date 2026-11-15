@@ -13,4 +13,7 @@ namespace Com.Amazonaws.Cloudwatchlogs;
 /// <param name="DataSourceType">
 /// The type of the data source to retrieve log fields for.
 /// </param>
-public sealed record class GetLogFieldsInput(string DataSourceName, string DataSourceType);
+public sealed record class GetLogFieldsInput(
+    string? DataSourceName = null,
+    string? DataSourceType = null
+);

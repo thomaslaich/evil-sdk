@@ -24,6 +24,11 @@ namespace Com.Amazonaws.S3;
 /// <param name="Bucket">
 /// The S3 bucket.
 /// </param>
+/// <param name="ExpectedBucketOwner">
+/// The account ID of the expected bucket owner. If the account ID that you provide does not match the
+/// actual owner of the bucket, the request fails with the HTTP status code <c>403 Forbidden</c> (access
+/// denied).
+/// </param>
 /// <param name="Expression">
 /// The expression that is used to query the object.
 /// </param>
@@ -38,11 +43,6 @@ namespace Com.Amazonaws.S3;
 /// </param>
 /// <param name="OutputSerialization">
 /// Describes the format of the data that you want Amazon S3 to return in response.
-/// </param>
-/// <param name="ExpectedBucketOwner">
-/// The account ID of the expected bucket owner. If the account ID that you provide does not match the
-/// actual owner of the bucket, the request fails with the HTTP status code <c>403 Forbidden</c> (access
-/// denied).
 /// </param>
 /// <param name="RequestProgress">
 /// Specifies if periodic request progress information should be enabled.
@@ -96,13 +96,13 @@ namespace Com.Amazonaws.S3;
 /// </list>
 /// </param>
 public sealed record class SelectObjectContentInput(
-    string Bucket,
-    string Expression,
-    global::Com.Amazonaws.S3.ExpressionType ExpressionType,
-    global::Com.Amazonaws.S3.InputSerialization InputSerialization,
-    string Key,
-    global::Com.Amazonaws.S3.OutputSerialization OutputSerialization,
+    string? Bucket = null,
     string? ExpectedBucketOwner = null,
+    string? Expression = null,
+    global::Com.Amazonaws.S3.ExpressionType? ExpressionType = null,
+    global::Com.Amazonaws.S3.InputSerialization? InputSerialization = null,
+    string? Key = null,
+    global::Com.Amazonaws.S3.OutputSerialization? OutputSerialization = null,
     global::Com.Amazonaws.S3.RequestProgress? RequestProgress = null,
     string? SSECustomerAlgorithm = null,
     string? SSECustomerKey = null,

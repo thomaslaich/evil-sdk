@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Secretsmanager.Schemas;
 
 public static partial class ListSecretVersionIdsInputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? SecretId { get; set; }
         public int? MaxResults { get; set; }
@@ -30,7 +30,6 @@ public static partial class ListSecretVersionIdsInputSchema
                 new(
                     "SecretId",
                     Target0,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
@@ -42,10 +41,6 @@ public static partial class ListSecretVersionIdsInputSchema
                                     { "max", Document.From(2048m) },
                                 }
                             )
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
                         ),
                     ]
                 ),
@@ -131,10 +126,10 @@ public static partial class ListSecretVersionIdsInputSchema
             Builder builder
         ) =>
             new global::Com.Amazonaws.Secretsmanager.ListSecretVersionIdsInput(
-                builder.SecretId ?? throw new MissingRequiredMemberException("SecretId"),
                 builder.IncludeDeprecated,
                 builder.MaxResults,
-                builder.NextToken
+                builder.NextToken,
+                builder.SecretId
             );
 
         public override void SerializeMembers<TSerializer>(
@@ -176,7 +171,7 @@ public static partial class ListSecretVersionIdsInputSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

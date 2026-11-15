@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Kinesis.Schemas;
 
 public static partial class SplitShardInputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? StreamName { get; set; }
         public string? ShardToSplit { get; set; }
@@ -52,7 +52,6 @@ public static partial class SplitShardInputSchema
                 new(
                     "ShardToSplit",
                     Target1,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
@@ -69,25 +68,16 @@ public static partial class SplitShardInputSchema
                             ShapeId.Parse("smithy.api#pattern"),
                             Document.From("^[a-zA-Z0-9_.-]+$")
                         ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
                     ]
                 ),
                 new(
                     "NewStartingHashKey",
                     Target2,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
                             ShapeId.Parse("smithy.api#pattern"),
                             Document.From("^(0|([1-9]\\d{0,38}))$")
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
                         ),
                     ]
                 ),
@@ -185,9 +175,8 @@ public static partial class SplitShardInputSchema
 
         public override global::Com.Amazonaws.Kinesis.SplitShardInput Build(Builder builder) =>
             new global::Com.Amazonaws.Kinesis.SplitShardInput(
-                builder.NewStartingHashKey
-                    ?? throw new MissingRequiredMemberException("NewStartingHashKey"),
-                builder.ShardToSplit ?? throw new MissingRequiredMemberException("ShardToSplit"),
+                builder.NewStartingHashKey,
+                builder.ShardToSplit,
                 builder.StreamARN,
                 builder.StreamId,
                 builder.StreamName
@@ -240,7 +229,7 @@ public static partial class SplitShardInputSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Iam.Schemas;
 
 public static partial class DeleteGroupInputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? GroupName { get; set; }
     }
@@ -27,7 +27,6 @@ public static partial class DeleteGroupInputSchema
                 new(
                     "GroupName",
                     Target0,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
@@ -43,10 +42,6 @@ public static partial class DeleteGroupInputSchema
                         new Trait(
                             ShapeId.Parse("smithy.api#pattern"),
                             Document.From("^[\\w+=,.@-]+$")
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
                         ),
                     ]
                 ),
@@ -71,9 +66,7 @@ public static partial class DeleteGroupInputSchema
         public override Builder CreateTypedBuilder() => new();
 
         public override global::Com.Amazonaws.Iam.DeleteGroupInput Build(Builder builder) =>
-            new global::Com.Amazonaws.Iam.DeleteGroupInput(
-                builder.GroupName ?? throw new MissingRequiredMemberException("GroupName")
-            );
+            new global::Com.Amazonaws.Iam.DeleteGroupInput(builder.GroupName);
 
         public override void SerializeMembers<TSerializer>(
             global::Com.Amazonaws.Iam.DeleteGroupInput value,
@@ -90,7 +83,7 @@ public static partial class DeleteGroupInputSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

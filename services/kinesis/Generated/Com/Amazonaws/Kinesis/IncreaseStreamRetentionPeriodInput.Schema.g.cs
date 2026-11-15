@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Kinesis.Schemas;
 
 public static partial class IncreaseStreamRetentionPeriodInputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? StreamName { get; set; }
         public int? RetentionPeriodHours { get; set; }
@@ -51,15 +51,10 @@ public static partial class IncreaseStreamRetentionPeriodInputSchema
                 new(
                     "RetentionPeriodHours",
                     Target1,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
                             ShapeId.Parse("smithy.api#box"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
                             Document.From(new Dictionary<string, Document> { })
                         ),
                     ]
@@ -154,7 +149,7 @@ public static partial class IncreaseStreamRetentionPeriodInputSchema
             Builder builder
         ) =>
             new global::Com.Amazonaws.Kinesis.IncreaseStreamRetentionPeriodInput(
-                builder.RetentionPeriodHours.GetValueOrDefault(),
+                builder.RetentionPeriodHours,
                 builder.StreamARN,
                 builder.StreamId,
                 builder.StreamName
@@ -173,7 +168,14 @@ public static partial class IncreaseStreamRetentionPeriodInputSchema
             {
                 serializer.WriteNull(0);
             }
-            serializer.WriteInteger(1, value.RetentionPeriodHours);
+            if (value.RetentionPeriodHours is { } value1)
+            {
+                serializer.WriteInteger(1, value1);
+            }
+            else
+            {
+                serializer.WriteNull(1);
+            }
             if (value.StreamARN is { } value2)
             {
                 serializer.WriteString(2, value2);
@@ -192,7 +194,7 @@ public static partial class IncreaseStreamRetentionPeriodInputSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

@@ -11,7 +11,7 @@ namespace Com.Amazonaws.Dynamodb.Schemas;
 
 public static partial class RestoreSummarySchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? SourceBackupArn { get; set; }
         public string? SourceTableArn { get; set; }
@@ -144,7 +144,7 @@ public static partial class RestoreSummarySchema
             serializer.WriteBoolean(3, value.RestoreInProgress);
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Dynamodb.Schemas;
 
 public static partial class DeleteItemInputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? TableName { get; set; }
         public IReadOnlyDictionary<
@@ -46,7 +46,6 @@ public static partial class DeleteItemInputSchema
                 new(
                     "TableName",
                     Target0,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
@@ -60,10 +59,6 @@ public static partial class DeleteItemInputSchema
                             )
                         ),
                         new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.rules#contextParam"),
                             Document.From(
                                 new Dictionary<string, Document>
@@ -74,18 +69,7 @@ public static partial class DeleteItemInputSchema
                         ),
                     ]
                 ),
-                new(
-                    "Key",
-                    Target1,
-                    isRequired: true,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
-                    ]
-                ),
+                new("Key", Target1),
                 new("Expected", Target2),
                 new("ConditionalOperator", Target3),
                 new("ReturnValues", Target4),
@@ -153,17 +137,17 @@ public static partial class DeleteItemInputSchema
 
         public override global::Com.Amazonaws.Dynamodb.DeleteItemInput Build(Builder builder) =>
             new global::Com.Amazonaws.Dynamodb.DeleteItemInput(
-                builder.Key ?? throw new MissingRequiredMemberException("Key"),
-                builder.TableName ?? throw new MissingRequiredMemberException("TableName"),
                 builder.ConditionExpression,
                 builder.ConditionalOperator,
                 builder.Expected,
                 builder.ExpressionAttributeNames,
                 builder.ExpressionAttributeValues,
+                builder.Key,
                 builder.ReturnConsumedCapacity,
                 builder.ReturnItemCollectionMetrics,
                 builder.ReturnValues,
-                builder.ReturnValuesOnConditionCheckFailure
+                builder.ReturnValuesOnConditionCheckFailure,
+                builder.TableName
             );
 
         public override void SerializeMembers<TSerializer>(
@@ -261,7 +245,7 @@ public static partial class DeleteItemInputSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

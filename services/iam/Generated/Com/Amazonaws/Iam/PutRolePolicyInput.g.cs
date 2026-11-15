@@ -62,7 +62,7 @@ namespace Com.Amazonaws.Iam;
 /// </para>
 /// </param>
 public sealed record class PutRolePolicyInput(
-    string PolicyDocument,
-    string PolicyName,
-    string RoleName
+    string? PolicyDocument = null,
+    string? PolicyName = null,
+    string? RoleName = null
 );

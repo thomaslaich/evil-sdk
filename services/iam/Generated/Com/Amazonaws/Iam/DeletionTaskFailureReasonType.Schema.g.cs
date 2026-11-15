@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Iam.Schemas;
 
 public static partial class DeletionTaskFailureReasonTypeSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? Reason { get; set; }
         public IReadOnlyList<global::Com.Amazonaws.Iam.RoleUsageType>? RoleUsageList { get; set; }
@@ -89,7 +89,7 @@ public static partial class DeletionTaskFailureReasonTypeSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

@@ -9,52 +9,6 @@ namespace Com.Amazonaws.Sts;
 /// <summary>
 /// Represents the Smithy structure com.amazonaws.sts#AssumeRoleWithWebIdentityInput.
 /// </summary>
-/// <param name="RoleArn">
-/// <para>
-/// The Amazon Resource Name (ARN) of the role that the caller is assuming.
-/// </para>
-/// <para>
-/// <b>Note:</b> Additional considerations apply to Amazon Cognito identity pools that assume
-/// <see href="https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies-cross-account-resource-access.html">cross-account
-/// IAM roles</see>. The trust policies of these roles must accept the
-/// <c>cognito-identity.amazonaws.com</c> service principal and must contain the
-/// <c>cognito-identity.amazonaws.com:aud</c> condition key to restrict role assumption to users from
-/// your intended identity pools. A policy that trusts Amazon Cognito identity pools without this
-/// condition creates a risk that a user from an unintended identity pool can assume the role. For more
-/// information, see
-/// <see href="https://docs.aws.amazon.com/cognito/latest/developerguide/iam-roles.html#trust-policies">Trust
-/// policies for IAM roles in Basic (Classic) authentication</see> in the <i>Amazon Cognito Developer
-/// Guide</i>.
-/// </para>
-/// </param>
-/// <param name="RoleSessionName">
-/// <para>
-/// An identifier for the assumed role session. Typically, you pass the name or identifier that is
-/// associated with the user who is using your application. That way, the temporary security credentials
-/// that your application will use are associated with that user. This session name is included as part
-/// of the ARN and assumed role ID in the <c>AssumedRoleUser</c> response element.
-/// </para>
-/// <para>
-/// For security purposes, administrators can view this field in
-/// <see href="https://docs.aws.amazon.com/IAM/latest/UserGuide/cloudtrail-integration.html#cloudtrail-integration_signin-tempcreds">CloudTrail
-/// logs</see> to help identify who performed an action in Amazon Web Services. Your administrator might
-/// require that you specify your user name as the session name when you assume the role. For more
-/// information, see
-/// <see href="https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_iam-condition-keys.html#ck_rolesessionname"><c>sts:RoleSessionName</c></see>.
-/// </para>
-/// <para>
-/// The regex used to validate this parameter is a string of characters consisting of upper- and
-/// lower-case alphanumeric characters with no spaces. You can also include underscores or any of the
-/// following characters: =,.@-
-/// </para>
-/// </param>
-/// <param name="WebIdentityToken">
-/// The OAuth 2.0 access token or OpenID Connect ID token that is provided by the identity provider.
-/// Your application must get this token by authenticating the user who is using your application with a
-/// web identity provider before the application makes an <c>AssumeRoleWithWebIdentity</c> call.
-/// Timestamps in the token must be formatted as either an integer or a long integer. Tokens must be
-/// signed using either RSA keys (RS256, RS384, or RS512) or ECDSA keys (ES256, ES384, or ES512).
-/// </param>
 /// <param name="DurationSeconds">
 /// <para>
 /// The duration, in seconds, of the role session. The value can range from 900 seconds (15 minutes) up
@@ -155,13 +109,59 @@ namespace Com.Amazonaws.Sts;
 /// Do not specify this value for OpenID Connect ID tokens.
 /// </para>
 /// </param>
+/// <param name="RoleArn">
+/// <para>
+/// The Amazon Resource Name (ARN) of the role that the caller is assuming.
+/// </para>
+/// <para>
+/// <b>Note:</b> Additional considerations apply to Amazon Cognito identity pools that assume
+/// <see href="https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies-cross-account-resource-access.html">cross-account
+/// IAM roles</see>. The trust policies of these roles must accept the
+/// <c>cognito-identity.amazonaws.com</c> service principal and must contain the
+/// <c>cognito-identity.amazonaws.com:aud</c> condition key to restrict role assumption to users from
+/// your intended identity pools. A policy that trusts Amazon Cognito identity pools without this
+/// condition creates a risk that a user from an unintended identity pool can assume the role. For more
+/// information, see
+/// <see href="https://docs.aws.amazon.com/cognito/latest/developerguide/iam-roles.html#trust-policies">Trust
+/// policies for IAM roles in Basic (Classic) authentication</see> in the <i>Amazon Cognito Developer
+/// Guide</i>.
+/// </para>
+/// </param>
+/// <param name="RoleSessionName">
+/// <para>
+/// An identifier for the assumed role session. Typically, you pass the name or identifier that is
+/// associated with the user who is using your application. That way, the temporary security credentials
+/// that your application will use are associated with that user. This session name is included as part
+/// of the ARN and assumed role ID in the <c>AssumedRoleUser</c> response element.
+/// </para>
+/// <para>
+/// For security purposes, administrators can view this field in
+/// <see href="https://docs.aws.amazon.com/IAM/latest/UserGuide/cloudtrail-integration.html#cloudtrail-integration_signin-tempcreds">CloudTrail
+/// logs</see> to help identify who performed an action in Amazon Web Services. Your administrator might
+/// require that you specify your user name as the session name when you assume the role. For more
+/// information, see
+/// <see href="https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_iam-condition-keys.html#ck_rolesessionname"><c>sts:RoleSessionName</c></see>.
+/// </para>
+/// <para>
+/// The regex used to validate this parameter is a string of characters consisting of upper- and
+/// lower-case alphanumeric characters with no spaces. You can also include underscores or any of the
+/// following characters: =,.@-
+/// </para>
+/// </param>
+/// <param name="WebIdentityToken">
+/// The OAuth 2.0 access token or OpenID Connect ID token that is provided by the identity provider.
+/// Your application must get this token by authenticating the user who is using your application with a
+/// web identity provider before the application makes an <c>AssumeRoleWithWebIdentity</c> call.
+/// Timestamps in the token must be formatted as either an integer or a long integer. Tokens must be
+/// signed using either RSA keys (RS256, RS384, or RS512) or ECDSA keys (ES256, ES384, or ES512).
+/// </param>
 public sealed record class AssumeRoleWithWebIdentityInput(
-    string RoleArn,
-    string RoleSessionName,
-    string WebIdentityToken,
     int? DurationSeconds = null,
     int? MinimumSessionTokenSize = null,
     string? Policy = null,
     IReadOnlyList<PolicyDescriptorType>? PolicyArns = null,
-    string? ProviderId = null
+    string? ProviderId = null,
+    string? RoleArn = null,
+    string? RoleSessionName = null,
+    string? WebIdentityToken = null
 );

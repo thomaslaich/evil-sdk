@@ -39,4 +39,4 @@ namespace Com.Amazonaws.Lambda;
 /// <param name="Qualifier">
 /// Specify a version or alias to get the policy for that resource.
 /// </param>
-public sealed record class GetPolicyInput(string FunctionName, string? Qualifier = null);
+public sealed record class GetPolicyInput(string? FunctionName = null, string? Qualifier = null);

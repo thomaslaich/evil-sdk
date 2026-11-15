@@ -26,6 +26,6 @@ namespace Com.Amazonaws.Iam;
 /// </para>
 /// </param>
 public sealed record class RemoveClientIDFromOpenIDConnectProviderInput(
-    string ClientID,
-    string OpenIDConnectProviderArn
+    string? ClientID = null,
+    string? OpenIDConnectProviderArn = null
 );

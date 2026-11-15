@@ -34,4 +34,7 @@ namespace Com.Amazonaws.Secretsmanager;
 /// parameter values for the Amazon Web Services CLI</see> in the Amazon Web Services CLI User Guide.
 /// </para>
 /// </param>
-public sealed record class UntagResourceInput(string SecretId, IReadOnlyList<string> TagKeys);
+public sealed record class UntagResourceInput(
+    string? SecretId = null,
+    IReadOnlyList<string>? TagKeys = null
+);

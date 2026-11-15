@@ -40,6 +40,6 @@ namespace Com.Amazonaws.Lambda;
 /// The version number or alias name.
 /// </param>
 public sealed record class GetProvisionedConcurrencyConfigInput(
-    string FunctionName,
-    string Qualifier
+    string? FunctionName = null,
+    string? Qualifier = null
 );

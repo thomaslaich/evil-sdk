@@ -16,6 +16,6 @@ namespace Com.Amazonaws.Lambda;
 /// The default value is set to <c>true</c>.
 /// </param>
 public sealed record class GetDurableExecutionInput(
-    string DurableExecutionArn,
+    string? DurableExecutionArn = null,
     bool? IncludeExecutionData = null
 );

@@ -9,17 +9,6 @@ namespace Com.Amazonaws.Cloudwatchlogs;
 /// <summary>
 /// Represents the Smithy structure com.amazonaws.cloudwatchlogs#PutQueryDefinitionInput.
 /// </summary>
-/// <param name="Name">
-/// A name for the query definition. If you are saving numerous query definitions, we recommend that you
-/// name them. This way, you can find the ones you want by using the first part of the name as a filter
-/// in the <c>queryDefinitionNamePrefix</c> parameter of
-/// <see href="https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_DescribeQueryDefinitions.html">DescribeQueryDefinitions</see>.
-/// </param>
-/// <param name="QueryString">
-/// The query string to use for this definition. For more information, see
-/// <see href="https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/CWL_QuerySyntax.html">CloudWatch
-/// Logs Insights Query Syntax</see>.
-/// </param>
 /// <param name="ClientToken">
 /// Used as an idempotency token, to avoid returning an exception if the service receives the same
 /// request twice because of a network error.
@@ -34,6 +23,12 @@ namespace Com.Amazonaws.Cloudwatchlogs;
 /// If you are updating an existing query definition for the Logs Insights QL or OpenSearch Service PPL
 /// and you omit this parameter, then the updated definition will contain no log groups.
 /// </para>
+/// </param>
+/// <param name="Name">
+/// A name for the query definition. If you are saving numerous query definitions, we recommend that you
+/// name them. This way, you can find the ones you want by using the first part of the name as a filter
+/// in the <c>queryDefinitionNamePrefix</c> parameter of
+/// <see href="https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_DescribeQueryDefinitions.html">DescribeQueryDefinitions</see>.
 /// </param>
 /// <param name="Parameters">
 /// Use this parameter to include specific query parameters as part of your query definition. Query
@@ -60,12 +55,17 @@ namespace Com.Amazonaws.Cloudwatchlogs;
 /// <see href="https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/CWL_AnalyzeLogData_Languages.html">Supported
 /// query languages</see>.
 /// </param>
+/// <param name="QueryString">
+/// The query string to use for this definition. For more information, see
+/// <see href="https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/CWL_QuerySyntax.html">CloudWatch
+/// Logs Insights Query Syntax</see>.
+/// </param>
 public sealed record class PutQueryDefinitionInput(
-    string Name,
-    string QueryString,
     string? ClientToken = null,
     IReadOnlyList<string>? LogGroupNames = null,
+    string? Name = null,
     IReadOnlyList<QueryParameter>? Parameters = null,
     string? QueryDefinitionId = null,
-    global::Com.Amazonaws.Cloudwatchlogs.QueryLanguage? QueryLanguage = null
+    global::Com.Amazonaws.Cloudwatchlogs.QueryLanguage? QueryLanguage = null,
+    string? QueryString = null
 );

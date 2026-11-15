@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Route53.Schemas;
 
 public static partial class GetReusableDelegationSetLimitInputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public global::Com.Amazonaws.Route53.ReusableDelegationSetLimitType? Type { get; set; }
         public string? DelegationSetId { get; set; }
@@ -28,15 +28,10 @@ public static partial class GetReusableDelegationSetLimitInputSchema
                 new(
                     "Type",
                     Target0,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
                             ShapeId.Parse("smithy.api#httpLabel"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
                             Document.From(new Dictionary<string, Document> { })
                         ),
                     ]
@@ -44,7 +39,6 @@ public static partial class GetReusableDelegationSetLimitInputSchema
                 new(
                     "DelegationSetId",
                     Target1,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
@@ -60,10 +54,6 @@ public static partial class GetReusableDelegationSetLimitInputSchema
                                     { "max", Document.From(32m) },
                                 }
                             )
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
                         ),
                     ]
                 ),
@@ -95,9 +85,8 @@ public static partial class GetReusableDelegationSetLimitInputSchema
             Builder builder
         ) =>
             new global::Com.Amazonaws.Route53.GetReusableDelegationSetLimitInput(
-                builder.DelegationSetId
-                    ?? throw new MissingRequiredMemberException("DelegationSetId"),
-                builder.Type ?? throw new MissingRequiredMemberException("Type")
+                builder.DelegationSetId,
+                builder.Type
             );
 
         public override void SerializeMembers<TSerializer>(
@@ -105,7 +94,14 @@ public static partial class GetReusableDelegationSetLimitInputSchema
             ref TSerializer serializer
         )
         {
-            serializer.WriteStringEnum(0, value.Type.Value);
+            if (value.Type is { } value0)
+            {
+                serializer.WriteStringEnum(0, value0.Value);
+            }
+            else
+            {
+                serializer.WriteNull(0);
+            }
             if (value.DelegationSetId is { } value1)
             {
                 serializer.WriteString(1, value1);
@@ -116,7 +112,7 @@ public static partial class GetReusableDelegationSetLimitInputSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

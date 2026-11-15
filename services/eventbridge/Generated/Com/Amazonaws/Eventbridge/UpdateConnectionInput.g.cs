@@ -7,9 +7,6 @@ namespace Com.Amazonaws.Eventbridge;
 /// <summary>
 /// Represents the Smithy structure com.amazonaws.eventbridge#UpdateConnectionInput.
 /// </summary>
-/// <param name="Name">
-/// The name of the connection to update.
-/// </param>
 /// <param name="AuthParameters">
 /// The authorization parameters to use for the connection.
 /// </param>
@@ -45,11 +42,14 @@ namespace Com.Amazonaws.Eventbridge;
 /// view keys</see> in the <i>Key Management Service Developer Guide</i>.
 /// </para>
 /// </param>
+/// <param name="Name">
+/// The name of the connection to update.
+/// </param>
 public sealed record class UpdateConnectionInput(
-    string Name,
     UpdateConnectionAuthRequestParameters? AuthParameters = null,
     ConnectionAuthorizationType? AuthorizationType = null,
     string? Description = null,
     ConnectivityResourceParameters? InvocationConnectivityParameters = null,
-    string? KmsKeyIdentifier = null
+    string? KmsKeyIdentifier = null,
+    string? Name = null
 );

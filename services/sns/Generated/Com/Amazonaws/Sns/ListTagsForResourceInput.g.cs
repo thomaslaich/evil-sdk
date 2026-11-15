@@ -10,4 +10,4 @@ namespace Com.Amazonaws.Sns;
 /// <param name="ResourceArn">
 /// The ARN of the topic for which to list tags.
 /// </param>
-public sealed record class ListTagsForResourceInput(string ResourceArn);
+public sealed record class ListTagsForResourceInput(string? ResourceArn = null);

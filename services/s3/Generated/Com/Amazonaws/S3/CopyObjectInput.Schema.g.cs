@@ -11,7 +11,7 @@ namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class CopyObjectInputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public global::Com.Amazonaws.S3.ObjectCannedACL? ACL { get; set; }
         public string? Bucket { get; set; }
@@ -83,15 +83,10 @@ public static partial class CopyObjectInputSchema
                 new(
                     "Bucket",
                     Target1,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
                             ShapeId.Parse("smithy.api#httpLabel"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
                             Document.From(new Dictionary<string, Document> { })
                         ),
                         new Trait(
@@ -174,7 +169,6 @@ public static partial class CopyObjectInputSchema
                 new(
                     "CopySource",
                     Target8,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
@@ -184,10 +178,6 @@ public static partial class CopyObjectInputSchema
                         new Trait(
                             ShapeId.Parse("smithy.api#pattern"),
                             Document.From("^\\/?.+\\/.+$")
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
                         ),
                         new Trait(
                             ShapeId.Parse("smithy.rules#contextParam"),
@@ -321,7 +311,6 @@ public static partial class CopyObjectInputSchema
                 new(
                     "Key",
                     Target20,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
@@ -333,10 +322,6 @@ public static partial class CopyObjectInputSchema
                             Document.From(
                                 new Dictionary<string, Document> { { "min", Document.From(1m) } }
                             )
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
                         ),
                         new Trait(
                             ShapeId.Parse("smithy.rules#contextParam"),
@@ -856,11 +841,9 @@ public static partial class CopyObjectInputSchema
 
         public override global::Com.Amazonaws.S3.CopyObjectInput Build(Builder builder) =>
             new global::Com.Amazonaws.S3.CopyObjectInput(
-                builder.Bucket ?? throw new MissingRequiredMemberException("Bucket"),
-                builder.CopySource ?? throw new MissingRequiredMemberException("CopySource"),
-                builder.Key ?? throw new MissingRequiredMemberException("Key"),
                 builder.ACL,
                 builder.AnnotationDirective,
+                builder.Bucket,
                 builder.BucketKeyEnabled,
                 builder.CacheControl,
                 builder.ChecksumAlgorithm,
@@ -868,6 +851,7 @@ public static partial class CopyObjectInputSchema
                 builder.ContentEncoding,
                 builder.ContentLanguage,
                 builder.ContentType,
+                builder.CopySource,
                 builder.CopySourceIfMatch,
                 builder.CopySourceIfModifiedSince,
                 builder.CopySourceIfNoneMatch,
@@ -884,6 +868,7 @@ public static partial class CopyObjectInputSchema
                 builder.GrantWriteACP,
                 builder.IfMatch,
                 builder.IfNoneMatch,
+                builder.Key,
                 builder.Metadata,
                 builder.MetadataDirective,
                 builder.ObjectLockEventHold,
@@ -1288,7 +1273,7 @@ public static partial class CopyObjectInputSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

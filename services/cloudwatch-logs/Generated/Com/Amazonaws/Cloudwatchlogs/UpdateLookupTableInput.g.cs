@@ -7,9 +7,6 @@ namespace Com.Amazonaws.Cloudwatchlogs;
 /// <summary>
 /// Represents the Smithy structure com.amazonaws.cloudwatchlogs#UpdateLookupTableInput.
 /// </summary>
-/// <param name="LookupTableArn">
-/// The ARN of the lookup table to update.
-/// </param>
 /// <param name="Description">
 /// An updated description of the lookup table.
 /// </param>
@@ -17,6 +14,9 @@ namespace Com.Amazonaws.Cloudwatchlogs;
 /// The ARN of the KMS key to use to encrypt the lookup table data. You can use this parameter to add,
 /// update, or remove the KMS key. To remove the KMS key and use an Amazon Web Services-owned key
 /// instead, specify an empty string.
+/// </param>
+/// <param name="LookupTableArn">
+/// The ARN of the lookup table to update.
 /// </param>
 /// <param name="QueryId">
 /// <para>
@@ -38,9 +38,9 @@ namespace Com.Amazonaws.Cloudwatchlogs;
 /// </para>
 /// </param>
 public sealed record class UpdateLookupTableInput(
-    string LookupTableArn,
     string? Description = null,
     string? KmsKeyId = null,
+    string? LookupTableArn = null,
     string? QueryId = null,
     string? TableBody = null
 );

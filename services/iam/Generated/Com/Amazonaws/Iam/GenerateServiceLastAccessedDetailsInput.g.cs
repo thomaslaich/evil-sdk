@@ -19,6 +19,6 @@ namespace Com.Amazonaws.Iam;
 /// generates service data.
 /// </param>
 public sealed record class GenerateServiceLastAccessedDetailsInput(
-    string Arn,
+    string? Arn = null,
     AccessAdvisorUsageGranularityType? Granularity = null
 );

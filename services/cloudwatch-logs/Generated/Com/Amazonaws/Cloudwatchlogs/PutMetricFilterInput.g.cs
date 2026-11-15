@@ -9,18 +9,6 @@ namespace Com.Amazonaws.Cloudwatchlogs;
 /// <summary>
 /// Represents the Smithy structure com.amazonaws.cloudwatchlogs#PutMetricFilterInput.
 /// </summary>
-/// <param name="FilterName">
-/// A name for the metric filter.
-/// </param>
-/// <param name="FilterPattern">
-/// A filter pattern for extracting metric data out of ingested log events.
-/// </param>
-/// <param name="LogGroupName">
-/// The name of the log group.
-/// </param>
-/// <param name="MetricTransformations">
-/// A collection of information that defines how metric data gets emitted.
-/// </param>
 /// <param name="ApplyOnTransformedLogs">
 /// <para>
 /// This parameter is valid only for log groups that have an active log transformer. For more
@@ -45,12 +33,24 @@ namespace Com.Amazonaws.Cloudwatchlogs;
 /// <c>@aws.region = "us-east-1"</c> or <c>@aws.account IN ["123456789012", "987654321098"]</c>. Maximum
 /// length: 2000 characters.
 /// </param>
+/// <param name="FilterName">
+/// A name for the metric filter.
+/// </param>
+/// <param name="FilterPattern">
+/// A filter pattern for extracting metric data out of ingested log events.
+/// </param>
+/// <param name="LogGroupName">
+/// The name of the log group.
+/// </param>
+/// <param name="MetricTransformations">
+/// A collection of information that defines how metric data gets emitted.
+/// </param>
 public sealed record class PutMetricFilterInput(
-    string FilterName,
-    string FilterPattern,
-    string LogGroupName,
-    IReadOnlyList<MetricTransformation> MetricTransformations,
     bool? ApplyOnTransformedLogs = null,
     IReadOnlyList<string>? EmitSystemFieldDimensions = null,
-    string? FieldSelectionCriteria = null
+    string? FieldSelectionCriteria = null,
+    string? FilterName = null,
+    string? FilterPattern = null,
+    string? LogGroupName = null,
+    IReadOnlyList<MetricTransformation>? MetricTransformations = null
 );

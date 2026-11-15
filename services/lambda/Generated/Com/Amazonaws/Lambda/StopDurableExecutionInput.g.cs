@@ -14,6 +14,6 @@ namespace Com.Amazonaws.Lambda;
 /// Optional error details explaining why the execution is being stopped.
 /// </param>
 public sealed record class StopDurableExecutionInput(
-    string DurableExecutionArn,
+    string? DurableExecutionArn = null,
     ErrorObject? Error = null
 );

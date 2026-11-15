@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Kinesis.Schemas;
 
 public static partial class UpdateStreamRecordDistributionStrategyInputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? StreamARN { get; set; }
         public string? StreamId { get; set; }
@@ -32,7 +32,6 @@ public static partial class UpdateStreamRecordDistributionStrategyInputSchema
                 new(
                     "StreamARN",
                     Target0,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
@@ -48,10 +47,6 @@ public static partial class UpdateStreamRecordDistributionStrategyInputSchema
                         new Trait(
                             ShapeId.Parse("smithy.api#pattern"),
                             Document.From("^arn:aws.*:kinesis:.*:\\d{12}:stream/\\S+$")
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
                         ),
                         new Trait(
                             ShapeId.Parse("smithy.rules#contextParam"),
@@ -94,18 +89,7 @@ public static partial class UpdateStreamRecordDistributionStrategyInputSchema
                         ),
                     ]
                 ),
-                new(
-                    "RecordDistributionStrategy",
-                    Target2,
-                    isRequired: true,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
-                    ]
-                ),
+                new("RecordDistributionStrategy", Target2),
             ],
             [
                 new Trait(
@@ -132,9 +116,8 @@ public static partial class UpdateStreamRecordDistributionStrategyInputSchema
             Builder builder
         ) =>
             new global::Com.Amazonaws.Kinesis.UpdateStreamRecordDistributionStrategyInput(
-                builder.RecordDistributionStrategy
-                    ?? throw new MissingRequiredMemberException("RecordDistributionStrategy"),
-                builder.StreamARN ?? throw new MissingRequiredMemberException("StreamARN"),
+                builder.RecordDistributionStrategy,
+                builder.StreamARN,
                 builder.StreamId
             );
 
@@ -159,10 +142,17 @@ public static partial class UpdateStreamRecordDistributionStrategyInputSchema
             {
                 serializer.WriteNull(1);
             }
-            serializer.WriteStringEnum(2, value.RecordDistributionStrategy.Value);
+            if (value.RecordDistributionStrategy is { } value2)
+            {
+                serializer.WriteStringEnum(2, value2.Value);
+            }
+            else
+            {
+                serializer.WriteNull(2);
+            }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

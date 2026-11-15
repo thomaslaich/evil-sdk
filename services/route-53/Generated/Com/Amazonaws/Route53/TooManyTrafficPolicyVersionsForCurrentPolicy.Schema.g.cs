@@ -9,7 +9,7 @@ namespace Com.Amazonaws.Route53.Schemas;
 
 public static partial class TooManyTrafficPolicyVersionsForCurrentPolicySchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? Message { get; set; }
     }
@@ -61,7 +61,7 @@ public static partial class TooManyTrafficPolicyVersionsForCurrentPolicySchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

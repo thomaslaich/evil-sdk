@@ -10,6 +10,37 @@ namespace Com.Amazonaws.S3;
 /// <summary>
 /// Represents the Smithy structure com.amazonaws.s3#CreateMultipartUploadInput.
 /// </summary>
+/// <param name="ACL">
+/// <para>
+/// The canned ACL to apply to the object. Amazon S3 supports a set of predefined ACLs, known as
+/// <i>canned ACLs</i>. Each canned ACL has a predefined set of grantees and permissions. For more
+/// information, see
+/// <see href="https://docs.aws.amazon.com/AmazonS3/latest/dev/acl-overview.html#CannedACL">Canned
+/// ACL</see> in the <i>Amazon S3 User Guide</i>.
+/// </para>
+/// <para>
+/// By default, all objects are private. Only the owner has full access control. When uploading an
+/// object, you can grant access permissions to individual Amazon Web Services accounts or to predefined
+/// groups defined by Amazon S3. These permissions are then added to the access control list (ACL) on
+/// the new object. For more information, see
+/// <see href="https://docs.aws.amazon.com/AmazonS3/latest/dev/S3_ACLs_UsingACLs.html">Using ACLs</see>.
+/// One way to grant the permissions using the request headers is to specify a canned ACL with the
+/// <c>x-amz-acl</c> request header.
+/// </para>
+/// <para><b>Note:</b></para>
+/// <list type="bullet">
+/// <item>
+/// <description>
+/// This functionality is not supported for directory buckets.
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// This functionality is not supported for Amazon S3 on Outposts.
+/// </description>
+/// </item>
+/// </list>
+/// </param>
 /// <param name="Bucket">
 /// <para>
 /// The name of the bucket where the multipart upload is initiated and where the object is uploaded.
@@ -50,40 +81,6 @@ namespace Com.Amazonaws.S3;
 /// <see href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/S3onOutposts.html">What is S3 on
 /// Outposts?</see> in the <i>Amazon S3 User Guide</i>.
 /// </para>
-/// </param>
-/// <param name="Key">
-/// Object key for which the multipart upload is to be initiated.
-/// </param>
-/// <param name="ACL">
-/// <para>
-/// The canned ACL to apply to the object. Amazon S3 supports a set of predefined ACLs, known as
-/// <i>canned ACLs</i>. Each canned ACL has a predefined set of grantees and permissions. For more
-/// information, see
-/// <see href="https://docs.aws.amazon.com/AmazonS3/latest/dev/acl-overview.html#CannedACL">Canned
-/// ACL</see> in the <i>Amazon S3 User Guide</i>.
-/// </para>
-/// <para>
-/// By default, all objects are private. Only the owner has full access control. When uploading an
-/// object, you can grant access permissions to individual Amazon Web Services accounts or to predefined
-/// groups defined by Amazon S3. These permissions are then added to the access control list (ACL) on
-/// the new object. For more information, see
-/// <see href="https://docs.aws.amazon.com/AmazonS3/latest/dev/S3_ACLs_UsingACLs.html">Using ACLs</see>.
-/// One way to grant the permissions using the request headers is to specify a canned ACL with the
-/// <c>x-amz-acl</c> request header.
-/// </para>
-/// <para><b>Note:</b></para>
-/// <list type="bullet">
-/// <item>
-/// <description>
-/// This functionality is not supported for directory buckets.
-/// </description>
-/// </item>
-/// <item>
-/// <description>
-/// This functionality is not supported for Amazon S3 on Outposts.
-/// </description>
-/// </item>
-/// </list>
 /// </param>
 /// <param name="BucketKeyEnabled">
 /// <para>
@@ -577,6 +574,9 @@ namespace Com.Amazonaws.S3;
 /// </item>
 /// </list>
 /// </param>
+/// <param name="Key">
+/// Object key for which the multipart upload is to be initiated.
+/// </param>
 /// <param name="Metadata">
 /// A map of metadata to store with the object in S3.
 /// </param>
@@ -800,9 +800,8 @@ namespace Com.Amazonaws.S3;
 /// </para>
 /// </param>
 public sealed record class CreateMultipartUploadInput(
-    string Bucket,
-    string Key,
     ObjectCannedACL? ACL = null,
+    string? Bucket = null,
     bool? BucketKeyEnabled = null,
     string? CacheControl = null,
     global::Com.Amazonaws.S3.ChecksumAlgorithm? ChecksumAlgorithm = null,
@@ -817,6 +816,7 @@ public sealed record class CreateMultipartUploadInput(
     string? GrantRead = null,
     string? GrantReadACP = null,
     string? GrantWriteACP = null,
+    string? Key = null,
     IReadOnlyDictionary<string, string>? Metadata = null,
     global::Com.Amazonaws.S3.ObjectLockEventHold? ObjectLockEventHold = null,
     int? ObjectLockEventHoldDurationDays = null,

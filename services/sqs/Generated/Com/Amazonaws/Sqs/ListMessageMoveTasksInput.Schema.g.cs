@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Sqs.Schemas;
 
 public static partial class ListMessageMoveTasksInputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? SourceArn { get; set; }
         public int? MaxResults { get; set; }
@@ -25,18 +25,7 @@ public static partial class ListMessageMoveTasksInputSchema
         : StructSchema<global::Com.Amazonaws.Sqs.ListMessageMoveTasksInput, Builder>(
             ShapeId.Parse("com.amazonaws.sqs#ListMessageMoveTasksInput"),
             [
-                new(
-                    "SourceArn",
-                    Target0,
-                    isRequired: true,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
-                    ]
-                ),
+                new("SourceArn", Target0),
                 new(
                     "MaxResults",
                     Target1,
@@ -74,8 +63,8 @@ public static partial class ListMessageMoveTasksInputSchema
             Builder builder
         ) =>
             new global::Com.Amazonaws.Sqs.ListMessageMoveTasksInput(
-                builder.SourceArn ?? throw new MissingRequiredMemberException("SourceArn"),
-                builder.MaxResults
+                builder.MaxResults,
+                builder.SourceArn
             );
 
         public override void SerializeMembers<TSerializer>(
@@ -101,7 +90,7 @@ public static partial class ListMessageMoveTasksInputSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

@@ -9,11 +9,6 @@ namespace Com.Amazonaws.Route53;
 /// <summary>
 /// A complex type that contains information about a request to update a health check.
 /// </summary>
-/// <param name="HealthCheckId">
-/// The ID for the health check for which you want detailed information. When you created the health
-/// check, <c>CreateHealthCheck</c> returned the ID in the response, in the <c>HealthCheckId</c>
-/// element.
-/// </param>
 /// <param name="AlarmIdentifier">
 /// A complex type that identifies the CloudWatch alarm that you want Amazon Route 53 health checkers to
 /// use to determine whether the specified health check is healthy.
@@ -181,6 +176,11 @@ namespace Com.Amazonaws.Route53;
 /// <c>Host</c> header, as it does when you specify a value for <c>IPAddress</c>. If the value of
 /// <c>Type</c> is <c>TCP</c>, Route 53 doesn't pass a <c>Host</c> header.
 /// </para>
+/// </param>
+/// <param name="HealthCheckId">
+/// The ID for the health check for which you want detailed information. When you created the health
+/// check, <c>CreateHealthCheck</c> returned the ID in the response, in the <c>HealthCheckId</c>
+/// element.
 /// </param>
 /// <param name="HealthCheckVersion">
 /// <para>
@@ -409,13 +409,13 @@ namespace Com.Amazonaws.Route53;
 /// of <c>Type</c> when you update a health check.)
 /// </param>
 public sealed record class UpdateHealthCheckInput(
-    string HealthCheckId,
     global::Com.Amazonaws.Route53.AlarmIdentifier? AlarmIdentifier = null,
     IReadOnlyList<string>? ChildHealthChecks = null,
     bool? Disabled = null,
     bool? EnableSNI = null,
     int? FailureThreshold = null,
     string? FullyQualifiedDomainName = null,
+    string? HealthCheckId = null,
     long? HealthCheckVersion = null,
     int? HealthThreshold = null,
     string? IPAddress = null,

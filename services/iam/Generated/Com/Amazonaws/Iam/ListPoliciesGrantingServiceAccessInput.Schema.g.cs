@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Iam.Schemas;
 
 public static partial class ListPoliciesGrantingServiceAccessInputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? Marker { get; set; }
         public string? Arn { get; set; }
@@ -50,7 +50,6 @@ public static partial class ListPoliciesGrantingServiceAccessInputSchema
                 new(
                     "Arn",
                     Target1,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
@@ -63,24 +62,9 @@ public static partial class ListPoliciesGrantingServiceAccessInputSchema
                                 }
                             )
                         ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
                     ]
                 ),
-                new(
-                    "ServiceNamespaces",
-                    Target2,
-                    isRequired: true,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
-                    ]
-                ),
+                new("ServiceNamespaces", Target2),
             ],
             [
                 new Trait(
@@ -115,10 +99,9 @@ public static partial class ListPoliciesGrantingServiceAccessInputSchema
             Builder builder
         ) =>
             new global::Com.Amazonaws.Iam.ListPoliciesGrantingServiceAccessInput(
-                builder.Arn ?? throw new MissingRequiredMemberException("Arn"),
+                builder.Arn,
+                builder.Marker,
                 builder.ServiceNamespaces
-                    ?? throw new MissingRequiredMemberException("ServiceNamespaces"),
-                builder.Marker
             );
 
         public override void SerializeMembers<TSerializer>(
@@ -152,7 +135,7 @@ public static partial class ListPoliciesGrantingServiceAccessInputSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

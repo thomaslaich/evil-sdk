@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Kinesis.Schemas;
 
 public static partial class HashKeyRangeSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? StartingHashKey { get; set; }
         public string? EndingHashKey { get; set; }
@@ -102,7 +102,7 @@ public static partial class HashKeyRangeSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

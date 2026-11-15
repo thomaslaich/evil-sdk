@@ -24,7 +24,7 @@ namespace Com.Amazonaws.Kinesis;
 /// <c>DataFreshnessInSeconds</c> can be updated.
 /// </param>
 public sealed record class UpdateChannelInput(
-    string ChannelARN,
+    string? ChannelARN = null,
     ChannelLoggingUpdateInput? LoggingConfiguration = null,
     S3DestinationUpdateInput? S3DestinationConfiguration = null,
     S3TablesDestinationUpdateInput? S3TablesDestinationConfiguration = null

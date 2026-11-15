@@ -12,4 +12,4 @@ namespace Com.Amazonaws.Cloudwatchlogs;
 /// integration, use
 /// <see href="https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_ListIntegrations.html">ListIntegrations</see>
 /// </param>
-public sealed record class GetIntegrationInput(string IntegrationName);
+public sealed record class GetIntegrationInput(string? IntegrationName = null);

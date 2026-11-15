@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Eventbridge.Schemas;
 
 public static partial class ConnectionHttpParametersSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public IReadOnlyList<global::Com.Amazonaws.Eventbridge.ConnectionHeaderParameter>? HeaderParameters { get; set; }
         public IReadOnlyList<global::Com.Amazonaws.Eventbridge.ConnectionQueryStringParameter>? QueryStringParameters { get; set; }
@@ -94,7 +94,7 @@ public static partial class ConnectionHttpParametersSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

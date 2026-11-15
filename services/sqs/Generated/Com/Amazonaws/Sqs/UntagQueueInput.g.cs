@@ -15,4 +15,7 @@ namespace Com.Amazonaws.Sqs;
 /// <param name="TagKeys">
 /// The list of tags to be removed from the specified queue.
 /// </param>
-public sealed record class UntagQueueInput(string QueueUrl, IReadOnlyList<string> TagKeys);
+public sealed record class UntagQueueInput(
+    string? QueueUrl = null,
+    IReadOnlyList<string>? TagKeys = null
+);

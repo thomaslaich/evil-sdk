@@ -10,7 +10,7 @@ namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class CopyObjectResultSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? ETag { get; set; }
         public DateTimeOffset? LastModified { get; set; }
@@ -232,7 +232,7 @@ public static partial class CopyObjectResultSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

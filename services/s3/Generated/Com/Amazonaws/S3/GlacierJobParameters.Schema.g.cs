@@ -10,7 +10,7 @@ namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class GlacierJobParametersSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public global::Com.Amazonaws.S3.Tier? Tier { get; set; }
     }
@@ -58,7 +58,7 @@ public static partial class GlacierJobParametersSchema
             serializer.WriteStringEnum(0, value.Tier.Value);
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

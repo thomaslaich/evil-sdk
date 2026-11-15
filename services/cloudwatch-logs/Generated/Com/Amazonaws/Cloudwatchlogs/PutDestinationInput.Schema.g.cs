@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Cloudwatchlogs.Schemas;
 
 public static partial class PutDestinationInputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? DestinationName { get; set; }
         public string? TargetArn { get; set; }
@@ -30,7 +30,6 @@ public static partial class PutDestinationInputSchema
                 new(
                     "destinationName",
                     Target0,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
@@ -44,16 +43,11 @@ public static partial class PutDestinationInputSchema
                             )
                         ),
                         new Trait(ShapeId.Parse("smithy.api#pattern"), Document.From("^[^:*]*$")),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
                     ]
                 ),
                 new(
                     "targetArn",
                     Target1,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
@@ -61,17 +55,12 @@ public static partial class PutDestinationInputSchema
                             Document.From(
                                 new Dictionary<string, Document> { { "min", Document.From(1m) } }
                             )
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
                         ),
                     ]
                 ),
                 new(
                     "roleArn",
                     Target2,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
@@ -79,10 +68,6 @@ public static partial class PutDestinationInputSchema
                             Document.From(
                                 new Dictionary<string, Document> { { "min", Document.From(1m) } }
                             )
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
                         ),
                     ]
                 ),
@@ -125,11 +110,10 @@ public static partial class PutDestinationInputSchema
             Builder builder
         ) =>
             new global::Com.Amazonaws.Cloudwatchlogs.PutDestinationInput(
-                builder.DestinationName
-                    ?? throw new MissingRequiredMemberException("destinationName"),
-                builder.RoleArn ?? throw new MissingRequiredMemberException("roleArn"),
-                builder.TargetArn ?? throw new MissingRequiredMemberException("targetArn"),
-                builder.Tags
+                builder.DestinationName,
+                builder.RoleArn,
+                builder.Tags,
+                builder.TargetArn
             );
 
         public override void SerializeMembers<TSerializer>(
@@ -171,7 +155,7 @@ public static partial class PutDestinationInputSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

@@ -9,19 +9,6 @@ namespace Com.Amazonaws.Secretsmanager;
 /// <summary>
 /// Represents the Smithy structure com.amazonaws.secretsmanager#CreateSecretInput.
 /// </summary>
-/// <param name="Name">
-/// <para>
-/// The name of the new secret.
-/// </para>
-/// <para>
-/// The secret name can contain ASCII letters, numbers, and the following characters: /_+=.@-
-/// </para>
-/// <para>
-/// Do not end your secret name with a hyphen followed by six characters. If you do so, you risk
-/// confusion and unexpected results when searching for a secret by partial ARN. Secrets Manager
-/// automatically adds a hyphen and six random characters after the secret name at the end of the ARN.
-/// </para>
-/// </param>
 /// <param name="AddReplicaRegions">
 /// A list of Regions and KMS keys to replicate secrets.
 /// </param>
@@ -98,6 +85,19 @@ namespace Com.Amazonaws.Secretsmanager;
 /// If the secret is in a different Amazon Web Services account from the credentials calling the API,
 /// then you can't use <c>aws/secretsmanager</c> to encrypt the secret, and you must create and use a
 /// customer managed KMS key.
+/// </para>
+/// </param>
+/// <param name="Name">
+/// <para>
+/// The name of the new secret.
+/// </para>
+/// <para>
+/// The secret name can contain ASCII letters, numbers, and the following characters: /_+=.@-
+/// </para>
+/// <para>
+/// Do not end your secret name with a hyphen followed by six characters. If you do so, you risk
+/// confusion and unexpected results when searching for a secret by partial ARN. Secrets Manager
+/// automatically adds a hyphen and six random characters after the secret name at the end of the ARN.
 /// </para>
 /// </param>
 /// <param name="SecretBinary">
@@ -179,12 +179,12 @@ namespace Com.Amazonaws.Secretsmanager;
 /// Secrets Manager managed external secrets</see>.
 /// </param>
 public sealed record class CreateSecretInput(
-    string Name,
     IReadOnlyList<ReplicaRegionType>? AddReplicaRegions = null,
     string? ClientRequestToken = null,
     string? Description = null,
     bool? ForceOverwriteReplicaSecret = null,
     string? KmsKeyId = null,
+    string? Name = null,
     byte[]? SecretBinary = null,
     string? SecretString = null,
     IReadOnlyList<global::Com.Amazonaws.Secretsmanager.Tag>? Tags = null,

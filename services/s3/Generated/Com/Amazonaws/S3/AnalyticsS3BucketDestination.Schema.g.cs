@@ -10,7 +10,7 @@ namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class AnalyticsS3BucketDestinationSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public global::Com.Amazonaws.S3.AnalyticsS3ExportFileFormat? Format { get; set; }
         public string? BucketAccountId { get; set; }
@@ -116,7 +116,7 @@ public static partial class AnalyticsS3BucketDestinationSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

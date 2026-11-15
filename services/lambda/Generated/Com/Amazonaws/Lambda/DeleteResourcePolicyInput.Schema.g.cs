@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Lambda.Schemas;
 
 public static partial class DeleteResourcePolicyInputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? ResourceArn { get; set; }
         public string? RevisionId { get; set; }
@@ -28,7 +28,6 @@ public static partial class DeleteResourcePolicyInputSchema
                 new(
                     "ResourceArn",
                     Target0,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
@@ -50,10 +49,6 @@ public static partial class DeleteResourcePolicyInputSchema
                             Document.From(
                                 "^arn:(aws[a-zA-Z-]*)?:lambda:(eusc-)?[a-z]{2}((-gov)|(-iso([a-z]?)))?-[a-z]+-\\d{1}:\\d{12}:(runtime/|function:)[a-zA-Z0-9-_]+(:(\\$LATEST(\\.PUBLISHED)?|[a-zA-Z0-9-_])+)?$"
                             )
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
                         ),
                     ]
                 ),
@@ -112,7 +107,7 @@ public static partial class DeleteResourcePolicyInputSchema
             Builder builder
         ) =>
             new global::Com.Amazonaws.Lambda.DeleteResourcePolicyInput(
-                builder.ResourceArn ?? throw new MissingRequiredMemberException("ResourceArn"),
+                builder.ResourceArn,
                 builder.RevisionId
             );
 
@@ -139,7 +134,7 @@ public static partial class DeleteResourcePolicyInputSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

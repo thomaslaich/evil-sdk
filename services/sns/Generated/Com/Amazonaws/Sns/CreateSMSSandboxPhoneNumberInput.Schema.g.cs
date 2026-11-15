@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Sns.Schemas;
 
 public static partial class CreateSMSSandboxPhoneNumberInputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? PhoneNumber { get; set; }
         public global::Com.Amazonaws.Sns.LanguageCodeString? LanguageCode { get; set; }
@@ -28,7 +28,6 @@ public static partial class CreateSMSSandboxPhoneNumberInputSchema
                 new(
                     "PhoneNumber",
                     Target0,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
@@ -44,10 +43,6 @@ public static partial class CreateSMSSandboxPhoneNumberInputSchema
                         new Trait(
                             ShapeId.Parse("smithy.api#pattern"),
                             Document.From("^(\\+[0-9]{8,}|[0-9]{0,9})$")
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
                         ),
                         new Trait(
                             ShapeId.Parse("smithy.api#sensitive"),
@@ -78,8 +73,8 @@ public static partial class CreateSMSSandboxPhoneNumberInputSchema
             Builder builder
         ) =>
             new global::Com.Amazonaws.Sns.CreateSMSSandboxPhoneNumberInput(
-                builder.PhoneNumber ?? throw new MissingRequiredMemberException("PhoneNumber"),
-                builder.LanguageCode
+                builder.LanguageCode,
+                builder.PhoneNumber
             );
 
         public override void SerializeMembers<TSerializer>(
@@ -105,7 +100,7 @@ public static partial class CreateSMSSandboxPhoneNumberInputSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

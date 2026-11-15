@@ -8,13 +8,6 @@ namespace Com.Amazonaws.Route53;
 /// Lists all the private hosted zones that a specified VPC is associated with, regardless of which
 /// Amazon Web Services account created the hosted zones.
 /// </summary>
-/// <param name="VPCId">
-/// The ID of the Amazon VPC that you want to list hosted zones for.
-/// </param>
-/// <param name="VPCRegion">
-/// For the Amazon VPC that you specified for <c>VPCId</c>, the Amazon Web Services Region that you
-/// created the VPC in.
-/// </param>
 /// <param name="MaxItems">
 /// (Optional) The maximum number of hosted zones that you want Amazon Route 53 to return. If the
 /// specified VPC is associated with more than <c>MaxItems</c> hosted zones, the response includes a
@@ -34,9 +27,16 @@ namespace Com.Amazonaws.Route53;
 /// to get.
 /// </para>
 /// </param>
+/// <param name="VPCId">
+/// The ID of the Amazon VPC that you want to list hosted zones for.
+/// </param>
+/// <param name="VPCRegion">
+/// For the Amazon VPC that you specified for <c>VPCId</c>, the Amazon Web Services Region that you
+/// created the VPC in.
+/// </param>
 public sealed record class ListHostedZonesByVPCInput(
-    string VPCId,
-    global::Com.Amazonaws.Route53.VPCRegion VPCRegion,
     int? MaxItems = null,
-    string? NextToken = null
+    string? NextToken = null,
+    string? VPCId = null,
+    global::Com.Amazonaws.Route53.VPCRegion? VPCRegion = null
 );

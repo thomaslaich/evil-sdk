@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Cloudwatchlogs.Schemas;
 
 public static partial class DisassociateSourceFromS3TableIntegrationInputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? Identifier { get; set; }
     }
@@ -32,7 +32,6 @@ public static partial class DisassociateSourceFromS3TableIntegrationInputSchema
                 new(
                     "identifier",
                     Target0,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
@@ -44,10 +43,6 @@ public static partial class DisassociateSourceFromS3TableIntegrationInputSchema
                                     { "max", Document.From(2048m) },
                                 }
                             )
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
                         ),
                     ]
                 ),
@@ -77,7 +72,7 @@ public static partial class DisassociateSourceFromS3TableIntegrationInputSchema
             Builder builder
         ) =>
             new global::Com.Amazonaws.Cloudwatchlogs.DisassociateSourceFromS3TableIntegrationInput(
-                builder.Identifier ?? throw new MissingRequiredMemberException("identifier")
+                builder.Identifier
             );
 
         public override void SerializeMembers<TSerializer>(
@@ -95,7 +90,7 @@ public static partial class DisassociateSourceFromS3TableIntegrationInputSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

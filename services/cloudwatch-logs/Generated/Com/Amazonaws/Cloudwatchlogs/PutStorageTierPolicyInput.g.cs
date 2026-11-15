@@ -12,5 +12,5 @@ namespace Com.Amazonaws.Cloudwatchlogs;
 /// storage costs by moving log data to the appropriate tier based on access frequency.
 /// </param>
 public sealed record class PutStorageTierPolicyInput(
-    global::Com.Amazonaws.Cloudwatchlogs.StorageTier StorageTier
+    global::Com.Amazonaws.Cloudwatchlogs.StorageTier? StorageTier = null
 );

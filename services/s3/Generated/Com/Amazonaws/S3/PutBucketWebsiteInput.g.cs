@@ -10,9 +10,6 @@ namespace Com.Amazonaws.S3;
 /// <param name="Bucket">
 /// The bucket name.
 /// </param>
-/// <param name="WebsiteConfiguration">
-/// Container for the request.
-/// </param>
 /// <param name="ChecksumAlgorithm">
 /// <para>
 /// Indicates the algorithm used to create the checksum for the request when you use the SDK. This
@@ -44,10 +41,13 @@ namespace Com.Amazonaws.S3;
 /// actual owner of the bucket, the request fails with the HTTP status code <c>403 Forbidden</c> (access
 /// denied).
 /// </param>
+/// <param name="WebsiteConfiguration">
+/// Container for the request.
+/// </param>
 public sealed record class PutBucketWebsiteInput(
-    string Bucket,
-    global::Com.Amazonaws.S3.WebsiteConfiguration WebsiteConfiguration,
+    string? Bucket = null,
     global::Com.Amazonaws.S3.ChecksumAlgorithm? ChecksumAlgorithm = null,
     string? ContentMD5 = null,
-    string? ExpectedBucketOwner = null
+    string? ExpectedBucketOwner = null,
+    global::Com.Amazonaws.S3.WebsiteConfiguration? WebsiteConfiguration = null
 );

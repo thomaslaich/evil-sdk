@@ -10,7 +10,7 @@ namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class GetBucketMetadataTableConfigurationOutputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public global::Com.Amazonaws.S3.GetBucketMetadataTableConfigurationResult? GetBucketMetadataTableConfigurationResult { get; set; }
     }
@@ -79,7 +79,7 @@ public static partial class GetBucketMetadataTableConfigurationOutputSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

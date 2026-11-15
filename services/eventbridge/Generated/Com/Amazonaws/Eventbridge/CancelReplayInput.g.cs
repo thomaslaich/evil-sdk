@@ -10,4 +10,4 @@ namespace Com.Amazonaws.Eventbridge;
 /// <param name="ReplayName">
 /// The name of the replay to cancel.
 /// </param>
-public sealed record class CancelReplayInput(string ReplayName);
+public sealed record class CancelReplayInput(string? ReplayName = null);

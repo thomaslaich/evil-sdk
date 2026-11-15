@@ -36,4 +36,4 @@ namespace Com.Amazonaws.Lambda;
 /// limited to 64 characters in length.
 /// </para>
 /// </param>
-public sealed record class DeleteFunctionCodeSigningConfigInput(string FunctionName);
+public sealed record class DeleteFunctionCodeSigningConfigInput(string? FunctionName = null);

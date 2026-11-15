@@ -30,7 +30,7 @@ namespace Com.Amazonaws.Cloudwatchlogs;
 /// </para>
 /// </param>
 public sealed record class PutDestinationPolicyInput(
-    string AccessPolicy,
-    string DestinationName,
+    string? AccessPolicy = null,
+    string? DestinationName = null,
     bool? ForceUpdate = null
 );

@@ -53,7 +53,7 @@ namespace Com.Amazonaws.Kinesis;
 /// The name of the stream to put the data record into.
 /// </param>
 public sealed record class PutRecordInput(
-    byte[] Data,
+    byte[]? Data = null,
     bool? DryRun = null,
     string? ExplicitHashKey = null,
     string? PartitionKey = null,

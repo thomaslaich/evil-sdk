@@ -9,9 +9,6 @@ namespace Com.Amazonaws.Cloudwatchlogs;
 /// <summary>
 /// Represents the Smithy structure com.amazonaws.cloudwatchlogs#ListAggregateLogGroupSummariesInput.
 /// </summary>
-/// <param name="GroupBy">
-/// Specifies how to group the log groups in the summary.
-/// </param>
 /// <param name="AccountIdentifiers">
 /// When <c>includeLinkedAccounts</c> is set to <c>true</c>, use this parameter to specify the list of
 /// accounts to search. You can specify as many as 20 account IDs in the array.
@@ -19,6 +16,9 @@ namespace Com.Amazonaws.Cloudwatchlogs;
 /// <param name="DataSources">
 /// Filters the results by data source characteristics to include only log groups associated with the
 /// specified data sources.
+/// </param>
+/// <param name="GroupBy">
+/// Specifies how to group the log groups in the summary.
 /// </param>
 /// <param name="IncludeLinkedAccounts">
 /// <para>
@@ -72,9 +72,9 @@ namespace Com.Amazonaws.Cloudwatchlogs;
 /// </para>
 /// </param>
 public sealed record class ListAggregateLogGroupSummariesInput(
-    ListAggregateLogGroupSummariesGroupBy GroupBy,
     IReadOnlyList<string>? AccountIdentifiers = null,
     IReadOnlyList<DataSourceFilter>? DataSources = null,
+    ListAggregateLogGroupSummariesGroupBy? GroupBy = null,
     bool? IncludeLinkedAccounts = null,
     int? Limit = null,
     global::Com.Amazonaws.Cloudwatchlogs.LogGroupClass? LogGroupClass = null,

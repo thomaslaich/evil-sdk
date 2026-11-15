@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Iam.Schemas;
 
 public static partial class InlinePolicyIdentifierTypeSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? PolicyName { get; set; }
         public global::Com.Amazonaws.Iam.AttachmentType? AttachmentType { get; set; }
@@ -142,7 +142,7 @@ public static partial class InlinePolicyIdentifierTypeSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

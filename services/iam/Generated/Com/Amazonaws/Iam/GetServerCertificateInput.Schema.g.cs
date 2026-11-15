@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Iam.Schemas;
 
 public static partial class GetServerCertificateInputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? ServerCertificateName { get; set; }
     }
@@ -27,7 +27,6 @@ public static partial class GetServerCertificateInputSchema
                 new(
                     "ServerCertificateName",
                     Target0,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
@@ -43,10 +42,6 @@ public static partial class GetServerCertificateInputSchema
                         new Trait(
                             ShapeId.Parse("smithy.api#pattern"),
                             Document.From("^[\\w+=,.@-]+$")
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
                         ),
                     ]
                 ),
@@ -72,11 +67,7 @@ public static partial class GetServerCertificateInputSchema
 
         public override global::Com.Amazonaws.Iam.GetServerCertificateInput Build(
             Builder builder
-        ) =>
-            new global::Com.Amazonaws.Iam.GetServerCertificateInput(
-                builder.ServerCertificateName
-                    ?? throw new MissingRequiredMemberException("ServerCertificateName")
-            );
+        ) => new global::Com.Amazonaws.Iam.GetServerCertificateInput(builder.ServerCertificateName);
 
         public override void SerializeMembers<TSerializer>(
             global::Com.Amazonaws.Iam.GetServerCertificateInput value,
@@ -93,7 +84,7 @@ public static partial class GetServerCertificateInputSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

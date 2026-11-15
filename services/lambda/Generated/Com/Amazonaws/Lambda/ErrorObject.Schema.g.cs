@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Lambda.Schemas;
 
 public static partial class ErrorObjectSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? ErrorMessage { get; set; }
         public string? ErrorType { get; set; }
@@ -129,7 +129,7 @@ public static partial class ErrorObjectSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

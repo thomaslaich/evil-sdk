@@ -13,4 +13,7 @@ namespace Com.Amazonaws.Route53;
 /// <param name="Name">
 /// A string used to identify a key-signing key (KSK).
 /// </param>
-public sealed record class DeleteKeySigningKeyInput(string HostedZoneId, string Name);
+public sealed record class DeleteKeySigningKeyInput(
+    string? HostedZoneId = null,
+    string? Name = null
+);

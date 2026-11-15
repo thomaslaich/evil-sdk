@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Dynamodb.Schemas;
 
 public static partial class DescribeTableInputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? TableName { get; set; }
     }
@@ -27,7 +27,6 @@ public static partial class DescribeTableInputSchema
                 new(
                     "TableName",
                     Target0,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
@@ -39,10 +38,6 @@ public static partial class DescribeTableInputSchema
                                     { "max", Document.From(1024m) },
                                 }
                             )
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
                         ),
                         new Trait(
                             ShapeId.Parse("smithy.rules#contextParam"),
@@ -72,9 +67,7 @@ public static partial class DescribeTableInputSchema
         public override Builder CreateTypedBuilder() => new();
 
         public override global::Com.Amazonaws.Dynamodb.DescribeTableInput Build(Builder builder) =>
-            new global::Com.Amazonaws.Dynamodb.DescribeTableInput(
-                builder.TableName ?? throw new MissingRequiredMemberException("TableName")
-            );
+            new global::Com.Amazonaws.Dynamodb.DescribeTableInput(builder.TableName);
 
         public override void SerializeMembers<TSerializer>(
             global::Com.Amazonaws.Dynamodb.DescribeTableInput value,
@@ -91,7 +84,7 @@ public static partial class DescribeTableInputSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

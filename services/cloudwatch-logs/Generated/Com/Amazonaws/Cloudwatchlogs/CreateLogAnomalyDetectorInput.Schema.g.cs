@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Cloudwatchlogs.Schemas;
 
 public static partial class CreateLogAnomalyDetectorInputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public IReadOnlyList<string>? LogGroupArnList { get; set; }
         public string? DetectorName { get; set; }
@@ -30,18 +30,7 @@ public static partial class CreateLogAnomalyDetectorInputSchema
         : StructSchema<global::Com.Amazonaws.Cloudwatchlogs.CreateLogAnomalyDetectorInput, Builder>(
             ShapeId.Parse("com.amazonaws.cloudwatchlogs#CreateLogAnomalyDetectorInput"),
             [
-                new(
-                    "logGroupArnList",
-                    Target0,
-                    isRequired: true,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
-                    ]
-                ),
+                new("logGroupArnList", Target0),
                 new(
                     "detectorName",
                     Target1,
@@ -162,13 +151,12 @@ public static partial class CreateLogAnomalyDetectorInputSchema
             Builder builder
         ) =>
             new global::Com.Amazonaws.Cloudwatchlogs.CreateLogAnomalyDetectorInput(
-                builder.LogGroupArnList
-                    ?? throw new MissingRequiredMemberException("logGroupArnList"),
                 builder.AnomalyVisibilityTime,
                 builder.DetectorName,
                 builder.EvaluationFrequency,
                 builder.FilterPattern,
                 builder.KmsKeyId,
+                builder.LogGroupArnList,
                 builder.Tags
             );
 
@@ -235,7 +223,7 @@ public static partial class CreateLogAnomalyDetectorInputSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

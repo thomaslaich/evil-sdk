@@ -14,6 +14,6 @@ namespace Com.Amazonaws.Lambda;
 /// The result data from the successful callback operation. Maximum size is 256 KB.
 /// </param>
 public sealed record class SendDurableExecutionCallbackSuccessInput(
-    string CallbackId,
+    string? CallbackId = null,
     byte[]? Result = null
 );

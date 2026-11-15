@@ -10,4 +10,4 @@ namespace Com.Amazonaws.Cloudwatchlogs;
 /// <param name="Identifier">
 /// The unique identifier of the association to remove between the data source and S3 Table Integration.
 /// </param>
-public sealed record class DisassociateSourceFromS3TableIntegrationInput(string Identifier);
+public sealed record class DisassociateSourceFromS3TableIntegrationInput(string? Identifier = null);

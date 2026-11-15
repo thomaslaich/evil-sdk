@@ -24,6 +24,6 @@ namespace Com.Amazonaws.Iam;
 /// specified instance profile.
 /// </param>
 public sealed record class UntagInstanceProfileInput(
-    string InstanceProfileName,
-    IReadOnlyList<string> TagKeys
+    string? InstanceProfileName = null,
+    IReadOnlyList<string>? TagKeys = null
 );

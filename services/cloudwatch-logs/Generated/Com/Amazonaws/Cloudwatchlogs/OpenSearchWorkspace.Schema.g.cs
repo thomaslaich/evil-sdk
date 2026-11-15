@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Cloudwatchlogs.Schemas;
 
 public static partial class OpenSearchWorkspaceSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? WorkspaceId { get; set; }
         public global::Com.Amazonaws.Cloudwatchlogs.OpenSearchResourceStatus? Status { get; set; }
@@ -95,7 +95,7 @@ public static partial class OpenSearchWorkspaceSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

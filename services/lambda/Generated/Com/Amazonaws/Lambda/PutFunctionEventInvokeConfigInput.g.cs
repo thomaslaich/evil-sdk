@@ -7,35 +7,6 @@ namespace Com.Amazonaws.Lambda;
 /// <summary>
 /// Represents the Smithy structure com.amazonaws.lambda#PutFunctionEventInvokeConfigInput.
 /// </summary>
-/// <param name="FunctionName">
-/// <para>
-/// The name or ARN of the Lambda function, version, or alias.
-/// </para>
-/// <para>
-/// <b>Name formats</b>
-/// </para>
-/// <list type="bullet">
-/// <item>
-/// <description>
-/// <b>Function name</b> - <c>my-function</c> (name-only), <c>my-function:v1</c> (with alias).
-/// </description>
-/// </item>
-/// <item>
-/// <description>
-/// <b>Function ARN</b> - <c>arn:aws:lambda:us-west-2:123456789012:function:my-function</c>.
-/// </description>
-/// </item>
-/// <item>
-/// <description>
-/// <b>Partial ARN</b> - <c>123456789012:function:my-function</c>.
-/// </description>
-/// </item>
-/// </list>
-/// <para>
-/// You can append a version number or alias to any of the formats. The length constraint applies only
-/// to the full ARN. If you specify only the function name, it is limited to 64 characters in length.
-/// </para>
-/// </param>
 /// <param name="DestinationConfig">
 /// <para>
 /// A destination for events after they have been sent to a function for processing.
@@ -75,6 +46,35 @@ namespace Com.Amazonaws.Lambda;
 /// successful invocations, use another destination type.
 /// </para>
 /// </param>
+/// <param name="FunctionName">
+/// <para>
+/// The name or ARN of the Lambda function, version, or alias.
+/// </para>
+/// <para>
+/// <b>Name formats</b>
+/// </para>
+/// <list type="bullet">
+/// <item>
+/// <description>
+/// <b>Function name</b> - <c>my-function</c> (name-only), <c>my-function:v1</c> (with alias).
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <b>Function ARN</b> - <c>arn:aws:lambda:us-west-2:123456789012:function:my-function</c>.
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <b>Partial ARN</b> - <c>123456789012:function:my-function</c>.
+/// </description>
+/// </item>
+/// </list>
+/// <para>
+/// You can append a version number or alias to any of the formats. The length constraint applies only
+/// to the full ARN. If you specify only the function name, it is limited to 64 characters in length.
+/// </para>
+/// </param>
 /// <param name="MaximumEventAgeInSeconds">
 /// The maximum age of a request that Lambda sends to a function for processing.
 /// </param>
@@ -85,8 +85,8 @@ namespace Com.Amazonaws.Lambda;
 /// A version number or alias name.
 /// </param>
 public sealed record class PutFunctionEventInvokeConfigInput(
-    string FunctionName,
     global::Com.Amazonaws.Lambda.DestinationConfig? DestinationConfig = null,
+    string? FunctionName = null,
     int? MaximumEventAgeInSeconds = null,
     int? MaximumRetryAttempts = null,
     string? Qualifier = null

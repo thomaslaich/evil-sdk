@@ -27,4 +27,7 @@ namespace Com.Amazonaws.Iam;
 /// Resource Names (ARNs)</see> in the <i>Amazon Web Services General Reference</i>.
 /// </para>
 /// </param>
-public sealed record class DetachGroupPolicyInput(string GroupName, string PolicyArn);
+public sealed record class DetachGroupPolicyInput(
+    string? GroupName = null,
+    string? PolicyArn = null
+);

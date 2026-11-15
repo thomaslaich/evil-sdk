@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Dynamodb.Schemas;
 
 public static partial class ImportTableInputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? ClientToken { get; set; }
         public global::Com.Amazonaws.Dynamodb.S3BucketSource? S3BucketSource { get; set; }
@@ -41,44 +41,11 @@ public static partial class ImportTableInputSchema
                         new Trait(ShapeId.Parse("smithy.api#pattern"), Document.From("^[^\\$]+$")),
                     ]
                 ),
-                new(
-                    "S3BucketSource",
-                    Target1,
-                    isRequired: true,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
-                    ]
-                ),
-                new(
-                    "InputFormat",
-                    Target2,
-                    isRequired: true,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
-                    ]
-                ),
+                new("S3BucketSource", Target1),
+                new("InputFormat", Target2),
                 new("InputFormatOptions", Target3),
                 new("InputCompressionType", Target4),
-                new(
-                    "TableCreationParameters",
-                    Target5,
-                    isRequired: true,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
-                    ]
-                ),
+                new("TableCreationParameters", Target5),
             ],
             [
                 new Trait(
@@ -113,14 +80,12 @@ public static partial class ImportTableInputSchema
 
         public override global::Com.Amazonaws.Dynamodb.ImportTableInput Build(Builder builder) =>
             new global::Com.Amazonaws.Dynamodb.ImportTableInput(
-                builder.InputFormat ?? throw new MissingRequiredMemberException("InputFormat"),
-                builder.S3BucketSource
-                    ?? throw new MissingRequiredMemberException("S3BucketSource"),
-                builder.TableCreationParameters
-                    ?? throw new MissingRequiredMemberException("TableCreationParameters"),
                 builder.ClientToken,
                 builder.InputCompressionType,
-                builder.InputFormatOptions
+                builder.InputFormat,
+                builder.InputFormatOptions,
+                builder.S3BucketSource,
+                builder.TableCreationParameters
             );
 
         public override void SerializeMembers<TSerializer>(
@@ -144,7 +109,14 @@ public static partial class ImportTableInputSchema
             {
                 serializer.WriteNull(1);
             }
-            serializer.WriteStringEnum(2, value.InputFormat.Value);
+            if (value.InputFormat is { } value2)
+            {
+                serializer.WriteStringEnum(2, value2.Value);
+            }
+            else
+            {
+                serializer.WriteNull(2);
+            }
             if (value.InputFormatOptions is { } value3)
             {
                 serializer.WriteStruct(3, value3, InputFormatOptionsSchema.Schema);
@@ -171,7 +143,7 @@ public static partial class ImportTableInputSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

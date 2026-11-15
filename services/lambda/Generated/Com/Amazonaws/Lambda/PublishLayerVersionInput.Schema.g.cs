@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Lambda.Schemas;
 
 public static partial class PublishLayerVersionInputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? LayerName { get; set; }
         public string? Description { get; set; }
@@ -32,7 +32,6 @@ public static partial class PublishLayerVersionInputSchema
                 new(
                     "LayerName",
                     Target0,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
@@ -55,10 +54,6 @@ public static partial class PublishLayerVersionInputSchema
                                 "^(arn:(aws[a-zA-Z-]*)?:lambda:(eusc-)?[a-z]{2}((-gov)|(-iso([a-z]?)))?-[a-z]+-\\d{1}:\\d{12}:layer:[a-zA-Z0-9-_]+)|[a-zA-Z0-9-_]+$"
                             )
                         ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
                     ]
                 ),
                 new(
@@ -78,18 +73,7 @@ public static partial class PublishLayerVersionInputSchema
                         ),
                     ]
                 ),
-                new(
-                    "Content",
-                    Target2,
-                    isRequired: true,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
-                    ]
-                ),
+                new("Content", Target2),
                 new("CompatibleArchitectures", Target3),
                 new("CompatibleRuntimes", Target4),
                 new(
@@ -156,11 +140,11 @@ public static partial class PublishLayerVersionInputSchema
             Builder builder
         ) =>
             new global::Com.Amazonaws.Lambda.PublishLayerVersionInput(
-                builder.Content ?? throw new MissingRequiredMemberException("Content"),
-                builder.LayerName ?? throw new MissingRequiredMemberException("LayerName"),
                 builder.CompatibleArchitectures,
                 builder.CompatibleRuntimes,
+                builder.Content,
                 builder.Description,
+                builder.LayerName,
                 builder.LicenseInfo
             );
 
@@ -219,7 +203,7 @@ public static partial class PublishLayerVersionInputSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Iam.Schemas;
 
 public static partial class ListEntitiesForPolicyInputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? PolicyArn { get; set; }
         public global::Com.Amazonaws.Iam.EntityType? EntityFilter { get; set; }
@@ -32,7 +32,6 @@ public static partial class ListEntitiesForPolicyInputSchema
                 new(
                     "PolicyArn",
                     Target0,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
@@ -44,10 +43,6 @@ public static partial class ListEntitiesForPolicyInputSchema
                                     { "max", Document.From(2048m) },
                                 }
                             )
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
                         ),
                     ]
                 ),
@@ -154,11 +149,11 @@ public static partial class ListEntitiesForPolicyInputSchema
             Builder builder
         ) =>
             new global::Com.Amazonaws.Iam.ListEntitiesForPolicyInput(
-                builder.PolicyArn ?? throw new MissingRequiredMemberException("PolicyArn"),
                 builder.EntityFilter,
                 builder.Marker,
                 builder.MaxItems,
                 builder.PathPrefix,
+                builder.PolicyArn,
                 builder.PolicyUsageFilter
             );
 
@@ -217,7 +212,7 @@ public static partial class ListEntitiesForPolicyInputSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

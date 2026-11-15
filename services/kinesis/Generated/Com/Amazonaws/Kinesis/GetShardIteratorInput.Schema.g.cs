@@ -11,7 +11,7 @@ namespace Com.Amazonaws.Kinesis.Schemas;
 
 public static partial class GetShardIteratorInputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? StreamName { get; set; }
         public string? ShardId { get; set; }
@@ -56,7 +56,6 @@ public static partial class GetShardIteratorInputSchema
                 new(
                     "ShardId",
                     Target1,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
@@ -73,24 +72,9 @@ public static partial class GetShardIteratorInputSchema
                             ShapeId.Parse("smithy.api#pattern"),
                             Document.From("^[a-zA-Z0-9_.-]+$")
                         ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
                     ]
                 ),
-                new(
-                    "ShardIteratorType",
-                    Target2,
-                    isRequired: true,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
-                    ]
-                ),
+                new("ShardIteratorType", Target2),
                 new(
                     "StartingSequenceNumber",
                     Target3,
@@ -218,10 +202,9 @@ public static partial class GetShardIteratorInputSchema
             Builder builder
         ) =>
             new global::Com.Amazonaws.Kinesis.GetShardIteratorInput(
-                builder.ShardId ?? throw new MissingRequiredMemberException("ShardId"),
-                builder.ShardIteratorType
-                    ?? throw new MissingRequiredMemberException("ShardIteratorType"),
                 builder.DryRun,
+                builder.ShardId,
+                builder.ShardIteratorType,
                 builder.StartingSequenceNumber,
                 builder.StreamARN,
                 builder.StreamId,
@@ -250,7 +233,14 @@ public static partial class GetShardIteratorInputSchema
             {
                 serializer.WriteNull(1);
             }
-            serializer.WriteStringEnum(2, value.ShardIteratorType.Value);
+            if (value.ShardIteratorType is { } value2)
+            {
+                serializer.WriteStringEnum(2, value2.Value);
+            }
+            else
+            {
+                serializer.WriteNull(2);
+            }
             if (value.StartingSequenceNumber is { } value3)
             {
                 serializer.WriteString(3, value3);
@@ -293,7 +283,7 @@ public static partial class GetShardIteratorInputSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

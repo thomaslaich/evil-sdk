@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Route53.Schemas;
 
 public static partial class GetTrafficPolicyInputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? Id { get; set; }
         public int? Version { get; set; }
@@ -28,7 +28,6 @@ public static partial class GetTrafficPolicyInputSchema
                 new(
                     "Id",
                     Target0,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
@@ -45,16 +44,11 @@ public static partial class GetTrafficPolicyInputSchema
                                 }
                             )
                         ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
                     ]
                 ),
                 new(
                     "Version",
                     Target1,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
@@ -74,10 +68,6 @@ public static partial class GetTrafficPolicyInputSchema
                                     { "max", Document.From(1000m) },
                                 }
                             )
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
                         ),
                     ]
                 ),
@@ -105,11 +95,7 @@ public static partial class GetTrafficPolicyInputSchema
 
         public override global::Com.Amazonaws.Route53.GetTrafficPolicyInput Build(
             Builder builder
-        ) =>
-            new global::Com.Amazonaws.Route53.GetTrafficPolicyInput(
-                builder.Id ?? throw new MissingRequiredMemberException("Id"),
-                builder.Version.GetValueOrDefault()
-            );
+        ) => new global::Com.Amazonaws.Route53.GetTrafficPolicyInput(builder.Id, builder.Version);
 
         public override void SerializeMembers<TSerializer>(
             global::Com.Amazonaws.Route53.GetTrafficPolicyInput value,
@@ -124,10 +110,17 @@ public static partial class GetTrafficPolicyInputSchema
             {
                 serializer.WriteNull(0);
             }
-            serializer.WriteInteger(1, value.Version);
+            if (value.Version is { } value1)
+            {
+                serializer.WriteInteger(1, value1);
+            }
+            else
+            {
+                serializer.WriteNull(1);
+            }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

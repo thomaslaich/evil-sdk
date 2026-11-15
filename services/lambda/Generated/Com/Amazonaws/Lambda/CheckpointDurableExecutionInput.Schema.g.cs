@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Lambda.Schemas;
 
 public static partial class CheckpointDurableExecutionInputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? DurableExecutionArn { get; set; }
         public string? CheckpointToken { get; set; }
@@ -30,7 +30,6 @@ public static partial class CheckpointDurableExecutionInputSchema
                 new(
                     "DurableExecutionArn",
                     Target0,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
@@ -53,16 +52,11 @@ public static partial class CheckpointDurableExecutionInputSchema
                                 "^arn:([a-zA-Z0-9-]+):lambda:([a-zA-Z0-9-]+):(\\d{12}):function:([a-zA-Z0-9_-]+):(\\$LATEST(?:\\.PUBLISHED)?|[0-9]+)/durable-execution/([a-zA-Z0-9_-]+)/([a-zA-Z0-9_-]+)$"
                             )
                         ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
                     ]
                 ),
                 new(
                     "CheckpointToken",
                     Target1,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
@@ -78,10 +72,6 @@ public static partial class CheckpointDurableExecutionInputSchema
                         new Trait(
                             ShapeId.Parse("smithy.api#pattern"),
                             Document.From("^[A-Za-z0-9+/]+={0,2}$")
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
                         ),
                     ]
                 ),
@@ -147,11 +137,9 @@ public static partial class CheckpointDurableExecutionInputSchema
             Builder builder
         ) =>
             new global::Com.Amazonaws.Lambda.CheckpointDurableExecutionInput(
-                builder.CheckpointToken
-                    ?? throw new MissingRequiredMemberException("CheckpointToken"),
-                builder.DurableExecutionArn
-                    ?? throw new MissingRequiredMemberException("DurableExecutionArn"),
+                builder.CheckpointToken,
                 builder.ClientToken,
+                builder.DurableExecutionArn,
                 builder.Updates
             );
 
@@ -194,7 +182,7 @@ public static partial class CheckpointDurableExecutionInputSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

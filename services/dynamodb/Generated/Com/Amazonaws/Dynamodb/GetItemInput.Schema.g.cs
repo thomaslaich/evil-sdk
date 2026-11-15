@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Dynamodb.Schemas;
 
 public static partial class GetItemInputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? TableName { get; set; }
         public IReadOnlyDictionary<
@@ -36,7 +36,6 @@ public static partial class GetItemInputSchema
                 new(
                     "TableName",
                     Target0,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
@@ -50,10 +49,6 @@ public static partial class GetItemInputSchema
                             )
                         ),
                         new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.rules#contextParam"),
                             Document.From(
                                 new Dictionary<string, Document>
@@ -64,18 +59,7 @@ public static partial class GetItemInputSchema
                         ),
                     ]
                 ),
-                new(
-                    "Key",
-                    Target1,
-                    isRequired: true,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
-                    ]
-                ),
+                new("Key", Target1),
                 new("AttributesToGet", Target2),
                 new(
                     "ConsistentRead",
@@ -133,13 +117,13 @@ public static partial class GetItemInputSchema
 
         public override global::Com.Amazonaws.Dynamodb.GetItemInput Build(Builder builder) =>
             new global::Com.Amazonaws.Dynamodb.GetItemInput(
-                builder.Key ?? throw new MissingRequiredMemberException("Key"),
-                builder.TableName ?? throw new MissingRequiredMemberException("TableName"),
                 builder.AttributesToGet,
                 builder.ConsistentRead,
                 builder.ExpressionAttributeNames,
+                builder.Key,
                 builder.ProjectionExpression,
-                builder.ReturnConsumedCapacity
+                builder.ReturnConsumedCapacity,
+                builder.TableName
             );
 
         public override void SerializeMembers<TSerializer>(
@@ -205,7 +189,7 @@ public static partial class GetItemInputSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

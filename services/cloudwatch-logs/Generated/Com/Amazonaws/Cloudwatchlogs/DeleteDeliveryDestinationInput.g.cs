@@ -13,4 +13,4 @@ namespace Com.Amazonaws.Cloudwatchlogs;
 /// <see href="https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_DescribeDeliveryDestinations.html">DescribeDeliveryDestinations</see>
 /// operation.
 /// </param>
-public sealed record class DeleteDeliveryDestinationInput(string Name);
+public sealed record class DeleteDeliveryDestinationInput(string? Name = null);

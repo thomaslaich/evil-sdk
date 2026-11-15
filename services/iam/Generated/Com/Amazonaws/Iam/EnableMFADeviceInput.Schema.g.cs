@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Iam.Schemas;
 
 public static partial class EnableMFADeviceInputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? UserName { get; set; }
         public string? SerialNumber { get; set; }
@@ -30,7 +30,6 @@ public static partial class EnableMFADeviceInputSchema
                 new(
                     "UserName",
                     Target0,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
@@ -47,16 +46,11 @@ public static partial class EnableMFADeviceInputSchema
                             ShapeId.Parse("smithy.api#pattern"),
                             Document.From("^[\\w+=,.@-]+$")
                         ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
                     ]
                 ),
                 new(
                     "SerialNumber",
                     Target1,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
@@ -73,16 +67,11 @@ public static partial class EnableMFADeviceInputSchema
                             ShapeId.Parse("smithy.api#pattern"),
                             Document.From("^[\\w+=/:,.@-]+$")
                         ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
                     ]
                 ),
                 new(
                     "AuthenticationCode1",
                     Target2,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
@@ -96,16 +85,11 @@ public static partial class EnableMFADeviceInputSchema
                             )
                         ),
                         new Trait(ShapeId.Parse("smithy.api#pattern"), Document.From("^[\\d]+$")),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
                     ]
                 ),
                 new(
                     "AuthenticationCode2",
                     Target3,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
@@ -119,10 +103,6 @@ public static partial class EnableMFADeviceInputSchema
                             )
                         ),
                         new Trait(ShapeId.Parse("smithy.api#pattern"), Document.From("^[\\d]+$")),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
                     ]
                 ),
             ],
@@ -159,12 +139,10 @@ public static partial class EnableMFADeviceInputSchema
 
         public override global::Com.Amazonaws.Iam.EnableMFADeviceInput Build(Builder builder) =>
             new global::Com.Amazonaws.Iam.EnableMFADeviceInput(
-                builder.AuthenticationCode1
-                    ?? throw new MissingRequiredMemberException("AuthenticationCode1"),
-                builder.AuthenticationCode2
-                    ?? throw new MissingRequiredMemberException("AuthenticationCode2"),
-                builder.SerialNumber ?? throw new MissingRequiredMemberException("SerialNumber"),
-                builder.UserName ?? throw new MissingRequiredMemberException("UserName")
+                builder.AuthenticationCode1,
+                builder.AuthenticationCode2,
+                builder.SerialNumber,
+                builder.UserName
             );
 
         public override void SerializeMembers<TSerializer>(
@@ -206,7 +184,7 @@ public static partial class EnableMFADeviceInputSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

@@ -55,8 +55,8 @@ namespace Com.Amazonaws.Kinesis;
 /// The name of the stream for which to start encrypting records.
 /// </param>
 public sealed record class StartStreamEncryptionInput(
-    global::Com.Amazonaws.Kinesis.EncryptionType EncryptionType,
-    string KeyId,
+    global::Com.Amazonaws.Kinesis.EncryptionType? EncryptionType = null,
+    string? KeyId = null,
     string? StreamARN = null,
     string? StreamId = null,
     string? StreamName = null

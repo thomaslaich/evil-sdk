@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Sns.Schemas;
 
 public static partial class PlatformApplicationSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? PlatformApplicationArn { get; set; }
         public IReadOnlyDictionary<string, string>? Attributes { get; set; }
@@ -70,7 +70,7 @@ public static partial class PlatformApplicationSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

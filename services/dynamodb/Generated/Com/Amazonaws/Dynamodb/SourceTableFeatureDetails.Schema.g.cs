@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Dynamodb.Schemas;
 
 public static partial class SourceTableFeatureDetailsSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public IReadOnlyList<global::Com.Amazonaws.Dynamodb.LocalSecondaryIndexInfo>? LocalSecondaryIndexes { get; set; }
         public IReadOnlyList<global::Com.Amazonaws.Dynamodb.GlobalSecondaryIndexInfo>? GlobalSecondaryIndexes { get; set; }
@@ -133,7 +133,7 @@ public static partial class SourceTableFeatureDetailsSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

@@ -7,6 +7,10 @@ namespace Com.Amazonaws.Iam;
 /// <summary>
 /// Represents the Smithy structure com.amazonaws.iam#GetRoleTemplateVersionInput.
 /// </summary>
+/// <param name="MinorVersion">
+/// The minor version of the role template to retrieve. If you do not specify a minor version, the
+/// service returns the template's default minor version.
+/// </param>
 /// <param name="TemplateArn">
 /// <para>
 /// The Amazon Resource Name (ARN) of the role template whose version you want to retrieve.
@@ -17,11 +21,7 @@ namespace Com.Amazonaws.Iam;
 /// Resource Names (ARNs)</see> in the <i>Amazon Web Services General Reference</i>.
 /// </para>
 /// </param>
-/// <param name="MinorVersion">
-/// The minor version of the role template to retrieve. If you do not specify a minor version, the
-/// service returns the template's default minor version.
-/// </param>
 public sealed record class GetRoleTemplateVersionInput(
-    string TemplateArn,
-    int? MinorVersion = null
+    int? MinorVersion = null,
+    string? TemplateArn = null
 );

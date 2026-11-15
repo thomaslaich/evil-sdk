@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Dynamodb.Schemas;
 
 public static partial class DescribeContinuousBackupsInputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? TableName { get; set; }
     }
@@ -27,7 +27,6 @@ public static partial class DescribeContinuousBackupsInputSchema
                 new(
                     "TableName",
                     Target0,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
@@ -39,10 +38,6 @@ public static partial class DescribeContinuousBackupsInputSchema
                                     { "max", Document.From(1024m) },
                                 }
                             )
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
                         ),
                         new Trait(
                             ShapeId.Parse("smithy.rules#contextParam"),
@@ -73,10 +68,7 @@ public static partial class DescribeContinuousBackupsInputSchema
 
         public override global::Com.Amazonaws.Dynamodb.DescribeContinuousBackupsInput Build(
             Builder builder
-        ) =>
-            new global::Com.Amazonaws.Dynamodb.DescribeContinuousBackupsInput(
-                builder.TableName ?? throw new MissingRequiredMemberException("TableName")
-            );
+        ) => new global::Com.Amazonaws.Dynamodb.DescribeContinuousBackupsInput(builder.TableName);
 
         public override void SerializeMembers<TSerializer>(
             global::Com.Amazonaws.Dynamodb.DescribeContinuousBackupsInput value,
@@ -93,7 +85,7 @@ public static partial class DescribeContinuousBackupsInputSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

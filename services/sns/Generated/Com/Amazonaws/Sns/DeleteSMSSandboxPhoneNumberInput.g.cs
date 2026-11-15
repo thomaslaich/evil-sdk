@@ -10,4 +10,4 @@ namespace Com.Amazonaws.Sns;
 /// <param name="PhoneNumber">
 /// The destination phone number to delete.
 /// </param>
-public sealed record class DeleteSMSSandboxPhoneNumberInput(string PhoneNumber);
+public sealed record class DeleteSMSSandboxPhoneNumberInput(string? PhoneNumber = null);

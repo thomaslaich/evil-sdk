@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Cloudwatchlogs.Schemas;
 
 public static partial class StopQueryInputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? QueryId { get; set; }
     }
@@ -27,7 +27,6 @@ public static partial class StopQueryInputSchema
                 new(
                     "queryId",
                     Target0,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
@@ -39,10 +38,6 @@ public static partial class StopQueryInputSchema
                                     { "max", Document.From(256m) },
                                 }
                             )
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
                         ),
                     ]
                 ),
@@ -68,10 +63,7 @@ public static partial class StopQueryInputSchema
 
         public override global::Com.Amazonaws.Cloudwatchlogs.StopQueryInput Build(
             Builder builder
-        ) =>
-            new global::Com.Amazonaws.Cloudwatchlogs.StopQueryInput(
-                builder.QueryId ?? throw new MissingRequiredMemberException("queryId")
-            );
+        ) => new global::Com.Amazonaws.Cloudwatchlogs.StopQueryInput(builder.QueryId);
 
         public override void SerializeMembers<TSerializer>(
             global::Com.Amazonaws.Cloudwatchlogs.StopQueryInput value,
@@ -88,7 +80,7 @@ public static partial class StopQueryInputSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

@@ -7,9 +7,6 @@ namespace Com.Amazonaws.Iam;
 /// <summary>
 /// Represents the Smithy structure com.amazonaws.iam#GetDelegationRequestInput.
 /// </summary>
-/// <param name="DelegationRequestId">
-/// The unique identifier of the delegation request to retrieve.
-/// </param>
 /// <param name="DelegationPermissionCheck">
 /// <para>
 /// Specifies whether to perform a permission check for the delegation request.
@@ -25,7 +22,10 @@ namespace Com.Amazonaws.Iam;
 /// details.
 /// </para>
 /// </param>
+/// <param name="DelegationRequestId">
+/// The unique identifier of the delegation request to retrieve.
+/// </param>
 public sealed record class GetDelegationRequestInput(
-    string DelegationRequestId,
-    bool? DelegationPermissionCheck = null
+    bool? DelegationPermissionCheck = null,
+    string? DelegationRequestId = null
 );

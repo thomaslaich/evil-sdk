@@ -11,7 +11,7 @@ namespace Com.Amazonaws.Secretsmanager.Schemas;
 
 public static partial class SecretValueEntrySchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? ARN { get; set; }
         public string? Name { get; set; }
@@ -237,7 +237,7 @@ public static partial class SecretValueEntrySchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

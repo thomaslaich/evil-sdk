@@ -8,6 +8,9 @@ namespace Com.Amazonaws.Route53;
 /// A complex type that contains information about the traffic policy that you want to create a new
 /// version for.
 /// </summary>
+/// <param name="Comment">
+/// The comment that you specified in the <c>CreateTrafficPolicyVersion</c> request, if any.
+/// </param>
 /// <param name="Document">
 /// The definition of this version of the traffic policy, in JSON format. You specified the JSON in the
 /// <c>CreateTrafficPolicyVersion</c> request. For more information about the JSON format, see
@@ -16,11 +19,8 @@ namespace Com.Amazonaws.Route53;
 /// <param name="Id">
 /// The ID of the traffic policy for which you want to create a new version.
 /// </param>
-/// <param name="Comment">
-/// The comment that you specified in the <c>CreateTrafficPolicyVersion</c> request, if any.
-/// </param>
 public sealed record class CreateTrafficPolicyVersionInput(
-    string Document,
-    string Id,
-    string? Comment = null
+    string? Comment = null,
+    string? Document = null,
+    string? Id = null
 );

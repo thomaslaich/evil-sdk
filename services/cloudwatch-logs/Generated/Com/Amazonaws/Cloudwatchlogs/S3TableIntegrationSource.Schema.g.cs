@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Cloudwatchlogs.Schemas;
 
 public static partial class S3TableIntegrationSourceSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? Identifier { get; set; }
         public global::Com.Amazonaws.Cloudwatchlogs.DataSource? DataSource { get; set; }
@@ -191,7 +191,7 @@ public static partial class S3TableIntegrationSourceSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

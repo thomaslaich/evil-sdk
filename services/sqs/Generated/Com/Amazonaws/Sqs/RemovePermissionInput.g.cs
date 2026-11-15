@@ -18,4 +18,4 @@ namespace Com.Amazonaws.Sqs;
 /// Queue URLs and names are case-sensitive.
 /// </para>
 /// </param>
-public sealed record class RemovePermissionInput(string Label, string QueueUrl);
+public sealed record class RemovePermissionInput(string? Label = null, string? QueueUrl = null);

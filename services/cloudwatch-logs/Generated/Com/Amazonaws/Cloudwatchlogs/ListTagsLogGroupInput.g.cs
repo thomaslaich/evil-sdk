@@ -10,4 +10,4 @@ namespace Com.Amazonaws.Cloudwatchlogs;
 /// <param name="LogGroupName">
 /// The name of the log group.
 /// </param>
-public sealed record class ListTagsLogGroupInput(string LogGroupName);
+public sealed record class ListTagsLogGroupInput(string? LogGroupName = null);

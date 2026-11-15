@@ -11,22 +11,6 @@ namespace Com.Amazonaws.Cloudwatchlogs;
 /// The name of S3 bucket for the exported log data. The bucket must be in the same Amazon Web Services
 /// Region.
 /// </param>
-/// <param name="From">
-/// The start time of the range for the request, expressed as the number of milliseconds after <c>Jan 1,
-/// 1970 00:00:00 UTC</c>. Events with a timestamp earlier than this time are not exported.
-/// </param>
-/// <param name="LogGroupName">
-/// The name of the log group.
-/// </param>
-/// <param name="To">
-/// <para>
-/// The end time of the range for the request, expressed as the number of milliseconds after <c>Jan 1,
-/// 1970 00:00:00 UTC</c>. Events with a timestamp later than this time are not exported.
-/// </para>
-/// <para>
-/// You must specify a time that is not earlier than when this log group was created.
-/// </para>
-/// </param>
 /// <param name="DestinationPrefix">
 /// <para>
 /// The prefix used as the start of the key for every object exported. If you don't specify a value, the
@@ -37,6 +21,13 @@ namespace Com.Amazonaws.Cloudwatchlogs;
 /// name is a sequence of Unicode characters with UTF-8 encoding, and can be up to 1,024 bytes.
 /// </para>
 /// </param>
+/// <param name="From">
+/// The start time of the range for the request, expressed as the number of milliseconds after <c>Jan 1,
+/// 1970 00:00:00 UTC</c>. Events with a timestamp earlier than this time are not exported.
+/// </param>
+/// <param name="LogGroupName">
+/// The name of the log group.
+/// </param>
 /// <param name="LogStreamNamePrefix">
 /// Export only log streams that match the provided prefix. If you don't specify a value, no prefix
 /// filter is applied.
@@ -44,12 +35,21 @@ namespace Com.Amazonaws.Cloudwatchlogs;
 /// <param name="TaskName">
 /// The name of the export task.
 /// </param>
+/// <param name="To">
+/// <para>
+/// The end time of the range for the request, expressed as the number of milliseconds after <c>Jan 1,
+/// 1970 00:00:00 UTC</c>. Events with a timestamp later than this time are not exported.
+/// </para>
+/// <para>
+/// You must specify a time that is not earlier than when this log group was created.
+/// </para>
+/// </param>
 public sealed record class CreateExportTaskInput(
-    string Destination,
-    long From,
-    string LogGroupName,
-    long To,
+    string? Destination = null,
     string? DestinationPrefix = null,
+    long? From = null,
+    string? LogGroupName = null,
     string? LogStreamNamePrefix = null,
-    string? TaskName = null
+    string? TaskName = null,
+    long? To = null
 );

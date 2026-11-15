@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Sts.Schemas;
 
 public static partial class AssumeRoleInputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? RoleArn { get; set; }
         public string? RoleSessionName { get; set; }
@@ -37,7 +37,6 @@ public static partial class AssumeRoleInputSchema
                 new(
                     "RoleArn",
                     Target0,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
@@ -56,16 +55,11 @@ public static partial class AssumeRoleInputSchema
                                 "^[\\u0009\\u000A\\u000D\\u0020-\\u007E\\u0085\\u00A0-\\uD7FF\\uE000-\\uFFFD\\u10000-\\u10FFFF]+$"
                             )
                         ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
                     ]
                 ),
                 new(
                     "RoleSessionName",
                     Target1,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
@@ -81,10 +75,6 @@ public static partial class AssumeRoleInputSchema
                         new Trait(
                             ShapeId.Parse("smithy.api#pattern"),
                             Document.From("^[\\w+=,.@-]*$")
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
                         ),
                     ]
                 ),
@@ -302,15 +292,14 @@ public static partial class AssumeRoleInputSchema
 
         public override global::Com.Amazonaws.Sts.AssumeRoleInput Build(Builder builder) =>
             new global::Com.Amazonaws.Sts.AssumeRoleInput(
-                builder.RoleArn ?? throw new MissingRequiredMemberException("RoleArn"),
-                builder.RoleSessionName
-                    ?? throw new MissingRequiredMemberException("RoleSessionName"),
                 builder.DurationSeconds,
                 builder.ExternalId,
                 builder.MinimumSessionTokenSize,
                 builder.Policy,
                 builder.PolicyArns,
                 builder.ProvidedContexts,
+                builder.RoleArn,
+                builder.RoleSessionName,
                 builder.SerialNumber,
                 builder.SourceIdentity,
                 builder.Tags,
@@ -429,7 +418,7 @@ public static partial class AssumeRoleInputSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

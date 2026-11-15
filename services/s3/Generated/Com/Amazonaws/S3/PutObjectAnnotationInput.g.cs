@@ -25,9 +25,6 @@ namespace Com.Amazonaws.S3;
 /// <param name="Bucket">
 /// The name of the bucket that contains the object.
 /// </param>
-/// <param name="Key">
-/// The object key.
-/// </param>
 /// <param name="ChecksumAlgorithm">
 /// The checksum algorithm to use. Supported values: <c>CRC32</c>, <c>CRC32C</c>, <c>CRC64NVME</c>,
 /// <c>SHA1</c>, <c>SHA256</c>, <c>SHA512</c>, <c>MD5</c>, <c>XXHASH64</c>, <c>XXHASH3</c>,
@@ -70,6 +67,9 @@ namespace Com.Amazonaws.S3;
 /// The account ID of the expected bucket owner. If the bucket is owned by a different account, the
 /// request fails with an HTTP 403 (Access Denied) error.
 /// </param>
+/// <param name="Key">
+/// The object key.
+/// </param>
 /// <param name="ObjectIfMatch">
 /// If specified, the operation only succeeds if the object's ETag matches the provided value.
 /// </param>
@@ -77,10 +77,9 @@ namespace Com.Amazonaws.S3;
 /// The version ID of the object to attach the annotation to.
 /// </param>
 public sealed record class PutObjectAnnotationInput(
-    string AnnotationName,
-    Stream AnnotationPayload,
-    string Bucket,
-    string Key,
+    string? AnnotationName = null,
+    Stream? AnnotationPayload = null,
+    string? Bucket = null,
     global::Com.Amazonaws.S3.ChecksumAlgorithm? ChecksumAlgorithm = null,
     string? ChecksumCRC32 = null,
     string? ChecksumCRC32C = null,
@@ -94,6 +93,7 @@ public sealed record class PutObjectAnnotationInput(
     string? ChecksumXXHASH64 = null,
     string? ContentMD5 = null,
     string? ExpectedBucketOwner = null,
+    string? Key = null,
     string? ObjectIfMatch = null,
     global::Com.Amazonaws.S3.RequestPayer? RequestPayer = null,
     string? VersionId = null

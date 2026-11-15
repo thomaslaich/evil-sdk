@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Dynamodb.Schemas;
 
 public static partial class DescribeExportInputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? ExportArn { get; set; }
     }
@@ -27,7 +27,6 @@ public static partial class DescribeExportInputSchema
                 new(
                     "ExportArn",
                     Target0,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
@@ -39,10 +38,6 @@ public static partial class DescribeExportInputSchema
                                     { "max", Document.From(1024m) },
                                 }
                             )
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
                         ),
                         new Trait(
                             ShapeId.Parse("smithy.rules#contextParam"),
@@ -72,9 +67,7 @@ public static partial class DescribeExportInputSchema
         public override Builder CreateTypedBuilder() => new();
 
         public override global::Com.Amazonaws.Dynamodb.DescribeExportInput Build(Builder builder) =>
-            new global::Com.Amazonaws.Dynamodb.DescribeExportInput(
-                builder.ExportArn ?? throw new MissingRequiredMemberException("ExportArn")
-            );
+            new global::Com.Amazonaws.Dynamodb.DescribeExportInput(builder.ExportArn);
 
         public override void SerializeMembers<TSerializer>(
             global::Com.Amazonaws.Dynamodb.DescribeExportInput value,
@@ -91,7 +84,7 @@ public static partial class DescribeExportInputSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

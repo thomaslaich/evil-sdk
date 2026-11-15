@@ -10,4 +10,4 @@ namespace Com.Amazonaws.Sns;
 /// <param name="SubscriptionArn">
 /// The ARN of the subscription to be deleted.
 /// </param>
-public sealed record class UnsubscribeInput(string SubscriptionArn);
+public sealed record class UnsubscribeInput(string? SubscriptionArn = null);

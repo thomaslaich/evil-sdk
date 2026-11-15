@@ -9,35 +9,6 @@ namespace Com.Amazonaws.Lambda;
 /// <summary>
 /// Represents the Smithy structure com.amazonaws.lambda#UpdateFunctionConfigurationInput.
 /// </summary>
-/// <param name="FunctionName">
-/// <para>
-/// The name or ARN of the Lambda function.
-/// </para>
-/// <para>
-/// <b>Name formats</b>
-/// </para>
-/// <list type="bullet">
-/// <item>
-/// <description>
-/// <b>Function name</b> – <c>my-function</c>.
-/// </description>
-/// </item>
-/// <item>
-/// <description>
-/// <b>Function ARN</b> – <c>arn:aws:lambda:us-west-2:123456789012:function:my-function</c>.
-/// </description>
-/// </item>
-/// <item>
-/// <description>
-/// <b>Partial ARN</b> – <c>123456789012:function:my-function</c>.
-/// </description>
-/// </item>
-/// </list>
-/// <para>
-/// The length constraint applies only to the full ARN. If you specify only the function name, it is
-/// limited to 64 characters in length.
-/// </para>
-/// </param>
 /// <param name="CapacityProviderConfig">
 /// Configuration for the capacity provider that manages compute resources for Lambda functions.
 /// </param>
@@ -68,6 +39,35 @@ namespace Com.Amazonaws.Lambda;
 /// </param>
 /// <param name="FileSystemConfigs">
 /// Connection settings for an Amazon EFS file system or an Amazon S3 Files file system.
+/// </param>
+/// <param name="FunctionName">
+/// <para>
+/// The name or ARN of the Lambda function.
+/// </para>
+/// <para>
+/// <b>Name formats</b>
+/// </para>
+/// <list type="bullet">
+/// <item>
+/// <description>
+/// <b>Function name</b> – <c>my-function</c>.
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <b>Function ARN</b> – <c>arn:aws:lambda:us-west-2:123456789012:function:my-function</c>.
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <b>Partial ARN</b> – <c>123456789012:function:my-function</c>.
+/// </description>
+/// </item>
+/// </list>
+/// <para>
+/// The length constraint applies only to the full ARN. If you specify only the function name, it is
+/// limited to 64 characters in length.
+/// </para>
 /// </param>
 /// <param name="Handler">
 /// The name of the method within your code that Lambda calls to run your function. Handler is required
@@ -192,7 +192,6 @@ namespace Com.Amazonaws.Lambda;
 /// function to access resources in a VPC</see>.
 /// </param>
 public sealed record class UpdateFunctionConfigurationInput(
-    string FunctionName,
     global::Com.Amazonaws.Lambda.CapacityProviderConfig? CapacityProviderConfig = null,
     global::Com.Amazonaws.Lambda.DeadLetterConfig? DeadLetterConfig = null,
     string? Description = null,
@@ -200,6 +199,7 @@ public sealed record class UpdateFunctionConfigurationInput(
     global::Com.Amazonaws.Lambda.Environment? Environment = null,
     global::Com.Amazonaws.Lambda.EphemeralStorage? EphemeralStorage = null,
     IReadOnlyList<FileSystemConfig>? FileSystemConfigs = null,
+    string? FunctionName = null,
     string? Handler = null,
     global::Com.Amazonaws.Lambda.ImageConfig? ImageConfig = null,
     string? KMSKeyArn = null,

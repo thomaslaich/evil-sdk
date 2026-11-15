@@ -9,18 +9,6 @@ namespace Com.Amazonaws.Sns;
 /// <summary>
 /// Input for CreateTopic action.
 /// </summary>
-/// <param name="Name">
-/// <para>
-/// The name of the topic you want to create.
-/// </para>
-/// <para>
-/// Constraints: Topic names must be made up of only uppercase and lowercase ASCII letters, numbers,
-/// underscores, and hyphens, and must be between 1 and 256 characters long.
-/// </para>
-/// <para>
-/// For a FIFO (first-in-first-out) topic, the name must end with the <c>.fifo</c> suffix.
-/// </para>
-/// </param>
 /// <param name="Attributes">
 /// <para>
 /// A map of attributes with their corresponding values.
@@ -333,6 +321,18 @@ namespace Com.Amazonaws.Sns;
 /// Length Constraints: Maximum length of 30,720.
 /// </para>
 /// </param>
+/// <param name="Name">
+/// <para>
+/// The name of the topic you want to create.
+/// </para>
+/// <para>
+/// Constraints: Topic names must be made up of only uppercase and lowercase ASCII letters, numbers,
+/// underscores, and hyphens, and must be between 1 and 256 characters long.
+/// </para>
+/// <para>
+/// For a FIFO (first-in-first-out) topic, the name must end with the <c>.fifo</c> suffix.
+/// </para>
+/// </param>
 /// <param name="Tags">
 /// <para>
 /// The list of tags to add to a new topic.
@@ -343,8 +343,8 @@ namespace Com.Amazonaws.Sns;
 /// </para>
 /// </param>
 public sealed record class CreateTopicInput(
-    string Name,
     IReadOnlyDictionary<string, string>? Attributes = null,
     string? DataProtectionPolicy = null,
+    string? Name = null,
     IReadOnlyList<global::Com.Amazonaws.Sns.Tag>? Tags = null
 );

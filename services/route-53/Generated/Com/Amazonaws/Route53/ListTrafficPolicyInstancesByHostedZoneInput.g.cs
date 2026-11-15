@@ -44,7 +44,7 @@ namespace Com.Amazonaws.Route53;
 /// </para>
 /// </param>
 public sealed record class ListTrafficPolicyInstancesByHostedZoneInput(
-    string HostedZoneId,
+    string? HostedZoneId = null,
     int? MaxItems = null,
     string? TrafficPolicyInstanceNameMarker = null,
     RRType? TrafficPolicyInstanceTypeMarker = null

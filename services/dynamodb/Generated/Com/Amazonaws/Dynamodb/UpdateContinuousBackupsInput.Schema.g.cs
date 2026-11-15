@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Dynamodb.Schemas;
 
 public static partial class UpdateContinuousBackupsInputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? TableName { get; set; }
         public global::Com.Amazonaws.Dynamodb.PointInTimeRecoverySpecification? PointInTimeRecoverySpecification { get; set; }
@@ -28,7 +28,6 @@ public static partial class UpdateContinuousBackupsInputSchema
                 new(
                     "TableName",
                     Target0,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
@@ -42,10 +41,6 @@ public static partial class UpdateContinuousBackupsInputSchema
                             )
                         ),
                         new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.rules#contextParam"),
                             Document.From(
                                 new Dictionary<string, Document>
@@ -56,18 +51,7 @@ public static partial class UpdateContinuousBackupsInputSchema
                         ),
                     ]
                 ),
-                new(
-                    "PointInTimeRecoverySpecification",
-                    Target1,
-                    isRequired: true,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
-                    ]
-                ),
+                new("PointInTimeRecoverySpecification", Target1),
             ],
             [
                 new Trait(
@@ -94,9 +78,8 @@ public static partial class UpdateContinuousBackupsInputSchema
             Builder builder
         ) =>
             new global::Com.Amazonaws.Dynamodb.UpdateContinuousBackupsInput(
-                builder.PointInTimeRecoverySpecification
-                    ?? throw new MissingRequiredMemberException("PointInTimeRecoverySpecification"),
-                builder.TableName ?? throw new MissingRequiredMemberException("TableName")
+                builder.PointInTimeRecoverySpecification,
+                builder.TableName
             );
 
         public override void SerializeMembers<TSerializer>(
@@ -122,7 +105,7 @@ public static partial class UpdateContinuousBackupsInputSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

@@ -9,7 +9,7 @@ namespace Com.Amazonaws.Route53.Schemas;
 
 public static partial class HostedZoneFeaturesSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public global::Com.Amazonaws.Route53.AcceleratedRecoveryStatus? AcceleratedRecoveryStatus { get; set; }
         public global::Com.Amazonaws.Route53.HostedZoneFailureReasons? FailureReasons { get; set; }
@@ -67,7 +67,7 @@ public static partial class HostedZoneFeaturesSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

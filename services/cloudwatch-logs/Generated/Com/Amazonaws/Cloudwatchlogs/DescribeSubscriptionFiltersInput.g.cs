@@ -7,21 +7,21 @@ namespace Com.Amazonaws.Cloudwatchlogs;
 /// <summary>
 /// Represents the Smithy structure com.amazonaws.cloudwatchlogs#DescribeSubscriptionFiltersInput.
 /// </summary>
-/// <param name="LogGroupName">
-/// The name of the log group.
-/// </param>
 /// <param name="FilterNamePrefix">
 /// The prefix to match. If you don't specify a value, no prefix filter is applied.
 /// </param>
 /// <param name="Limit">
 /// The maximum number of items returned. If you don't specify a value, the default is up to 50 items.
 /// </param>
+/// <param name="LogGroupName">
+/// The name of the log group.
+/// </param>
 /// <param name="NextToken">
 /// The token for the next set of items to return. (You received this token from a previous call.)
 /// </param>
 public sealed record class DescribeSubscriptionFiltersInput(
-    string LogGroupName,
     string? FilterNamePrefix = null,
     int? Limit = null,
+    string? LogGroupName = null,
     string? NextToken = null
 );

@@ -7,9 +7,6 @@ namespace Com.Amazonaws.Iam;
 /// <summary>
 /// Represents the Smithy structure com.amazonaws.iam#UpdateRoleInput.
 /// </summary>
-/// <param name="RoleName">
-/// The name of the role that you want to modify.
-/// </param>
 /// <param name="Description">
 /// The new description that you want to apply to the specified role.
 /// </param>
@@ -35,8 +32,11 @@ namespace Com.Amazonaws.Iam;
 /// subject to the specified maximum session duration.
 /// </para>
 /// </param>
+/// <param name="RoleName">
+/// The name of the role that you want to modify.
+/// </param>
 public sealed record class UpdateRoleInput(
-    string RoleName,
     string? Description = null,
-    int? MaxSessionDuration = null
+    int? MaxSessionDuration = null,
+    string? RoleName = null
 );

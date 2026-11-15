@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Secretsmanager.Schemas;
 
 public static partial class CreateSecretInputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? Name { get; set; }
         public string? ClientRequestToken { get; set; }
@@ -36,7 +36,6 @@ public static partial class CreateSecretInputSchema
                 new(
                     "Name",
                     Target0,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
@@ -48,10 +47,6 @@ public static partial class CreateSecretInputSchema
                                     { "max", Document.From(512m) },
                                 }
                             )
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
                         ),
                     ]
                 ),
@@ -237,12 +232,12 @@ public static partial class CreateSecretInputSchema
             Builder builder
         ) =>
             new global::Com.Amazonaws.Secretsmanager.CreateSecretInput(
-                builder.Name ?? throw new MissingRequiredMemberException("Name"),
                 builder.AddReplicaRegions,
                 builder.ClientRequestToken,
                 builder.Description,
                 builder.ForceOverwriteReplicaSecret,
                 builder.KmsKeyId,
+                builder.Name,
                 builder.SecretBinary,
                 builder.SecretString,
                 builder.Tags,
@@ -340,7 +335,7 @@ public static partial class CreateSecretInputSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

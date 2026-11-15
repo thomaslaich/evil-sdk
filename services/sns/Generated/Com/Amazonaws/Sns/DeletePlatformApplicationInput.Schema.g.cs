@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Sns.Schemas;
 
 public static partial class DeletePlatformApplicationInputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? PlatformApplicationArn { get; set; }
     }
@@ -23,20 +23,7 @@ public static partial class DeletePlatformApplicationInputSchema
     private sealed class GeneratedSchema()
         : StructSchema<global::Com.Amazonaws.Sns.DeletePlatformApplicationInput, Builder>(
             ShapeId.Parse("com.amazonaws.sns#DeletePlatformApplicationInput"),
-            [
-                new(
-                    "PlatformApplicationArn",
-                    Target0,
-                    isRequired: true,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
-                    ]
-                ),
-            ],
+            [new("PlatformApplicationArn", Target0)],
             [
                 new Trait(
                     ShapeId.Parse("smithy.api#input"),
@@ -57,7 +44,6 @@ public static partial class DeletePlatformApplicationInputSchema
         ) =>
             new global::Com.Amazonaws.Sns.DeletePlatformApplicationInput(
                 builder.PlatformApplicationArn
-                    ?? throw new MissingRequiredMemberException("PlatformApplicationArn")
             );
 
         public override void SerializeMembers<TSerializer>(
@@ -75,7 +61,7 @@ public static partial class DeletePlatformApplicationInputSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

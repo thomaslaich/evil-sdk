@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Secretsmanager.Schemas;
 
 public static partial class UpdateSecretVersionStageInputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? SecretId { get; set; }
         public string? VersionStage { get; set; }
@@ -30,7 +30,6 @@ public static partial class UpdateSecretVersionStageInputSchema
                 new(
                     "SecretId",
                     Target0,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
@@ -43,16 +42,11 @@ public static partial class UpdateSecretVersionStageInputSchema
                                 }
                             )
                         ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
                     ]
                 ),
                 new(
                     "VersionStage",
                     Target1,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
@@ -64,10 +58,6 @@ public static partial class UpdateSecretVersionStageInputSchema
                                     { "max", Document.From(256m) },
                                 }
                             )
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
-                            Document.From(new Dictionary<string, Document> { })
                         ),
                     ]
                 ),
@@ -141,10 +131,10 @@ public static partial class UpdateSecretVersionStageInputSchema
             Builder builder
         ) =>
             new global::Com.Amazonaws.Secretsmanager.UpdateSecretVersionStageInput(
-                builder.SecretId ?? throw new MissingRequiredMemberException("SecretId"),
-                builder.VersionStage ?? throw new MissingRequiredMemberException("VersionStage"),
                 builder.MoveToVersionId,
-                builder.RemoveFromVersionId
+                builder.RemoveFromVersionId,
+                builder.SecretId,
+                builder.VersionStage
             );
 
         public override void SerializeMembers<TSerializer>(
@@ -186,7 +176,7 @@ public static partial class UpdateSecretVersionStageInputSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

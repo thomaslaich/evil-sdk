@@ -11,4 +11,4 @@ namespace Com.Amazonaws.Dynamodb;
 /// The name of the table to delete. You can also provide the Amazon Resource Name (ARN) of the table in
 /// this parameter.
 /// </param>
-public sealed record class DeleteTableInput(string TableName);
+public sealed record class DeleteTableInput(string? TableName = null);

@@ -10,40 +10,6 @@ namespace Com.Amazonaws.Lambda;
 /// <summary>
 /// Represents the Smithy structure com.amazonaws.lambda#CreateEventSourceMappingInput.
 /// </summary>
-/// <param name="FunctionName">
-/// <para>
-/// The name or ARN of the Lambda function.
-/// </para>
-/// <para>
-/// <b>Name formats</b>
-/// </para>
-/// <list type="bullet">
-/// <item>
-/// <description>
-/// <b>Function name</b> – <c>MyFunction</c>.
-/// </description>
-/// </item>
-/// <item>
-/// <description>
-/// <b>Function ARN</b> – <c>arn:aws:lambda:us-west-2:123456789012:function:MyFunction</c>.
-/// </description>
-/// </item>
-/// <item>
-/// <description>
-/// <b>Version or Alias ARN</b> – <c>arn:aws:lambda:us-west-2:123456789012:function:MyFunction:PROD</c>.
-/// </description>
-/// </item>
-/// <item>
-/// <description>
-/// <b>Partial ARN</b> – <c>123456789012:function:MyFunction</c>.
-/// </description>
-/// </item>
-/// </list>
-/// <para>
-/// The length constraint applies only to the full ARN. If you specify only the function name, it's
-/// limited to 64 characters in length.
-/// </para>
-/// </param>
 /// <param name="AmazonManagedKafkaEventSourceConfig">
 /// Specific configuration settings for an Amazon Managed Streaming for Apache Kafka (Amazon MSK) event
 /// source.
@@ -158,6 +124,40 @@ namespace Com.Amazonaws.Lambda;
 /// <see href="https://docs.aws.amazon.com/lambda/latest/dg/invocation-eventfiltering.html">Lambda event
 /// filtering</see>.
 /// </param>
+/// <param name="FunctionName">
+/// <para>
+/// The name or ARN of the Lambda function.
+/// </para>
+/// <para>
+/// <b>Name formats</b>
+/// </para>
+/// <list type="bullet">
+/// <item>
+/// <description>
+/// <b>Function name</b> – <c>MyFunction</c>.
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <b>Function ARN</b> – <c>arn:aws:lambda:us-west-2:123456789012:function:MyFunction</c>.
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <b>Version or Alias ARN</b> – <c>arn:aws:lambda:us-west-2:123456789012:function:MyFunction:PROD</c>.
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <b>Partial ARN</b> – <c>123456789012:function:MyFunction</c>.
+/// </description>
+/// </item>
+/// </list>
+/// <para>
+/// The length constraint applies only to the full ARN. If you specify only the function name, it's
+/// limited to 64 characters in length.
+/// </para>
+/// </param>
 /// <param name="FunctionResponseTypes">
 /// (Kinesis, DynamoDB Streams, Amazon MSK, self-managed Apache Kafka, and Amazon SQS) A list of current
 /// response type enums applied to the event source mapping.
@@ -253,7 +253,6 @@ namespace Com.Amazonaws.Lambda;
 /// Kinesis Streams event sources. A value of 0 seconds indicates no tumbling window.
 /// </param>
 public sealed record class CreateEventSourceMappingInput(
-    string FunctionName,
     global::Com.Amazonaws.Lambda.AmazonManagedKafkaEventSourceConfig? AmazonManagedKafkaEventSourceConfig =
         null,
     int? BatchSize = null,
@@ -263,6 +262,7 @@ public sealed record class CreateEventSourceMappingInput(
     bool? Enabled = null,
     string? EventSourceArn = null,
     global::Com.Amazonaws.Lambda.FilterCriteria? FilterCriteria = null,
+    string? FunctionName = null,
     IReadOnlyList<FunctionResponseType>? FunctionResponseTypes = null,
     string? KMSKeyArn = null,
     EventSourceMappingLoggingConfig? LoggingConfig = null,

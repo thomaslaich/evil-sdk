@@ -10,7 +10,7 @@ namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class DeleteBucketLifecycleInputSchema
 {
-    public sealed class Builder
+    public sealed class Builder : StructBuilder
     {
         public string? Bucket { get; set; }
         public string? ExpectedBucketOwner { get; set; }
@@ -28,15 +28,10 @@ public static partial class DeleteBucketLifecycleInputSchema
                 new(
                     "Bucket",
                     Target0,
-                    isRequired: true,
                     traits:
                     [
                         new Trait(
                             ShapeId.Parse("smithy.api#httpLabel"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#required"),
                             Document.From(new Dictionary<string, Document> { })
                         ),
                         new Trait(
@@ -89,7 +84,7 @@ public static partial class DeleteBucketLifecycleInputSchema
             Builder builder
         ) =>
             new global::Com.Amazonaws.S3.DeleteBucketLifecycleInput(
-                builder.Bucket ?? throw new MissingRequiredMemberException("Bucket"),
+                builder.Bucket,
                 builder.ExpectedBucketOwner
             );
 
@@ -116,7 +111,7 @@ public static partial class DeleteBucketLifecycleInputSchema
             }
         }
 
-        public override void DeserializeMember<TDeserializer>(
+        protected override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
             ref TDeserializer deserializer

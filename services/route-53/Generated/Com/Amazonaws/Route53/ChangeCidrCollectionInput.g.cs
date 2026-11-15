@@ -12,9 +12,6 @@ namespace Com.Amazonaws.Route53;
 /// <param name="Changes">
 /// Information about changes to a CIDR collection.
 /// </param>
-/// <param name="Id">
-/// The UUID of the CIDR collection to update.
-/// </param>
 /// <param name="CollectionVersion">
 /// <para>
 /// A sequential counter that Amazon Route 53 sets to 1 when you create a collection and increments it
@@ -41,8 +38,11 @@ namespace Com.Amazonaws.Route53;
 /// </item>
 /// </list>
 /// </param>
+/// <param name="Id">
+/// The UUID of the CIDR collection to update.
+/// </param>
 public sealed record class ChangeCidrCollectionInput(
-    IReadOnlyList<CidrCollectionChange> Changes,
-    string Id,
-    long? CollectionVersion = null
+    IReadOnlyList<CidrCollectionChange>? Changes = null,
+    long? CollectionVersion = null,
+    string? Id = null
 );

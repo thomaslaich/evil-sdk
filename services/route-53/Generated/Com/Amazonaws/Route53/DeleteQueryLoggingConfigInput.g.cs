@@ -10,4 +10,4 @@ namespace Com.Amazonaws.Route53;
 /// <param name="Id">
 /// The ID of the configuration that you want to delete.
 /// </param>
-public sealed record class DeleteQueryLoggingConfigInput(string Id);
+public sealed record class DeleteQueryLoggingConfigInput(string? Id = null);

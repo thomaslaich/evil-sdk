@@ -30,6 +30,6 @@ namespace Com.Amazonaws.S3;
 /// denied).
 /// </param>
 public sealed record class GetBucketLocationInput(
-    string Bucket,
+    string? Bucket = null,
     string? ExpectedBucketOwner = null
 );

@@ -7,9 +7,6 @@ namespace Com.Amazonaws.Eventbridge;
 /// <summary>
 /// Represents the Smithy structure com.amazonaws.eventbridge#UpdateApiDestinationInput.
 /// </summary>
-/// <param name="Name">
-/// The name of the API destination to update.
-/// </param>
 /// <param name="ConnectionArn">
 /// The ARN of the connection to use for the API destination.
 /// </param>
@@ -25,11 +22,14 @@ namespace Com.Amazonaws.Eventbridge;
 /// <param name="InvocationRateLimitPerSecond">
 /// The maximum number of invocations per second to send to the API destination.
 /// </param>
+/// <param name="Name">
+/// The name of the API destination to update.
+/// </param>
 public sealed record class UpdateApiDestinationInput(
-    string Name,
     string? ConnectionArn = null,
     string? Description = null,
     ApiDestinationHttpMethod? HttpMethod = null,
     string? InvocationEndpoint = null,
-    int? InvocationRateLimitPerSecond = null
+    int? InvocationRateLimitPerSecond = null,
+    string? Name = null
 );
