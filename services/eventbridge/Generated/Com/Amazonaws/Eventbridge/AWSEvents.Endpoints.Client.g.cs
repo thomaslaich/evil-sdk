@@ -211,56 +211,65 @@ public sealed class AWSEventsEndpointResolver : IEndpointResolver
                 ),
                 2 => new SmithyEndpoint(
                     new Uri(endpoint!),
-                    AuthSchemes: new SmithyEndpointAuthScheme[]
-                    {
-                        new SmithyEndpointAuthScheme(
-                            "aws.auth#sigv4a",
-                            new Dictionary<string, Document>
-                            {
-                                ["signingName"] = Document.From("events"),
-                                ["signingRegionSet"] = Document.From(
-                                    new Document[] { Document.From("*") }
-                                ),
-                            }
-                        ),
-                    }
+                    AuthSchemes: SmithyEndpointAuthScheme.WithDefaults(
+                        new SmithyEndpointAuthScheme[]
+                        {
+                            new SmithyEndpointAuthScheme(
+                                "aws.auth#sigv4a",
+                                new Dictionary<string, Document>
+                                {
+                                    ["signingName"] = Document.From("events"),
+                                    ["signingRegionSet"] = Document.From(
+                                        new Document[] { Document.From("*") }
+                                    ),
+                                }
+                            ),
+                        },
+                        DefaultAuthSchemes()
+                    )
                 ),
                 3 => new SmithyEndpoint(
                     new Uri(
                         $"https://{endpointId!}.endpoint.events.{partitionResult!.DualStackDnsSuffix}"
                     ),
-                    AuthSchemes: new SmithyEndpointAuthScheme[]
-                    {
-                        new SmithyEndpointAuthScheme(
-                            "aws.auth#sigv4a",
-                            new Dictionary<string, Document>
-                            {
-                                ["signingName"] = Document.From("events"),
-                                ["signingRegionSet"] = Document.From(
-                                    new Document[] { Document.From("*") }
-                                ),
-                            }
-                        ),
-                    }
+                    AuthSchemes: SmithyEndpointAuthScheme.WithDefaults(
+                        new SmithyEndpointAuthScheme[]
+                        {
+                            new SmithyEndpointAuthScheme(
+                                "aws.auth#sigv4a",
+                                new Dictionary<string, Document>
+                                {
+                                    ["signingName"] = Document.From("events"),
+                                    ["signingRegionSet"] = Document.From(
+                                        new Document[] { Document.From("*") }
+                                    ),
+                                }
+                            ),
+                        },
+                        DefaultAuthSchemes()
+                    )
                 ),
                 4 => throw new SmithyEndpointResolutionException(
                     "DualStack is enabled but this partition does not support DualStack"
                 ),
                 5 => new SmithyEndpoint(
                     new Uri($"https://{endpointId!}.endpoint.events.{partitionResult!.DnsSuffix}"),
-                    AuthSchemes: new SmithyEndpointAuthScheme[]
-                    {
-                        new SmithyEndpointAuthScheme(
-                            "aws.auth#sigv4a",
-                            new Dictionary<string, Document>
-                            {
-                                ["signingName"] = Document.From("events"),
-                                ["signingRegionSet"] = Document.From(
-                                    new Document[] { Document.From("*") }
-                                ),
-                            }
-                        ),
-                    }
+                    AuthSchemes: SmithyEndpointAuthScheme.WithDefaults(
+                        new SmithyEndpointAuthScheme[]
+                        {
+                            new SmithyEndpointAuthScheme(
+                                "aws.auth#sigv4a",
+                                new Dictionary<string, Document>
+                                {
+                                    ["signingName"] = Document.From("events"),
+                                    ["signingRegionSet"] = Document.From(
+                                        new Document[] { Document.From("*") }
+                                    ),
+                                }
+                            ),
+                        },
+                        DefaultAuthSchemes()
+                    )
                 ),
                 6 => throw new SmithyEndpointResolutionException(
                     "Invalid Configuration: FIPS is not supported with EventBridge multi-region endpoints."

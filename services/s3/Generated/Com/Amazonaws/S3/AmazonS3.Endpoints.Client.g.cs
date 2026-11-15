@@ -1641,23 +1641,26 @@ public sealed class AmazonS3EndpointResolver : IEndpointResolver
                 ),
                 7 => new SmithyEndpoint(
                     new Uri($"{url!.Scheme}://{url!.Authority}/{uriEncodedBucket!}{url!.Path}"),
-                    AuthSchemes: new SmithyEndpointAuthScheme[]
-                    {
-                        new SmithyEndpointAuthScheme(
-                            s3eAuth! switch
-                            {
-                                "sigv4" => "aws.auth#sigv4",
-                                "sigv4a" => "aws.auth#sigv4a",
-                                var other => other,
-                            },
-                            new Dictionary<string, Document>
-                            {
-                                ["disableDoubleEncoding"] = Document.From(true),
-                                ["signingName"] = Document.From("s3express"),
-                                ["signingRegion"] = Document.From(region!),
-                            }
-                        ),
-                    },
+                    AuthSchemes: SmithyEndpointAuthScheme.WithDefaults(
+                        new SmithyEndpointAuthScheme[]
+                        {
+                            new SmithyEndpointAuthScheme(
+                                s3eAuth! switch
+                                {
+                                    "sigv4" => "aws.auth#sigv4",
+                                    "sigv4a" => "aws.auth#sigv4a",
+                                    var other => other,
+                                },
+                                new Dictionary<string, Document>
+                                {
+                                    ["disableDoubleEncoding"] = Document.From(true),
+                                    ["signingName"] = Document.From("s3express"),
+                                    ["signingRegion"] = Document.From(region!),
+                                }
+                            ),
+                        },
+                        DefaultAuthSchemes()
+                    ),
                     Properties: new Dictionary<string, Document>
                     {
                         ["backend"] = Document.From("S3Express"),
@@ -1665,23 +1668,26 @@ public sealed class AmazonS3EndpointResolver : IEndpointResolver
                 ),
                 8 => new SmithyEndpoint(
                     new Uri($"{url!.Scheme}://{bucket!}.{url!.Authority}{url!.Path}"),
-                    AuthSchemes: new SmithyEndpointAuthScheme[]
-                    {
-                        new SmithyEndpointAuthScheme(
-                            s3eAuth! switch
-                            {
-                                "sigv4" => "aws.auth#sigv4",
-                                "sigv4a" => "aws.auth#sigv4a",
-                                var other => other,
-                            },
-                            new Dictionary<string, Document>
-                            {
-                                ["disableDoubleEncoding"] = Document.From(true),
-                                ["signingName"] = Document.From("s3express"),
-                                ["signingRegion"] = Document.From(region!),
-                            }
-                        ),
-                    },
+                    AuthSchemes: SmithyEndpointAuthScheme.WithDefaults(
+                        new SmithyEndpointAuthScheme[]
+                        {
+                            new SmithyEndpointAuthScheme(
+                                s3eAuth! switch
+                                {
+                                    "sigv4" => "aws.auth#sigv4",
+                                    "sigv4a" => "aws.auth#sigv4a",
+                                    var other => other,
+                                },
+                                new Dictionary<string, Document>
+                                {
+                                    ["disableDoubleEncoding"] = Document.From(true),
+                                    ["signingName"] = Document.From("s3express"),
+                                    ["signingRegion"] = Document.From(region!),
+                                }
+                            ),
+                        },
+                        DefaultAuthSchemes()
+                    ),
                     Properties: new Dictionary<string, Document>
                     {
                         ["backend"] = Document.From("S3Express"),
@@ -1694,18 +1700,21 @@ public sealed class AmazonS3EndpointResolver : IEndpointResolver
                     new Uri(
                         $"https://s3express-control{s3eFips!}{s3eDs!}.{region!}.{partitionResult!.DnsSuffix}/{uriEncodedBucket!}"
                     ),
-                    AuthSchemes: new SmithyEndpointAuthScheme[]
-                    {
-                        new SmithyEndpointAuthScheme(
-                            "aws.auth#sigv4",
-                            new Dictionary<string, Document>
-                            {
-                                ["disableDoubleEncoding"] = Document.From(true),
-                                ["signingName"] = Document.From("s3express"),
-                                ["signingRegion"] = Document.From(region!),
-                            }
-                        ),
-                    },
+                    AuthSchemes: SmithyEndpointAuthScheme.WithDefaults(
+                        new SmithyEndpointAuthScheme[]
+                        {
+                            new SmithyEndpointAuthScheme(
+                                "aws.auth#sigv4",
+                                new Dictionary<string, Document>
+                                {
+                                    ["disableDoubleEncoding"] = Document.From(true),
+                                    ["signingName"] = Document.From("s3express"),
+                                    ["signingRegion"] = Document.From(region!),
+                                }
+                            ),
+                        },
+                        DefaultAuthSchemes()
+                    ),
                     Properties: new Dictionary<string, Document>
                     {
                         ["backend"] = Document.From("S3Express"),
@@ -1715,23 +1724,26 @@ public sealed class AmazonS3EndpointResolver : IEndpointResolver
                     new Uri(
                         $"https://{bucket!}.s3express{s3eFips!}-{s3expressAvailabilityZoneId!}{s3eDs!}.{region!}.{partitionResult!.DnsSuffix}"
                     ),
-                    AuthSchemes: new SmithyEndpointAuthScheme[]
-                    {
-                        new SmithyEndpointAuthScheme(
-                            s3eAuth! switch
-                            {
-                                "sigv4" => "aws.auth#sigv4",
-                                "sigv4a" => "aws.auth#sigv4a",
-                                var other => other,
-                            },
-                            new Dictionary<string, Document>
-                            {
-                                ["disableDoubleEncoding"] = Document.From(true),
-                                ["signingName"] = Document.From("s3express"),
-                                ["signingRegion"] = Document.From(region!),
-                            }
-                        ),
-                    },
+                    AuthSchemes: SmithyEndpointAuthScheme.WithDefaults(
+                        new SmithyEndpointAuthScheme[]
+                        {
+                            new SmithyEndpointAuthScheme(
+                                s3eAuth! switch
+                                {
+                                    "sigv4" => "aws.auth#sigv4",
+                                    "sigv4a" => "aws.auth#sigv4a",
+                                    var other => other,
+                                },
+                                new Dictionary<string, Document>
+                                {
+                                    ["disableDoubleEncoding"] = Document.From(true),
+                                    ["signingName"] = Document.From("s3express"),
+                                    ["signingRegion"] = Document.From(region!),
+                                }
+                            ),
+                        },
+                        DefaultAuthSchemes()
+                    ),
                     Properties: new Dictionary<string, Document>
                     {
                         ["backend"] = Document.From("S3Express"),
@@ -1742,23 +1754,26 @@ public sealed class AmazonS3EndpointResolver : IEndpointResolver
                 ),
                 13 => new SmithyEndpoint(
                     new Uri($"{url!.Scheme}://{url!.Authority}{url!.Path}"),
-                    AuthSchemes: new SmithyEndpointAuthScheme[]
-                    {
-                        new SmithyEndpointAuthScheme(
-                            s3eAuth! switch
-                            {
-                                "sigv4" => "aws.auth#sigv4",
-                                "sigv4a" => "aws.auth#sigv4a",
-                                var other => other,
-                            },
-                            new Dictionary<string, Document>
-                            {
-                                ["disableDoubleEncoding"] = Document.From(true),
-                                ["signingName"] = Document.From("s3express"),
-                                ["signingRegion"] = Document.From(region!),
-                            }
-                        ),
-                    },
+                    AuthSchemes: SmithyEndpointAuthScheme.WithDefaults(
+                        new SmithyEndpointAuthScheme[]
+                        {
+                            new SmithyEndpointAuthScheme(
+                                s3eAuth! switch
+                                {
+                                    "sigv4" => "aws.auth#sigv4",
+                                    "sigv4a" => "aws.auth#sigv4a",
+                                    var other => other,
+                                },
+                                new Dictionary<string, Document>
+                                {
+                                    ["disableDoubleEncoding"] = Document.From(true),
+                                    ["signingName"] = Document.From("s3express"),
+                                    ["signingRegion"] = Document.From(region!),
+                                }
+                            ),
+                        },
+                        DefaultAuthSchemes()
+                    ),
                     Properties: new Dictionary<string, Document>
                     {
                         ["backend"] = Document.From("S3Express"),
@@ -1768,18 +1783,21 @@ public sealed class AmazonS3EndpointResolver : IEndpointResolver
                     new Uri(
                         $"https://s3express-control{s3eFips!}{s3eDs!}.{region!}.{partitionResult!.DnsSuffix}"
                     ),
-                    AuthSchemes: new SmithyEndpointAuthScheme[]
-                    {
-                        new SmithyEndpointAuthScheme(
-                            "aws.auth#sigv4",
-                            new Dictionary<string, Document>
-                            {
-                                ["disableDoubleEncoding"] = Document.From(true),
-                                ["signingName"] = Document.From("s3express"),
-                                ["signingRegion"] = Document.From(region!),
-                            }
-                        ),
-                    },
+                    AuthSchemes: SmithyEndpointAuthScheme.WithDefaults(
+                        new SmithyEndpointAuthScheme[]
+                        {
+                            new SmithyEndpointAuthScheme(
+                                "aws.auth#sigv4",
+                                new Dictionary<string, Document>
+                                {
+                                    ["disableDoubleEncoding"] = Document.From(true),
+                                    ["signingName"] = Document.From("s3express"),
+                                    ["signingRegion"] = Document.From(region!),
+                                }
+                            ),
+                        },
+                        DefaultAuthSchemes()
+                    ),
                     Properties: new Dictionary<string, Document>
                     {
                         ["backend"] = Document.From("S3Express"),
@@ -1790,111 +1808,123 @@ public sealed class AmazonS3EndpointResolver : IEndpointResolver
                 ),
                 16 => new SmithyEndpoint(
                     new Uri($"https://{bucket!}.ec2.{url!.Authority}"),
-                    AuthSchemes: new SmithyEndpointAuthScheme[]
-                    {
-                        new SmithyEndpointAuthScheme(
-                            "aws.auth#sigv4a",
-                            new Dictionary<string, Document>
-                            {
-                                ["disableDoubleEncoding"] = Document.From(true),
-                                ["signingName"] = Document.From("s3-outposts"),
-                                ["signingRegionSet"] = Document.From(
-                                    new Document[] { Document.From("*") }
-                                ),
-                            }
-                        ),
-                        new SmithyEndpointAuthScheme(
-                            "aws.auth#sigv4",
-                            new Dictionary<string, Document>
-                            {
-                                ["disableDoubleEncoding"] = Document.From(true),
-                                ["signingName"] = Document.From("s3-outposts"),
-                                ["signingRegion"] = Document.From(region!),
-                            }
-                        ),
-                    }
+                    AuthSchemes: SmithyEndpointAuthScheme.WithDefaults(
+                        new SmithyEndpointAuthScheme[]
+                        {
+                            new SmithyEndpointAuthScheme(
+                                "aws.auth#sigv4a",
+                                new Dictionary<string, Document>
+                                {
+                                    ["disableDoubleEncoding"] = Document.From(true),
+                                    ["signingName"] = Document.From("s3-outposts"),
+                                    ["signingRegionSet"] = Document.From(
+                                        new Document[] { Document.From("*") }
+                                    ),
+                                }
+                            ),
+                            new SmithyEndpointAuthScheme(
+                                "aws.auth#sigv4",
+                                new Dictionary<string, Document>
+                                {
+                                    ["disableDoubleEncoding"] = Document.From(true),
+                                    ["signingName"] = Document.From("s3-outposts"),
+                                    ["signingRegion"] = Document.From(region!),
+                                }
+                            ),
+                        },
+                        DefaultAuthSchemes()
+                    )
                 ),
                 17 => new SmithyEndpoint(
                     new Uri(
                         $"https://{bucket!}.ec2.s3-outposts.{region!}.{partitionResult!.DnsSuffix}"
                     ),
-                    AuthSchemes: new SmithyEndpointAuthScheme[]
-                    {
-                        new SmithyEndpointAuthScheme(
-                            "aws.auth#sigv4a",
-                            new Dictionary<string, Document>
-                            {
-                                ["disableDoubleEncoding"] = Document.From(true),
-                                ["signingName"] = Document.From("s3-outposts"),
-                                ["signingRegionSet"] = Document.From(
-                                    new Document[] { Document.From("*") }
-                                ),
-                            }
-                        ),
-                        new SmithyEndpointAuthScheme(
-                            "aws.auth#sigv4",
-                            new Dictionary<string, Document>
-                            {
-                                ["disableDoubleEncoding"] = Document.From(true),
-                                ["signingName"] = Document.From("s3-outposts"),
-                                ["signingRegion"] = Document.From(region!),
-                            }
-                        ),
-                    }
+                    AuthSchemes: SmithyEndpointAuthScheme.WithDefaults(
+                        new SmithyEndpointAuthScheme[]
+                        {
+                            new SmithyEndpointAuthScheme(
+                                "aws.auth#sigv4a",
+                                new Dictionary<string, Document>
+                                {
+                                    ["disableDoubleEncoding"] = Document.From(true),
+                                    ["signingName"] = Document.From("s3-outposts"),
+                                    ["signingRegionSet"] = Document.From(
+                                        new Document[] { Document.From("*") }
+                                    ),
+                                }
+                            ),
+                            new SmithyEndpointAuthScheme(
+                                "aws.auth#sigv4",
+                                new Dictionary<string, Document>
+                                {
+                                    ["disableDoubleEncoding"] = Document.From(true),
+                                    ["signingName"] = Document.From("s3-outposts"),
+                                    ["signingRegion"] = Document.From(region!),
+                                }
+                            ),
+                        },
+                        DefaultAuthSchemes()
+                    )
                 ),
                 18 => new SmithyEndpoint(
                     new Uri($"https://{bucket!}.op-{outpostIdSsa2!}.{url!.Authority}"),
-                    AuthSchemes: new SmithyEndpointAuthScheme[]
-                    {
-                        new SmithyEndpointAuthScheme(
-                            "aws.auth#sigv4a",
-                            new Dictionary<string, Document>
-                            {
-                                ["disableDoubleEncoding"] = Document.From(true),
-                                ["signingName"] = Document.From("s3-outposts"),
-                                ["signingRegionSet"] = Document.From(
-                                    new Document[] { Document.From("*") }
-                                ),
-                            }
-                        ),
-                        new SmithyEndpointAuthScheme(
-                            "aws.auth#sigv4",
-                            new Dictionary<string, Document>
-                            {
-                                ["disableDoubleEncoding"] = Document.From(true),
-                                ["signingName"] = Document.From("s3-outposts"),
-                                ["signingRegion"] = Document.From(region!),
-                            }
-                        ),
-                    }
+                    AuthSchemes: SmithyEndpointAuthScheme.WithDefaults(
+                        new SmithyEndpointAuthScheme[]
+                        {
+                            new SmithyEndpointAuthScheme(
+                                "aws.auth#sigv4a",
+                                new Dictionary<string, Document>
+                                {
+                                    ["disableDoubleEncoding"] = Document.From(true),
+                                    ["signingName"] = Document.From("s3-outposts"),
+                                    ["signingRegionSet"] = Document.From(
+                                        new Document[] { Document.From("*") }
+                                    ),
+                                }
+                            ),
+                            new SmithyEndpointAuthScheme(
+                                "aws.auth#sigv4",
+                                new Dictionary<string, Document>
+                                {
+                                    ["disableDoubleEncoding"] = Document.From(true),
+                                    ["signingName"] = Document.From("s3-outposts"),
+                                    ["signingRegion"] = Document.From(region!),
+                                }
+                            ),
+                        },
+                        DefaultAuthSchemes()
+                    )
                 ),
                 19 => new SmithyEndpoint(
                     new Uri(
                         $"https://{bucket!}.op-{outpostIdSsa2!}.s3-outposts.{region!}.{partitionResult!.DnsSuffix}"
                     ),
-                    AuthSchemes: new SmithyEndpointAuthScheme[]
-                    {
-                        new SmithyEndpointAuthScheme(
-                            "aws.auth#sigv4a",
-                            new Dictionary<string, Document>
-                            {
-                                ["disableDoubleEncoding"] = Document.From(true),
-                                ["signingName"] = Document.From("s3-outposts"),
-                                ["signingRegionSet"] = Document.From(
-                                    new Document[] { Document.From("*") }
-                                ),
-                            }
-                        ),
-                        new SmithyEndpointAuthScheme(
-                            "aws.auth#sigv4",
-                            new Dictionary<string, Document>
-                            {
-                                ["disableDoubleEncoding"] = Document.From(true),
-                                ["signingName"] = Document.From("s3-outposts"),
-                                ["signingRegion"] = Document.From(region!),
-                            }
-                        ),
-                    }
+                    AuthSchemes: SmithyEndpointAuthScheme.WithDefaults(
+                        new SmithyEndpointAuthScheme[]
+                        {
+                            new SmithyEndpointAuthScheme(
+                                "aws.auth#sigv4a",
+                                new Dictionary<string, Document>
+                                {
+                                    ["disableDoubleEncoding"] = Document.From(true),
+                                    ["signingName"] = Document.From("s3-outposts"),
+                                    ["signingRegionSet"] = Document.From(
+                                        new Document[] { Document.From("*") }
+                                    ),
+                                }
+                            ),
+                            new SmithyEndpointAuthScheme(
+                                "aws.auth#sigv4",
+                                new Dictionary<string, Document>
+                                {
+                                    ["disableDoubleEncoding"] = Document.From(true),
+                                    ["signingName"] = Document.From("s3-outposts"),
+                                    ["signingRegion"] = Document.From(region!),
+                                }
+                            ),
+                        },
+                        DefaultAuthSchemes()
+                    )
                 ),
                 20 => throw new SmithyEndpointResolutionException(
                     $"Unrecognized hardware type: \"Expected hardware type o or e but got {hardwareType!}\""
@@ -1915,268 +1945,319 @@ public sealed class AmazonS3EndpointResolver : IEndpointResolver
                     new Uri(
                         $"https://{bucket!}.s3-fips.dualstack.us-east-1.{partitionResult!.DnsSuffix}"
                     ),
-                    AuthSchemes: new SmithyEndpointAuthScheme[]
-                    {
-                        new SmithyEndpointAuthScheme(
-                            "aws.auth#sigv4",
-                            new Dictionary<string, Document>
-                            {
-                                ["disableDoubleEncoding"] = Document.From(true),
-                                ["signingName"] = Document.From("s3"),
-                                ["signingRegion"] = Document.From("us-east-1"),
-                            }
-                        ),
-                    }
+                    AuthSchemes: SmithyEndpointAuthScheme.WithDefaults(
+                        new SmithyEndpointAuthScheme[]
+                        {
+                            new SmithyEndpointAuthScheme(
+                                "aws.auth#sigv4",
+                                new Dictionary<string, Document>
+                                {
+                                    ["disableDoubleEncoding"] = Document.From(true),
+                                    ["signingName"] = Document.From("s3"),
+                                    ["signingRegion"] = Document.From("us-east-1"),
+                                }
+                            ),
+                        },
+                        DefaultAuthSchemes()
+                    )
                 ),
                 26 => new SmithyEndpoint(
                     new Uri(
                         $"https://{bucket!}.s3-fips.dualstack.{region!}.{partitionResult!.DnsSuffix}"
                     ),
-                    AuthSchemes: new SmithyEndpointAuthScheme[]
-                    {
-                        new SmithyEndpointAuthScheme(
-                            "aws.auth#sigv4",
-                            new Dictionary<string, Document>
-                            {
-                                ["disableDoubleEncoding"] = Document.From(true),
-                                ["signingName"] = Document.From("s3"),
-                                ["signingRegion"] = Document.From(region!),
-                            }
-                        ),
-                    }
+                    AuthSchemes: SmithyEndpointAuthScheme.WithDefaults(
+                        new SmithyEndpointAuthScheme[]
+                        {
+                            new SmithyEndpointAuthScheme(
+                                "aws.auth#sigv4",
+                                new Dictionary<string, Document>
+                                {
+                                    ["disableDoubleEncoding"] = Document.From(true),
+                                    ["signingName"] = Document.From("s3"),
+                                    ["signingRegion"] = Document.From(region!),
+                                }
+                            ),
+                        },
+                        DefaultAuthSchemes()
+                    )
                 ),
                 27 => new SmithyEndpoint(
                     new Uri($"https://{bucket!}.s3-fips.us-east-1.{partitionResult!.DnsSuffix}"),
-                    AuthSchemes: new SmithyEndpointAuthScheme[]
-                    {
-                        new SmithyEndpointAuthScheme(
-                            "aws.auth#sigv4",
-                            new Dictionary<string, Document>
-                            {
-                                ["disableDoubleEncoding"] = Document.From(true),
-                                ["signingName"] = Document.From("s3"),
-                                ["signingRegion"] = Document.From("us-east-1"),
-                            }
-                        ),
-                    }
+                    AuthSchemes: SmithyEndpointAuthScheme.WithDefaults(
+                        new SmithyEndpointAuthScheme[]
+                        {
+                            new SmithyEndpointAuthScheme(
+                                "aws.auth#sigv4",
+                                new Dictionary<string, Document>
+                                {
+                                    ["disableDoubleEncoding"] = Document.From(true),
+                                    ["signingName"] = Document.From("s3"),
+                                    ["signingRegion"] = Document.From("us-east-1"),
+                                }
+                            ),
+                        },
+                        DefaultAuthSchemes()
+                    )
                 ),
                 28 => new SmithyEndpoint(
                     new Uri($"https://{bucket!}.s3-fips.{region!}.{partitionResult!.DnsSuffix}"),
-                    AuthSchemes: new SmithyEndpointAuthScheme[]
-                    {
-                        new SmithyEndpointAuthScheme(
-                            "aws.auth#sigv4",
-                            new Dictionary<string, Document>
-                            {
-                                ["disableDoubleEncoding"] = Document.From(true),
-                                ["signingName"] = Document.From("s3"),
-                                ["signingRegion"] = Document.From(region!),
-                            }
-                        ),
-                    }
+                    AuthSchemes: SmithyEndpointAuthScheme.WithDefaults(
+                        new SmithyEndpointAuthScheme[]
+                        {
+                            new SmithyEndpointAuthScheme(
+                                "aws.auth#sigv4",
+                                new Dictionary<string, Document>
+                                {
+                                    ["disableDoubleEncoding"] = Document.From(true),
+                                    ["signingName"] = Document.From("s3"),
+                                    ["signingRegion"] = Document.From(region!),
+                                }
+                            ),
+                        },
+                        DefaultAuthSchemes()
+                    )
                 ),
                 29 => new SmithyEndpoint(
                     new Uri(
                         $"https://{bucket!}.s3-accelerate.dualstack.us-east-1.{partitionResult!.DnsSuffix}"
                     ),
-                    AuthSchemes: new SmithyEndpointAuthScheme[]
-                    {
-                        new SmithyEndpointAuthScheme(
-                            "aws.auth#sigv4",
-                            new Dictionary<string, Document>
-                            {
-                                ["disableDoubleEncoding"] = Document.From(true),
-                                ["signingName"] = Document.From("s3"),
-                                ["signingRegion"] = Document.From("us-east-1"),
-                            }
-                        ),
-                    }
+                    AuthSchemes: SmithyEndpointAuthScheme.WithDefaults(
+                        new SmithyEndpointAuthScheme[]
+                        {
+                            new SmithyEndpointAuthScheme(
+                                "aws.auth#sigv4",
+                                new Dictionary<string, Document>
+                                {
+                                    ["disableDoubleEncoding"] = Document.From(true),
+                                    ["signingName"] = Document.From("s3"),
+                                    ["signingRegion"] = Document.From("us-east-1"),
+                                }
+                            ),
+                        },
+                        DefaultAuthSchemes()
+                    )
                 ),
                 30 => new SmithyEndpoint(
                     new Uri(
                         $"https://{bucket!}.s3-accelerate.dualstack.{partitionResult!.DnsSuffix}"
                     ),
-                    AuthSchemes: new SmithyEndpointAuthScheme[]
-                    {
-                        new SmithyEndpointAuthScheme(
-                            "aws.auth#sigv4",
-                            new Dictionary<string, Document>
-                            {
-                                ["disableDoubleEncoding"] = Document.From(true),
-                                ["signingName"] = Document.From("s3"),
-                                ["signingRegion"] = Document.From(region!),
-                            }
-                        ),
-                    }
+                    AuthSchemes: SmithyEndpointAuthScheme.WithDefaults(
+                        new SmithyEndpointAuthScheme[]
+                        {
+                            new SmithyEndpointAuthScheme(
+                                "aws.auth#sigv4",
+                                new Dictionary<string, Document>
+                                {
+                                    ["disableDoubleEncoding"] = Document.From(true),
+                                    ["signingName"] = Document.From("s3"),
+                                    ["signingRegion"] = Document.From(region!),
+                                }
+                            ),
+                        },
+                        DefaultAuthSchemes()
+                    )
                 ),
                 31 => new SmithyEndpoint(
                     new Uri(
                         $"https://{bucket!}.s3.dualstack.us-east-1.{partitionResult!.DnsSuffix}"
                     ),
-                    AuthSchemes: new SmithyEndpointAuthScheme[]
-                    {
-                        new SmithyEndpointAuthScheme(
-                            "aws.auth#sigv4",
-                            new Dictionary<string, Document>
-                            {
-                                ["disableDoubleEncoding"] = Document.From(true),
-                                ["signingName"] = Document.From("s3"),
-                                ["signingRegion"] = Document.From("us-east-1"),
-                            }
-                        ),
-                    }
+                    AuthSchemes: SmithyEndpointAuthScheme.WithDefaults(
+                        new SmithyEndpointAuthScheme[]
+                        {
+                            new SmithyEndpointAuthScheme(
+                                "aws.auth#sigv4",
+                                new Dictionary<string, Document>
+                                {
+                                    ["disableDoubleEncoding"] = Document.From(true),
+                                    ["signingName"] = Document.From("s3"),
+                                    ["signingRegion"] = Document.From("us-east-1"),
+                                }
+                            ),
+                        },
+                        DefaultAuthSchemes()
+                    )
                 ),
                 32 => new SmithyEndpoint(
                     new Uri(
                         $"https://{bucket!}.s3.dualstack.{region!}.{partitionResult!.DnsSuffix}"
                     ),
-                    AuthSchemes: new SmithyEndpointAuthScheme[]
-                    {
-                        new SmithyEndpointAuthScheme(
-                            "aws.auth#sigv4",
-                            new Dictionary<string, Document>
-                            {
-                                ["disableDoubleEncoding"] = Document.From(true),
-                                ["signingName"] = Document.From("s3"),
-                                ["signingRegion"] = Document.From(region!),
-                            }
-                        ),
-                    }
+                    AuthSchemes: SmithyEndpointAuthScheme.WithDefaults(
+                        new SmithyEndpointAuthScheme[]
+                        {
+                            new SmithyEndpointAuthScheme(
+                                "aws.auth#sigv4",
+                                new Dictionary<string, Document>
+                                {
+                                    ["disableDoubleEncoding"] = Document.From(true),
+                                    ["signingName"] = Document.From("s3"),
+                                    ["signingRegion"] = Document.From(region!),
+                                }
+                            ),
+                        },
+                        DefaultAuthSchemes()
+                    )
                 ),
                 33 => new SmithyEndpoint(
                     new Uri($"{url!.Scheme}://{url!.Authority}{url!.NormalizedPath}{bucket!}"),
-                    AuthSchemes: new SmithyEndpointAuthScheme[]
-                    {
-                        new SmithyEndpointAuthScheme(
-                            "aws.auth#sigv4",
-                            new Dictionary<string, Document>
-                            {
-                                ["disableDoubleEncoding"] = Document.From(true),
-                                ["signingName"] = Document.From("s3"),
-                                ["signingRegion"] = Document.From("us-east-1"),
-                            }
-                        ),
-                    }
+                    AuthSchemes: SmithyEndpointAuthScheme.WithDefaults(
+                        new SmithyEndpointAuthScheme[]
+                        {
+                            new SmithyEndpointAuthScheme(
+                                "aws.auth#sigv4",
+                                new Dictionary<string, Document>
+                                {
+                                    ["disableDoubleEncoding"] = Document.From(true),
+                                    ["signingName"] = Document.From("s3"),
+                                    ["signingRegion"] = Document.From("us-east-1"),
+                                }
+                            ),
+                        },
+                        DefaultAuthSchemes()
+                    )
                 ),
                 34 => new SmithyEndpoint(
                     new Uri($"{url!.Scheme}://{bucket!}.{url!.Authority}{url!.Path}"),
-                    AuthSchemes: new SmithyEndpointAuthScheme[]
-                    {
-                        new SmithyEndpointAuthScheme(
-                            "aws.auth#sigv4",
-                            new Dictionary<string, Document>
-                            {
-                                ["disableDoubleEncoding"] = Document.From(true),
-                                ["signingName"] = Document.From("s3"),
-                                ["signingRegion"] = Document.From("us-east-1"),
-                            }
-                        ),
-                    }
+                    AuthSchemes: SmithyEndpointAuthScheme.WithDefaults(
+                        new SmithyEndpointAuthScheme[]
+                        {
+                            new SmithyEndpointAuthScheme(
+                                "aws.auth#sigv4",
+                                new Dictionary<string, Document>
+                                {
+                                    ["disableDoubleEncoding"] = Document.From(true),
+                                    ["signingName"] = Document.From("s3"),
+                                    ["signingRegion"] = Document.From("us-east-1"),
+                                }
+                            ),
+                        },
+                        DefaultAuthSchemes()
+                    )
                 ),
                 35 => new SmithyEndpoint(
                     new Uri($"{url!.Scheme}://{url!.Authority}{url!.NormalizedPath}{bucket!}"),
-                    AuthSchemes: new SmithyEndpointAuthScheme[]
-                    {
-                        new SmithyEndpointAuthScheme(
-                            "aws.auth#sigv4",
-                            new Dictionary<string, Document>
-                            {
-                                ["disableDoubleEncoding"] = Document.From(true),
-                                ["signingName"] = Document.From("s3"),
-                                ["signingRegion"] = Document.From(region!),
-                            }
-                        ),
-                    }
+                    AuthSchemes: SmithyEndpointAuthScheme.WithDefaults(
+                        new SmithyEndpointAuthScheme[]
+                        {
+                            new SmithyEndpointAuthScheme(
+                                "aws.auth#sigv4",
+                                new Dictionary<string, Document>
+                                {
+                                    ["disableDoubleEncoding"] = Document.From(true),
+                                    ["signingName"] = Document.From("s3"),
+                                    ["signingRegion"] = Document.From(region!),
+                                }
+                            ),
+                        },
+                        DefaultAuthSchemes()
+                    )
                 ),
                 36 => new SmithyEndpoint(
                     new Uri($"{url!.Scheme}://{bucket!}.{url!.Authority}{url!.Path}"),
-                    AuthSchemes: new SmithyEndpointAuthScheme[]
-                    {
-                        new SmithyEndpointAuthScheme(
-                            "aws.auth#sigv4",
-                            new Dictionary<string, Document>
-                            {
-                                ["disableDoubleEncoding"] = Document.From(true),
-                                ["signingName"] = Document.From("s3"),
-                                ["signingRegion"] = Document.From(region!),
-                            }
-                        ),
-                    }
+                    AuthSchemes: SmithyEndpointAuthScheme.WithDefaults(
+                        new SmithyEndpointAuthScheme[]
+                        {
+                            new SmithyEndpointAuthScheme(
+                                "aws.auth#sigv4",
+                                new Dictionary<string, Document>
+                                {
+                                    ["disableDoubleEncoding"] = Document.From(true),
+                                    ["signingName"] = Document.From("s3"),
+                                    ["signingRegion"] = Document.From(region!),
+                                }
+                            ),
+                        },
+                        DefaultAuthSchemes()
+                    )
                 ),
                 37 => new SmithyEndpoint(
                     new Uri($"https://{bucket!}.s3-accelerate.{partitionResult!.DnsSuffix}"),
-                    AuthSchemes: new SmithyEndpointAuthScheme[]
-                    {
-                        new SmithyEndpointAuthScheme(
-                            "aws.auth#sigv4",
-                            new Dictionary<string, Document>
-                            {
-                                ["disableDoubleEncoding"] = Document.From(true),
-                                ["signingName"] = Document.From("s3"),
-                                ["signingRegion"] = Document.From("us-east-1"),
-                            }
-                        ),
-                    }
+                    AuthSchemes: SmithyEndpointAuthScheme.WithDefaults(
+                        new SmithyEndpointAuthScheme[]
+                        {
+                            new SmithyEndpointAuthScheme(
+                                "aws.auth#sigv4",
+                                new Dictionary<string, Document>
+                                {
+                                    ["disableDoubleEncoding"] = Document.From(true),
+                                    ["signingName"] = Document.From("s3"),
+                                    ["signingRegion"] = Document.From("us-east-1"),
+                                }
+                            ),
+                        },
+                        DefaultAuthSchemes()
+                    )
                 ),
                 38 => new SmithyEndpoint(
                     new Uri($"https://{bucket!}.s3-accelerate.{partitionResult!.DnsSuffix}"),
-                    AuthSchemes: new SmithyEndpointAuthScheme[]
-                    {
-                        new SmithyEndpointAuthScheme(
-                            "aws.auth#sigv4",
-                            new Dictionary<string, Document>
-                            {
-                                ["disableDoubleEncoding"] = Document.From(true),
-                                ["signingName"] = Document.From("s3"),
-                                ["signingRegion"] = Document.From(region!),
-                            }
-                        ),
-                    }
+                    AuthSchemes: SmithyEndpointAuthScheme.WithDefaults(
+                        new SmithyEndpointAuthScheme[]
+                        {
+                            new SmithyEndpointAuthScheme(
+                                "aws.auth#sigv4",
+                                new Dictionary<string, Document>
+                                {
+                                    ["disableDoubleEncoding"] = Document.From(true),
+                                    ["signingName"] = Document.From("s3"),
+                                    ["signingRegion"] = Document.From(region!),
+                                }
+                            ),
+                        },
+                        DefaultAuthSchemes()
+                    )
                 ),
                 39 => new SmithyEndpoint(
                     new Uri($"https://{bucket!}.s3.{partitionResult!.DnsSuffix}"),
-                    AuthSchemes: new SmithyEndpointAuthScheme[]
-                    {
-                        new SmithyEndpointAuthScheme(
-                            "aws.auth#sigv4",
-                            new Dictionary<string, Document>
-                            {
-                                ["disableDoubleEncoding"] = Document.From(true),
-                                ["signingName"] = Document.From("s3"),
-                                ["signingRegion"] = Document.From("us-east-1"),
-                            }
-                        ),
-                    }
+                    AuthSchemes: SmithyEndpointAuthScheme.WithDefaults(
+                        new SmithyEndpointAuthScheme[]
+                        {
+                            new SmithyEndpointAuthScheme(
+                                "aws.auth#sigv4",
+                                new Dictionary<string, Document>
+                                {
+                                    ["disableDoubleEncoding"] = Document.From(true),
+                                    ["signingName"] = Document.From("s3"),
+                                    ["signingRegion"] = Document.From("us-east-1"),
+                                }
+                            ),
+                        },
+                        DefaultAuthSchemes()
+                    )
                 ),
                 40 => new SmithyEndpoint(
                     new Uri($"https://{bucket!}.s3.{partitionResult!.DnsSuffix}"),
-                    AuthSchemes: new SmithyEndpointAuthScheme[]
-                    {
-                        new SmithyEndpointAuthScheme(
-                            "aws.auth#sigv4",
-                            new Dictionary<string, Document>
-                            {
-                                ["disableDoubleEncoding"] = Document.From(true),
-                                ["signingName"] = Document.From("s3"),
-                                ["signingRegion"] = Document.From(region!),
-                            }
-                        ),
-                    }
+                    AuthSchemes: SmithyEndpointAuthScheme.WithDefaults(
+                        new SmithyEndpointAuthScheme[]
+                        {
+                            new SmithyEndpointAuthScheme(
+                                "aws.auth#sigv4",
+                                new Dictionary<string, Document>
+                                {
+                                    ["disableDoubleEncoding"] = Document.From(true),
+                                    ["signingName"] = Document.From("s3"),
+                                    ["signingRegion"] = Document.From(region!),
+                                }
+                            ),
+                        },
+                        DefaultAuthSchemes()
+                    )
                 ),
                 41 => new SmithyEndpoint(
                     new Uri($"https://{bucket!}.s3.{region!}.{partitionResult!.DnsSuffix}"),
-                    AuthSchemes: new SmithyEndpointAuthScheme[]
-                    {
-                        new SmithyEndpointAuthScheme(
-                            "aws.auth#sigv4",
-                            new Dictionary<string, Document>
-                            {
-                                ["disableDoubleEncoding"] = Document.From(true),
-                                ["signingName"] = Document.From("s3"),
-                                ["signingRegion"] = Document.From(region!),
-                            }
-                        ),
-                    }
+                    AuthSchemes: SmithyEndpointAuthScheme.WithDefaults(
+                        new SmithyEndpointAuthScheme[]
+                        {
+                            new SmithyEndpointAuthScheme(
+                                "aws.auth#sigv4",
+                                new Dictionary<string, Document>
+                                {
+                                    ["disableDoubleEncoding"] = Document.From(true),
+                                    ["signingName"] = Document.From("s3"),
+                                    ["signingRegion"] = Document.From(region!),
+                                }
+                            ),
+                        },
+                        DefaultAuthSchemes()
+                    )
                 ),
                 42 => throw new SmithyEndpointResolutionException(
                     "Invalid region: region was not a valid DNS name."
@@ -2200,52 +2281,61 @@ public sealed class AmazonS3EndpointResolver : IEndpointResolver
                     new Uri(
                         $"{url!.Scheme}://{accessPointNameSsa1!}-{bucketArn!.AccountId}.{url!.Authority}{url!.Path}"
                     ),
-                    AuthSchemes: new SmithyEndpointAuthScheme[]
-                    {
-                        new SmithyEndpointAuthScheme(
-                            "aws.auth#sigv4",
-                            new Dictionary<string, Document>
-                            {
-                                ["disableDoubleEncoding"] = Document.From(true),
-                                ["signingName"] = Document.From("s3-object-lambda"),
-                                ["signingRegion"] = Document.From(bucketArn!.Region),
-                            }
-                        ),
-                    }
+                    AuthSchemes: SmithyEndpointAuthScheme.WithDefaults(
+                        new SmithyEndpointAuthScheme[]
+                        {
+                            new SmithyEndpointAuthScheme(
+                                "aws.auth#sigv4",
+                                new Dictionary<string, Document>
+                                {
+                                    ["disableDoubleEncoding"] = Document.From(true),
+                                    ["signingName"] = Document.From("s3-object-lambda"),
+                                    ["signingRegion"] = Document.From(bucketArn!.Region),
+                                }
+                            ),
+                        },
+                        DefaultAuthSchemes()
+                    )
                 ),
                 49 => new SmithyEndpoint(
                     new Uri(
                         $"https://{accessPointNameSsa1!}-{bucketArn!.AccountId}.s3-object-lambda-fips.{bucketArn!.Region}.{bucketPartition!.DnsSuffix}"
                     ),
-                    AuthSchemes: new SmithyEndpointAuthScheme[]
-                    {
-                        new SmithyEndpointAuthScheme(
-                            "aws.auth#sigv4",
-                            new Dictionary<string, Document>
-                            {
-                                ["disableDoubleEncoding"] = Document.From(true),
-                                ["signingName"] = Document.From("s3-object-lambda"),
-                                ["signingRegion"] = Document.From(bucketArn!.Region),
-                            }
-                        ),
-                    }
+                    AuthSchemes: SmithyEndpointAuthScheme.WithDefaults(
+                        new SmithyEndpointAuthScheme[]
+                        {
+                            new SmithyEndpointAuthScheme(
+                                "aws.auth#sigv4",
+                                new Dictionary<string, Document>
+                                {
+                                    ["disableDoubleEncoding"] = Document.From(true),
+                                    ["signingName"] = Document.From("s3-object-lambda"),
+                                    ["signingRegion"] = Document.From(bucketArn!.Region),
+                                }
+                            ),
+                        },
+                        DefaultAuthSchemes()
+                    )
                 ),
                 50 => new SmithyEndpoint(
                     new Uri(
                         $"https://{accessPointNameSsa1!}-{bucketArn!.AccountId}.s3-object-lambda.{bucketArn!.Region}.{bucketPartition!.DnsSuffix}"
                     ),
-                    AuthSchemes: new SmithyEndpointAuthScheme[]
-                    {
-                        new SmithyEndpointAuthScheme(
-                            "aws.auth#sigv4",
-                            new Dictionary<string, Document>
-                            {
-                                ["disableDoubleEncoding"] = Document.From(true),
-                                ["signingName"] = Document.From("s3-object-lambda"),
-                                ["signingRegion"] = Document.From(bucketArn!.Region),
-                            }
-                        ),
-                    }
+                    AuthSchemes: SmithyEndpointAuthScheme.WithDefaults(
+                        new SmithyEndpointAuthScheme[]
+                        {
+                            new SmithyEndpointAuthScheme(
+                                "aws.auth#sigv4",
+                                new Dictionary<string, Document>
+                                {
+                                    ["disableDoubleEncoding"] = Document.From(true),
+                                    ["signingName"] = Document.From("s3-object-lambda"),
+                                    ["signingRegion"] = Document.From(bucketArn!.Region),
+                                }
+                            ),
+                        },
+                        DefaultAuthSchemes()
+                    )
                 ),
                 51 => throw new SmithyEndpointResolutionException(
                     $"Invalid ARN: The access point name may only contain a-z, A-Z, 0-9 and `-`. Found: `{accessPointNameSsa1!}`"
@@ -2278,86 +2368,101 @@ public sealed class AmazonS3EndpointResolver : IEndpointResolver
                     new Uri(
                         $"https://{accessPointNameSsa1!}-{bucketArn!.AccountId}.s3-accesspoint-fips.dualstack.{bucketArn!.Region}.{bucketPartition!.DnsSuffix}"
                     ),
-                    AuthSchemes: new SmithyEndpointAuthScheme[]
-                    {
-                        new SmithyEndpointAuthScheme(
-                            "aws.auth#sigv4",
-                            new Dictionary<string, Document>
-                            {
-                                ["disableDoubleEncoding"] = Document.From(true),
-                                ["signingName"] = Document.From("s3"),
-                                ["signingRegion"] = Document.From(bucketArn!.Region),
-                            }
-                        ),
-                    }
+                    AuthSchemes: SmithyEndpointAuthScheme.WithDefaults(
+                        new SmithyEndpointAuthScheme[]
+                        {
+                            new SmithyEndpointAuthScheme(
+                                "aws.auth#sigv4",
+                                new Dictionary<string, Document>
+                                {
+                                    ["disableDoubleEncoding"] = Document.From(true),
+                                    ["signingName"] = Document.From("s3"),
+                                    ["signingRegion"] = Document.From(bucketArn!.Region),
+                                }
+                            ),
+                        },
+                        DefaultAuthSchemes()
+                    )
                 ),
                 61 => new SmithyEndpoint(
                     new Uri(
                         $"https://{accessPointNameSsa1!}-{bucketArn!.AccountId}.s3-accesspoint-fips.{bucketArn!.Region}.{bucketPartition!.DnsSuffix}"
                     ),
-                    AuthSchemes: new SmithyEndpointAuthScheme[]
-                    {
-                        new SmithyEndpointAuthScheme(
-                            "aws.auth#sigv4",
-                            new Dictionary<string, Document>
-                            {
-                                ["disableDoubleEncoding"] = Document.From(true),
-                                ["signingName"] = Document.From("s3"),
-                                ["signingRegion"] = Document.From(bucketArn!.Region),
-                            }
-                        ),
-                    }
+                    AuthSchemes: SmithyEndpointAuthScheme.WithDefaults(
+                        new SmithyEndpointAuthScheme[]
+                        {
+                            new SmithyEndpointAuthScheme(
+                                "aws.auth#sigv4",
+                                new Dictionary<string, Document>
+                                {
+                                    ["disableDoubleEncoding"] = Document.From(true),
+                                    ["signingName"] = Document.From("s3"),
+                                    ["signingRegion"] = Document.From(bucketArn!.Region),
+                                }
+                            ),
+                        },
+                        DefaultAuthSchemes()
+                    )
                 ),
                 62 => new SmithyEndpoint(
                     new Uri(
                         $"https://{accessPointNameSsa1!}-{bucketArn!.AccountId}.s3-accesspoint.dualstack.{bucketArn!.Region}.{bucketPartition!.DnsSuffix}"
                     ),
-                    AuthSchemes: new SmithyEndpointAuthScheme[]
-                    {
-                        new SmithyEndpointAuthScheme(
-                            "aws.auth#sigv4",
-                            new Dictionary<string, Document>
-                            {
-                                ["disableDoubleEncoding"] = Document.From(true),
-                                ["signingName"] = Document.From("s3"),
-                                ["signingRegion"] = Document.From(bucketArn!.Region),
-                            }
-                        ),
-                    }
+                    AuthSchemes: SmithyEndpointAuthScheme.WithDefaults(
+                        new SmithyEndpointAuthScheme[]
+                        {
+                            new SmithyEndpointAuthScheme(
+                                "aws.auth#sigv4",
+                                new Dictionary<string, Document>
+                                {
+                                    ["disableDoubleEncoding"] = Document.From(true),
+                                    ["signingName"] = Document.From("s3"),
+                                    ["signingRegion"] = Document.From(bucketArn!.Region),
+                                }
+                            ),
+                        },
+                        DefaultAuthSchemes()
+                    )
                 ),
                 63 => new SmithyEndpoint(
                     new Uri(
                         $"{url!.Scheme}://{accessPointNameSsa1!}-{bucketArn!.AccountId}.{url!.Authority}{url!.Path}"
                     ),
-                    AuthSchemes: new SmithyEndpointAuthScheme[]
-                    {
-                        new SmithyEndpointAuthScheme(
-                            "aws.auth#sigv4",
-                            new Dictionary<string, Document>
-                            {
-                                ["disableDoubleEncoding"] = Document.From(true),
-                                ["signingName"] = Document.From("s3"),
-                                ["signingRegion"] = Document.From(bucketArn!.Region),
-                            }
-                        ),
-                    }
+                    AuthSchemes: SmithyEndpointAuthScheme.WithDefaults(
+                        new SmithyEndpointAuthScheme[]
+                        {
+                            new SmithyEndpointAuthScheme(
+                                "aws.auth#sigv4",
+                                new Dictionary<string, Document>
+                                {
+                                    ["disableDoubleEncoding"] = Document.From(true),
+                                    ["signingName"] = Document.From("s3"),
+                                    ["signingRegion"] = Document.From(bucketArn!.Region),
+                                }
+                            ),
+                        },
+                        DefaultAuthSchemes()
+                    )
                 ),
                 64 => new SmithyEndpoint(
                     new Uri(
                         $"https://{accessPointNameSsa1!}-{bucketArn!.AccountId}.s3-accesspoint.{bucketArn!.Region}.{bucketPartition!.DnsSuffix}"
                     ),
-                    AuthSchemes: new SmithyEndpointAuthScheme[]
-                    {
-                        new SmithyEndpointAuthScheme(
-                            "aws.auth#sigv4",
-                            new Dictionary<string, Document>
-                            {
-                                ["disableDoubleEncoding"] = Document.From(true),
-                                ["signingName"] = Document.From("s3"),
-                                ["signingRegion"] = Document.From(bucketArn!.Region),
-                            }
-                        ),
-                    }
+                    AuthSchemes: SmithyEndpointAuthScheme.WithDefaults(
+                        new SmithyEndpointAuthScheme[]
+                        {
+                            new SmithyEndpointAuthScheme(
+                                "aws.auth#sigv4",
+                                new Dictionary<string, Document>
+                                {
+                                    ["disableDoubleEncoding"] = Document.From(true),
+                                    ["signingName"] = Document.From("s3"),
+                                    ["signingRegion"] = Document.From(bucketArn!.Region),
+                                }
+                            ),
+                        },
+                        DefaultAuthSchemes()
+                    )
                 ),
                 65 => throw new SmithyEndpointResolutionException(
                     $"Invalid ARN: The ARN was not for the S3 service, found: {bucketArn!.Service}"
@@ -2376,20 +2481,23 @@ public sealed class AmazonS3EndpointResolver : IEndpointResolver
                     new Uri(
                         $"https://{accessPointNameSsa1!}.accesspoint.s3-global.{partitionResult!.DnsSuffix}"
                     ),
-                    AuthSchemes: new SmithyEndpointAuthScheme[]
-                    {
-                        new SmithyEndpointAuthScheme(
-                            "aws.auth#sigv4a",
-                            new Dictionary<string, Document>
-                            {
-                                ["disableDoubleEncoding"] = Document.From(true),
-                                ["signingName"] = Document.From("s3"),
-                                ["signingRegionSet"] = Document.From(
-                                    new Document[] { Document.From("*") }
-                                ),
-                            }
-                        ),
-                    }
+                    AuthSchemes: SmithyEndpointAuthScheme.WithDefaults(
+                        new SmithyEndpointAuthScheme[]
+                        {
+                            new SmithyEndpointAuthScheme(
+                                "aws.auth#sigv4a",
+                                new Dictionary<string, Document>
+                                {
+                                    ["disableDoubleEncoding"] = Document.From(true),
+                                    ["signingName"] = Document.From("s3"),
+                                    ["signingRegionSet"] = Document.From(
+                                        new Document[] { Document.From("*") }
+                                    ),
+                                }
+                            ),
+                        },
+                        DefaultAuthSchemes()
+                    )
                 ),
                 71 => throw new SmithyEndpointResolutionException(
                     $"Client was configured for partition `{partitionResult!.Name}` but bucket referred to partition `{bucketArn!.Partition}`"
@@ -2411,57 +2519,63 @@ public sealed class AmazonS3EndpointResolver : IEndpointResolver
                     new Uri(
                         $"https://{accessPointNameSsa2!}-{bucketArn!.AccountId}.{outpostIdSsa1!}.{url!.Authority}"
                     ),
-                    AuthSchemes: new SmithyEndpointAuthScheme[]
-                    {
-                        new SmithyEndpointAuthScheme(
-                            "aws.auth#sigv4a",
-                            new Dictionary<string, Document>
-                            {
-                                ["disableDoubleEncoding"] = Document.From(true),
-                                ["signingName"] = Document.From("s3-outposts"),
-                                ["signingRegionSet"] = Document.From(
-                                    new Document[] { Document.From("*") }
-                                ),
-                            }
-                        ),
-                        new SmithyEndpointAuthScheme(
-                            "aws.auth#sigv4",
-                            new Dictionary<string, Document>
-                            {
-                                ["disableDoubleEncoding"] = Document.From(true),
-                                ["signingName"] = Document.From("s3-outposts"),
-                                ["signingRegion"] = Document.From(bucketArn!.Region),
-                            }
-                        ),
-                    }
+                    AuthSchemes: SmithyEndpointAuthScheme.WithDefaults(
+                        new SmithyEndpointAuthScheme[]
+                        {
+                            new SmithyEndpointAuthScheme(
+                                "aws.auth#sigv4a",
+                                new Dictionary<string, Document>
+                                {
+                                    ["disableDoubleEncoding"] = Document.From(true),
+                                    ["signingName"] = Document.From("s3-outposts"),
+                                    ["signingRegionSet"] = Document.From(
+                                        new Document[] { Document.From("*") }
+                                    ),
+                                }
+                            ),
+                            new SmithyEndpointAuthScheme(
+                                "aws.auth#sigv4",
+                                new Dictionary<string, Document>
+                                {
+                                    ["disableDoubleEncoding"] = Document.From(true),
+                                    ["signingName"] = Document.From("s3-outposts"),
+                                    ["signingRegion"] = Document.From(bucketArn!.Region),
+                                }
+                            ),
+                        },
+                        DefaultAuthSchemes()
+                    )
                 ),
                 78 => new SmithyEndpoint(
                     new Uri(
                         $"https://{accessPointNameSsa2!}-{bucketArn!.AccountId}.{outpostIdSsa1!}.s3-outposts.{bucketArn!.Region}.{bucketPartition!.DnsSuffix}"
                     ),
-                    AuthSchemes: new SmithyEndpointAuthScheme[]
-                    {
-                        new SmithyEndpointAuthScheme(
-                            "aws.auth#sigv4a",
-                            new Dictionary<string, Document>
-                            {
-                                ["disableDoubleEncoding"] = Document.From(true),
-                                ["signingName"] = Document.From("s3-outposts"),
-                                ["signingRegionSet"] = Document.From(
-                                    new Document[] { Document.From("*") }
-                                ),
-                            }
-                        ),
-                        new SmithyEndpointAuthScheme(
-                            "aws.auth#sigv4",
-                            new Dictionary<string, Document>
-                            {
-                                ["disableDoubleEncoding"] = Document.From(true),
-                                ["signingName"] = Document.From("s3-outposts"),
-                                ["signingRegion"] = Document.From(bucketArn!.Region),
-                            }
-                        ),
-                    }
+                    AuthSchemes: SmithyEndpointAuthScheme.WithDefaults(
+                        new SmithyEndpointAuthScheme[]
+                        {
+                            new SmithyEndpointAuthScheme(
+                                "aws.auth#sigv4a",
+                                new Dictionary<string, Document>
+                                {
+                                    ["disableDoubleEncoding"] = Document.From(true),
+                                    ["signingName"] = Document.From("s3-outposts"),
+                                    ["signingRegionSet"] = Document.From(
+                                        new Document[] { Document.From("*") }
+                                    ),
+                                }
+                            ),
+                            new SmithyEndpointAuthScheme(
+                                "aws.auth#sigv4",
+                                new Dictionary<string, Document>
+                                {
+                                    ["disableDoubleEncoding"] = Document.From(true),
+                                    ["signingName"] = Document.From("s3-outposts"),
+                                    ["signingRegion"] = Document.From(bucketArn!.Region),
+                                }
+                            ),
+                        },
+                        DefaultAuthSchemes()
+                    )
                 ),
                 79 => throw new SmithyEndpointResolutionException(
                     $"Invalid ARN: The access point name may only contain a-z, A-Z, 0-9 and `-`. Found: `{accessPointNameSsa2!}`"
@@ -2497,404 +2611,492 @@ public sealed class AmazonS3EndpointResolver : IEndpointResolver
                     new Uri(
                         $"https://s3-fips.dualstack.us-east-1.{partitionResult!.DnsSuffix}/{uriEncodedBucket!}"
                     ),
-                    AuthSchemes: new SmithyEndpointAuthScheme[]
-                    {
-                        new SmithyEndpointAuthScheme(
-                            "aws.auth#sigv4",
-                            new Dictionary<string, Document>
-                            {
-                                ["disableDoubleEncoding"] = Document.From(true),
-                                ["signingName"] = Document.From("s3"),
-                                ["signingRegion"] = Document.From("us-east-1"),
-                            }
-                        ),
-                    }
+                    AuthSchemes: SmithyEndpointAuthScheme.WithDefaults(
+                        new SmithyEndpointAuthScheme[]
+                        {
+                            new SmithyEndpointAuthScheme(
+                                "aws.auth#sigv4",
+                                new Dictionary<string, Document>
+                                {
+                                    ["disableDoubleEncoding"] = Document.From(true),
+                                    ["signingName"] = Document.From("s3"),
+                                    ["signingRegion"] = Document.From("us-east-1"),
+                                }
+                            ),
+                        },
+                        DefaultAuthSchemes()
+                    )
                 ),
                 90 => new SmithyEndpoint(
                     new Uri(
                         $"https://s3-fips.dualstack.{region!}.{partitionResult!.DnsSuffix}/{uriEncodedBucket!}"
                     ),
-                    AuthSchemes: new SmithyEndpointAuthScheme[]
-                    {
-                        new SmithyEndpointAuthScheme(
-                            "aws.auth#sigv4",
-                            new Dictionary<string, Document>
-                            {
-                                ["disableDoubleEncoding"] = Document.From(true),
-                                ["signingName"] = Document.From("s3"),
-                                ["signingRegion"] = Document.From(region!),
-                            }
-                        ),
-                    }
+                    AuthSchemes: SmithyEndpointAuthScheme.WithDefaults(
+                        new SmithyEndpointAuthScheme[]
+                        {
+                            new SmithyEndpointAuthScheme(
+                                "aws.auth#sigv4",
+                                new Dictionary<string, Document>
+                                {
+                                    ["disableDoubleEncoding"] = Document.From(true),
+                                    ["signingName"] = Document.From("s3"),
+                                    ["signingRegion"] = Document.From(region!),
+                                }
+                            ),
+                        },
+                        DefaultAuthSchemes()
+                    )
                 ),
                 91 => new SmithyEndpoint(
                     new Uri(
                         $"https://s3-fips.us-east-1.{partitionResult!.DnsSuffix}/{uriEncodedBucket!}"
                     ),
-                    AuthSchemes: new SmithyEndpointAuthScheme[]
-                    {
-                        new SmithyEndpointAuthScheme(
-                            "aws.auth#sigv4",
-                            new Dictionary<string, Document>
-                            {
-                                ["disableDoubleEncoding"] = Document.From(true),
-                                ["signingName"] = Document.From("s3"),
-                                ["signingRegion"] = Document.From("us-east-1"),
-                            }
-                        ),
-                    }
+                    AuthSchemes: SmithyEndpointAuthScheme.WithDefaults(
+                        new SmithyEndpointAuthScheme[]
+                        {
+                            new SmithyEndpointAuthScheme(
+                                "aws.auth#sigv4",
+                                new Dictionary<string, Document>
+                                {
+                                    ["disableDoubleEncoding"] = Document.From(true),
+                                    ["signingName"] = Document.From("s3"),
+                                    ["signingRegion"] = Document.From("us-east-1"),
+                                }
+                            ),
+                        },
+                        DefaultAuthSchemes()
+                    )
                 ),
                 92 => new SmithyEndpoint(
                     new Uri(
                         $"https://s3-fips.{region!}.{partitionResult!.DnsSuffix}/{uriEncodedBucket!}"
                     ),
-                    AuthSchemes: new SmithyEndpointAuthScheme[]
-                    {
-                        new SmithyEndpointAuthScheme(
-                            "aws.auth#sigv4",
-                            new Dictionary<string, Document>
-                            {
-                                ["disableDoubleEncoding"] = Document.From(true),
-                                ["signingName"] = Document.From("s3"),
-                                ["signingRegion"] = Document.From(region!),
-                            }
-                        ),
-                    }
+                    AuthSchemes: SmithyEndpointAuthScheme.WithDefaults(
+                        new SmithyEndpointAuthScheme[]
+                        {
+                            new SmithyEndpointAuthScheme(
+                                "aws.auth#sigv4",
+                                new Dictionary<string, Document>
+                                {
+                                    ["disableDoubleEncoding"] = Document.From(true),
+                                    ["signingName"] = Document.From("s3"),
+                                    ["signingRegion"] = Document.From(region!),
+                                }
+                            ),
+                        },
+                        DefaultAuthSchemes()
+                    )
                 ),
                 93 => new SmithyEndpoint(
                     new Uri(
                         $"https://s3.dualstack.us-east-1.{partitionResult!.DnsSuffix}/{uriEncodedBucket!}"
                     ),
-                    AuthSchemes: new SmithyEndpointAuthScheme[]
-                    {
-                        new SmithyEndpointAuthScheme(
-                            "aws.auth#sigv4",
-                            new Dictionary<string, Document>
-                            {
-                                ["disableDoubleEncoding"] = Document.From(true),
-                                ["signingName"] = Document.From("s3"),
-                                ["signingRegion"] = Document.From("us-east-1"),
-                            }
-                        ),
-                    }
+                    AuthSchemes: SmithyEndpointAuthScheme.WithDefaults(
+                        new SmithyEndpointAuthScheme[]
+                        {
+                            new SmithyEndpointAuthScheme(
+                                "aws.auth#sigv4",
+                                new Dictionary<string, Document>
+                                {
+                                    ["disableDoubleEncoding"] = Document.From(true),
+                                    ["signingName"] = Document.From("s3"),
+                                    ["signingRegion"] = Document.From("us-east-1"),
+                                }
+                            ),
+                        },
+                        DefaultAuthSchemes()
+                    )
                 ),
                 94 => new SmithyEndpoint(
                     new Uri(
                         $"https://s3.dualstack.{region!}.{partitionResult!.DnsSuffix}/{uriEncodedBucket!}"
                     ),
-                    AuthSchemes: new SmithyEndpointAuthScheme[]
-                    {
-                        new SmithyEndpointAuthScheme(
-                            "aws.auth#sigv4",
-                            new Dictionary<string, Document>
-                            {
-                                ["disableDoubleEncoding"] = Document.From(true),
-                                ["signingName"] = Document.From("s3"),
-                                ["signingRegion"] = Document.From(region!),
-                            }
-                        ),
-                    }
+                    AuthSchemes: SmithyEndpointAuthScheme.WithDefaults(
+                        new SmithyEndpointAuthScheme[]
+                        {
+                            new SmithyEndpointAuthScheme(
+                                "aws.auth#sigv4",
+                                new Dictionary<string, Document>
+                                {
+                                    ["disableDoubleEncoding"] = Document.From(true),
+                                    ["signingName"] = Document.From("s3"),
+                                    ["signingRegion"] = Document.From(region!),
+                                }
+                            ),
+                        },
+                        DefaultAuthSchemes()
+                    )
                 ),
                 95 => new SmithyEndpoint(
                     new Uri(
                         $"{url!.Scheme}://{url!.Authority}{url!.NormalizedPath}{uriEncodedBucket!}"
                     ),
-                    AuthSchemes: new SmithyEndpointAuthScheme[]
-                    {
-                        new SmithyEndpointAuthScheme(
-                            "aws.auth#sigv4",
-                            new Dictionary<string, Document>
-                            {
-                                ["disableDoubleEncoding"] = Document.From(true),
-                                ["signingName"] = Document.From("s3"),
-                                ["signingRegion"] = Document.From("us-east-1"),
-                            }
-                        ),
-                    }
+                    AuthSchemes: SmithyEndpointAuthScheme.WithDefaults(
+                        new SmithyEndpointAuthScheme[]
+                        {
+                            new SmithyEndpointAuthScheme(
+                                "aws.auth#sigv4",
+                                new Dictionary<string, Document>
+                                {
+                                    ["disableDoubleEncoding"] = Document.From(true),
+                                    ["signingName"] = Document.From("s3"),
+                                    ["signingRegion"] = Document.From("us-east-1"),
+                                }
+                            ),
+                        },
+                        DefaultAuthSchemes()
+                    )
                 ),
                 96 => new SmithyEndpoint(
                     new Uri(
                         $"{url!.Scheme}://{url!.Authority}{url!.NormalizedPath}{uriEncodedBucket!}"
                     ),
-                    AuthSchemes: new SmithyEndpointAuthScheme[]
-                    {
-                        new SmithyEndpointAuthScheme(
-                            "aws.auth#sigv4",
-                            new Dictionary<string, Document>
-                            {
-                                ["disableDoubleEncoding"] = Document.From(true),
-                                ["signingName"] = Document.From("s3"),
-                                ["signingRegion"] = Document.From(region!),
-                            }
-                        ),
-                    }
+                    AuthSchemes: SmithyEndpointAuthScheme.WithDefaults(
+                        new SmithyEndpointAuthScheme[]
+                        {
+                            new SmithyEndpointAuthScheme(
+                                "aws.auth#sigv4",
+                                new Dictionary<string, Document>
+                                {
+                                    ["disableDoubleEncoding"] = Document.From(true),
+                                    ["signingName"] = Document.From("s3"),
+                                    ["signingRegion"] = Document.From(region!),
+                                }
+                            ),
+                        },
+                        DefaultAuthSchemes()
+                    )
                 ),
                 97 => new SmithyEndpoint(
                     new Uri($"https://s3.{partitionResult!.DnsSuffix}/{uriEncodedBucket!}"),
-                    AuthSchemes: new SmithyEndpointAuthScheme[]
-                    {
-                        new SmithyEndpointAuthScheme(
-                            "aws.auth#sigv4",
-                            new Dictionary<string, Document>
-                            {
-                                ["disableDoubleEncoding"] = Document.From(true),
-                                ["signingName"] = Document.From("s3"),
-                                ["signingRegion"] = Document.From("us-east-1"),
-                            }
-                        ),
-                    }
+                    AuthSchemes: SmithyEndpointAuthScheme.WithDefaults(
+                        new SmithyEndpointAuthScheme[]
+                        {
+                            new SmithyEndpointAuthScheme(
+                                "aws.auth#sigv4",
+                                new Dictionary<string, Document>
+                                {
+                                    ["disableDoubleEncoding"] = Document.From(true),
+                                    ["signingName"] = Document.From("s3"),
+                                    ["signingRegion"] = Document.From("us-east-1"),
+                                }
+                            ),
+                        },
+                        DefaultAuthSchemes()
+                    )
                 ),
                 98 => new SmithyEndpoint(
                     new Uri($"https://s3.{partitionResult!.DnsSuffix}/{uriEncodedBucket!}"),
-                    AuthSchemes: new SmithyEndpointAuthScheme[]
-                    {
-                        new SmithyEndpointAuthScheme(
-                            "aws.auth#sigv4",
-                            new Dictionary<string, Document>
-                            {
-                                ["disableDoubleEncoding"] = Document.From(true),
-                                ["signingName"] = Document.From("s3"),
-                                ["signingRegion"] = Document.From(region!),
-                            }
-                        ),
-                    }
+                    AuthSchemes: SmithyEndpointAuthScheme.WithDefaults(
+                        new SmithyEndpointAuthScheme[]
+                        {
+                            new SmithyEndpointAuthScheme(
+                                "aws.auth#sigv4",
+                                new Dictionary<string, Document>
+                                {
+                                    ["disableDoubleEncoding"] = Document.From(true),
+                                    ["signingName"] = Document.From("s3"),
+                                    ["signingRegion"] = Document.From(region!),
+                                }
+                            ),
+                        },
+                        DefaultAuthSchemes()
+                    )
                 ),
                 99 => new SmithyEndpoint(
                     new Uri(
                         $"https://s3.{region!}.{partitionResult!.DnsSuffix}/{uriEncodedBucket!}"
                     ),
-                    AuthSchemes: new SmithyEndpointAuthScheme[]
-                    {
-                        new SmithyEndpointAuthScheme(
-                            "aws.auth#sigv4",
-                            new Dictionary<string, Document>
-                            {
-                                ["disableDoubleEncoding"] = Document.From(true),
-                                ["signingName"] = Document.From("s3"),
-                                ["signingRegion"] = Document.From(region!),
-                            }
-                        ),
-                    }
+                    AuthSchemes: SmithyEndpointAuthScheme.WithDefaults(
+                        new SmithyEndpointAuthScheme[]
+                        {
+                            new SmithyEndpointAuthScheme(
+                                "aws.auth#sigv4",
+                                new Dictionary<string, Document>
+                                {
+                                    ["disableDoubleEncoding"] = Document.From(true),
+                                    ["signingName"] = Document.From("s3"),
+                                    ["signingRegion"] = Document.From(region!),
+                                }
+                            ),
+                        },
+                        DefaultAuthSchemes()
+                    )
                 ),
                 100 => throw new SmithyEndpointResolutionException(
                     "Path-style addressing cannot be used with S3 Accelerate"
                 ),
                 101 => new SmithyEndpoint(
                     new Uri($"{url!.Scheme}://{url!.Authority}{url!.Path}"),
-                    AuthSchemes: new SmithyEndpointAuthScheme[]
-                    {
-                        new SmithyEndpointAuthScheme(
-                            "aws.auth#sigv4",
-                            new Dictionary<string, Document>
-                            {
-                                ["disableDoubleEncoding"] = Document.From(true),
-                                ["signingName"] = Document.From("s3-object-lambda"),
-                                ["signingRegion"] = Document.From(region!),
-                            }
-                        ),
-                    }
+                    AuthSchemes: SmithyEndpointAuthScheme.WithDefaults(
+                        new SmithyEndpointAuthScheme[]
+                        {
+                            new SmithyEndpointAuthScheme(
+                                "aws.auth#sigv4",
+                                new Dictionary<string, Document>
+                                {
+                                    ["disableDoubleEncoding"] = Document.From(true),
+                                    ["signingName"] = Document.From("s3-object-lambda"),
+                                    ["signingRegion"] = Document.From(region!),
+                                }
+                            ),
+                        },
+                        DefaultAuthSchemes()
+                    )
                 ),
                 102 => new SmithyEndpoint(
                     new Uri(
                         $"https://s3-object-lambda-fips.{region!}.{partitionResult!.DnsSuffix}"
                     ),
-                    AuthSchemes: new SmithyEndpointAuthScheme[]
-                    {
-                        new SmithyEndpointAuthScheme(
-                            "aws.auth#sigv4",
-                            new Dictionary<string, Document>
-                            {
-                                ["disableDoubleEncoding"] = Document.From(true),
-                                ["signingName"] = Document.From("s3-object-lambda"),
-                                ["signingRegion"] = Document.From(region!),
-                            }
-                        ),
-                    }
+                    AuthSchemes: SmithyEndpointAuthScheme.WithDefaults(
+                        new SmithyEndpointAuthScheme[]
+                        {
+                            new SmithyEndpointAuthScheme(
+                                "aws.auth#sigv4",
+                                new Dictionary<string, Document>
+                                {
+                                    ["disableDoubleEncoding"] = Document.From(true),
+                                    ["signingName"] = Document.From("s3-object-lambda"),
+                                    ["signingRegion"] = Document.From(region!),
+                                }
+                            ),
+                        },
+                        DefaultAuthSchemes()
+                    )
                 ),
                 103 => new SmithyEndpoint(
                     new Uri($"https://s3-object-lambda.{region!}.{partitionResult!.DnsSuffix}"),
-                    AuthSchemes: new SmithyEndpointAuthScheme[]
-                    {
-                        new SmithyEndpointAuthScheme(
-                            "aws.auth#sigv4",
-                            new Dictionary<string, Document>
-                            {
-                                ["disableDoubleEncoding"] = Document.From(true),
-                                ["signingName"] = Document.From("s3-object-lambda"),
-                                ["signingRegion"] = Document.From(region!),
-                            }
-                        ),
-                    }
+                    AuthSchemes: SmithyEndpointAuthScheme.WithDefaults(
+                        new SmithyEndpointAuthScheme[]
+                        {
+                            new SmithyEndpointAuthScheme(
+                                "aws.auth#sigv4",
+                                new Dictionary<string, Document>
+                                {
+                                    ["disableDoubleEncoding"] = Document.From(true),
+                                    ["signingName"] = Document.From("s3-object-lambda"),
+                                    ["signingRegion"] = Document.From(region!),
+                                }
+                            ),
+                        },
+                        DefaultAuthSchemes()
+                    )
                 ),
                 104 => new SmithyEndpoint(
                     new Uri($"https://s3-fips.dualstack.us-east-1.{partitionResult!.DnsSuffix}"),
-                    AuthSchemes: new SmithyEndpointAuthScheme[]
-                    {
-                        new SmithyEndpointAuthScheme(
-                            "aws.auth#sigv4",
-                            new Dictionary<string, Document>
-                            {
-                                ["disableDoubleEncoding"] = Document.From(true),
-                                ["signingName"] = Document.From("s3"),
-                                ["signingRegion"] = Document.From("us-east-1"),
-                            }
-                        ),
-                    }
+                    AuthSchemes: SmithyEndpointAuthScheme.WithDefaults(
+                        new SmithyEndpointAuthScheme[]
+                        {
+                            new SmithyEndpointAuthScheme(
+                                "aws.auth#sigv4",
+                                new Dictionary<string, Document>
+                                {
+                                    ["disableDoubleEncoding"] = Document.From(true),
+                                    ["signingName"] = Document.From("s3"),
+                                    ["signingRegion"] = Document.From("us-east-1"),
+                                }
+                            ),
+                        },
+                        DefaultAuthSchemes()
+                    )
                 ),
                 105 => new SmithyEndpoint(
                     new Uri($"https://s3-fips.dualstack.{region!}.{partitionResult!.DnsSuffix}"),
-                    AuthSchemes: new SmithyEndpointAuthScheme[]
-                    {
-                        new SmithyEndpointAuthScheme(
-                            "aws.auth#sigv4",
-                            new Dictionary<string, Document>
-                            {
-                                ["disableDoubleEncoding"] = Document.From(true),
-                                ["signingName"] = Document.From("s3"),
-                                ["signingRegion"] = Document.From(region!),
-                            }
-                        ),
-                    }
+                    AuthSchemes: SmithyEndpointAuthScheme.WithDefaults(
+                        new SmithyEndpointAuthScheme[]
+                        {
+                            new SmithyEndpointAuthScheme(
+                                "aws.auth#sigv4",
+                                new Dictionary<string, Document>
+                                {
+                                    ["disableDoubleEncoding"] = Document.From(true),
+                                    ["signingName"] = Document.From("s3"),
+                                    ["signingRegion"] = Document.From(region!),
+                                }
+                            ),
+                        },
+                        DefaultAuthSchemes()
+                    )
                 ),
                 106 => new SmithyEndpoint(
                     new Uri($"https://s3-fips.us-east-1.{partitionResult!.DnsSuffix}"),
-                    AuthSchemes: new SmithyEndpointAuthScheme[]
-                    {
-                        new SmithyEndpointAuthScheme(
-                            "aws.auth#sigv4",
-                            new Dictionary<string, Document>
-                            {
-                                ["disableDoubleEncoding"] = Document.From(true),
-                                ["signingName"] = Document.From("s3"),
-                                ["signingRegion"] = Document.From("us-east-1"),
-                            }
-                        ),
-                    }
+                    AuthSchemes: SmithyEndpointAuthScheme.WithDefaults(
+                        new SmithyEndpointAuthScheme[]
+                        {
+                            new SmithyEndpointAuthScheme(
+                                "aws.auth#sigv4",
+                                new Dictionary<string, Document>
+                                {
+                                    ["disableDoubleEncoding"] = Document.From(true),
+                                    ["signingName"] = Document.From("s3"),
+                                    ["signingRegion"] = Document.From("us-east-1"),
+                                }
+                            ),
+                        },
+                        DefaultAuthSchemes()
+                    )
                 ),
                 107 => new SmithyEndpoint(
                     new Uri($"https://s3-fips.{region!}.{partitionResult!.DnsSuffix}"),
-                    AuthSchemes: new SmithyEndpointAuthScheme[]
-                    {
-                        new SmithyEndpointAuthScheme(
-                            "aws.auth#sigv4",
-                            new Dictionary<string, Document>
-                            {
-                                ["disableDoubleEncoding"] = Document.From(true),
-                                ["signingName"] = Document.From("s3"),
-                                ["signingRegion"] = Document.From(region!),
-                            }
-                        ),
-                    }
+                    AuthSchemes: SmithyEndpointAuthScheme.WithDefaults(
+                        new SmithyEndpointAuthScheme[]
+                        {
+                            new SmithyEndpointAuthScheme(
+                                "aws.auth#sigv4",
+                                new Dictionary<string, Document>
+                                {
+                                    ["disableDoubleEncoding"] = Document.From(true),
+                                    ["signingName"] = Document.From("s3"),
+                                    ["signingRegion"] = Document.From(region!),
+                                }
+                            ),
+                        },
+                        DefaultAuthSchemes()
+                    )
                 ),
                 108 => new SmithyEndpoint(
                     new Uri($"https://s3.dualstack.us-east-1.{partitionResult!.DnsSuffix}"),
-                    AuthSchemes: new SmithyEndpointAuthScheme[]
-                    {
-                        new SmithyEndpointAuthScheme(
-                            "aws.auth#sigv4",
-                            new Dictionary<string, Document>
-                            {
-                                ["disableDoubleEncoding"] = Document.From(true),
-                                ["signingName"] = Document.From("s3"),
-                                ["signingRegion"] = Document.From("us-east-1"),
-                            }
-                        ),
-                    }
+                    AuthSchemes: SmithyEndpointAuthScheme.WithDefaults(
+                        new SmithyEndpointAuthScheme[]
+                        {
+                            new SmithyEndpointAuthScheme(
+                                "aws.auth#sigv4",
+                                new Dictionary<string, Document>
+                                {
+                                    ["disableDoubleEncoding"] = Document.From(true),
+                                    ["signingName"] = Document.From("s3"),
+                                    ["signingRegion"] = Document.From("us-east-1"),
+                                }
+                            ),
+                        },
+                        DefaultAuthSchemes()
+                    )
                 ),
                 109 => new SmithyEndpoint(
                     new Uri($"https://s3.dualstack.{region!}.{partitionResult!.DnsSuffix}"),
-                    AuthSchemes: new SmithyEndpointAuthScheme[]
-                    {
-                        new SmithyEndpointAuthScheme(
-                            "aws.auth#sigv4",
-                            new Dictionary<string, Document>
-                            {
-                                ["disableDoubleEncoding"] = Document.From(true),
-                                ["signingName"] = Document.From("s3"),
-                                ["signingRegion"] = Document.From(region!),
-                            }
-                        ),
-                    }
+                    AuthSchemes: SmithyEndpointAuthScheme.WithDefaults(
+                        new SmithyEndpointAuthScheme[]
+                        {
+                            new SmithyEndpointAuthScheme(
+                                "aws.auth#sigv4",
+                                new Dictionary<string, Document>
+                                {
+                                    ["disableDoubleEncoding"] = Document.From(true),
+                                    ["signingName"] = Document.From("s3"),
+                                    ["signingRegion"] = Document.From(region!),
+                                }
+                            ),
+                        },
+                        DefaultAuthSchemes()
+                    )
                 ),
                 110 => new SmithyEndpoint(
                     new Uri($"{url!.Scheme}://{url!.Authority}{url!.Path}"),
-                    AuthSchemes: new SmithyEndpointAuthScheme[]
-                    {
-                        new SmithyEndpointAuthScheme(
-                            "aws.auth#sigv4",
-                            new Dictionary<string, Document>
-                            {
-                                ["disableDoubleEncoding"] = Document.From(true),
-                                ["signingName"] = Document.From("s3"),
-                                ["signingRegion"] = Document.From("us-east-1"),
-                            }
-                        ),
-                    }
+                    AuthSchemes: SmithyEndpointAuthScheme.WithDefaults(
+                        new SmithyEndpointAuthScheme[]
+                        {
+                            new SmithyEndpointAuthScheme(
+                                "aws.auth#sigv4",
+                                new Dictionary<string, Document>
+                                {
+                                    ["disableDoubleEncoding"] = Document.From(true),
+                                    ["signingName"] = Document.From("s3"),
+                                    ["signingRegion"] = Document.From("us-east-1"),
+                                }
+                            ),
+                        },
+                        DefaultAuthSchemes()
+                    )
                 ),
                 111 => new SmithyEndpoint(
                     new Uri($"{url!.Scheme}://{url!.Authority}{url!.Path}"),
-                    AuthSchemes: new SmithyEndpointAuthScheme[]
-                    {
-                        new SmithyEndpointAuthScheme(
-                            "aws.auth#sigv4",
-                            new Dictionary<string, Document>
-                            {
-                                ["disableDoubleEncoding"] = Document.From(true),
-                                ["signingName"] = Document.From("s3"),
-                                ["signingRegion"] = Document.From(region!),
-                            }
-                        ),
-                    }
+                    AuthSchemes: SmithyEndpointAuthScheme.WithDefaults(
+                        new SmithyEndpointAuthScheme[]
+                        {
+                            new SmithyEndpointAuthScheme(
+                                "aws.auth#sigv4",
+                                new Dictionary<string, Document>
+                                {
+                                    ["disableDoubleEncoding"] = Document.From(true),
+                                    ["signingName"] = Document.From("s3"),
+                                    ["signingRegion"] = Document.From(region!),
+                                }
+                            ),
+                        },
+                        DefaultAuthSchemes()
+                    )
                 ),
                 112 => new SmithyEndpoint(
                     new Uri($"https://s3.{partitionResult!.DnsSuffix}"),
-                    AuthSchemes: new SmithyEndpointAuthScheme[]
-                    {
-                        new SmithyEndpointAuthScheme(
-                            "aws.auth#sigv4",
-                            new Dictionary<string, Document>
-                            {
-                                ["disableDoubleEncoding"] = Document.From(true),
-                                ["signingName"] = Document.From("s3"),
-                                ["signingRegion"] = Document.From("us-east-1"),
-                            }
-                        ),
-                    }
+                    AuthSchemes: SmithyEndpointAuthScheme.WithDefaults(
+                        new SmithyEndpointAuthScheme[]
+                        {
+                            new SmithyEndpointAuthScheme(
+                                "aws.auth#sigv4",
+                                new Dictionary<string, Document>
+                                {
+                                    ["disableDoubleEncoding"] = Document.From(true),
+                                    ["signingName"] = Document.From("s3"),
+                                    ["signingRegion"] = Document.From("us-east-1"),
+                                }
+                            ),
+                        },
+                        DefaultAuthSchemes()
+                    )
                 ),
                 113 => new SmithyEndpoint(
                     new Uri($"https://s3.{partitionResult!.DnsSuffix}"),
-                    AuthSchemes: new SmithyEndpointAuthScheme[]
-                    {
-                        new SmithyEndpointAuthScheme(
-                            "aws.auth#sigv4",
-                            new Dictionary<string, Document>
-                            {
-                                ["disableDoubleEncoding"] = Document.From(true),
-                                ["signingName"] = Document.From("s3"),
-                                ["signingRegion"] = Document.From(region!),
-                            }
-                        ),
-                    }
+                    AuthSchemes: SmithyEndpointAuthScheme.WithDefaults(
+                        new SmithyEndpointAuthScheme[]
+                        {
+                            new SmithyEndpointAuthScheme(
+                                "aws.auth#sigv4",
+                                new Dictionary<string, Document>
+                                {
+                                    ["disableDoubleEncoding"] = Document.From(true),
+                                    ["signingName"] = Document.From("s3"),
+                                    ["signingRegion"] = Document.From(region!),
+                                }
+                            ),
+                        },
+                        DefaultAuthSchemes()
+                    )
                 ),
                 114 => new SmithyEndpoint(
                     new Uri($"https://s3.{region!}.{partitionResult!.DnsSuffix}"),
-                    AuthSchemes: new SmithyEndpointAuthScheme[]
-                    {
-                        new SmithyEndpointAuthScheme(
-                            "aws.auth#sigv4",
-                            new Dictionary<string, Document>
-                            {
-                                ["disableDoubleEncoding"] = Document.From(true),
-                                ["signingName"] = Document.From("s3"),
-                                ["signingRegion"] = Document.From(region!),
-                            }
-                        ),
-                    }
+                    AuthSchemes: SmithyEndpointAuthScheme.WithDefaults(
+                        new SmithyEndpointAuthScheme[]
+                        {
+                            new SmithyEndpointAuthScheme(
+                                "aws.auth#sigv4",
+                                new Dictionary<string, Document>
+                                {
+                                    ["disableDoubleEncoding"] = Document.From(true),
+                                    ["signingName"] = Document.From("s3"),
+                                    ["signingRegion"] = Document.From(region!),
+                                }
+                            ),
+                        },
+                        DefaultAuthSchemes()
+                    )
                 ),
                 115 => throw new SmithyEndpointResolutionException(
                     "A region must be set when sending requests to S3."
                 ),
                 _ => throw SmithyEndpointResolutionException.NoMatch(),
+            };
+
+        IReadOnlyList<SmithyEndpointAuthScheme> DefaultAuthSchemes() =>
+            new SmithyEndpointAuthScheme[]
+            {
+                new SmithyEndpointAuthScheme(
+                    "aws.auth#sigv4",
+                    new Dictionary<string, Document>
+                    {
+                        ["signingName"] = Document.From("s3"),
+                        ["signingRegion"] = region is null ? Document.Null : Document.From(region),
+                    }
+                ),
             };
     }
 

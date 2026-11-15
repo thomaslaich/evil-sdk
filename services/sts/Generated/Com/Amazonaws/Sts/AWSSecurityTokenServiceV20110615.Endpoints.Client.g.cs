@@ -228,31 +228,37 @@ public sealed class AWSSecurityTokenServiceV20110615EndpointResolver : IEndpoint
             {
                 1 => new SmithyEndpoint(
                     new Uri("https://sts.amazonaws.com"),
-                    AuthSchemes: new SmithyEndpointAuthScheme[]
-                    {
-                        new SmithyEndpointAuthScheme(
-                            "aws.auth#sigv4",
-                            new Dictionary<string, Document>
-                            {
-                                ["signingName"] = Document.From("sts"),
-                                ["signingRegion"] = Document.From("us-east-1"),
-                            }
-                        ),
-                    }
+                    AuthSchemes: SmithyEndpointAuthScheme.WithDefaults(
+                        new SmithyEndpointAuthScheme[]
+                        {
+                            new SmithyEndpointAuthScheme(
+                                "aws.auth#sigv4",
+                                new Dictionary<string, Document>
+                                {
+                                    ["signingName"] = Document.From("sts"),
+                                    ["signingRegion"] = Document.From("us-east-1"),
+                                }
+                            ),
+                        },
+                        DefaultAuthSchemes()
+                    )
                 ),
                 2 => new SmithyEndpoint(
                     new Uri($"https://sts.{region!}.{partitionResult!.DnsSuffix}"),
-                    AuthSchemes: new SmithyEndpointAuthScheme[]
-                    {
-                        new SmithyEndpointAuthScheme(
-                            "aws.auth#sigv4",
-                            new Dictionary<string, Document>
-                            {
-                                ["signingName"] = Document.From("sts"),
-                                ["signingRegion"] = Document.From(region!),
-                            }
-                        ),
-                    }
+                    AuthSchemes: SmithyEndpointAuthScheme.WithDefaults(
+                        new SmithyEndpointAuthScheme[]
+                        {
+                            new SmithyEndpointAuthScheme(
+                                "aws.auth#sigv4",
+                                new Dictionary<string, Document>
+                                {
+                                    ["signingName"] = Document.From("sts"),
+                                    ["signingRegion"] = Document.From(region!),
+                                }
+                            ),
+                        },
+                        DefaultAuthSchemes()
+                    )
                 ),
                 3 => throw new SmithyEndpointResolutionException(
                     "Invalid Configuration: FIPS and custom endpoint are not supported"

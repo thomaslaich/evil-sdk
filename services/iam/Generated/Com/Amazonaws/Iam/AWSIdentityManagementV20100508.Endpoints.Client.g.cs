@@ -220,410 +220,503 @@ public sealed class AWSIdentityManagementV20100508EndpointResolver : IEndpointRe
                 3 => new SmithyEndpoint(new Uri(endpoint!), AuthSchemes: DefaultAuthSchemes()),
                 4 => new SmithyEndpoint(
                     new Uri("https://iam.amazonaws.com"),
-                    AuthSchemes: new SmithyEndpointAuthScheme[]
-                    {
-                        new SmithyEndpointAuthScheme(
-                            "aws.auth#sigv4",
-                            new Dictionary<string, Document>
-                            {
-                                ["signingRegion"] = Document.From("us-east-1"),
-                            }
-                        ),
-                    }
+                    AuthSchemes: SmithyEndpointAuthScheme.WithDefaults(
+                        new SmithyEndpointAuthScheme[]
+                        {
+                            new SmithyEndpointAuthScheme(
+                                "aws.auth#sigv4",
+                                new Dictionary<string, Document>
+                                {
+                                    ["signingRegion"] = Document.From("us-east-1"),
+                                }
+                            ),
+                        },
+                        DefaultAuthSchemes()
+                    )
                 ),
                 5 => new SmithyEndpoint(
                     new Uri("https://iam-fips.amazonaws.com"),
-                    AuthSchemes: new SmithyEndpointAuthScheme[]
-                    {
-                        new SmithyEndpointAuthScheme(
-                            "aws.auth#sigv4",
-                            new Dictionary<string, Document>
-                            {
-                                ["signingRegion"] = Document.From("us-east-1"),
-                            }
-                        ),
-                    }
+                    AuthSchemes: SmithyEndpointAuthScheme.WithDefaults(
+                        new SmithyEndpointAuthScheme[]
+                        {
+                            new SmithyEndpointAuthScheme(
+                                "aws.auth#sigv4",
+                                new Dictionary<string, Document>
+                                {
+                                    ["signingRegion"] = Document.From("us-east-1"),
+                                }
+                            ),
+                        },
+                        DefaultAuthSchemes()
+                    )
                 ),
                 6 => new SmithyEndpoint(
                     new Uri("https://iam.global.api.aws"),
-                    AuthSchemes: new SmithyEndpointAuthScheme[]
-                    {
-                        new SmithyEndpointAuthScheme(
-                            "aws.auth#sigv4",
-                            new Dictionary<string, Document>
-                            {
-                                ["signingRegion"] = Document.From("us-east-1"),
-                            }
-                        ),
-                    }
+                    AuthSchemes: SmithyEndpointAuthScheme.WithDefaults(
+                        new SmithyEndpointAuthScheme[]
+                        {
+                            new SmithyEndpointAuthScheme(
+                                "aws.auth#sigv4",
+                                new Dictionary<string, Document>
+                                {
+                                    ["signingRegion"] = Document.From("us-east-1"),
+                                }
+                            ),
+                        },
+                        DefaultAuthSchemes()
+                    )
                 ),
                 7 => new SmithyEndpoint(
                     new Uri("https://iam-fips.global.api.aws"),
-                    AuthSchemes: new SmithyEndpointAuthScheme[]
-                    {
-                        new SmithyEndpointAuthScheme(
-                            "aws.auth#sigv4",
-                            new Dictionary<string, Document>
-                            {
-                                ["signingRegion"] = Document.From("us-east-1"),
-                            }
-                        ),
-                    }
+                    AuthSchemes: SmithyEndpointAuthScheme.WithDefaults(
+                        new SmithyEndpointAuthScheme[]
+                        {
+                            new SmithyEndpointAuthScheme(
+                                "aws.auth#sigv4",
+                                new Dictionary<string, Document>
+                                {
+                                    ["signingRegion"] = Document.From("us-east-1"),
+                                }
+                            ),
+                        },
+                        DefaultAuthSchemes()
+                    )
                 ),
                 8 => new SmithyEndpoint(
                     new Uri("https://iam.global.api.amazonwebservices.com.cn"),
-                    AuthSchemes: new SmithyEndpointAuthScheme[]
-                    {
-                        new SmithyEndpointAuthScheme(
-                            "aws.auth#sigv4",
-                            new Dictionary<string, Document>
-                            {
-                                ["signingRegion"] = Document.From("cn-north-1"),
-                            }
-                        ),
-                    }
+                    AuthSchemes: SmithyEndpointAuthScheme.WithDefaults(
+                        new SmithyEndpointAuthScheme[]
+                        {
+                            new SmithyEndpointAuthScheme(
+                                "aws.auth#sigv4",
+                                new Dictionary<string, Document>
+                                {
+                                    ["signingRegion"] = Document.From("cn-north-1"),
+                                }
+                            ),
+                        },
+                        DefaultAuthSchemes()
+                    )
                 ),
                 9 => new SmithyEndpoint(
                     new Uri("https://iam-fips.api.amazonwebservices.com.cn"),
-                    AuthSchemes: new SmithyEndpointAuthScheme[]
-                    {
-                        new SmithyEndpointAuthScheme(
-                            "aws.auth#sigv4",
-                            new Dictionary<string, Document>
-                            {
-                                ["signingRegion"] = Document.From("cn-north-1"),
-                            }
-                        ),
-                    }
+                    AuthSchemes: SmithyEndpointAuthScheme.WithDefaults(
+                        new SmithyEndpointAuthScheme[]
+                        {
+                            new SmithyEndpointAuthScheme(
+                                "aws.auth#sigv4",
+                                new Dictionary<string, Document>
+                                {
+                                    ["signingRegion"] = Document.From("cn-north-1"),
+                                }
+                            ),
+                        },
+                        DefaultAuthSchemes()
+                    )
                 ),
                 10 => new SmithyEndpoint(
                     new Uri("https://iam.cn-north-1.amazonaws.com.cn"),
-                    AuthSchemes: new SmithyEndpointAuthScheme[]
-                    {
-                        new SmithyEndpointAuthScheme(
-                            "aws.auth#sigv4",
-                            new Dictionary<string, Document>
-                            {
-                                ["signingRegion"] = Document.From("cn-north-1"),
-                            }
-                        ),
-                    }
+                    AuthSchemes: SmithyEndpointAuthScheme.WithDefaults(
+                        new SmithyEndpointAuthScheme[]
+                        {
+                            new SmithyEndpointAuthScheme(
+                                "aws.auth#sigv4",
+                                new Dictionary<string, Document>
+                                {
+                                    ["signingRegion"] = Document.From("cn-north-1"),
+                                }
+                            ),
+                        },
+                        DefaultAuthSchemes()
+                    )
                 ),
                 11 => new SmithyEndpoint(
                     new Uri("https://iam-fips.amazonaws.com.cn"),
-                    AuthSchemes: new SmithyEndpointAuthScheme[]
-                    {
-                        new SmithyEndpointAuthScheme(
-                            "aws.auth#sigv4",
-                            new Dictionary<string, Document>
-                            {
-                                ["signingRegion"] = Document.From("cn-north-1"),
-                            }
-                        ),
-                    }
+                    AuthSchemes: SmithyEndpointAuthScheme.WithDefaults(
+                        new SmithyEndpointAuthScheme[]
+                        {
+                            new SmithyEndpointAuthScheme(
+                                "aws.auth#sigv4",
+                                new Dictionary<string, Document>
+                                {
+                                    ["signingRegion"] = Document.From("cn-north-1"),
+                                }
+                            ),
+                        },
+                        DefaultAuthSchemes()
+                    )
                 ),
                 12 => new SmithyEndpoint(
                     new Uri("https://iam.us-gov.api.aws"),
-                    AuthSchemes: new SmithyEndpointAuthScheme[]
-                    {
-                        new SmithyEndpointAuthScheme(
-                            "aws.auth#sigv4",
-                            new Dictionary<string, Document>
-                            {
-                                ["signingRegion"] = Document.From("us-gov-west-1"),
-                            }
-                        ),
-                    }
+                    AuthSchemes: SmithyEndpointAuthScheme.WithDefaults(
+                        new SmithyEndpointAuthScheme[]
+                        {
+                            new SmithyEndpointAuthScheme(
+                                "aws.auth#sigv4",
+                                new Dictionary<string, Document>
+                                {
+                                    ["signingRegion"] = Document.From("us-gov-west-1"),
+                                }
+                            ),
+                        },
+                        DefaultAuthSchemes()
+                    )
                 ),
                 13 => new SmithyEndpoint(
                     new Uri("https://iam.us-gov.amazonaws.com"),
-                    AuthSchemes: new SmithyEndpointAuthScheme[]
-                    {
-                        new SmithyEndpointAuthScheme(
-                            "aws.auth#sigv4",
-                            new Dictionary<string, Document>
-                            {
-                                ["signingRegion"] = Document.From("us-gov-west-1"),
-                            }
-                        ),
-                    }
+                    AuthSchemes: SmithyEndpointAuthScheme.WithDefaults(
+                        new SmithyEndpointAuthScheme[]
+                        {
+                            new SmithyEndpointAuthScheme(
+                                "aws.auth#sigv4",
+                                new Dictionary<string, Document>
+                                {
+                                    ["signingRegion"] = Document.From("us-gov-west-1"),
+                                }
+                            ),
+                        },
+                        DefaultAuthSchemes()
+                    )
                 ),
                 14 => new SmithyEndpoint(
                     new Uri("https://iam.us-iso-east-1.c2s.ic.gov"),
-                    AuthSchemes: new SmithyEndpointAuthScheme[]
-                    {
-                        new SmithyEndpointAuthScheme(
-                            "aws.auth#sigv4",
-                            new Dictionary<string, Document>
-                            {
-                                ["signingRegion"] = Document.From("us-iso-east-1"),
-                            }
-                        ),
-                    }
+                    AuthSchemes: SmithyEndpointAuthScheme.WithDefaults(
+                        new SmithyEndpointAuthScheme[]
+                        {
+                            new SmithyEndpointAuthScheme(
+                                "aws.auth#sigv4",
+                                new Dictionary<string, Document>
+                                {
+                                    ["signingRegion"] = Document.From("us-iso-east-1"),
+                                }
+                            ),
+                        },
+                        DefaultAuthSchemes()
+                    )
                 ),
                 15 => new SmithyEndpoint(
                     new Uri("https://iam-fips.us-iso-east-1.c2s.ic.gov"),
-                    AuthSchemes: new SmithyEndpointAuthScheme[]
-                    {
-                        new SmithyEndpointAuthScheme(
-                            "aws.auth#sigv4",
-                            new Dictionary<string, Document>
-                            {
-                                ["signingRegion"] = Document.From("us-iso-east-1"),
-                            }
-                        ),
-                    }
+                    AuthSchemes: SmithyEndpointAuthScheme.WithDefaults(
+                        new SmithyEndpointAuthScheme[]
+                        {
+                            new SmithyEndpointAuthScheme(
+                                "aws.auth#sigv4",
+                                new Dictionary<string, Document>
+                                {
+                                    ["signingRegion"] = Document.From("us-iso-east-1"),
+                                }
+                            ),
+                        },
+                        DefaultAuthSchemes()
+                    )
                 ),
                 16 => new SmithyEndpoint(
                     new Uri("https://iam.api.aws.ic.gov"),
-                    AuthSchemes: new SmithyEndpointAuthScheme[]
-                    {
-                        new SmithyEndpointAuthScheme(
-                            "aws.auth#sigv4",
-                            new Dictionary<string, Document>
-                            {
-                                ["signingRegion"] = Document.From("us-iso-east-1"),
-                            }
-                        ),
-                    }
+                    AuthSchemes: SmithyEndpointAuthScheme.WithDefaults(
+                        new SmithyEndpointAuthScheme[]
+                        {
+                            new SmithyEndpointAuthScheme(
+                                "aws.auth#sigv4",
+                                new Dictionary<string, Document>
+                                {
+                                    ["signingRegion"] = Document.From("us-iso-east-1"),
+                                }
+                            ),
+                        },
+                        DefaultAuthSchemes()
+                    )
                 ),
                 17 => new SmithyEndpoint(
                     new Uri("https://iam-fips.api.aws.ic.gov"),
-                    AuthSchemes: new SmithyEndpointAuthScheme[]
-                    {
-                        new SmithyEndpointAuthScheme(
-                            "aws.auth#sigv4",
-                            new Dictionary<string, Document>
-                            {
-                                ["signingRegion"] = Document.From("us-iso-east-1"),
-                            }
-                        ),
-                    }
+                    AuthSchemes: SmithyEndpointAuthScheme.WithDefaults(
+                        new SmithyEndpointAuthScheme[]
+                        {
+                            new SmithyEndpointAuthScheme(
+                                "aws.auth#sigv4",
+                                new Dictionary<string, Document>
+                                {
+                                    ["signingRegion"] = Document.From("us-iso-east-1"),
+                                }
+                            ),
+                        },
+                        DefaultAuthSchemes()
+                    )
                 ),
                 18 => new SmithyEndpoint(
                     new Uri("https://iam.us-isob-east-1.sc2s.sgov.gov"),
-                    AuthSchemes: new SmithyEndpointAuthScheme[]
-                    {
-                        new SmithyEndpointAuthScheme(
-                            "aws.auth#sigv4",
-                            new Dictionary<string, Document>
-                            {
-                                ["signingRegion"] = Document.From("us-isob-east-1"),
-                            }
-                        ),
-                    }
+                    AuthSchemes: SmithyEndpointAuthScheme.WithDefaults(
+                        new SmithyEndpointAuthScheme[]
+                        {
+                            new SmithyEndpointAuthScheme(
+                                "aws.auth#sigv4",
+                                new Dictionary<string, Document>
+                                {
+                                    ["signingRegion"] = Document.From("us-isob-east-1"),
+                                }
+                            ),
+                        },
+                        DefaultAuthSchemes()
+                    )
                 ),
                 19 => new SmithyEndpoint(
                     new Uri("https://iam-fips.us-isob-east-1.sc2s.sgov.gov"),
-                    AuthSchemes: new SmithyEndpointAuthScheme[]
-                    {
-                        new SmithyEndpointAuthScheme(
-                            "aws.auth#sigv4",
-                            new Dictionary<string, Document>
-                            {
-                                ["signingRegion"] = Document.From("us-isob-east-1"),
-                            }
-                        ),
-                    }
+                    AuthSchemes: SmithyEndpointAuthScheme.WithDefaults(
+                        new SmithyEndpointAuthScheme[]
+                        {
+                            new SmithyEndpointAuthScheme(
+                                "aws.auth#sigv4",
+                                new Dictionary<string, Document>
+                                {
+                                    ["signingRegion"] = Document.From("us-isob-east-1"),
+                                }
+                            ),
+                        },
+                        DefaultAuthSchemes()
+                    )
                 ),
                 20 => new SmithyEndpoint(
                     new Uri("https://iam.api.aws.scloud"),
-                    AuthSchemes: new SmithyEndpointAuthScheme[]
-                    {
-                        new SmithyEndpointAuthScheme(
-                            "aws.auth#sigv4",
-                            new Dictionary<string, Document>
-                            {
-                                ["signingRegion"] = Document.From("us-isob-east-1"),
-                            }
-                        ),
-                    }
+                    AuthSchemes: SmithyEndpointAuthScheme.WithDefaults(
+                        new SmithyEndpointAuthScheme[]
+                        {
+                            new SmithyEndpointAuthScheme(
+                                "aws.auth#sigv4",
+                                new Dictionary<string, Document>
+                                {
+                                    ["signingRegion"] = Document.From("us-isob-east-1"),
+                                }
+                            ),
+                        },
+                        DefaultAuthSchemes()
+                    )
                 ),
                 21 => new SmithyEndpoint(
                     new Uri("https://iam-fips.api.aws.scloud"),
-                    AuthSchemes: new SmithyEndpointAuthScheme[]
-                    {
-                        new SmithyEndpointAuthScheme(
-                            "aws.auth#sigv4",
-                            new Dictionary<string, Document>
-                            {
-                                ["signingRegion"] = Document.From("us-isob-east-1"),
-                            }
-                        ),
-                    }
+                    AuthSchemes: SmithyEndpointAuthScheme.WithDefaults(
+                        new SmithyEndpointAuthScheme[]
+                        {
+                            new SmithyEndpointAuthScheme(
+                                "aws.auth#sigv4",
+                                new Dictionary<string, Document>
+                                {
+                                    ["signingRegion"] = Document.From("us-isob-east-1"),
+                                }
+                            ),
+                        },
+                        DefaultAuthSchemes()
+                    )
                 ),
                 22 => new SmithyEndpoint(
                     new Uri("https://iam.eu-isoe-west-1.cloud.adc-e.uk"),
-                    AuthSchemes: new SmithyEndpointAuthScheme[]
-                    {
-                        new SmithyEndpointAuthScheme(
-                            "aws.auth#sigv4",
-                            new Dictionary<string, Document>
-                            {
-                                ["signingRegion"] = Document.From("eu-isoe-west-1"),
-                            }
-                        ),
-                    }
+                    AuthSchemes: SmithyEndpointAuthScheme.WithDefaults(
+                        new SmithyEndpointAuthScheme[]
+                        {
+                            new SmithyEndpointAuthScheme(
+                                "aws.auth#sigv4",
+                                new Dictionary<string, Document>
+                                {
+                                    ["signingRegion"] = Document.From("eu-isoe-west-1"),
+                                }
+                            ),
+                        },
+                        DefaultAuthSchemes()
+                    )
                 ),
                 23 => new SmithyEndpoint(
                     new Uri("https://iam-fips.cloud.adc-e.uk"),
-                    AuthSchemes: new SmithyEndpointAuthScheme[]
-                    {
-                        new SmithyEndpointAuthScheme(
-                            "aws.auth#sigv4",
-                            new Dictionary<string, Document>
-                            {
-                                ["signingRegion"] = Document.From("eu-isoe-west-1"),
-                            }
-                        ),
-                    }
+                    AuthSchemes: SmithyEndpointAuthScheme.WithDefaults(
+                        new SmithyEndpointAuthScheme[]
+                        {
+                            new SmithyEndpointAuthScheme(
+                                "aws.auth#sigv4",
+                                new Dictionary<string, Document>
+                                {
+                                    ["signingRegion"] = Document.From("eu-isoe-west-1"),
+                                }
+                            ),
+                        },
+                        DefaultAuthSchemes()
+                    )
                 ),
                 24 => new SmithyEndpoint(
                     new Uri("https://iam.api.cloud-aws.adc-e.uk"),
-                    AuthSchemes: new SmithyEndpointAuthScheme[]
-                    {
-                        new SmithyEndpointAuthScheme(
-                            "aws.auth#sigv4",
-                            new Dictionary<string, Document>
-                            {
-                                ["signingRegion"] = Document.From("eu-isoe-west-1"),
-                            }
-                        ),
-                    }
+                    AuthSchemes: SmithyEndpointAuthScheme.WithDefaults(
+                        new SmithyEndpointAuthScheme[]
+                        {
+                            new SmithyEndpointAuthScheme(
+                                "aws.auth#sigv4",
+                                new Dictionary<string, Document>
+                                {
+                                    ["signingRegion"] = Document.From("eu-isoe-west-1"),
+                                }
+                            ),
+                        },
+                        DefaultAuthSchemes()
+                    )
                 ),
                 25 => new SmithyEndpoint(
                     new Uri("https://iam-fips.api.cloud-aws.adc-e.uk"),
-                    AuthSchemes: new SmithyEndpointAuthScheme[]
-                    {
-                        new SmithyEndpointAuthScheme(
-                            "aws.auth#sigv4",
-                            new Dictionary<string, Document>
-                            {
-                                ["signingRegion"] = Document.From("eu-isoe-west-1"),
-                            }
-                        ),
-                    }
+                    AuthSchemes: SmithyEndpointAuthScheme.WithDefaults(
+                        new SmithyEndpointAuthScheme[]
+                        {
+                            new SmithyEndpointAuthScheme(
+                                "aws.auth#sigv4",
+                                new Dictionary<string, Document>
+                                {
+                                    ["signingRegion"] = Document.From("eu-isoe-west-1"),
+                                }
+                            ),
+                        },
+                        DefaultAuthSchemes()
+                    )
                 ),
                 26 => new SmithyEndpoint(
                     new Uri("https://iam.us-isof-south-1.csp.hci.ic.gov"),
-                    AuthSchemes: new SmithyEndpointAuthScheme[]
-                    {
-                        new SmithyEndpointAuthScheme(
-                            "aws.auth#sigv4",
-                            new Dictionary<string, Document>
-                            {
-                                ["signingRegion"] = Document.From("us-isof-south-1"),
-                            }
-                        ),
-                    }
+                    AuthSchemes: SmithyEndpointAuthScheme.WithDefaults(
+                        new SmithyEndpointAuthScheme[]
+                        {
+                            new SmithyEndpointAuthScheme(
+                                "aws.auth#sigv4",
+                                new Dictionary<string, Document>
+                                {
+                                    ["signingRegion"] = Document.From("us-isof-south-1"),
+                                }
+                            ),
+                        },
+                        DefaultAuthSchemes()
+                    )
                 ),
                 27 => new SmithyEndpoint(
                     new Uri("https://iam-fips.csp.hci.ic.gov"),
-                    AuthSchemes: new SmithyEndpointAuthScheme[]
-                    {
-                        new SmithyEndpointAuthScheme(
-                            "aws.auth#sigv4",
-                            new Dictionary<string, Document>
-                            {
-                                ["signingRegion"] = Document.From("us-isof-south-1"),
-                            }
-                        ),
-                    }
+                    AuthSchemes: SmithyEndpointAuthScheme.WithDefaults(
+                        new SmithyEndpointAuthScheme[]
+                        {
+                            new SmithyEndpointAuthScheme(
+                                "aws.auth#sigv4",
+                                new Dictionary<string, Document>
+                                {
+                                    ["signingRegion"] = Document.From("us-isof-south-1"),
+                                }
+                            ),
+                        },
+                        DefaultAuthSchemes()
+                    )
                 ),
                 28 => new SmithyEndpoint(
                     new Uri("https://iam.api.aws.hci.ic.gov"),
-                    AuthSchemes: new SmithyEndpointAuthScheme[]
-                    {
-                        new SmithyEndpointAuthScheme(
-                            "aws.auth#sigv4",
-                            new Dictionary<string, Document>
-                            {
-                                ["signingRegion"] = Document.From("us-isof-south-1"),
-                            }
-                        ),
-                    }
+                    AuthSchemes: SmithyEndpointAuthScheme.WithDefaults(
+                        new SmithyEndpointAuthScheme[]
+                        {
+                            new SmithyEndpointAuthScheme(
+                                "aws.auth#sigv4",
+                                new Dictionary<string, Document>
+                                {
+                                    ["signingRegion"] = Document.From("us-isof-south-1"),
+                                }
+                            ),
+                        },
+                        DefaultAuthSchemes()
+                    )
                 ),
                 29 => new SmithyEndpoint(
                     new Uri("https://iam-fips.api.aws.hci.ic.gov"),
-                    AuthSchemes: new SmithyEndpointAuthScheme[]
-                    {
-                        new SmithyEndpointAuthScheme(
-                            "aws.auth#sigv4",
-                            new Dictionary<string, Document>
-                            {
-                                ["signingRegion"] = Document.From("us-isof-south-1"),
-                            }
-                        ),
-                    }
+                    AuthSchemes: SmithyEndpointAuthScheme.WithDefaults(
+                        new SmithyEndpointAuthScheme[]
+                        {
+                            new SmithyEndpointAuthScheme(
+                                "aws.auth#sigv4",
+                                new Dictionary<string, Document>
+                                {
+                                    ["signingRegion"] = Document.From("us-isof-south-1"),
+                                }
+                            ),
+                        },
+                        DefaultAuthSchemes()
+                    )
                 ),
                 30 => new SmithyEndpoint(
                     new Uri("https://iam.eusc-de-east-1.amazonaws.eu"),
-                    AuthSchemes: new SmithyEndpointAuthScheme[]
-                    {
-                        new SmithyEndpointAuthScheme(
-                            "aws.auth#sigv4",
-                            new Dictionary<string, Document>
-                            {
-                                ["signingRegion"] = Document.From("eusc-de-east-1"),
-                            }
-                        ),
-                    }
+                    AuthSchemes: SmithyEndpointAuthScheme.WithDefaults(
+                        new SmithyEndpointAuthScheme[]
+                        {
+                            new SmithyEndpointAuthScheme(
+                                "aws.auth#sigv4",
+                                new Dictionary<string, Document>
+                                {
+                                    ["signingRegion"] = Document.From("eusc-de-east-1"),
+                                }
+                            ),
+                        },
+                        DefaultAuthSchemes()
+                    )
                 ),
                 31 => new SmithyEndpoint(
                     new Uri("https://iam-fips.amazonaws.eu"),
-                    AuthSchemes: new SmithyEndpointAuthScheme[]
-                    {
-                        new SmithyEndpointAuthScheme(
-                            "aws.auth#sigv4",
-                            new Dictionary<string, Document>
-                            {
-                                ["signingRegion"] = Document.From("eusc-de-east-1"),
-                            }
-                        ),
-                    }
+                    AuthSchemes: SmithyEndpointAuthScheme.WithDefaults(
+                        new SmithyEndpointAuthScheme[]
+                        {
+                            new SmithyEndpointAuthScheme(
+                                "aws.auth#sigv4",
+                                new Dictionary<string, Document>
+                                {
+                                    ["signingRegion"] = Document.From("eusc-de-east-1"),
+                                }
+                            ),
+                        },
+                        DefaultAuthSchemes()
+                    )
                 ),
                 32 => new SmithyEndpoint(
                     new Uri("https://iam.global.api.amazonwebservices.eu"),
-                    AuthSchemes: new SmithyEndpointAuthScheme[]
-                    {
-                        new SmithyEndpointAuthScheme(
-                            "aws.auth#sigv4",
-                            new Dictionary<string, Document>
-                            {
-                                ["signingRegion"] = Document.From("eusc-de-east-1"),
-                            }
-                        ),
-                    }
+                    AuthSchemes: SmithyEndpointAuthScheme.WithDefaults(
+                        new SmithyEndpointAuthScheme[]
+                        {
+                            new SmithyEndpointAuthScheme(
+                                "aws.auth#sigv4",
+                                new Dictionary<string, Document>
+                                {
+                                    ["signingRegion"] = Document.From("eusc-de-east-1"),
+                                }
+                            ),
+                        },
+                        DefaultAuthSchemes()
+                    )
                 ),
                 33 => new SmithyEndpoint(
                     new Uri("https://iam-fips.api.amazonwebservices.eu"),
-                    AuthSchemes: new SmithyEndpointAuthScheme[]
-                    {
-                        new SmithyEndpointAuthScheme(
-                            "aws.auth#sigv4",
-                            new Dictionary<string, Document>
-                            {
-                                ["signingRegion"] = Document.From("eusc-de-east-1"),
-                            }
-                        ),
-                    }
+                    AuthSchemes: SmithyEndpointAuthScheme.WithDefaults(
+                        new SmithyEndpointAuthScheme[]
+                        {
+                            new SmithyEndpointAuthScheme(
+                                "aws.auth#sigv4",
+                                new Dictionary<string, Document>
+                                {
+                                    ["signingRegion"] = Document.From("eusc-de-east-1"),
+                                }
+                            ),
+                        },
+                        DefaultAuthSchemes()
+                    )
                 ),
                 34 => new SmithyEndpoint(
                     new Uri(
                         $"https://iam-fips.{partitionResult!.ImplicitGlobalRegion}.{partitionResult!.DualStackDnsSuffix}"
                     ),
-                    AuthSchemes: new SmithyEndpointAuthScheme[]
-                    {
-                        new SmithyEndpointAuthScheme(
-                            "aws.auth#sigv4",
-                            new Dictionary<string, Document>
-                            {
-                                ["signingRegion"] = Document.From(
-                                    partitionResult!.ImplicitGlobalRegion
-                                ),
-                            }
-                        ),
-                    }
+                    AuthSchemes: SmithyEndpointAuthScheme.WithDefaults(
+                        new SmithyEndpointAuthScheme[]
+                        {
+                            new SmithyEndpointAuthScheme(
+                                "aws.auth#sigv4",
+                                new Dictionary<string, Document>
+                                {
+                                    ["signingRegion"] = Document.From(
+                                        partitionResult!.ImplicitGlobalRegion
+                                    ),
+                                }
+                            ),
+                        },
+                        DefaultAuthSchemes()
+                    )
                 ),
                 35 => throw new SmithyEndpointResolutionException(
                     "FIPS and DualStack are enabled, but this partition does not support one or both"
@@ -632,18 +725,21 @@ public sealed class AWSIdentityManagementV20100508EndpointResolver : IEndpointRe
                     new Uri(
                         $"https://iam-fips.{partitionResult!.ImplicitGlobalRegion}.{partitionResult!.DnsSuffix}"
                     ),
-                    AuthSchemes: new SmithyEndpointAuthScheme[]
-                    {
-                        new SmithyEndpointAuthScheme(
-                            "aws.auth#sigv4",
-                            new Dictionary<string, Document>
-                            {
-                                ["signingRegion"] = Document.From(
-                                    partitionResult!.ImplicitGlobalRegion
-                                ),
-                            }
-                        ),
-                    }
+                    AuthSchemes: SmithyEndpointAuthScheme.WithDefaults(
+                        new SmithyEndpointAuthScheme[]
+                        {
+                            new SmithyEndpointAuthScheme(
+                                "aws.auth#sigv4",
+                                new Dictionary<string, Document>
+                                {
+                                    ["signingRegion"] = Document.From(
+                                        partitionResult!.ImplicitGlobalRegion
+                                    ),
+                                }
+                            ),
+                        },
+                        DefaultAuthSchemes()
+                    )
                 ),
                 37 => throw new SmithyEndpointResolutionException(
                     "FIPS is enabled but this partition does not support FIPS"
@@ -652,18 +748,21 @@ public sealed class AWSIdentityManagementV20100508EndpointResolver : IEndpointRe
                     new Uri(
                         $"https://iam.{partitionResult!.ImplicitGlobalRegion}.{partitionResult!.DualStackDnsSuffix}"
                     ),
-                    AuthSchemes: new SmithyEndpointAuthScheme[]
-                    {
-                        new SmithyEndpointAuthScheme(
-                            "aws.auth#sigv4",
-                            new Dictionary<string, Document>
-                            {
-                                ["signingRegion"] = Document.From(
-                                    partitionResult!.ImplicitGlobalRegion
-                                ),
-                            }
-                        ),
-                    }
+                    AuthSchemes: SmithyEndpointAuthScheme.WithDefaults(
+                        new SmithyEndpointAuthScheme[]
+                        {
+                            new SmithyEndpointAuthScheme(
+                                "aws.auth#sigv4",
+                                new Dictionary<string, Document>
+                                {
+                                    ["signingRegion"] = Document.From(
+                                        partitionResult!.ImplicitGlobalRegion
+                                    ),
+                                }
+                            ),
+                        },
+                        DefaultAuthSchemes()
+                    )
                 ),
                 39 => throw new SmithyEndpointResolutionException(
                     "DualStack is enabled but this partition does not support DualStack"
@@ -672,18 +771,21 @@ public sealed class AWSIdentityManagementV20100508EndpointResolver : IEndpointRe
                     new Uri(
                         $"https://iam.{partitionResult!.ImplicitGlobalRegion}.{partitionResult!.DnsSuffix}"
                     ),
-                    AuthSchemes: new SmithyEndpointAuthScheme[]
-                    {
-                        new SmithyEndpointAuthScheme(
-                            "aws.auth#sigv4",
-                            new Dictionary<string, Document>
-                            {
-                                ["signingRegion"] = Document.From(
-                                    partitionResult!.ImplicitGlobalRegion
-                                ),
-                            }
-                        ),
-                    }
+                    AuthSchemes: SmithyEndpointAuthScheme.WithDefaults(
+                        new SmithyEndpointAuthScheme[]
+                        {
+                            new SmithyEndpointAuthScheme(
+                                "aws.auth#sigv4",
+                                new Dictionary<string, Document>
+                                {
+                                    ["signingRegion"] = Document.From(
+                                        partitionResult!.ImplicitGlobalRegion
+                                    ),
+                                }
+                            ),
+                        },
+                        DefaultAuthSchemes()
+                    )
                 ),
                 41 => throw new SmithyEndpointResolutionException(
                     "Invalid Configuration: Missing Region"

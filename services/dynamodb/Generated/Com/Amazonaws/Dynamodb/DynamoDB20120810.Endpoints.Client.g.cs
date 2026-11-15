@@ -618,17 +618,20 @@ public sealed class DynamoDB20120810EndpointResolver : IEndpointResolver
                 ),
                 7 => new SmithyEndpoint(
                     new Uri("http://localhost:8000"),
-                    AuthSchemes: new SmithyEndpointAuthScheme[]
-                    {
-                        new SmithyEndpointAuthScheme(
-                            "aws.auth#sigv4",
-                            new Dictionary<string, Document>
-                            {
-                                ["signingRegion"] = Document.From("us-east-1"),
-                                ["signingName"] = Document.From("dynamodb"),
-                            }
-                        ),
-                    }
+                    AuthSchemes: SmithyEndpointAuthScheme.WithDefaults(
+                        new SmithyEndpointAuthScheme[]
+                        {
+                            new SmithyEndpointAuthScheme(
+                                "aws.auth#sigv4",
+                                new Dictionary<string, Document>
+                                {
+                                    ["signingRegion"] = Document.From("us-east-1"),
+                                    ["signingName"] = Document.From("dynamodb"),
+                                }
+                            ),
+                        },
+                        DefaultAuthSchemes()
+                    )
                 ),
                 8 => throw new SmithyEndpointResolutionException(
                     "Invalid Configuration: AccountIdEndpointMode is required and FIPS is enabled, but FIPS account endpoints are not supported"
